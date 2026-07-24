@@ -126,4 +126,4 @@ All actions are SHA-pinned; Dependabot keeps modules and actions current.
 
 ## License
 
-[MIT](LICENSE) © Philipp Bandow
+[MIT](LICENSE) © glueckanja AG
