@@ -1,0 +1,18 @@
+# Transient Microsoft ExchangeOnline.psm1 fetched by cmd/fetch-spec at generation
+# time — used to derive the catalog, never committed.
+/.spec-cache/
+
+# Compiled command binaries
+/fetch-spec
+/gen-go
+/gen-models
+/verify
+*.test
+
+# Local auth material — never commit
+*.pfx
+*.pem
+*.jwt
+
+.DS_Store
+.env

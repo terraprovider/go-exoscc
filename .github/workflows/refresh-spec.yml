@@ -1,0 +1,96 @@
+name: Refresh SDK spec
+
+# Dynamically pulls the latest Admin API spec from a live tenant and regenerates
+# the SDK. Authenticates app-only with a GitHub Actions OIDC token exchanged via
+# an Entra *federated identity credential* (no stored secret). The raw Microsoft
+# psm1 is fetched transiently (.spec-cache, git-ignored, not committed); only the
+# derived catalog JSON, $metadata schema and generated Go are committed via PR.
+#
+# Repo configuration required (Settings -> Secrets and variables -> Actions -> Variables):
+#   ARM_TENANT_ID  - tenant GUID or primary domain
+#   ARM_CLIENT_ID  - Entra app (client) ID whose federated credential trusts this
+#                    repo's OIDC subject (audience api://AzureADTokenExchange), with
+#                    Office 365 Exchange Online -> Exchange.ManageAsApp AND a
+#                    directory role on its service principal (see README).
+# (Terraform-style ARM_* names so the same app/credentials drive the TF provider.)
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # weekly, Monday 05:00 UTC
+  workflow_dispatch:
+    inputs:
+      cloud:
+        description: "EXO | Purview | Both"
+        default: "Both"
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write # required for the GitHub OIDC token
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      # pwsh (for the PowerShell-AST catalog extractor) is preinstalled on ubuntu-latest.
+      - name: Fetch live spec (app-only via GitHub OIDC federated credential)
+        env:
+          ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
+          ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
+          ARM_USE_OIDC: "true"
+          CLOUD: ${{ github.event.inputs.cloud || 'Both' }}
+        run: |
+          test -n "$ARM_TENANT_ID" -a -n "$ARM_CLIENT_ID" || { echo "::error::set ARM_TENANT_ID / ARM_CLIENT_ID repo variables"; exit 1; }
+          go run ./cmd/fetch-spec -cloud "$CLOUD" -psm1-dir .spec-cache -metadata-dir spec/metadata
+
+      - name: Extract catalog(s) from the psm1 (PowerShell AST)
+        shell: pwsh
+        run: |
+          if (Test-Path .spec-cache/EXO-ExchangeOnline.psm1) {
+            ./generator/extract-catalog.ps1 -Psm1 .spec-cache/EXO-ExchangeOnline.psm1     -Out spec/catalog/EXO-catalog.json
+          }
+          if (Test-Path .spec-cache/Purview-ExchangeOnline.psm1) {
+            ./generator/extract-catalog.ps1 -Psm1 .spec-cache/Purview-ExchangeOnline.psm1 -Out spec/catalog/Purview-catalog.json
+          }
+
+      - name: Regenerate bindings + models
+        run: |
+          go run ./cmd/gen-go -catalog spec/catalog/EXO-catalog.json -pkg exo \
+            -client github.com/terraprovider/go-exoscc/adminapi -out exo/zz_generated_exo.go
+          if [ -f spec/catalog/Purview-catalog.json ]; then
+            go run ./cmd/gen-go -catalog spec/catalog/Purview-catalog.json -pkg purview \
+              -client github.com/terraprovider/go-exoscc/adminapi -out purview/zz_generated_purview.go
+          fi
+          go run ./cmd/gen-models -metadata spec/metadata/EXO-metadata.xml -pkg models \
+            -out models/zz_generated_models.go
+
+      - name: Build + test the regenerated SDK
+        run: |
+          go build ./...
+          go test ./...
+
+      - name: Open PR on change
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          title: "chore: refresh SDK from live Admin API spec"
+          commit-message: "chore: refresh SDK from live Admin API spec"
+          branch: automated/spec-refresh
+          delete-branch: true
+          body: |
+            Automated regeneration from the live Admin API spec
+            (`fetch-spec` -> `extract-catalog` -> `gen-go`/`gen-models`).
+
+            The raw Microsoft psm1 is fetched transiently and **not** committed;
+            only the derived catalog JSON, `$metadata` and generated Go change here.
+          add-paths: |
+            spec/**
+            exo/**
+            purview/**
+            models/**
