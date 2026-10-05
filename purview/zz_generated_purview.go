@@ -8,7 +8,7 @@ import (
 	"github.com/terraprovider/go-exoscc/adminapi"
 )
 
-// Service exposes the 418 cmdlets of Purview-ExchangeOnline.psm1 as typed methods.
+// Service exposes the 411 cmdlets of Purview-ExchangeOnline.psm1 as typed methods.
 type Service struct{ C *adminapi.Client }
 
 // New wraps an *adminapi.Client.
@@ -671,6 +671,7 @@ type GetAdaptiveScopeMembersParams struct {
 	PageResultSize        any    `ps:"PageResultSize"`
 	StartDateTime         any    `ps:"StartDateTime"`
 	State                 any    `ps:"State"`
+	UseAltSource          bool   `ps:"UseAltSource"`
 }
 
 func (p GetAdaptiveScopeMembersParams) params() map[string]any {
@@ -698,6 +699,9 @@ func (p GetAdaptiveScopeMembersParams) params() map[string]any {
 	}
 	if p.State != nil {
 		m["State"] = p.State
+	}
+	if p.UseAltSource {
+		m["UseAltSource"] = true
 	}
 	return m
 }
@@ -2506,75 +2510,6 @@ func (s *Service) GetHoldComplianceRule(ctx context.Context, p GetHoldCompliance
 	return s.C.Invoke(ctx, "Get-HoldComplianceRule", p.params())
 }
 
-// GetInformationBarrierPoliciesApplicationStatusParams are the parameters of Get-InformationBarrierPoliciesApplicationStatus.
-// DefaultParameterSetName: Default
-type GetInformationBarrierPoliciesApplicationStatusParams struct {
-	All      bool `ps:"All"`
-	Identity any  `ps:"Identity"`
-}
-
-func (p GetInformationBarrierPoliciesApplicationStatusParams) params() map[string]any {
-	m := map[string]any{}
-	if p.All {
-		m["All"] = true
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	return m
-}
-
-// GetInformationBarrierPoliciesApplicationStatus runs the Get-InformationBarrierPoliciesApplicationStatus cmdlet.
-func (s *Service) GetInformationBarrierPoliciesApplicationStatus(ctx context.Context, p GetInformationBarrierPoliciesApplicationStatusParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Get-InformationBarrierPoliciesApplicationStatus", p.params())
-}
-
-// GetInformationBarrierPolicyParams are the parameters of Get-InformationBarrierPolicy.
-// DefaultParameterSetName: InformationBarrierDefault
-type GetInformationBarrierPolicyParams struct {
-	ExoPolicyId any `ps:"ExoPolicyId"`
-	Identity    any `ps:"Identity"`
-}
-
-func (p GetInformationBarrierPolicyParams) params() map[string]any {
-	m := map[string]any{}
-	if p.ExoPolicyId != nil {
-		m["ExoPolicyId"] = p.ExoPolicyId
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	return m
-}
-
-// GetInformationBarrierPolicy runs the Get-InformationBarrierPolicy cmdlet.
-func (s *Service) GetInformationBarrierPolicy(ctx context.Context, p GetInformationBarrierPolicyParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Get-InformationBarrierPolicy", p.params())
-}
-
-// GetInformationBarrierRecipientStatusParams are the parameters of Get-InformationBarrierRecipientStatus.
-// DefaultParameterSetName: Identity
-type GetInformationBarrierRecipientStatusParams struct {
-	Identity  any `ps:"Identity"`
-	Identity2 any `ps:"Identity2"`
-}
-
-func (p GetInformationBarrierRecipientStatusParams) params() map[string]any {
-	m := map[string]any{}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	if p.Identity2 != nil {
-		m["Identity2"] = p.Identity2
-	}
-	return m
-}
-
-// GetInformationBarrierRecipientStatus runs the Get-InformationBarrierRecipientStatus cmdlet.
-func (s *Service) GetInformationBarrierRecipientStatus(ctx context.Context, p GetInformationBarrierRecipientStatusParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Get-InformationBarrierRecipientStatus", p.params())
-}
-
 // GetInsiderRiskEntityListParams are the parameters of Get-InsiderRiskEntityList.
 // DefaultParameterSetName: Identity
 type GetInsiderRiskEntityListParams struct {
@@ -3707,6 +3642,32 @@ func (s *Service) GetSCInsights(ctx context.Context, p GetSCInsightsParams) (*ad
 	return s.C.Invoke(ctx, "Get-SCInsights", p.params())
 }
 
+// GetSPORestoreRequestStatusParams are the parameters of Get-SPORestoreRequestStatus.
+type GetSPORestoreRequestStatusParams struct {
+	Page                 int    `ps:"Page"`
+	RestorationRequestId any    `ps:"RestorationRequestId"`
+	SiteIds              string `ps:"SiteIds"`
+}
+
+func (p GetSPORestoreRequestStatusParams) params() map[string]any {
+	m := map[string]any{}
+	if p.Page != 0 {
+		m["Page"] = p.Page
+	}
+	if p.RestorationRequestId != nil {
+		m["RestorationRequestId"] = p.RestorationRequestId
+	}
+	if p.SiteIds != "" {
+		m["SiteIds"] = p.SiteIds
+	}
+	return m
+}
+
+// GetSPORestoreRequestStatus runs the Get-SPORestoreRequestStatus cmdlet.
+func (s *Service) GetSPORestoreRequestStatus(ctx context.Context, p GetSPORestoreRequestStatusParams) (*adminapi.Result, error) {
+	return s.C.Invoke(ctx, "Get-SPORestoreRequestStatus", p.params())
+}
+
 // GetScopeAdminsParams are the parameters of Get-ScopeAdmins.
 // DefaultParameterSetName: Identity
 type GetScopeAdminsParams struct {
@@ -4395,6 +4356,7 @@ type InvokeHoldRemovalActionParams struct {
 	Force              bool   `ps:"Force"`
 	HoldId             string `ps:"HoldId"`
 	SharePointLocation string `ps:"SharePointLocation"`
+	TenantScope        bool   `ps:"TenantScope"`
 }
 
 func (p InvokeHoldRemovalActionParams) params() map[string]any {
@@ -4413,6 +4375,9 @@ func (p InvokeHoldRemovalActionParams) params() map[string]any {
 	}
 	if p.SharePointLocation != "" {
 		m["SharePointLocation"] = p.SharePointLocation
+	}
+	if p.TenantScope {
+		m["TenantScope"] = true
 	}
 	return m
 }
@@ -4875,6 +4840,7 @@ type NewAutoSensitivityLabelPolicyParams struct {
 	SharePointAdaptiveScopesException       any      `ps:"SharePointAdaptiveScopesException"`
 	SharePointLocation                      any      `ps:"SharePointLocation"`
 	SharePointLocationException             any      `ps:"SharePointLocationException"`
+	SpoDocLibraryDefaultLabelSnapshot       any      `ps:"SpoDocLibraryDefaultLabelSnapshot"`
 	UnifiedAuditLogEnabled                  bool     `ps:"UnifiedAuditLogEnabled"`
 }
 
@@ -4991,6 +4957,9 @@ func (p NewAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.SharePointLocationException != nil {
 		m["SharePointLocationException"] = p.SharePointLocationException
 	}
+	if p.SpoDocLibraryDefaultLabelSnapshot != nil {
+		m["SpoDocLibraryDefaultLabelSnapshot"] = p.SpoDocLibraryDefaultLabelSnapshot
+	}
 	if p.UnifiedAuditLogEnabled {
 		m["UnifiedAuditLogEnabled"] = true
 	}
@@ -5021,6 +4990,7 @@ type NewAutoSensitivityLabelRuleParams struct {
 	DocumentIsUnsupported                        bool     `ps:"DocumentIsUnsupported"`
 	DocumentNameMatchesWords                     any      `ps:"DocumentNameMatchesWords"`
 	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`
+	EffectiveParentFolder                        []string `ps:"EffectiveParentFolder"`
 	ExceptIfAccessScope                          any      `ps:"ExceptIfAccessScope"`
 	ExceptIfAnyOfRecipientAddressContainsWords   any      `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
 	ExceptIfAnyOfRecipientAddressMatchesPatterns any      `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
@@ -5032,11 +5002,13 @@ type NewAutoSensitivityLabelRuleParams struct {
 	ExceptIfDocumentIsUnsupported                bool     `ps:"ExceptIfDocumentIsUnsupported"`
 	ExceptIfDocumentNameMatchesWords             any      `ps:"ExceptIfDocumentNameMatchesWords"`
 	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"`
+	ExceptIfEffectiveParentFolder                []string `ps:"ExceptIfEffectiveParentFolder"`
 	ExceptIfFrom                                 []string `ps:"ExceptIfFrom"`
 	ExceptIfFromAddressContainsWords             any      `ps:"ExceptIfFromAddressContainsWords"`
 	ExceptIfFromAddressMatchesPatterns           any      `ps:"ExceptIfFromAddressMatchesPatterns"`
 	ExceptIfFromMemberOf                         []string `ps:"ExceptIfFromMemberOf"`
 	ExceptIfHeaderMatchesPatterns                any      `ps:"ExceptIfHeaderMatchesPatterns"`
+	ExceptIfParentFolder                         []string `ps:"ExceptIfParentFolder"`
 	ExceptIfProcessingLimitExceeded              bool     `ps:"ExceptIfProcessingLimitExceeded"`
 	ExceptIfRecipientDomainIs                    any      `ps:"ExceptIfRecipientDomainIs"`
 	ExceptIfSenderDomainIs                       any      `ps:"ExceptIfSenderDomainIs"`
@@ -5053,6 +5025,7 @@ type NewAutoSensitivityLabelRuleParams struct {
 	HeaderMatchesPatterns                        any      `ps:"HeaderMatchesPatterns"`
 	ImmutableId                                  any      `ps:"ImmutableId"`
 	Name                                         string   `ps:"Name"`
+	ParentFolder                                 []string `ps:"ParentFolder"`
 	Policy                                       any      `ps:"Policy"`
 	Priority                                     any      `ps:"Priority"`
 	ProcessingLimitExceeded                      bool     `ps:"ProcessingLimitExceeded"`
@@ -5122,6 +5095,9 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.DocumentSizeOver != nil {
 		m["DocumentSizeOver"] = p.DocumentSizeOver
 	}
+	if len(p.EffectiveParentFolder) > 0 {
+		m["EffectiveParentFolder"] = p.EffectiveParentFolder
+	}
 	if p.ExceptIfAccessScope != nil {
 		m["ExceptIfAccessScope"] = p.ExceptIfAccessScope
 	}
@@ -5155,6 +5131,9 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
+	if len(p.ExceptIfEffectiveParentFolder) > 0 {
+		m["ExceptIfEffectiveParentFolder"] = p.ExceptIfEffectiveParentFolder
+	}
 	if len(p.ExceptIfFrom) > 0 {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
@@ -5169,6 +5148,9 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	}
 	if p.ExceptIfHeaderMatchesPatterns != nil {
 		m["ExceptIfHeaderMatchesPatterns"] = p.ExceptIfHeaderMatchesPatterns
+	}
+	if len(p.ExceptIfParentFolder) > 0 {
+		m["ExceptIfParentFolder"] = p.ExceptIfParentFolder
 	}
 	if p.ExceptIfProcessingLimitExceeded {
 		m["ExceptIfProcessingLimitExceeded"] = true
@@ -5217,6 +5199,9 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
+	}
+	if len(p.ParentFolder) > 0 {
+		m["ParentFolder"] = p.ParentFolder
 	}
 	if p.Policy != nil {
 		m["Policy"] = p.Policy
@@ -5842,6 +5827,7 @@ type NewComplianceTagParams struct {
 	RetentionDuration         any      `ps:"RetentionDuration"`
 	RetentionType             string   `ps:"RetentionType"`
 	ReviewerEmail             []string `ps:"ReviewerEmail"`
+	VersionCleanup            bool     `ps:"VersionCleanup"`
 	WebHookUrl                string   `ps:"WebHookUrl"`
 }
 
@@ -5906,6 +5892,9 @@ func (p NewComplianceTagParams) params() map[string]any {
 	}
 	if len(p.ReviewerEmail) > 0 {
 		m["ReviewerEmail"] = p.ReviewerEmail
+	}
+	if p.VersionCleanup {
+		m["VersionCleanup"] = true
 	}
 	if p.WebHookUrl != "" {
 		m["WebHookUrl"] = p.WebHookUrl
@@ -6584,9 +6573,6 @@ type NewDlpCompliancePolicyParams struct {
 	DisplayName                           string   `ps:"DisplayName"`
 	EndpointDlpAdaptiveScopes             any      `ps:"EndpointDlpAdaptiveScopes"`
 	EndpointDlpAdaptiveScopesException    any      `ps:"EndpointDlpAdaptiveScopesException"`
-	EndpointDlpExtendedLocations          string   `ps:"EndpointDlpExtendedLocations"`
-	EndpointDlpLocation                   any      `ps:"EndpointDlpLocation"`
-	EndpointDlpLocationException          any      `ps:"EndpointDlpLocationException"`
 	EnforcementPlanes                     any      `ps:"EnforcementPlanes"`
 	ExceptIfOneDriveSharedBy              []string `ps:"ExceptIfOneDriveSharedBy"`
 	ExceptIfOneDriveSharedByMemberOf      []string `ps:"ExceptIfOneDriveSharedByMemberOf"`
@@ -6644,15 +6630,6 @@ func (p NewDlpCompliancePolicyParams) params() map[string]any {
 	}
 	if p.EndpointDlpAdaptiveScopesException != nil {
 		m["EndpointDlpAdaptiveScopesException"] = p.EndpointDlpAdaptiveScopesException
-	}
-	if p.EndpointDlpExtendedLocations != "" {
-		m["EndpointDlpExtendedLocations"] = p.EndpointDlpExtendedLocations
-	}
-	if p.EndpointDlpLocation != nil {
-		m["EndpointDlpLocation"] = p.EndpointDlpLocation
-	}
-	if p.EndpointDlpLocationException != nil {
-		m["EndpointDlpLocationException"] = p.EndpointDlpLocationException
 	}
 	if p.EnforcementPlanes != nil {
 		m["EnforcementPlanes"] = p.EnforcementPlanes
@@ -6828,9 +6805,8 @@ type NewDlpComplianceRuleParams struct {
 	DocumentNameMatchesPatterns                  any      `ps:"DocumentNameMatchesPatterns"`
 	DocumentNameMatchesWords                     any      `ps:"DocumentNameMatchesWords"`
 	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`
+	EffectiveParentFolder                        []string `ps:"EffectiveParentFolder"`
 	EncryptRMSTemplate                           any      `ps:"EncryptRMSTemplate"`
-	EndpointDlpBrowserRestrictions               []string `ps:"EndpointDlpBrowserRestrictions"`
-	EndpointDlpRestrictions                      []string `ps:"EndpointDlpRestrictions"`
 	EnforcePortalAccess                          bool     `ps:"EnforcePortalAccess"`
 	EvaluateRulePerComponent                     bool     `ps:"EvaluateRulePerComponent"`
 	ExceptIfAccessedBy                           []string `ps:"ExceptIfAccessedBy"`
@@ -6855,6 +6831,7 @@ type NewDlpComplianceRuleParams struct {
 	ExceptIfDocumentNameMatchesPatterns          any      `ps:"ExceptIfDocumentNameMatchesPatterns"`
 	ExceptIfDocumentNameMatchesWords             any      `ps:"ExceptIfDocumentNameMatchesWords"`
 	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"`
+	ExceptIfEffectiveParentFolder                []string `ps:"ExceptIfEffectiveParentFolder"`
 	ExceptIfFrom                                 []string `ps:"ExceptIfFrom"`
 	ExceptIfFromAddressContainsWords             any      `ps:"ExceptIfFromAddressContainsWords"`
 	ExceptIfFromAddressMatchesPatterns           any      `ps:"ExceptIfFromAddressMatchesPatterns"`
@@ -6867,6 +6844,7 @@ type NewDlpComplianceRuleParams struct {
 	ExceptIfMessageLabelChangeDetected           any      `ps:"ExceptIfMessageLabelChangeDetected"`
 	ExceptIfMessageSizeOver                      any      `ps:"ExceptIfMessageSizeOver"`
 	ExceptIfMessageTypeMatches                   any      `ps:"ExceptIfMessageTypeMatches"`
+	ExceptIfParentFolder                         []string `ps:"ExceptIfParentFolder"`
 	ExceptIfProcessingLimitExceeded              bool     `ps:"ExceptIfProcessingLimitExceeded"`
 	ExceptIfRecipientADAttributeContainsWords    any      `ps:"ExceptIfRecipientADAttributeContainsWords"`
 	ExceptIfRecipientADAttributeMatchesPatterns  any      `ps:"ExceptIfRecipientADAttributeMatchesPatterns"`
@@ -6919,7 +6897,6 @@ type NewDlpComplianceRuleParams struct {
 	NotifyEmailCustomText                        string   `ps:"NotifyEmailCustomText"`
 	NotifyEmailExchangeIncludeAttachment         bool     `ps:"NotifyEmailExchangeIncludeAttachment"`
 	NotifyEmailOnedriveRemediationActions        any      `ps:"NotifyEmailOnedriveRemediationActions"`
-	NotifyEndpointUser                           any      `ps:"NotifyEndpointUser"`
 	NotifyJustificationCustomText                string   `ps:"NotifyJustificationCustomText"`
 	NotifyJustificationCustomTextTranslations    any      `ps:"NotifyJustificationCustomTextTranslations"`
 	NotifyOverrideRequirements                   any      `ps:"NotifyOverrideRequirements"`
@@ -6931,6 +6908,7 @@ type NewDlpComplianceRuleParams struct {
 	NotifyUser                                   any      `ps:"NotifyUser"`
 	NotifyUserType                               any      `ps:"NotifyUserType"`
 	OnPremisesScannerDlpRestrictions             []string `ps:"OnPremisesScannerDlpRestrictions"`
+	ParentFolder                                 []string `ps:"ParentFolder"`
 	Policy                                       any      `ps:"Policy"`
 	PowerBIDlpRestrictions                       []string `ps:"PowerBIDlpRestrictions"`
 	PrependSubject                               string   `ps:"PrependSubject"`
@@ -6946,7 +6924,6 @@ type NewDlpComplianceRuleParams struct {
 	RemoveRMSTemplate                            bool     `ps:"RemoveRMSTemplate"`
 	ReportSeverityLevel                          any      `ps:"ReportSeverityLevel"`
 	RestrictAccess                               []string `ps:"RestrictAccess"`
-	RestrictBrowserAccess                        bool     `ps:"RestrictBrowserAccess"`
 	RestrictWebGrounding                         bool     `ps:"RestrictWebGrounding"`
 	RuleErrorAction                              any      `ps:"RuleErrorAction"`
 	SenderADAttributeContainsWords               any      `ps:"SenderADAttributeContainsWords"`
@@ -7097,14 +7074,11 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.DocumentSizeOver != nil {
 		m["DocumentSizeOver"] = p.DocumentSizeOver
 	}
+	if len(p.EffectiveParentFolder) > 0 {
+		m["EffectiveParentFolder"] = p.EffectiveParentFolder
+	}
 	if p.EncryptRMSTemplate != nil {
 		m["EncryptRMSTemplate"] = p.EncryptRMSTemplate
-	}
-	if len(p.EndpointDlpBrowserRestrictions) > 0 {
-		m["EndpointDlpBrowserRestrictions"] = p.EndpointDlpBrowserRestrictions
-	}
-	if len(p.EndpointDlpRestrictions) > 0 {
-		m["EndpointDlpRestrictions"] = p.EndpointDlpRestrictions
 	}
 	if p.EnforcePortalAccess {
 		m["EnforcePortalAccess"] = true
@@ -7178,6 +7152,9 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
+	if len(p.ExceptIfEffectiveParentFolder) > 0 {
+		m["ExceptIfEffectiveParentFolder"] = p.ExceptIfEffectiveParentFolder
+	}
 	if len(p.ExceptIfFrom) > 0 {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
@@ -7213,6 +7190,9 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	}
 	if p.ExceptIfMessageTypeMatches != nil {
 		m["ExceptIfMessageTypeMatches"] = p.ExceptIfMessageTypeMatches
+	}
+	if len(p.ExceptIfParentFolder) > 0 {
+		m["ExceptIfParentFolder"] = p.ExceptIfParentFolder
 	}
 	if p.ExceptIfProcessingLimitExceeded {
 		m["ExceptIfProcessingLimitExceeded"] = true
@@ -7370,9 +7350,6 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.NotifyEmailOnedriveRemediationActions != nil {
 		m["NotifyEmailOnedriveRemediationActions"] = p.NotifyEmailOnedriveRemediationActions
 	}
-	if p.NotifyEndpointUser != nil {
-		m["NotifyEndpointUser"] = p.NotifyEndpointUser
-	}
 	if p.NotifyJustificationCustomText != "" {
 		m["NotifyJustificationCustomText"] = p.NotifyJustificationCustomText
 	}
@@ -7405,6 +7382,9 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	}
 	if len(p.OnPremisesScannerDlpRestrictions) > 0 {
 		m["OnPremisesScannerDlpRestrictions"] = p.OnPremisesScannerDlpRestrictions
+	}
+	if len(p.ParentFolder) > 0 {
+		m["ParentFolder"] = p.ParentFolder
 	}
 	if p.Policy != nil {
 		m["Policy"] = p.Policy
@@ -7450,9 +7430,6 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	}
 	if len(p.RestrictAccess) > 0 {
 		m["RestrictAccess"] = p.RestrictAccess
-	}
-	if p.RestrictBrowserAccess {
-		m["RestrictBrowserAccess"] = true
 	}
 	if p.RestrictWebGrounding {
 		m["RestrictWebGrounding"] = true
@@ -8034,57 +8011,6 @@ func (p NewHoldComplianceRuleParams) params() map[string]any {
 // NewHoldComplianceRule runs the New-HoldComplianceRule cmdlet.
 func (s *Service) NewHoldComplianceRule(ctx context.Context, p NewHoldComplianceRuleParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "New-HoldComplianceRule", p.params())
-}
-
-// NewInformationBarrierPolicyParams are the parameters of New-InformationBarrierPolicy.
-// DefaultParameterSetName: InformationBarrierDefault
-type NewInformationBarrierPolicyParams struct {
-	AssignedSegment      string `ps:"AssignedSegment"`
-	Comment              string `ps:"Comment"`
-	Force                bool   `ps:"Force"`
-	ModerationAllowed    bool   `ps:"ModerationAllowed"`
-	Name                 string `ps:"Name"`
-	SegmentAllowedFilter string `ps:"SegmentAllowedFilter"`
-	SegmentsAllowed      any    `ps:"SegmentsAllowed"`
-	SegmentsBlocked      any    `ps:"SegmentsBlocked"`
-	State                any    `ps:"State"`
-}
-
-func (p NewInformationBarrierPolicyParams) params() map[string]any {
-	m := map[string]any{}
-	if p.AssignedSegment != "" {
-		m["AssignedSegment"] = p.AssignedSegment
-	}
-	if p.Comment != "" {
-		m["Comment"] = p.Comment
-	}
-	if p.Force {
-		m["Force"] = true
-	}
-	if p.ModerationAllowed {
-		m["ModerationAllowed"] = true
-	}
-	if p.Name != "" {
-		m["Name"] = p.Name
-	}
-	if p.SegmentAllowedFilter != "" {
-		m["SegmentAllowedFilter"] = p.SegmentAllowedFilter
-	}
-	if p.SegmentsAllowed != nil {
-		m["SegmentsAllowed"] = p.SegmentsAllowed
-	}
-	if p.SegmentsBlocked != nil {
-		m["SegmentsBlocked"] = p.SegmentsBlocked
-	}
-	if p.State != nil {
-		m["State"] = p.State
-	}
-	return m
-}
-
-// NewInformationBarrierPolicy runs the New-InformationBarrierPolicy cmdlet.
-func (s *Service) NewInformationBarrierPolicy(ctx context.Context, p NewInformationBarrierPolicyParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "New-InformationBarrierPolicy", p.params())
 }
 
 // NewInsiderRiskEntityListParams are the parameters of New-InsiderRiskEntityList.
@@ -9526,6 +9452,7 @@ type NewRetentionCompliancePolicyParams struct {
 	TeamsChannelLocationException any    `ps:"TeamsChannelLocationException"`
 	TeamsChatLocation             any    `ps:"TeamsChatLocation"`
 	TeamsChatLocationException    any    `ps:"TeamsChatLocationException"`
+	VersionCleanup                bool   `ps:"VersionCleanup"`
 }
 
 func (p NewRetentionCompliancePolicyParams) params() map[string]any {
@@ -9613,6 +9540,9 @@ func (p NewRetentionCompliancePolicyParams) params() map[string]any {
 	}
 	if p.TeamsChatLocationException != nil {
 		m["TeamsChatLocationException"] = p.TeamsChatLocationException
+	}
+	if p.VersionCleanup {
+		m["VersionCleanup"] = true
 	}
 	return m
 }
@@ -9732,6 +9662,7 @@ type NewSensitiveInformationScanParams struct {
 	SharePointAdaptiveScopesException any      `ps:"SharePointAdaptiveScopesException"`
 	SharePointLocation                any      `ps:"SharePointLocation"`
 	SharePointLocationException       any      `ps:"SharePointLocationException"`
+	SkipAlreadyClassifiedItems        any      `ps:"SkipAlreadyClassifiedItems"`
 	TeamsAdaptiveScopes               any      `ps:"TeamsAdaptiveScopes"`
 	TeamsAdaptiveScopesException      any      `ps:"TeamsAdaptiveScopesException"`
 	TeamsLocation                     any      `ps:"TeamsLocation"`
@@ -9817,6 +9748,9 @@ func (p NewSensitiveInformationScanParams) params() map[string]any {
 	}
 	if p.SharePointLocationException != nil {
 		m["SharePointLocationException"] = p.SharePointLocationException
+	}
+	if p.SkipAlreadyClassifiedItems != nil {
+		m["SkipAlreadyClassifiedItems"] = p.SkipAlreadyClassifiedItems
 	}
 	if p.TeamsAdaptiveScopes != nil {
 		m["TeamsAdaptiveScopes"] = p.TeamsAdaptiveScopes
@@ -11564,16 +11498,12 @@ func (s *Service) RemoveHoldComplianceRule(ctx context.Context, p RemoveHoldComp
 // RemoveInformationBarrierPolicyParams are the parameters of Remove-InformationBarrierPolicy.
 type RemoveInformationBarrierPolicyParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
 }
 
 func (p RemoveInformationBarrierPolicyParams) params() map[string]any {
 	m := map[string]any{}
 	if p.ForceDeletion {
 		m["ForceDeletion"] = true
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
 	}
 	return m
 }
@@ -12236,8 +12166,6 @@ func (s *Service) RemoveUnifiedAuditLogRetentionPolicy(ctx context.Context, p Re
 // RestoreItemsDeletedByRetentionSystemParams are the parameters of Restore-ItemsDeletedByRetentionSystem.
 type RestoreItemsDeletedByRetentionSystemParams struct {
 	PolicyIdOrRuleIdOrTagTd any    `ps:"PolicyIdOrRuleIdOrTagTd"`
-	RestoreFrom             any    `ps:"RestoreFrom"`
-	RestoreTo               any    `ps:"RestoreTo"`
 	SiteIds                 string `ps:"SiteIds"`
 }
 
@@ -12245,12 +12173,6 @@ func (p RestoreItemsDeletedByRetentionSystemParams) params() map[string]any {
 	m := map[string]any{}
 	if p.PolicyIdOrRuleIdOrTagTd != nil {
 		m["PolicyIdOrRuleIdOrTagTd"] = p.PolicyIdOrRuleIdOrTagTd
-	}
-	if p.RestoreFrom != nil {
-		m["RestoreFrom"] = p.RestoreFrom
-	}
-	if p.RestoreTo != nil {
-		m["RestoreTo"] = p.RestoreTo
 	}
 	if p.SiteIds != "" {
 		m["SiteIds"] = p.SiteIds
@@ -12693,6 +12615,7 @@ type SetAutoSensitivityLabelPolicyParams struct {
 	SharePointAdaptiveScopes                any      `ps:"SharePointAdaptiveScopes"`
 	SharePointAdaptiveScopesException       any      `ps:"SharePointAdaptiveScopesException"`
 	SpoAipIntegrationEnabled                bool     `ps:"SpoAipIntegrationEnabled"`
+	SpoDocLibraryDefaultLabelSnapshot       any      `ps:"SpoDocLibraryDefaultLabelSnapshot"`
 	StartSimulation                         bool     `ps:"StartSimulation"`
 }
 
@@ -12836,6 +12759,9 @@ func (p SetAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.SpoAipIntegrationEnabled {
 		m["SpoAipIntegrationEnabled"] = true
 	}
+	if p.SpoDocLibraryDefaultLabelSnapshot != nil {
+		m["SpoDocLibraryDefaultLabelSnapshot"] = p.SpoDocLibraryDefaultLabelSnapshot
+	}
 	if p.StartSimulation {
 		m["StartSimulation"] = true
 	}
@@ -12866,6 +12792,7 @@ type SetAutoSensitivityLabelRuleParams struct {
 	DocumentIsUnsupported                        bool     `ps:"DocumentIsUnsupported"`
 	DocumentNameMatchesWords                     any      `ps:"DocumentNameMatchesWords"`
 	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`
+	EffectiveParentFolder                        []string `ps:"EffectiveParentFolder"`
 	ExceptIfAccessScope                          any      `ps:"ExceptIfAccessScope"`
 	ExceptIfAnyOfRecipientAddressContainsWords   any      `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
 	ExceptIfAnyOfRecipientAddressMatchesPatterns any      `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
@@ -12877,11 +12804,13 @@ type SetAutoSensitivityLabelRuleParams struct {
 	ExceptIfDocumentIsUnsupported                bool     `ps:"ExceptIfDocumentIsUnsupported"`
 	ExceptIfDocumentNameMatchesWords             any      `ps:"ExceptIfDocumentNameMatchesWords"`
 	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"`
+	ExceptIfEffectiveParentFolder                []string `ps:"ExceptIfEffectiveParentFolder"`
 	ExceptIfFrom                                 []string `ps:"ExceptIfFrom"`
 	ExceptIfFromAddressContainsWords             any      `ps:"ExceptIfFromAddressContainsWords"`
 	ExceptIfFromAddressMatchesPatterns           any      `ps:"ExceptIfFromAddressMatchesPatterns"`
 	ExceptIfFromMemberOf                         []string `ps:"ExceptIfFromMemberOf"`
 	ExceptIfHeaderMatchesPatterns                any      `ps:"ExceptIfHeaderMatchesPatterns"`
+	ExceptIfParentFolder                         []string `ps:"ExceptIfParentFolder"`
 	ExceptIfProcessingLimitExceeded              bool     `ps:"ExceptIfProcessingLimitExceeded"`
 	ExceptIfRecipientDomainIs                    any      `ps:"ExceptIfRecipientDomainIs"`
 	ExceptIfSenderDomainIs                       any      `ps:"ExceptIfSenderDomainIs"`
@@ -12897,6 +12826,7 @@ type SetAutoSensitivityLabelRuleParams struct {
 	FromMemberOf                                 []string `ps:"FromMemberOf"`
 	HeaderMatchesPatterns                        any      `ps:"HeaderMatchesPatterns"`
 	Identity                                     any      `ps:"Identity"`
+	ParentFolder                                 []string `ps:"ParentFolder"`
 	Priority                                     any      `ps:"Priority"`
 	ProcessingLimitExceeded                      bool     `ps:"ProcessingLimitExceeded"`
 	RecipientDomainIs                            any      `ps:"RecipientDomainIs"`
@@ -12965,6 +12895,9 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.DocumentSizeOver != nil {
 		m["DocumentSizeOver"] = p.DocumentSizeOver
 	}
+	if len(p.EffectiveParentFolder) > 0 {
+		m["EffectiveParentFolder"] = p.EffectiveParentFolder
+	}
 	if p.ExceptIfAccessScope != nil {
 		m["ExceptIfAccessScope"] = p.ExceptIfAccessScope
 	}
@@ -12998,6 +12931,9 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
+	if len(p.ExceptIfEffectiveParentFolder) > 0 {
+		m["ExceptIfEffectiveParentFolder"] = p.ExceptIfEffectiveParentFolder
+	}
 	if len(p.ExceptIfFrom) > 0 {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
@@ -13012,6 +12948,9 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	}
 	if p.ExceptIfHeaderMatchesPatterns != nil {
 		m["ExceptIfHeaderMatchesPatterns"] = p.ExceptIfHeaderMatchesPatterns
+	}
+	if len(p.ExceptIfParentFolder) > 0 {
+		m["ExceptIfParentFolder"] = p.ExceptIfParentFolder
 	}
 	if p.ExceptIfProcessingLimitExceeded {
 		m["ExceptIfProcessingLimitExceeded"] = true
@@ -13057,6 +12996,9 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
+	}
+	if len(p.ParentFolder) > 0 {
+		m["ParentFolder"] = p.ParentFolder
 	}
 	if p.Priority != nil {
 		m["Priority"] = p.Priority
@@ -13725,6 +13667,7 @@ type SetComplianceTagParams struct {
 	Notes                     string   `ps:"Notes"`
 	RetentionDuration         any      `ps:"RetentionDuration"`
 	ReviewerEmail             []string `ps:"ReviewerEmail"`
+	VersionCleanup            string   `ps:"VersionCleanup"`
 	WebHookUrl                string   `ps:"WebHookUrl"`
 }
 
@@ -13774,6 +13717,9 @@ func (p SetComplianceTagParams) params() map[string]any {
 	}
 	if len(p.ReviewerEmail) > 0 {
 		m["ReviewerEmail"] = p.ReviewerEmail
+	}
+	if p.VersionCleanup != "" {
+		m["VersionCleanup"] = p.VersionCleanup
 	}
 	if p.WebHookUrl != "" {
 		m["WebHookUrl"] = p.WebHookUrl
@@ -14453,8 +14399,6 @@ func (s *Service) SetDlpAlertTuningRule(ctx context.Context, p SetDlpAlertTuning
 // SetDlpCompliancePolicyParams are the parameters of Set-DlpCompliancePolicy.
 // DefaultParameterSetName: Identity
 type SetDlpCompliancePolicyParams struct {
-	AddEndpointDlpLocation                      any      `ps:"AddEndpointDlpLocation"`
-	AddEndpointDlpLocationException             any      `ps:"AddEndpointDlpLocationException"`
 	AddExchangeLocation                         any      `ps:"AddExchangeLocation"`
 	AddOneDriveLocation                         any      `ps:"AddOneDriveLocation"`
 	AddOneDriveLocationException                any      `ps:"AddOneDriveLocationException"`
@@ -14473,7 +14417,6 @@ type SetDlpCompliancePolicyParams struct {
 	DisplayName                                 string   `ps:"DisplayName"`
 	EndpointDlpAdaptiveScopes                   any      `ps:"EndpointDlpAdaptiveScopes"`
 	EndpointDlpAdaptiveScopesException          any      `ps:"EndpointDlpAdaptiveScopesException"`
-	EndpointDlpExtendedLocations                string   `ps:"EndpointDlpExtendedLocations"`
 	EnforcementPlanes                           any      `ps:"EnforcementPlanes"`
 	ExceptIfOneDriveSharedBy                    []string `ps:"ExceptIfOneDriveSharedBy"`
 	ExceptIfOneDriveSharedByMemberOf            []string `ps:"ExceptIfOneDriveSharedByMemberOf"`
@@ -14496,8 +14439,6 @@ type SetDlpCompliancePolicyParams struct {
 	PolicyRBACScopes                            any      `ps:"PolicyRBACScopes"`
 	PolicyTemplateInfo                          any      `ps:"PolicyTemplateInfo"`
 	Priority                                    any      `ps:"Priority"`
-	RemoveEndpointDlpLocation                   any      `ps:"RemoveEndpointDlpLocation"`
-	RemoveEndpointDlpLocationException          any      `ps:"RemoveEndpointDlpLocationException"`
 	RemoveExchangeLocation                      any      `ps:"RemoveExchangeLocation"`
 	RemoveOneDriveLocation                      any      `ps:"RemoveOneDriveLocation"`
 	RemoveOneDriveLocationException             any      `ps:"RemoveOneDriveLocationException"`
@@ -14521,12 +14462,6 @@ type SetDlpCompliancePolicyParams struct {
 
 func (p SetDlpCompliancePolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddEndpointDlpLocation != nil {
-		m["AddEndpointDlpLocation"] = p.AddEndpointDlpLocation
-	}
-	if p.AddEndpointDlpLocationException != nil {
-		m["AddEndpointDlpLocationException"] = p.AddEndpointDlpLocationException
-	}
 	if p.AddExchangeLocation != nil {
 		m["AddExchangeLocation"] = p.AddExchangeLocation
 	}
@@ -14580,9 +14515,6 @@ func (p SetDlpCompliancePolicyParams) params() map[string]any {
 	}
 	if p.EndpointDlpAdaptiveScopesException != nil {
 		m["EndpointDlpAdaptiveScopesException"] = p.EndpointDlpAdaptiveScopesException
-	}
-	if p.EndpointDlpExtendedLocations != "" {
-		m["EndpointDlpExtendedLocations"] = p.EndpointDlpExtendedLocations
 	}
 	if p.EnforcementPlanes != nil {
 		m["EnforcementPlanes"] = p.EnforcementPlanes
@@ -14649,12 +14581,6 @@ func (p SetDlpCompliancePolicyParams) params() map[string]any {
 	}
 	if p.Priority != nil {
 		m["Priority"] = p.Priority
-	}
-	if p.RemoveEndpointDlpLocation != nil {
-		m["RemoveEndpointDlpLocation"] = p.RemoveEndpointDlpLocation
-	}
-	if p.RemoveEndpointDlpLocationException != nil {
-		m["RemoveEndpointDlpLocationException"] = p.RemoveEndpointDlpLocationException
 	}
 	if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
@@ -14762,9 +14688,8 @@ type SetDlpComplianceRuleParams struct {
 	DocumentNameMatchesPatterns                  any      `ps:"DocumentNameMatchesPatterns"`
 	DocumentNameMatchesWords                     any      `ps:"DocumentNameMatchesWords"`
 	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`
+	EffectiveParentFolder                        []string `ps:"EffectiveParentFolder"`
 	EncryptRMSTemplate                           any      `ps:"EncryptRMSTemplate"`
-	EndpointDlpBrowserRestrictions               []string `ps:"EndpointDlpBrowserRestrictions"`
-	EndpointDlpRestrictions                      []string `ps:"EndpointDlpRestrictions"`
 	EnforcePortalAccess                          bool     `ps:"EnforcePortalAccess"`
 	EvaluateRulePerComponent                     bool     `ps:"EvaluateRulePerComponent"`
 	ExceptIfAccessedBy                           []string `ps:"ExceptIfAccessedBy"`
@@ -14789,6 +14714,7 @@ type SetDlpComplianceRuleParams struct {
 	ExceptIfDocumentNameMatchesPatterns          any      `ps:"ExceptIfDocumentNameMatchesPatterns"`
 	ExceptIfDocumentNameMatchesWords             any      `ps:"ExceptIfDocumentNameMatchesWords"`
 	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"`
+	ExceptIfEffectiveParentFolder                []string `ps:"ExceptIfEffectiveParentFolder"`
 	ExceptIfFrom                                 []string `ps:"ExceptIfFrom"`
 	ExceptIfFromAddressContainsWords             any      `ps:"ExceptIfFromAddressContainsWords"`
 	ExceptIfFromAddressMatchesPatterns           any      `ps:"ExceptIfFromAddressMatchesPatterns"`
@@ -14801,6 +14727,7 @@ type SetDlpComplianceRuleParams struct {
 	ExceptIfMessageLabelChangeDetected           any      `ps:"ExceptIfMessageLabelChangeDetected"`
 	ExceptIfMessageSizeOver                      any      `ps:"ExceptIfMessageSizeOver"`
 	ExceptIfMessageTypeMatches                   any      `ps:"ExceptIfMessageTypeMatches"`
+	ExceptIfParentFolder                         []string `ps:"ExceptIfParentFolder"`
 	ExceptIfProcessingLimitExceeded              bool     `ps:"ExceptIfProcessingLimitExceeded"`
 	ExceptIfRecipientADAttributeContainsWords    any      `ps:"ExceptIfRecipientADAttributeContainsWords"`
 	ExceptIfRecipientADAttributeMatchesPatterns  any      `ps:"ExceptIfRecipientADAttributeMatchesPatterns"`
@@ -14851,7 +14778,6 @@ type SetDlpComplianceRuleParams struct {
 	NotifyEmailCustomText                        string   `ps:"NotifyEmailCustomText"`
 	NotifyEmailExchangeIncludeAttachment         bool     `ps:"NotifyEmailExchangeIncludeAttachment"`
 	NotifyEmailOnedriveRemediationActions        any      `ps:"NotifyEmailOnedriveRemediationActions"`
-	NotifyEndpointUser                           any      `ps:"NotifyEndpointUser"`
 	NotifyJustificationCustomText                string   `ps:"NotifyJustificationCustomText"`
 	NotifyJustificationCustomTextTranslations    any      `ps:"NotifyJustificationCustomTextTranslations"`
 	NotifyOverrideRequirements                   any      `ps:"NotifyOverrideRequirements"`
@@ -14863,6 +14789,7 @@ type SetDlpComplianceRuleParams struct {
 	NotifyUser                                   any      `ps:"NotifyUser"`
 	NotifyUserType                               any      `ps:"NotifyUserType"`
 	OnPremisesScannerDlpRestrictions             []string `ps:"OnPremisesScannerDlpRestrictions"`
+	ParentFolder                                 []string `ps:"ParentFolder"`
 	PowerBIDlpRestrictions                       []string `ps:"PowerBIDlpRestrictions"`
 	PrependSubject                               string   `ps:"PrependSubject"`
 	Priority                                     any      `ps:"Priority"`
@@ -14877,7 +14804,6 @@ type SetDlpComplianceRuleParams struct {
 	RemoveRMSTemplate                            bool     `ps:"RemoveRMSTemplate"`
 	ReportSeverityLevel                          any      `ps:"ReportSeverityLevel"`
 	RestrictAccess                               []string `ps:"RestrictAccess"`
-	RestrictBrowserAccess                        bool     `ps:"RestrictBrowserAccess"`
 	RestrictWebGrounding                         bool     `ps:"RestrictWebGrounding"`
 	RuleErrorAction                              any      `ps:"RuleErrorAction"`
 	SenderADAttributeContainsWords               any      `ps:"SenderADAttributeContainsWords"`
@@ -15026,14 +14952,11 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.DocumentSizeOver != nil {
 		m["DocumentSizeOver"] = p.DocumentSizeOver
 	}
+	if len(p.EffectiveParentFolder) > 0 {
+		m["EffectiveParentFolder"] = p.EffectiveParentFolder
+	}
 	if p.EncryptRMSTemplate != nil {
 		m["EncryptRMSTemplate"] = p.EncryptRMSTemplate
-	}
-	if len(p.EndpointDlpBrowserRestrictions) > 0 {
-		m["EndpointDlpBrowserRestrictions"] = p.EndpointDlpBrowserRestrictions
-	}
-	if len(p.EndpointDlpRestrictions) > 0 {
-		m["EndpointDlpRestrictions"] = p.EndpointDlpRestrictions
 	}
 	if p.EnforcePortalAccess {
 		m["EnforcePortalAccess"] = true
@@ -15107,6 +15030,9 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
+	if len(p.ExceptIfEffectiveParentFolder) > 0 {
+		m["ExceptIfEffectiveParentFolder"] = p.ExceptIfEffectiveParentFolder
+	}
 	if len(p.ExceptIfFrom) > 0 {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
@@ -15142,6 +15068,9 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	}
 	if p.ExceptIfMessageTypeMatches != nil {
 		m["ExceptIfMessageTypeMatches"] = p.ExceptIfMessageTypeMatches
+	}
+	if len(p.ExceptIfParentFolder) > 0 {
+		m["ExceptIfParentFolder"] = p.ExceptIfParentFolder
 	}
 	if p.ExceptIfProcessingLimitExceeded {
 		m["ExceptIfProcessingLimitExceeded"] = true
@@ -15293,9 +15222,6 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.NotifyEmailOnedriveRemediationActions != nil {
 		m["NotifyEmailOnedriveRemediationActions"] = p.NotifyEmailOnedriveRemediationActions
 	}
-	if p.NotifyEndpointUser != nil {
-		m["NotifyEndpointUser"] = p.NotifyEndpointUser
-	}
 	if p.NotifyJustificationCustomText != "" {
 		m["NotifyJustificationCustomText"] = p.NotifyJustificationCustomText
 	}
@@ -15328,6 +15254,9 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	}
 	if len(p.OnPremisesScannerDlpRestrictions) > 0 {
 		m["OnPremisesScannerDlpRestrictions"] = p.OnPremisesScannerDlpRestrictions
+	}
+	if len(p.ParentFolder) > 0 {
+		m["ParentFolder"] = p.ParentFolder
 	}
 	if len(p.PowerBIDlpRestrictions) > 0 {
 		m["PowerBIDlpRestrictions"] = p.PowerBIDlpRestrictions
@@ -15370,9 +15299,6 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	}
 	if len(p.RestrictAccess) > 0 {
 		m["RestrictAccess"] = p.RestrictAccess
-	}
-	if p.RestrictBrowserAccess {
-		m["RestrictBrowserAccess"] = true
 	}
 	if p.RestrictWebGrounding {
 		m["RestrictWebGrounding"] = true
@@ -15969,53 +15895,6 @@ func (p SetHoldComplianceRuleParams) params() map[string]any {
 // SetHoldComplianceRule runs the Set-HoldComplianceRule cmdlet.
 func (s *Service) SetHoldComplianceRule(ctx context.Context, p SetHoldComplianceRuleParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Set-HoldComplianceRule", p.params())
-}
-
-// SetInformationBarrierPolicyParams are the parameters of Set-InformationBarrierPolicy.
-// DefaultParameterSetName: InformationBarrierDefault
-type SetInformationBarrierPolicyParams struct {
-	Comment              string `ps:"Comment"`
-	Force                bool   `ps:"Force"`
-	Identity             any    `ps:"Identity"`
-	ModerationAllowed    bool   `ps:"ModerationAllowed"`
-	SegmentAllowedFilter string `ps:"SegmentAllowedFilter"`
-	SegmentsAllowed      any    `ps:"SegmentsAllowed"`
-	SegmentsBlocked      any    `ps:"SegmentsBlocked"`
-	State                any    `ps:"State"`
-}
-
-func (p SetInformationBarrierPolicyParams) params() map[string]any {
-	m := map[string]any{}
-	if p.Comment != "" {
-		m["Comment"] = p.Comment
-	}
-	if p.Force {
-		m["Force"] = true
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	if p.ModerationAllowed {
-		m["ModerationAllowed"] = true
-	}
-	if p.SegmentAllowedFilter != "" {
-		m["SegmentAllowedFilter"] = p.SegmentAllowedFilter
-	}
-	if p.SegmentsAllowed != nil {
-		m["SegmentsAllowed"] = p.SegmentsAllowed
-	}
-	if p.SegmentsBlocked != nil {
-		m["SegmentsBlocked"] = p.SegmentsBlocked
-	}
-	if p.State != nil {
-		m["State"] = p.State
-	}
-	return m
-}
-
-// SetInformationBarrierPolicy runs the Set-InformationBarrierPolicy cmdlet.
-func (s *Service) SetInformationBarrierPolicy(ctx context.Context, p SetInformationBarrierPolicyParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Set-InformationBarrierPolicy", p.params())
 }
 
 // SetInsiderRiskEntityListParams are the parameters of Set-InsiderRiskEntityList.
@@ -17250,8 +17129,10 @@ func (s *Service) SetOrganizationSegment(ctx context.Context, p SetOrganizationS
 type SetPolicyConfigParams struct {
 	AggregationTimeWindowForDlpAlerts          any      `ps:"AggregationTimeWindowForDlpAlerts"`
 	CaseHoldPolicyLimit                        int      `ps:"CaseHoldPolicyLimit"`
+	ClassificationMode                         any      `ps:"ClassificationMode"`
 	ClassificationScheme                       any      `ps:"ClassificationScheme"`
 	ComplianceUrl                              string   `ps:"ComplianceUrl"`
+	ConcurrencyToken                           any      `ps:"ConcurrencyToken"`
 	DlpAlertFoldingConfiguration               any      `ps:"DlpAlertFoldingConfiguration"`
 	DlpAlertSlaConfig                          string   `ps:"DlpAlertSlaConfig"`
 	DlpAppGroups                               []string `ps:"DlpAppGroups"`
@@ -17303,11 +17184,17 @@ func (p SetPolicyConfigParams) params() map[string]any {
 	if p.CaseHoldPolicyLimit != 0 {
 		m["CaseHoldPolicyLimit"] = p.CaseHoldPolicyLimit
 	}
+	if p.ClassificationMode != nil {
+		m["ClassificationMode"] = p.ClassificationMode
+	}
 	if p.ClassificationScheme != nil {
 		m["ClassificationScheme"] = p.ClassificationScheme
 	}
 	if p.ComplianceUrl != "" {
 		m["ComplianceUrl"] = p.ComplianceUrl
+	}
+	if p.ConcurrencyToken != nil {
+		m["ConcurrencyToken"] = p.ConcurrencyToken
 	}
 	if p.DlpAlertFoldingConfiguration != nil {
 		m["DlpAlertFoldingConfiguration"] = p.DlpAlertFoldingConfiguration
@@ -17868,6 +17755,7 @@ type SetRetentionCompliancePolicyParams struct {
 	RestrictiveRetention                bool   `ps:"RestrictiveRetention"`
 	RetryDistribution                   bool   `ps:"RetryDistribution"`
 	StartSimulation                     bool   `ps:"StartSimulation"`
+	VersionCleanup                      string `ps:"VersionCleanup"`
 }
 
 func (p SetRetentionCompliancePolicyParams) params() map[string]any {
@@ -18016,6 +17904,9 @@ func (p SetRetentionCompliancePolicyParams) params() map[string]any {
 	if p.StartSimulation {
 		m["StartSimulation"] = true
 	}
+	if p.VersionCleanup != "" {
+		m["VersionCleanup"] = p.VersionCleanup
+	}
 	return m
 }
 
@@ -18114,7 +18005,6 @@ type SetSensitiveInformationScanParams struct {
 	AddSharePointLocationException             any      `ps:"AddSharePointLocationException"`
 	AddTeamsLocation                           any      `ps:"AddTeamsLocation"`
 	AddTeamsLocationException                  any      `ps:"AddTeamsLocationException"`
-	CancelImpactAssessment                     bool     `ps:"CancelImpactAssessment"`
 	CancelScan                                 bool     `ps:"CancelScan"`
 	Comment                                    string   `ps:"Comment"`
 	ExceptIfOneDriveSharedBy                   []string `ps:"ExceptIfOneDriveSharedBy"`
@@ -18145,6 +18035,7 @@ type SetSensitiveInformationScanParams struct {
 	ScanType                                   string   `ps:"ScanType"`
 	SharePointAdaptiveScopes                   any      `ps:"SharePointAdaptiveScopes"`
 	SharePointAdaptiveScopesException          any      `ps:"SharePointAdaptiveScopesException"`
+	SkipAlreadyClassifiedItems                 any      `ps:"SkipAlreadyClassifiedItems"`
 	StartImpactAssessment                      bool     `ps:"StartImpactAssessment"`
 	StopImpactAssessmentAndStartClassification bool     `ps:"StopImpactAssessmentAndStartClassification"`
 	TeamsAdaptiveScopes                        any      `ps:"TeamsAdaptiveScopes"`
@@ -18179,9 +18070,6 @@ func (p SetSensitiveInformationScanParams) params() map[string]any {
 	}
 	if p.AddTeamsLocationException != nil {
 		m["AddTeamsLocationException"] = p.AddTeamsLocationException
-	}
-	if p.CancelImpactAssessment {
-		m["CancelImpactAssessment"] = true
 	}
 	if p.CancelScan {
 		m["CancelScan"] = true
@@ -18272,6 +18160,9 @@ func (p SetSensitiveInformationScanParams) params() map[string]any {
 	}
 	if p.SharePointAdaptiveScopesException != nil {
 		m["SharePointAdaptiveScopesException"] = p.SharePointAdaptiveScopesException
+	}
+	if p.SkipAlreadyClassifiedItems != nil {
+		m["SkipAlreadyClassifiedItems"] = p.SkipAlreadyClassifiedItems
 	}
 	if p.StartImpactAssessment {
 		m["StartImpactAssessment"] = true
@@ -18915,37 +18806,6 @@ func (s *Service) StartDlpSensitiveInformationScan(ctx context.Context, p StartD
 	return s.C.Invoke(ctx, "Start-DlpSensitiveInformationScan", p.params())
 }
 
-// StartInformationBarrierPoliciesApplicationParams are the parameters of Start-InformationBarrierPoliciesApplication.
-// DefaultParameterSetName: Identity
-type StartInformationBarrierPoliciesApplicationParams struct {
-	CleanupGroupSegmentLink bool `ps:"CleanupGroupSegmentLink"`
-	Identity                any  `ps:"Identity"`
-	Rollback                bool `ps:"Rollback"`
-	Upgrade                 bool `ps:"Upgrade"`
-}
-
-func (p StartInformationBarrierPoliciesApplicationParams) params() map[string]any {
-	m := map[string]any{}
-	if p.CleanupGroupSegmentLink {
-		m["CleanupGroupSegmentLink"] = true
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	if p.Rollback {
-		m["Rollback"] = true
-	}
-	if p.Upgrade {
-		m["Upgrade"] = true
-	}
-	return m
-}
-
-// StartInformationBarrierPoliciesApplication runs the Start-InformationBarrierPoliciesApplication cmdlet.
-func (s *Service) StartInformationBarrierPoliciesApplication(ctx context.Context, p StartInformationBarrierPoliciesApplicationParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Start-InformationBarrierPoliciesApplication", p.params())
-}
-
 // StopComplianceSearchParams are the parameters of Stop-ComplianceSearch.
 // DefaultParameterSetName: Identity
 type StopComplianceSearchParams struct {
@@ -18963,25 +18823,6 @@ func (p StopComplianceSearchParams) params() map[string]any {
 // StopComplianceSearch runs the Stop-ComplianceSearch cmdlet.
 func (s *Service) StopComplianceSearch(ctx context.Context, p StopComplianceSearchParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Stop-ComplianceSearch", p.params())
-}
-
-// StopInformationBarrierPoliciesApplicationParams are the parameters of Stop-InformationBarrierPoliciesApplication.
-// DefaultParameterSetName: Identity
-type StopInformationBarrierPoliciesApplicationParams struct {
-	Identity any `ps:"Identity"`
-}
-
-func (p StopInformationBarrierPoliciesApplicationParams) params() map[string]any {
-	m := map[string]any{}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	return m
-}
-
-// StopInformationBarrierPoliciesApplication runs the Stop-InformationBarrierPoliciesApplication cmdlet.
-func (s *Service) StopInformationBarrierPoliciesApplication(ctx context.Context, p StopInformationBarrierPoliciesApplicationParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Stop-InformationBarrierPoliciesApplication", p.params())
 }
 
 // SyncLabelParams are the parameters of Sync-Label.
@@ -19047,25 +18888,6 @@ func (p TestDataClassificationParams) params() map[string]any {
 // TestDataClassification runs the Test-DataClassification cmdlet.
 func (s *Service) TestDataClassification(ctx context.Context, p TestDataClassificationParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Test-DataClassification", p.params())
-}
-
-// TestInformationBarrierPolicyParams are the parameters of Test-InformationBarrierPolicy.
-// DefaultParameterSetName: Identity
-type TestInformationBarrierPolicyParams struct {
-	Identity any `ps:"Identity"`
-}
-
-func (p TestInformationBarrierPolicyParams) params() map[string]any {
-	m := map[string]any{}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	return m
-}
-
-// TestInformationBarrierPolicy runs the Test-InformationBarrierPolicy cmdlet.
-func (s *Service) TestInformationBarrierPolicy(ctx context.Context, p TestInformationBarrierPolicyParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Test-InformationBarrierPolicy", p.params())
 }
 
 // TestLabelConfigParams are the parameters of Test-LabelConfig.
