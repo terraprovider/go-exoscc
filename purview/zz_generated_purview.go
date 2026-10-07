@@ -1,4 +1,4 @@
-// Code generated from Purview-ExchangeOnline.psm1 by gen-go. DO NOT EDIT.
+// Code generated from Purview-ExchangeOnline.psm1 and MicrosoftDocs/office-docs-powershell@f7562153d67fbd6a5cfc5c5caa1aa9e68eb83b67 by gen-go. DO NOT EDIT.
 
 package purview
 
@@ -76,7 +76,7 @@ func (s *Service) CancelDlpEdmSession(ctx context.Context, p CancelDlpEdmSession
 // CancelSensitiveInformationScanParams are the parameters of Cancel-SensitiveInformationScan.
 // DefaultParameterSetName: Identity
 type CancelSensitiveInformationScanParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p CancelSensitiveInformationScanParams) params() map[string]any {
@@ -96,27 +96,27 @@ func (s *Service) CancelSensitiveInformationScan(ctx context.Context, p CancelSe
 type CheckPurviewConfigParams struct {
 	CaseHoldPolicyNameOrId string   `ps:"CaseHoldPolicyNameOrId"`
 	CaseId                 string   `ps:"CaseId"`
-	Component              any      `ps:"Component"`
+	Component              any      `ps:"Component"` // PurviewConfigComponent
 	DateTimeUTC            string   `ps:"DateTimeUTC"`
 	DeviceName             string   `ps:"DeviceName"`
 	File                   string   `ps:"File"`
-	FileAsBytes            []string `ps:"FileAsBytes"`
+	FileAsBytes            any      `ps:"FileAsBytes"` // Byte[]
 	IncidentId             string   `ps:"IncidentId"`
 	ItemId                 string   `ps:"ItemId"`
 	MessageId              string   `ps:"MessageId"`
-	Organization           any      `ps:"Organization"`
+	Organization           any      `ps:"Organization"` // OrganizationIdParameter
 	PolicyName             string   `ps:"PolicyName"`
-	RecipientAddress       any      `ps:"RecipientAddress"`
+	RecipientAddress       any      `ps:"RecipientAddress"` // SmtpAddress
 	RecordId               string   `ps:"RecordId"`
 	RuleName               string   `ps:"RuleName"`
-	SenderAddress          any      `ps:"SenderAddress"`
+	SenderAddress          any      `ps:"SenderAddress"` // SmtpAddress
 	SharepointItemUniqueId string   `ps:"SharepointItemUniqueId"`
 	SharepointSiteId       string   `ps:"SharepointSiteId"`
 	SiteUrl                string   `ps:"SiteUrl"`
 	SitIdentity            string   `ps:"SitIdentity"`
-	TestCases              any      `ps:"TestCases"`
-	Theme                  any      `ps:"Theme"`
-	UserPrincipalName      any      `ps:"UserPrincipalName"`
+	TestCases              []string `ps:"TestCases"`
+	Theme                  any      `ps:"Theme"`             // PurviewConfigTheme
+	UserPrincipalName      any      `ps:"UserPrincipalName"` // SmtpAddress
 	Workload               string   `ps:"Workload"`
 }
 
@@ -140,7 +140,7 @@ func (p CheckPurviewConfigParams) params() map[string]any {
 	if p.File != "" {
 		m["File"] = p.File
 	}
-	if len(p.FileAsBytes) > 0 {
+	if p.FileAsBytes != nil {
 		m["FileAsBytes"] = p.FileAsBytes
 	}
 	if p.IncidentId != "" {
@@ -222,10 +222,10 @@ func (s *Service) CreateFilePlanFirstRunLabels(ctx context.Context, p CreateFile
 
 // DeleteQuarantineMessageParams are the parameters of Delete-QuarantineMessage.
 type DeleteQuarantineMessageParams struct {
-	EntityType       any      `ps:"EntityType"`
+	EntityType       any      `ps:"EntityType"` // Microsoft.Exchange.Management.FfoQuarantine.EntityType
 	HardDelete       bool     `ps:"HardDelete"`
 	Identities       []string `ps:"Identities"`
-	Identity         any      `ps:"Identity"`
+	Identity         any      `ps:"Identity"` // QuarantineMessageIdentity
 	RecipientAddress []string `ps:"RecipientAddress"`
 }
 
@@ -237,13 +237,13 @@ func (p DeleteQuarantineMessageParams) params() map[string]any {
 	if p.HardDelete {
 		m["HardDelete"] = true
 	}
-	if len(p.Identities) > 0 {
+	if p.Identities != nil {
 		m["Identities"] = p.Identities
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.RecipientAddress) > 0 {
+	if p.RecipientAddress != nil {
 		m["RecipientAddress"] = p.RecipientAddress
 	}
 	return m
@@ -338,7 +338,7 @@ type ExecuteUnifiedPolicyCmdletBatchParams struct {
 
 func (p ExecuteUnifiedPolicyCmdletBatchParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.CmdletData) > 0 {
+	if p.CmdletData != nil {
 		m["CmdletData"] = p.CmdletData
 	}
 	if p.ExecutionId != "" {
@@ -357,7 +357,7 @@ func (s *Service) ExecuteUnifiedPolicyCmdletBatch(ctx context.Context, p Execute
 
 // ExportActivityExplorerDataParams are the parameters of Export-ActivityExplorerData.
 type ExportActivityExplorerDataParams struct {
-	EndTime      any      `ps:"EndTime"`
+	EndTime      any      `ps:"EndTime"` // DateTime
 	Filter1      []string `ps:"Filter1"`
 	Filter2      []string `ps:"Filter2"`
 	Filter3      []string `ps:"Filter3"`
@@ -365,8 +365,8 @@ type ExportActivityExplorerDataParams struct {
 	Filter5      []string `ps:"Filter5"`
 	OutputFormat string   `ps:"OutputFormat"` // one of: csv, json
 	PageCookie   string   `ps:"PageCookie"`
-	PageSize     int      `ps:"PageSize"`
-	StartTime    any      `ps:"StartTime"`
+	PageSize     *int64   `ps:"PageSize"`
+	StartTime    any      `ps:"StartTime"` // DateTime
 }
 
 func (p ExportActivityExplorerDataParams) params() map[string]any {
@@ -374,19 +374,19 @@ func (p ExportActivityExplorerDataParams) params() map[string]any {
 	if p.EndTime != nil {
 		m["EndTime"] = p.EndTime
 	}
-	if len(p.Filter1) > 0 {
+	if p.Filter1 != nil {
 		m["Filter1"] = p.Filter1
 	}
-	if len(p.Filter2) > 0 {
+	if p.Filter2 != nil {
 		m["Filter2"] = p.Filter2
 	}
-	if len(p.Filter3) > 0 {
+	if p.Filter3 != nil {
 		m["Filter3"] = p.Filter3
 	}
-	if len(p.Filter4) > 0 {
+	if p.Filter4 != nil {
 		m["Filter4"] = p.Filter4
 	}
-	if len(p.Filter5) > 0 {
+	if p.Filter5 != nil {
 		m["Filter5"] = p.Filter5
 	}
 	if p.OutputFormat != "" {
@@ -395,8 +395,8 @@ func (p ExportActivityExplorerDataParams) params() map[string]any {
 	if p.PageCookie != "" {
 		m["PageCookie"] = p.PageCookie
 	}
-	if p.PageSize != 0 {
-		m["PageSize"] = p.PageSize
+	if p.PageSize != nil {
+		m["PageSize"] = *p.PageSize
 	}
 	if p.StartTime != nil {
 		m["StartTime"] = p.StartTime
@@ -412,7 +412,7 @@ func (s *Service) ExportActivityExplorerData(ctx context.Context, p ExportActivi
 // ExportFilePlanPropertyParams are the parameters of Export-FilePlanProperty.
 // DefaultParameterSetName: Identity
 type ExportFilePlanPropertyParams struct {
-	DomainController any `ps:"DomainController"`
+	DomainController any `ps:"DomainController"` // Fqdn
 }
 
 func (p ExportFilePlanPropertyParams) params() map[string]any {
@@ -430,10 +430,10 @@ func (s *Service) ExportFilePlanProperty(ctx context.Context, p ExportFilePlanPr
 
 // ExportPurviewConfigParams are the parameters of Export-PurviewConfig.
 type ExportPurviewConfigParams struct {
-	Components        any    `ps:"Components"`
-	DomainController  any    `ps:"DomainController"`
-	PolicyName        string `ps:"PolicyName"`
-	UserPrincipalName any    `ps:"UserPrincipalName"`
+	Components        []string `ps:"Components"`
+	DomainController  any      `ps:"DomainController"` // Fqdn
+	PolicyName        string   `ps:"PolicyName"`
+	UserPrincipalName any      `ps:"UserPrincipalName"` // SmtpAddress
 }
 
 func (p ExportPurviewConfigParams) params() map[string]any {
@@ -461,11 +461,11 @@ func (s *Service) ExportPurviewConfig(ctx context.Context, p ExportPurviewConfig
 // ExportQuarantineMessageParams are the parameters of Export-QuarantineMessage.
 type ExportQuarantineMessageParams struct {
 	CompressOutput        bool     `ps:"CompressOutput"`
-	EntityType            any      `ps:"EntityType"`
+	EntityType            any      `ps:"EntityType"` // Microsoft.Exchange.Management.FfoQuarantine.EntityType
 	ForceConversionToMime bool     `ps:"ForceConversionToMime"`
 	Identities            []string `ps:"Identities"`
-	Identity              any      `ps:"Identity"`
-	Password              any      `ps:"Password"`
+	Identity              any      `ps:"Identity"` // QuarantineMessageIdentity
+	Password              any      `ps:"Password"` // SecureString
 	PasswordV2            string   `ps:"PasswordV2"`
 	ReasonForExport       string   `ps:"ReasonForExport"`
 	RecipientAddress      string   `ps:"RecipientAddress"`
@@ -482,7 +482,7 @@ func (p ExportQuarantineMessageParams) params() map[string]any {
 	if p.ForceConversionToMime {
 		m["ForceConversionToMime"] = true
 	}
-	if len(p.Identities) > 0 {
+	if p.Identities != nil {
 		m["Identities"] = p.Identities
 	}
 	if p.Identity != nil {
@@ -532,7 +532,7 @@ func (p ExportQuarantineMessageV1Params) params() map[string]any {
 	if p.ForceConversionToMime {
 		m["ForceConversionToMime"] = true
 	}
-	if len(p.Identities) > 0 {
+	if p.Identities != nil {
 		m["Identities"] = p.Identities
 	}
 	if p.Identity != nil {
@@ -636,9 +636,9 @@ func (s *Service) GetActivityAlert(ctx context.Context, p GetActivityAlertParams
 // GetAdaptiveScopeParams are the parameters of Get-AdaptiveScope.
 // DefaultParameterSetName: Identity
 type GetAdaptiveScopeParams struct {
-	AdministrativeUnits any `ps:"AdministrativeUnits"`
-	Identity            any `ps:"Identity"`
-	LocationTypes       any `ps:"LocationTypes"`
+	AdministrativeUnits []string `ps:"AdministrativeUnits"`
+	Identity            any      `ps:"Identity"` // ComplianceRuleIdParameter
+	LocationTypes       []string `ps:"LocationTypes"`
 }
 
 func (p GetAdaptiveScopeParams) params() map[string]any {
@@ -663,14 +663,14 @@ func (s *Service) GetAdaptiveScope(ctx context.Context, p GetAdaptiveScopeParams
 // GetAdaptiveScopeMembersParams are the parameters of Get-AdaptiveScopeMembers.
 // DefaultParameterSetName: Identity
 type GetAdaptiveScopeMembersParams struct {
-	AdaptiveReportFilters any    `ps:"AdaptiveReportFilters"`
+	AdaptiveReportFilters any    `ps:"AdaptiveReportFilters"` // PswsHashtable
 	AdaptiveReportQuery   string `ps:"AdaptiveReportQuery"`
-	EndDateTime           any    `ps:"EndDateTime"`
-	Identity              any    `ps:"Identity"`
+	EndDateTime           any    `ps:"EndDateTime"` // DateTimeOffset
+	Identity              any    `ps:"Identity"`    // ComplianceRuleIdParameter
 	PageCookie            string `ps:"PageCookie"`
-	PageResultSize        any    `ps:"PageResultSize"`
-	StartDateTime         any    `ps:"StartDateTime"`
-	State                 any    `ps:"State"`
+	PageResultSize        any    `ps:"PageResultSize"` // UnlimitedInt
+	StartDateTime         any    `ps:"StartDateTime"`  // DateTimeOffset
+	State                 any    `ps:"State"`          // LocationState
 }
 
 func (p GetAdaptiveScopeMembersParams) params() map[string]any {
@@ -749,7 +749,7 @@ func (s *Service) GetAdministrativeUnitExtension(ctx context.Context, p GetAdmin
 type GetAppRetentionCompliancePolicyParams struct {
 	DistributionDetail bool `ps:"DistributionDetail"`
 	ErrorPolicyOnly    bool `ps:"ErrorPolicyOnly"`
-	Identity           any  `ps:"Identity"`
+	Identity           any  `ps:"Identity"` // PolicyIdParameter
 	RetentionRuleTypes bool `ps:"RetentionRuleTypes"`
 }
 
@@ -778,8 +778,8 @@ func (s *Service) GetAppRetentionCompliancePolicy(ctx context.Context, p GetAppR
 // GetAppRetentionComplianceRuleParams are the parameters of Get-AppRetentionComplianceRule.
 // DefaultParameterSetName: Identity
 type GetAppRetentionComplianceRuleParams struct {
-	Identity any `ps:"Identity"`
-	Policy   any `ps:"Policy"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
+	Policy   any `ps:"Policy"`   // PolicyIdParameter
 }
 
 func (p GetAppRetentionComplianceRuleParams) params() map[string]any {
@@ -800,7 +800,7 @@ func (s *Service) GetAppRetentionComplianceRule(ctx context.Context, p GetAppRet
 
 // GetAuditConfigParams are the parameters of Get-AuditConfig.
 type GetAuditConfigParams struct {
-	DomainController any `ps:"DomainController"`
+	DomainController any `ps:"DomainController"` // Fqdn
 }
 
 func (p GetAuditConfigParams) params() map[string]any {
@@ -865,13 +865,13 @@ func (s *Service) GetAuditConfigurationRule(ctx context.Context, p GetAuditConfi
 // GetAutoSensitivityLabelPolicyParams are the parameters of Get-AutoSensitivityLabelPolicy.
 // DefaultParameterSetName: Identity
 type GetAutoSensitivityLabelPolicyParams struct {
-	DistributionDetail          bool `ps:"DistributionDetail"`
-	ForceValidate               bool `ps:"ForceValidate"`
-	Identity                    any  `ps:"Identity"`
-	IncludePolicyGradingDetails bool `ps:"IncludePolicyGradingDetails"`
-	IncludePolicyGradingResults bool `ps:"IncludePolicyGradingResults"`
-	IncludeProgressFeedback     bool `ps:"IncludeProgressFeedback"`
-	IncludeTestModeResults      bool `ps:"IncludeTestModeResults"`
+	DistributionDetail          bool  `ps:"DistributionDetail"`
+	ForceValidate               bool  `ps:"ForceValidate"`
+	Identity                    any   `ps:"Identity"` // PolicyIdParameter
+	IncludePolicyGradingDetails bool  `ps:"IncludePolicyGradingDetails"`
+	IncludePolicyGradingResults bool  `ps:"IncludePolicyGradingResults"`
+	IncludeProgressFeedback     bool  `ps:"IncludeProgressFeedback"`
+	IncludeTestModeResults      *bool `ps:"IncludeTestModeResults"`
 }
 
 func (p GetAutoSensitivityLabelPolicyParams) params() map[string]any {
@@ -894,8 +894,8 @@ func (p GetAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.IncludeProgressFeedback {
 		m["IncludeProgressFeedback"] = true
 	}
-	if p.IncludeTestModeResults {
-		m["IncludeTestModeResults"] = true
+	if p.IncludeTestModeResults != nil {
+		m["IncludeTestModeResults"] = *p.IncludeTestModeResults
 	}
 	return m
 }
@@ -907,11 +907,11 @@ func (s *Service) GetAutoSensitivityLabelPolicy(ctx context.Context, p GetAutoSe
 
 // GetAutoSensitivityLabelRuleParams are the parameters of Get-AutoSensitivityLabelRule.
 type GetAutoSensitivityLabelRuleParams struct {
-	ForceValidate                   bool `ps:"ForceValidate"`
-	Identity                        any  `ps:"Identity"`
-	IncludeExecutionRuleGuids       bool `ps:"IncludeExecutionRuleGuids"`
-	IncludeExecutionRuleInformation bool `ps:"IncludeExecutionRuleInformation"`
-	Policy                          any  `ps:"Policy"`
+	ForceValidate                   bool  `ps:"ForceValidate"`
+	Identity                        any   `ps:"Identity"` // ComplianceRuleIdParameter
+	IncludeExecutionRuleGuids       *bool `ps:"IncludeExecutionRuleGuids"`
+	IncludeExecutionRuleInformation *bool `ps:"IncludeExecutionRuleInformation"`
+	Policy                          any   `ps:"Policy"` // PolicyIdParameter
 }
 
 func (p GetAutoSensitivityLabelRuleParams) params() map[string]any {
@@ -922,11 +922,11 @@ func (p GetAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeExecutionRuleGuids {
-		m["IncludeExecutionRuleGuids"] = true
+	if p.IncludeExecutionRuleGuids != nil {
+		m["IncludeExecutionRuleGuids"] = *p.IncludeExecutionRuleGuids
 	}
-	if p.IncludeExecutionRuleInformation {
-		m["IncludeExecutionRuleInformation"] = true
+	if p.IncludeExecutionRuleInformation != nil {
+		m["IncludeExecutionRuleInformation"] = *p.IncludeExecutionRuleInformation
 	}
 	if p.Policy != nil {
 		m["Policy"] = p.Policy
@@ -944,7 +944,7 @@ func (s *Service) GetAutoSensitivityLabelRule(ctx context.Context, p GetAutoSens
 type GetCaseHoldPolicyParams struct {
 	Case                string `ps:"Case"`
 	DistributionDetail  bool   `ps:"DistributionDetail"`
-	Identity            any    `ps:"Identity"`
+	Identity            any    `ps:"Identity"` // PolicyIdParameter
 	IncludeBindings     bool   `ps:"IncludeBindings"`
 	IncludeBindingsOnly bool   `ps:"IncludeBindingsOnly"`
 }
@@ -977,8 +977,8 @@ func (s *Service) GetCaseHoldPolicy(ctx context.Context, p GetCaseHoldPolicyPara
 // GetCaseHoldRuleParams are the parameters of Get-CaseHoldRule.
 // DefaultParameterSetName: Identity
 type GetCaseHoldRuleParams struct {
-	Identity any `ps:"Identity"`
-	Policy   any `ps:"Policy"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
+	Policy   any `ps:"Policy"`   // PolicyIdParameter
 }
 
 func (p GetCaseHoldRuleParams) params() map[string]any {
@@ -1037,9 +1037,9 @@ func (s *Service) GetComplianceBoundary(ctx context.Context, p GetComplianceBoun
 // GetComplianceCaseParams are the parameters of Get-ComplianceCase.
 // DefaultParameterSetName: Identity
 type GetComplianceCaseParams struct {
-	CaseType         any    `ps:"CaseType"`
-	DomainController any    `ps:"DomainController"`
-	Identity         any    `ps:"Identity"`
+	CaseType         any    `ps:"CaseType"`         // ComplianceCaseType
+	DomainController any    `ps:"DomainController"` // Fqdn
+	Identity         any    `ps:"Identity"`         // ComplianceCaseIdParameter
 	RecentOnly       bool   `ps:"RecentOnly"`
 	RoleGroup        string `ps:"RoleGroup"`
 }
@@ -1073,9 +1073,9 @@ func (s *Service) GetComplianceCase(ctx context.Context, p GetComplianceCasePara
 // DefaultParameterSetName: Identity
 type GetComplianceCaseMemberParams struct {
 	Case             string `ps:"Case"`
-	DomainController any    `ps:"DomainController"`
-	ResultSize       any    `ps:"ResultSize"`
-	RoleGroupOnly    bool   `ps:"RoleGroupOnly"` // one of: True
+	DomainController any    `ps:"DomainController"` // Fqdn
+	ResultSize       any    `ps:"ResultSize"`       // Unlimited
+	RoleGroupOnly    bool   `ps:"RoleGroupOnly"`    // one of: True
 	ShowCaseAdmin    bool   `ps:"ShowCaseAdmin"`
 }
 
@@ -1236,10 +1236,10 @@ func (s *Service) GetCompliancePreservationSetting(ctx context.Context, p GetCom
 // GetComplianceRetentionEventParams are the parameters of Get-ComplianceRetentionEvent.
 // DefaultParameterSetName: Identity
 type GetComplianceRetentionEventParams struct {
-	BeginDateTime    any  `ps:"BeginDateTime"`
-	DomainController any  `ps:"DomainController"`
-	EndDateTime      any  `ps:"EndDateTime"`
-	Identity         any  `ps:"Identity"`
+	BeginDateTime    any  `ps:"BeginDateTime"`    // System.DateTime
+	DomainController any  `ps:"DomainController"` // Fqdn
+	EndDateTime      any  `ps:"EndDateTime"`      // System.DateTime
+	Identity         any  `ps:"Identity"`         // PolicyIdParameter
 	PreviewOnly      bool `ps:"PreviewOnly"`
 }
 
@@ -1271,7 +1271,7 @@ func (s *Service) GetComplianceRetentionEvent(ctx context.Context, p GetComplian
 // GetComplianceRetentionEventTypeParams are the parameters of Get-ComplianceRetentionEventType.
 // DefaultParameterSetName: Identity
 type GetComplianceRetentionEventTypeParams struct {
-	Identity any  `ps:"Identity"`
+	Identity any  `ps:"Identity"` // ComplianceRuleIdParameter
 	LoadTag  bool `ps:"LoadTag"`
 }
 
@@ -1295,8 +1295,8 @@ func (s *Service) GetComplianceRetentionEventType(ctx context.Context, p GetComp
 // DefaultParameterSetName: Identity
 type GetComplianceSearchParams struct {
 	Case       string `ps:"Case"`
-	Identity   any    `ps:"Identity"`
-	ResultSize any    `ps:"ResultSize"`
+	Identity   any    `ps:"Identity"`   // ComplianceSearchIdParameter
+	ResultSize any    `ps:"ResultSize"` // Unlimited
 }
 
 func (p GetComplianceSearchParams) params() map[string]any {
@@ -1324,10 +1324,10 @@ type GetComplianceSearchActionParams struct {
 	Case              string `ps:"Case"`
 	Details           bool   `ps:"Details"`
 	Export            bool   `ps:"Export"`
-	Identity          any    `ps:"Identity"`
+	Identity          any    `ps:"Identity"` // ComplianceSearchActionIdParameter
 	IncludeCredential bool   `ps:"IncludeCredential"`
 	Preview           bool   `ps:"Preview"`
-	ResultSize        any    `ps:"ResultSize"`
+	ResultSize        any    `ps:"ResultSize"` // Unlimited
 }
 
 func (p GetComplianceSearchActionParams) params() map[string]any {
@@ -1383,7 +1383,7 @@ func (s *Service) GetComplianceSecurityFilter(ctx context.Context, p GetComplian
 // GetComplianceTagParams are the parameters of Get-ComplianceTag.
 // DefaultParameterSetName: Identity
 type GetComplianceTagParams struct {
-	Identity            any  `ps:"Identity"`
+	Identity            any  `ps:"Identity"` // ComplianceRuleIdParameter
 	IncludingLabelState bool `ps:"IncludingLabelState"`
 }
 
@@ -1406,7 +1406,7 @@ func (s *Service) GetComplianceTag(ctx context.Context, p GetComplianceTagParams
 // GetComplianceTagStorageParams are the parameters of Get-ComplianceTagStorage.
 // DefaultParameterSetName: Identity
 type GetComplianceTagStorageParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p GetComplianceTagStorageParams) params() map[string]any {
@@ -1439,10 +1439,10 @@ func (s *Service) GetCustomDlpEmailTemplates(ctx context.Context, p GetCustomDlp
 
 // GetDataRetentionReportParams are the parameters of Get-DataRetentionReport.
 type GetDataRetentionReportParams struct {
-	EndDate   any `ps:"EndDate"`
-	Page      int `ps:"Page"`
-	PageSize  int `ps:"PageSize"`
-	StartDate any `ps:"StartDate"`
+	EndDate   any    `ps:"EndDate"` // DateTime
+	Page      *int64 `ps:"Page"`
+	PageSize  *int64 `ps:"PageSize"`
+	StartDate any    `ps:"StartDate"` // DateTime
 }
 
 func (p GetDataRetentionReportParams) params() map[string]any {
@@ -1450,11 +1450,11 @@ func (p GetDataRetentionReportParams) params() map[string]any {
 	if p.EndDate != nil {
 		m["EndDate"] = p.EndDate
 	}
-	if p.Page != 0 {
-		m["Page"] = p.Page
+	if p.Page != nil {
+		m["Page"] = *p.Page
 	}
-	if p.PageSize != 0 {
-		m["PageSize"] = p.PageSize
+	if p.PageSize != nil {
+		m["PageSize"] = *p.PageSize
 	}
 	if p.StartDate != nil {
 		m["StartDate"] = p.StartDate
@@ -1469,7 +1469,7 @@ func (s *Service) GetDataRetentionReport(ctx context.Context, p GetDataRetention
 
 // GetDeviceComplianceDetailsReportParams are the parameters of Get-DeviceComplianceDetailsReport.
 type GetDeviceComplianceDetailsReportParams struct {
-	DeviceCompliancePolicy any    `ps:"DeviceCompliancePolicy"`
+	DeviceCompliancePolicy string `ps:"DeviceCompliancePolicy"`
 	DeviceComplianceStatus string `ps:"DeviceComplianceStatus"`
 	DevicePlatform         string `ps:"DevicePlatform"`
 	DeviceUserName         string `ps:"DeviceUserName"`
@@ -1479,7 +1479,7 @@ type GetDeviceComplianceDetailsReportParams struct {
 
 func (p GetDeviceComplianceDetailsReportParams) params() map[string]any {
 	m := map[string]any{}
-	if p.DeviceCompliancePolicy != nil {
+	if p.DeviceCompliancePolicy != "" {
 		m["DeviceCompliancePolicy"] = p.DeviceCompliancePolicy
 	}
 	if p.DeviceComplianceStatus != "" {
@@ -1565,7 +1565,7 @@ func (s *Service) GetDeviceComplianceReportDate(ctx context.Context, p GetDevice
 
 // GetDeviceComplianceSummaryReportParams are the parameters of Get-DeviceComplianceSummaryReport.
 type GetDeviceComplianceSummaryReportParams struct {
-	DeviceCompliancePolicy any    `ps:"DeviceCompliancePolicy"`
+	DeviceCompliancePolicy string `ps:"DeviceCompliancePolicy"`
 	DeviceComplianceStatus string `ps:"DeviceComplianceStatus"`
 	DevicePlatform         string `ps:"DevicePlatform"`
 	DeviceUserName         string `ps:"DeviceUserName"`
@@ -1575,7 +1575,7 @@ type GetDeviceComplianceSummaryReportParams struct {
 
 func (p GetDeviceComplianceSummaryReportParams) params() map[string]any {
 	m := map[string]any{}
-	if p.DeviceCompliancePolicy != nil {
+	if p.DeviceCompliancePolicy != "" {
 		m["DeviceCompliancePolicy"] = p.DeviceCompliancePolicy
 	}
 	if p.DeviceComplianceStatus != "" {
@@ -1625,14 +1625,14 @@ func (s *Service) GetDeviceComplianceUserInventory(ctx context.Context, p GetDev
 
 // GetDeviceComplianceUserReportParams are the parameters of Get-DeviceComplianceUserReport.
 type GetDeviceComplianceUserReportParams struct {
-	DeviceId   any `ps:"DeviceId"`
-	EndDate    any `ps:"EndDate"`
-	Expression any `ps:"Expression"`
+	DeviceId   string `ps:"DeviceId"`
+	EndDate    any    `ps:"EndDate"`
+	Expression any    `ps:"Expression"`
 }
 
 func (p GetDeviceComplianceUserReportParams) params() map[string]any {
 	m := map[string]any{}
-	if p.DeviceId != nil {
+	if p.DeviceId != "" {
 		m["DeviceId"] = p.DeviceId
 	}
 	if p.EndDate != nil {
@@ -1652,7 +1652,7 @@ func (s *Service) GetDeviceComplianceUserReport(ctx context.Context, p GetDevice
 // GetDeviceConditionalAccessPolicyParams are the parameters of Get-DeviceConditionalAccessPolicy.
 // DefaultParameterSetName: Identity
 type GetDeviceConditionalAccessPolicyParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p GetDeviceConditionalAccessPolicyParams) params() map[string]any {
@@ -1672,8 +1672,8 @@ func (s *Service) GetDeviceConditionalAccessPolicy(ctx context.Context, p GetDev
 // DefaultParameterSetName: Identity
 type GetDeviceConditionalAccessRuleParams struct {
 	CompareToWorkload bool `ps:"CompareToWorkload"`
-	DomainController  any  `ps:"DomainController"`
-	Identity          any  `ps:"Identity"`
+	DomainController  any  `ps:"DomainController"` // Fqdn
+	Identity          any  `ps:"Identity"`         // ComplianceRuleIdParameter
 }
 
 func (p GetDeviceConditionalAccessRuleParams) params() map[string]any {
@@ -1698,7 +1698,7 @@ func (s *Service) GetDeviceConditionalAccessRule(ctx context.Context, p GetDevic
 // GetDeviceConfigurationPolicyParams are the parameters of Get-DeviceConfigurationPolicy.
 // DefaultParameterSetName: Identity
 type GetDeviceConfigurationPolicyParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p GetDeviceConfigurationPolicyParams) params() map[string]any {
@@ -1718,8 +1718,8 @@ func (s *Service) GetDeviceConfigurationPolicy(ctx context.Context, p GetDeviceC
 // DefaultParameterSetName: Identity
 type GetDeviceConfigurationRuleParams struct {
 	CompareToWorkload bool `ps:"CompareToWorkload"`
-	DomainController  any  `ps:"DomainController"`
-	Identity          any  `ps:"Identity"`
+	DomainController  any  `ps:"DomainController"` // Fqdn
+	Identity          any  `ps:"Identity"`         // ComplianceRuleIdParameter
 }
 
 func (p GetDeviceConfigurationRuleParams) params() map[string]any {
@@ -1744,7 +1744,7 @@ func (s *Service) GetDeviceConfigurationRule(ctx context.Context, p GetDeviceCon
 // GetDevicePolicyParams are the parameters of Get-DevicePolicy.
 // DefaultParameterSetName: Identity
 type GetDevicePolicyParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p GetDevicePolicyParams) params() map[string]any {
@@ -1763,7 +1763,7 @@ func (s *Service) GetDevicePolicy(ctx context.Context, p GetDevicePolicyParams) 
 // GetDeviceTenantPolicyParams are the parameters of Get-DeviceTenantPolicy.
 // DefaultParameterSetName: Identity
 type GetDeviceTenantPolicyParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p GetDeviceTenantPolicyParams) params() map[string]any {
@@ -1782,8 +1782,8 @@ func (s *Service) GetDeviceTenantPolicy(ctx context.Context, p GetDeviceTenantPo
 // GetDeviceTenantRuleParams are the parameters of Get-DeviceTenantRule.
 // DefaultParameterSetName: Identity
 type GetDeviceTenantRuleParams struct {
-	DomainController any `ps:"DomainController"`
-	Identity         any `ps:"Identity"`
+	DomainController any `ps:"DomainController"` // Fqdn
+	Identity         any `ps:"Identity"`         // ComplianceRuleIdParameter
 }
 
 func (p GetDeviceTenantRuleParams) params() map[string]any {
@@ -1823,10 +1823,10 @@ type GetDlpCompliancePolicyParams struct {
 	DisplayName                  string `ps:"DisplayName"`
 	DistributionDetail           bool   `ps:"DistributionDetail"`
 	ForceValidate                bool   `ps:"ForceValidate"`
-	Identity                     any    `ps:"Identity"`
-	IncludeExtendedProperties    bool   `ps:"IncludeExtendedProperties"`
-	IncludeRulesMetadata         bool   `ps:"IncludeRulesMetadata"`
-	IncludeSimulationResults     bool   `ps:"IncludeSimulationResults"`
+	Identity                     any    `ps:"Identity"` // PolicyIdParameter
+	IncludeExtendedProperties    *bool  `ps:"IncludeExtendedProperties"`
+	IncludeRulesMetadata         *bool  `ps:"IncludeRulesMetadata"`
+	IncludeSimulationResults     *bool  `ps:"IncludeSimulationResults"`
 	IRMUserRiskConfiguredAnyRule bool   `ps:"IRMUserRiskConfiguredAnyRule"`
 	Summary                      bool   `ps:"Summary"`
 }
@@ -1845,14 +1845,14 @@ func (p GetDlpCompliancePolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeExtendedProperties {
-		m["IncludeExtendedProperties"] = true
+	if p.IncludeExtendedProperties != nil {
+		m["IncludeExtendedProperties"] = *p.IncludeExtendedProperties
 	}
-	if p.IncludeRulesMetadata {
-		m["IncludeRulesMetadata"] = true
+	if p.IncludeRulesMetadata != nil {
+		m["IncludeRulesMetadata"] = *p.IncludeRulesMetadata
 	}
-	if p.IncludeSimulationResults {
-		m["IncludeSimulationResults"] = true
+	if p.IncludeSimulationResults != nil {
+		m["IncludeSimulationResults"] = *p.IncludeSimulationResults
 	}
 	if p.IRMUserRiskConfiguredAnyRule {
 		m["IRMUserRiskConfiguredAnyRule"] = true
@@ -1873,9 +1873,9 @@ func (s *Service) GetDlpCompliancePolicy(ctx context.Context, p GetDlpCompliance
 type GetDlpComplianceRuleParams struct {
 	DisplayName               string `ps:"DisplayName"`
 	ForceValidate             bool   `ps:"ForceValidate"`
-	Identity                  any    `ps:"Identity"`
-	IncludeExecutionRuleGuids bool   `ps:"IncludeExecutionRuleGuids"`
-	Policy                    any    `ps:"Policy"`
+	Identity                  any    `ps:"Identity"` // ComplianceRuleIdParameter
+	IncludeExecutionRuleGuids *bool  `ps:"IncludeExecutionRuleGuids"`
+	Policy                    any    `ps:"Policy"` // PolicyIdParameter
 	Summary                   bool   `ps:"Summary"`
 }
 
@@ -1890,8 +1890,8 @@ func (p GetDlpComplianceRuleParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeExecutionRuleGuids {
-		m["IncludeExecutionRuleGuids"] = true
+	if p.IncludeExecutionRuleGuids != nil {
+		m["IncludeExecutionRuleGuids"] = *p.IncludeExecutionRuleGuids
 	}
 	if p.Policy != nil {
 		m["Policy"] = p.Policy
@@ -1909,16 +1909,16 @@ func (s *Service) GetDlpComplianceRule(ctx context.Context, p GetDlpComplianceRu
 
 // GetDlpDetailReportParams are the parameters of Get-DlpDetailReport.
 type GetDlpDetailReportParams struct {
-	Action              any `ps:"Action"`
-	Actor               any `ps:"Actor"`
-	DlpCompliancePolicy any `ps:"DlpCompliancePolicy"`
-	DlpComplianceRule   any `ps:"DlpComplianceRule"`
-	EndDate             any `ps:"EndDate"`
-	EventType           any `ps:"EventType"`
-	Page                int `ps:"Page"`
-	PageSize            int `ps:"PageSize"`
-	Source              any `ps:"Source"`
-	StartDate           any `ps:"StartDate"`
+	Action              []string `ps:"Action"`
+	Actor               []string `ps:"Actor"`
+	DlpCompliancePolicy []string `ps:"DlpCompliancePolicy"`
+	DlpComplianceRule   []string `ps:"DlpComplianceRule"`
+	EndDate             any      `ps:"EndDate"` // DateTime
+	EventType           []string `ps:"EventType"`
+	Page                *int64   `ps:"Page"`
+	PageSize            *int64   `ps:"PageSize"`
+	Source              []string `ps:"Source"`
+	StartDate           any      `ps:"StartDate"` // DateTime
 }
 
 func (p GetDlpDetailReportParams) params() map[string]any {
@@ -1941,11 +1941,11 @@ func (p GetDlpDetailReportParams) params() map[string]any {
 	if p.EventType != nil {
 		m["EventType"] = p.EventType
 	}
-	if p.Page != 0 {
-		m["Page"] = p.Page
+	if p.Page != nil {
+		m["Page"] = *p.Page
 	}
-	if p.PageSize != 0 {
-		m["PageSize"] = p.PageSize
+	if p.PageSize != nil {
+		m["PageSize"] = *p.PageSize
 	}
 	if p.Source != nil {
 		m["Source"] = p.Source
@@ -1963,18 +1963,18 @@ func (s *Service) GetDlpDetailReport(ctx context.Context, p GetDlpDetailReportPa
 
 // GetDlpDetectionsReportParams are the parameters of Get-DlpDetectionsReport.
 type GetDlpDetectionsReportParams struct {
-	Action              any    `ps:"Action"`
-	AggregateBy         string `ps:"AggregateBy"`
-	DlpCompliancePolicy any    `ps:"DlpCompliancePolicy"`
-	DlpComplianceRule   any    `ps:"DlpComplianceRule"`
-	EndDate             any    `ps:"EndDate"`
-	EventType           any    `ps:"EventType"`
-	Expression          any    `ps:"Expression"`
-	Page                int    `ps:"Page"`
-	PageSize            int    `ps:"PageSize"`
-	Source              any    `ps:"Source"`
-	StartDate           any    `ps:"StartDate"`
-	SummarizeBy         any    `ps:"SummarizeBy"`
+	Action              []string `ps:"Action"`
+	AggregateBy         string   `ps:"AggregateBy"`
+	DlpCompliancePolicy []string `ps:"DlpCompliancePolicy"`
+	DlpComplianceRule   []string `ps:"DlpComplianceRule"`
+	EndDate             any      `ps:"EndDate"` // DateTime
+	EventType           []string `ps:"EventType"`
+	Expression          any      `ps:"Expression"` // Expression
+	Page                *int64   `ps:"Page"`
+	PageSize            *int64   `ps:"PageSize"`
+	Source              []string `ps:"Source"`
+	StartDate           any      `ps:"StartDate"` // DateTime
+	SummarizeBy         []string `ps:"SummarizeBy"`
 }
 
 func (p GetDlpDetectionsReportParams) params() map[string]any {
@@ -2000,11 +2000,11 @@ func (p GetDlpDetectionsReportParams) params() map[string]any {
 	if p.Expression != nil {
 		m["Expression"] = p.Expression
 	}
-	if p.Page != 0 {
-		m["Page"] = p.Page
+	if p.Page != nil {
+		m["Page"] = *p.Page
 	}
-	if p.PageSize != 0 {
-		m["PageSize"] = p.PageSize
+	if p.PageSize != nil {
+		m["PageSize"] = *p.PageSize
 	}
 	if p.Source != nil {
 		m["Source"] = p.Source
@@ -2026,7 +2026,7 @@ func (s *Service) GetDlpDetectionsReport(ctx context.Context, p GetDlpDetections
 // GetDlpEdmSchemaParams are the parameters of Get-DlpEdmSchema.
 // DefaultParameterSetName: Identity
 type GetDlpEdmSchemaParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // EdmStorageIdParameter
 }
 
 func (p GetDlpEdmSchemaParams) params() map[string]any {
@@ -2066,16 +2066,16 @@ func (s *Service) GetDlpEdmSession(ctx context.Context, p GetDlpEdmSessionParams
 
 // GetDlpIncidentDetailReportParams are the parameters of Get-DlpIncidentDetailReport.
 type GetDlpIncidentDetailReportParams struct {
-	Action              any `ps:"Action"`
-	Actor               any `ps:"Actor"`
-	DlpCompliancePolicy any `ps:"DlpCompliancePolicy"`
-	DlpComplianceRule   any `ps:"DlpComplianceRule"`
-	EndDate             any `ps:"EndDate"`
-	EventType           any `ps:"EventType"`
-	Page                int `ps:"Page"`
-	PageSize            int `ps:"PageSize"`
-	Source              any `ps:"Source"`
-	StartDate           any `ps:"StartDate"`
+	Action              []string `ps:"Action"`
+	Actor               []string `ps:"Actor"`
+	DlpCompliancePolicy []string `ps:"DlpCompliancePolicy"`
+	DlpComplianceRule   []string `ps:"DlpComplianceRule"`
+	EndDate             any      `ps:"EndDate"` // System.DateTime
+	EventType           []string `ps:"EventType"`
+	Page                *int64   `ps:"Page"`
+	PageSize            *int64   `ps:"PageSize"`
+	Source              []string `ps:"Source"`
+	StartDate           any      `ps:"StartDate"` // System.DateTime
 }
 
 func (p GetDlpIncidentDetailReportParams) params() map[string]any {
@@ -2098,11 +2098,11 @@ func (p GetDlpIncidentDetailReportParams) params() map[string]any {
 	if p.EventType != nil {
 		m["EventType"] = p.EventType
 	}
-	if p.Page != 0 {
-		m["Page"] = p.Page
+	if p.Page != nil {
+		m["Page"] = *p.Page
 	}
-	if p.PageSize != 0 {
-		m["PageSize"] = p.PageSize
+	if p.PageSize != nil {
+		m["PageSize"] = *p.PageSize
 	}
 	if p.Source != nil {
 		m["Source"] = p.Source
@@ -2138,11 +2138,11 @@ func (s *Service) GetDlpKeywordDictionary(ctx context.Context, p GetDlpKeywordDi
 
 // GetDlpSensitiveInformationTypeParams are the parameters of Get-DlpSensitiveInformationType.
 type GetDlpSensitiveInformationTypeParams struct {
-	Capability      any  `ps:"Capability"`
-	Identity        any  `ps:"Identity"`
+	Capability      any  `ps:"Capability"` // ClassificationCapabilityType
+	Identity        any  `ps:"Identity"`   // SensitiveInformationTypeIdParameter
 	IncludeDetails  bool `ps:"IncludeDetails"`
-	IncludeElements any  `ps:"IncludeElements"`
-	Organization    any  `ps:"Organization"`
+	IncludeElements any  `ps:"IncludeElements"` // ClassificationPrimitiveElementType
+	Organization    any  `ps:"Organization"`    // OrganizationIdParameter
 }
 
 func (p GetDlpSensitiveInformationTypeParams) params() map[string]any {
@@ -2187,8 +2187,8 @@ func (s *Service) GetDlpSensitiveInformationTypeConfig(ctx context.Context, p Ge
 // GetDlpSensitiveInformationTypeRulePackageParams are the parameters of Get-DlpSensitiveInformationTypeRulePackage.
 // DefaultParameterSetName: Identity
 type GetDlpSensitiveInformationTypeRulePackageParams struct {
-	Capability any `ps:"Capability"`
-	Identity   any `ps:"Identity"`
+	Capability any `ps:"Capability"` // ClassificationCapabilityType
+	Identity   any `ps:"Identity"`   // SensitiveInformationTypeRuleCollectionIdParameter
 }
 
 func (p GetDlpSensitiveInformationTypeRulePackageParams) params() map[string]any {
@@ -2209,8 +2209,8 @@ func (s *Service) GetDlpSensitiveInformationTypeRulePackage(ctx context.Context,
 
 // GetDlpSiDetectionsReportParams are the parameters of Get-DlpSiDetectionsReport.
 type GetDlpSiDetectionsReportParams struct {
-	EndDate       any `ps:"EndDate"`
-	SensitiveType any `ps:"SensitiveType"`
+	EndDate       any      `ps:"EndDate"` // DateTime
+	SensitiveType []string `ps:"SensitiveType"`
 }
 
 func (p GetDlpSiDetectionsReportParams) params() map[string]any {
@@ -2250,8 +2250,8 @@ func (s *Service) GetDspmPolicy(ctx context.Context, p GetDspmPolicyParams) (*ad
 
 // GetFeatureConfigurationParams are the parameters of Get-FeatureConfiguration.
 type GetFeatureConfigurationParams struct {
-	FeatureScenario any `ps:"FeatureScenario"` // one of: KnowYourData, TrustContainer, ProtectExcludedFolders, UnsavedDocument, JustInTimeAudit
-	Identity        any `ps:"Identity"`
+	FeatureScenario any `ps:"FeatureScenario"` // one of: KnowYourData, TrustContainer, ProtectExcludedFolders, UnsavedDocument, JustInTimeAudit; PolicyScenario
+	Identity        any `ps:"Identity"`        // PolicyIdParameter
 }
 
 func (p GetFeatureConfigurationParams) params() map[string]any {
@@ -2273,7 +2273,7 @@ func (s *Service) GetFeatureConfiguration(ctx context.Context, p GetFeatureConfi
 // GetFilePlanPropertyAuthorityParams are the parameters of Get-FilePlanPropertyAuthority.
 // DefaultParameterSetName: Identity
 type GetFilePlanPropertyAuthorityParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p GetFilePlanPropertyAuthorityParams) params() map[string]any {
@@ -2292,7 +2292,7 @@ func (s *Service) GetFilePlanPropertyAuthority(ctx context.Context, p GetFilePla
 // GetFilePlanPropertyCategoryParams are the parameters of Get-FilePlanPropertyCategory.
 // DefaultParameterSetName: Identity
 type GetFilePlanPropertyCategoryParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p GetFilePlanPropertyCategoryParams) params() map[string]any {
@@ -2311,7 +2311,7 @@ func (s *Service) GetFilePlanPropertyCategory(ctx context.Context, p GetFilePlan
 // GetFilePlanPropertyCitationParams are the parameters of Get-FilePlanPropertyCitation.
 // DefaultParameterSetName: Identity
 type GetFilePlanPropertyCitationParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p GetFilePlanPropertyCitationParams) params() map[string]any {
@@ -2330,7 +2330,7 @@ func (s *Service) GetFilePlanPropertyCitation(ctx context.Context, p GetFilePlan
 // GetFilePlanPropertyDepartmentParams are the parameters of Get-FilePlanPropertyDepartment.
 // DefaultParameterSetName: Identity
 type GetFilePlanPropertyDepartmentParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p GetFilePlanPropertyDepartmentParams) params() map[string]any {
@@ -2349,7 +2349,7 @@ func (s *Service) GetFilePlanPropertyDepartment(ctx context.Context, p GetFilePl
 // GetFilePlanPropertyReferenceIdParams are the parameters of Get-FilePlanPropertyReferenceId.
 // DefaultParameterSetName: Identity
 type GetFilePlanPropertyReferenceIdParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p GetFilePlanPropertyReferenceIdParams) params() map[string]any {
@@ -2386,7 +2386,7 @@ func (s *Service) GetFilePlanPropertyStructure(ctx context.Context, p GetFilePla
 // GetFilePlanPropertySubCategoryParams are the parameters of Get-FilePlanPropertySubCategory.
 // DefaultParameterSetName: Identity
 type GetFilePlanPropertySubCategoryParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p GetFilePlanPropertySubCategoryParams) params() map[string]any {
@@ -2432,9 +2432,9 @@ func (s *Service) GetGlobalList(ctx context.Context, p GetGlobalListParams) (*ad
 // GetGroupParams are the parameters of Get-Group.
 // DefaultParameterSetName: Identity
 type GetGroupParams struct {
-	Identity             any      `ps:"Identity"`
+	Identity             any      `ps:"Identity"` // GroupIdParameter
 	RecipientTypeDetails []string `ps:"RecipientTypeDetails"`
-	ResultSize           any      `ps:"ResultSize"`
+	ResultSize           any      `ps:"ResultSize"` // Unlimited
 	SortBy               string   `ps:"SortBy"`
 }
 
@@ -2443,7 +2443,7 @@ func (p GetGroupParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.RecipientTypeDetails) > 0 {
+	if p.RecipientTypeDetails != nil {
 		m["RecipientTypeDetails"] = p.RecipientTypeDetails
 	}
 	if p.ResultSize != nil {
@@ -2464,7 +2464,7 @@ func (s *Service) GetGroup(ctx context.Context, p GetGroupParams) (*adminapi.Res
 // DefaultParameterSetName: Identity
 type GetHoldCompliancePolicyParams struct {
 	DistributionDetail bool `ps:"DistributionDetail"`
-	Identity           any  `ps:"Identity"`
+	Identity           any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p GetHoldCompliancePolicyParams) params() map[string]any {
@@ -2486,8 +2486,8 @@ func (s *Service) GetHoldCompliancePolicy(ctx context.Context, p GetHoldComplian
 // GetHoldComplianceRuleParams are the parameters of Get-HoldComplianceRule.
 // DefaultParameterSetName: Identity
 type GetHoldComplianceRuleParams struct {
-	Identity any `ps:"Identity"`
-	Policy   any `ps:"Policy"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
+	Policy   any `ps:"Policy"`   // PolicyIdParameter
 }
 
 func (p GetHoldComplianceRuleParams) params() map[string]any {
@@ -2510,7 +2510,7 @@ func (s *Service) GetHoldComplianceRule(ctx context.Context, p GetHoldCompliance
 // DefaultParameterSetName: Default
 type GetInformationBarrierPoliciesApplicationStatusParams struct {
 	All      bool `ps:"All"`
-	Identity any  `ps:"Identity"`
+	Identity any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p GetInformationBarrierPoliciesApplicationStatusParams) params() map[string]any {
@@ -2532,13 +2532,13 @@ func (s *Service) GetInformationBarrierPoliciesApplicationStatus(ctx context.Con
 // GetInformationBarrierPolicyParams are the parameters of Get-InformationBarrierPolicy.
 // DefaultParameterSetName: InformationBarrierDefault
 type GetInformationBarrierPolicyParams struct {
-	ExoPolicyId any `ps:"ExoPolicyId"`
-	Identity    any `ps:"Identity"`
+	ExoPolicyId string `ps:"ExoPolicyId"`
+	Identity    any    `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p GetInformationBarrierPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ExoPolicyId != nil {
+	if p.ExoPolicyId != "" {
 		m["ExoPolicyId"] = p.ExoPolicyId
 	}
 	if p.Identity != nil {
@@ -2555,8 +2555,8 @@ func (s *Service) GetInformationBarrierPolicy(ctx context.Context, p GetInformat
 // GetInformationBarrierRecipientStatusParams are the parameters of Get-InformationBarrierRecipientStatus.
 // DefaultParameterSetName: Identity
 type GetInformationBarrierRecipientStatusParams struct {
-	Identity  any `ps:"Identity"`
-	Identity2 any `ps:"Identity2"`
+	Identity  any `ps:"Identity"`  // RecipientIdParameter
+	Identity2 any `ps:"Identity2"` // RecipientIdParameter
 }
 
 func (p GetInformationBarrierRecipientStatusParams) params() map[string]any {
@@ -2609,10 +2609,10 @@ func (s *Service) GetInsiderRiskEntityList(ctx context.Context, p GetInsiderRisk
 // GetInsiderRiskPolicyParams are the parameters of Get-InsiderRiskPolicy.
 // DefaultParameterSetName: Identity
 type GetInsiderRiskPolicyParams struct {
-	DistributionDetail bool `ps:"DistributionDetail"`
-	Identity           any  `ps:"Identity"`
-	MetaDataOnly       bool `ps:"MetaDataOnly"`
-	SkipPolicyHealth   bool `ps:"SkipPolicyHealth"`
+	DistributionDetail bool  `ps:"DistributionDetail"`
+	Identity           any   `ps:"Identity"`
+	MetaDataOnly       *bool `ps:"MetaDataOnly"`
+	SkipPolicyHealth   *bool `ps:"SkipPolicyHealth"`
 }
 
 func (p GetInsiderRiskPolicyParams) params() map[string]any {
@@ -2623,11 +2623,11 @@ func (p GetInsiderRiskPolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.MetaDataOnly {
-		m["MetaDataOnly"] = true
+	if p.MetaDataOnly != nil {
+		m["MetaDataOnly"] = *p.MetaDataOnly
 	}
-	if p.SkipPolicyHealth {
-		m["SkipPolicyHealth"] = true
+	if p.SkipPolicyHealth != nil {
+		m["SkipPolicyHealth"] = *p.SkipPolicyHealth
 	}
 	return m
 }
@@ -2659,7 +2659,7 @@ func (s *Service) GetJitConfiguration(ctx context.Context, p GetJitConfiguration
 // GetLabelParams are the parameters of Get-Label.
 // DefaultParameterSetName: Identity
 type GetLabelParams struct {
-	Identity                    any  `ps:"Identity"`
+	Identity                    any  `ps:"Identity"` // ComplianceRuleIdParameter
 	IncludeDetailedLabelActions bool `ps:"IncludeDetailedLabelActions"`
 	ReturnModernLabelScheme     bool `ps:"ReturnModernLabelScheme"`
 	SkipValidations             bool `ps:"SkipValidations"`
@@ -2721,7 +2721,7 @@ func (s *Service) GetLabelExplorerConfig(ctx context.Context, p GetLabelExplorer
 // DefaultParameterSetName: Identity
 type GetLabelPolicyParams struct {
 	ForceValidate bool `ps:"ForceValidate"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p GetLabelPolicyParams) params() map[string]any {
@@ -2769,7 +2769,7 @@ type GetLongTermAuditItemsParams struct {
 	EndDate    any    `ps:"EndDate"`
 	LabelId    string `ps:"LabelId"`
 	LTAAddress string `ps:"LTAAddress"`
-	PageOffset int    `ps:"PageOffset"`
+	PageOffset *int64 `ps:"PageOffset"`
 	StartDate  any    `ps:"StartDate"`
 	Workload   string `ps:"Workload"`
 }
@@ -2785,8 +2785,8 @@ func (p GetLongTermAuditItemsParams) params() map[string]any {
 	if p.LTAAddress != "" {
 		m["LTAAddress"] = p.LTAAddress
 	}
-	if p.PageOffset != 0 {
-		m["PageOffset"] = p.PageOffset
+	if p.PageOffset != nil {
+		m["PageOffset"] = *p.PageOffset
 	}
 	if p.StartDate != nil {
 		m["StartDate"] = p.StartDate
@@ -2825,13 +2825,13 @@ func (s *Service) GetLongTermAuditStats(ctx context.Context, p GetLongTermAuditS
 type GetMachineAssistedTagResourceParams struct {
 	ClassificationResultType any    `ps:"ClassificationResultType"`
 	Identity                 any    `ps:"Identity"`
-	Limit                    int    `ps:"Limit"`
-	ModelId                  any    `ps:"ModelId"`
-	ModuleId                 any    `ps:"ModuleId"`
+	Limit                    *int64 `ps:"Limit"`
+	ModelId                  string `ps:"ModelId"`
+	ModuleId                 string `ps:"ModuleId"`
 	Offset                   string `ps:"Offset"`
 	Resource                 any    `ps:"Resource"`
-	TaskId                   any    `ps:"TaskId"`
-	TrainingId               any    `ps:"TrainingId"`
+	TaskId                   string `ps:"TaskId"`
+	TrainingId               string `ps:"TrainingId"`
 	TrainingType             any    `ps:"TrainingType"`
 }
 
@@ -2843,13 +2843,13 @@ func (p GetMachineAssistedTagResourceParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.Limit != 0 {
-		m["Limit"] = p.Limit
+	if p.Limit != nil {
+		m["Limit"] = *p.Limit
 	}
-	if p.ModelId != nil {
+	if p.ModelId != "" {
 		m["ModelId"] = p.ModelId
 	}
-	if p.ModuleId != nil {
+	if p.ModuleId != "" {
 		m["ModuleId"] = p.ModuleId
 	}
 	if p.Offset != "" {
@@ -2858,10 +2858,10 @@ func (p GetMachineAssistedTagResourceParams) params() map[string]any {
 	if p.Resource != nil {
 		m["Resource"] = p.Resource
 	}
-	if p.TaskId != nil {
+	if p.TaskId != "" {
 		m["TaskId"] = p.TaskId
 	}
-	if p.TrainingId != nil {
+	if p.TrainingId != "" {
 		m["TrainingId"] = p.TrainingId
 	}
 	if p.TrainingType != nil {
@@ -2877,18 +2877,18 @@ func (s *Service) GetMachineAssistedTagResource(ctx context.Context, p GetMachin
 
 // GetMailDetailEncryptionReportParams are the parameters of Get-MailDetailEncryptionReport.
 type GetMailDetailEncryptionReportParams struct {
-	AggregateBy    string `ps:"AggregateBy"`
-	Direction      any    `ps:"Direction"`
-	Domain         any    `ps:"Domain"`
-	EndDate        any    `ps:"EndDate"`
-	EventType      any    `ps:"EventType"`
-	MessageId      any    `ps:"MessageId"`
-	MessageTraceId any    `ps:"MessageTraceId"`
-	Organization   any    `ps:"Organization"`
-	Page           int    `ps:"Page"`
-	PageSize       int    `ps:"PageSize"`
-	ProbeTag       string `ps:"ProbeTag"`
-	StartDate      any    `ps:"StartDate"`
+	AggregateBy    string   `ps:"AggregateBy"`
+	Direction      []string `ps:"Direction"`
+	Domain         []string `ps:"Domain"`
+	EndDate        any      `ps:"EndDate"` // System.DateTime
+	EventType      []string `ps:"EventType"`
+	MessageId      []string `ps:"MessageId"`
+	MessageTraceId []string `ps:"MessageTraceId"`
+	Organization   any      `ps:"Organization"` // OrganizationIdParameter
+	Page           *int64   `ps:"Page"`
+	PageSize       *int64   `ps:"PageSize"`
+	ProbeTag       string   `ps:"ProbeTag"`
+	StartDate      any      `ps:"StartDate"` // System.DateTime
 }
 
 func (p GetMailDetailEncryptionReportParams) params() map[string]any {
@@ -2917,11 +2917,11 @@ func (p GetMailDetailEncryptionReportParams) params() map[string]any {
 	if p.Organization != nil {
 		m["Organization"] = p.Organization
 	}
-	if p.Page != 0 {
-		m["Page"] = p.Page
+	if p.Page != nil {
+		m["Page"] = *p.Page
 	}
-	if p.PageSize != 0 {
-		m["PageSize"] = p.PageSize
+	if p.PageSize != nil {
+		m["PageSize"] = *p.PageSize
 	}
 	if p.ProbeTag != "" {
 		m["ProbeTag"] = p.ProbeTag
@@ -2939,10 +2939,10 @@ func (s *Service) GetMailDetailEncryptionReport(ctx context.Context, p GetMailDe
 
 // GetMailFilterListReportParams are the parameters of Get-MailFilterListReport.
 type GetMailFilterListReportParams struct {
-	Domain          any    `ps:"Domain"`
-	Expression      any    `ps:"Expression"`
-	ProbeTag        string `ps:"ProbeTag"`
-	SelectionTarget any    `ps:"SelectionTarget"`
+	Domain          []string `ps:"Domain"`
+	Expression      any      `ps:"Expression"` // Expression
+	ProbeTag        string   `ps:"ProbeTag"`
+	SelectionTarget []string `ps:"SelectionTarget"`
 }
 
 func (p GetMailFilterListReportParams) params() map[string]any {
@@ -2969,17 +2969,17 @@ func (s *Service) GetMailFilterListReport(ctx context.Context, p GetMailFilterLi
 
 // GetMailTrafficEncryptionReportParams are the parameters of Get-MailTrafficEncryptionReport.
 type GetMailTrafficEncryptionReportParams struct {
-	Action      any    `ps:"Action"`
-	AggregateBy string `ps:"AggregateBy"`
-	Direction   any    `ps:"Direction"`
-	Domain      any    `ps:"Domain"`
-	EndDate     any    `ps:"EndDate"`
-	EventType   any    `ps:"EventType"`
-	Page        int    `ps:"Page"`
-	PageSize    int    `ps:"PageSize"`
-	ProbeTag    string `ps:"ProbeTag"`
-	StartDate   any    `ps:"StartDate"`
-	SummarizeBy any    `ps:"SummarizeBy"`
+	Action      []string `ps:"Action"`
+	AggregateBy string   `ps:"AggregateBy"`
+	Direction   []string `ps:"Direction"`
+	Domain      []string `ps:"Domain"`
+	EndDate     any      `ps:"EndDate"` // System.DateTime
+	EventType   []string `ps:"EventType"`
+	Page        *int64   `ps:"Page"`
+	PageSize    *int64   `ps:"PageSize"`
+	ProbeTag    string   `ps:"ProbeTag"`
+	StartDate   any      `ps:"StartDate"` // System.DateTime
+	SummarizeBy []string `ps:"SummarizeBy"`
 }
 
 func (p GetMailTrafficEncryptionReportParams) params() map[string]any {
@@ -3002,11 +3002,11 @@ func (p GetMailTrafficEncryptionReportParams) params() map[string]any {
 	if p.EventType != nil {
 		m["EventType"] = p.EventType
 	}
-	if p.Page != 0 {
-		m["Page"] = p.Page
+	if p.Page != nil {
+		m["Page"] = *p.Page
 	}
-	if p.PageSize != 0 {
-		m["PageSize"] = p.PageSize
+	if p.PageSize != nil {
+		m["PageSize"] = *p.PageSize
 	}
 	if p.ProbeTag != "" {
 		m["ProbeTag"] = p.ProbeTag
@@ -3065,7 +3065,7 @@ func (s *Service) GetOcrConfiguration(ctx context.Context, p GetOcrConfiguration
 // GetOrganizationSegmentParams are the parameters of Get-OrganizationSegment.
 // DefaultParameterSetName: OrganizationSegmentsDefault
 type GetOrganizationSegmentParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p GetOrganizationSegmentParams) params() map[string]any {
@@ -3083,7 +3083,7 @@ func (s *Service) GetOrganizationSegment(ctx context.Context, p GetOrganizationS
 
 // GetPolicyConfigParams are the parameters of Get-PolicyConfig.
 type GetPolicyConfigParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // OrganizationIdParameter
 }
 
 func (p GetPolicyConfigParams) params() map[string]any {
@@ -3229,7 +3229,7 @@ func (s *Service) GetPrivacyManagementRule(ctx context.Context, p GetPrivacyMana
 // GetProtectionAlertParams are the parameters of Get-ProtectionAlert.
 // DefaultParameterSetName: Identity
 type GetProtectionAlertParams struct {
-	Identity       any  `ps:"Identity"`
+	Identity       any  `ps:"Identity"` // ComplianceRuleIdParameter
 	IncludeRuleXml bool `ps:"IncludeRuleXml"`
 }
 
@@ -3297,33 +3297,33 @@ func (s *Service) GetProtectionComplianceRule(ctx context.Context, p GetProtecti
 // GetQuarantineMessageParams are the parameters of Get-QuarantineMessage.
 // DefaultParameterSetName: Summary
 type GetQuarantineMessageParams struct {
-	Direction                               any      `ps:"Direction"`
-	EndExpiresDate                          any      `ps:"EndExpiresDate"`
-	EndReceivedDate                         any      `ps:"EndReceivedDate"`
-	EntityType                              any      `ps:"EntityType"`
-	Identity                                any      `ps:"Identity"`
+	Direction                               any      `ps:"Direction"`       // Microsoft.Exchange.Management.FfoQuarantine.QuarantineMessageDirectionEnum
+	EndExpiresDate                          any      `ps:"EndExpiresDate"`  // System.DateTime
+	EndReceivedDate                         any      `ps:"EndReceivedDate"` // System.DateTime
+	EntityType                              any      `ps:"EntityType"`      // Microsoft.Exchange.Management.FfoQuarantine.EntityType
+	Identity                                any      `ps:"Identity"`        // QuarantineMessageIdentity
 	IncludeMessagesFromBlockedSenderAddress bool     `ps:"IncludeMessagesFromBlockedSenderAddress"`
 	MessageId                               string   `ps:"MessageId"`
 	MoveToQuarantineAdminActionTakenBy      string   `ps:"MoveToQuarantineAdminActionTakenBy"`
 	MoveToQuarantineApprovalId              any      `ps:"MoveToQuarantineApprovalId"`
 	MyItems                                 bool     `ps:"MyItems"`
 	NetworkMessageId                        string   `ps:"NetworkMessageId"`
-	Page                                    any      `ps:"Page"`
-	PageSize                                any      `ps:"PageSize"`
+	Page                                    *int64   `ps:"Page"`
+	PageSize                                *int64   `ps:"PageSize"`
 	PolicyName                              string   `ps:"PolicyName"`
 	PolicyTypes                             []string `ps:"PolicyTypes"`
 	QuarantineTypes                         []string `ps:"QuarantineTypes"`
 	RecipientAddress                        []string `ps:"RecipientAddress"`
 	RecipientTag                            []string `ps:"RecipientTag"`
 	ReleaseStatus                           []string `ps:"ReleaseStatus"`
-	Reported                                any      `ps:"Reported"`
+	Reported                                *bool    `ps:"Reported"`
 	SearchTemporaryDeletedMessage           bool     `ps:"SearchTemporaryDeletedMessage"`
 	SenderAddress                           []string `ps:"SenderAddress"`
-	StartExpiresDate                        any      `ps:"StartExpiresDate"`
-	StartReceivedDate                       any      `ps:"StartReceivedDate"`
+	StartExpiresDate                        any      `ps:"StartExpiresDate"`  // System.DateTime
+	StartReceivedDate                       any      `ps:"StartReceivedDate"` // System.DateTime
 	Subject                                 string   `ps:"Subject"`
 	TeamsConversationTypes                  []string `ps:"TeamsConversationTypes"`
-	Type                                    any      `ps:"Type"`
+	Type                                    any      `ps:"Type"` // Microsoft.Exchange.Management.FfoQuarantine.QuarantineMessageTypeEnum
 }
 
 func (p GetQuarantineMessageParams) params() map[string]any {
@@ -3362,36 +3362,36 @@ func (p GetQuarantineMessageParams) params() map[string]any {
 		m["NetworkMessageId"] = p.NetworkMessageId
 	}
 	if p.Page != nil {
-		m["Page"] = p.Page
+		m["Page"] = *p.Page
 	}
 	if p.PageSize != nil {
-		m["PageSize"] = p.PageSize
+		m["PageSize"] = *p.PageSize
 	}
 	if p.PolicyName != "" {
 		m["PolicyName"] = p.PolicyName
 	}
-	if len(p.PolicyTypes) > 0 {
+	if p.PolicyTypes != nil {
 		m["PolicyTypes"] = p.PolicyTypes
 	}
-	if len(p.QuarantineTypes) > 0 {
+	if p.QuarantineTypes != nil {
 		m["QuarantineTypes"] = p.QuarantineTypes
 	}
-	if len(p.RecipientAddress) > 0 {
+	if p.RecipientAddress != nil {
 		m["RecipientAddress"] = p.RecipientAddress
 	}
-	if len(p.RecipientTag) > 0 {
+	if p.RecipientTag != nil {
 		m["RecipientTag"] = p.RecipientTag
 	}
-	if len(p.ReleaseStatus) > 0 {
+	if p.ReleaseStatus != nil {
 		m["ReleaseStatus"] = p.ReleaseStatus
 	}
 	if p.Reported != nil {
-		m["Reported"] = p.Reported
+		m["Reported"] = *p.Reported
 	}
 	if p.SearchTemporaryDeletedMessage {
 		m["SearchTemporaryDeletedMessage"] = true
 	}
-	if len(p.SenderAddress) > 0 {
+	if p.SenderAddress != nil {
 		m["SenderAddress"] = p.SenderAddress
 	}
 	if p.StartExpiresDate != nil {
@@ -3403,7 +3403,7 @@ func (p GetQuarantineMessageParams) params() map[string]any {
 	if p.Subject != "" {
 		m["Subject"] = p.Subject
 	}
-	if len(p.TeamsConversationTypes) > 0 {
+	if p.TeamsConversationTypes != nil {
 		m["TeamsConversationTypes"] = p.TeamsConversationTypes
 	}
 	if p.Type != nil {
@@ -3419,8 +3419,8 @@ func (s *Service) GetQuarantineMessage(ctx context.Context, p GetQuarantineMessa
 
 // GetQuarantineMessageHeaderParams are the parameters of Get-QuarantineMessageHeader.
 type GetQuarantineMessageHeaderParams struct {
-	EntityType       any    `ps:"EntityType"`
-	Identity         any    `ps:"Identity"`
+	EntityType       any    `ps:"EntityType"` // Microsoft.Exchange.Management.FfoQuarantine.EntityType
+	Identity         any    `ps:"Identity"`   // QuarantineMessageIdentity
 	RecipientAddress string `ps:"RecipientAddress"`
 }
 
@@ -3447,18 +3447,18 @@ func (s *Service) GetQuarantineMessageHeader(ctx context.Context, p GetQuarantin
 // DefaultParameterSetName: Identity
 type GetRecipientParams struct {
 	Anr                    string   `ps:"Anr"`
-	AuthenticationType     any      `ps:"AuthenticationType"`
+	AuthenticationType     any      `ps:"AuthenticationType"` // AuthenticationType
 	BookmarkDisplayName    string   `ps:"BookmarkDisplayName"`
-	Capabilities           any      `ps:"Capabilities"`
+	Capabilities           []string `ps:"Capabilities"`
 	Filter                 string   `ps:"Filter"`
-	Identity               any      `ps:"Identity"`
-	IncludeBookmarkObject  bool     `ps:"IncludeBookmarkObject"`
+	Identity               any      `ps:"Identity"` // RecipientIdParameter
+	IncludeBookmarkObject  *bool    `ps:"IncludeBookmarkObject"`
 	Properties             []string `ps:"Properties"`
-	PropertySet            any      `ps:"PropertySet"`
+	PropertySet            any      `ps:"PropertySet"` // PropertySet
 	RecipientPreviewFilter string   `ps:"RecipientPreviewFilter"`
 	RecipientType          []string `ps:"RecipientType"`
 	RecipientTypeDetails   []string `ps:"RecipientTypeDetails"`
-	ResultSize             any      `ps:"ResultSize"`
+	ResultSize             any      `ps:"ResultSize"` // Unlimited
 	SortBy                 string   `ps:"SortBy"`
 }
 
@@ -3482,10 +3482,10 @@ func (p GetRecipientParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeBookmarkObject {
-		m["IncludeBookmarkObject"] = true
+	if p.IncludeBookmarkObject != nil {
+		m["IncludeBookmarkObject"] = *p.IncludeBookmarkObject
 	}
-	if len(p.Properties) > 0 {
+	if p.Properties != nil {
 		m["Properties"] = p.Properties
 	}
 	if p.PropertySet != nil {
@@ -3494,10 +3494,10 @@ func (p GetRecipientParams) params() map[string]any {
 	if p.RecipientPreviewFilter != "" {
 		m["RecipientPreviewFilter"] = p.RecipientPreviewFilter
 	}
-	if len(p.RecipientType) > 0 {
+	if p.RecipientType != nil {
 		m["RecipientType"] = p.RecipientType
 	}
-	if len(p.RecipientTypeDetails) > 0 {
+	if p.RecipientTypeDetails != nil {
 		m["RecipientTypeDetails"] = p.RecipientTypeDetails
 	}
 	if p.ResultSize != nil {
@@ -3549,7 +3549,7 @@ type GetRetentionCompliancePolicyParams struct {
 	DistributionDetail     bool `ps:"DistributionDetail"`
 	ErrorPolicyOnly        bool `ps:"ErrorPolicyOnly"`
 	ExcludeTeamsPolicy     bool `ps:"ExcludeTeamsPolicy"`
-	Identity               any  `ps:"Identity"`
+	Identity               any  `ps:"Identity"` // PolicyIdParameter
 	IncludeTestModeResults bool `ps:"IncludeTestModeResults"`
 	RetentionRuleTypes     bool `ps:"RetentionRuleTypes"`
 	TeamsPolicyOnly        bool `ps:"TeamsPolicyOnly"`
@@ -3589,8 +3589,8 @@ func (s *Service) GetRetentionCompliancePolicy(ctx context.Context, p GetRetenti
 // GetRetentionComplianceRuleParams are the parameters of Get-RetentionComplianceRule.
 // DefaultParameterSetName: Identity
 type GetRetentionComplianceRuleParams struct {
-	Identity any `ps:"Identity"`
-	Policy   any `ps:"Policy"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
+	Policy   any `ps:"Policy"`   // PolicyIdParameter
 }
 
 func (p GetRetentionComplianceRuleParams) params() map[string]any {
@@ -3612,8 +3612,8 @@ func (s *Service) GetRetentionComplianceRule(ctx context.Context, p GetRetention
 // GetRetentionEventParams are the parameters of Get-RetentionEvent.
 // DefaultParameterSetName: Identity
 type GetRetentionEventParams struct {
-	DomainController any `ps:"DomainController"`
-	Identity         any `ps:"Identity"`
+	DomainController any `ps:"DomainController"` // Fqdn
+	Identity         any `ps:"Identity"`         // EwsStoreObjectIdParameter
 }
 
 func (p GetRetentionEventParams) params() map[string]any {
@@ -3636,8 +3636,8 @@ func (s *Service) GetRetentionEvent(ctx context.Context, p GetRetentionEventPara
 // DefaultParameterSetName: Identity
 type GetRoleGroupParams struct {
 	Filter            string `ps:"Filter"`
-	Identity          any    `ps:"Identity"`
-	ResultSize        any    `ps:"ResultSize"`
+	Identity          any    `ps:"Identity"`   // RoleGroupIdParameter
+	ResultSize        any    `ps:"ResultSize"` // Unlimited
 	ShowPartnerLinked bool   `ps:"ShowPartnerLinked"`
 	SortBy            string `ps:"SortBy"`
 }
@@ -3669,8 +3669,8 @@ func (s *Service) GetRoleGroup(ctx context.Context, p GetRoleGroupParams) (*admi
 
 // GetRoleGroupMemberParams are the parameters of Get-RoleGroupMember.
 type GetRoleGroupMemberParams struct {
-	Identity   any `ps:"Identity"`
-	ResultSize any `ps:"ResultSize"`
+	Identity   any `ps:"Identity"`   // RoleGroupMemberIdParameter
+	ResultSize any `ps:"ResultSize"` // Unlimited
 }
 
 func (p GetRoleGroupMemberParams) params() map[string]any {
@@ -3691,7 +3691,7 @@ func (s *Service) GetRoleGroupMember(ctx context.Context, p GetRoleGroupMemberPa
 
 // GetSCInsightsParams are the parameters of Get-SCInsights.
 type GetSCInsightsParams struct {
-	EndDate any `ps:"EndDate"`
+	EndDate any `ps:"EndDate"` // DateTime
 }
 
 func (p GetSCInsightsParams) params() map[string]any {
@@ -3763,10 +3763,10 @@ func (s *Service) GetScopeEntities(ctx context.Context, p GetScopeEntitiesParams
 
 // GetSensitiveInformationScanParams are the parameters of Get-SensitiveInformationScan.
 type GetSensitiveInformationScanParams struct {
-	Identity                         any  `ps:"Identity"`
-	IncludeImpactAssessment          bool `ps:"IncludeImpactAssessment"`
-	IncludeProgressForAllActiveScans bool `ps:"IncludeProgressForAllActiveScans"`
-	IncludeScanProgress              bool `ps:"IncludeScanProgress"`
+	Identity                         any   `ps:"Identity"` // PolicyIdParameter
+	IncludeImpactAssessment          *bool `ps:"IncludeImpactAssessment"`
+	IncludeProgressForAllActiveScans *bool `ps:"IncludeProgressForAllActiveScans"`
+	IncludeScanProgress              *bool `ps:"IncludeScanProgress"`
 }
 
 func (p GetSensitiveInformationScanParams) params() map[string]any {
@@ -3774,14 +3774,14 @@ func (p GetSensitiveInformationScanParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeImpactAssessment {
-		m["IncludeImpactAssessment"] = true
+	if p.IncludeImpactAssessment != nil {
+		m["IncludeImpactAssessment"] = *p.IncludeImpactAssessment
 	}
-	if p.IncludeProgressForAllActiveScans {
-		m["IncludeProgressForAllActiveScans"] = true
+	if p.IncludeProgressForAllActiveScans != nil {
+		m["IncludeProgressForAllActiveScans"] = *p.IncludeProgressForAllActiveScans
 	}
-	if p.IncludeScanProgress {
-		m["IncludeScanProgress"] = true
+	if p.IncludeScanProgress != nil {
+		m["IncludeScanProgress"] = *p.IncludeScanProgress
 	}
 	return m
 }
@@ -3793,8 +3793,8 @@ func (s *Service) GetSensitiveInformationScan(ctx context.Context, p GetSensitiv
 
 // GetSensitiveInformationScanRuleParams are the parameters of Get-SensitiveInformationScanRule.
 type GetSensitiveInformationScanRuleParams struct {
-	Identity any `ps:"Identity"`
-	Policy   any `ps:"Policy"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
+	Policy   any `ps:"Policy"`   // PolicyIdParameter
 }
 
 func (p GetSensitiveInformationScanRuleParams) params() map[string]any {
@@ -3854,8 +3854,8 @@ func (s *Service) GetServiceDomainGroupStorage(ctx context.Context, p GetService
 // GetServicePrincipalParams are the parameters of Get-ServicePrincipal.
 // DefaultParameterSetName: Identity
 type GetServicePrincipalParams struct {
-	Identity     any `ps:"Identity"`
-	Organization any `ps:"Organization"`
+	Identity     any `ps:"Identity"`     // ServicePrincipalIdParameter
+	Organization any `ps:"Organization"` // OrganizationIdParameter
 }
 
 func (p GetServicePrincipalParams) params() map[string]any {
@@ -3877,9 +3877,9 @@ func (s *Service) GetServicePrincipal(ctx context.Context, p GetServicePrincipal
 // GetSupervisoryReviewActivityParams are the parameters of Get-SupervisoryReviewActivity.
 // DefaultParameterSetName: Identity
 type GetSupervisoryReviewActivityParams struct {
-	EndDate   any    `ps:"EndDate"`
+	EndDate   any    `ps:"EndDate"` // ExDateTime
 	PolicyId  string `ps:"PolicyId"`
-	StartDate any    `ps:"StartDate"`
+	StartDate any    `ps:"StartDate"` // ExDateTime
 }
 
 func (p GetSupervisoryReviewActivityParams) params() map[string]any {
@@ -3903,10 +3903,10 @@ func (s *Service) GetSupervisoryReviewActivity(ctx context.Context, p GetSupervi
 
 // GetSupervisoryReviewOverallProgressReportParams are the parameters of Get-SupervisoryReviewOverallProgressReport.
 type GetSupervisoryReviewOverallProgressReportParams struct {
-	EndDate   any `ps:"EndDate"`
-	Page      int `ps:"Page"`
-	PageSize  int `ps:"PageSize"`
-	StartDate any `ps:"StartDate"`
+	EndDate   any    `ps:"EndDate"` // System.DateTime
+	Page      *int64 `ps:"Page"`
+	PageSize  *int64 `ps:"PageSize"`
+	StartDate any    `ps:"StartDate"` // System.DateTime
 }
 
 func (p GetSupervisoryReviewOverallProgressReportParams) params() map[string]any {
@@ -3914,11 +3914,11 @@ func (p GetSupervisoryReviewOverallProgressReportParams) params() map[string]any
 	if p.EndDate != nil {
 		m["EndDate"] = p.EndDate
 	}
-	if p.Page != 0 {
-		m["Page"] = p.Page
+	if p.Page != nil {
+		m["Page"] = *p.Page
 	}
-	if p.PageSize != 0 {
-		m["PageSize"] = p.PageSize
+	if p.PageSize != nil {
+		m["PageSize"] = *p.PageSize
 	}
 	if p.StartDate != nil {
 		m["StartDate"] = p.StartDate
@@ -3933,11 +3933,11 @@ func (s *Service) GetSupervisoryReviewOverallProgressReport(ctx context.Context,
 
 // GetSupervisoryReviewPolicyReportParams are the parameters of Get-SupervisoryReviewPolicyReport.
 type GetSupervisoryReviewPolicyReportParams struct {
-	EndDate   any `ps:"EndDate"`
-	Page      int `ps:"Page"`
-	PageSize  int `ps:"PageSize"`
-	Policies  any `ps:"Policies"`
-	StartDate any `ps:"StartDate"`
+	EndDate   any      `ps:"EndDate"` // DateTime
+	Page      *int64   `ps:"Page"`
+	PageSize  *int64   `ps:"PageSize"`
+	Policies  []string `ps:"Policies"`
+	StartDate any      `ps:"StartDate"` // DateTime
 }
 
 func (p GetSupervisoryReviewPolicyReportParams) params() map[string]any {
@@ -3945,11 +3945,11 @@ func (p GetSupervisoryReviewPolicyReportParams) params() map[string]any {
 	if p.EndDate != nil {
 		m["EndDate"] = p.EndDate
 	}
-	if p.Page != 0 {
-		m["Page"] = p.Page
+	if p.Page != nil {
+		m["Page"] = *p.Page
 	}
-	if p.PageSize != 0 {
-		m["PageSize"] = p.PageSize
+	if p.PageSize != nil {
+		m["PageSize"] = *p.PageSize
 	}
 	if p.Policies != nil {
 		m["Policies"] = p.Policies
@@ -3968,7 +3968,7 @@ func (s *Service) GetSupervisoryReviewPolicyReport(ctx context.Context, p GetSup
 // GetSupervisoryReviewPolicyV2Params are the parameters of Get-SupervisoryReviewPolicyV2.
 // DefaultParameterSetName: Identity
 type GetSupervisoryReviewPolicyV2Params struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p GetSupervisoryReviewPolicyV2Params) params() map[string]any {
@@ -3986,12 +3986,12 @@ func (s *Service) GetSupervisoryReviewPolicyV2(ctx context.Context, p GetSupervi
 
 // GetSupervisoryReviewReportParams are the parameters of Get-SupervisoryReviewReport.
 type GetSupervisoryReviewReportParams struct {
-	EndDate   any `ps:"EndDate"`
-	Page      int `ps:"Page"`
-	PageSize  int `ps:"PageSize"`
-	Policies  any `ps:"Policies"`
-	Reviewers any `ps:"Reviewers"`
-	StartDate any `ps:"StartDate"`
+	EndDate   any      `ps:"EndDate"` // DateTime
+	Page      *int64   `ps:"Page"`
+	PageSize  *int64   `ps:"PageSize"`
+	Policies  []string `ps:"Policies"`
+	Reviewers []string `ps:"Reviewers"`
+	StartDate any      `ps:"StartDate"` // DateTime
 }
 
 func (p GetSupervisoryReviewReportParams) params() map[string]any {
@@ -3999,11 +3999,11 @@ func (p GetSupervisoryReviewReportParams) params() map[string]any {
 	if p.EndDate != nil {
 		m["EndDate"] = p.EndDate
 	}
-	if p.Page != 0 {
-		m["Page"] = p.Page
+	if p.Page != nil {
+		m["Page"] = *p.Page
 	}
-	if p.PageSize != 0 {
-		m["PageSize"] = p.PageSize
+	if p.PageSize != nil {
+		m["PageSize"] = *p.PageSize
 	}
 	if p.Policies != nil {
 		m["Policies"] = p.Policies
@@ -4025,9 +4025,9 @@ func (s *Service) GetSupervisoryReviewReport(ctx context.Context, p GetSuperviso
 // GetSupervisoryReviewRuleParams are the parameters of Get-SupervisoryReviewRule.
 // DefaultParameterSetName: Identity
 type GetSupervisoryReviewRuleParams struct {
-	Identity       any  `ps:"Identity"`
+	Identity       any  `ps:"Identity"` // ComplianceRuleIdParameter
 	IncludeRuleXml bool `ps:"IncludeRuleXml"`
-	Policy         any  `ps:"Policy"`
+	Policy         any  `ps:"Policy"` // PolicyIdParameter
 }
 
 func (p GetSupervisoryReviewRuleParams) params() map[string]any {
@@ -4051,10 +4051,10 @@ func (s *Service) GetSupervisoryReviewRule(ctx context.Context, p GetSupervisory
 
 // GetSupervisoryReviewTopCasesReportParams are the parameters of Get-SupervisoryReviewTopCasesReport.
 type GetSupervisoryReviewTopCasesReportParams struct {
-	EndDate   any `ps:"EndDate"`
-	Page      int `ps:"Page"`
-	PageSize  int `ps:"PageSize"`
-	StartDate any `ps:"StartDate"`
+	EndDate   any    `ps:"EndDate"` // System.DateTime
+	Page      *int64 `ps:"Page"`
+	PageSize  *int64 `ps:"PageSize"`
+	StartDate any    `ps:"StartDate"` // System.DateTime
 }
 
 func (p GetSupervisoryReviewTopCasesReportParams) params() map[string]any {
@@ -4062,11 +4062,11 @@ func (p GetSupervisoryReviewTopCasesReportParams) params() map[string]any {
 	if p.EndDate != nil {
 		m["EndDate"] = p.EndDate
 	}
-	if p.Page != 0 {
-		m["Page"] = p.Page
+	if p.Page != nil {
+		m["Page"] = *p.Page
 	}
-	if p.PageSize != 0 {
-		m["PageSize"] = p.PageSize
+	if p.PageSize != nil {
+		m["PageSize"] = *p.PageSize
 	}
 	if p.StartDate != nil {
 		m["StartDate"] = p.StartDate
@@ -4174,8 +4174,8 @@ func (s *Service) GetThreatResponseRule(ctx context.Context, p GetThreatResponse
 // DefaultParameterSetName: Identity
 type GetUnifiedAuditLogRetentionPolicyParams struct {
 	Operation         string `ps:"Operation"`
-	RecordType        any    `ps:"RecordType"`
-	RetentionDuration any    `ps:"RetentionDuration"`
+	RecordType        any    `ps:"RecordType"`        // AuditRecordType
+	RetentionDuration any    `ps:"RetentionDuration"` // UnifiedAuditLogRetentionDuration
 	UserId            string `ps:"UserId"`
 }
 
@@ -4205,10 +4205,10 @@ func (s *Service) GetUnifiedAuditLogRetentionPolicy(ctx context.Context, p GetUn
 // DefaultParameterSetName: Identity
 type GetUserParams struct {
 	Filter               string   `ps:"Filter"`
-	Identity             any      `ps:"Identity"`
+	Identity             any      `ps:"Identity"` // UserIdParameter
 	PublicFolder         bool     `ps:"PublicFolder"`
 	RecipientTypeDetails []string `ps:"RecipientTypeDetails"`
-	ResultSize           any      `ps:"ResultSize"`
+	ResultSize           any      `ps:"ResultSize"` // Unlimited
 	SortBy               string   `ps:"SortBy"`
 }
 
@@ -4223,7 +4223,7 @@ func (p GetUserParams) params() map[string]any {
 	if p.PublicFolder {
 		m["PublicFolder"] = true
 	}
-	if len(p.RecipientTypeDetails) > 0 {
+	if p.RecipientTypeDetails != nil {
 		m["RecipientTypeDetails"] = p.RecipientTypeDetails
 	}
 	if p.ResultSize != nil {
@@ -4243,7 +4243,7 @@ func (s *Service) GetUser(ctx context.Context, p GetUserParams) (*adminapi.Resul
 // ImportDlpComplianceRuleCollectionParams are the parameters of Import-DlpComplianceRuleCollection.
 type ImportDlpComplianceRuleCollectionParams struct {
 	ExtendedWorkloadPolicies []string `ps:"ExtendedWorkloadPolicies"`
-	FileData                 []string `ps:"FileData"`
+	FileData                 any      `ps:"FileData"`
 	Force                    bool     `ps:"Force"`
 	ImportErrorAction        any      `ps:"ImportErrorAction"`
 	ImportMode               any      `ps:"ImportMode"`
@@ -4252,10 +4252,10 @@ type ImportDlpComplianceRuleCollectionParams struct {
 
 func (p ImportDlpComplianceRuleCollectionParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.ExtendedWorkloadPolicies) > 0 {
+	if p.ExtendedWorkloadPolicies != nil {
 		m["ExtendedWorkloadPolicies"] = p.ExtendedWorkloadPolicies
 	}
-	if len(p.FileData) > 0 {
+	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
 	if p.Force {
@@ -4299,7 +4299,7 @@ func (s *Service) ImportExchangeDlpPolicy(ctx context.Context, p ImportExchangeD
 // ImportFilePlanPropertyParams are the parameters of Import-FilePlanProperty.
 // DefaultParameterSetName: Identity
 type ImportFilePlanPropertyParams struct {
-	DomainController any    `ps:"DomainController"`
+	DomainController any    `ps:"DomainController"` // Fqdn
 	Force            bool   `ps:"Force"`
 	RawCsv           string `ps:"RawCsv"`
 	ValidateOnly     bool   `ps:"ValidateOnly"`
@@ -4332,7 +4332,7 @@ func (s *Service) ImportFilePlanProperty(ctx context.Context, p ImportFilePlanPr
 type InstallUnifiedCompliancePrerequisiteParams struct {
 	ForceInitialize       bool `ps:"ForceInitialize"`
 	LoadOnly              bool `ps:"LoadOnly"`
-	PolicyCenterSiteOwner any  `ps:"PolicyCenterSiteOwner"`
+	PolicyCenterSiteOwner any  `ps:"PolicyCenterSiteOwner"` // SmtpAddress
 }
 
 func (p InstallUnifiedCompliancePrerequisiteParams) params() map[string]any {
@@ -4390,7 +4390,7 @@ func (s *Service) InvokeComplianceSecurityFilterAction(ctx context.Context, p In
 
 // InvokeHoldRemovalActionParams are the parameters of Invoke-HoldRemovalAction.
 type InvokeHoldRemovalActionParams struct {
-	Action             any    `ps:"Action"` // one of: RemoveHold, GetHolds, GetHoldRemovals
+	Action             any    `ps:"Action"` // one of: RemoveHold, GetHolds, GetHoldRemovals; HoldRemovalActionType
 	ExchangeLocation   string `ps:"ExchangeLocation"`
 	Force              bool   `ps:"Force"`
 	HoldId             string `ps:"HoldId"`
@@ -4426,10 +4426,10 @@ func (s *Service) InvokeHoldRemovalAction(ctx context.Context, p InvokeHoldRemov
 type InvokeMachineAssistedTagActionParams struct {
 	Identity                        any    `ps:"Identity"`
 	ModelIds                        any    `ps:"ModelIds"`
-	ModuleId                        any    `ps:"ModuleId"`
+	ModuleId                        string `ps:"ModuleId"`
 	Resource                        any    `ps:"Resource"`
-	TaskId                          any    `ps:"TaskId"`
-	TrainingId                      any    `ps:"TrainingId"`
+	TaskId                          string `ps:"TaskId"`
+	TrainingId                      string `ps:"TrainingId"`
 	TrueNegativeSharePointLocations any    `ps:"TrueNegativeSharePointLocations"`
 	TruePositiveSharePointLocations any    `ps:"TruePositiveSharePointLocations"`
 	Unsupervised                    string `ps:"Unsupervised"`
@@ -4443,16 +4443,16 @@ func (p InvokeMachineAssistedTagActionParams) params() map[string]any {
 	if p.ModelIds != nil {
 		m["ModelIds"] = p.ModelIds
 	}
-	if p.ModuleId != nil {
+	if p.ModuleId != "" {
 		m["ModuleId"] = p.ModuleId
 	}
 	if p.Resource != nil {
 		m["Resource"] = p.Resource
 	}
-	if p.TaskId != nil {
+	if p.TaskId != "" {
 		m["TaskId"] = p.TaskId
 	}
-	if p.TrainingId != nil {
+	if p.TrainingId != "" {
 		m["TrainingId"] = p.TrainingId
 	}
 	if p.TrueNegativeSharePointLocations != nil {
@@ -4491,7 +4491,7 @@ type NewActivityAlertParams struct {
 	Category     any    `ps:"Category"`
 	Condition    string `ps:"Condition"`
 	Description  string `ps:"Description"`
-	Disabled     bool   `ps:"Disabled"`
+	Disabled     *bool  `ps:"Disabled"`
 	EmailCulture any    `ps:"EmailCulture"`
 	Multiplier   any    `ps:"Multiplier"`
 	Name         string `ps:"Name"`
@@ -4500,8 +4500,8 @@ type NewActivityAlertParams struct {
 	RecordType   any    `ps:"RecordType"`
 	ScopeLevel   any    `ps:"ScopeLevel"`
 	Severity     any    `ps:"Severity"`
-	Threshold    int    `ps:"Threshold"`
-	TimeWindow   int    `ps:"TimeWindow"`
+	Threshold    *int64 `ps:"Threshold"`
+	TimeWindow   *int64 `ps:"TimeWindow"`
 	Type         any    `ps:"Type"`
 	UserId       any    `ps:"UserId"`
 }
@@ -4517,8 +4517,8 @@ func (p NewActivityAlertParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
 	if p.EmailCulture != nil {
 		m["EmailCulture"] = p.EmailCulture
@@ -4544,11 +4544,11 @@ func (p NewActivityAlertParams) params() map[string]any {
 	if p.Severity != nil {
 		m["Severity"] = p.Severity
 	}
-	if p.Threshold != 0 {
-		m["Threshold"] = p.Threshold
+	if p.Threshold != nil {
+		m["Threshold"] = *p.Threshold
 	}
-	if p.TimeWindow != 0 {
-		m["TimeWindow"] = p.TimeWindow
+	if p.TimeWindow != nil {
+		m["TimeWindow"] = *p.TimeWindow
 	}
 	if p.Type != nil {
 		m["Type"] = p.Type
@@ -4566,12 +4566,12 @@ func (s *Service) NewActivityAlert(ctx context.Context, p NewActivityAlertParams
 
 // NewAdaptiveScopeParams are the parameters of New-AdaptiveScope.
 type NewAdaptiveScopeParams struct {
-	AdministrativeUnit           any      `ps:"AdministrativeUnit"`
+	AdministrativeUnit           string   `ps:"AdministrativeUnit"`
 	Comment                      string   `ps:"Comment"`
 	EnabledStates                []string `ps:"EnabledStates"`
-	FilterConditions             any      `ps:"FilterConditions"`
+	FilterConditions             any      `ps:"FilterConditions"` // PswsHashtable
 	LinkedRecipientEnabledStates []string `ps:"LinkedRecipientEnabledStates"`
-	LocationType                 any      `ps:"LocationType"`
+	LocationType                 any      `ps:"LocationType"` // DynamicBoundaryLocationType
 	Name                         string   `ps:"Name"`
 	RawQuery                     string   `ps:"RawQuery"`
 	UseKql                       any      `ps:"UseKql"`
@@ -4579,19 +4579,19 @@ type NewAdaptiveScopeParams struct {
 
 func (p NewAdaptiveScopeParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AdministrativeUnit != nil {
+	if p.AdministrativeUnit != "" {
 		m["AdministrativeUnit"] = p.AdministrativeUnit
 	}
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.EnabledStates) > 0 {
+	if p.EnabledStates != nil {
 		m["EnabledStates"] = p.EnabledStates
 	}
 	if p.FilterConditions != nil {
 		m["FilterConditions"] = p.FilterConditions
 	}
-	if len(p.LinkedRecipientEnabledStates) > 0 {
+	if p.LinkedRecipientEnabledStates != nil {
 		m["LinkedRecipientEnabledStates"] = p.LinkedRecipientEnabledStates
 	}
 	if p.LocationType != nil {
@@ -4616,7 +4616,7 @@ func (s *Service) NewAdaptiveScope(ctx context.Context, p NewAdaptiveScopeParams
 
 // NewAdministrativeUnitExtensionParams are the parameters of New-AdministrativeUnitExtension.
 type NewAdministrativeUnitExtensionParams struct {
-	AdministrativeUnit           any      `ps:"AdministrativeUnit"`
+	AdministrativeUnit           string   `ps:"AdministrativeUnit"`
 	EnabledStates                []string `ps:"EnabledStates"`
 	FilterConditions             any      `ps:"FilterConditions"`
 	LinkedRecipientEnabledStates []string `ps:"LinkedRecipientEnabledStates"`
@@ -4627,16 +4627,16 @@ type NewAdministrativeUnitExtensionParams struct {
 
 func (p NewAdministrativeUnitExtensionParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AdministrativeUnit != nil {
+	if p.AdministrativeUnit != "" {
 		m["AdministrativeUnit"] = p.AdministrativeUnit
 	}
-	if len(p.EnabledStates) > 0 {
+	if p.EnabledStates != nil {
 		m["EnabledStates"] = p.EnabledStates
 	}
 	if p.FilterConditions != nil {
 		m["FilterConditions"] = p.FilterConditions
 	}
-	if len(p.LinkedRecipientEnabledStates) > 0 {
+	if p.LinkedRecipientEnabledStates != nil {
 		m["LinkedRecipientEnabledStates"] = p.LinkedRecipientEnabledStates
 	}
 	if p.LocationType != nil {
@@ -4658,19 +4658,19 @@ func (s *Service) NewAdministrativeUnitExtension(ctx context.Context, p NewAdmin
 
 // NewAppRetentionCompliancePolicyParams are the parameters of New-AppRetentionCompliancePolicy.
 type NewAppRetentionCompliancePolicyParams struct {
-	AdaptiveScopeLocation        any      `ps:"AdaptiveScopeLocation"`
+	AdaptiveScopeLocation        []string `ps:"AdaptiveScopeLocation"`
 	Applications                 []string `ps:"Applications"`
 	Comment                      string   `ps:"Comment"`
-	Enabled                      bool     `ps:"Enabled"`
-	ExchangeLocation             any      `ps:"ExchangeLocation"`
-	ExchangeLocationException    any      `ps:"ExchangeLocationException"`
+	Enabled                      *bool    `ps:"Enabled"`
+	ExchangeLocation             []string `ps:"ExchangeLocation"`
+	ExchangeLocationException    []string `ps:"ExchangeLocationException"`
 	Force                        bool     `ps:"Force"`
 	Locations                    string   `ps:"Locations"`
-	ModernGroupLocation          any      `ps:"ModernGroupLocation"`
-	ModernGroupLocationException any      `ps:"ModernGroupLocationException"`
+	ModernGroupLocation          []string `ps:"ModernGroupLocation"`
+	ModernGroupLocationException []string `ps:"ModernGroupLocationException"`
 	Name                         string   `ps:"Name"`
-	PolicyRBACScopes             any      `ps:"PolicyRBACScopes"`
-	RestrictiveRetention         bool     `ps:"RestrictiveRetention"`
+	PolicyRBACScopes             []string `ps:"PolicyRBACScopes"`
+	RestrictiveRetention         *bool    `ps:"RestrictiveRetention"`
 }
 
 func (p NewAppRetentionCompliancePolicyParams) params() map[string]any {
@@ -4678,14 +4678,14 @@ func (p NewAppRetentionCompliancePolicyParams) params() map[string]any {
 	if p.AdaptiveScopeLocation != nil {
 		m["AdaptiveScopeLocation"] = p.AdaptiveScopeLocation
 	}
-	if len(p.Applications) > 0 {
+	if p.Applications != nil {
 		m["Applications"] = p.Applications
 	}
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
@@ -4711,8 +4711,8 @@ func (p NewAppRetentionCompliancePolicyParams) params() map[string]any {
 	if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
-	if p.RestrictiveRetention {
-		m["RestrictiveRetention"] = true
+	if p.RestrictiveRetention != nil {
+		m["RestrictiveRetention"] = *p.RestrictiveRetention
 	}
 	return m
 }
@@ -4726,17 +4726,17 @@ func (s *Service) NewAppRetentionCompliancePolicy(ctx context.Context, p NewAppR
 type NewAppRetentionComplianceRuleParams struct {
 	ApplyComplianceTag                  string   `ps:"ApplyComplianceTag"`
 	Comment                             string   `ps:"Comment"`
-	ContentContainsSensitiveInformation []string `ps:"ContentContainsSensitiveInformation"`
+	ContentContainsSensitiveInformation any      `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
 	ContentMatchQuery                   string   `ps:"ContentMatchQuery"`
-	ExcludedItemClasses                 any      `ps:"ExcludedItemClasses"`
+	ExcludedItemClasses                 []string `ps:"ExcludedItemClasses"`
 	ExpirationDateOption                string   `ps:"ExpirationDateOption"`
-	MachineLearningModelIDs             any      `ps:"MachineLearningModelIDs"`
+	MachineLearningModelIDs             []string `ps:"MachineLearningModelIDs"`
 	Name                                string   `ps:"Name"`
-	Policy                              any      `ps:"Policy"`
+	Policy                              any      `ps:"Policy"` // PolicyIdParameter
 	PublishComplianceTag                string   `ps:"PublishComplianceTag"`
 	RetentionComplianceAction           string   `ps:"RetentionComplianceAction"`
-	RetentionDuration                   any      `ps:"RetentionDuration"`
-	RetentionDurationDisplayHint        any      `ps:"RetentionDurationDisplayHint"`
+	RetentionDuration                   any      `ps:"RetentionDuration"`            // Unlimited
+	RetentionDurationDisplayHint        any      `ps:"RetentionDurationDisplayHint"` // HoldDurationHint
 }
 
 func (p NewAppRetentionComplianceRuleParams) params() map[string]any {
@@ -4747,7 +4747,7 @@ func (p NewAppRetentionComplianceRuleParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
 	if p.ContentMatchQuery != "" {
@@ -4839,43 +4839,43 @@ func (s *Service) NewAuditConfigurationRule(ctx context.Context, p NewAuditConfi
 // NewAutoSensitivityLabelPolicyParams are the parameters of New-AutoSensitivityLabelPolicy.
 type NewAutoSensitivityLabelPolicyParams struct {
 	ApplySensitivityLabel                   string   `ps:"ApplySensitivityLabel"`
-	ApplySensitivityLabelOverwriteWorkloads any      `ps:"ApplySensitivityLabelOverwriteWorkloads"`
+	ApplySensitivityLabelOverwriteWorkloads any      `ps:"ApplySensitivityLabelOverwriteWorkloads"` // Workload
 	Comment                                 string   `ps:"Comment"`
 	EndpointDlpLocation                     any      `ps:"EndpointDlpLocation"`
 	EndpointDlpLocationException            any      `ps:"EndpointDlpLocationException"`
 	EnforcementPlanes                       any      `ps:"EnforcementPlanes"`
 	ExceptIfOneDriveSharedBy                []string `ps:"ExceptIfOneDriveSharedBy"`
 	ExceptIfOneDriveSharedByMemberOf        []string `ps:"ExceptIfOneDriveSharedByMemberOf"`
-	ExchangeAdaptiveScopes                  any      `ps:"ExchangeAdaptiveScopes"`
-	ExchangeAdaptiveScopesException         any      `ps:"ExchangeAdaptiveScopesException"`
-	ExchangeLocation                        any      `ps:"ExchangeLocation"`
+	ExchangeAdaptiveScopes                  []string `ps:"ExchangeAdaptiveScopes"`
+	ExchangeAdaptiveScopesException         []string `ps:"ExchangeAdaptiveScopesException"`
+	ExchangeLocation                        []string `ps:"ExchangeLocation"`
 	ExchangeSender                          []string `ps:"ExchangeSender"`
 	ExchangeSenderException                 []string `ps:"ExchangeSenderException"`
 	ExchangeSenderMemberOf                  []string `ps:"ExchangeSenderMemberOf"`
 	ExchangeSenderMemberOfException         []string `ps:"ExchangeSenderMemberOfException"`
-	ExternalMailRightsManagementOwner       any      `ps:"ExternalMailRightsManagementOwner"`
+	ExternalMailRightsManagementOwner       any      `ps:"ExternalMailRightsManagementOwner"` // SmtpAddress
 	Force                                   bool     `ps:"Force"`
 	Locations                               string   `ps:"Locations"`
-	Mode                                    any      `ps:"Mode"`
+	Mode                                    any      `ps:"Mode"` // PolicyMode
 	Name                                    string   `ps:"Name"`
-	OneDriveAdaptiveScopes                  any      `ps:"OneDriveAdaptiveScopes"`
-	OneDriveAdaptiveScopesException         any      `ps:"OneDriveAdaptiveScopesException"`
-	OneDriveLocation                        any      `ps:"OneDriveLocation"`
-	OneDriveLocationException               any      `ps:"OneDriveLocationException"`
+	OneDriveAdaptiveScopes                  []string `ps:"OneDriveAdaptiveScopes"`
+	OneDriveAdaptiveScopesException         []string `ps:"OneDriveAdaptiveScopesException"`
+	OneDriveLocation                        []string `ps:"OneDriveLocation"`
+	OneDriveLocationException               []string `ps:"OneDriveLocationException"`
 	OneDriveSharedBy                        []string `ps:"OneDriveSharedBy"`
 	OneDriveSharedByMemberOf                []string `ps:"OneDriveSharedByMemberOf"`
-	OverwriteLabel                          bool     `ps:"OverwriteLabel"`
-	PolicyRBACScopes                        any      `ps:"PolicyRBACScopes"`
-	PolicyTemplateInfo                      any      `ps:"PolicyTemplateInfo"`
+	OverwriteLabel                          *bool    `ps:"OverwriteLabel"`
+	PolicyRBACScopes                        []string `ps:"PolicyRBACScopes"`
+	PolicyTemplateInfo                      any      `ps:"PolicyTemplateInfo"` // PswsHashtable
 	PowerBILocation                         any      `ps:"PowerBILocation"`
 	PowerBILocationException                any      `ps:"PowerBILocationException"`
-	Priority                                any      `ps:"Priority"`
+	Priority                                *int64   `ps:"Priority"`
 	RemoveLabel                             bool     `ps:"RemoveLabel"`
-	SharePointAdaptiveScopes                any      `ps:"SharePointAdaptiveScopes"`
-	SharePointAdaptiveScopesException       any      `ps:"SharePointAdaptiveScopesException"`
-	SharePointLocation                      any      `ps:"SharePointLocation"`
-	SharePointLocationException             any      `ps:"SharePointLocationException"`
-	UnifiedAuditLogEnabled                  bool     `ps:"UnifiedAuditLogEnabled"`
+	SharePointAdaptiveScopes                []string `ps:"SharePointAdaptiveScopes"`
+	SharePointAdaptiveScopesException       []string `ps:"SharePointAdaptiveScopesException"`
+	SharePointLocation                      []string `ps:"SharePointLocation"`
+	SharePointLocationException             []string `ps:"SharePointLocationException"`
+	UnifiedAuditLogEnabled                  *bool    `ps:"UnifiedAuditLogEnabled"`
 }
 
 func (p NewAutoSensitivityLabelPolicyParams) params() map[string]any {
@@ -4898,10 +4898,10 @@ func (p NewAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.EnforcementPlanes != nil {
 		m["EnforcementPlanes"] = p.EnforcementPlanes
 	}
-	if len(p.ExceptIfOneDriveSharedBy) > 0 {
+	if p.ExceptIfOneDriveSharedBy != nil {
 		m["ExceptIfOneDriveSharedBy"] = p.ExceptIfOneDriveSharedBy
 	}
-	if len(p.ExceptIfOneDriveSharedByMemberOf) > 0 {
+	if p.ExceptIfOneDriveSharedByMemberOf != nil {
 		m["ExceptIfOneDriveSharedByMemberOf"] = p.ExceptIfOneDriveSharedByMemberOf
 	}
 	if p.ExchangeAdaptiveScopes != nil {
@@ -4913,16 +4913,16 @@ func (p NewAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
 	}
-	if len(p.ExchangeSender) > 0 {
+	if p.ExchangeSender != nil {
 		m["ExchangeSender"] = p.ExchangeSender
 	}
-	if len(p.ExchangeSenderException) > 0 {
+	if p.ExchangeSenderException != nil {
 		m["ExchangeSenderException"] = p.ExchangeSenderException
 	}
-	if len(p.ExchangeSenderMemberOf) > 0 {
+	if p.ExchangeSenderMemberOf != nil {
 		m["ExchangeSenderMemberOf"] = p.ExchangeSenderMemberOf
 	}
-	if len(p.ExchangeSenderMemberOfException) > 0 {
+	if p.ExchangeSenderMemberOfException != nil {
 		m["ExchangeSenderMemberOfException"] = p.ExchangeSenderMemberOfException
 	}
 	if p.ExternalMailRightsManagementOwner != nil {
@@ -4952,14 +4952,14 @@ func (p NewAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.OneDriveLocationException != nil {
 		m["OneDriveLocationException"] = p.OneDriveLocationException
 	}
-	if len(p.OneDriveSharedBy) > 0 {
+	if p.OneDriveSharedBy != nil {
 		m["OneDriveSharedBy"] = p.OneDriveSharedBy
 	}
-	if len(p.OneDriveSharedByMemberOf) > 0 {
+	if p.OneDriveSharedByMemberOf != nil {
 		m["OneDriveSharedByMemberOf"] = p.OneDriveSharedByMemberOf
 	}
-	if p.OverwriteLabel {
-		m["OverwriteLabel"] = true
+	if p.OverwriteLabel != nil {
+		m["OverwriteLabel"] = *p.OverwriteLabel
 	}
 	if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
@@ -4974,7 +4974,7 @@ func (p NewAutoSensitivityLabelPolicyParams) params() map[string]any {
 		m["PowerBILocationException"] = p.PowerBILocationException
 	}
 	if p.Priority != nil {
-		m["Priority"] = p.Priority
+		m["Priority"] = *p.Priority
 	}
 	if p.RemoveLabel {
 		m["RemoveLabel"] = true
@@ -4991,8 +4991,8 @@ func (p NewAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.SharePointLocationException != nil {
 		m["SharePointLocationException"] = p.SharePointLocationException
 	}
-	if p.UnifiedAuditLogEnabled {
-		m["UnifiedAuditLogEnabled"] = true
+	if p.UnifiedAuditLogEnabled != nil {
+		m["UnifiedAuditLogEnabled"] = *p.UnifiedAuditLogEnabled
 	}
 	return m
 }
@@ -5004,69 +5004,69 @@ func (s *Service) NewAutoSensitivityLabelPolicy(ctx context.Context, p NewAutoSe
 
 // NewAutoSensitivityLabelRuleParams are the parameters of New-AutoSensitivityLabelRule.
 type NewAutoSensitivityLabelRuleParams struct {
-	AccessScope                                  any      `ps:"AccessScope"`
-	ActivationDate                               any      `ps:"ActivationDate"`
+	AccessScope                                  any      `ps:"AccessScope"`    // AccessScope
+	ActivationDate                               any      `ps:"ActivationDate"` // System.DateTime
 	AdvancedRule                                 string   `ps:"AdvancedRule"`
-	AnyOfRecipientAddressContainsWords           any      `ps:"AnyOfRecipientAddressContainsWords"`
-	AnyOfRecipientAddressMatchesPatterns         any      `ps:"AnyOfRecipientAddressMatchesPatterns"`
+	AnyOfRecipientAddressContainsWords           []string `ps:"AnyOfRecipientAddressContainsWords"`
+	AnyOfRecipientAddressMatchesPatterns         []string `ps:"AnyOfRecipientAddressMatchesPatterns"`
 	Comment                                      string   `ps:"Comment"`
-	ContentContainsSensitiveInformation          []string `ps:"ContentContainsSensitiveInformation"`
-	ContentExtensionMatchesWords                 any      `ps:"ContentExtensionMatchesWords"`
-	ContentIsNotLabeled                          bool     `ps:"ContentIsNotLabeled"`
-	ContentPropertyContainsWords                 any      `ps:"ContentPropertyContainsWords"`
-	DefaultSpoDocLibraryHasLabel                 bool     `ps:"DefaultSpoDocLibraryHasLabel"`
-	Disabled                                     bool     `ps:"Disabled"`
-	DocumentCreatedBy                            any      `ps:"DocumentCreatedBy"`
-	DocumentIsPasswordProtected                  bool     `ps:"DocumentIsPasswordProtected"`
-	DocumentIsUnsupported                        bool     `ps:"DocumentIsUnsupported"`
-	DocumentNameMatchesWords                     any      `ps:"DocumentNameMatchesWords"`
-	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`
-	ExceptIfAccessScope                          any      `ps:"ExceptIfAccessScope"`
-	ExceptIfAnyOfRecipientAddressContainsWords   any      `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
-	ExceptIfAnyOfRecipientAddressMatchesPatterns any      `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
-	ExceptIfContentContainsSensitiveInformation  []string `ps:"ExceptIfContentContainsSensitiveInformation"`
-	ExceptIfContentExtensionMatchesWords         any      `ps:"ExceptIfContentExtensionMatchesWords"`
-	ExceptIfContentPropertyContainsWords         any      `ps:"ExceptIfContentPropertyContainsWords"`
-	ExceptIfDocumentCreatedBy                    any      `ps:"ExceptIfDocumentCreatedBy"`
-	ExceptIfDocumentIsPasswordProtected          bool     `ps:"ExceptIfDocumentIsPasswordProtected"`
-	ExceptIfDocumentIsUnsupported                bool     `ps:"ExceptIfDocumentIsUnsupported"`
-	ExceptIfDocumentNameMatchesWords             any      `ps:"ExceptIfDocumentNameMatchesWords"`
-	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"`
+	ContentContainsSensitiveInformation          any      `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
+	ContentExtensionMatchesWords                 []string `ps:"ContentExtensionMatchesWords"`
+	ContentIsNotLabeled                          *bool    `ps:"ContentIsNotLabeled"`
+	ContentPropertyContainsWords                 []string `ps:"ContentPropertyContainsWords"`
+	DefaultSpoDocLibraryHasLabel                 *bool    `ps:"DefaultSpoDocLibraryHasLabel"`
+	Disabled                                     *bool    `ps:"Disabled"`
+	DocumentCreatedBy                            []string `ps:"DocumentCreatedBy"`
+	DocumentIsPasswordProtected                  *bool    `ps:"DocumentIsPasswordProtected"`
+	DocumentIsUnsupported                        *bool    `ps:"DocumentIsUnsupported"`
+	DocumentNameMatchesWords                     []string `ps:"DocumentNameMatchesWords"`
+	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`    // Microsoft.Exchange.Data.ByteQuantifiedSize
+	ExceptIfAccessScope                          any      `ps:"ExceptIfAccessScope"` // AccessScope
+	ExceptIfAnyOfRecipientAddressContainsWords   []string `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
+	ExceptIfAnyOfRecipientAddressMatchesPatterns []string `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
+	ExceptIfContentContainsSensitiveInformation  any      `ps:"ExceptIfContentContainsSensitiveInformation"` // PswsHashtable[]
+	ExceptIfContentExtensionMatchesWords         []string `ps:"ExceptIfContentExtensionMatchesWords"`
+	ExceptIfContentPropertyContainsWords         []string `ps:"ExceptIfContentPropertyContainsWords"`
+	ExceptIfDocumentCreatedBy                    []string `ps:"ExceptIfDocumentCreatedBy"`
+	ExceptIfDocumentIsPasswordProtected          *bool    `ps:"ExceptIfDocumentIsPasswordProtected"`
+	ExceptIfDocumentIsUnsupported                *bool    `ps:"ExceptIfDocumentIsUnsupported"`
+	ExceptIfDocumentNameMatchesWords             []string `ps:"ExceptIfDocumentNameMatchesWords"`
+	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"` // Microsoft.Exchange.Data.ByteQuantifiedSize
 	ExceptIfFrom                                 []string `ps:"ExceptIfFrom"`
-	ExceptIfFromAddressContainsWords             any      `ps:"ExceptIfFromAddressContainsWords"`
-	ExceptIfFromAddressMatchesPatterns           any      `ps:"ExceptIfFromAddressMatchesPatterns"`
+	ExceptIfFromAddressContainsWords             []string `ps:"ExceptIfFromAddressContainsWords"`
+	ExceptIfFromAddressMatchesPatterns           []string `ps:"ExceptIfFromAddressMatchesPatterns"`
 	ExceptIfFromMemberOf                         []string `ps:"ExceptIfFromMemberOf"`
-	ExceptIfHeaderMatchesPatterns                any      `ps:"ExceptIfHeaderMatchesPatterns"`
-	ExceptIfProcessingLimitExceeded              bool     `ps:"ExceptIfProcessingLimitExceeded"`
-	ExceptIfRecipientDomainIs                    any      `ps:"ExceptIfRecipientDomainIs"`
-	ExceptIfSenderDomainIs                       any      `ps:"ExceptIfSenderDomainIs"`
-	ExceptIfSenderIPRanges                       any      `ps:"ExceptIfSenderIPRanges"`
-	ExceptIfSentTo                               any      `ps:"ExceptIfSentTo"`
+	ExceptIfHeaderMatchesPatterns                any      `ps:"ExceptIfHeaderMatchesPatterns"` // PswsHashtable
+	ExceptIfProcessingLimitExceeded              *bool    `ps:"ExceptIfProcessingLimitExceeded"`
+	ExceptIfRecipientDomainIs                    []string `ps:"ExceptIfRecipientDomainIs"`
+	ExceptIfSenderDomainIs                       []string `ps:"ExceptIfSenderDomainIs"`
+	ExceptIfSenderIPRanges                       []string `ps:"ExceptIfSenderIPRanges"`
+	ExceptIfSentTo                               []string `ps:"ExceptIfSentTo"`
 	ExceptIfSentToMemberOf                       []string `ps:"ExceptIfSentToMemberOf"`
 	ExceptIfSharedWithDomain                     any      `ps:"ExceptIfSharedWithDomain"`
-	ExceptIfSubjectMatchesPatterns               any      `ps:"ExceptIfSubjectMatchesPatterns"`
-	ExpiryDate                                   any      `ps:"ExpiryDate"`
+	ExceptIfSubjectMatchesPatterns               []string `ps:"ExceptIfSubjectMatchesPatterns"`
+	ExpiryDate                                   any      `ps:"ExpiryDate"` // System.DateTime
 	From                                         []string `ps:"From"`
-	FromAddressContainsWords                     any      `ps:"FromAddressContainsWords"`
-	FromAddressMatchesPatterns                   any      `ps:"FromAddressMatchesPatterns"`
+	FromAddressContainsWords                     []string `ps:"FromAddressContainsWords"`
+	FromAddressMatchesPatterns                   []string `ps:"FromAddressMatchesPatterns"`
 	FromMemberOf                                 []string `ps:"FromMemberOf"`
-	HeaderMatchesPatterns                        any      `ps:"HeaderMatchesPatterns"`
-	ImmutableId                                  any      `ps:"ImmutableId"`
+	HeaderMatchesPatterns                        any      `ps:"HeaderMatchesPatterns"` // PswsHashtable
+	ImmutableId                                  any      `ps:"ImmutableId"`           // System.Guid
 	Name                                         string   `ps:"Name"`
-	Policy                                       any      `ps:"Policy"`
-	Priority                                     any      `ps:"Priority"`
-	ProcessingLimitExceeded                      bool     `ps:"ProcessingLimitExceeded"`
-	RecipientDomainIs                            any      `ps:"RecipientDomainIs"`
-	ReportSeverityLevel                          any      `ps:"ReportSeverityLevel"`
-	RuleErrorAction                              any      `ps:"RuleErrorAction"`
-	SenderDomainIs                               any      `ps:"SenderDomainIs"`
-	SenderIPRanges                               any      `ps:"SenderIPRanges"`
-	SentTo                                       any      `ps:"SentTo"`
+	Policy                                       any      `ps:"Policy"` // PolicyIdParameter
+	Priority                                     *int64   `ps:"Priority"`
+	ProcessingLimitExceeded                      *bool    `ps:"ProcessingLimitExceeded"`
+	RecipientDomainIs                            []string `ps:"RecipientDomainIs"`
+	ReportSeverityLevel                          any      `ps:"ReportSeverityLevel"` // RuleSeverity
+	RuleErrorAction                              any      `ps:"RuleErrorAction"`     // PolicyRuleErrorAction
+	SenderDomainIs                               []string `ps:"SenderDomainIs"`
+	SenderIPRanges                               []string `ps:"SenderIPRanges"`
+	SentTo                                       []string `ps:"SentTo"`
 	SentToMemberOf                               []string `ps:"SentToMemberOf"`
 	SharedWithDomain                             any      `ps:"SharedWithDomain"`
 	SourceType                                   string   `ps:"SourceType"`
-	SubjectMatchesPatterns                       any      `ps:"SubjectMatchesPatterns"`
-	Workload                                     any      `ps:"Workload"`
+	SubjectMatchesPatterns                       []string `ps:"SubjectMatchesPatterns"`
+	Workload                                     any      `ps:"Workload"` // Workload
 }
 
 func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
@@ -5089,32 +5089,32 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
 	if p.ContentExtensionMatchesWords != nil {
 		m["ContentExtensionMatchesWords"] = p.ContentExtensionMatchesWords
 	}
-	if p.ContentIsNotLabeled {
-		m["ContentIsNotLabeled"] = true
+	if p.ContentIsNotLabeled != nil {
+		m["ContentIsNotLabeled"] = *p.ContentIsNotLabeled
 	}
 	if p.ContentPropertyContainsWords != nil {
 		m["ContentPropertyContainsWords"] = p.ContentPropertyContainsWords
 	}
-	if p.DefaultSpoDocLibraryHasLabel {
-		m["DefaultSpoDocLibraryHasLabel"] = true
+	if p.DefaultSpoDocLibraryHasLabel != nil {
+		m["DefaultSpoDocLibraryHasLabel"] = *p.DefaultSpoDocLibraryHasLabel
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
 	if p.DocumentCreatedBy != nil {
 		m["DocumentCreatedBy"] = p.DocumentCreatedBy
 	}
-	if p.DocumentIsPasswordProtected {
-		m["DocumentIsPasswordProtected"] = true
+	if p.DocumentIsPasswordProtected != nil {
+		m["DocumentIsPasswordProtected"] = *p.DocumentIsPasswordProtected
 	}
-	if p.DocumentIsUnsupported {
-		m["DocumentIsUnsupported"] = true
+	if p.DocumentIsUnsupported != nil {
+		m["DocumentIsUnsupported"] = *p.DocumentIsUnsupported
 	}
 	if p.DocumentNameMatchesWords != nil {
 		m["DocumentNameMatchesWords"] = p.DocumentNameMatchesWords
@@ -5131,7 +5131,7 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.ExceptIfAnyOfRecipientAddressMatchesPatterns != nil {
 		m["ExceptIfAnyOfRecipientAddressMatchesPatterns"] = p.ExceptIfAnyOfRecipientAddressMatchesPatterns
 	}
-	if len(p.ExceptIfContentContainsSensitiveInformation) > 0 {
+	if p.ExceptIfContentContainsSensitiveInformation != nil {
 		m["ExceptIfContentContainsSensitiveInformation"] = p.ExceptIfContentContainsSensitiveInformation
 	}
 	if p.ExceptIfContentExtensionMatchesWords != nil {
@@ -5143,11 +5143,11 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentCreatedBy != nil {
 		m["ExceptIfDocumentCreatedBy"] = p.ExceptIfDocumentCreatedBy
 	}
-	if p.ExceptIfDocumentIsPasswordProtected {
-		m["ExceptIfDocumentIsPasswordProtected"] = true
+	if p.ExceptIfDocumentIsPasswordProtected != nil {
+		m["ExceptIfDocumentIsPasswordProtected"] = *p.ExceptIfDocumentIsPasswordProtected
 	}
-	if p.ExceptIfDocumentIsUnsupported {
-		m["ExceptIfDocumentIsUnsupported"] = true
+	if p.ExceptIfDocumentIsUnsupported != nil {
+		m["ExceptIfDocumentIsUnsupported"] = *p.ExceptIfDocumentIsUnsupported
 	}
 	if p.ExceptIfDocumentNameMatchesWords != nil {
 		m["ExceptIfDocumentNameMatchesWords"] = p.ExceptIfDocumentNameMatchesWords
@@ -5155,7 +5155,7 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
-	if len(p.ExceptIfFrom) > 0 {
+	if p.ExceptIfFrom != nil {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
 	if p.ExceptIfFromAddressContainsWords != nil {
@@ -5164,14 +5164,14 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.ExceptIfFromAddressMatchesPatterns != nil {
 		m["ExceptIfFromAddressMatchesPatterns"] = p.ExceptIfFromAddressMatchesPatterns
 	}
-	if len(p.ExceptIfFromMemberOf) > 0 {
+	if p.ExceptIfFromMemberOf != nil {
 		m["ExceptIfFromMemberOf"] = p.ExceptIfFromMemberOf
 	}
 	if p.ExceptIfHeaderMatchesPatterns != nil {
 		m["ExceptIfHeaderMatchesPatterns"] = p.ExceptIfHeaderMatchesPatterns
 	}
-	if p.ExceptIfProcessingLimitExceeded {
-		m["ExceptIfProcessingLimitExceeded"] = true
+	if p.ExceptIfProcessingLimitExceeded != nil {
+		m["ExceptIfProcessingLimitExceeded"] = *p.ExceptIfProcessingLimitExceeded
 	}
 	if p.ExceptIfRecipientDomainIs != nil {
 		m["ExceptIfRecipientDomainIs"] = p.ExceptIfRecipientDomainIs
@@ -5185,7 +5185,7 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.ExceptIfSentTo != nil {
 		m["ExceptIfSentTo"] = p.ExceptIfSentTo
 	}
-	if len(p.ExceptIfSentToMemberOf) > 0 {
+	if p.ExceptIfSentToMemberOf != nil {
 		m["ExceptIfSentToMemberOf"] = p.ExceptIfSentToMemberOf
 	}
 	if p.ExceptIfSharedWithDomain != nil {
@@ -5197,7 +5197,7 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.ExpiryDate != nil {
 		m["ExpiryDate"] = p.ExpiryDate
 	}
-	if len(p.From) > 0 {
+	if p.From != nil {
 		m["From"] = p.From
 	}
 	if p.FromAddressContainsWords != nil {
@@ -5206,7 +5206,7 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.FromAddressMatchesPatterns != nil {
 		m["FromAddressMatchesPatterns"] = p.FromAddressMatchesPatterns
 	}
-	if len(p.FromMemberOf) > 0 {
+	if p.FromMemberOf != nil {
 		m["FromMemberOf"] = p.FromMemberOf
 	}
 	if p.HeaderMatchesPatterns != nil {
@@ -5222,10 +5222,10 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 		m["Policy"] = p.Policy
 	}
 	if p.Priority != nil {
-		m["Priority"] = p.Priority
+		m["Priority"] = *p.Priority
 	}
-	if p.ProcessingLimitExceeded {
-		m["ProcessingLimitExceeded"] = true
+	if p.ProcessingLimitExceeded != nil {
+		m["ProcessingLimitExceeded"] = *p.ProcessingLimitExceeded
 	}
 	if p.RecipientDomainIs != nil {
 		m["RecipientDomainIs"] = p.RecipientDomainIs
@@ -5245,7 +5245,7 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.SentTo != nil {
 		m["SentTo"] = p.SentTo
 	}
-	if len(p.SentToMemberOf) > 0 {
+	if p.SentToMemberOf != nil {
 		m["SentToMemberOf"] = p.SentToMemberOf
 	}
 	if p.SharedWithDomain != nil {
@@ -5270,14 +5270,14 @@ func (s *Service) NewAutoSensitivityLabelRule(ctx context.Context, p NewAutoSens
 
 // NewCaseHoldPolicyParams are the parameters of New-CaseHoldPolicy.
 type NewCaseHoldPolicyParams struct {
-	Case                 string `ps:"Case"`
-	Comment              string `ps:"Comment"`
-	Enabled              bool   `ps:"Enabled"`
-	ExchangeLocation     any    `ps:"ExchangeLocation"`
-	Force                bool   `ps:"Force"`
-	Name                 string `ps:"Name"`
-	PublicFolderLocation any    `ps:"PublicFolderLocation"`
-	SharePointLocation   any    `ps:"SharePointLocation"`
+	Case                 string   `ps:"Case"`
+	Comment              string   `ps:"Comment"`
+	Enabled              *bool    `ps:"Enabled"`
+	ExchangeLocation     []string `ps:"ExchangeLocation"`
+	Force                bool     `ps:"Force"`
+	Name                 string   `ps:"Name"`
+	PublicFolderLocation []string `ps:"PublicFolderLocation"`
+	SharePointLocation   []string `ps:"SharePointLocation"`
 }
 
 func (p NewCaseHoldPolicyParams) params() map[string]any {
@@ -5288,8 +5288,8 @@ func (p NewCaseHoldPolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
@@ -5320,9 +5320,9 @@ type NewCaseHoldRuleParams struct {
 	ContentDateFrom   any    `ps:"ContentDateFrom"`
 	ContentDateTo     any    `ps:"ContentDateTo"`
 	ContentMatchQuery string `ps:"ContentMatchQuery"`
-	Disabled          bool   `ps:"Disabled"`
+	Disabled          *bool  `ps:"Disabled"`
 	Name              string `ps:"Name"`
-	Policy            any    `ps:"Policy"`
+	Policy            any    `ps:"Policy"` // PolicyIdParameter
 }
 
 func (p NewCaseHoldRuleParams) params() map[string]any {
@@ -5339,8 +5339,8 @@ func (p NewCaseHoldRuleParams) params() map[string]any {
 	if p.ContentMatchQuery != "" {
 		m["ContentMatchQuery"] = p.ContentMatchQuery
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -5376,7 +5376,7 @@ func (p NewClassificationGradingPolicyParams) params() map[string]any {
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if len(p.SensitiveInformationTypeIds) > 0 {
+	if p.SensitiveInformationTypeIds != nil {
 		m["SensitiveInformationTypeIds"] = p.SensitiveInformationTypeIds
 	}
 	if p.StartDateTime != nil {
@@ -5419,9 +5419,9 @@ func (s *Service) NewComplianceBoundary(ctx context.Context, p NewComplianceBoun
 // NewComplianceCaseParams are the parameters of New-ComplianceCase.
 // DefaultParameterSetName: Identity
 type NewComplianceCaseParams struct {
-	CaseType          any      `ps:"CaseType"`
+	CaseType          any      `ps:"CaseType"` // ComplianceCaseType
 	Description       string   `ps:"Description"`
-	DomainController  any      `ps:"DomainController"`
+	DomainController  any      `ps:"DomainController"` // Fqdn
 	ExternalId        string   `ps:"ExternalId"`
 	Name              string   `ps:"Name"`
 	SecondaryCaseType string   `ps:"SecondaryCaseType"`
@@ -5452,7 +5452,7 @@ func (p NewComplianceCaseParams) params() map[string]any {
 	if p.SourceCaseType != "" {
 		m["SourceCaseType"] = p.SourceCaseType
 	}
-	if len(p.Sources) > 0 {
+	if p.Sources != nil {
 		m["Sources"] = p.Sources
 	}
 	return m
@@ -5482,16 +5482,16 @@ func (p NewComplianceCustodianParams) params() map[string]any {
 	if p.ContactEmail != "" {
 		m["ContactEmail"] = p.ContactEmail
 	}
-	if len(p.ExchangeLocation) > 0 {
+	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if len(p.PublicFolderLocation) > 0 {
+	if p.PublicFolderLocation != nil {
 		m["PublicFolderLocation"] = p.PublicFolderLocation
 	}
-	if len(p.SharePointLocation) > 0 {
+	if p.SharePointLocation != nil {
 		m["SharePointLocation"] = p.SharePointLocation
 	}
 	return m
@@ -5524,7 +5524,7 @@ func (p NewComplianceNoticeParams) params() map[string]any {
 	if p.ContentBody != "" {
 		m["ContentBody"] = p.ContentBody
 	}
-	if len(p.CustodianIds) > 0 {
+	if p.CustodianIds != nil {
 		m["CustodianIds"] = p.CustodianIds
 	}
 	if p.From != "" {
@@ -5555,16 +5555,16 @@ func (s *Service) NewComplianceNotice(ctx context.Context, p NewComplianceNotice
 
 // NewComplianceRetentionEventParams are the parameters of New-ComplianceRetentionEvent.
 type NewComplianceRetentionEventParams struct {
-	AssetId                string `ps:"AssetId"`
-	Comment                string `ps:"Comment"`
-	DomainController       any    `ps:"DomainController"`
-	EventDateTime          any    `ps:"EventDateTime"`
-	EventTags              any    `ps:"EventTags"`
-	EventType              any    `ps:"EventType"`
-	ExchangeAssetIdQuery   string `ps:"ExchangeAssetIdQuery"`
-	Name                   string `ps:"Name"`
-	PreviewOnly            bool   `ps:"PreviewOnly"`
-	SharePointAssetIdQuery string `ps:"SharePointAssetIdQuery"`
+	AssetId                string   `ps:"AssetId"`
+	Comment                string   `ps:"Comment"`
+	DomainController       any      `ps:"DomainController"` // Fqdn
+	EventDateTime          any      `ps:"EventDateTime"`    // DateTime
+	EventTags              []string `ps:"EventTags"`
+	EventType              any      `ps:"EventType"` // ComplianceRuleIdParameter
+	ExchangeAssetIdQuery   string   `ps:"ExchangeAssetIdQuery"`
+	Name                   string   `ps:"Name"`
+	PreviewOnly            bool     `ps:"PreviewOnly"`
+	SharePointAssetIdQuery string   `ps:"SharePointAssetIdQuery"`
 }
 
 func (p NewComplianceRetentionEventParams) params() map[string]any {
@@ -5632,7 +5632,7 @@ func (s *Service) NewComplianceRetentionEventType(ctx context.Context, p NewComp
 // NewComplianceSearchParams are the parameters of New-ComplianceSearch.
 // DefaultParameterSetName: Identity
 type NewComplianceSearchParams struct {
-	AllowNotFoundExchangeLocationsEnabled bool     `ps:"AllowNotFoundExchangeLocationsEnabled"`
+	AllowNotFoundExchangeLocationsEnabled *bool    `ps:"AllowNotFoundExchangeLocationsEnabled"`
 	Case                                  string   `ps:"Case"`
 	ContentMatchQuery                     string   `ps:"ContentMatchQuery"`
 	Description                           string   `ps:"Description"`
@@ -5640,10 +5640,10 @@ type NewComplianceSearchParams struct {
 	ExchangeLocationExclusion             []string `ps:"ExchangeLocationExclusion"`
 	Force                                 bool     `ps:"Force"`
 	HoldNames                             []string `ps:"HoldNames"`
-	IncludeOrgContent                     bool     `ps:"IncludeOrgContent"`
-	IncludeUserAppContent                 bool     `ps:"IncludeUserAppContent"`
-	Language                              any      `ps:"Language"`
-	LogLevel                              any      `ps:"LogLevel"`
+	IncludeOrgContent                     *bool    `ps:"IncludeOrgContent"`
+	IncludeUserAppContent                 *bool    `ps:"IncludeUserAppContent"`
+	Language                              any      `ps:"Language"` // CultureInfo
+	LogLevel                              any      `ps:"LogLevel"` // ComplianceJobLogLevel
 	Name                                  string   `ps:"Name"`
 	OneDriveLocation                      []string `ps:"OneDriveLocation"`
 	OneDriveLocationExclusion             []string `ps:"OneDriveLocationExclusion"`
@@ -5658,8 +5658,8 @@ type NewComplianceSearchParams struct {
 
 func (p NewComplianceSearchParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AllowNotFoundExchangeLocationsEnabled {
-		m["AllowNotFoundExchangeLocationsEnabled"] = true
+	if p.AllowNotFoundExchangeLocationsEnabled != nil {
+		m["AllowNotFoundExchangeLocationsEnabled"] = *p.AllowNotFoundExchangeLocationsEnabled
 	}
 	if p.Case != "" {
 		m["Case"] = p.Case
@@ -5670,23 +5670,23 @@ func (p NewComplianceSearchParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if len(p.ExchangeLocation) > 0 {
+	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
 	}
-	if len(p.ExchangeLocationExclusion) > 0 {
+	if p.ExchangeLocationExclusion != nil {
 		m["ExchangeLocationExclusion"] = p.ExchangeLocationExclusion
 	}
 	if p.Force {
 		m["Force"] = true
 	}
-	if len(p.HoldNames) > 0 {
+	if p.HoldNames != nil {
 		m["HoldNames"] = p.HoldNames
 	}
-	if p.IncludeOrgContent {
-		m["IncludeOrgContent"] = true
+	if p.IncludeOrgContent != nil {
+		m["IncludeOrgContent"] = *p.IncludeOrgContent
 	}
-	if p.IncludeUserAppContent {
-		m["IncludeUserAppContent"] = true
+	if p.IncludeUserAppContent != nil {
+		m["IncludeUserAppContent"] = *p.IncludeUserAppContent
 	}
 	if p.Language != nil {
 		m["Language"] = p.Language
@@ -5697,31 +5697,31 @@ func (p NewComplianceSearchParams) params() map[string]any {
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if len(p.OneDriveLocation) > 0 {
+	if p.OneDriveLocation != nil {
 		m["OneDriveLocation"] = p.OneDriveLocation
 	}
-	if len(p.OneDriveLocationExclusion) > 0 {
+	if p.OneDriveLocationExclusion != nil {
 		m["OneDriveLocationExclusion"] = p.OneDriveLocationExclusion
 	}
-	if len(p.PublicFolderLocation) > 0 {
+	if p.PublicFolderLocation != nil {
 		m["PublicFolderLocation"] = p.PublicFolderLocation
 	}
-	if len(p.PublicFolderLocationExclusion) > 0 {
+	if p.PublicFolderLocationExclusion != nil {
 		m["PublicFolderLocationExclusion"] = p.PublicFolderLocationExclusion
 	}
-	if len(p.RefinerNames) > 0 {
+	if p.RefinerNames != nil {
 		m["RefinerNames"] = p.RefinerNames
 	}
-	if len(p.SearchNames) > 0 {
+	if p.SearchNames != nil {
 		m["SearchNames"] = p.SearchNames
 	}
-	if len(p.SharePointLocation) > 0 {
+	if p.SharePointLocation != nil {
 		m["SharePointLocation"] = p.SharePointLocation
 	}
-	if len(p.SharePointLocationExclusion) > 0 {
+	if p.SharePointLocationExclusion != nil {
 		m["SharePointLocationExclusion"] = p.SharePointLocationExclusion
 	}
-	if len(p.StatusMailRecipients) > 0 {
+	if p.StatusMailRecipients != nil {
 		m["StatusMailRecipients"] = p.StatusMailRecipients
 	}
 	return m
@@ -5736,19 +5736,19 @@ func (s *Service) NewComplianceSearch(ctx context.Context, p NewComplianceSearch
 // DefaultParameterSetName: Identity
 type NewComplianceSearchActionParams struct {
 	ActionName                          string   `ps:"ActionName"`
-	EnableDedupe                        bool     `ps:"EnableDedupe"`
+	EnableDedupe                        *bool    `ps:"EnableDedupe"`
 	FileTypeExclusionsForUnindexedItems []string `ps:"FileTypeExclusionsForUnindexedItems"`
 	Force                               bool     `ps:"Force"`
 	IncludeCredential                   bool     `ps:"IncludeCredential"`
-	IncludeSharePointDocumentVersions   bool     `ps:"IncludeSharePointDocumentVersions"`
-	JobOptions                          int      `ps:"JobOptions"`
-	MaxUnindexedSize                    int      `ps:"MaxUnindexedSize"`
+	IncludeSharePointDocumentVersions   *bool    `ps:"IncludeSharePointDocumentVersions"`
+	JobOptions                          *int64   `ps:"JobOptions"`
+	MaxUnindexedSize                    *int64   `ps:"MaxUnindexedSize"`
 	ReferenceActionName                 string   `ps:"ReferenceActionName"`
 	Region                              string   `ps:"Region"`
 	Report                              bool     `ps:"Report"`
 	RetentionReport                     bool     `ps:"RetentionReport"`
 	RetryOnError                        bool     `ps:"RetryOnError"`
-	Scope                               any      `ps:"Scope"` // one of: IndexedItemsOnly, UnindexedItemsOnly, BothIndexedAndUnindexedItems
+	Scope                               any      `ps:"Scope"` // one of: IndexedItemsOnly, UnindexedItemsOnly, BothIndexedAndUnindexedItems; ComplianceExportScope
 	ScopeDetails                        []string `ps:"ScopeDetails"`
 	SearchName                          []string `ps:"SearchName"`
 	SearchNames                         []string `ps:"SearchNames"`
@@ -5760,10 +5760,10 @@ func (p NewComplianceSearchActionParams) params() map[string]any {
 	if p.ActionName != "" {
 		m["ActionName"] = p.ActionName
 	}
-	if p.EnableDedupe {
-		m["EnableDedupe"] = true
+	if p.EnableDedupe != nil {
+		m["EnableDedupe"] = *p.EnableDedupe
 	}
-	if len(p.FileTypeExclusionsForUnindexedItems) > 0 {
+	if p.FileTypeExclusionsForUnindexedItems != nil {
 		m["FileTypeExclusionsForUnindexedItems"] = p.FileTypeExclusionsForUnindexedItems
 	}
 	if p.Force {
@@ -5772,14 +5772,14 @@ func (p NewComplianceSearchActionParams) params() map[string]any {
 	if p.IncludeCredential {
 		m["IncludeCredential"] = true
 	}
-	if p.IncludeSharePointDocumentVersions {
-		m["IncludeSharePointDocumentVersions"] = true
+	if p.IncludeSharePointDocumentVersions != nil {
+		m["IncludeSharePointDocumentVersions"] = *p.IncludeSharePointDocumentVersions
 	}
-	if p.JobOptions != 0 {
-		m["JobOptions"] = p.JobOptions
+	if p.JobOptions != nil {
+		m["JobOptions"] = *p.JobOptions
 	}
-	if p.MaxUnindexedSize != 0 {
-		m["MaxUnindexedSize"] = p.MaxUnindexedSize
+	if p.MaxUnindexedSize != nil {
+		m["MaxUnindexedSize"] = *p.MaxUnindexedSize
 	}
 	if p.ReferenceActionName != "" {
 		m["ReferenceActionName"] = p.ReferenceActionName
@@ -5799,13 +5799,13 @@ func (p NewComplianceSearchActionParams) params() map[string]any {
 	if p.Scope != nil {
 		m["Scope"] = p.Scope
 	}
-	if len(p.ScopeDetails) > 0 {
+	if p.ScopeDetails != nil {
 		m["ScopeDetails"] = p.ScopeDetails
 	}
-	if len(p.SearchName) > 0 {
+	if p.SearchName != nil {
 		m["SearchName"] = p.SearchName
 	}
-	if len(p.SearchNames) > 0 {
+	if p.SearchNames != nil {
 		m["SearchNames"] = p.SearchNames
 	}
 	if p.Version != "" {
@@ -5825,21 +5825,21 @@ type NewComplianceTagParams struct {
 	ArchiveEnabled            bool     `ps:"ArchiveEnabled"`
 	ArchiveTriggerBasedOn     string   `ps:"ArchiveTriggerBasedOn"`
 	ArchiveTriggerInDays      any      `ps:"ArchiveTriggerInDays"`
-	AutoApprovalPeriod        any      `ps:"AutoApprovalPeriod"`
+	AutoApprovalPeriod        *int64   `ps:"AutoApprovalPeriod"`
 	Comment                   string   `ps:"Comment"`
 	ComplianceTagForNextStage string   `ps:"ComplianceTagForNextStage"`
-	EventType                 any      `ps:"EventType"`
+	EventType                 any      `ps:"EventType"` // ComplianceRuleIdParameter
 	FilePlanProperty          string   `ps:"FilePlanProperty"`
-	FlowId                    any      `ps:"FlowId"`
+	FlowId                    any      `ps:"FlowId"` // System.Guid
 	Force                     bool     `ps:"Force"`
-	IsRecordLabel             any      `ps:"IsRecordLabel"`
-	IsRecordUnlockedAsDefault bool     `ps:"IsRecordUnlockedAsDefault"`
+	IsRecordLabel             *bool    `ps:"IsRecordLabel"`
+	IsRecordUnlockedAsDefault *bool    `ps:"IsRecordUnlockedAsDefault"`
 	MultiStageReviewProperty  string   `ps:"MultiStageReviewProperty"`
 	Name                      string   `ps:"Name"`
 	Notes                     string   `ps:"Notes"`
-	Regulatory                bool     `ps:"Regulatory"`
+	Regulatory                *bool    `ps:"Regulatory"`
 	RetentionAction           string   `ps:"RetentionAction"`
-	RetentionDuration         any      `ps:"RetentionDuration"`
+	RetentionDuration         any      `ps:"RetentionDuration"` // Unlimited
 	RetentionType             string   `ps:"RetentionType"`
 	ReviewerEmail             []string `ps:"ReviewerEmail"`
 	WebHookUrl                string   `ps:"WebHookUrl"`
@@ -5857,7 +5857,7 @@ func (p NewComplianceTagParams) params() map[string]any {
 		m["ArchiveTriggerInDays"] = p.ArchiveTriggerInDays
 	}
 	if p.AutoApprovalPeriod != nil {
-		m["AutoApprovalPeriod"] = p.AutoApprovalPeriod
+		m["AutoApprovalPeriod"] = *p.AutoApprovalPeriod
 	}
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
@@ -5878,10 +5878,10 @@ func (p NewComplianceTagParams) params() map[string]any {
 		m["Force"] = true
 	}
 	if p.IsRecordLabel != nil {
-		m["IsRecordLabel"] = p.IsRecordLabel
+		m["IsRecordLabel"] = *p.IsRecordLabel
 	}
-	if p.IsRecordUnlockedAsDefault {
-		m["IsRecordUnlockedAsDefault"] = true
+	if p.IsRecordUnlockedAsDefault != nil {
+		m["IsRecordUnlockedAsDefault"] = *p.IsRecordUnlockedAsDefault
 	}
 	if p.MultiStageReviewProperty != "" {
 		m["MultiStageReviewProperty"] = p.MultiStageReviewProperty
@@ -5892,8 +5892,8 @@ func (p NewComplianceTagParams) params() map[string]any {
 	if p.Notes != "" {
 		m["Notes"] = p.Notes
 	}
-	if p.Regulatory {
-		m["Regulatory"] = true
+	if p.Regulatory != nil {
+		m["Regulatory"] = *p.Regulatory
 	}
 	if p.RetentionAction != "" {
 		m["RetentionAction"] = p.RetentionAction
@@ -5904,7 +5904,7 @@ func (p NewComplianceTagParams) params() map[string]any {
 	if p.RetentionType != "" {
 		m["RetentionType"] = p.RetentionType
 	}
-	if len(p.ReviewerEmail) > 0 {
+	if p.ReviewerEmail != nil {
 		m["ReviewerEmail"] = p.ReviewerEmail
 	}
 	if p.WebHookUrl != "" {
@@ -5935,13 +5935,13 @@ type NewCustomDlpEmailTemplateParams struct {
 
 func (p NewCustomDlpEmailTemplateParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.Bcc) > 0 {
+	if p.Bcc != nil {
 		m["Bcc"] = p.Bcc
 	}
 	if p.Body != "" {
 		m["Body"] = p.Body
 	}
-	if len(p.Cc) > 0 {
+	if p.Cc != nil {
 		m["Cc"] = p.Cc
 	}
 	if p.Description != "" {
@@ -5962,7 +5962,7 @@ func (p NewCustomDlpEmailTemplateParams) params() map[string]any {
 	if p.Subject != "" {
 		m["Subject"] = p.Subject
 	}
-	if len(p.To) > 0 {
+	if p.To != nil {
 		m["To"] = p.To
 	}
 	return m
@@ -5976,7 +5976,7 @@ func (s *Service) NewCustomDlpEmailTemplate(ctx context.Context, p NewCustomDlpE
 // NewDeviceConditionalAccessPolicyParams are the parameters of New-DeviceConditionalAccessPolicy.
 type NewDeviceConditionalAccessPolicyParams struct {
 	Comment string `ps:"Comment"`
-	Enabled bool   `ps:"Enabled"`
+	Enabled *bool  `ps:"Enabled"`
 	Force   bool   `ps:"Force"`
 	Name    string `ps:"Name"`
 }
@@ -5986,8 +5986,8 @@ func (p NewDeviceConditionalAccessPolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -6005,57 +6005,57 @@ func (s *Service) NewDeviceConditionalAccessPolicy(ctx context.Context, p NewDev
 
 // NewDeviceConditionalAccessRuleParams are the parameters of New-DeviceConditionalAccessRule.
 type NewDeviceConditionalAccessRuleParams struct {
-	AccountName                   string `ps:"AccountName"`
-	AccountUserName               string `ps:"AccountUserName"`
-	AllowAppStore                 any    `ps:"AllowAppStore"`
-	AllowAssistantWhileLocked     any    `ps:"AllowAssistantWhileLocked"`
-	AllowConvenienceLogon         any    `ps:"AllowConvenienceLogon"`
-	AllowDiagnosticSubmission     any    `ps:"AllowDiagnosticSubmission"`
-	AllowiCloudBackup             any    `ps:"AllowiCloudBackup"`
-	AllowiCloudDocSync            any    `ps:"AllowiCloudDocSync"`
-	AllowiCloudPhotoSync          any    `ps:"AllowiCloudPhotoSync"`
-	AllowJailbroken               any    `ps:"AllowJailbroken"`
-	AllowPassbookWhileLocked      any    `ps:"AllowPassbookWhileLocked"`
-	AllowScreenshot               any    `ps:"AllowScreenshot"`
-	AllowSimplePassword           any    `ps:"AllowSimplePassword"`
-	AllowVideoConferencing        any    `ps:"AllowVideoConferencing"`
-	AllowVoiceAssistant           any    `ps:"AllowVoiceAssistant"`
-	AllowVoiceDialing             any    `ps:"AllowVoiceDialing"`
-	AntiVirusSignatureStatus      any    `ps:"AntiVirusSignatureStatus"`
-	AntiVirusStatus               any    `ps:"AntiVirusStatus"`
-	AppsRating                    any    `ps:"AppsRating"`
-	AutoUpdateStatus              any    `ps:"AutoUpdateStatus"`
-	BluetoothEnabled              any    `ps:"BluetoothEnabled"`
-	CameraEnabled                 any    `ps:"CameraEnabled"`
-	DomainController              any    `ps:"DomainController"`
-	EmailAddress                  string `ps:"EmailAddress"`
-	EnableRemovableStorage        any    `ps:"EnableRemovableStorage"`
-	ExchangeActiveSyncHost        string `ps:"ExchangeActiveSyncHost"`
-	FirewallStatus                any    `ps:"FirewallStatus"`
-	ForceAppStorePassword         any    `ps:"ForceAppStorePassword"`
-	ForceEncryptedBackup          any    `ps:"ForceEncryptedBackup"`
-	MaxPasswordAttemptsBeforeWipe any    `ps:"MaxPasswordAttemptsBeforeWipe"`
-	MaxPasswordGracePeriod        any    `ps:"MaxPasswordGracePeriod"`
-	MoviesRating                  any    `ps:"MoviesRating"`
-	PasswordComplexity            any    `ps:"PasswordComplexity"`
-	PasswordExpirationDays        any    `ps:"PasswordExpirationDays"`
-	PasswordHistoryCount          any    `ps:"PasswordHistoryCount"`
-	PasswordMinComplexChars       any    `ps:"PasswordMinComplexChars"`
-	PasswordMinimumLength         any    `ps:"PasswordMinimumLength"`
-	PasswordQuality               any    `ps:"PasswordQuality"`
-	PasswordRequired              any    `ps:"PasswordRequired"`
-	PasswordTimeout               any    `ps:"PasswordTimeout"`
-	PhoneMemoryEncrypted          any    `ps:"PhoneMemoryEncrypted"`
-	Policy                        any    `ps:"Policy"`
-	RegionRatings                 any    `ps:"RegionRatings"`
-	RequireEmailProfile           any    `ps:"RequireEmailProfile"`
-	SmartScreenEnabled            any    `ps:"SmartScreenEnabled"`
-	SystemSecurityTLS             any    `ps:"SystemSecurityTLS"`
-	TargetGroups                  any    `ps:"TargetGroups"`
-	TVShowsRating                 any    `ps:"TVShowsRating"`
-	UserAccountControlStatus      any    `ps:"UserAccountControlStatus"`
-	WLANEnabled                   any    `ps:"WLANEnabled"`
-	WorkFoldersSyncUrl            string `ps:"WorkFoldersSyncUrl"`
+	AccountName                   string   `ps:"AccountName"`
+	AccountUserName               string   `ps:"AccountUserName"`
+	AllowAppStore                 *bool    `ps:"AllowAppStore"`
+	AllowAssistantWhileLocked     *bool    `ps:"AllowAssistantWhileLocked"`
+	AllowConvenienceLogon         *bool    `ps:"AllowConvenienceLogon"`
+	AllowDiagnosticSubmission     *bool    `ps:"AllowDiagnosticSubmission"`
+	AllowiCloudBackup             *bool    `ps:"AllowiCloudBackup"`
+	AllowiCloudDocSync            *bool    `ps:"AllowiCloudDocSync"`
+	AllowiCloudPhotoSync          *bool    `ps:"AllowiCloudPhotoSync"`
+	AllowJailbroken               *bool    `ps:"AllowJailbroken"`
+	AllowPassbookWhileLocked      *bool    `ps:"AllowPassbookWhileLocked"`
+	AllowScreenshot               *bool    `ps:"AllowScreenshot"`
+	AllowSimplePassword           *bool    `ps:"AllowSimplePassword"`
+	AllowVideoConferencing        *bool    `ps:"AllowVideoConferencing"`
+	AllowVoiceAssistant           *bool    `ps:"AllowVoiceAssistant"`
+	AllowVoiceDialing             *bool    `ps:"AllowVoiceDialing"`
+	AntiVirusSignatureStatus      *int64   `ps:"AntiVirusSignatureStatus"`
+	AntiVirusStatus               *int64   `ps:"AntiVirusStatus"`
+	AppsRating                    any      `ps:"AppsRating"`       // CARatingAppsEntry
+	AutoUpdateStatus              any      `ps:"AutoUpdateStatus"` // CAAutoUpdateStatusEntry
+	BluetoothEnabled              *bool    `ps:"BluetoothEnabled"`
+	CameraEnabled                 *bool    `ps:"CameraEnabled"`
+	DomainController              any      `ps:"DomainController"` // Fqdn
+	EmailAddress                  string   `ps:"EmailAddress"`
+	EnableRemovableStorage        *bool    `ps:"EnableRemovableStorage"`
+	ExchangeActiveSyncHost        string   `ps:"ExchangeActiveSyncHost"`
+	FirewallStatus                any      `ps:"FirewallStatus"` // Required
+	ForceAppStorePassword         *bool    `ps:"ForceAppStorePassword"`
+	ForceEncryptedBackup          *bool    `ps:"ForceEncryptedBackup"`
+	MaxPasswordAttemptsBeforeWipe *int64   `ps:"MaxPasswordAttemptsBeforeWipe"`
+	MaxPasswordGracePeriod        any      `ps:"MaxPasswordGracePeriod"` // TimeSpan
+	MoviesRating                  any      `ps:"MoviesRating"`           // CARatingMovieEntry
+	PasswordComplexity            *int64   `ps:"PasswordComplexity"`
+	PasswordExpirationDays        *int64   `ps:"PasswordExpirationDays"`
+	PasswordHistoryCount          *int64   `ps:"PasswordHistoryCount"`
+	PasswordMinComplexChars       *int64   `ps:"PasswordMinComplexChars"`
+	PasswordMinimumLength         *int64   `ps:"PasswordMinimumLength"`
+	PasswordQuality               *int64   `ps:"PasswordQuality"`
+	PasswordRequired              *bool    `ps:"PasswordRequired"`
+	PasswordTimeout               any      `ps:"PasswordTimeout"` // TimeSpan
+	PhoneMemoryEncrypted          *bool    `ps:"PhoneMemoryEncrypted"`
+	Policy                        any      `ps:"Policy"`        // PolicyIdParameter
+	RegionRatings                 any      `ps:"RegionRatings"` // CARatingRegionEntry
+	RequireEmailProfile           *bool    `ps:"RequireEmailProfile"`
+	SmartScreenEnabled            *bool    `ps:"SmartScreenEnabled"`
+	SystemSecurityTLS             *bool    `ps:"SystemSecurityTLS"`
+	TargetGroups                  []string `ps:"TargetGroups"`
+	TVShowsRating                 any      `ps:"TVShowsRating"`            // CARatingTvShowEntry
+	UserAccountControlStatus      any      `ps:"UserAccountControlStatus"` // CAUserAccountControlStatusEntry
+	WLANEnabled                   *bool    `ps:"WLANEnabled"`
+	WorkFoldersSyncUrl            string   `ps:"WorkFoldersSyncUrl"`
 }
 
 func (p NewDeviceConditionalAccessRuleParams) params() map[string]any {
@@ -6067,52 +6067,52 @@ func (p NewDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["AccountUserName"] = p.AccountUserName
 	}
 	if p.AllowAppStore != nil {
-		m["AllowAppStore"] = p.AllowAppStore
+		m["AllowAppStore"] = *p.AllowAppStore
 	}
 	if p.AllowAssistantWhileLocked != nil {
-		m["AllowAssistantWhileLocked"] = p.AllowAssistantWhileLocked
+		m["AllowAssistantWhileLocked"] = *p.AllowAssistantWhileLocked
 	}
 	if p.AllowConvenienceLogon != nil {
-		m["AllowConvenienceLogon"] = p.AllowConvenienceLogon
+		m["AllowConvenienceLogon"] = *p.AllowConvenienceLogon
 	}
 	if p.AllowDiagnosticSubmission != nil {
-		m["AllowDiagnosticSubmission"] = p.AllowDiagnosticSubmission
+		m["AllowDiagnosticSubmission"] = *p.AllowDiagnosticSubmission
 	}
 	if p.AllowiCloudBackup != nil {
-		m["AllowiCloudBackup"] = p.AllowiCloudBackup
+		m["AllowiCloudBackup"] = *p.AllowiCloudBackup
 	}
 	if p.AllowiCloudDocSync != nil {
-		m["AllowiCloudDocSync"] = p.AllowiCloudDocSync
+		m["AllowiCloudDocSync"] = *p.AllowiCloudDocSync
 	}
 	if p.AllowiCloudPhotoSync != nil {
-		m["AllowiCloudPhotoSync"] = p.AllowiCloudPhotoSync
+		m["AllowiCloudPhotoSync"] = *p.AllowiCloudPhotoSync
 	}
 	if p.AllowJailbroken != nil {
-		m["AllowJailbroken"] = p.AllowJailbroken
+		m["AllowJailbroken"] = *p.AllowJailbroken
 	}
 	if p.AllowPassbookWhileLocked != nil {
-		m["AllowPassbookWhileLocked"] = p.AllowPassbookWhileLocked
+		m["AllowPassbookWhileLocked"] = *p.AllowPassbookWhileLocked
 	}
 	if p.AllowScreenshot != nil {
-		m["AllowScreenshot"] = p.AllowScreenshot
+		m["AllowScreenshot"] = *p.AllowScreenshot
 	}
 	if p.AllowSimplePassword != nil {
-		m["AllowSimplePassword"] = p.AllowSimplePassword
+		m["AllowSimplePassword"] = *p.AllowSimplePassword
 	}
 	if p.AllowVideoConferencing != nil {
-		m["AllowVideoConferencing"] = p.AllowVideoConferencing
+		m["AllowVideoConferencing"] = *p.AllowVideoConferencing
 	}
 	if p.AllowVoiceAssistant != nil {
-		m["AllowVoiceAssistant"] = p.AllowVoiceAssistant
+		m["AllowVoiceAssistant"] = *p.AllowVoiceAssistant
 	}
 	if p.AllowVoiceDialing != nil {
-		m["AllowVoiceDialing"] = p.AllowVoiceDialing
+		m["AllowVoiceDialing"] = *p.AllowVoiceDialing
 	}
 	if p.AntiVirusSignatureStatus != nil {
-		m["AntiVirusSignatureStatus"] = p.AntiVirusSignatureStatus
+		m["AntiVirusSignatureStatus"] = *p.AntiVirusSignatureStatus
 	}
 	if p.AntiVirusStatus != nil {
-		m["AntiVirusStatus"] = p.AntiVirusStatus
+		m["AntiVirusStatus"] = *p.AntiVirusStatus
 	}
 	if p.AppsRating != nil {
 		m["AppsRating"] = p.AppsRating
@@ -6121,10 +6121,10 @@ func (p NewDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["AutoUpdateStatus"] = p.AutoUpdateStatus
 	}
 	if p.BluetoothEnabled != nil {
-		m["BluetoothEnabled"] = p.BluetoothEnabled
+		m["BluetoothEnabled"] = *p.BluetoothEnabled
 	}
 	if p.CameraEnabled != nil {
-		m["CameraEnabled"] = p.CameraEnabled
+		m["CameraEnabled"] = *p.CameraEnabled
 	}
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
@@ -6133,7 +6133,7 @@ func (p NewDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["EmailAddress"] = p.EmailAddress
 	}
 	if p.EnableRemovableStorage != nil {
-		m["EnableRemovableStorage"] = p.EnableRemovableStorage
+		m["EnableRemovableStorage"] = *p.EnableRemovableStorage
 	}
 	if p.ExchangeActiveSyncHost != "" {
 		m["ExchangeActiveSyncHost"] = p.ExchangeActiveSyncHost
@@ -6142,13 +6142,13 @@ func (p NewDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["FirewallStatus"] = p.FirewallStatus
 	}
 	if p.ForceAppStorePassword != nil {
-		m["ForceAppStorePassword"] = p.ForceAppStorePassword
+		m["ForceAppStorePassword"] = *p.ForceAppStorePassword
 	}
 	if p.ForceEncryptedBackup != nil {
-		m["ForceEncryptedBackup"] = p.ForceEncryptedBackup
+		m["ForceEncryptedBackup"] = *p.ForceEncryptedBackup
 	}
 	if p.MaxPasswordAttemptsBeforeWipe != nil {
-		m["MaxPasswordAttemptsBeforeWipe"] = p.MaxPasswordAttemptsBeforeWipe
+		m["MaxPasswordAttemptsBeforeWipe"] = *p.MaxPasswordAttemptsBeforeWipe
 	}
 	if p.MaxPasswordGracePeriod != nil {
 		m["MaxPasswordGracePeriod"] = p.MaxPasswordGracePeriod
@@ -6157,31 +6157,31 @@ func (p NewDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["MoviesRating"] = p.MoviesRating
 	}
 	if p.PasswordComplexity != nil {
-		m["PasswordComplexity"] = p.PasswordComplexity
+		m["PasswordComplexity"] = *p.PasswordComplexity
 	}
 	if p.PasswordExpirationDays != nil {
-		m["PasswordExpirationDays"] = p.PasswordExpirationDays
+		m["PasswordExpirationDays"] = *p.PasswordExpirationDays
 	}
 	if p.PasswordHistoryCount != nil {
-		m["PasswordHistoryCount"] = p.PasswordHistoryCount
+		m["PasswordHistoryCount"] = *p.PasswordHistoryCount
 	}
 	if p.PasswordMinComplexChars != nil {
-		m["PasswordMinComplexChars"] = p.PasswordMinComplexChars
+		m["PasswordMinComplexChars"] = *p.PasswordMinComplexChars
 	}
 	if p.PasswordMinimumLength != nil {
-		m["PasswordMinimumLength"] = p.PasswordMinimumLength
+		m["PasswordMinimumLength"] = *p.PasswordMinimumLength
 	}
 	if p.PasswordQuality != nil {
-		m["PasswordQuality"] = p.PasswordQuality
+		m["PasswordQuality"] = *p.PasswordQuality
 	}
 	if p.PasswordRequired != nil {
-		m["PasswordRequired"] = p.PasswordRequired
+		m["PasswordRequired"] = *p.PasswordRequired
 	}
 	if p.PasswordTimeout != nil {
 		m["PasswordTimeout"] = p.PasswordTimeout
 	}
 	if p.PhoneMemoryEncrypted != nil {
-		m["PhoneMemoryEncrypted"] = p.PhoneMemoryEncrypted
+		m["PhoneMemoryEncrypted"] = *p.PhoneMemoryEncrypted
 	}
 	if p.Policy != nil {
 		m["Policy"] = p.Policy
@@ -6190,13 +6190,13 @@ func (p NewDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["RegionRatings"] = p.RegionRatings
 	}
 	if p.RequireEmailProfile != nil {
-		m["RequireEmailProfile"] = p.RequireEmailProfile
+		m["RequireEmailProfile"] = *p.RequireEmailProfile
 	}
 	if p.SmartScreenEnabled != nil {
-		m["SmartScreenEnabled"] = p.SmartScreenEnabled
+		m["SmartScreenEnabled"] = *p.SmartScreenEnabled
 	}
 	if p.SystemSecurityTLS != nil {
-		m["SystemSecurityTLS"] = p.SystemSecurityTLS
+		m["SystemSecurityTLS"] = *p.SystemSecurityTLS
 	}
 	if p.TargetGroups != nil {
 		m["TargetGroups"] = p.TargetGroups
@@ -6208,7 +6208,7 @@ func (p NewDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["UserAccountControlStatus"] = p.UserAccountControlStatus
 	}
 	if p.WLANEnabled != nil {
-		m["WLANEnabled"] = p.WLANEnabled
+		m["WLANEnabled"] = *p.WLANEnabled
 	}
 	if p.WorkFoldersSyncUrl != "" {
 		m["WorkFoldersSyncUrl"] = p.WorkFoldersSyncUrl
@@ -6224,7 +6224,7 @@ func (s *Service) NewDeviceConditionalAccessRule(ctx context.Context, p NewDevic
 // NewDeviceConfigurationPolicyParams are the parameters of New-DeviceConfigurationPolicy.
 type NewDeviceConfigurationPolicyParams struct {
 	Comment string `ps:"Comment"`
-	Enabled bool   `ps:"Enabled"`
+	Enabled *bool  `ps:"Enabled"`
 	Force   bool   `ps:"Force"`
 	Name    string `ps:"Name"`
 }
@@ -6234,8 +6234,8 @@ func (p NewDeviceConfigurationPolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -6253,56 +6253,56 @@ func (s *Service) NewDeviceConfigurationPolicy(ctx context.Context, p NewDeviceC
 
 // NewDeviceConfigurationRuleParams are the parameters of New-DeviceConfigurationRule.
 type NewDeviceConfigurationRuleParams struct {
-	AccountName                   string `ps:"AccountName"`
-	AccountUserName               string `ps:"AccountUserName"`
-	AllowAppStore                 any    `ps:"AllowAppStore"`
-	AllowAssistantWhileLocked     any    `ps:"AllowAssistantWhileLocked"`
-	AllowConvenienceLogon         any    `ps:"AllowConvenienceLogon"`
-	AllowDiagnosticSubmission     any    `ps:"AllowDiagnosticSubmission"`
-	AllowiCloudBackup             any    `ps:"AllowiCloudBackup"`
-	AllowiCloudDocSync            any    `ps:"AllowiCloudDocSync"`
-	AllowiCloudPhotoSync          any    `ps:"AllowiCloudPhotoSync"`
-	AllowPassbookWhileLocked      any    `ps:"AllowPassbookWhileLocked"`
-	AllowScreenshot               any    `ps:"AllowScreenshot"`
-	AllowSimplePassword           any    `ps:"AllowSimplePassword"`
-	AllowVideoConferencing        any    `ps:"AllowVideoConferencing"`
-	AllowVoiceAssistant           any    `ps:"AllowVoiceAssistant"`
-	AllowVoiceDialing             any    `ps:"AllowVoiceDialing"`
-	AntiVirusSignatureStatus      any    `ps:"AntiVirusSignatureStatus"`
-	AntiVirusStatus               any    `ps:"AntiVirusStatus"`
-	AppsRating                    any    `ps:"AppsRating"`
-	AutoUpdateStatus              any    `ps:"AutoUpdateStatus"`
-	BluetoothEnabled              any    `ps:"BluetoothEnabled"`
-	CameraEnabled                 any    `ps:"CameraEnabled"`
-	DomainController              any    `ps:"DomainController"`
-	EmailAddress                  string `ps:"EmailAddress"`
-	EnableRemovableStorage        any    `ps:"EnableRemovableStorage"`
-	ExchangeActiveSyncHost        string `ps:"ExchangeActiveSyncHost"`
-	FirewallStatus                any    `ps:"FirewallStatus"`
-	ForceAppStorePassword         any    `ps:"ForceAppStorePassword"`
-	ForceEncryptedBackup          any    `ps:"ForceEncryptedBackup"`
-	MaxPasswordAttemptsBeforeWipe any    `ps:"MaxPasswordAttemptsBeforeWipe"`
-	MaxPasswordGracePeriod        any    `ps:"MaxPasswordGracePeriod"`
-	MoviesRating                  any    `ps:"MoviesRating"`
-	PasswordComplexity            any    `ps:"PasswordComplexity"`
-	PasswordExpirationDays        any    `ps:"PasswordExpirationDays"`
-	PasswordHistoryCount          any    `ps:"PasswordHistoryCount"`
-	PasswordMinComplexChars       any    `ps:"PasswordMinComplexChars"`
-	PasswordMinimumLength         any    `ps:"PasswordMinimumLength"`
-	PasswordQuality               any    `ps:"PasswordQuality"`
-	PasswordRequired              any    `ps:"PasswordRequired"`
-	PasswordTimeout               any    `ps:"PasswordTimeout"`
-	PhoneMemoryEncrypted          any    `ps:"PhoneMemoryEncrypted"`
-	Policy                        any    `ps:"Policy"`
-	RegionRatings                 any    `ps:"RegionRatings"`
-	RequireEmailProfile           any    `ps:"RequireEmailProfile"`
-	SmartScreenEnabled            any    `ps:"SmartScreenEnabled"`
-	SystemSecurityTLS             any    `ps:"SystemSecurityTLS"`
-	TargetGroups                  any    `ps:"TargetGroups"`
-	TVShowsRating                 any    `ps:"TVShowsRating"`
-	UserAccountControlStatus      any    `ps:"UserAccountControlStatus"`
-	WLANEnabled                   any    `ps:"WLANEnabled"`
-	WorkFoldersSyncUrl            string `ps:"WorkFoldersSyncUrl"`
+	AccountName                   string   `ps:"AccountName"`
+	AccountUserName               string   `ps:"AccountUserName"`
+	AllowAppStore                 *bool    `ps:"AllowAppStore"`
+	AllowAssistantWhileLocked     *bool    `ps:"AllowAssistantWhileLocked"`
+	AllowConvenienceLogon         *bool    `ps:"AllowConvenienceLogon"`
+	AllowDiagnosticSubmission     *bool    `ps:"AllowDiagnosticSubmission"`
+	AllowiCloudBackup             *bool    `ps:"AllowiCloudBackup"`
+	AllowiCloudDocSync            *bool    `ps:"AllowiCloudDocSync"`
+	AllowiCloudPhotoSync          *bool    `ps:"AllowiCloudPhotoSync"`
+	AllowPassbookWhileLocked      *bool    `ps:"AllowPassbookWhileLocked"`
+	AllowScreenshot               *bool    `ps:"AllowScreenshot"`
+	AllowSimplePassword           *bool    `ps:"AllowSimplePassword"`
+	AllowVideoConferencing        *bool    `ps:"AllowVideoConferencing"`
+	AllowVoiceAssistant           *bool    `ps:"AllowVoiceAssistant"`
+	AllowVoiceDialing             *bool    `ps:"AllowVoiceDialing"`
+	AntiVirusSignatureStatus      *int64   `ps:"AntiVirusSignatureStatus"`
+	AntiVirusStatus               *int64   `ps:"AntiVirusStatus"`
+	AppsRating                    any      `ps:"AppsRating"`       // RatingAppsEntry
+	AutoUpdateStatus              any      `ps:"AutoUpdateStatus"` // AutoUpdateStatusEntry
+	BluetoothEnabled              *bool    `ps:"BluetoothEnabled"`
+	CameraEnabled                 *bool    `ps:"CameraEnabled"`
+	DomainController              any      `ps:"DomainController"` // Fqdn
+	EmailAddress                  string   `ps:"EmailAddress"`
+	EnableRemovableStorage        *bool    `ps:"EnableRemovableStorage"`
+	ExchangeActiveSyncHost        string   `ps:"ExchangeActiveSyncHost"`
+	FirewallStatus                any      `ps:"FirewallStatus"` // Required
+	ForceAppStorePassword         *bool    `ps:"ForceAppStorePassword"`
+	ForceEncryptedBackup          *bool    `ps:"ForceEncryptedBackup"`
+	MaxPasswordAttemptsBeforeWipe *int64   `ps:"MaxPasswordAttemptsBeforeWipe"`
+	MaxPasswordGracePeriod        any      `ps:"MaxPasswordGracePeriod"` // TimeSpan
+	MoviesRating                  any      `ps:"MoviesRating"`           // RatingMovieEntry
+	PasswordComplexity            *int64   `ps:"PasswordComplexity"`
+	PasswordExpirationDays        *int64   `ps:"PasswordExpirationDays"`
+	PasswordHistoryCount          *int64   `ps:"PasswordHistoryCount"`
+	PasswordMinComplexChars       *int64   `ps:"PasswordMinComplexChars"`
+	PasswordMinimumLength         *int64   `ps:"PasswordMinimumLength"`
+	PasswordQuality               *int64   `ps:"PasswordQuality"`
+	PasswordRequired              *bool    `ps:"PasswordRequired"`
+	PasswordTimeout               any      `ps:"PasswordTimeout"` // TimeSpan
+	PhoneMemoryEncrypted          *bool    `ps:"PhoneMemoryEncrypted"`
+	Policy                        any      `ps:"Policy"`        // PolicyIdParameter
+	RegionRatings                 any      `ps:"RegionRatings"` // RatingRegionEntry
+	RequireEmailProfile           *bool    `ps:"RequireEmailProfile"`
+	SmartScreenEnabled            *bool    `ps:"SmartScreenEnabled"`
+	SystemSecurityTLS             *bool    `ps:"SystemSecurityTLS"`
+	TargetGroups                  []string `ps:"TargetGroups"`
+	TVShowsRating                 any      `ps:"TVShowsRating"`            // RatingTvShowEntry
+	UserAccountControlStatus      any      `ps:"UserAccountControlStatus"` // UserAccountControlStatusEntry
+	WLANEnabled                   *bool    `ps:"WLANEnabled"`
+	WorkFoldersSyncUrl            string   `ps:"WorkFoldersSyncUrl"`
 }
 
 func (p NewDeviceConfigurationRuleParams) params() map[string]any {
@@ -6314,49 +6314,49 @@ func (p NewDeviceConfigurationRuleParams) params() map[string]any {
 		m["AccountUserName"] = p.AccountUserName
 	}
 	if p.AllowAppStore != nil {
-		m["AllowAppStore"] = p.AllowAppStore
+		m["AllowAppStore"] = *p.AllowAppStore
 	}
 	if p.AllowAssistantWhileLocked != nil {
-		m["AllowAssistantWhileLocked"] = p.AllowAssistantWhileLocked
+		m["AllowAssistantWhileLocked"] = *p.AllowAssistantWhileLocked
 	}
 	if p.AllowConvenienceLogon != nil {
-		m["AllowConvenienceLogon"] = p.AllowConvenienceLogon
+		m["AllowConvenienceLogon"] = *p.AllowConvenienceLogon
 	}
 	if p.AllowDiagnosticSubmission != nil {
-		m["AllowDiagnosticSubmission"] = p.AllowDiagnosticSubmission
+		m["AllowDiagnosticSubmission"] = *p.AllowDiagnosticSubmission
 	}
 	if p.AllowiCloudBackup != nil {
-		m["AllowiCloudBackup"] = p.AllowiCloudBackup
+		m["AllowiCloudBackup"] = *p.AllowiCloudBackup
 	}
 	if p.AllowiCloudDocSync != nil {
-		m["AllowiCloudDocSync"] = p.AllowiCloudDocSync
+		m["AllowiCloudDocSync"] = *p.AllowiCloudDocSync
 	}
 	if p.AllowiCloudPhotoSync != nil {
-		m["AllowiCloudPhotoSync"] = p.AllowiCloudPhotoSync
+		m["AllowiCloudPhotoSync"] = *p.AllowiCloudPhotoSync
 	}
 	if p.AllowPassbookWhileLocked != nil {
-		m["AllowPassbookWhileLocked"] = p.AllowPassbookWhileLocked
+		m["AllowPassbookWhileLocked"] = *p.AllowPassbookWhileLocked
 	}
 	if p.AllowScreenshot != nil {
-		m["AllowScreenshot"] = p.AllowScreenshot
+		m["AllowScreenshot"] = *p.AllowScreenshot
 	}
 	if p.AllowSimplePassword != nil {
-		m["AllowSimplePassword"] = p.AllowSimplePassword
+		m["AllowSimplePassword"] = *p.AllowSimplePassword
 	}
 	if p.AllowVideoConferencing != nil {
-		m["AllowVideoConferencing"] = p.AllowVideoConferencing
+		m["AllowVideoConferencing"] = *p.AllowVideoConferencing
 	}
 	if p.AllowVoiceAssistant != nil {
-		m["AllowVoiceAssistant"] = p.AllowVoiceAssistant
+		m["AllowVoiceAssistant"] = *p.AllowVoiceAssistant
 	}
 	if p.AllowVoiceDialing != nil {
-		m["AllowVoiceDialing"] = p.AllowVoiceDialing
+		m["AllowVoiceDialing"] = *p.AllowVoiceDialing
 	}
 	if p.AntiVirusSignatureStatus != nil {
-		m["AntiVirusSignatureStatus"] = p.AntiVirusSignatureStatus
+		m["AntiVirusSignatureStatus"] = *p.AntiVirusSignatureStatus
 	}
 	if p.AntiVirusStatus != nil {
-		m["AntiVirusStatus"] = p.AntiVirusStatus
+		m["AntiVirusStatus"] = *p.AntiVirusStatus
 	}
 	if p.AppsRating != nil {
 		m["AppsRating"] = p.AppsRating
@@ -6365,10 +6365,10 @@ func (p NewDeviceConfigurationRuleParams) params() map[string]any {
 		m["AutoUpdateStatus"] = p.AutoUpdateStatus
 	}
 	if p.BluetoothEnabled != nil {
-		m["BluetoothEnabled"] = p.BluetoothEnabled
+		m["BluetoothEnabled"] = *p.BluetoothEnabled
 	}
 	if p.CameraEnabled != nil {
-		m["CameraEnabled"] = p.CameraEnabled
+		m["CameraEnabled"] = *p.CameraEnabled
 	}
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
@@ -6377,7 +6377,7 @@ func (p NewDeviceConfigurationRuleParams) params() map[string]any {
 		m["EmailAddress"] = p.EmailAddress
 	}
 	if p.EnableRemovableStorage != nil {
-		m["EnableRemovableStorage"] = p.EnableRemovableStorage
+		m["EnableRemovableStorage"] = *p.EnableRemovableStorage
 	}
 	if p.ExchangeActiveSyncHost != "" {
 		m["ExchangeActiveSyncHost"] = p.ExchangeActiveSyncHost
@@ -6386,13 +6386,13 @@ func (p NewDeviceConfigurationRuleParams) params() map[string]any {
 		m["FirewallStatus"] = p.FirewallStatus
 	}
 	if p.ForceAppStorePassword != nil {
-		m["ForceAppStorePassword"] = p.ForceAppStorePassword
+		m["ForceAppStorePassword"] = *p.ForceAppStorePassword
 	}
 	if p.ForceEncryptedBackup != nil {
-		m["ForceEncryptedBackup"] = p.ForceEncryptedBackup
+		m["ForceEncryptedBackup"] = *p.ForceEncryptedBackup
 	}
 	if p.MaxPasswordAttemptsBeforeWipe != nil {
-		m["MaxPasswordAttemptsBeforeWipe"] = p.MaxPasswordAttemptsBeforeWipe
+		m["MaxPasswordAttemptsBeforeWipe"] = *p.MaxPasswordAttemptsBeforeWipe
 	}
 	if p.MaxPasswordGracePeriod != nil {
 		m["MaxPasswordGracePeriod"] = p.MaxPasswordGracePeriod
@@ -6401,31 +6401,31 @@ func (p NewDeviceConfigurationRuleParams) params() map[string]any {
 		m["MoviesRating"] = p.MoviesRating
 	}
 	if p.PasswordComplexity != nil {
-		m["PasswordComplexity"] = p.PasswordComplexity
+		m["PasswordComplexity"] = *p.PasswordComplexity
 	}
 	if p.PasswordExpirationDays != nil {
-		m["PasswordExpirationDays"] = p.PasswordExpirationDays
+		m["PasswordExpirationDays"] = *p.PasswordExpirationDays
 	}
 	if p.PasswordHistoryCount != nil {
-		m["PasswordHistoryCount"] = p.PasswordHistoryCount
+		m["PasswordHistoryCount"] = *p.PasswordHistoryCount
 	}
 	if p.PasswordMinComplexChars != nil {
-		m["PasswordMinComplexChars"] = p.PasswordMinComplexChars
+		m["PasswordMinComplexChars"] = *p.PasswordMinComplexChars
 	}
 	if p.PasswordMinimumLength != nil {
-		m["PasswordMinimumLength"] = p.PasswordMinimumLength
+		m["PasswordMinimumLength"] = *p.PasswordMinimumLength
 	}
 	if p.PasswordQuality != nil {
-		m["PasswordQuality"] = p.PasswordQuality
+		m["PasswordQuality"] = *p.PasswordQuality
 	}
 	if p.PasswordRequired != nil {
-		m["PasswordRequired"] = p.PasswordRequired
+		m["PasswordRequired"] = *p.PasswordRequired
 	}
 	if p.PasswordTimeout != nil {
 		m["PasswordTimeout"] = p.PasswordTimeout
 	}
 	if p.PhoneMemoryEncrypted != nil {
-		m["PhoneMemoryEncrypted"] = p.PhoneMemoryEncrypted
+		m["PhoneMemoryEncrypted"] = *p.PhoneMemoryEncrypted
 	}
 	if p.Policy != nil {
 		m["Policy"] = p.Policy
@@ -6434,13 +6434,13 @@ func (p NewDeviceConfigurationRuleParams) params() map[string]any {
 		m["RegionRatings"] = p.RegionRatings
 	}
 	if p.RequireEmailProfile != nil {
-		m["RequireEmailProfile"] = p.RequireEmailProfile
+		m["RequireEmailProfile"] = *p.RequireEmailProfile
 	}
 	if p.SmartScreenEnabled != nil {
-		m["SmartScreenEnabled"] = p.SmartScreenEnabled
+		m["SmartScreenEnabled"] = *p.SmartScreenEnabled
 	}
 	if p.SystemSecurityTLS != nil {
-		m["SystemSecurityTLS"] = p.SystemSecurityTLS
+		m["SystemSecurityTLS"] = *p.SystemSecurityTLS
 	}
 	if p.TargetGroups != nil {
 		m["TargetGroups"] = p.TargetGroups
@@ -6452,7 +6452,7 @@ func (p NewDeviceConfigurationRuleParams) params() map[string]any {
 		m["UserAccountControlStatus"] = p.UserAccountControlStatus
 	}
 	if p.WLANEnabled != nil {
-		m["WLANEnabled"] = p.WLANEnabled
+		m["WLANEnabled"] = *p.WLANEnabled
 	}
 	if p.WorkFoldersSyncUrl != "" {
 		m["WorkFoldersSyncUrl"] = p.WorkFoldersSyncUrl
@@ -6468,7 +6468,7 @@ func (s *Service) NewDeviceConfigurationRule(ctx context.Context, p NewDeviceCon
 // NewDeviceTenantPolicyParams are the parameters of New-DeviceTenantPolicy.
 type NewDeviceTenantPolicyParams struct {
 	Comment string `ps:"Comment"`
-	Enabled bool   `ps:"Enabled"`
+	Enabled *bool  `ps:"Enabled"`
 	Force   bool   `ps:"Force"`
 }
 
@@ -6477,8 +6477,8 @@ func (p NewDeviceTenantPolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -6493,10 +6493,10 @@ func (s *Service) NewDeviceTenantPolicy(ctx context.Context, p NewDeviceTenantPo
 
 // NewDeviceTenantRuleParams are the parameters of New-DeviceTenantRule.
 type NewDeviceTenantRuleParams struct {
-	ApplyPolicyTo           any `ps:"ApplyPolicyTo"`
-	BlockUnsupportedDevices any `ps:"BlockUnsupportedDevices"`
-	DomainController        any `ps:"DomainController"`
-	ExclusionList           any `ps:"ExclusionList"`
+	ApplyPolicyTo           any      `ps:"ApplyPolicyTo"` // PolicyResourceScope
+	BlockUnsupportedDevices *bool    `ps:"BlockUnsupportedDevices"`
+	DomainController        any      `ps:"DomainController"` // Fqdn
+	ExclusionList           []string `ps:"ExclusionList"`
 }
 
 func (p NewDeviceTenantRuleParams) params() map[string]any {
@@ -6505,7 +6505,7 @@ func (p NewDeviceTenantRuleParams) params() map[string]any {
 		m["ApplyPolicyTo"] = p.ApplyPolicyTo
 	}
 	if p.BlockUnsupportedDevices != nil {
-		m["BlockUnsupportedDevices"] = p.BlockUnsupportedDevices
+		m["BlockUnsupportedDevices"] = *p.BlockUnsupportedDevices
 	}
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
@@ -6523,12 +6523,12 @@ func (s *Service) NewDeviceTenantRule(ctx context.Context, p NewDeviceTenantRule
 
 // NewDlpAIPoweredSensitiveInformationTypeParams are the parameters of New-DlpAIPoweredSensitiveInformationType.
 type NewDlpAIPoweredSensitiveInformationTypeParams struct {
-	BaseId any `ps:"BaseId"`
+	BaseId string `ps:"BaseId"`
 }
 
 func (p NewDlpAIPoweredSensitiveInformationTypeParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BaseId != nil {
+	if p.BaseId != "" {
 		m["BaseId"] = p.BaseId
 	}
 	return m
@@ -6582,52 +6582,52 @@ func (s *Service) NewDlpAlertTuningRule(ctx context.Context, p NewDlpAlertTuning
 type NewDlpCompliancePolicyParams struct {
 	Comment                               string   `ps:"Comment"`
 	DisplayName                           string   `ps:"DisplayName"`
-	EndpointDlpAdaptiveScopes             any      `ps:"EndpointDlpAdaptiveScopes"`
-	EndpointDlpAdaptiveScopesException    any      `ps:"EndpointDlpAdaptiveScopesException"`
+	EndpointDlpAdaptiveScopes             []string `ps:"EndpointDlpAdaptiveScopes"`
+	EndpointDlpAdaptiveScopesException    []string `ps:"EndpointDlpAdaptiveScopesException"`
 	EndpointDlpExtendedLocations          string   `ps:"EndpointDlpExtendedLocations"`
-	EndpointDlpLocation                   any      `ps:"EndpointDlpLocation"`
-	EndpointDlpLocationException          any      `ps:"EndpointDlpLocationException"`
-	EnforcementPlanes                     any      `ps:"EnforcementPlanes"`
+	EndpointDlpLocation                   []string `ps:"EndpointDlpLocation"`
+	EndpointDlpLocationException          []string `ps:"EndpointDlpLocationException"`
+	EnforcementPlanes                     []string `ps:"EnforcementPlanes"`
 	ExceptIfOneDriveSharedBy              []string `ps:"ExceptIfOneDriveSharedBy"`
 	ExceptIfOneDriveSharedByMemberOf      []string `ps:"ExceptIfOneDriveSharedByMemberOf"`
-	ExchangeAdaptiveScopes                any      `ps:"ExchangeAdaptiveScopes"`
-	ExchangeAdaptiveScopesException       any      `ps:"ExchangeAdaptiveScopesException"`
-	ExchangeLocation                      any      `ps:"ExchangeLocation"`
+	ExchangeAdaptiveScopes                []string `ps:"ExchangeAdaptiveScopes"`
+	ExchangeAdaptiveScopesException       []string `ps:"ExchangeAdaptiveScopesException"`
+	ExchangeLocation                      []string `ps:"ExchangeLocation"`
 	ExchangeOnPremisesLocation            any      `ps:"ExchangeOnPremisesLocation"`
 	ExchangeSender                        []string `ps:"ExchangeSender"`
 	ExchangeSenderException               []string `ps:"ExchangeSenderException"`
 	ExchangeSenderMemberOf                []string `ps:"ExchangeSenderMemberOf"`
 	ExchangeSenderMemberOfException       []string `ps:"ExchangeSenderMemberOfException"`
 	Force                                 bool     `ps:"Force"`
-	IsFromSmartInsights                   any      `ps:"IsFromSmartInsights"`
+	IsFromSmartInsights                   *bool    `ps:"IsFromSmartInsights"`
 	Locations                             string   `ps:"Locations"`
-	Mode                                  any      `ps:"Mode"`
+	Mode                                  any      `ps:"Mode"` // PolicyMode
 	Name                                  string   `ps:"Name"`
-	OneDriveAdaptiveScopes                any      `ps:"OneDriveAdaptiveScopes"`
-	OneDriveAdaptiveScopesException       any      `ps:"OneDriveAdaptiveScopesException"`
-	OneDriveLocation                      any      `ps:"OneDriveLocation"`
-	OneDriveLocationException             any      `ps:"OneDriveLocationException"`
+	OneDriveAdaptiveScopes                []string `ps:"OneDriveAdaptiveScopes"`
+	OneDriveAdaptiveScopesException       []string `ps:"OneDriveAdaptiveScopesException"`
+	OneDriveLocation                      []string `ps:"OneDriveLocation"`
+	OneDriveLocationException             []string `ps:"OneDriveLocationException"`
 	OneDriveSharedBy                      []string `ps:"OneDriveSharedBy"`
 	OneDriveSharedByMemberOf              []string `ps:"OneDriveSharedByMemberOf"`
-	OnPremisesScannerDlpLocation          any      `ps:"OnPremisesScannerDlpLocation"`
-	OnPremisesScannerDlpLocationException any      `ps:"OnPremisesScannerDlpLocationException"`
-	PolicyRBACScopes                      any      `ps:"PolicyRBACScopes"`
-	PolicyTemplateInfo                    any      `ps:"PolicyTemplateInfo"`
-	PowerBIDlpLocation                    any      `ps:"PowerBIDlpLocation"`
-	PowerBIDlpLocationException           any      `ps:"PowerBIDlpLocationException"`
-	Priority                              any      `ps:"Priority"`
-	SharePointAdaptiveScopes              any      `ps:"SharePointAdaptiveScopes"`
-	SharePointAdaptiveScopesException     any      `ps:"SharePointAdaptiveScopesException"`
-	SharePointLocation                    any      `ps:"SharePointLocation"`
-	SharePointLocationException           any      `ps:"SharePointLocationException"`
+	OnPremisesScannerDlpLocation          []string `ps:"OnPremisesScannerDlpLocation"`
+	OnPremisesScannerDlpLocationException []string `ps:"OnPremisesScannerDlpLocationException"`
+	PolicyRBACScopes                      []string `ps:"PolicyRBACScopes"`
+	PolicyTemplateInfo                    any      `ps:"PolicyTemplateInfo"` // PswsHashtable
+	PowerBIDlpLocation                    []string `ps:"PowerBIDlpLocation"`
+	PowerBIDlpLocationException           []string `ps:"PowerBIDlpLocationException"`
+	Priority                              *int64   `ps:"Priority"`
+	SharePointAdaptiveScopes              []string `ps:"SharePointAdaptiveScopes"`
+	SharePointAdaptiveScopesException     []string `ps:"SharePointAdaptiveScopesException"`
+	SharePointLocation                    []string `ps:"SharePointLocation"`
+	SharePointLocationException           []string `ps:"SharePointLocationException"`
 	SharePointOnPremisesLocationException any      `ps:"SharePointOnPremisesLocationException"`
 	SharePointServerLocation              any      `ps:"SharePointServerLocation"`
-	TeamsAdaptiveScopes                   any      `ps:"TeamsAdaptiveScopes"`
-	TeamsAdaptiveScopesException          any      `ps:"TeamsAdaptiveScopesException"`
-	TeamsLocation                         any      `ps:"TeamsLocation"`
-	TeamsLocationException                any      `ps:"TeamsLocationException"`
-	ThirdPartyAppDlpLocation              any      `ps:"ThirdPartyAppDlpLocation"`
-	ThirdPartyAppDlpLocationException     any      `ps:"ThirdPartyAppDlpLocationException"`
+	TeamsAdaptiveScopes                   []string `ps:"TeamsAdaptiveScopes"`
+	TeamsAdaptiveScopesException          []string `ps:"TeamsAdaptiveScopesException"`
+	TeamsLocation                         []string `ps:"TeamsLocation"`
+	TeamsLocationException                []string `ps:"TeamsLocationException"`
+	ThirdPartyAppDlpLocation              []string `ps:"ThirdPartyAppDlpLocation"`
+	ThirdPartyAppDlpLocationException     []string `ps:"ThirdPartyAppDlpLocationException"`
 	ValidatePolicy                        bool     `ps:"ValidatePolicy"`
 }
 
@@ -6657,10 +6657,10 @@ func (p NewDlpCompliancePolicyParams) params() map[string]any {
 	if p.EnforcementPlanes != nil {
 		m["EnforcementPlanes"] = p.EnforcementPlanes
 	}
-	if len(p.ExceptIfOneDriveSharedBy) > 0 {
+	if p.ExceptIfOneDriveSharedBy != nil {
 		m["ExceptIfOneDriveSharedBy"] = p.ExceptIfOneDriveSharedBy
 	}
-	if len(p.ExceptIfOneDriveSharedByMemberOf) > 0 {
+	if p.ExceptIfOneDriveSharedByMemberOf != nil {
 		m["ExceptIfOneDriveSharedByMemberOf"] = p.ExceptIfOneDriveSharedByMemberOf
 	}
 	if p.ExchangeAdaptiveScopes != nil {
@@ -6675,23 +6675,23 @@ func (p NewDlpCompliancePolicyParams) params() map[string]any {
 	if p.ExchangeOnPremisesLocation != nil {
 		m["ExchangeOnPremisesLocation"] = p.ExchangeOnPremisesLocation
 	}
-	if len(p.ExchangeSender) > 0 {
+	if p.ExchangeSender != nil {
 		m["ExchangeSender"] = p.ExchangeSender
 	}
-	if len(p.ExchangeSenderException) > 0 {
+	if p.ExchangeSenderException != nil {
 		m["ExchangeSenderException"] = p.ExchangeSenderException
 	}
-	if len(p.ExchangeSenderMemberOf) > 0 {
+	if p.ExchangeSenderMemberOf != nil {
 		m["ExchangeSenderMemberOf"] = p.ExchangeSenderMemberOf
 	}
-	if len(p.ExchangeSenderMemberOfException) > 0 {
+	if p.ExchangeSenderMemberOfException != nil {
 		m["ExchangeSenderMemberOfException"] = p.ExchangeSenderMemberOfException
 	}
 	if p.Force {
 		m["Force"] = true
 	}
 	if p.IsFromSmartInsights != nil {
-		m["IsFromSmartInsights"] = p.IsFromSmartInsights
+		m["IsFromSmartInsights"] = *p.IsFromSmartInsights
 	}
 	if p.Locations != "" {
 		m["Locations"] = p.Locations
@@ -6714,10 +6714,10 @@ func (p NewDlpCompliancePolicyParams) params() map[string]any {
 	if p.OneDriveLocationException != nil {
 		m["OneDriveLocationException"] = p.OneDriveLocationException
 	}
-	if len(p.OneDriveSharedBy) > 0 {
+	if p.OneDriveSharedBy != nil {
 		m["OneDriveSharedBy"] = p.OneDriveSharedBy
 	}
-	if len(p.OneDriveSharedByMemberOf) > 0 {
+	if p.OneDriveSharedByMemberOf != nil {
 		m["OneDriveSharedByMemberOf"] = p.OneDriveSharedByMemberOf
 	}
 	if p.OnPremisesScannerDlpLocation != nil {
@@ -6739,7 +6739,7 @@ func (p NewDlpCompliancePolicyParams) params() map[string]any {
 		m["PowerBIDlpLocationException"] = p.PowerBIDlpLocationException
 	}
 	if p.Priority != nil {
-		m["Priority"] = p.Priority
+		m["Priority"] = *p.Priority
 	}
 	if p.SharePointAdaptiveScopes != nil {
 		m["SharePointAdaptiveScopes"] = p.SharePointAdaptiveScopes
@@ -6792,201 +6792,201 @@ func (s *Service) NewDlpCompliancePolicy(ctx context.Context, p NewDlpCompliance
 type NewDlpComplianceRuleParams struct {
 	AccessedBy                                   []string `ps:"AccessedBy"`
 	AccessedByMemberOf                           []string `ps:"AccessedByMemberOf"`
-	AccessScope                                  any      `ps:"AccessScope"`
+	AccessScope                                  any      `ps:"AccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.AccessScope
 	AccessTimeControl                            any      `ps:"AccessTimeControl"`
-	ActivationDate                               any      `ps:"ActivationDate"`
-	AddRecipients                                any      `ps:"AddRecipients"`
+	ActivationDate                               any      `ps:"ActivationDate"` // System.DateTime
+	AddRecipients                                any      `ps:"AddRecipients"`  // PswsHashtable
 	AdvancedRule                                 string   `ps:"AdvancedRule"`
-	AlertProperties                              any      `ps:"AlertProperties"`
-	AnyOfRecipientAddressContainsWords           any      `ps:"AnyOfRecipientAddressContainsWords"`
-	AnyOfRecipientAddressMatchesPatterns         any      `ps:"AnyOfRecipientAddressMatchesPatterns"`
+	AlertProperties                              any      `ps:"AlertProperties"` // PswsHashtable
+	AnyOfRecipientAddressContainsWords           []string `ps:"AnyOfRecipientAddressContainsWords"`
+	AnyOfRecipientAddressMatchesPatterns         []string `ps:"AnyOfRecipientAddressMatchesPatterns"`
 	ApplyBrandingTemplate                        string   `ps:"ApplyBrandingTemplate"`
-	ApplyHtmlDisclaimer                          any      `ps:"ApplyHtmlDisclaimer"`
+	ApplyHtmlDisclaimer                          any      `ps:"ApplyHtmlDisclaimer"` // PswsHashtable
 	AttachmentCountOver                          any      `ps:"AttachmentCountOver"`
-	AttachmentIsNotLabeled                       bool     `ps:"AttachmentIsNotLabeled"`
-	BlockAccess                                  bool     `ps:"BlockAccess"`
-	BlockAccessScope                             any      `ps:"BlockAccessScope"`
+	AttachmentIsNotLabeled                       *bool    `ps:"AttachmentIsNotLabeled"`
+	BlockAccess                                  *bool    `ps:"BlockAccess"`
+	BlockAccessScope                             any      `ps:"BlockAccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.BlockAccessScope
 	Comment                                      string   `ps:"Comment"`
-	ContentCharacterSetContainsWords             any      `ps:"ContentCharacterSetContainsWords"`
-	ContentContainsSensitiveInformation          []string `ps:"ContentContainsSensitiveInformation"`
-	ContentExtensionMatchesWords                 any      `ps:"ContentExtensionMatchesWords"`
-	ContentFileTypeMatches                       any      `ps:"ContentFileTypeMatches"`
-	ContentIsNotLabeled                          bool     `ps:"ContentIsNotLabeled"`
-	ContentIsShared                              bool     `ps:"ContentIsShared"`
+	ContentCharacterSetContainsWords             []string `ps:"ContentCharacterSetContainsWords"`
+	ContentContainsSensitiveInformation          any      `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
+	ContentExtensionMatchesWords                 []string `ps:"ContentExtensionMatchesWords"`
+	ContentFileTypeMatches                       []string `ps:"ContentFileTypeMatches"`
+	ContentIsNotLabeled                          *bool    `ps:"ContentIsNotLabeled"`
+	ContentIsShared                              *bool    `ps:"ContentIsShared"`
 	ContentMissingSensitivityLabel               any      `ps:"ContentMissingSensitivityLabel"`
-	ContentPropertyContainsWords                 any      `ps:"ContentPropertyContainsWords"`
+	ContentPropertyContainsWords                 []string `ps:"ContentPropertyContainsWords"`
 	ContextPropertiesContainWords                any      `ps:"ContextPropertiesContainWords"`
 	DeviceManagementType                         any      `ps:"DeviceManagementType"` // one of: Managed, Unmanaged
-	Disabled                                     bool     `ps:"Disabled"`
+	Disabled                                     *bool    `ps:"Disabled"`
 	DisplayName                                  string   `ps:"DisplayName"`
-	DocumentContainsWords                        any      `ps:"DocumentContainsWords"`
-	DocumentCreatedBy                            any      `ps:"DocumentCreatedBy"`
+	DocumentContainsWords                        []string `ps:"DocumentContainsWords"`
+	DocumentCreatedBy                            []string `ps:"DocumentCreatedBy"`
 	DocumentCreatedByMemberOf                    []string `ps:"DocumentCreatedByMemberOf"`
-	DocumentIsPasswordProtected                  bool     `ps:"DocumentIsPasswordProtected"`
-	DocumentIsUnsupported                        bool     `ps:"DocumentIsUnsupported"`
-	DocumentMatchesPatterns                      any      `ps:"DocumentMatchesPatterns"`
-	DocumentNameMatchesPatterns                  any      `ps:"DocumentNameMatchesPatterns"`
-	DocumentNameMatchesWords                     any      `ps:"DocumentNameMatchesWords"`
-	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`
-	EncryptRMSTemplate                           any      `ps:"EncryptRMSTemplate"`
+	DocumentIsPasswordProtected                  *bool    `ps:"DocumentIsPasswordProtected"`
+	DocumentIsUnsupported                        *bool    `ps:"DocumentIsUnsupported"`
+	DocumentMatchesPatterns                      []string `ps:"DocumentMatchesPatterns"`
+	DocumentNameMatchesPatterns                  []string `ps:"DocumentNameMatchesPatterns"`
+	DocumentNameMatchesWords                     []string `ps:"DocumentNameMatchesWords"`
+	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`   // Microsoft.Exchange.Data.ByteQuantifiedSize
+	EncryptRMSTemplate                           any      `ps:"EncryptRMSTemplate"` // RmsTemplateIdParameter
 	EndpointDlpBrowserRestrictions               []string `ps:"EndpointDlpBrowserRestrictions"`
-	EndpointDlpRestrictions                      []string `ps:"EndpointDlpRestrictions"`
-	EnforcePortalAccess                          bool     `ps:"EnforcePortalAccess"`
-	EvaluateRulePerComponent                     bool     `ps:"EvaluateRulePerComponent"`
+	EndpointDlpRestrictions                      any      `ps:"EndpointDlpRestrictions"` // PswsHashtable[]
+	EnforcePortalAccess                          *bool    `ps:"EnforcePortalAccess"`
+	EvaluateRulePerComponent                     *bool    `ps:"EvaluateRulePerComponent"`
 	ExceptIfAccessedBy                           []string `ps:"ExceptIfAccessedBy"`
 	ExceptIfAccessedByMemberOf                   []string `ps:"ExceptIfAccessedByMemberOf"`
-	ExceptIfAccessScope                          any      `ps:"ExceptIfAccessScope"`
-	ExceptIfAnyOfRecipientAddressContainsWords   any      `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
-	ExceptIfAnyOfRecipientAddressMatchesPatterns any      `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
-	ExceptIfContentCharacterSetContainsWords     any      `ps:"ExceptIfContentCharacterSetContainsWords"`
-	ExceptIfContentContainsSensitiveInformation  []string `ps:"ExceptIfContentContainsSensitiveInformation"`
-	ExceptIfContentExtensionMatchesWords         any      `ps:"ExceptIfContentExtensionMatchesWords"`
-	ExceptIfContentFileTypeMatches               any      `ps:"ExceptIfContentFileTypeMatches"`
-	ExceptIfContentIsShared                      bool     `ps:"ExceptIfContentIsShared"`
-	ExceptIfContentPropertyContainsWords         any      `ps:"ExceptIfContentPropertyContainsWords"`
+	ExceptIfAccessScope                          any      `ps:"ExceptIfAccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.AccessScope
+	ExceptIfAnyOfRecipientAddressContainsWords   []string `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
+	ExceptIfAnyOfRecipientAddressMatchesPatterns []string `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
+	ExceptIfContentCharacterSetContainsWords     []string `ps:"ExceptIfContentCharacterSetContainsWords"`
+	ExceptIfContentContainsSensitiveInformation  any      `ps:"ExceptIfContentContainsSensitiveInformation"` // PswsHashtable[]
+	ExceptIfContentExtensionMatchesWords         []string `ps:"ExceptIfContentExtensionMatchesWords"`
+	ExceptIfContentFileTypeMatches               []string `ps:"ExceptIfContentFileTypeMatches"`
+	ExceptIfContentIsShared                      *bool    `ps:"ExceptIfContentIsShared"`
+	ExceptIfContentPropertyContainsWords         []string `ps:"ExceptIfContentPropertyContainsWords"`
 	ExceptIfContextPropertiesContainWords        any      `ps:"ExceptIfContextPropertiesContainWords"`
 	ExceptIfDeviceManagementType                 any      `ps:"ExceptIfDeviceManagementType"` // one of: Managed, Unmanaged
-	ExceptIfDocumentContainsWords                any      `ps:"ExceptIfDocumentContainsWords"`
-	ExceptIfDocumentCreatedBy                    any      `ps:"ExceptIfDocumentCreatedBy"`
+	ExceptIfDocumentContainsWords                []string `ps:"ExceptIfDocumentContainsWords"`
+	ExceptIfDocumentCreatedBy                    []string `ps:"ExceptIfDocumentCreatedBy"`
 	ExceptIfDocumentCreatedByMemberOf            []string `ps:"ExceptIfDocumentCreatedByMemberOf"`
-	ExceptIfDocumentIsPasswordProtected          bool     `ps:"ExceptIfDocumentIsPasswordProtected"`
-	ExceptIfDocumentIsUnsupported                bool     `ps:"ExceptIfDocumentIsUnsupported"`
-	ExceptIfDocumentMatchesPatterns              any      `ps:"ExceptIfDocumentMatchesPatterns"`
-	ExceptIfDocumentNameMatchesPatterns          any      `ps:"ExceptIfDocumentNameMatchesPatterns"`
-	ExceptIfDocumentNameMatchesWords             any      `ps:"ExceptIfDocumentNameMatchesWords"`
-	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"`
+	ExceptIfDocumentIsPasswordProtected          *bool    `ps:"ExceptIfDocumentIsPasswordProtected"`
+	ExceptIfDocumentIsUnsupported                *bool    `ps:"ExceptIfDocumentIsUnsupported"`
+	ExceptIfDocumentMatchesPatterns              []string `ps:"ExceptIfDocumentMatchesPatterns"`
+	ExceptIfDocumentNameMatchesPatterns          []string `ps:"ExceptIfDocumentNameMatchesPatterns"`
+	ExceptIfDocumentNameMatchesWords             []string `ps:"ExceptIfDocumentNameMatchesWords"`
+	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"` // Microsoft.Exchange.Data.ByteQuantifiedSize
 	ExceptIfFrom                                 []string `ps:"ExceptIfFrom"`
-	ExceptIfFromAddressContainsWords             any      `ps:"ExceptIfFromAddressContainsWords"`
-	ExceptIfFromAddressMatchesPatterns           any      `ps:"ExceptIfFromAddressMatchesPatterns"`
+	ExceptIfFromAddressContainsWords             []string `ps:"ExceptIfFromAddressContainsWords"`
+	ExceptIfFromAddressMatchesPatterns           []string `ps:"ExceptIfFromAddressMatchesPatterns"`
 	ExceptIfFromMemberOf                         []string `ps:"ExceptIfFromMemberOf"`
-	ExceptIfFromScope                            any      `ps:"ExceptIfFromScope"`
-	ExceptIfHasSenderOverride                    bool     `ps:"ExceptIfHasSenderOverride"`
+	ExceptIfFromScope                            any      `ps:"ExceptIfFromScope"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.FromScope
+	ExceptIfHasSenderOverride                    *bool    `ps:"ExceptIfHasSenderOverride"`
 	ExceptIfHeaderContainsTokens                 any      `ps:"ExceptIfHeaderContainsTokens"`
-	ExceptIfHeaderContainsWords                  any      `ps:"ExceptIfHeaderContainsWords"`
-	ExceptIfHeaderMatchesPatterns                any      `ps:"ExceptIfHeaderMatchesPatterns"`
+	ExceptIfHeaderContainsWords                  any      `ps:"ExceptIfHeaderContainsWords"`   // PswsHashtable
+	ExceptIfHeaderMatchesPatterns                any      `ps:"ExceptIfHeaderMatchesPatterns"` // PswsHashtable
 	ExceptIfMessageLabelChangeDetected           any      `ps:"ExceptIfMessageLabelChangeDetected"`
-	ExceptIfMessageSizeOver                      any      `ps:"ExceptIfMessageSizeOver"`
-	ExceptIfMessageTypeMatches                   any      `ps:"ExceptIfMessageTypeMatches"`
-	ExceptIfProcessingLimitExceeded              bool     `ps:"ExceptIfProcessingLimitExceeded"`
-	ExceptIfRecipientADAttributeContainsWords    any      `ps:"ExceptIfRecipientADAttributeContainsWords"`
-	ExceptIfRecipientADAttributeMatchesPatterns  any      `ps:"ExceptIfRecipientADAttributeMatchesPatterns"`
-	ExceptIfRecipientDomainIs                    any      `ps:"ExceptIfRecipientDomainIs"`
-	ExceptIfSenderADAttributeContainsWords       any      `ps:"ExceptIfSenderADAttributeContainsWords"`
-	ExceptIfSenderADAttributeMatchesPatterns     any      `ps:"ExceptIfSenderADAttributeMatchesPatterns"`
-	ExceptIfSenderDomainIs                       any      `ps:"ExceptIfSenderDomainIs"`
-	ExceptIfSenderIPRanges                       any      `ps:"ExceptIfSenderIPRanges"`
-	ExceptIfSentTo                               any      `ps:"ExceptIfSentTo"`
+	ExceptIfMessageSizeOver                      any      `ps:"ExceptIfMessageSizeOver"`    // Microsoft.Exchange.Data.ByteQuantifiedSize
+	ExceptIfMessageTypeMatches                   any      `ps:"ExceptIfMessageTypeMatches"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.MessageTypes
+	ExceptIfProcessingLimitExceeded              *bool    `ps:"ExceptIfProcessingLimitExceeded"`
+	ExceptIfRecipientADAttributeContainsWords    any      `ps:"ExceptIfRecipientADAttributeContainsWords"`   // PswsHashtable
+	ExceptIfRecipientADAttributeMatchesPatterns  any      `ps:"ExceptIfRecipientADAttributeMatchesPatterns"` // PswsHashtable
+	ExceptIfRecipientDomainIs                    []string `ps:"ExceptIfRecipientDomainIs"`
+	ExceptIfSenderADAttributeContainsWords       any      `ps:"ExceptIfSenderADAttributeContainsWords"`   // PswsHashtable
+	ExceptIfSenderADAttributeMatchesPatterns     any      `ps:"ExceptIfSenderADAttributeMatchesPatterns"` // PswsHashtable
+	ExceptIfSenderDomainIs                       []string `ps:"ExceptIfSenderDomainIs"`
+	ExceptIfSenderIPRanges                       []string `ps:"ExceptIfSenderIPRanges"`
+	ExceptIfSentTo                               []string `ps:"ExceptIfSentTo"`
 	ExceptIfSentToMemberOf                       []string `ps:"ExceptIfSentToMemberOf"`
 	ExceptIfSharedWithDomain                     any      `ps:"ExceptIfSharedWithDomain"`
-	ExceptIfSubjectContainsWords                 any      `ps:"ExceptIfSubjectContainsWords"`
-	ExceptIfSubjectMatchesPatterns               any      `ps:"ExceptIfSubjectMatchesPatterns"`
-	ExceptIfSubjectOrBodyContainsWords           any      `ps:"ExceptIfSubjectOrBodyContainsWords"`
-	ExceptIfSubjectOrBodyMatchesPatterns         any      `ps:"ExceptIfSubjectOrBodyMatchesPatterns"`
+	ExceptIfSubjectContainsWords                 []string `ps:"ExceptIfSubjectContainsWords"`
+	ExceptIfSubjectMatchesPatterns               []string `ps:"ExceptIfSubjectMatchesPatterns"`
+	ExceptIfSubjectOrBodyContainsWords           []string `ps:"ExceptIfSubjectOrBodyContainsWords"`
+	ExceptIfSubjectOrBodyMatchesPatterns         []string `ps:"ExceptIfSubjectOrBodyMatchesPatterns"`
 	ExceptIfTeamsSharedWithParticipantCategory   any      `ps:"ExceptIfTeamsSharedWithParticipantCategory"`
-	ExceptIfUnscannableDocumentExtensionIs       any      `ps:"ExceptIfUnscannableDocumentExtensionIs"`
+	ExceptIfUnscannableDocumentExtensionIs       []string `ps:"ExceptIfUnscannableDocumentExtensionIs"`
 	ExceptIfUrlContainsText                      any      `ps:"ExceptIfUrlContainsText"`
-	ExceptIfWithImportance                       any      `ps:"ExceptIfWithImportance"`
-	ExpiryDate                                   any      `ps:"ExpiryDate"`
+	ExceptIfWithImportance                       any      `ps:"ExceptIfWithImportance"` // Microsoft.Office.CompliancePolicy.Tasks.WithImportance
+	ExpiryDate                                   any      `ps:"ExpiryDate"`             // System.DateTime
 	From                                         []string `ps:"From"`
-	FromAddressContainsWords                     any      `ps:"FromAddressContainsWords"`
-	FromAddressMatchesPatterns                   any      `ps:"FromAddressMatchesPatterns"`
+	FromAddressContainsWords                     []string `ps:"FromAddressContainsWords"`
+	FromAddressMatchesPatterns                   []string `ps:"FromAddressMatchesPatterns"`
 	FromMemberOf                                 []string `ps:"FromMemberOf"`
-	FromScope                                    any      `ps:"FromScope"`
-	GenerateAlert                                any      `ps:"GenerateAlert"`
-	GenerateIncidentReport                       any      `ps:"GenerateIncidentReport"`
-	HasActivity                                  any      `ps:"HasActivity"`
+	FromScope                                    any      `ps:"FromScope"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.FromScope
+	GenerateAlert                                []string `ps:"GenerateAlert"`
+	GenerateIncidentReport                       []string `ps:"GenerateIncidentReport"`
+	HasActivity                                  any      `ps:"HasActivity"` // Activity
 	HasLabelDowngradedFrom                       any      `ps:"HasLabelDowngradedFrom"`
-	HasSenderOverride                            bool     `ps:"HasSenderOverride"`
+	HasSenderOverride                            *bool    `ps:"HasSenderOverride"`
 	HeaderContainsTokens                         any      `ps:"HeaderContainsTokens"`
-	HeaderContainsWords                          any      `ps:"HeaderContainsWords"`
-	HeaderMatchesPatterns                        any      `ps:"HeaderMatchesPatterns"`
-	ImmutableId                                  any      `ps:"ImmutableId"`
+	HeaderContainsWords                          any      `ps:"HeaderContainsWords"`   // PswsHashtable
+	HeaderMatchesPatterns                        any      `ps:"HeaderMatchesPatterns"` // PswsHashtable
+	ImmutableId                                  any      `ps:"ImmutableId"`           // System.Guid
 	IncidentReportContent                        []string `ps:"IncidentReportContent"`
 	MapRecipients                                any      `ps:"MapRecipients"`
-	MessageIsNotLabeled                          bool     `ps:"MessageIsNotLabeled"`
+	MessageIsNotLabeled                          *bool    `ps:"MessageIsNotLabeled"`
 	MessageLabelChangeDetected                   any      `ps:"MessageLabelChangeDetected"`
-	MessageSizeOver                              any      `ps:"MessageSizeOver"`
-	MessageTypeMatches                           any      `ps:"MessageTypeMatches"`
-	MipRestrictAccess                            []string `ps:"MipRestrictAccess"`
-	Moderate                                     any      `ps:"Moderate"`
-	ModifySubject                                any      `ps:"ModifySubject"`
-	MoveToQuarantineLocation                     bool     `ps:"MoveToQuarantineLocation"`
+	MessageSizeOver                              any      `ps:"MessageSizeOver"`    // Microsoft.Exchange.Data.ByteQuantifiedSize
+	MessageTypeMatches                           any      `ps:"MessageTypeMatches"` // MessageTypes
+	MipRestrictAccess                            any      `ps:"MipRestrictAccess"`  // PswsHashtable[]
+	Moderate                                     any      `ps:"Moderate"`           // PswsHashtable
+	ModifySubject                                any      `ps:"ModifySubject"`      // PswsHashtable
+	MoveToQuarantineLocation                     *bool    `ps:"MoveToQuarantineLocation"`
 	Name                                         string   `ps:"Name"`
-	NonBifurcatingAccessScope                    any      `ps:"NonBifurcatingAccessScope"`
+	NonBifurcatingAccessScope                    any      `ps:"NonBifurcatingAccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.NonBifurcatingAccessScope
 	NotifyAllowOverride                          []string `ps:"NotifyAllowOverride"`
 	NotifyEmailCustomSenderDisplayName           string   `ps:"NotifyEmailCustomSenderDisplayName"`
 	NotifyEmailCustomSubject                     string   `ps:"NotifyEmailCustomSubject"`
 	NotifyEmailCustomText                        string   `ps:"NotifyEmailCustomText"`
-	NotifyEmailExchangeIncludeAttachment         bool     `ps:"NotifyEmailExchangeIncludeAttachment"`
-	NotifyEmailOnedriveRemediationActions        any      `ps:"NotifyEmailOnedriveRemediationActions"`
+	NotifyEmailExchangeIncludeAttachment         *bool    `ps:"NotifyEmailExchangeIncludeAttachment"`
+	NotifyEmailOnedriveRemediationActions        any      `ps:"NotifyEmailOnedriveRemediationActions"` // NotifyEmailRemediationActions
 	NotifyEndpointUser                           any      `ps:"NotifyEndpointUser"`
 	NotifyJustificationCustomText                string   `ps:"NotifyJustificationCustomText"`
 	NotifyJustificationCustomTextTranslations    any      `ps:"NotifyJustificationCustomTextTranslations"`
-	NotifyOverrideRequirements                   any      `ps:"NotifyOverrideRequirements"`
+	NotifyOverrideRequirements                   any      `ps:"NotifyOverrideRequirements"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyOverrideRequirements
 	NotifyPolicyTipCustomDialog                  string   `ps:"NotifyPolicyTipCustomDialog"`
 	NotifyPolicyTipCustomText                    string   `ps:"NotifyPolicyTipCustomText"`
-	NotifyPolicyTipCustomTextTranslations        any      `ps:"NotifyPolicyTipCustomTextTranslations"`
-	NotifyPolicyTipDisplayOption                 any      `ps:"NotifyPolicyTipDisplayOption"`
+	NotifyPolicyTipCustomTextTranslations        []string `ps:"NotifyPolicyTipCustomTextTranslations"`
+	NotifyPolicyTipDisplayOption                 any      `ps:"NotifyPolicyTipDisplayOption"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyTipDisplayOption
 	NotifyPolicyTipUrl                           string   `ps:"NotifyPolicyTipUrl"`
-	NotifyUser                                   any      `ps:"NotifyUser"`
-	NotifyUserType                               any      `ps:"NotifyUserType"`
-	OnPremisesScannerDlpRestrictions             []string `ps:"OnPremisesScannerDlpRestrictions"`
-	Policy                                       any      `ps:"Policy"`
+	NotifyUser                                   []string `ps:"NotifyUser"`
+	NotifyUserType                               any      `ps:"NotifyUserType"`                   // Microsoft.Office.CompliancePolicy.PolicyEvaluation.NotifyUserType
+	OnPremisesScannerDlpRestrictions             any      `ps:"OnPremisesScannerDlpRestrictions"` // PswsHashtable[]
+	Policy                                       any      `ps:"Policy"`                           // PolicyIdParameter
 	PowerBIDlpRestrictions                       []string `ps:"PowerBIDlpRestrictions"`
 	PrependSubject                               string   `ps:"PrependSubject"`
-	Priority                                     any      `ps:"Priority"`
-	ProcessingLimitExceeded                      bool     `ps:"ProcessingLimitExceeded"`
-	Quarantine                                   bool     `ps:"Quarantine"`
-	RecipientADAttributeContainsWords            any      `ps:"RecipientADAttributeContainsWords"`
-	RecipientADAttributeMatchesPatterns          any      `ps:"RecipientADAttributeMatchesPatterns"`
-	RecipientDomainIs                            any      `ps:"RecipientDomainIs"`
+	Priority                                     *int64   `ps:"Priority"`
+	ProcessingLimitExceeded                      *bool    `ps:"ProcessingLimitExceeded"`
+	Quarantine                                   *bool    `ps:"Quarantine"`
+	RecipientADAttributeContainsWords            any      `ps:"RecipientADAttributeContainsWords"`   // PswsHashtable
+	RecipientADAttributeMatchesPatterns          any      `ps:"RecipientADAttributeMatchesPatterns"` // PswsHashtable
+	RecipientDomainIs                            []string `ps:"RecipientDomainIs"`
 	RedactSensitiveInfo                          any      `ps:"RedactSensitiveInfo"`
 	RedirectMessageTo                            []string `ps:"RedirectMessageTo"`
-	RemoveHeader                                 any      `ps:"RemoveHeader"`
-	RemoveRMSTemplate                            bool     `ps:"RemoveRMSTemplate"`
-	ReportSeverityLevel                          any      `ps:"ReportSeverityLevel"`
-	RestrictAccess                               []string `ps:"RestrictAccess"`
-	RestrictBrowserAccess                        bool     `ps:"RestrictBrowserAccess"`
-	RestrictWebGrounding                         bool     `ps:"RestrictWebGrounding"`
-	RuleErrorAction                              any      `ps:"RuleErrorAction"`
-	SenderADAttributeContainsWords               any      `ps:"SenderADAttributeContainsWords"`
-	SenderADAttributeMatchesPatterns             any      `ps:"SenderADAttributeMatchesPatterns"`
-	SenderAddressLocation                        any      `ps:"SenderAddressLocation"`
-	SenderDomainIs                               any      `ps:"SenderDomainIs"`
-	SenderIPRanges                               any      `ps:"SenderIPRanges"`
+	RemoveHeader                                 []string `ps:"RemoveHeader"`
+	RemoveRMSTemplate                            *bool    `ps:"RemoveRMSTemplate"`
+	ReportSeverityLevel                          any      `ps:"ReportSeverityLevel"` // RuleSeverity
+	RestrictAccess                               any      `ps:"RestrictAccess"`      // System.Collections.Hashtable[]
+	RestrictBrowserAccess                        *bool    `ps:"RestrictBrowserAccess"`
+	RestrictWebGrounding                         *bool    `ps:"RestrictWebGrounding"`
+	RuleErrorAction                              any      `ps:"RuleErrorAction"`                  // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyRuleErrorAction
+	SenderADAttributeContainsWords               any      `ps:"SenderADAttributeContainsWords"`   // PswsHashtable
+	SenderADAttributeMatchesPatterns             any      `ps:"SenderADAttributeMatchesPatterns"` // PswsHashtable
+	SenderAddressLocation                        any      `ps:"SenderAddressLocation"`            // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicySenderAddressLocation
+	SenderDomainIs                               []string `ps:"SenderDomainIs"`
+	SenderIPRanges                               []string `ps:"SenderIPRanges"`
 	SenderType                                   any      `ps:"SenderType"`
-	SentTo                                       any      `ps:"SentTo"`
+	SentTo                                       []string `ps:"SentTo"`
 	SentToMemberOf                               []string `ps:"SentToMemberOf"`
-	SetHeader                                    any      `ps:"SetHeader"`
+	SetHeader                                    any      `ps:"SetHeader"` // PswsHashtable
 	SharedByIRMAgentRisk                         any      `ps:"SharedByIRMAgentRisk"`
-	SharedByIRMUserRisk                          any      `ps:"SharedByIRMUserRisk"`
+	SharedByIRMUserRisk                          []string `ps:"SharedByIRMUserRisk"`
 	SharedWithDomain                             any      `ps:"SharedWithDomain"`
 	SharepointBlockDomains                       any      `ps:"SharepointBlockDomains"`
 	SharepointBlockDomainsExcept                 any      `ps:"SharepointBlockDomainsExcept"`
-	SharepointBlockDomainsOrUsers                bool     `ps:"SharepointBlockDomainsOrUsers"`
+	SharepointBlockDomainsOrUsers                *bool    `ps:"SharepointBlockDomainsOrUsers"`
 	SharepointBlockUsers                         any      `ps:"SharepointBlockUsers"`
 	SharepointBlockUsersExcept                   any      `ps:"SharepointBlockUsersExcept"`
-	SharepointMoveToQuarantineLocation           bool     `ps:"SharepointMoveToQuarantineLocation"`
-	StopPolicyProcessing                         bool     `ps:"StopPolicyProcessing"`
-	SubjectContainsWords                         any      `ps:"SubjectContainsWords"`
-	SubjectMatchesPatterns                       any      `ps:"SubjectMatchesPatterns"`
-	SubjectOrBodyContainsWords                   any      `ps:"SubjectOrBodyContainsWords"`
-	SubjectOrBodyMatchesPatterns                 any      `ps:"SubjectOrBodyMatchesPatterns"`
+	SharepointMoveToQuarantineLocation           *bool    `ps:"SharepointMoveToQuarantineLocation"`
+	StopPolicyProcessing                         *bool    `ps:"StopPolicyProcessing"`
+	SubjectContainsWords                         []string `ps:"SubjectContainsWords"`
+	SubjectMatchesPatterns                       []string `ps:"SubjectMatchesPatterns"`
+	SubjectOrBodyContainsWords                   []string `ps:"SubjectOrBodyContainsWords"`
+	SubjectOrBodyMatchesPatterns                 []string `ps:"SubjectOrBodyMatchesPatterns"`
 	TeamsSharedWithParticipantCategory           any      `ps:"TeamsSharedWithParticipantCategory"`
 	ThirdPartyAppDlpRestrictions                 []string `ps:"ThirdPartyAppDlpRestrictions"`
 	TriggerPowerAutomateFlow                     string   `ps:"TriggerPowerAutomateFlow"`
-	UnscannableDocumentExtensionIs               any      `ps:"UnscannableDocumentExtensionIs"`
+	UnscannableDocumentExtensionIs               []string `ps:"UnscannableDocumentExtensionIs"`
 	UrlContainsText                              any      `ps:"UrlContainsText"`
 	ValidateRule                                 bool     `ps:"ValidateRule"`
-	WithImportance                               any      `ps:"WithImportance"`
+	WithImportance                               any      `ps:"WithImportance"` // Microsoft.Office.CompliancePolicy.Tasks.WithImportance
 }
 
 func (p NewDlpComplianceRuleParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.AccessedBy) > 0 {
+	if p.AccessedBy != nil {
 		m["AccessedBy"] = p.AccessedBy
 	}
-	if len(p.AccessedByMemberOf) > 0 {
+	if p.AccessedByMemberOf != nil {
 		m["AccessedByMemberOf"] = p.AccessedByMemberOf
 	}
 	if p.AccessScope != nil {
@@ -7022,11 +7022,11 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.AttachmentCountOver != nil {
 		m["AttachmentCountOver"] = p.AttachmentCountOver
 	}
-	if p.AttachmentIsNotLabeled {
-		m["AttachmentIsNotLabeled"] = true
+	if p.AttachmentIsNotLabeled != nil {
+		m["AttachmentIsNotLabeled"] = *p.AttachmentIsNotLabeled
 	}
-	if p.BlockAccess {
-		m["BlockAccess"] = true
+	if p.BlockAccess != nil {
+		m["BlockAccess"] = *p.BlockAccess
 	}
 	if p.BlockAccessScope != nil {
 		m["BlockAccessScope"] = p.BlockAccessScope
@@ -7037,7 +7037,7 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ContentCharacterSetContainsWords != nil {
 		m["ContentCharacterSetContainsWords"] = p.ContentCharacterSetContainsWords
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
 	if p.ContentExtensionMatchesWords != nil {
@@ -7046,11 +7046,11 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ContentFileTypeMatches != nil {
 		m["ContentFileTypeMatches"] = p.ContentFileTypeMatches
 	}
-	if p.ContentIsNotLabeled {
-		m["ContentIsNotLabeled"] = true
+	if p.ContentIsNotLabeled != nil {
+		m["ContentIsNotLabeled"] = *p.ContentIsNotLabeled
 	}
-	if p.ContentIsShared {
-		m["ContentIsShared"] = true
+	if p.ContentIsShared != nil {
+		m["ContentIsShared"] = *p.ContentIsShared
 	}
 	if p.ContentMissingSensitivityLabel != nil {
 		m["ContentMissingSensitivityLabel"] = p.ContentMissingSensitivityLabel
@@ -7064,8 +7064,8 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.DeviceManagementType != nil {
 		m["DeviceManagementType"] = p.DeviceManagementType
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
 	if p.DisplayName != "" {
 		m["DisplayName"] = p.DisplayName
@@ -7076,14 +7076,14 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.DocumentCreatedBy != nil {
 		m["DocumentCreatedBy"] = p.DocumentCreatedBy
 	}
-	if len(p.DocumentCreatedByMemberOf) > 0 {
+	if p.DocumentCreatedByMemberOf != nil {
 		m["DocumentCreatedByMemberOf"] = p.DocumentCreatedByMemberOf
 	}
-	if p.DocumentIsPasswordProtected {
-		m["DocumentIsPasswordProtected"] = true
+	if p.DocumentIsPasswordProtected != nil {
+		m["DocumentIsPasswordProtected"] = *p.DocumentIsPasswordProtected
 	}
-	if p.DocumentIsUnsupported {
-		m["DocumentIsUnsupported"] = true
+	if p.DocumentIsUnsupported != nil {
+		m["DocumentIsUnsupported"] = *p.DocumentIsUnsupported
 	}
 	if p.DocumentMatchesPatterns != nil {
 		m["DocumentMatchesPatterns"] = p.DocumentMatchesPatterns
@@ -7100,22 +7100,22 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.EncryptRMSTemplate != nil {
 		m["EncryptRMSTemplate"] = p.EncryptRMSTemplate
 	}
-	if len(p.EndpointDlpBrowserRestrictions) > 0 {
+	if p.EndpointDlpBrowserRestrictions != nil {
 		m["EndpointDlpBrowserRestrictions"] = p.EndpointDlpBrowserRestrictions
 	}
-	if len(p.EndpointDlpRestrictions) > 0 {
+	if p.EndpointDlpRestrictions != nil {
 		m["EndpointDlpRestrictions"] = p.EndpointDlpRestrictions
 	}
-	if p.EnforcePortalAccess {
-		m["EnforcePortalAccess"] = true
+	if p.EnforcePortalAccess != nil {
+		m["EnforcePortalAccess"] = *p.EnforcePortalAccess
 	}
-	if p.EvaluateRulePerComponent {
-		m["EvaluateRulePerComponent"] = true
+	if p.EvaluateRulePerComponent != nil {
+		m["EvaluateRulePerComponent"] = *p.EvaluateRulePerComponent
 	}
-	if len(p.ExceptIfAccessedBy) > 0 {
+	if p.ExceptIfAccessedBy != nil {
 		m["ExceptIfAccessedBy"] = p.ExceptIfAccessedBy
 	}
-	if len(p.ExceptIfAccessedByMemberOf) > 0 {
+	if p.ExceptIfAccessedByMemberOf != nil {
 		m["ExceptIfAccessedByMemberOf"] = p.ExceptIfAccessedByMemberOf
 	}
 	if p.ExceptIfAccessScope != nil {
@@ -7130,7 +7130,7 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfContentCharacterSetContainsWords != nil {
 		m["ExceptIfContentCharacterSetContainsWords"] = p.ExceptIfContentCharacterSetContainsWords
 	}
-	if len(p.ExceptIfContentContainsSensitiveInformation) > 0 {
+	if p.ExceptIfContentContainsSensitiveInformation != nil {
 		m["ExceptIfContentContainsSensitiveInformation"] = p.ExceptIfContentContainsSensitiveInformation
 	}
 	if p.ExceptIfContentExtensionMatchesWords != nil {
@@ -7139,8 +7139,8 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfContentFileTypeMatches != nil {
 		m["ExceptIfContentFileTypeMatches"] = p.ExceptIfContentFileTypeMatches
 	}
-	if p.ExceptIfContentIsShared {
-		m["ExceptIfContentIsShared"] = true
+	if p.ExceptIfContentIsShared != nil {
+		m["ExceptIfContentIsShared"] = *p.ExceptIfContentIsShared
 	}
 	if p.ExceptIfContentPropertyContainsWords != nil {
 		m["ExceptIfContentPropertyContainsWords"] = p.ExceptIfContentPropertyContainsWords
@@ -7157,14 +7157,14 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentCreatedBy != nil {
 		m["ExceptIfDocumentCreatedBy"] = p.ExceptIfDocumentCreatedBy
 	}
-	if len(p.ExceptIfDocumentCreatedByMemberOf) > 0 {
+	if p.ExceptIfDocumentCreatedByMemberOf != nil {
 		m["ExceptIfDocumentCreatedByMemberOf"] = p.ExceptIfDocumentCreatedByMemberOf
 	}
-	if p.ExceptIfDocumentIsPasswordProtected {
-		m["ExceptIfDocumentIsPasswordProtected"] = true
+	if p.ExceptIfDocumentIsPasswordProtected != nil {
+		m["ExceptIfDocumentIsPasswordProtected"] = *p.ExceptIfDocumentIsPasswordProtected
 	}
-	if p.ExceptIfDocumentIsUnsupported {
-		m["ExceptIfDocumentIsUnsupported"] = true
+	if p.ExceptIfDocumentIsUnsupported != nil {
+		m["ExceptIfDocumentIsUnsupported"] = *p.ExceptIfDocumentIsUnsupported
 	}
 	if p.ExceptIfDocumentMatchesPatterns != nil {
 		m["ExceptIfDocumentMatchesPatterns"] = p.ExceptIfDocumentMatchesPatterns
@@ -7178,7 +7178,7 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
-	if len(p.ExceptIfFrom) > 0 {
+	if p.ExceptIfFrom != nil {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
 	if p.ExceptIfFromAddressContainsWords != nil {
@@ -7187,14 +7187,14 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfFromAddressMatchesPatterns != nil {
 		m["ExceptIfFromAddressMatchesPatterns"] = p.ExceptIfFromAddressMatchesPatterns
 	}
-	if len(p.ExceptIfFromMemberOf) > 0 {
+	if p.ExceptIfFromMemberOf != nil {
 		m["ExceptIfFromMemberOf"] = p.ExceptIfFromMemberOf
 	}
 	if p.ExceptIfFromScope != nil {
 		m["ExceptIfFromScope"] = p.ExceptIfFromScope
 	}
-	if p.ExceptIfHasSenderOverride {
-		m["ExceptIfHasSenderOverride"] = true
+	if p.ExceptIfHasSenderOverride != nil {
+		m["ExceptIfHasSenderOverride"] = *p.ExceptIfHasSenderOverride
 	}
 	if p.ExceptIfHeaderContainsTokens != nil {
 		m["ExceptIfHeaderContainsTokens"] = p.ExceptIfHeaderContainsTokens
@@ -7214,8 +7214,8 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfMessageTypeMatches != nil {
 		m["ExceptIfMessageTypeMatches"] = p.ExceptIfMessageTypeMatches
 	}
-	if p.ExceptIfProcessingLimitExceeded {
-		m["ExceptIfProcessingLimitExceeded"] = true
+	if p.ExceptIfProcessingLimitExceeded != nil {
+		m["ExceptIfProcessingLimitExceeded"] = *p.ExceptIfProcessingLimitExceeded
 	}
 	if p.ExceptIfRecipientADAttributeContainsWords != nil {
 		m["ExceptIfRecipientADAttributeContainsWords"] = p.ExceptIfRecipientADAttributeContainsWords
@@ -7241,7 +7241,7 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfSentTo != nil {
 		m["ExceptIfSentTo"] = p.ExceptIfSentTo
 	}
-	if len(p.ExceptIfSentToMemberOf) > 0 {
+	if p.ExceptIfSentToMemberOf != nil {
 		m["ExceptIfSentToMemberOf"] = p.ExceptIfSentToMemberOf
 	}
 	if p.ExceptIfSharedWithDomain != nil {
@@ -7274,7 +7274,7 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ExpiryDate != nil {
 		m["ExpiryDate"] = p.ExpiryDate
 	}
-	if len(p.From) > 0 {
+	if p.From != nil {
 		m["From"] = p.From
 	}
 	if p.FromAddressContainsWords != nil {
@@ -7283,7 +7283,7 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.FromAddressMatchesPatterns != nil {
 		m["FromAddressMatchesPatterns"] = p.FromAddressMatchesPatterns
 	}
-	if len(p.FromMemberOf) > 0 {
+	if p.FromMemberOf != nil {
 		m["FromMemberOf"] = p.FromMemberOf
 	}
 	if p.FromScope != nil {
@@ -7301,8 +7301,8 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.HasLabelDowngradedFrom != nil {
 		m["HasLabelDowngradedFrom"] = p.HasLabelDowngradedFrom
 	}
-	if p.HasSenderOverride {
-		m["HasSenderOverride"] = true
+	if p.HasSenderOverride != nil {
+		m["HasSenderOverride"] = *p.HasSenderOverride
 	}
 	if p.HeaderContainsTokens != nil {
 		m["HeaderContainsTokens"] = p.HeaderContainsTokens
@@ -7316,14 +7316,14 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ImmutableId != nil {
 		m["ImmutableId"] = p.ImmutableId
 	}
-	if len(p.IncidentReportContent) > 0 {
+	if p.IncidentReportContent != nil {
 		m["IncidentReportContent"] = p.IncidentReportContent
 	}
 	if p.MapRecipients != nil {
 		m["MapRecipients"] = p.MapRecipients
 	}
-	if p.MessageIsNotLabeled {
-		m["MessageIsNotLabeled"] = true
+	if p.MessageIsNotLabeled != nil {
+		m["MessageIsNotLabeled"] = *p.MessageIsNotLabeled
 	}
 	if p.MessageLabelChangeDetected != nil {
 		m["MessageLabelChangeDetected"] = p.MessageLabelChangeDetected
@@ -7334,7 +7334,7 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.MessageTypeMatches != nil {
 		m["MessageTypeMatches"] = p.MessageTypeMatches
 	}
-	if len(p.MipRestrictAccess) > 0 {
+	if p.MipRestrictAccess != nil {
 		m["MipRestrictAccess"] = p.MipRestrictAccess
 	}
 	if p.Moderate != nil {
@@ -7343,8 +7343,8 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ModifySubject != nil {
 		m["ModifySubject"] = p.ModifySubject
 	}
-	if p.MoveToQuarantineLocation {
-		m["MoveToQuarantineLocation"] = true
+	if p.MoveToQuarantineLocation != nil {
+		m["MoveToQuarantineLocation"] = *p.MoveToQuarantineLocation
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -7352,7 +7352,7 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.NonBifurcatingAccessScope != nil {
 		m["NonBifurcatingAccessScope"] = p.NonBifurcatingAccessScope
 	}
-	if len(p.NotifyAllowOverride) > 0 {
+	if p.NotifyAllowOverride != nil {
 		m["NotifyAllowOverride"] = p.NotifyAllowOverride
 	}
 	if p.NotifyEmailCustomSenderDisplayName != "" {
@@ -7364,8 +7364,8 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.NotifyEmailCustomText != "" {
 		m["NotifyEmailCustomText"] = p.NotifyEmailCustomText
 	}
-	if p.NotifyEmailExchangeIncludeAttachment {
-		m["NotifyEmailExchangeIncludeAttachment"] = true
+	if p.NotifyEmailExchangeIncludeAttachment != nil {
+		m["NotifyEmailExchangeIncludeAttachment"] = *p.NotifyEmailExchangeIncludeAttachment
 	}
 	if p.NotifyEmailOnedriveRemediationActions != nil {
 		m["NotifyEmailOnedriveRemediationActions"] = p.NotifyEmailOnedriveRemediationActions
@@ -7403,26 +7403,26 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.NotifyUserType != nil {
 		m["NotifyUserType"] = p.NotifyUserType
 	}
-	if len(p.OnPremisesScannerDlpRestrictions) > 0 {
+	if p.OnPremisesScannerDlpRestrictions != nil {
 		m["OnPremisesScannerDlpRestrictions"] = p.OnPremisesScannerDlpRestrictions
 	}
 	if p.Policy != nil {
 		m["Policy"] = p.Policy
 	}
-	if len(p.PowerBIDlpRestrictions) > 0 {
+	if p.PowerBIDlpRestrictions != nil {
 		m["PowerBIDlpRestrictions"] = p.PowerBIDlpRestrictions
 	}
 	if p.PrependSubject != "" {
 		m["PrependSubject"] = p.PrependSubject
 	}
 	if p.Priority != nil {
-		m["Priority"] = p.Priority
+		m["Priority"] = *p.Priority
 	}
-	if p.ProcessingLimitExceeded {
-		m["ProcessingLimitExceeded"] = true
+	if p.ProcessingLimitExceeded != nil {
+		m["ProcessingLimitExceeded"] = *p.ProcessingLimitExceeded
 	}
-	if p.Quarantine {
-		m["Quarantine"] = true
+	if p.Quarantine != nil {
+		m["Quarantine"] = *p.Quarantine
 	}
 	if p.RecipientADAttributeContainsWords != nil {
 		m["RecipientADAttributeContainsWords"] = p.RecipientADAttributeContainsWords
@@ -7436,26 +7436,26 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.RedactSensitiveInfo != nil {
 		m["RedactSensitiveInfo"] = p.RedactSensitiveInfo
 	}
-	if len(p.RedirectMessageTo) > 0 {
+	if p.RedirectMessageTo != nil {
 		m["RedirectMessageTo"] = p.RedirectMessageTo
 	}
 	if p.RemoveHeader != nil {
 		m["RemoveHeader"] = p.RemoveHeader
 	}
-	if p.RemoveRMSTemplate {
-		m["RemoveRMSTemplate"] = true
+	if p.RemoveRMSTemplate != nil {
+		m["RemoveRMSTemplate"] = *p.RemoveRMSTemplate
 	}
 	if p.ReportSeverityLevel != nil {
 		m["ReportSeverityLevel"] = p.ReportSeverityLevel
 	}
-	if len(p.RestrictAccess) > 0 {
+	if p.RestrictAccess != nil {
 		m["RestrictAccess"] = p.RestrictAccess
 	}
-	if p.RestrictBrowserAccess {
-		m["RestrictBrowserAccess"] = true
+	if p.RestrictBrowserAccess != nil {
+		m["RestrictBrowserAccess"] = *p.RestrictBrowserAccess
 	}
-	if p.RestrictWebGrounding {
-		m["RestrictWebGrounding"] = true
+	if p.RestrictWebGrounding != nil {
+		m["RestrictWebGrounding"] = *p.RestrictWebGrounding
 	}
 	if p.RuleErrorAction != nil {
 		m["RuleErrorAction"] = p.RuleErrorAction
@@ -7481,7 +7481,7 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.SentTo != nil {
 		m["SentTo"] = p.SentTo
 	}
-	if len(p.SentToMemberOf) > 0 {
+	if p.SentToMemberOf != nil {
 		m["SentToMemberOf"] = p.SentToMemberOf
 	}
 	if p.SetHeader != nil {
@@ -7502,8 +7502,8 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.SharepointBlockDomainsExcept != nil {
 		m["SharepointBlockDomainsExcept"] = p.SharepointBlockDomainsExcept
 	}
-	if p.SharepointBlockDomainsOrUsers {
-		m["SharepointBlockDomainsOrUsers"] = true
+	if p.SharepointBlockDomainsOrUsers != nil {
+		m["SharepointBlockDomainsOrUsers"] = *p.SharepointBlockDomainsOrUsers
 	}
 	if p.SharepointBlockUsers != nil {
 		m["SharepointBlockUsers"] = p.SharepointBlockUsers
@@ -7511,11 +7511,11 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.SharepointBlockUsersExcept != nil {
 		m["SharepointBlockUsersExcept"] = p.SharepointBlockUsersExcept
 	}
-	if p.SharepointMoveToQuarantineLocation {
-		m["SharepointMoveToQuarantineLocation"] = true
+	if p.SharepointMoveToQuarantineLocation != nil {
+		m["SharepointMoveToQuarantineLocation"] = *p.SharepointMoveToQuarantineLocation
 	}
-	if p.StopPolicyProcessing {
-		m["StopPolicyProcessing"] = true
+	if p.StopPolicyProcessing != nil {
+		m["StopPolicyProcessing"] = *p.StopPolicyProcessing
 	}
 	if p.SubjectContainsWords != nil {
 		m["SubjectContainsWords"] = p.SubjectContainsWords
@@ -7532,7 +7532,7 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.TeamsSharedWithParticipantCategory != nil {
 		m["TeamsSharedWithParticipantCategory"] = p.TeamsSharedWithParticipantCategory
 	}
-	if len(p.ThirdPartyAppDlpRestrictions) > 0 {
+	if p.ThirdPartyAppDlpRestrictions != nil {
 		m["ThirdPartyAppDlpRestrictions"] = p.ThirdPartyAppDlpRestrictions
 	}
 	if p.TriggerPowerAutomateFlow != "" {
@@ -7560,12 +7560,12 @@ func (s *Service) NewDlpComplianceRule(ctx context.Context, p NewDlpComplianceRu
 
 // NewDlpEdmSchemaParams are the parameters of New-DlpEdmSchema.
 type NewDlpEdmSchemaParams struct {
-	FileData []string `ps:"FileData"`
+	FileData any `ps:"FileData"` // Byte[]
 }
 
 func (p NewDlpEdmSchemaParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.FileData) > 0 {
+	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
 	return m
@@ -7578,11 +7578,11 @@ func (s *Service) NewDlpEdmSchema(ctx context.Context, p NewDlpEdmSchemaParams) 
 
 // NewDlpFingerprintParams are the parameters of New-DlpFingerprint.
 type NewDlpFingerprintParams struct {
-	Description     string   `ps:"Description"`
-	FileData        []string `ps:"FileData"`
-	IsExact         bool     `ps:"IsExact"`
-	Threshold       any      `ps:"Threshold"`
-	ThresholdConfig any      `ps:"ThresholdConfig"`
+	Description     string `ps:"Description"`
+	FileData        any    `ps:"FileData"` // Byte[]
+	IsExact         *bool  `ps:"IsExact"`
+	Threshold       *int64 `ps:"Threshold"`
+	ThresholdConfig any    `ps:"ThresholdConfig"` // PswsHashtable
 }
 
 func (p NewDlpFingerprintParams) params() map[string]any {
@@ -7590,14 +7590,14 @@ func (p NewDlpFingerprintParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if len(p.FileData) > 0 {
+	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
-	if p.IsExact {
-		m["IsExact"] = true
+	if p.IsExact != nil {
+		m["IsExact"] = *p.IsExact
 	}
 	if p.Threshold != nil {
-		m["Threshold"] = p.Threshold
+		m["Threshold"] = *p.Threshold
 	}
 	if p.ThresholdConfig != nil {
 		m["ThresholdConfig"] = p.ThresholdConfig
@@ -7612,13 +7612,13 @@ func (s *Service) NewDlpFingerprint(ctx context.Context, p NewDlpFingerprintPara
 
 // NewDlpKeywordDictionaryParams are the parameters of New-DlpKeywordDictionary.
 type NewDlpKeywordDictionaryParams struct {
-	Description            string   `ps:"Description"`
-	DoNotPersistDictionary bool     `ps:"DoNotPersistDictionary"`
-	DoNotPersistKeywords   bool     `ps:"DoNotPersistKeywords"`
-	FileData               []string `ps:"FileData"`
-	MatchStyle             string   `ps:"MatchStyle"` // one of: word, string
-	Name                   string   `ps:"Name"`
-	Organization           any      `ps:"Organization"`
+	Description            string `ps:"Description"`
+	DoNotPersistDictionary bool   `ps:"DoNotPersistDictionary"`
+	DoNotPersistKeywords   bool   `ps:"DoNotPersistKeywords"`
+	FileData               any    `ps:"FileData"`   // Byte[]
+	MatchStyle             string `ps:"MatchStyle"` // one of: word, string
+	Name                   string `ps:"Name"`
+	Organization           any    `ps:"Organization"` // OrganizationIdParameter
 }
 
 func (p NewDlpKeywordDictionaryParams) params() map[string]any {
@@ -7632,7 +7632,7 @@ func (p NewDlpKeywordDictionaryParams) params() map[string]any {
 	if p.DoNotPersistKeywords {
 		m["DoNotPersistKeywords"] = true
 	}
-	if len(p.FileData) > 0 {
+	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
 	if p.MatchStyle != "" {
@@ -7655,13 +7655,13 @@ func (s *Service) NewDlpKeywordDictionary(ctx context.Context, p NewDlpKeywordDi
 // NewDlpSensitiveInformationTypeParams are the parameters of New-DlpSensitiveInformationType.
 type NewDlpSensitiveInformationTypeParams struct {
 	Description     string   `ps:"Description"`
-	FileData        []string `ps:"FileData"`
-	Fingerprints    any      `ps:"Fingerprints"`
-	IsExact         bool     `ps:"IsExact"`
-	Locale          any      `ps:"Locale"`
+	FileData        any      `ps:"FileData"` // Byte[]
+	Fingerprints    []string `ps:"Fingerprints"`
+	IsExact         *bool    `ps:"IsExact"`
+	Locale          any      `ps:"Locale"` // CultureInfo
 	Name            string   `ps:"Name"`
-	Threshold       any      `ps:"Threshold"`
-	ThresholdConfig any      `ps:"ThresholdConfig"`
+	Threshold       *int64   `ps:"Threshold"`
+	ThresholdConfig any      `ps:"ThresholdConfig"` // PswsHashtable
 }
 
 func (p NewDlpSensitiveInformationTypeParams) params() map[string]any {
@@ -7669,14 +7669,14 @@ func (p NewDlpSensitiveInformationTypeParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if len(p.FileData) > 0 {
+	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
 	if p.Fingerprints != nil {
 		m["Fingerprints"] = p.Fingerprints
 	}
-	if p.IsExact {
-		m["IsExact"] = true
+	if p.IsExact != nil {
+		m["IsExact"] = *p.IsExact
 	}
 	if p.Locale != nil {
 		m["Locale"] = p.Locale
@@ -7685,7 +7685,7 @@ func (p NewDlpSensitiveInformationTypeParams) params() map[string]any {
 		m["Name"] = p.Name
 	}
 	if p.Threshold != nil {
-		m["Threshold"] = p.Threshold
+		m["Threshold"] = *p.Threshold
 	}
 	if p.ThresholdConfig != nil {
 		m["ThresholdConfig"] = p.ThresholdConfig
@@ -7700,13 +7700,13 @@ func (s *Service) NewDlpSensitiveInformationType(ctx context.Context, p NewDlpSe
 
 // NewDlpSensitiveInformationTypeRulePackageParams are the parameters of New-DlpSensitiveInformationTypeRulePackage.
 type NewDlpSensitiveInformationTypeRulePackageParams struct {
-	FileData    []string `ps:"FileData"`
-	MigrationId string   `ps:"MigrationId"`
+	FileData    any    `ps:"FileData"` // Byte[]
+	MigrationId string `ps:"MigrationId"`
 }
 
 func (p NewDlpSensitiveInformationTypeRulePackageParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.FileData) > 0 {
+	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
 	if p.MigrationId != "" {
@@ -7723,15 +7723,15 @@ func (s *Service) NewDlpSensitiveInformationTypeRulePackage(ctx context.Context,
 // NewDspmPolicyParams are the parameters of New-DspmPolicy.
 // DefaultParameterSetName: Identity
 type NewDspmPolicyParams struct {
-	Enabled       bool   `ps:"Enabled"`
+	Enabled       *bool  `ps:"Enabled"`
 	Name          string `ps:"Name"`
 	TenantSetting string `ps:"TenantSetting"`
 }
 
 func (p NewDspmPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -7750,9 +7750,9 @@ func (s *Service) NewDspmPolicy(ctx context.Context, p NewDspmPolicyParams) (*ad
 // NewFeatureConfigurationParams are the parameters of New-FeatureConfiguration.
 type NewFeatureConfigurationParams struct {
 	Comment          string `ps:"Comment"`
-	FeatureScenario  any    `ps:"FeatureScenario"`
+	FeatureScenario  any    `ps:"FeatureScenario"` // PolicyScenario
 	Locations        string `ps:"Locations"`
-	Mode             any    `ps:"Mode"`
+	Mode             any    `ps:"Mode"` // PolicyMode
 	Name             string `ps:"Name"`
 	PolicyRBACScopes any    `ps:"PolicyRBACScopes"`
 	ScenarioConfig   string `ps:"ScenarioConfig"`
@@ -7890,7 +7890,7 @@ func (s *Service) NewFilePlanPropertyReferenceId(ctx context.Context, p NewFileP
 // NewFilePlanPropertySubCategoryParams are the parameters of New-FilePlanPropertySubCategory.
 type NewFilePlanPropertySubCategoryParams struct {
 	Name     string `ps:"Name"`
-	ParentId any    `ps:"ParentId"`
+	ParentId any    `ps:"ParentId"` // ComplianceRuleIdParameter
 }
 
 func (p NewFilePlanPropertySubCategoryParams) params() map[string]any {
@@ -7946,13 +7946,13 @@ func (s *Service) NewGlobalList(ctx context.Context, p NewGlobalListParams) (*ad
 
 // NewHoldCompliancePolicyParams are the parameters of New-HoldCompliancePolicy.
 type NewHoldCompliancePolicyParams struct {
-	Comment              string `ps:"Comment"`
-	Enabled              bool   `ps:"Enabled"`
-	ExchangeLocation     any    `ps:"ExchangeLocation"`
-	Force                bool   `ps:"Force"`
-	Name                 string `ps:"Name"`
-	PublicFolderLocation any    `ps:"PublicFolderLocation"`
-	SharePointLocation   any    `ps:"SharePointLocation"`
+	Comment              string   `ps:"Comment"`
+	Enabled              *bool    `ps:"Enabled"`
+	ExchangeLocation     []string `ps:"ExchangeLocation"`
+	Force                bool     `ps:"Force"`
+	Name                 string   `ps:"Name"`
+	PublicFolderLocation []string `ps:"PublicFolderLocation"`
+	SharePointLocation   []string `ps:"SharePointLocation"`
 }
 
 func (p NewHoldCompliancePolicyParams) params() map[string]any {
@@ -7960,8 +7960,8 @@ func (p NewHoldCompliancePolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
@@ -7989,14 +7989,14 @@ func (s *Service) NewHoldCompliancePolicy(ctx context.Context, p NewHoldComplian
 // NewHoldComplianceRuleParams are the parameters of New-HoldComplianceRule.
 type NewHoldComplianceRuleParams struct {
 	Comment                 string `ps:"Comment"`
-	ContentDateFrom         any    `ps:"ContentDateFrom"`
-	ContentDateTo           any    `ps:"ContentDateTo"`
+	ContentDateFrom         any    `ps:"ContentDateFrom"` // DateTime
+	ContentDateTo           any    `ps:"ContentDateTo"`   // DateTime
 	ContentMatchQuery       string `ps:"ContentMatchQuery"`
-	Disabled                bool   `ps:"Disabled"`
-	HoldContent             any    `ps:"HoldContent"`
-	HoldDurationDisplayHint any    `ps:"HoldDurationDisplayHint"`
+	Disabled                *bool  `ps:"Disabled"`
+	HoldContent             any    `ps:"HoldContent"`             // Unlimited
+	HoldDurationDisplayHint any    `ps:"HoldDurationDisplayHint"` // HoldDurationHint
 	Name                    string `ps:"Name"`
-	Policy                  any    `ps:"Policy"`
+	Policy                  any    `ps:"Policy"` // PolicyIdParameter
 }
 
 func (p NewHoldComplianceRuleParams) params() map[string]any {
@@ -8013,8 +8013,8 @@ func (p NewHoldComplianceRuleParams) params() map[string]any {
 	if p.ContentMatchQuery != "" {
 		m["ContentMatchQuery"] = p.ContentMatchQuery
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
 	if p.HoldContent != nil {
 		m["HoldContent"] = p.HoldContent
@@ -8039,15 +8039,15 @@ func (s *Service) NewHoldComplianceRule(ctx context.Context, p NewHoldCompliance
 // NewInformationBarrierPolicyParams are the parameters of New-InformationBarrierPolicy.
 // DefaultParameterSetName: InformationBarrierDefault
 type NewInformationBarrierPolicyParams struct {
-	AssignedSegment      string `ps:"AssignedSegment"`
-	Comment              string `ps:"Comment"`
-	Force                bool   `ps:"Force"`
-	ModerationAllowed    bool   `ps:"ModerationAllowed"`
-	Name                 string `ps:"Name"`
-	SegmentAllowedFilter string `ps:"SegmentAllowedFilter"`
-	SegmentsAllowed      any    `ps:"SegmentsAllowed"`
-	SegmentsBlocked      any    `ps:"SegmentsBlocked"`
-	State                any    `ps:"State"`
+	AssignedSegment      string   `ps:"AssignedSegment"`
+	Comment              string   `ps:"Comment"`
+	Force                bool     `ps:"Force"`
+	ModerationAllowed    *bool    `ps:"ModerationAllowed"`
+	Name                 string   `ps:"Name"`
+	SegmentAllowedFilter string   `ps:"SegmentAllowedFilter"`
+	SegmentsAllowed      []string `ps:"SegmentsAllowed"`
+	SegmentsBlocked      []string `ps:"SegmentsBlocked"`
+	State                any      `ps:"State"` // EopInformationBarrierPolicyState
 }
 
 func (p NewInformationBarrierPolicyParams) params() map[string]any {
@@ -8061,8 +8061,8 @@ func (p NewInformationBarrierPolicyParams) params() map[string]any {
 	if p.Force {
 		m["Force"] = true
 	}
-	if p.ModerationAllowed {
-		m["ModerationAllowed"] = true
+	if p.ModerationAllowed != nil {
+		m["ModerationAllowed"] = *p.ModerationAllowed
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -8130,29 +8130,29 @@ type NewInsiderRiskPolicyParams struct {
 	DlpPoliciesAsTrigger           any    `ps:"DlpPoliciesAsTrigger"`
 	DlpPolicy                      any    `ps:"DlpPolicy"`
 	DlpSensitiveTypes              any    `ps:"DlpSensitiveTypes"`
-	Enabled                        bool   `ps:"Enabled"`
+	Enabled                        *bool  `ps:"Enabled"`
 	ExchangeLocation               any    `ps:"ExchangeLocation"`
 	ExchangeLocationException      any    `ps:"ExchangeLocationException"`
 	ExtensibleIndicators           any    `ps:"ExtensibleIndicators"`
 	ExtensibleTriggerInsightGroups any    `ps:"ExtensibleTriggerInsightGroups"`
 	FileExtensions                 any    `ps:"FileExtensions"`
-	FutureTerminationWindow        int    `ps:"FutureTerminationWindow"`
-	HistoricTimeSpan               int    `ps:"HistoricTimeSpan"`
+	FutureTerminationWindow        *int64 `ps:"FutureTerminationWindow"`
+	HistoricTimeSpan               *int64 `ps:"HistoricTimeSpan"`
 	Indicators                     any    `ps:"Indicators"`
-	InScopeTimeSpan                int    `ps:"InScopeTimeSpan"`
+	InScopeTimeSpan                *int64 `ps:"InScopeTimeSpan"`
 	InsiderRiskScenario            any    `ps:"InsiderRiskScenario"`
 	IrmAdaptiveScopeLocation       any    `ps:"IrmAdaptiveScopeLocation"`
-	IsCustom                       bool   `ps:"IsCustom"`
-	IsPriorityContentOnlyScoring   bool   `ps:"IsPriorityContentOnlyScoring"`
+	IsCustom                       *bool  `ps:"IsCustom"`
+	IsPriorityContentOnlyScoring   *bool  `ps:"IsPriorityContentOnlyScoring"`
 	MLClassifierTypes              any    `ps:"MLClassifierTypes"`
 	ModernGroupLocation            any    `ps:"ModernGroupLocation"`
 	ModernGroupLocationException   any    `ps:"ModernGroupLocationException"`
 	Name                           string `ps:"Name"`
-	OptInDrpForDlp                 bool   `ps:"OptInDrpForDlp"`
-	PastTerminationWindow          int    `ps:"PastTerminationWindow"`
+	OptInDrpForDlp                 *bool  `ps:"OptInDrpForDlp"`
+	PastTerminationWindow          *int64 `ps:"PastTerminationWindow"`
 	PolicyRBACScopes               any    `ps:"PolicyRBACScopes"`
-	PostTerminationActivity        bool   `ps:"PostTerminationActivity"`
-	SchemaVersion                  int    `ps:"SchemaVersion"`
+	PostTerminationActivity        *bool  `ps:"PostTerminationActivity"`
+	SchemaVersion                  *int64 `ps:"SchemaVersion"`
 	SensitivityLabels              any    `ps:"SensitivityLabels"`
 	SessionRecordingSettings       string `ps:"SessionRecordingSettings"`
 	SharepointSites                any    `ps:"SharepointSites"`
@@ -8160,7 +8160,7 @@ type NewInsiderRiskPolicyParams struct {
 	TenantSetting                  string `ps:"TenantSetting"`
 	TriggerInsightGroups           any    `ps:"TriggerInsightGroups"`
 	Triggers                       any    `ps:"Triggers"`
-	UseDefaultTemplate             int    `ps:"UseDefaultTemplate"`
+	UseDefaultTemplate             *int64 `ps:"UseDefaultTemplate"`
 	UserMailList                   any    `ps:"UserMailList"`
 }
 
@@ -8187,8 +8187,8 @@ func (p NewInsiderRiskPolicyParams) params() map[string]any {
 	if p.DlpSensitiveTypes != nil {
 		m["DlpSensitiveTypes"] = p.DlpSensitiveTypes
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
@@ -8205,17 +8205,17 @@ func (p NewInsiderRiskPolicyParams) params() map[string]any {
 	if p.FileExtensions != nil {
 		m["FileExtensions"] = p.FileExtensions
 	}
-	if p.FutureTerminationWindow != 0 {
-		m["FutureTerminationWindow"] = p.FutureTerminationWindow
+	if p.FutureTerminationWindow != nil {
+		m["FutureTerminationWindow"] = *p.FutureTerminationWindow
 	}
-	if p.HistoricTimeSpan != 0 {
-		m["HistoricTimeSpan"] = p.HistoricTimeSpan
+	if p.HistoricTimeSpan != nil {
+		m["HistoricTimeSpan"] = *p.HistoricTimeSpan
 	}
 	if p.Indicators != nil {
 		m["Indicators"] = p.Indicators
 	}
-	if p.InScopeTimeSpan != 0 {
-		m["InScopeTimeSpan"] = p.InScopeTimeSpan
+	if p.InScopeTimeSpan != nil {
+		m["InScopeTimeSpan"] = *p.InScopeTimeSpan
 	}
 	if p.InsiderRiskScenario != nil {
 		m["InsiderRiskScenario"] = p.InsiderRiskScenario
@@ -8223,11 +8223,11 @@ func (p NewInsiderRiskPolicyParams) params() map[string]any {
 	if p.IrmAdaptiveScopeLocation != nil {
 		m["IrmAdaptiveScopeLocation"] = p.IrmAdaptiveScopeLocation
 	}
-	if p.IsCustom {
-		m["IsCustom"] = true
+	if p.IsCustom != nil {
+		m["IsCustom"] = *p.IsCustom
 	}
-	if p.IsPriorityContentOnlyScoring {
-		m["IsPriorityContentOnlyScoring"] = true
+	if p.IsPriorityContentOnlyScoring != nil {
+		m["IsPriorityContentOnlyScoring"] = *p.IsPriorityContentOnlyScoring
 	}
 	if p.MLClassifierTypes != nil {
 		m["MLClassifierTypes"] = p.MLClassifierTypes
@@ -8241,20 +8241,20 @@ func (p NewInsiderRiskPolicyParams) params() map[string]any {
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if p.OptInDrpForDlp {
-		m["OptInDrpForDlp"] = true
+	if p.OptInDrpForDlp != nil {
+		m["OptInDrpForDlp"] = *p.OptInDrpForDlp
 	}
-	if p.PastTerminationWindow != 0 {
-		m["PastTerminationWindow"] = p.PastTerminationWindow
+	if p.PastTerminationWindow != nil {
+		m["PastTerminationWindow"] = *p.PastTerminationWindow
 	}
 	if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
-	if p.PostTerminationActivity {
-		m["PostTerminationActivity"] = true
+	if p.PostTerminationActivity != nil {
+		m["PostTerminationActivity"] = *p.PostTerminationActivity
 	}
-	if p.SchemaVersion != 0 {
-		m["SchemaVersion"] = p.SchemaVersion
+	if p.SchemaVersion != nil {
+		m["SchemaVersion"] = *p.SchemaVersion
 	}
 	if p.SensitivityLabels != nil {
 		m["SensitivityLabels"] = p.SensitivityLabels
@@ -8277,8 +8277,8 @@ func (p NewInsiderRiskPolicyParams) params() map[string]any {
 	if p.Triggers != nil {
 		m["Triggers"] = p.Triggers
 	}
-	if p.UseDefaultTemplate != 0 {
-		m["UseDefaultTemplate"] = p.UseDefaultTemplate
+	if p.UseDefaultTemplate != nil {
+		m["UseDefaultTemplate"] = *p.UseDefaultTemplate
 	}
 	if p.UserMailList != nil {
 		m["UserMailList"] = p.UserMailList
@@ -8324,10 +8324,10 @@ func (p NewJitConfigurationParams) params() map[string]any {
 	if p.EndpointDlpLocationException != nil {
 		m["EndpointDlpLocationException"] = p.EndpointDlpLocationException
 	}
-	if len(p.ExceptIfOneDriveSharedBy) > 0 {
+	if p.ExceptIfOneDriveSharedBy != nil {
 		m["ExceptIfOneDriveSharedBy"] = p.ExceptIfOneDriveSharedBy
 	}
-	if len(p.ExceptIfOneDriveSharedByMemberOf) > 0 {
+	if p.ExceptIfOneDriveSharedByMemberOf != nil {
 		m["ExceptIfOneDriveSharedByMemberOf"] = p.ExceptIfOneDriveSharedByMemberOf
 	}
 	if p.Mode != nil {
@@ -8342,10 +8342,10 @@ func (p NewJitConfigurationParams) params() map[string]any {
 	if p.OneDriveLocationException != nil {
 		m["OneDriveLocationException"] = p.OneDriveLocationException
 	}
-	if len(p.OneDriveSharedBy) > 0 {
+	if p.OneDriveSharedBy != nil {
 		m["OneDriveSharedBy"] = p.OneDriveSharedBy
 	}
-	if len(p.OneDriveSharedByMemberOf) > 0 {
+	if p.OneDriveSharedByMemberOf != nil {
 		m["OneDriveSharedByMemberOf"] = p.OneDriveSharedByMemberOf
 	}
 	if p.Organization != nil {
@@ -8367,100 +8367,100 @@ func (s *Service) NewJitConfiguration(ctx context.Context, p NewJitConfiguration
 
 // NewLabelParams are the parameters of New-Label.
 type NewLabelParams struct {
-	AbacEnabled                                           any    `ps:"AbacEnabled"`
-	AdvancedSettings                                      any    `ps:"AdvancedSettings"`
-	ApplyContentMarkingFooterAlignment                    any    `ps:"ApplyContentMarkingFooterAlignment"`
-	ApplyContentMarkingFooterEnabled                      any    `ps:"ApplyContentMarkingFooterEnabled"`
-	ApplyContentMarkingFooterFontColor                    string `ps:"ApplyContentMarkingFooterFontColor"`
-	ApplyContentMarkingFooterFontName                     string `ps:"ApplyContentMarkingFooterFontName"`
-	ApplyContentMarkingFooterFontSize                     any    `ps:"ApplyContentMarkingFooterFontSize"`
-	ApplyContentMarkingFooterMargin                       any    `ps:"ApplyContentMarkingFooterMargin"`
-	ApplyContentMarkingFooterText                         string `ps:"ApplyContentMarkingFooterText"`
-	ApplyContentMarkingHeaderAlignment                    any    `ps:"ApplyContentMarkingHeaderAlignment"`
-	ApplyContentMarkingHeaderEnabled                      any    `ps:"ApplyContentMarkingHeaderEnabled"`
-	ApplyContentMarkingHeaderFontColor                    string `ps:"ApplyContentMarkingHeaderFontColor"`
-	ApplyContentMarkingHeaderFontName                     string `ps:"ApplyContentMarkingHeaderFontName"`
-	ApplyContentMarkingHeaderFontSize                     any    `ps:"ApplyContentMarkingHeaderFontSize"`
-	ApplyContentMarkingHeaderMargin                       any    `ps:"ApplyContentMarkingHeaderMargin"`
-	ApplyContentMarkingHeaderText                         string `ps:"ApplyContentMarkingHeaderText"`
-	ApplyDynamicWatermarkingEnabled                       any    `ps:"ApplyDynamicWatermarkingEnabled"`
-	ApplyMessageMetaData                                  any    `ps:"ApplyMessageMetaData"`
-	ApplyMessageMetaDataEnabled                           any    `ps:"ApplyMessageMetaDataEnabled"`
-	ApplyWaterMarkingEnabled                              any    `ps:"ApplyWaterMarkingEnabled"`
-	ApplyWaterMarkingFontColor                            string `ps:"ApplyWaterMarkingFontColor"`
-	ApplyWaterMarkingFontName                             string `ps:"ApplyWaterMarkingFontName"`
-	ApplyWaterMarkingFontSize                             any    `ps:"ApplyWaterMarkingFontSize"`
-	ApplyWaterMarkingLayout                               any    `ps:"ApplyWaterMarkingLayout"`
-	ApplyWaterMarkingText                                 string `ps:"ApplyWaterMarkingText"`
-	ColumnAssetCondition                                  string `ps:"ColumnAssetCondition"`
-	Comment                                               string `ps:"Comment"`
-	ConditionalAccessAuthContext                          string `ps:"ConditionalAccessAuthContext"`
-	Conditions                                            any    `ps:"Conditions"`
-	ContentType                                           any    `ps:"ContentType"`
-	DefaultContentLabel                                   string `ps:"DefaultContentLabel"`
-	DenyAccessEnabled                                     any    `ps:"DenyAccessEnabled"`
-	DenyAccessExcludedPrincipals                          string `ps:"DenyAccessExcludedPrincipals"`
-	DenyAccessIncludedPrincipals                          string `ps:"DenyAccessIncludedPrincipals"`
-	DenyAccessRights                                      string `ps:"DenyAccessRights"`
-	DenyAccessWorkload                                    string `ps:"DenyAccessWorkload"`
-	DisplayName                                           string `ps:"DisplayName"`
-	DynamicWatermarkDisplay                               string `ps:"DynamicWatermarkDisplay"`
-	EncryptionAipTemplateScopes                           string `ps:"EncryptionAipTemplateScopes"`
-	EncryptionContentExpiredOnDateInDaysOrNever           string `ps:"EncryptionContentExpiredOnDateInDaysOrNever"`
-	EncryptionDisableAutomaticOwnerRights                 any    `ps:"EncryptionDisableAutomaticOwnerRights"`
-	EncryptionDoNotForward                                any    `ps:"EncryptionDoNotForward"`
-	EncryptionDoubleKeyEncryptionUrl                      string `ps:"EncryptionDoubleKeyEncryptionUrl"`
-	EncryptionEnabled                                     any    `ps:"EncryptionEnabled"`
-	EncryptionEncryptOnly                                 any    `ps:"EncryptionEncryptOnly"`
-	EncryptionLinkedTemplateId                            string `ps:"EncryptionLinkedTemplateId"`
-	EncryptionOfflineAccessDays                           any    `ps:"EncryptionOfflineAccessDays"`
-	EncryptionPromptUser                                  any    `ps:"EncryptionPromptUser"`
-	EncryptionProtectionType                              any    `ps:"EncryptionProtectionType"`
-	EncryptionRightsDefinitions                           any    `ps:"EncryptionRightsDefinitions"`
-	EncryptionRightsUrl                                   string `ps:"EncryptionRightsUrl"`
-	EncryptionTemplateId                                  string `ps:"EncryptionTemplateId"`
-	Identity                                              any    `ps:"Identity"`
-	InformationProtectionAttributeRequired                any    `ps:"InformationProtectionAttributeRequired"`
-	InheritToChildItems                                   any    `ps:"InheritToChildItems"`
-	IsLabelGroup                                          bool   `ps:"IsLabelGroup"`
-	LabelActions                                          any    `ps:"LabelActions"`
-	LocaleSettings                                        any    `ps:"LocaleSettings"`
-	MigrationId                                           string `ps:"MigrationId"`
-	Name                                                  string `ps:"Name"`
-	ParentId                                              any    `ps:"ParentId"`
-	RuleBlob                                              string `ps:"RuleBlob"`
-	SchematizedDataCondition                              string `ps:"SchematizedDataCondition"`
-	Setting                                               any    `ps:"Setting"`
-	Settings                                              any    `ps:"Settings"`
-	SiteAndGroupProtectionAllowAccessToGuestUsers         any    `ps:"SiteAndGroupProtectionAllowAccessToGuestUsers"`
-	SiteAndGroupProtectionAllowEmailFromGuestUsers        any    `ps:"SiteAndGroupProtectionAllowEmailFromGuestUsers"`
-	SiteAndGroupProtectionAllowFullAccess                 any    `ps:"SiteAndGroupProtectionAllowFullAccess"`
-	SiteAndGroupProtectionAllowLimitedAccess              any    `ps:"SiteAndGroupProtectionAllowLimitedAccess"`
-	SiteAndGroupProtectionBlockAccess                     any    `ps:"SiteAndGroupProtectionBlockAccess"`
-	SiteAndGroupProtectionEnabled                         any    `ps:"SiteAndGroupProtectionEnabled"`
-	SiteAndGroupProtectionLevel                           any    `ps:"SiteAndGroupProtectionLevel"`
-	SiteAndGroupProtectionPrivacy                         any    `ps:"SiteAndGroupProtectionPrivacy"`
-	SiteExternalSharingControlType                        any    `ps:"SiteExternalSharingControlType"`
-	TeamsAllowedPresenters                                any    `ps:"TeamsAllowedPresenters"`
-	TeamsAllowMeetingChat                                 any    `ps:"TeamsAllowMeetingChat"`
-	TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch     any    `ps:"TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch"`
-	TeamsBypassLobbyForDialInUsers                        any    `ps:"TeamsBypassLobbyForDialInUsers"`
-	TeamsChannelProtectionEnabled                         any    `ps:"TeamsChannelProtectionEnabled"`
-	TeamsChannelSharedWithExternalTenants                 any    `ps:"TeamsChannelSharedWithExternalTenants"`
-	TeamsChannelSharedWithPrivateTeamsOnly                any    `ps:"TeamsChannelSharedWithPrivateTeamsOnly"`
-	TeamsChannelSharedWithSameLabelOnly                   any    `ps:"TeamsChannelSharedWithSameLabelOnly"`
-	TeamsCopyRestrictionEnforced                          any    `ps:"TeamsCopyRestrictionEnforced"`
-	TeamsDetectSensitiveContentDuringScreenSharingEnabled any    `ps:"TeamsDetectSensitiveContentDuringScreenSharingEnabled"`
-	TeamsDisableLobby                                     any    `ps:"TeamsDisableLobby"`
-	TeamsEndToEndEncryptionEnabled                        any    `ps:"TeamsEndToEndEncryptionEnabled"`
-	TeamsLobbyBypassScope                                 any    `ps:"TeamsLobbyBypassScope"`
-	TeamsLobbyRestrictionEnforced                         any    `ps:"TeamsLobbyRestrictionEnforced"`
-	TeamsPresentersRestrictionEnforced                    any    `ps:"TeamsPresentersRestrictionEnforced"`
-	TeamsProtectionEnabled                                any    `ps:"TeamsProtectionEnabled"`
-	TeamsRecordAutomatically                              any    `ps:"TeamsRecordAutomatically"`
-	TeamsVideoWatermark                                   any    `ps:"TeamsVideoWatermark"`
-	TeamsWhoCanRecord                                     any    `ps:"TeamsWhoCanRecord"`
-	Tooltip                                               string `ps:"Tooltip"`
+	AbacEnabled                                           any      `ps:"AbacEnabled"`
+	AdvancedSettings                                      any      `ps:"AdvancedSettings"`                   // PswsHashtable
+	ApplyContentMarkingFooterAlignment                    any      `ps:"ApplyContentMarkingFooterAlignment"` // Microsoft.Office.CompliancePolicy.Tasks.FlattenLabelActionUtils+ContentAlignment
+	ApplyContentMarkingFooterEnabled                      *bool    `ps:"ApplyContentMarkingFooterEnabled"`
+	ApplyContentMarkingFooterFontColor                    string   `ps:"ApplyContentMarkingFooterFontColor"`
+	ApplyContentMarkingFooterFontName                     string   `ps:"ApplyContentMarkingFooterFontName"`
+	ApplyContentMarkingFooterFontSize                     *int64   `ps:"ApplyContentMarkingFooterFontSize"`
+	ApplyContentMarkingFooterMargin                       *int64   `ps:"ApplyContentMarkingFooterMargin"`
+	ApplyContentMarkingFooterText                         string   `ps:"ApplyContentMarkingFooterText"`
+	ApplyContentMarkingHeaderAlignment                    any      `ps:"ApplyContentMarkingHeaderAlignment"` // Microsoft.Office.CompliancePolicy.Tasks.FlattenLabelActionUtils+ContentAlignment
+	ApplyContentMarkingHeaderEnabled                      *bool    `ps:"ApplyContentMarkingHeaderEnabled"`
+	ApplyContentMarkingHeaderFontColor                    string   `ps:"ApplyContentMarkingHeaderFontColor"`
+	ApplyContentMarkingHeaderFontName                     string   `ps:"ApplyContentMarkingHeaderFontName"`
+	ApplyContentMarkingHeaderFontSize                     *int64   `ps:"ApplyContentMarkingHeaderFontSize"`
+	ApplyContentMarkingHeaderMargin                       *int64   `ps:"ApplyContentMarkingHeaderMargin"`
+	ApplyContentMarkingHeaderText                         string   `ps:"ApplyContentMarkingHeaderText"`
+	ApplyDynamicWatermarkingEnabled                       *bool    `ps:"ApplyDynamicWatermarkingEnabled"`
+	ApplyMessageMetaData                                  any      `ps:"ApplyMessageMetaData"`
+	ApplyMessageMetaDataEnabled                           any      `ps:"ApplyMessageMetaDataEnabled"`
+	ApplyWaterMarkingEnabled                              *bool    `ps:"ApplyWaterMarkingEnabled"`
+	ApplyWaterMarkingFontColor                            string   `ps:"ApplyWaterMarkingFontColor"`
+	ApplyWaterMarkingFontName                             string   `ps:"ApplyWaterMarkingFontName"`
+	ApplyWaterMarkingFontSize                             *int64   `ps:"ApplyWaterMarkingFontSize"`
+	ApplyWaterMarkingLayout                               any      `ps:"ApplyWaterMarkingLayout"` // Microsoft.Office.CompliancePolicy.Tasks.FlattenLabelActionUtils+WaterMarkingLayout
+	ApplyWaterMarkingText                                 string   `ps:"ApplyWaterMarkingText"`
+	ColumnAssetCondition                                  string   `ps:"ColumnAssetCondition"`
+	Comment                                               string   `ps:"Comment"`
+	ConditionalAccessAuthContext                          string   `ps:"ConditionalAccessAuthContext"`
+	Conditions                                            []string `ps:"Conditions"`
+	ContentType                                           any      `ps:"ContentType"` // MipLabelContentType
+	DefaultContentLabel                                   string   `ps:"DefaultContentLabel"`
+	DenyAccessEnabled                                     any      `ps:"DenyAccessEnabled"`
+	DenyAccessExcludedPrincipals                          string   `ps:"DenyAccessExcludedPrincipals"`
+	DenyAccessIncludedPrincipals                          string   `ps:"DenyAccessIncludedPrincipals"`
+	DenyAccessRights                                      string   `ps:"DenyAccessRights"`
+	DenyAccessWorkload                                    string   `ps:"DenyAccessWorkload"`
+	DisplayName                                           string   `ps:"DisplayName"`
+	DynamicWatermarkDisplay                               string   `ps:"DynamicWatermarkDisplay"`
+	EncryptionAipTemplateScopes                           string   `ps:"EncryptionAipTemplateScopes"`
+	EncryptionContentExpiredOnDateInDaysOrNever           string   `ps:"EncryptionContentExpiredOnDateInDaysOrNever"`
+	EncryptionDisableAutomaticOwnerRights                 any      `ps:"EncryptionDisableAutomaticOwnerRights"`
+	EncryptionDoNotForward                                *bool    `ps:"EncryptionDoNotForward"`
+	EncryptionDoubleKeyEncryptionUrl                      string   `ps:"EncryptionDoubleKeyEncryptionUrl"`
+	EncryptionEnabled                                     *bool    `ps:"EncryptionEnabled"`
+	EncryptionEncryptOnly                                 *bool    `ps:"EncryptionEncryptOnly"`
+	EncryptionLinkedTemplateId                            string   `ps:"EncryptionLinkedTemplateId"`
+	EncryptionOfflineAccessDays                           *int64   `ps:"EncryptionOfflineAccessDays"`
+	EncryptionPromptUser                                  *bool    `ps:"EncryptionPromptUser"`
+	EncryptionProtectionType                              any      `ps:"EncryptionProtectionType"`    // Microsoft.Office.CompliancePolicy.Tasks.FlattenLabelActionUtils+SupportedProtectionType
+	EncryptionRightsDefinitions                           any      `ps:"EncryptionRightsDefinitions"` // EncryptionRightsDefinitionsParameter
+	EncryptionRightsUrl                                   string   `ps:"EncryptionRightsUrl"`
+	EncryptionTemplateId                                  string   `ps:"EncryptionTemplateId"`
+	Identity                                              any      `ps:"Identity"` // MasterIdParameter
+	InformationProtectionAttributeRequired                any      `ps:"InformationProtectionAttributeRequired"`
+	InheritToChildItems                                   any      `ps:"InheritToChildItems"`
+	IsLabelGroup                                          bool     `ps:"IsLabelGroup"`
+	LabelActions                                          []string `ps:"LabelActions"`
+	LocaleSettings                                        []string `ps:"LocaleSettings"`
+	MigrationId                                           string   `ps:"MigrationId"`
+	Name                                                  string   `ps:"Name"`
+	ParentId                                              any      `ps:"ParentId"` // ComplianceRuleIdParameter
+	RuleBlob                                              string   `ps:"RuleBlob"`
+	SchematizedDataCondition                              string   `ps:"SchematizedDataCondition"`
+	Setting                                               any      `ps:"Setting"`  // PswsHashtable
+	Settings                                              any      `ps:"Settings"` // PswsHashtable
+	SiteAndGroupProtectionAllowAccessToGuestUsers         *bool    `ps:"SiteAndGroupProtectionAllowAccessToGuestUsers"`
+	SiteAndGroupProtectionAllowEmailFromGuestUsers        *bool    `ps:"SiteAndGroupProtectionAllowEmailFromGuestUsers"`
+	SiteAndGroupProtectionAllowFullAccess                 *bool    `ps:"SiteAndGroupProtectionAllowFullAccess"`
+	SiteAndGroupProtectionAllowLimitedAccess              *bool    `ps:"SiteAndGroupProtectionAllowLimitedAccess"`
+	SiteAndGroupProtectionBlockAccess                     *bool    `ps:"SiteAndGroupProtectionBlockAccess"`
+	SiteAndGroupProtectionEnabled                         *bool    `ps:"SiteAndGroupProtectionEnabled"`
+	SiteAndGroupProtectionLevel                           any      `ps:"SiteAndGroupProtectionLevel"`    // SiteAndGroupProtectionLevelParameter
+	SiteAndGroupProtectionPrivacy                         any      `ps:"SiteAndGroupProtectionPrivacy"`  // Microsoft.Office.CompliancePolicy.Tasks.FlattenLabelActionUtils+GroupProtectionPrivacy
+	SiteExternalSharingControlType                        any      `ps:"SiteExternalSharingControlType"` // Microsoft.Office.CompliancePolicy.Tasks.SiteExternalSharingControlType
+	TeamsAllowedPresenters                                any      `ps:"TeamsAllowedPresenters"`         // Microsoft.Office.CompliancePolicy.PolicyConfiguration.AllowedPresenters
+	TeamsAllowMeetingChat                                 any      `ps:"TeamsAllowMeetingChat"`          // Microsoft.Office.CompliancePolicy.PolicyConfiguration.MeetingChatMode
+	TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch     *bool    `ps:"TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch"`
+	TeamsBypassLobbyForDialInUsers                        *bool    `ps:"TeamsBypassLobbyForDialInUsers"`
+	TeamsChannelProtectionEnabled                         *bool    `ps:"TeamsChannelProtectionEnabled"`
+	TeamsChannelSharedWithExternalTenants                 *bool    `ps:"TeamsChannelSharedWithExternalTenants"`
+	TeamsChannelSharedWithPrivateTeamsOnly                *bool    `ps:"TeamsChannelSharedWithPrivateTeamsOnly"`
+	TeamsChannelSharedWithSameLabelOnly                   *bool    `ps:"TeamsChannelSharedWithSameLabelOnly"`
+	TeamsCopyRestrictionEnforced                          *bool    `ps:"TeamsCopyRestrictionEnforced"`
+	TeamsDetectSensitiveContentDuringScreenSharingEnabled *bool    `ps:"TeamsDetectSensitiveContentDuringScreenSharingEnabled"`
+	TeamsDisableLobby                                     *bool    `ps:"TeamsDisableLobby"`
+	TeamsEndToEndEncryptionEnabled                        *bool    `ps:"TeamsEndToEndEncryptionEnabled"`
+	TeamsLobbyBypassScope                                 any      `ps:"TeamsLobbyBypassScope"` // Microsoft.Office.CompliancePolicy.PolicyConfiguration.LobbyBypassScope
+	TeamsLobbyRestrictionEnforced                         *bool    `ps:"TeamsLobbyRestrictionEnforced"`
+	TeamsPresentersRestrictionEnforced                    *bool    `ps:"TeamsPresentersRestrictionEnforced"`
+	TeamsProtectionEnabled                                *bool    `ps:"TeamsProtectionEnabled"`
+	TeamsRecordAutomatically                              *bool    `ps:"TeamsRecordAutomatically"`
+	TeamsVideoWatermark                                   any      `ps:"TeamsVideoWatermark"` // Microsoft.Office.CompliancePolicy.PolicyConfiguration.WaterMarkProtectionValues
+	TeamsWhoCanRecord                                     any      `ps:"TeamsWhoCanRecord"`   // Microsoft.Office.CompliancePolicy.PolicyConfiguration.WhoCanRecordOptions
+	Tooltip                                               string   `ps:"Tooltip"`
 }
 
 func (p NewLabelParams) params() map[string]any {
@@ -8475,7 +8475,7 @@ func (p NewLabelParams) params() map[string]any {
 		m["ApplyContentMarkingFooterAlignment"] = p.ApplyContentMarkingFooterAlignment
 	}
 	if p.ApplyContentMarkingFooterEnabled != nil {
-		m["ApplyContentMarkingFooterEnabled"] = p.ApplyContentMarkingFooterEnabled
+		m["ApplyContentMarkingFooterEnabled"] = *p.ApplyContentMarkingFooterEnabled
 	}
 	if p.ApplyContentMarkingFooterFontColor != "" {
 		m["ApplyContentMarkingFooterFontColor"] = p.ApplyContentMarkingFooterFontColor
@@ -8484,10 +8484,10 @@ func (p NewLabelParams) params() map[string]any {
 		m["ApplyContentMarkingFooterFontName"] = p.ApplyContentMarkingFooterFontName
 	}
 	if p.ApplyContentMarkingFooterFontSize != nil {
-		m["ApplyContentMarkingFooterFontSize"] = p.ApplyContentMarkingFooterFontSize
+		m["ApplyContentMarkingFooterFontSize"] = *p.ApplyContentMarkingFooterFontSize
 	}
 	if p.ApplyContentMarkingFooterMargin != nil {
-		m["ApplyContentMarkingFooterMargin"] = p.ApplyContentMarkingFooterMargin
+		m["ApplyContentMarkingFooterMargin"] = *p.ApplyContentMarkingFooterMargin
 	}
 	if p.ApplyContentMarkingFooterText != "" {
 		m["ApplyContentMarkingFooterText"] = p.ApplyContentMarkingFooterText
@@ -8496,7 +8496,7 @@ func (p NewLabelParams) params() map[string]any {
 		m["ApplyContentMarkingHeaderAlignment"] = p.ApplyContentMarkingHeaderAlignment
 	}
 	if p.ApplyContentMarkingHeaderEnabled != nil {
-		m["ApplyContentMarkingHeaderEnabled"] = p.ApplyContentMarkingHeaderEnabled
+		m["ApplyContentMarkingHeaderEnabled"] = *p.ApplyContentMarkingHeaderEnabled
 	}
 	if p.ApplyContentMarkingHeaderFontColor != "" {
 		m["ApplyContentMarkingHeaderFontColor"] = p.ApplyContentMarkingHeaderFontColor
@@ -8505,16 +8505,16 @@ func (p NewLabelParams) params() map[string]any {
 		m["ApplyContentMarkingHeaderFontName"] = p.ApplyContentMarkingHeaderFontName
 	}
 	if p.ApplyContentMarkingHeaderFontSize != nil {
-		m["ApplyContentMarkingHeaderFontSize"] = p.ApplyContentMarkingHeaderFontSize
+		m["ApplyContentMarkingHeaderFontSize"] = *p.ApplyContentMarkingHeaderFontSize
 	}
 	if p.ApplyContentMarkingHeaderMargin != nil {
-		m["ApplyContentMarkingHeaderMargin"] = p.ApplyContentMarkingHeaderMargin
+		m["ApplyContentMarkingHeaderMargin"] = *p.ApplyContentMarkingHeaderMargin
 	}
 	if p.ApplyContentMarkingHeaderText != "" {
 		m["ApplyContentMarkingHeaderText"] = p.ApplyContentMarkingHeaderText
 	}
 	if p.ApplyDynamicWatermarkingEnabled != nil {
-		m["ApplyDynamicWatermarkingEnabled"] = p.ApplyDynamicWatermarkingEnabled
+		m["ApplyDynamicWatermarkingEnabled"] = *p.ApplyDynamicWatermarkingEnabled
 	}
 	if p.ApplyMessageMetaData != nil {
 		m["ApplyMessageMetaData"] = p.ApplyMessageMetaData
@@ -8523,7 +8523,7 @@ func (p NewLabelParams) params() map[string]any {
 		m["ApplyMessageMetaDataEnabled"] = p.ApplyMessageMetaDataEnabled
 	}
 	if p.ApplyWaterMarkingEnabled != nil {
-		m["ApplyWaterMarkingEnabled"] = p.ApplyWaterMarkingEnabled
+		m["ApplyWaterMarkingEnabled"] = *p.ApplyWaterMarkingEnabled
 	}
 	if p.ApplyWaterMarkingFontColor != "" {
 		m["ApplyWaterMarkingFontColor"] = p.ApplyWaterMarkingFontColor
@@ -8532,7 +8532,7 @@ func (p NewLabelParams) params() map[string]any {
 		m["ApplyWaterMarkingFontName"] = p.ApplyWaterMarkingFontName
 	}
 	if p.ApplyWaterMarkingFontSize != nil {
-		m["ApplyWaterMarkingFontSize"] = p.ApplyWaterMarkingFontSize
+		m["ApplyWaterMarkingFontSize"] = *p.ApplyWaterMarkingFontSize
 	}
 	if p.ApplyWaterMarkingLayout != nil {
 		m["ApplyWaterMarkingLayout"] = p.ApplyWaterMarkingLayout
@@ -8589,25 +8589,25 @@ func (p NewLabelParams) params() map[string]any {
 		m["EncryptionDisableAutomaticOwnerRights"] = p.EncryptionDisableAutomaticOwnerRights
 	}
 	if p.EncryptionDoNotForward != nil {
-		m["EncryptionDoNotForward"] = p.EncryptionDoNotForward
+		m["EncryptionDoNotForward"] = *p.EncryptionDoNotForward
 	}
 	if p.EncryptionDoubleKeyEncryptionUrl != "" {
 		m["EncryptionDoubleKeyEncryptionUrl"] = p.EncryptionDoubleKeyEncryptionUrl
 	}
 	if p.EncryptionEnabled != nil {
-		m["EncryptionEnabled"] = p.EncryptionEnabled
+		m["EncryptionEnabled"] = *p.EncryptionEnabled
 	}
 	if p.EncryptionEncryptOnly != nil {
-		m["EncryptionEncryptOnly"] = p.EncryptionEncryptOnly
+		m["EncryptionEncryptOnly"] = *p.EncryptionEncryptOnly
 	}
 	if p.EncryptionLinkedTemplateId != "" {
 		m["EncryptionLinkedTemplateId"] = p.EncryptionLinkedTemplateId
 	}
 	if p.EncryptionOfflineAccessDays != nil {
-		m["EncryptionOfflineAccessDays"] = p.EncryptionOfflineAccessDays
+		m["EncryptionOfflineAccessDays"] = *p.EncryptionOfflineAccessDays
 	}
 	if p.EncryptionPromptUser != nil {
-		m["EncryptionPromptUser"] = p.EncryptionPromptUser
+		m["EncryptionPromptUser"] = *p.EncryptionPromptUser
 	}
 	if p.EncryptionProtectionType != nil {
 		m["EncryptionProtectionType"] = p.EncryptionProtectionType
@@ -8661,22 +8661,22 @@ func (p NewLabelParams) params() map[string]any {
 		m["Settings"] = p.Settings
 	}
 	if p.SiteAndGroupProtectionAllowAccessToGuestUsers != nil {
-		m["SiteAndGroupProtectionAllowAccessToGuestUsers"] = p.SiteAndGroupProtectionAllowAccessToGuestUsers
+		m["SiteAndGroupProtectionAllowAccessToGuestUsers"] = *p.SiteAndGroupProtectionAllowAccessToGuestUsers
 	}
 	if p.SiteAndGroupProtectionAllowEmailFromGuestUsers != nil {
-		m["SiteAndGroupProtectionAllowEmailFromGuestUsers"] = p.SiteAndGroupProtectionAllowEmailFromGuestUsers
+		m["SiteAndGroupProtectionAllowEmailFromGuestUsers"] = *p.SiteAndGroupProtectionAllowEmailFromGuestUsers
 	}
 	if p.SiteAndGroupProtectionAllowFullAccess != nil {
-		m["SiteAndGroupProtectionAllowFullAccess"] = p.SiteAndGroupProtectionAllowFullAccess
+		m["SiteAndGroupProtectionAllowFullAccess"] = *p.SiteAndGroupProtectionAllowFullAccess
 	}
 	if p.SiteAndGroupProtectionAllowLimitedAccess != nil {
-		m["SiteAndGroupProtectionAllowLimitedAccess"] = p.SiteAndGroupProtectionAllowLimitedAccess
+		m["SiteAndGroupProtectionAllowLimitedAccess"] = *p.SiteAndGroupProtectionAllowLimitedAccess
 	}
 	if p.SiteAndGroupProtectionBlockAccess != nil {
-		m["SiteAndGroupProtectionBlockAccess"] = p.SiteAndGroupProtectionBlockAccess
+		m["SiteAndGroupProtectionBlockAccess"] = *p.SiteAndGroupProtectionBlockAccess
 	}
 	if p.SiteAndGroupProtectionEnabled != nil {
-		m["SiteAndGroupProtectionEnabled"] = p.SiteAndGroupProtectionEnabled
+		m["SiteAndGroupProtectionEnabled"] = *p.SiteAndGroupProtectionEnabled
 	}
 	if p.SiteAndGroupProtectionLevel != nil {
 		m["SiteAndGroupProtectionLevel"] = p.SiteAndGroupProtectionLevel
@@ -8694,49 +8694,49 @@ func (p NewLabelParams) params() map[string]any {
 		m["TeamsAllowMeetingChat"] = p.TeamsAllowMeetingChat
 	}
 	if p.TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch != nil {
-		m["TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch"] = p.TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch
+		m["TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch"] = *p.TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch
 	}
 	if p.TeamsBypassLobbyForDialInUsers != nil {
-		m["TeamsBypassLobbyForDialInUsers"] = p.TeamsBypassLobbyForDialInUsers
+		m["TeamsBypassLobbyForDialInUsers"] = *p.TeamsBypassLobbyForDialInUsers
 	}
 	if p.TeamsChannelProtectionEnabled != nil {
-		m["TeamsChannelProtectionEnabled"] = p.TeamsChannelProtectionEnabled
+		m["TeamsChannelProtectionEnabled"] = *p.TeamsChannelProtectionEnabled
 	}
 	if p.TeamsChannelSharedWithExternalTenants != nil {
-		m["TeamsChannelSharedWithExternalTenants"] = p.TeamsChannelSharedWithExternalTenants
+		m["TeamsChannelSharedWithExternalTenants"] = *p.TeamsChannelSharedWithExternalTenants
 	}
 	if p.TeamsChannelSharedWithPrivateTeamsOnly != nil {
-		m["TeamsChannelSharedWithPrivateTeamsOnly"] = p.TeamsChannelSharedWithPrivateTeamsOnly
+		m["TeamsChannelSharedWithPrivateTeamsOnly"] = *p.TeamsChannelSharedWithPrivateTeamsOnly
 	}
 	if p.TeamsChannelSharedWithSameLabelOnly != nil {
-		m["TeamsChannelSharedWithSameLabelOnly"] = p.TeamsChannelSharedWithSameLabelOnly
+		m["TeamsChannelSharedWithSameLabelOnly"] = *p.TeamsChannelSharedWithSameLabelOnly
 	}
 	if p.TeamsCopyRestrictionEnforced != nil {
-		m["TeamsCopyRestrictionEnforced"] = p.TeamsCopyRestrictionEnforced
+		m["TeamsCopyRestrictionEnforced"] = *p.TeamsCopyRestrictionEnforced
 	}
 	if p.TeamsDetectSensitiveContentDuringScreenSharingEnabled != nil {
-		m["TeamsDetectSensitiveContentDuringScreenSharingEnabled"] = p.TeamsDetectSensitiveContentDuringScreenSharingEnabled
+		m["TeamsDetectSensitiveContentDuringScreenSharingEnabled"] = *p.TeamsDetectSensitiveContentDuringScreenSharingEnabled
 	}
 	if p.TeamsDisableLobby != nil {
-		m["TeamsDisableLobby"] = p.TeamsDisableLobby
+		m["TeamsDisableLobby"] = *p.TeamsDisableLobby
 	}
 	if p.TeamsEndToEndEncryptionEnabled != nil {
-		m["TeamsEndToEndEncryptionEnabled"] = p.TeamsEndToEndEncryptionEnabled
+		m["TeamsEndToEndEncryptionEnabled"] = *p.TeamsEndToEndEncryptionEnabled
 	}
 	if p.TeamsLobbyBypassScope != nil {
 		m["TeamsLobbyBypassScope"] = p.TeamsLobbyBypassScope
 	}
 	if p.TeamsLobbyRestrictionEnforced != nil {
-		m["TeamsLobbyRestrictionEnforced"] = p.TeamsLobbyRestrictionEnforced
+		m["TeamsLobbyRestrictionEnforced"] = *p.TeamsLobbyRestrictionEnforced
 	}
 	if p.TeamsPresentersRestrictionEnforced != nil {
-		m["TeamsPresentersRestrictionEnforced"] = p.TeamsPresentersRestrictionEnforced
+		m["TeamsPresentersRestrictionEnforced"] = *p.TeamsPresentersRestrictionEnforced
 	}
 	if p.TeamsProtectionEnabled != nil {
-		m["TeamsProtectionEnabled"] = p.TeamsProtectionEnabled
+		m["TeamsProtectionEnabled"] = *p.TeamsProtectionEnabled
 	}
 	if p.TeamsRecordAutomatically != nil {
-		m["TeamsRecordAutomatically"] = p.TeamsRecordAutomatically
+		m["TeamsRecordAutomatically"] = *p.TeamsRecordAutomatically
 	}
 	if p.TeamsVideoWatermark != nil {
 		m["TeamsVideoWatermark"] = p.TeamsVideoWatermark
@@ -8795,29 +8795,29 @@ func (s *Service) NewLabelExplorerConfig(ctx context.Context, p NewLabelExplorer
 
 // NewLabelPolicyParams are the parameters of New-LabelPolicy.
 type NewLabelPolicyParams struct {
-	AdvancedSettings                any    `ps:"AdvancedSettings"`
-	Comment                         string `ps:"Comment"`
-	ExchangeAdaptiveScopes          any    `ps:"ExchangeAdaptiveScopes"`
-	ExchangeAdaptiveScopesException any    `ps:"ExchangeAdaptiveScopesException"`
-	ExchangeLocation                any    `ps:"ExchangeLocation"`
-	ExchangeLocationException       any    `ps:"ExchangeLocationException"`
-	Force                           bool   `ps:"Force"`
-	Labels                          any    `ps:"Labels"`
-	Locations                       string `ps:"Locations"`
-	MigrationId                     string `ps:"MigrationId"`
-	ModernGroupLocation             any    `ps:"ModernGroupLocation"`
-	ModernGroupLocationException    any    `ps:"ModernGroupLocationException"`
-	Name                            string `ps:"Name"`
-	OneDriveLocation                any    `ps:"OneDriveLocation"`
-	OneDriveLocationException       any    `ps:"OneDriveLocationException"`
-	PolicyRBACScopes                any    `ps:"PolicyRBACScopes"`
-	PublicFolderLocation            any    `ps:"PublicFolderLocation"`
-	Setting                         any    `ps:"Setting"`
-	Settings                        any    `ps:"Settings"`
-	SharePointLocation              any    `ps:"SharePointLocation"`
-	SharePointLocationException     any    `ps:"SharePointLocationException"`
-	SkypeLocation                   any    `ps:"SkypeLocation"`
-	SkypeLocationException          any    `ps:"SkypeLocationException"`
+	AdvancedSettings                any      `ps:"AdvancedSettings"` // PswsHashtable
+	Comment                         string   `ps:"Comment"`
+	ExchangeAdaptiveScopes          []string `ps:"ExchangeAdaptiveScopes"`
+	ExchangeAdaptiveScopesException []string `ps:"ExchangeAdaptiveScopesException"`
+	ExchangeLocation                []string `ps:"ExchangeLocation"`
+	ExchangeLocationException       []string `ps:"ExchangeLocationException"`
+	Force                           bool     `ps:"Force"`
+	Labels                          []string `ps:"Labels"`
+	Locations                       string   `ps:"Locations"`
+	MigrationId                     string   `ps:"MigrationId"`
+	ModernGroupLocation             []string `ps:"ModernGroupLocation"`
+	ModernGroupLocationException    []string `ps:"ModernGroupLocationException"`
+	Name                            string   `ps:"Name"`
+	OneDriveLocation                []string `ps:"OneDriveLocation"`
+	OneDriveLocationException       []string `ps:"OneDriveLocationException"`
+	PolicyRBACScopes                []string `ps:"PolicyRBACScopes"`
+	PublicFolderLocation            []string `ps:"PublicFolderLocation"`
+	Setting                         any      `ps:"Setting"`  // PswsHashtable
+	Settings                        any      `ps:"Settings"` // PswsHashtable
+	SharePointLocation              []string `ps:"SharePointLocation"`
+	SharePointLocationException     []string `ps:"SharePointLocationException"`
+	SkypeLocation                   []string `ps:"SkypeLocation"`
+	SkypeLocationException          []string `ps:"SkypeLocationException"`
 }
 
 func (p NewLabelPolicyParams) params() map[string]any {
@@ -8905,9 +8905,9 @@ type NewMachineAssistedTagResourceParams struct {
 	ModelIds     any    `ps:"ModelIds"`
 	Name         string `ps:"Name"`
 	Resource     any    `ps:"Resource"`
-	TaskId       any    `ps:"TaskId"`
+	TaskId       string `ps:"TaskId"`
 	TaskType     any    `ps:"TaskType"`
-	TrainingId   any    `ps:"TrainingId"`
+	TrainingId   string `ps:"TrainingId"`
 	TrainingSite string `ps:"TrainingSite"`
 }
 
@@ -8925,13 +8925,13 @@ func (p NewMachineAssistedTagResourceParams) params() map[string]any {
 	if p.Resource != nil {
 		m["Resource"] = p.Resource
 	}
-	if p.TaskId != nil {
+	if p.TaskId != "" {
 		m["TaskId"] = p.TaskId
 	}
 	if p.TaskType != nil {
 		m["TaskType"] = p.TaskType
 	}
-	if p.TrainingId != nil {
+	if p.TrainingId != "" {
 		m["TrainingId"] = p.TrainingId
 	}
 	if p.TrainingSite != "" {
@@ -8955,7 +8955,7 @@ type NewOcrConfigurationParams struct {
 	ExceptIfOneDriveSharedByMemberOf     []string `ps:"ExceptIfOneDriveSharedByMemberOf"`
 	ExchangeLocation                     any      `ps:"ExchangeLocation"`
 	ExchangeLocationException            any      `ps:"ExchangeLocationException"`
-	ExchangeScopeOcrAnyRecipientExternal bool     `ps:"ExchangeScopeOcrAnyRecipientExternal"`
+	ExchangeScopeOcrAnyRecipientExternal *bool    `ps:"ExchangeScopeOcrAnyRecipientExternal"`
 	ExchangeSender                       []string `ps:"ExchangeSender"`
 	ExchangeSenderException              []string `ps:"ExchangeSenderException"`
 	ExchangeSenderMemberOf               []string `ps:"ExchangeSenderMemberOf"`
@@ -8988,10 +8988,10 @@ func (p NewOcrConfigurationParams) params() map[string]any {
 	if p.EnforcementPlanes != nil {
 		m["EnforcementPlanes"] = p.EnforcementPlanes
 	}
-	if len(p.ExceptIfOneDriveSharedBy) > 0 {
+	if p.ExceptIfOneDriveSharedBy != nil {
 		m["ExceptIfOneDriveSharedBy"] = p.ExceptIfOneDriveSharedBy
 	}
-	if len(p.ExceptIfOneDriveSharedByMemberOf) > 0 {
+	if p.ExceptIfOneDriveSharedByMemberOf != nil {
 		m["ExceptIfOneDriveSharedByMemberOf"] = p.ExceptIfOneDriveSharedByMemberOf
 	}
 	if p.ExchangeLocation != nil {
@@ -9000,19 +9000,19 @@ func (p NewOcrConfigurationParams) params() map[string]any {
 	if p.ExchangeLocationException != nil {
 		m["ExchangeLocationException"] = p.ExchangeLocationException
 	}
-	if p.ExchangeScopeOcrAnyRecipientExternal {
-		m["ExchangeScopeOcrAnyRecipientExternal"] = true
+	if p.ExchangeScopeOcrAnyRecipientExternal != nil {
+		m["ExchangeScopeOcrAnyRecipientExternal"] = *p.ExchangeScopeOcrAnyRecipientExternal
 	}
-	if len(p.ExchangeSender) > 0 {
+	if p.ExchangeSender != nil {
 		m["ExchangeSender"] = p.ExchangeSender
 	}
-	if len(p.ExchangeSenderException) > 0 {
+	if p.ExchangeSenderException != nil {
 		m["ExchangeSenderException"] = p.ExchangeSenderException
 	}
-	if len(p.ExchangeSenderMemberOf) > 0 {
+	if p.ExchangeSenderMemberOf != nil {
 		m["ExchangeSenderMemberOf"] = p.ExchangeSenderMemberOf
 	}
-	if len(p.ExchangeSenderMemberOfException) > 0 {
+	if p.ExchangeSenderMemberOfException != nil {
 		m["ExchangeSenderMemberOfException"] = p.ExchangeSenderMemberOfException
 	}
 	if p.Locations != "" {
@@ -9033,10 +9033,10 @@ func (p NewOcrConfigurationParams) params() map[string]any {
 	if p.OneDriveLocationException != nil {
 		m["OneDriveLocationException"] = p.OneDriveLocationException
 	}
-	if len(p.OneDriveSharedBy) > 0 {
+	if p.OneDriveSharedBy != nil {
 		m["OneDriveSharedBy"] = p.OneDriveSharedBy
 	}
-	if len(p.OneDriveSharedByMemberOf) > 0 {
+	if p.OneDriveSharedByMemberOf != nil {
 		m["OneDriveSharedByMemberOf"] = p.OneDriveSharedByMemberOf
 	}
 	if p.SharePointLocation != nil {
@@ -9120,7 +9120,7 @@ func (s *Service) NewPrivacyManagementComplianceTag(ctx context.Context, p NewPr
 // DefaultParameterSetName: Identity
 type NewPrivacyManagementPolicyParams struct {
 	Comment                     string `ps:"Comment"`
-	Enabled                     bool   `ps:"Enabled"`
+	Enabled                     *bool  `ps:"Enabled"`
 	ExchangeLocation            any    `ps:"ExchangeLocation"`
 	ExchangeLocationException   any    `ps:"ExchangeLocationException"`
 	Mode                        any    `ps:"Mode"`
@@ -9139,8 +9139,8 @@ func (p NewPrivacyManagementPolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
@@ -9213,13 +9213,13 @@ func (p NewPrivacyManagementRuleParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
-	if len(p.CrossBoundaryTransfers) > 0 {
+	if p.CrossBoundaryTransfers != nil {
 		m["CrossBoundaryTransfers"] = p.CrossBoundaryTransfers
 	}
-	if len(p.EndpointOperations) > 0 {
+	if p.EndpointOperations != nil {
 		m["EndpointOperations"] = p.EndpointOperations
 	}
 	if p.ExchangeSites != nil {
@@ -9246,7 +9246,7 @@ func (p NewPrivacyManagementRuleParams) params() map[string]any {
 	if p.PolicySettings != "" {
 		m["PolicySettings"] = p.PolicySettings
 	}
-	if len(p.PrivacyAccessLevel) > 0 {
+	if p.PrivacyAccessLevel != nil {
 		m["PrivacyAccessLevel"] = p.PrivacyAccessLevel
 	}
 	if p.PurviewSites != nil {
@@ -9300,37 +9300,37 @@ func (s *Service) NewProcessComplianceReviewRecords(ctx context.Context, p NewPr
 // NewProtectionAlertParams are the parameters of New-ProtectionAlert.
 // DefaultParameterSetName: Identity
 type NewProtectionAlertParams struct {
-	AggregationType                                             any    `ps:"AggregationType"`
-	AlertBy                                                     any    `ps:"AlertBy"`
-	AlertFor                                                    any    `ps:"AlertFor"`
-	Category                                                    any    `ps:"Category"`
-	Comment                                                     string `ps:"Comment"`
-	CorrelationPolicyId                                         any    `ps:"CorrelationPolicyId"`
-	CustomProperties                                            any    `ps:"CustomProperties"`
-	Description                                                 string `ps:"Description"`
-	Disabled                                                    bool   `ps:"Disabled"`
-	ExternalScenarioData                                        any    `ps:"ExternalScenarioData"`
-	Filter                                                      string `ps:"Filter"`
-	LogicalOperationName                                        string `ps:"LogicalOperationName"`
-	Name                                                        string `ps:"Name"`
-	NotificationCulture                                         any    `ps:"NotificationCulture"`
-	NotificationEnabled                                         bool   `ps:"NotificationEnabled"`
-	NotifyUser                                                  any    `ps:"NotifyUser"`
-	NotifyUserOnFilterMatch                                     bool   `ps:"NotifyUserOnFilterMatch"`
-	NotifyUserSuppressionExpiryDate                             any    `ps:"NotifyUserSuppressionExpiryDate"`
-	NotifyUserThrottleThreshold                                 any    `ps:"NotifyUserThrottleThreshold"`
-	NotifyUserThrottleWindow                                    any    `ps:"NotifyUserThrottleWindow"`
-	Operation                                                   any    `ps:"Operation"`
-	PrivacyManagementScopedSensitiveInformationTypes            any    `ps:"PrivacyManagementScopedSensitiveInformationTypes"`
-	PrivacyManagementScopedSensitiveInformationTypesForCounting any    `ps:"PrivacyManagementScopedSensitiveInformationTypesForCounting"`
-	PrivacyManagementScopedSensitiveInformationTypesThreshold   any    `ps:"PrivacyManagementScopedSensitiveInformationTypesThreshold"`
-	Severity                                                    any    `ps:"Severity"`
-	StreamType                                                  any    `ps:"StreamType"`
-	ThreatType                                                  any    `ps:"ThreatType"`
-	Threshold                                                   any    `ps:"Threshold"`
-	TimeWindow                                                  any    `ps:"TimeWindow"`
-	UseCreatedDateTime                                          any    `ps:"UseCreatedDateTime"`
-	VolumeThreshold                                             any    `ps:"VolumeThreshold"`
+	AggregationType                                             any      `ps:"AggregationType"` // AlertAggregationType
+	AlertBy                                                     []string `ps:"AlertBy"`
+	AlertFor                                                    []string `ps:"AlertFor"`
+	Category                                                    any      `ps:"Category"` // AlertRuleCategory
+	Comment                                                     string   `ps:"Comment"`
+	CorrelationPolicyId                                         any      `ps:"CorrelationPolicyId"` // System.Guid
+	CustomProperties                                            any      `ps:"CustomProperties"`    // PswsHashtable
+	Description                                                 string   `ps:"Description"`
+	Disabled                                                    *bool    `ps:"Disabled"`
+	ExternalScenarioData                                        any      `ps:"ExternalScenarioData"`
+	Filter                                                      string   `ps:"Filter"`
+	LogicalOperationName                                        string   `ps:"LogicalOperationName"`
+	Name                                                        string   `ps:"Name"`
+	NotificationCulture                                         any      `ps:"NotificationCulture"` // CultureInfo
+	NotificationEnabled                                         *bool    `ps:"NotificationEnabled"`
+	NotifyUser                                                  []string `ps:"NotifyUser"`
+	NotifyUserOnFilterMatch                                     *bool    `ps:"NotifyUserOnFilterMatch"`
+	NotifyUserSuppressionExpiryDate                             any      `ps:"NotifyUserSuppressionExpiryDate"` // DateTime
+	NotifyUserThrottleThreshold                                 *int64   `ps:"NotifyUserThrottleThreshold"`
+	NotifyUserThrottleWindow                                    *int64   `ps:"NotifyUserThrottleWindow"`
+	Operation                                                   []string `ps:"Operation"`
+	PrivacyManagementScopedSensitiveInformationTypes            []string `ps:"PrivacyManagementScopedSensitiveInformationTypes"`
+	PrivacyManagementScopedSensitiveInformationTypesForCounting []string `ps:"PrivacyManagementScopedSensitiveInformationTypesForCounting"`
+	PrivacyManagementScopedSensitiveInformationTypesThreshold   *int64   `ps:"PrivacyManagementScopedSensitiveInformationTypesThreshold"`
+	Severity                                                    any      `ps:"Severity"` // RuleSeverity
+	StreamType                                                  any      `ps:"StreamType"`
+	ThreatType                                                  any      `ps:"ThreatType"` // ThreatAlertType
+	Threshold                                                   *int64   `ps:"Threshold"`
+	TimeWindow                                                  *int64   `ps:"TimeWindow"`
+	UseCreatedDateTime                                          *bool    `ps:"UseCreatedDateTime"`
+	VolumeThreshold                                             *int64   `ps:"VolumeThreshold"`
 }
 
 func (p NewProtectionAlertParams) params() map[string]any {
@@ -9359,8 +9359,8 @@ func (p NewProtectionAlertParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
 	if p.ExternalScenarioData != nil {
 		m["ExternalScenarioData"] = p.ExternalScenarioData
@@ -9377,23 +9377,23 @@ func (p NewProtectionAlertParams) params() map[string]any {
 	if p.NotificationCulture != nil {
 		m["NotificationCulture"] = p.NotificationCulture
 	}
-	if p.NotificationEnabled {
-		m["NotificationEnabled"] = true
+	if p.NotificationEnabled != nil {
+		m["NotificationEnabled"] = *p.NotificationEnabled
 	}
 	if p.NotifyUser != nil {
 		m["NotifyUser"] = p.NotifyUser
 	}
-	if p.NotifyUserOnFilterMatch {
-		m["NotifyUserOnFilterMatch"] = true
+	if p.NotifyUserOnFilterMatch != nil {
+		m["NotifyUserOnFilterMatch"] = *p.NotifyUserOnFilterMatch
 	}
 	if p.NotifyUserSuppressionExpiryDate != nil {
 		m["NotifyUserSuppressionExpiryDate"] = p.NotifyUserSuppressionExpiryDate
 	}
 	if p.NotifyUserThrottleThreshold != nil {
-		m["NotifyUserThrottleThreshold"] = p.NotifyUserThrottleThreshold
+		m["NotifyUserThrottleThreshold"] = *p.NotifyUserThrottleThreshold
 	}
 	if p.NotifyUserThrottleWindow != nil {
-		m["NotifyUserThrottleWindow"] = p.NotifyUserThrottleWindow
+		m["NotifyUserThrottleWindow"] = *p.NotifyUserThrottleWindow
 	}
 	if p.Operation != nil {
 		m["Operation"] = p.Operation
@@ -9405,7 +9405,7 @@ func (p NewProtectionAlertParams) params() map[string]any {
 		m["PrivacyManagementScopedSensitiveInformationTypesForCounting"] = p.PrivacyManagementScopedSensitiveInformationTypesForCounting
 	}
 	if p.PrivacyManagementScopedSensitiveInformationTypesThreshold != nil {
-		m["PrivacyManagementScopedSensitiveInformationTypesThreshold"] = p.PrivacyManagementScopedSensitiveInformationTypesThreshold
+		m["PrivacyManagementScopedSensitiveInformationTypesThreshold"] = *p.PrivacyManagementScopedSensitiveInformationTypesThreshold
 	}
 	if p.Severity != nil {
 		m["Severity"] = p.Severity
@@ -9417,16 +9417,16 @@ func (p NewProtectionAlertParams) params() map[string]any {
 		m["ThreatType"] = p.ThreatType
 	}
 	if p.Threshold != nil {
-		m["Threshold"] = p.Threshold
+		m["Threshold"] = *p.Threshold
 	}
 	if p.TimeWindow != nil {
-		m["TimeWindow"] = p.TimeWindow
+		m["TimeWindow"] = *p.TimeWindow
 	}
 	if p.UseCreatedDateTime != nil {
-		m["UseCreatedDateTime"] = p.UseCreatedDateTime
+		m["UseCreatedDateTime"] = *p.UseCreatedDateTime
 	}
 	if p.VolumeThreshold != nil {
-		m["VolumeThreshold"] = p.VolumeThreshold
+		m["VolumeThreshold"] = *p.VolumeThreshold
 	}
 	return m
 }
@@ -9438,15 +9438,15 @@ func (s *Service) NewProtectionAlert(ctx context.Context, p NewProtectionAlertPa
 
 // NewProtectionCompliancePolicyParams are the parameters of New-ProtectionCompliancePolicy.
 type NewProtectionCompliancePolicyParams struct {
-	Enabled   bool   `ps:"Enabled"`
+	Enabled   *bool  `ps:"Enabled"`
 	Locations string `ps:"Locations"`
 	Name      string `ps:"Name"`
 }
 
 func (p NewProtectionCompliancePolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Locations != "" {
 		m["Locations"] = p.Locations
@@ -9479,7 +9479,7 @@ func (p NewProtectionComplianceRuleParams) params() map[string]any {
 	if p.ContainsLabels != nil {
 		m["ContainsLabels"] = p.ContainsLabels
 	}
-	if len(p.LabelActions) > 0 {
+	if p.LabelActions != nil {
 		m["LabelActions"] = p.LabelActions
 	}
 	if p.Name != "" {
@@ -9498,34 +9498,34 @@ func (s *Service) NewProtectionComplianceRule(ctx context.Context, p NewProtecti
 
 // NewRetentionCompliancePolicyParams are the parameters of New-RetentionCompliancePolicy.
 type NewRetentionCompliancePolicyParams struct {
-	AdaptiveScopeLocation         any    `ps:"AdaptiveScopeLocation"`
-	Applications                  any    `ps:"Applications"`
-	Comment                       string `ps:"Comment"`
-	Enabled                       bool   `ps:"Enabled"`
-	ExchangeLocation              any    `ps:"ExchangeLocation"`
-	ExchangeLocationException     any    `ps:"ExchangeLocationException"`
-	ExcludeSPE                    bool   `ps:"ExcludeSPE"`
-	Force                         bool   `ps:"Force"`
-	IncludeUserOwnedContainers    bool   `ps:"IncludeUserOwnedContainers"`
-	IsSimulation                  bool   `ps:"IsSimulation"`
-	ModernGroupLocation           any    `ps:"ModernGroupLocation"`
-	ModernGroupLocationException  any    `ps:"ModernGroupLocationException"`
-	Name                          string `ps:"Name"`
-	OneDriveLocation              any    `ps:"OneDriveLocation"`
-	OneDriveLocationException     any    `ps:"OneDriveLocationException"`
-	PolicyRBACScopes              any    `ps:"PolicyRBACScopes"`
-	PolicyTemplateInfo            any    `ps:"PolicyTemplateInfo"`
-	PublicFolderLocation          any    `ps:"PublicFolderLocation"`
-	RestrictiveRetention          bool   `ps:"RestrictiveRetention"`
-	RetainCloudAttachment         bool   `ps:"RetainCloudAttachment"`
-	SharePointLocation            any    `ps:"SharePointLocation"`
-	SharePointLocationException   any    `ps:"SharePointLocationException"`
-	SkypeLocation                 any    `ps:"SkypeLocation"`
-	SkypeLocationException        any    `ps:"SkypeLocationException"`
-	TeamsChannelLocation          any    `ps:"TeamsChannelLocation"`
-	TeamsChannelLocationException any    `ps:"TeamsChannelLocationException"`
-	TeamsChatLocation             any    `ps:"TeamsChatLocation"`
-	TeamsChatLocationException    any    `ps:"TeamsChatLocationException"`
+	AdaptiveScopeLocation         []string `ps:"AdaptiveScopeLocation"`
+	Applications                  []string `ps:"Applications"`
+	Comment                       string   `ps:"Comment"`
+	Enabled                       *bool    `ps:"Enabled"`
+	ExchangeLocation              []string `ps:"ExchangeLocation"`
+	ExchangeLocationException     []string `ps:"ExchangeLocationException"`
+	ExcludeSPE                    bool     `ps:"ExcludeSPE"`
+	Force                         bool     `ps:"Force"`
+	IncludeUserOwnedContainers    bool     `ps:"IncludeUserOwnedContainers"`
+	IsSimulation                  bool     `ps:"IsSimulation"`
+	ModernGroupLocation           []string `ps:"ModernGroupLocation"`
+	ModernGroupLocationException  []string `ps:"ModernGroupLocationException"`
+	Name                          string   `ps:"Name"`
+	OneDriveLocation              []string `ps:"OneDriveLocation"`
+	OneDriveLocationException     []string `ps:"OneDriveLocationException"`
+	PolicyRBACScopes              []string `ps:"PolicyRBACScopes"`
+	PolicyTemplateInfo            any      `ps:"PolicyTemplateInfo"` // PswsHashtable
+	PublicFolderLocation          []string `ps:"PublicFolderLocation"`
+	RestrictiveRetention          *bool    `ps:"RestrictiveRetention"`
+	RetainCloudAttachment         *bool    `ps:"RetainCloudAttachment"`
+	SharePointLocation            []string `ps:"SharePointLocation"`
+	SharePointLocationException   []string `ps:"SharePointLocationException"`
+	SkypeLocation                 []string `ps:"SkypeLocation"`
+	SkypeLocationException        []string `ps:"SkypeLocationException"`
+	TeamsChannelLocation          []string `ps:"TeamsChannelLocation"`
+	TeamsChannelLocationException []string `ps:"TeamsChannelLocationException"`
+	TeamsChatLocation             []string `ps:"TeamsChatLocation"`
+	TeamsChatLocationException    []string `ps:"TeamsChatLocationException"`
 }
 
 func (p NewRetentionCompliancePolicyParams) params() map[string]any {
@@ -9539,8 +9539,8 @@ func (p NewRetentionCompliancePolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
@@ -9584,11 +9584,11 @@ func (p NewRetentionCompliancePolicyParams) params() map[string]any {
 	if p.PublicFolderLocation != nil {
 		m["PublicFolderLocation"] = p.PublicFolderLocation
 	}
-	if p.RestrictiveRetention {
-		m["RestrictiveRetention"] = true
+	if p.RestrictiveRetention != nil {
+		m["RestrictiveRetention"] = *p.RestrictiveRetention
 	}
-	if p.RetainCloudAttachment {
-		m["RetainCloudAttachment"] = true
+	if p.RetainCloudAttachment != nil {
+		m["RetainCloudAttachment"] = *p.RetainCloudAttachment
 	}
 	if p.SharePointLocation != nil {
 		m["SharePointLocation"] = p.SharePointLocation
@@ -9629,18 +9629,18 @@ type NewRetentionComplianceRuleParams struct {
 	ArchiveTriggerBasedOn               string   `ps:"ArchiveTriggerBasedOn"`
 	ArchiveTriggerInDays                any      `ps:"ArchiveTriggerInDays"`
 	Comment                             string   `ps:"Comment"`
-	ContentContainsSensitiveInformation []string `ps:"ContentContainsSensitiveInformation"`
+	ContentContainsSensitiveInformation any      `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
 	ContentMatchQuery                   string   `ps:"ContentMatchQuery"`
-	ExcludedItemClasses                 any      `ps:"ExcludedItemClasses"`
+	ExcludedItemClasses                 []string `ps:"ExcludedItemClasses"`
 	ExpirationDateOption                string   `ps:"ExpirationDateOption"`
-	IRMRiskyUserProfiles                any      `ps:"IRMRiskyUserProfiles"`
-	MachineLearningModelIDs             any      `ps:"MachineLearningModelIDs"`
+	IRMRiskyUserProfiles                any      `ps:"IRMRiskyUserProfiles"` // String
+	MachineLearningModelIDs             []string `ps:"MachineLearningModelIDs"`
 	Name                                string   `ps:"Name"`
-	Policy                              any      `ps:"Policy"`
+	Policy                              any      `ps:"Policy"` // PolicyIdParameter
 	PublishComplianceTag                string   `ps:"PublishComplianceTag"`
 	RetentionComplianceAction           string   `ps:"RetentionComplianceAction"`
-	RetentionDuration                   any      `ps:"RetentionDuration"`
-	RetentionDurationDisplayHint        any      `ps:"RetentionDurationDisplayHint"`
+	RetentionDuration                   any      `ps:"RetentionDuration"`            // Unlimited
+	RetentionDurationDisplayHint        any      `ps:"RetentionDurationDisplayHint"` // HoldDurationHint
 }
 
 func (p NewRetentionComplianceRuleParams) params() map[string]any {
@@ -9660,7 +9660,7 @@ func (p NewRetentionComplianceRuleParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
 	if p.ContentMatchQuery != "" {
@@ -9707,13 +9707,13 @@ func (s *Service) NewRetentionComplianceRule(ctx context.Context, p NewRetention
 // NewSensitiveInformationScanParams are the parameters of New-SensitiveInformationScan.
 type NewSensitiveInformationScanParams struct {
 	Comment                           string   `ps:"Comment"`
-	EndpointDlpLocation               any      `ps:"EndpointDlpLocation"`
-	EndpointDlpLocationException      any      `ps:"EndpointDlpLocationException"`
+	EndpointDlpLocation               []string `ps:"EndpointDlpLocation"`
+	EndpointDlpLocationException      []string `ps:"EndpointDlpLocationException"`
 	ExceptIfOneDriveSharedBy          []string `ps:"ExceptIfOneDriveSharedBy"`
 	ExceptIfOneDriveSharedByMemberOf  []string `ps:"ExceptIfOneDriveSharedByMemberOf"`
 	ExchangeAdaptiveScopes            any      `ps:"ExchangeAdaptiveScopes"`
 	ExchangeAdaptiveScopesException   any      `ps:"ExchangeAdaptiveScopesException"`
-	ExchangeLocation                  any      `ps:"ExchangeLocation"`
+	ExchangeLocation                  []string `ps:"ExchangeLocation"`
 	ExchangeSender                    []string `ps:"ExchangeSender"`
 	ExchangeSenderException           []string `ps:"ExchangeSenderException"`
 	ExchangeSenderMemberOf            []string `ps:"ExchangeSenderMemberOf"`
@@ -9721,21 +9721,21 @@ type NewSensitiveInformationScanParams struct {
 	Name                              string   `ps:"Name"`
 	OneDriveAdaptiveScopes            any      `ps:"OneDriveAdaptiveScopes"`
 	OneDriveAdaptiveScopesException   any      `ps:"OneDriveAdaptiveScopesException"`
-	OneDriveLocation                  any      `ps:"OneDriveLocation"`
-	OneDriveLocationException         any      `ps:"OneDriveLocationException"`
+	OneDriveLocation                  []string `ps:"OneDriveLocation"`
+	OneDriveLocationException         []string `ps:"OneDriveLocationException"`
 	OneDriveSharedBy                  []string `ps:"OneDriveSharedBy"`
 	OneDriveSharedByMemberOf          []string `ps:"OneDriveSharedByMemberOf"`
-	PolicyRBACScopes                  any      `ps:"PolicyRBACScopes"`
+	PolicyRBACScopes                  []string `ps:"PolicyRBACScopes"`
 	ScanBudget                        any      `ps:"ScanBudget"`
 	ScanType                          string   `ps:"ScanType"`
 	SharePointAdaptiveScopes          any      `ps:"SharePointAdaptiveScopes"`
 	SharePointAdaptiveScopesException any      `ps:"SharePointAdaptiveScopesException"`
-	SharePointLocation                any      `ps:"SharePointLocation"`
-	SharePointLocationException       any      `ps:"SharePointLocationException"`
+	SharePointLocation                []string `ps:"SharePointLocation"`
+	SharePointLocationException       []string `ps:"SharePointLocationException"`
 	TeamsAdaptiveScopes               any      `ps:"TeamsAdaptiveScopes"`
 	TeamsAdaptiveScopesException      any      `ps:"TeamsAdaptiveScopesException"`
-	TeamsLocation                     any      `ps:"TeamsLocation"`
-	TeamsLocationException            any      `ps:"TeamsLocationException"`
+	TeamsLocation                     []string `ps:"TeamsLocation"`
+	TeamsLocationException            []string `ps:"TeamsLocationException"`
 }
 
 func (p NewSensitiveInformationScanParams) params() map[string]any {
@@ -9749,10 +9749,10 @@ func (p NewSensitiveInformationScanParams) params() map[string]any {
 	if p.EndpointDlpLocationException != nil {
 		m["EndpointDlpLocationException"] = p.EndpointDlpLocationException
 	}
-	if len(p.ExceptIfOneDriveSharedBy) > 0 {
+	if p.ExceptIfOneDriveSharedBy != nil {
 		m["ExceptIfOneDriveSharedBy"] = p.ExceptIfOneDriveSharedBy
 	}
-	if len(p.ExceptIfOneDriveSharedByMemberOf) > 0 {
+	if p.ExceptIfOneDriveSharedByMemberOf != nil {
 		m["ExceptIfOneDriveSharedByMemberOf"] = p.ExceptIfOneDriveSharedByMemberOf
 	}
 	if p.ExchangeAdaptiveScopes != nil {
@@ -9764,16 +9764,16 @@ func (p NewSensitiveInformationScanParams) params() map[string]any {
 	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
 	}
-	if len(p.ExchangeSender) > 0 {
+	if p.ExchangeSender != nil {
 		m["ExchangeSender"] = p.ExchangeSender
 	}
-	if len(p.ExchangeSenderException) > 0 {
+	if p.ExchangeSenderException != nil {
 		m["ExchangeSenderException"] = p.ExchangeSenderException
 	}
-	if len(p.ExchangeSenderMemberOf) > 0 {
+	if p.ExchangeSenderMemberOf != nil {
 		m["ExchangeSenderMemberOf"] = p.ExchangeSenderMemberOf
 	}
-	if len(p.ExchangeSenderMemberOfException) > 0 {
+	if p.ExchangeSenderMemberOfException != nil {
 		m["ExchangeSenderMemberOfException"] = p.ExchangeSenderMemberOfException
 	}
 	if p.Name != "" {
@@ -9791,10 +9791,10 @@ func (p NewSensitiveInformationScanParams) params() map[string]any {
 	if p.OneDriveLocationException != nil {
 		m["OneDriveLocationException"] = p.OneDriveLocationException
 	}
-	if len(p.OneDriveSharedBy) > 0 {
+	if p.OneDriveSharedBy != nil {
 		m["OneDriveSharedBy"] = p.OneDriveSharedBy
 	}
-	if len(p.OneDriveSharedByMemberOf) > 0 {
+	if p.OneDriveSharedByMemberOf != nil {
 		m["OneDriveSharedByMemberOf"] = p.OneDriveSharedByMemberOf
 	}
 	if p.PolicyRBACScopes != nil {
@@ -9842,22 +9842,22 @@ func (s *Service) NewSensitiveInformationScan(ctx context.Context, p NewSensitiv
 type NewSensitiveInformationScanRuleParams struct {
 	Comment                                        string   `ps:"Comment"`
 	ContentContainsSensitiveInformation            []string `ps:"ContentContainsSensitiveInformation"`
-	ContentCreatedOrUpdatedDateFrom                any      `ps:"ContentCreatedOrUpdatedDateFrom"`
-	ContentCreatedOrUpdatedDateTo                  any      `ps:"ContentCreatedOrUpdatedDateTo"`
-	ContentExtensionMatchesWords                   any      `ps:"ContentExtensionMatchesWords"`
-	ContentIsNotLabeled                            bool     `ps:"ContentIsNotLabeled"`
-	ContentPropertyContainsWords                   any      `ps:"ContentPropertyContainsWords"`
+	ContentCreatedOrUpdatedDateFrom                any      `ps:"ContentCreatedOrUpdatedDateFrom"` // System.DateTime
+	ContentCreatedOrUpdatedDateTo                  any      `ps:"ContentCreatedOrUpdatedDateTo"`   // System.DateTime
+	ContentExtensionMatchesWords                   []string `ps:"ContentExtensionMatchesWords"`
+	ContentIsNotLabeled                            *bool    `ps:"ContentIsNotLabeled"`
+	ContentPropertyContainsWords                   []string `ps:"ContentPropertyContainsWords"`
 	DocumentSizeOver                               any      `ps:"DocumentSizeOver"`
 	ExceptIfContentContainsSensitiveInformation    []string `ps:"ExceptIfContentContainsSensitiveInformation"`
-	ExceptIfContentExtensionMatchesWords           any      `ps:"ExceptIfContentExtensionMatchesWords"`
-	ExceptIfContentPropertyContainsWords           any      `ps:"ExceptIfContentPropertyContainsWords"`
+	ExceptIfContentExtensionMatchesWords           []string `ps:"ExceptIfContentExtensionMatchesWords"`
+	ExceptIfContentPropertyContainsWords           []string `ps:"ExceptIfContentPropertyContainsWords"`
 	ExceptIfDocumentSizeOver                       any      `ps:"ExceptIfDocumentSizeOver"`
 	ExceptIfOdcContentContainsSensitiveInformation []string `ps:"ExceptIfOdcContentContainsSensitiveInformation"`
 	Name                                           string   `ps:"Name"`
 	OdcContentContainsSensitiveInformation         []string `ps:"OdcContentContainsSensitiveInformation"`
-	Policy                                         any      `ps:"Policy"`
-	StartImpactAssessment                          bool     `ps:"StartImpactAssessment"`
-	Workload                                       any      `ps:"Workload"`
+	Policy                                         any      `ps:"Policy"` // PolicyIdParameter
+	StartImpactAssessment                          *bool    `ps:"StartImpactAssessment"`
+	Workload                                       any      `ps:"Workload"` // PolicyConfiguration.Workload
 }
 
 func (p NewSensitiveInformationScanRuleParams) params() map[string]any {
@@ -9865,7 +9865,7 @@ func (p NewSensitiveInformationScanRuleParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
 	if p.ContentCreatedOrUpdatedDateFrom != nil {
@@ -9877,8 +9877,8 @@ func (p NewSensitiveInformationScanRuleParams) params() map[string]any {
 	if p.ContentExtensionMatchesWords != nil {
 		m["ContentExtensionMatchesWords"] = p.ContentExtensionMatchesWords
 	}
-	if p.ContentIsNotLabeled {
-		m["ContentIsNotLabeled"] = true
+	if p.ContentIsNotLabeled != nil {
+		m["ContentIsNotLabeled"] = *p.ContentIsNotLabeled
 	}
 	if p.ContentPropertyContainsWords != nil {
 		m["ContentPropertyContainsWords"] = p.ContentPropertyContainsWords
@@ -9886,7 +9886,7 @@ func (p NewSensitiveInformationScanRuleParams) params() map[string]any {
 	if p.DocumentSizeOver != nil {
 		m["DocumentSizeOver"] = p.DocumentSizeOver
 	}
-	if len(p.ExceptIfContentContainsSensitiveInformation) > 0 {
+	if p.ExceptIfContentContainsSensitiveInformation != nil {
 		m["ExceptIfContentContainsSensitiveInformation"] = p.ExceptIfContentContainsSensitiveInformation
 	}
 	if p.ExceptIfContentExtensionMatchesWords != nil {
@@ -9898,20 +9898,20 @@ func (p NewSensitiveInformationScanRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
-	if len(p.ExceptIfOdcContentContainsSensitiveInformation) > 0 {
+	if p.ExceptIfOdcContentContainsSensitiveInformation != nil {
 		m["ExceptIfOdcContentContainsSensitiveInformation"] = p.ExceptIfOdcContentContainsSensitiveInformation
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if len(p.OdcContentContainsSensitiveInformation) > 0 {
+	if p.OdcContentContainsSensitiveInformation != nil {
 		m["OdcContentContainsSensitiveInformation"] = p.OdcContentContainsSensitiveInformation
 	}
 	if p.Policy != nil {
 		m["Policy"] = p.Policy
 	}
-	if p.StartImpactAssessment {
-		m["StartImpactAssessment"] = true
+	if p.StartImpactAssessment != nil {
+		m["StartImpactAssessment"] = *p.StartImpactAssessment
 	}
 	if p.Workload != nil {
 		m["Workload"] = p.Workload
@@ -9960,7 +9960,7 @@ type NewServicePrincipalParams struct {
 	AppId        string `ps:"AppId"`
 	DisplayName  string `ps:"DisplayName"`
 	ObjectId     string `ps:"ObjectId"`
-	Organization any    `ps:"Organization"`
+	Organization any    `ps:"Organization"` // OrganizationIdParameter
 	ServiceId    string `ps:"ServiceId"`
 }
 
@@ -10000,7 +10000,7 @@ func (p NewSupervisoryReviewPolicyMailboxFoldersParams) params() map[string]any 
 	if p.PolicyName != "" {
 		m["PolicyName"] = p.PolicyName
 	}
-	if len(p.Reviewers) > 0 {
+	if p.Reviewers != nil {
 		m["Reviewers"] = p.Reviewers
 	}
 	return m
@@ -10014,11 +10014,11 @@ func (s *Service) NewSupervisoryReviewPolicyMailboxFolders(ctx context.Context, 
 // NewSupervisoryReviewPolicyV2Params are the parameters of New-SupervisoryReviewPolicyV2.
 type NewSupervisoryReviewPolicyV2Params struct {
 	Comment                  string   `ps:"Comment"`
-	Enabled                  bool     `ps:"Enabled"`
+	Enabled                  *bool    `ps:"Enabled"`
 	Force                    bool     `ps:"Force"`
 	Name                     string   `ps:"Name"`
-	PolicyRBACScopes         any      `ps:"PolicyRBACScopes"`
-	PreservationPeriodInDays int      `ps:"PreservationPeriodInDays"`
+	PolicyRBACScopes         []string `ps:"PolicyRBACScopes"`
+	PreservationPeriodInDays *int64   `ps:"PreservationPeriodInDays"`
 	Reviewers                []string `ps:"Reviewers"`
 	UserReportingWorkloads   []string `ps:"UserReportingWorkloads"`
 }
@@ -10028,8 +10028,8 @@ func (p NewSupervisoryReviewPolicyV2Params) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -10040,13 +10040,13 @@ func (p NewSupervisoryReviewPolicyV2Params) params() map[string]any {
 	if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
-	if p.PreservationPeriodInDays != 0 {
-		m["PreservationPeriodInDays"] = p.PreservationPeriodInDays
+	if p.PreservationPeriodInDays != nil {
+		m["PreservationPeriodInDays"] = *p.PreservationPeriodInDays
 	}
-	if len(p.Reviewers) > 0 {
+	if p.Reviewers != nil {
 		m["Reviewers"] = p.Reviewers
 	}
-	if len(p.UserReportingWorkloads) > 0 {
+	if p.UserReportingWorkloads != nil {
 		m["UserReportingWorkloads"] = p.UserReportingWorkloads
 	}
 	return m
@@ -10062,26 +10062,26 @@ type NewSupervisoryReviewRuleParams struct {
 	AdvancedRule                        string   `ps:"AdvancedRule"`
 	CcsiDataModelOperator               string   `ps:"CcsiDataModelOperator"`
 	Condition                           string   `ps:"Condition"`
-	ContentContainsSensitiveInformation []string `ps:"ContentContainsSensitiveInformation"`
+	ContentContainsSensitiveInformation any      `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
 	ContentMatchesDataModel             string   `ps:"ContentMatchesDataModel"`
 	ContentSources                      []string `ps:"ContentSources"`
-	DayXInsights                        bool     `ps:"DayXInsights"`
-	ExceptIfFrom                        any      `ps:"ExceptIfFrom"`
-	ExceptIfRecipientDomainIs           any      `ps:"ExceptIfRecipientDomainIs"`
-	ExceptIfRevieweeIs                  any      `ps:"ExceptIfRevieweeIs"`
-	ExceptIfSenderDomainIs              any      `ps:"ExceptIfSenderDomainIs"`
-	ExceptIfSentTo                      any      `ps:"ExceptIfSentTo"`
-	ExceptIfSubjectOrBodyContainsWords  any      `ps:"ExceptIfSubjectOrBodyContainsWords"`
-	From                                any      `ps:"From"`
+	DayXInsights                        *bool    `ps:"DayXInsights"`
+	ExceptIfFrom                        []string `ps:"ExceptIfFrom"`
+	ExceptIfRecipientDomainIs           []string `ps:"ExceptIfRecipientDomainIs"`
+	ExceptIfRevieweeIs                  []string `ps:"ExceptIfRevieweeIs"`
+	ExceptIfSenderDomainIs              []string `ps:"ExceptIfSenderDomainIs"`
+	ExceptIfSentTo                      []string `ps:"ExceptIfSentTo"`
+	ExceptIfSubjectOrBodyContainsWords  []string `ps:"ExceptIfSubjectOrBodyContainsWords"`
+	From                                []string `ps:"From"`
 	IncludeAdaptiveScopes               []string `ps:"IncludeAdaptiveScopes"`
 	InPurviewFilter                     string   `ps:"InPurviewFilter"`
 	Name                                string   `ps:"Name"`
-	Ocr                                 bool     `ps:"Ocr"`
-	Policy                              any      `ps:"Policy"`
-	PolicyRBACScopes                    any      `ps:"PolicyRBACScopes"`
+	Ocr                                 *bool    `ps:"Ocr"`
+	Policy                              any      `ps:"Policy"` // PolicyIdParameter
+	PolicyRBACScopes                    []string `ps:"PolicyRBACScopes"`
 	RateOfSampling                      string   `ps:"RateOfSampling"`
-	SamplingRate                        int      `ps:"SamplingRate"`
-	SentTo                              any      `ps:"SentTo"`
+	SamplingRate                        *int64   `ps:"SamplingRate"`
+	SentTo                              []string `ps:"SentTo"`
 }
 
 func (p NewSupervisoryReviewRuleParams) params() map[string]any {
@@ -10095,17 +10095,17 @@ func (p NewSupervisoryReviewRuleParams) params() map[string]any {
 	if p.Condition != "" {
 		m["Condition"] = p.Condition
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
 	if p.ContentMatchesDataModel != "" {
 		m["ContentMatchesDataModel"] = p.ContentMatchesDataModel
 	}
-	if len(p.ContentSources) > 0 {
+	if p.ContentSources != nil {
 		m["ContentSources"] = p.ContentSources
 	}
-	if p.DayXInsights {
-		m["DayXInsights"] = true
+	if p.DayXInsights != nil {
+		m["DayXInsights"] = *p.DayXInsights
 	}
 	if p.ExceptIfFrom != nil {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
@@ -10128,7 +10128,7 @@ func (p NewSupervisoryReviewRuleParams) params() map[string]any {
 	if p.From != nil {
 		m["From"] = p.From
 	}
-	if len(p.IncludeAdaptiveScopes) > 0 {
+	if p.IncludeAdaptiveScopes != nil {
 		m["IncludeAdaptiveScopes"] = p.IncludeAdaptiveScopes
 	}
 	if p.InPurviewFilter != "" {
@@ -10137,8 +10137,8 @@ func (p NewSupervisoryReviewRuleParams) params() map[string]any {
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if p.Ocr {
-		m["Ocr"] = true
+	if p.Ocr != nil {
+		m["Ocr"] = *p.Ocr
 	}
 	if p.Policy != nil {
 		m["Policy"] = p.Policy
@@ -10149,8 +10149,8 @@ func (p NewSupervisoryReviewRuleParams) params() map[string]any {
 	if p.RateOfSampling != "" {
 		m["RateOfSampling"] = p.RateOfSampling
 	}
-	if p.SamplingRate != 0 {
-		m["SamplingRate"] = p.SamplingRate
+	if p.SamplingRate != nil {
+		m["SamplingRate"] = *p.SamplingRate
 	}
 	if p.SentTo != nil {
 		m["SentTo"] = p.SentTo
@@ -10166,10 +10166,10 @@ func (s *Service) NewSupervisoryReviewRule(ctx context.Context, p NewSupervisory
 // NewTeamsRetentionCompliancePolicyParams are the parameters of New-TeamsRetentionCompliancePolicy.
 type NewTeamsRetentionCompliancePolicyParams struct {
 	Comment                       string `ps:"Comment"`
-	Enabled                       bool   `ps:"Enabled"`
+	Enabled                       *bool  `ps:"Enabled"`
 	Force                         bool   `ps:"Force"`
 	Name                          string `ps:"Name"`
-	RestrictiveRetention          bool   `ps:"RestrictiveRetention"`
+	RestrictiveRetention          *bool  `ps:"RestrictiveRetention"`
 	TeamsChannelLocation          any    `ps:"TeamsChannelLocation"`
 	TeamsChannelLocationException any    `ps:"TeamsChannelLocationException"`
 	TeamsChatLocation             any    `ps:"TeamsChatLocation"`
@@ -10181,8 +10181,8 @@ func (p NewTeamsRetentionCompliancePolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -10190,8 +10190,8 @@ func (p NewTeamsRetentionCompliancePolicyParams) params() map[string]any {
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if p.RestrictiveRetention {
-		m["RestrictiveRetention"] = true
+	if p.RestrictiveRetention != nil {
+		m["RestrictiveRetention"] = *p.RestrictiveRetention
 	}
 	if p.TeamsChannelLocation != nil {
 		m["TeamsChannelLocation"] = p.TeamsChannelLocation
@@ -10254,7 +10254,7 @@ type NewTenantWideRetentionOperationParams struct {
 	Comment                      string `ps:"Comment"`
 	ContentMatchQuery            string `ps:"ContentMatchQuery"`
 	DestinationLabel             string `ps:"DestinationLabel"`
-	Enabled                      bool   `ps:"Enabled"`
+	Enabled                      *bool  `ps:"Enabled"`
 	ExchangeLocation             any    `ps:"ExchangeLocation"`
 	ExchangeLocationException    any    `ps:"ExchangeLocationException"`
 	Force                        bool   `ps:"Force"`
@@ -10286,8 +10286,8 @@ func (p NewTenantWideRetentionOperationParams) params() map[string]any {
 	if p.DestinationLabel != "" {
 		m["DestinationLabel"] = p.DestinationLabel
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
@@ -10365,20 +10365,20 @@ func (s *Service) NewThreatResponsePolicy(ctx context.Context, p NewThreatRespon
 
 // NewThreatResponseRuleParams are the parameters of New-ThreatResponseRule.
 type NewThreatResponseRuleParams struct {
-	DisableActiveSync                     bool   `ps:"DisableActiveSync"`
-	DisableAutoForwardDefaultRemoteDomain bool   `ps:"DisableAutoForwardDefaultRemoteDomain"`
-	DisableBasicAuth                      bool   `ps:"DisableBasicAuth"`
-	DisableEWS                            bool   `ps:"DisableEWS"`
-	DisableForwardingSMTPAddress          bool   `ps:"DisableForwardingSMTPAddress"`
-	DisableIMAP                           bool   `ps:"DisableIMAP"`
-	DisableMAPI                           bool   `ps:"DisableMAPI"`
-	DisableMAPIOverHTTP                   bool   `ps:"DisableMAPIOverHTTP"`
-	DisableOWA                            bool   `ps:"DisableOWA"`
-	DisablePOP                            bool   `ps:"DisablePOP"`
-	DisableTransportRuleForwarding        bool   `ps:"DisableTransportRuleForwarding"`
-	ExceptIfHighRiskUser                  bool   `ps:"ExceptIfHighRiskUser"`
+	DisableActiveSync                     *bool  `ps:"DisableActiveSync"`
+	DisableAutoForwardDefaultRemoteDomain *bool  `ps:"DisableAutoForwardDefaultRemoteDomain"`
+	DisableBasicAuth                      *bool  `ps:"DisableBasicAuth"`
+	DisableEWS                            *bool  `ps:"DisableEWS"`
+	DisableForwardingSMTPAddress          *bool  `ps:"DisableForwardingSMTPAddress"`
+	DisableIMAP                           *bool  `ps:"DisableIMAP"`
+	DisableMAPI                           *bool  `ps:"DisableMAPI"`
+	DisableMAPIOverHTTP                   *bool  `ps:"DisableMAPIOverHTTP"`
+	DisableOWA                            *bool  `ps:"DisableOWA"`
+	DisablePOP                            *bool  `ps:"DisablePOP"`
+	DisableTransportRuleForwarding        *bool  `ps:"DisableTransportRuleForwarding"`
+	ExceptIfHighRiskUser                  *bool  `ps:"ExceptIfHighRiskUser"`
 	ExceptIfMemberOfDL                    any    `ps:"ExceptIfMemberOfDL"`
-	HighRiskUser                          bool   `ps:"HighRiskUser"`
+	HighRiskUser                          *bool  `ps:"HighRiskUser"`
 	MemberOfDL                            any    `ps:"MemberOfDL"`
 	Name                                  string `ps:"Name"`
 	Policy                                any    `ps:"Policy"`
@@ -10386,47 +10386,47 @@ type NewThreatResponseRuleParams struct {
 
 func (p NewThreatResponseRuleParams) params() map[string]any {
 	m := map[string]any{}
-	if p.DisableActiveSync {
-		m["DisableActiveSync"] = true
+	if p.DisableActiveSync != nil {
+		m["DisableActiveSync"] = *p.DisableActiveSync
 	}
-	if p.DisableAutoForwardDefaultRemoteDomain {
-		m["DisableAutoForwardDefaultRemoteDomain"] = true
+	if p.DisableAutoForwardDefaultRemoteDomain != nil {
+		m["DisableAutoForwardDefaultRemoteDomain"] = *p.DisableAutoForwardDefaultRemoteDomain
 	}
-	if p.DisableBasicAuth {
-		m["DisableBasicAuth"] = true
+	if p.DisableBasicAuth != nil {
+		m["DisableBasicAuth"] = *p.DisableBasicAuth
 	}
-	if p.DisableEWS {
-		m["DisableEWS"] = true
+	if p.DisableEWS != nil {
+		m["DisableEWS"] = *p.DisableEWS
 	}
-	if p.DisableForwardingSMTPAddress {
-		m["DisableForwardingSMTPAddress"] = true
+	if p.DisableForwardingSMTPAddress != nil {
+		m["DisableForwardingSMTPAddress"] = *p.DisableForwardingSMTPAddress
 	}
-	if p.DisableIMAP {
-		m["DisableIMAP"] = true
+	if p.DisableIMAP != nil {
+		m["DisableIMAP"] = *p.DisableIMAP
 	}
-	if p.DisableMAPI {
-		m["DisableMAPI"] = true
+	if p.DisableMAPI != nil {
+		m["DisableMAPI"] = *p.DisableMAPI
 	}
-	if p.DisableMAPIOverHTTP {
-		m["DisableMAPIOverHTTP"] = true
+	if p.DisableMAPIOverHTTP != nil {
+		m["DisableMAPIOverHTTP"] = *p.DisableMAPIOverHTTP
 	}
-	if p.DisableOWA {
-		m["DisableOWA"] = true
+	if p.DisableOWA != nil {
+		m["DisableOWA"] = *p.DisableOWA
 	}
-	if p.DisablePOP {
-		m["DisablePOP"] = true
+	if p.DisablePOP != nil {
+		m["DisablePOP"] = *p.DisablePOP
 	}
-	if p.DisableTransportRuleForwarding {
-		m["DisableTransportRuleForwarding"] = true
+	if p.DisableTransportRuleForwarding != nil {
+		m["DisableTransportRuleForwarding"] = *p.DisableTransportRuleForwarding
 	}
-	if p.ExceptIfHighRiskUser {
-		m["ExceptIfHighRiskUser"] = true
+	if p.ExceptIfHighRiskUser != nil {
+		m["ExceptIfHighRiskUser"] = *p.ExceptIfHighRiskUser
 	}
 	if p.ExceptIfMemberOfDL != nil {
 		m["ExceptIfMemberOfDL"] = p.ExceptIfMemberOfDL
 	}
-	if p.HighRiskUser {
-		m["HighRiskUser"] = true
+	if p.HighRiskUser != nil {
+		m["HighRiskUser"] = *p.HighRiskUser
 	}
 	if p.MemberOfDL != nil {
 		m["MemberOfDL"] = p.MemberOfDL
@@ -10447,13 +10447,13 @@ func (s *Service) NewThreatResponseRule(ctx context.Context, p NewThreatResponse
 
 // NewUnifiedAuditLogRetentionPolicyParams are the parameters of New-UnifiedAuditLogRetentionPolicy.
 type NewUnifiedAuditLogRetentionPolicyParams struct {
-	Description       string `ps:"Description"`
-	Name              string `ps:"Name"`
-	Operations        any    `ps:"Operations"`
-	Priority          int    `ps:"Priority"`
-	RecordTypes       any    `ps:"RecordTypes"`
-	RetentionDuration any    `ps:"RetentionDuration"`
-	UserIds           any    `ps:"UserIds"`
+	Description       string   `ps:"Description"`
+	Name              string   `ps:"Name"`
+	Operations        []string `ps:"Operations"`
+	Priority          *int64   `ps:"Priority"`
+	RecordTypes       []string `ps:"RecordTypes"`
+	RetentionDuration any      `ps:"RetentionDuration"` // UnifiedAuditLogRetentionDuration
+	UserIds           []string `ps:"UserIds"`
 }
 
 func (p NewUnifiedAuditLogRetentionPolicyParams) params() map[string]any {
@@ -10467,8 +10467,8 @@ func (p NewUnifiedAuditLogRetentionPolicyParams) params() map[string]any {
 	if p.Operations != nil {
 		m["Operations"] = p.Operations
 	}
-	if p.Priority != 0 {
-		m["Priority"] = p.Priority
+	if p.Priority != nil {
+		m["Priority"] = *p.Priority
 	}
 	if p.RecordTypes != nil {
 		m["RecordTypes"] = p.RecordTypes
@@ -10489,8 +10489,8 @@ func (s *Service) NewUnifiedAuditLogRetentionPolicy(ctx context.Context, p NewUn
 
 // PreviewQuarantineMessageParams are the parameters of Preview-QuarantineMessage.
 type PreviewQuarantineMessageParams struct {
-	EntityType       any    `ps:"EntityType"`
-	Identity         any    `ps:"Identity"`
+	EntityType       any    `ps:"EntityType"` // Microsoft.Exchange.Management.FfoQuarantine.EntityType
+	Identity         any    `ps:"Identity"`   // QuarantineMessageIdentity
 	RecipientAddress string `ps:"RecipientAddress"`
 }
 
@@ -10542,14 +10542,14 @@ func (s *Service) PreviewQuarantineMessageV1(ctx context.Context, p PreviewQuara
 // ReleaseQuarantineMessageParams are the parameters of Release-QuarantineMessage.
 // DefaultParameterSetName: IdentityOnly
 type ReleaseQuarantineMessageParams struct {
-	ActionType          any      `ps:"ActionType"`
+	ActionType          any      `ps:"ActionType"` // ReleaseActionType
 	AllowSender         bool     `ps:"AllowSender"`
 	DecryptionHint      string   `ps:"DecryptionHint"`
 	Delete              bool     `ps:"Delete"`
 	EntityType          any      `ps:"EntityType"`
 	Force               bool     `ps:"Force"`
 	Identities          []string `ps:"Identities"`
-	Identity            any      `ps:"Identity"`
+	Identity            any      `ps:"Identity"` // QuarantineMessageIdentity
 	ReleaseToAll        bool     `ps:"ReleaseToAll"`
 	ReportFalsePositive bool     `ps:"ReportFalsePositive"`
 	User                []string `ps:"User"`
@@ -10575,7 +10575,7 @@ func (p ReleaseQuarantineMessageParams) params() map[string]any {
 	if p.Force {
 		m["Force"] = true
 	}
-	if len(p.Identities) > 0 {
+	if p.Identities != nil {
 		m["Identities"] = p.Identities
 	}
 	if p.Identity != nil {
@@ -10587,7 +10587,7 @@ func (p ReleaseQuarantineMessageParams) params() map[string]any {
 	if p.ReportFalsePositive {
 		m["ReportFalsePositive"] = true
 	}
-	if len(p.User) > 0 {
+	if p.User != nil {
 		m["User"] = p.User
 	}
 	return m
@@ -10623,7 +10623,7 @@ func (s *Service) RemoveActivityAlert(ctx context.Context, p RemoveActivityAlert
 // RemoveAdaptiveScopeParams are the parameters of Remove-AdaptiveScope.
 type RemoveAdaptiveScopeParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveAdaptiveScopeParams) params() map[string]any {
@@ -10645,7 +10645,7 @@ func (s *Service) RemoveAdaptiveScope(ctx context.Context, p RemoveAdaptiveScope
 // RemoveAppRetentionCompliancePolicyParams are the parameters of Remove-AppRetentionCompliancePolicy.
 type RemoveAppRetentionCompliancePolicyParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveAppRetentionCompliancePolicyParams) params() map[string]any {
@@ -10667,7 +10667,7 @@ func (s *Service) RemoveAppRetentionCompliancePolicy(ctx context.Context, p Remo
 // RemoveAppRetentionComplianceRuleParams are the parameters of Remove-AppRetentionComplianceRule.
 type RemoveAppRetentionComplianceRuleParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveAppRetentionComplianceRuleParams) params() map[string]any {
@@ -10732,7 +10732,7 @@ func (s *Service) RemoveAuditConfigurationRule(ctx context.Context, p RemoveAudi
 
 // RemoveAutoSensitivityLabelPolicyParams are the parameters of Remove-AutoSensitivityLabelPolicy.
 type RemoveAutoSensitivityLabelPolicyParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveAutoSensitivityLabelPolicyParams) params() map[string]any {
@@ -10750,7 +10750,7 @@ func (s *Service) RemoveAutoSensitivityLabelPolicy(ctx context.Context, p Remove
 
 // RemoveAutoSensitivityLabelRuleParams are the parameters of Remove-AutoSensitivityLabelRule.
 type RemoveAutoSensitivityLabelRuleParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveAutoSensitivityLabelRuleParams) params() map[string]any {
@@ -10769,7 +10769,7 @@ func (s *Service) RemoveAutoSensitivityLabelRule(ctx context.Context, p RemoveAu
 // RemoveCaseHoldPolicyParams are the parameters of Remove-CaseHoldPolicy.
 type RemoveCaseHoldPolicyParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveCaseHoldPolicyParams) params() map[string]any {
@@ -10791,7 +10791,7 @@ func (s *Service) RemoveCaseHoldPolicy(ctx context.Context, p RemoveCaseHoldPoli
 // RemoveCaseHoldRuleParams are the parameters of Remove-CaseHoldRule.
 type RemoveCaseHoldRuleParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveCaseHoldRuleParams) params() map[string]any {
@@ -10853,8 +10853,8 @@ func (s *Service) RemoveComplianceBoundary(ctx context.Context, p RemoveComplian
 // RemoveComplianceCaseParams are the parameters of Remove-ComplianceCase.
 // DefaultParameterSetName: Identity
 type RemoveComplianceCaseParams struct {
-	DomainController any `ps:"DomainController"`
-	Identity         any `ps:"Identity"`
+	DomainController any `ps:"DomainController"` // Fqdn
+	Identity         any `ps:"Identity"`         // ComplianceCaseIdParameter
 }
 
 func (p RemoveComplianceCaseParams) params() map[string]any {
@@ -10990,7 +10990,7 @@ func (s *Service) RemoveComplianceRetentionEvent(ctx context.Context, p RemoveCo
 // RemoveComplianceRetentionEventTypeParams are the parameters of Remove-ComplianceRetentionEventType.
 type RemoveComplianceRetentionEventTypeParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveComplianceRetentionEventTypeParams) params() map[string]any {
@@ -11011,7 +11011,7 @@ func (s *Service) RemoveComplianceRetentionEventType(ctx context.Context, p Remo
 
 // RemoveComplianceSearchParams are the parameters of Remove-ComplianceSearch.
 type RemoveComplianceSearchParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // ComplianceSearchIdParameter
 }
 
 func (p RemoveComplianceSearchParams) params() map[string]any {
@@ -11029,7 +11029,7 @@ func (s *Service) RemoveComplianceSearch(ctx context.Context, p RemoveCompliance
 
 // RemoveComplianceSearchActionParams are the parameters of Remove-ComplianceSearchAction.
 type RemoveComplianceSearchActionParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // ComplianceSearchActionIdParameter
 }
 
 func (p RemoveComplianceSearchActionParams) params() map[string]any {
@@ -11048,7 +11048,7 @@ func (s *Service) RemoveComplianceSearchAction(ctx context.Context, p RemoveComp
 // RemoveComplianceTagParams are the parameters of Remove-ComplianceTag.
 type RemoveComplianceTagParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveComplianceTagParams) params() map[string]any {
@@ -11091,7 +11091,7 @@ func (s *Service) RemoveCustomDlpEmailTemplate(ctx context.Context, p RemoveCust
 
 // RemoveDeviceConditionalAccessPolicyParams are the parameters of Remove-DeviceConditionalAccessPolicy.
 type RemoveDeviceConditionalAccessPolicyParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveDeviceConditionalAccessPolicyParams) params() map[string]any {
@@ -11109,7 +11109,7 @@ func (s *Service) RemoveDeviceConditionalAccessPolicy(ctx context.Context, p Rem
 
 // RemoveDeviceConditionalAccessRuleParams are the parameters of Remove-DeviceConditionalAccessRule.
 type RemoveDeviceConditionalAccessRuleParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveDeviceConditionalAccessRuleParams) params() map[string]any {
@@ -11127,7 +11127,7 @@ func (s *Service) RemoveDeviceConditionalAccessRule(ctx context.Context, p Remov
 
 // RemoveDeviceConfigurationPolicyParams are the parameters of Remove-DeviceConfigurationPolicy.
 type RemoveDeviceConfigurationPolicyParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveDeviceConfigurationPolicyParams) params() map[string]any {
@@ -11145,7 +11145,7 @@ func (s *Service) RemoveDeviceConfigurationPolicy(ctx context.Context, p RemoveD
 
 // RemoveDeviceConfigurationRuleParams are the parameters of Remove-DeviceConfigurationRule.
 type RemoveDeviceConfigurationRuleParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveDeviceConfigurationRuleParams) params() map[string]any {
@@ -11163,7 +11163,7 @@ func (s *Service) RemoveDeviceConfigurationRule(ctx context.Context, p RemoveDev
 
 // RemoveDeviceTenantPolicyParams are the parameters of Remove-DeviceTenantPolicy.
 type RemoveDeviceTenantPolicyParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveDeviceTenantPolicyParams) params() map[string]any {
@@ -11181,7 +11181,7 @@ func (s *Service) RemoveDeviceTenantPolicy(ctx context.Context, p RemoveDeviceTe
 
 // RemoveDeviceTenantRuleParams are the parameters of Remove-DeviceTenantRule.
 type RemoveDeviceTenantRuleParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveDeviceTenantRuleParams) params() map[string]any {
@@ -11221,7 +11221,7 @@ func (s *Service) RemoveDlpAlertTuningRule(ctx context.Context, p RemoveDlpAlert
 
 // RemoveDlpCompliancePolicyParams are the parameters of Remove-DlpCompliancePolicy.
 type RemoveDlpCompliancePolicyParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveDlpCompliancePolicyParams) params() map[string]any {
@@ -11239,7 +11239,7 @@ func (s *Service) RemoveDlpCompliancePolicy(ctx context.Context, p RemoveDlpComp
 
 // RemoveDlpComplianceRuleParams are the parameters of Remove-DlpComplianceRule.
 type RemoveDlpComplianceRuleParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveDlpComplianceRuleParams) params() map[string]any {
@@ -11257,7 +11257,7 @@ func (s *Service) RemoveDlpComplianceRule(ctx context.Context, p RemoveDlpCompli
 
 // RemoveDlpEdmSchemaParams are the parameters of Remove-DlpEdmSchema.
 type RemoveDlpEdmSchemaParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // EdmStorageIdParameter
 }
 
 func (p RemoveDlpEdmSchemaParams) params() map[string]any {
@@ -11275,7 +11275,7 @@ func (s *Service) RemoveDlpEdmSchema(ctx context.Context, p RemoveDlpEdmSchemaPa
 
 // RemoveDlpKeywordDictionaryParams are the parameters of Remove-DlpKeywordDictionary.
 type RemoveDlpKeywordDictionaryParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // SensitiveInformationTypeIdParameter
 }
 
 func (p RemoveDlpKeywordDictionaryParams) params() map[string]any {
@@ -11293,7 +11293,7 @@ func (s *Service) RemoveDlpKeywordDictionary(ctx context.Context, p RemoveDlpKey
 
 // RemoveDlpSensitiveInformationTypeParams are the parameters of Remove-DlpSensitiveInformationType.
 type RemoveDlpSensitiveInformationTypeParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // DataClassificationIdParameter
 }
 
 func (p RemoveDlpSensitiveInformationTypeParams) params() map[string]any {
@@ -11311,7 +11311,7 @@ func (s *Service) RemoveDlpSensitiveInformationType(ctx context.Context, p Remov
 
 // RemoveDlpSensitiveInformationTypeRulePackageParams are the parameters of Remove-DlpSensitiveInformationTypeRulePackage.
 type RemoveDlpSensitiveInformationTypeRulePackageParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // SensitiveInformationTypeRuleCollectionIdParameter
 }
 
 func (p RemoveDlpSensitiveInformationTypeRulePackageParams) params() map[string]any {
@@ -11351,7 +11351,7 @@ func (s *Service) RemoveDspmPolicy(ctx context.Context, p RemoveDspmPolicyParams
 
 // RemoveFeatureConfigurationParams are the parameters of Remove-FeatureConfiguration.
 type RemoveFeatureConfigurationParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveFeatureConfigurationParams) params() map[string]any {
@@ -11370,7 +11370,7 @@ func (s *Service) RemoveFeatureConfiguration(ctx context.Context, p RemoveFeatur
 // RemoveFilePlanPropertyAuthorityParams are the parameters of Remove-FilePlanPropertyAuthority.
 type RemoveFilePlanPropertyAuthorityParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveFilePlanPropertyAuthorityParams) params() map[string]any {
@@ -11392,7 +11392,7 @@ func (s *Service) RemoveFilePlanPropertyAuthority(ctx context.Context, p RemoveF
 // RemoveFilePlanPropertyCategoryParams are the parameters of Remove-FilePlanPropertyCategory.
 type RemoveFilePlanPropertyCategoryParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveFilePlanPropertyCategoryParams) params() map[string]any {
@@ -11414,7 +11414,7 @@ func (s *Service) RemoveFilePlanPropertyCategory(ctx context.Context, p RemoveFi
 // RemoveFilePlanPropertyCitationParams are the parameters of Remove-FilePlanPropertyCitation.
 type RemoveFilePlanPropertyCitationParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveFilePlanPropertyCitationParams) params() map[string]any {
@@ -11436,7 +11436,7 @@ func (s *Service) RemoveFilePlanPropertyCitation(ctx context.Context, p RemoveFi
 // RemoveFilePlanPropertyDepartmentParams are the parameters of Remove-FilePlanPropertyDepartment.
 type RemoveFilePlanPropertyDepartmentParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveFilePlanPropertyDepartmentParams) params() map[string]any {
@@ -11458,7 +11458,7 @@ func (s *Service) RemoveFilePlanPropertyDepartment(ctx context.Context, p Remove
 // RemoveFilePlanPropertyReferenceIdParams are the parameters of Remove-FilePlanPropertyReferenceId.
 type RemoveFilePlanPropertyReferenceIdParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveFilePlanPropertyReferenceIdParams) params() map[string]any {
@@ -11480,7 +11480,7 @@ func (s *Service) RemoveFilePlanPropertyReferenceId(ctx context.Context, p Remov
 // RemoveFilePlanPropertySubCategoryParams are the parameters of Remove-FilePlanPropertySubCategory.
 type RemoveFilePlanPropertySubCategoryParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveFilePlanPropertySubCategoryParams) params() map[string]any {
@@ -11520,7 +11520,7 @@ func (s *Service) RemoveGlobalList(ctx context.Context, p RemoveGlobalListParams
 // RemoveHoldCompliancePolicyParams are the parameters of Remove-HoldCompliancePolicy.
 type RemoveHoldCompliancePolicyParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveHoldCompliancePolicyParams) params() map[string]any {
@@ -11542,7 +11542,7 @@ func (s *Service) RemoveHoldCompliancePolicy(ctx context.Context, p RemoveHoldCo
 // RemoveHoldComplianceRuleParams are the parameters of Remove-HoldComplianceRule.
 type RemoveHoldComplianceRuleParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveHoldComplianceRuleParams) params() map[string]any {
@@ -11564,7 +11564,7 @@ func (s *Service) RemoveHoldComplianceRule(ctx context.Context, p RemoveHoldComp
 // RemoveInformationBarrierPolicyParams are the parameters of Remove-InformationBarrierPolicy.
 type RemoveInformationBarrierPolicyParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveInformationBarrierPolicyParams) params() map[string]any {
@@ -11651,7 +11651,7 @@ func (s *Service) RemoveJitConfiguration(ctx context.Context, p RemoveJitConfigu
 
 // RemoveLabelParams are the parameters of Remove-Label.
 type RemoveLabelParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveLabelParams) params() map[string]any {
@@ -11687,7 +11687,7 @@ func (s *Service) RemoveLabelExplorerConfig(ctx context.Context, p RemoveLabelEx
 
 // RemoveLabelPolicyParams are the parameters of Remove-LabelPolicy.
 type RemoveLabelPolicyParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveLabelPolicyParams) params() map[string]any {
@@ -11705,10 +11705,10 @@ func (s *Service) RemoveLabelPolicy(ctx context.Context, p RemoveLabelPolicyPara
 
 // RemoveMachineAssistedTagResourceParams are the parameters of Remove-MachineAssistedTagResource.
 type RemoveMachineAssistedTagResourceParams struct {
-	Identity any `ps:"Identity"`
-	ModuleId any `ps:"ModuleId"`
-	Resource any `ps:"Resource"`
-	TaskId   any `ps:"TaskId"`
+	Identity any    `ps:"Identity"`
+	ModuleId string `ps:"ModuleId"`
+	Resource any    `ps:"Resource"`
+	TaskId   string `ps:"TaskId"`
 }
 
 func (p RemoveMachineAssistedTagResourceParams) params() map[string]any {
@@ -11716,13 +11716,13 @@ func (p RemoveMachineAssistedTagResourceParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ModuleId != nil {
+	if p.ModuleId != "" {
 		m["ModuleId"] = p.ModuleId
 	}
 	if p.Resource != nil {
 		m["Resource"] = p.Resource
 	}
-	if p.TaskId != nil {
+	if p.TaskId != "" {
 		m["TaskId"] = p.TaskId
 	}
 	return m
@@ -11757,7 +11757,7 @@ func (s *Service) RemoveOcrConfiguration(ctx context.Context, p RemoveOcrConfigu
 
 // RemoveOrganizationSegmentParams are the parameters of Remove-OrganizationSegment.
 type RemoveOrganizationSegmentParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveOrganizationSegmentParams) params() map[string]any {
@@ -11886,7 +11886,7 @@ func (s *Service) RemovePrivacyManagementRule(ctx context.Context, p RemovePriva
 // DefaultParameterSetName: Identity
 type RemoveProtectionAlertParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveProtectionAlertParams) params() map[string]any {
@@ -11970,7 +11970,7 @@ func (s *Service) RemoveRecordLabel(ctx context.Context, p RemoveRecordLabelPara
 // RemoveRetentionCompliancePolicyParams are the parameters of Remove-RetentionCompliancePolicy.
 type RemoveRetentionCompliancePolicyParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveRetentionCompliancePolicyParams) params() map[string]any {
@@ -11992,7 +11992,7 @@ func (s *Service) RemoveRetentionCompliancePolicy(ctx context.Context, p RemoveR
 // RemoveRetentionComplianceRuleParams are the parameters of Remove-RetentionComplianceRule.
 type RemoveRetentionComplianceRuleParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveRetentionComplianceRuleParams) params() map[string]any {
@@ -12027,7 +12027,7 @@ func (s *Service) RemoveRoleGroupMember(ctx context.Context, p RemoveRoleGroupMe
 
 // RemoveSensitiveInformationScanParams are the parameters of Remove-SensitiveInformationScan.
 type RemoveSensitiveInformationScanParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveSensitiveInformationScanParams) params() map[string]any {
@@ -12045,7 +12045,7 @@ func (s *Service) RemoveSensitiveInformationScan(ctx context.Context, p RemoveSe
 
 // RemoveSensitiveInformationScanRuleParams are the parameters of Remove-SensitiveInformationScanRule.
 type RemoveSensitiveInformationScanRuleParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p RemoveSensitiveInformationScanRuleParams) params() map[string]any {
@@ -12081,7 +12081,7 @@ func (s *Service) RemoveServiceDomainGroup(ctx context.Context, p RemoveServiceD
 
 // RemoveServicePrincipalParams are the parameters of Remove-ServicePrincipal.
 type RemoveServicePrincipalParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // ServicePrincipalIdParameter
 }
 
 func (p RemoveServicePrincipalParams) params() map[string]any {
@@ -12100,7 +12100,7 @@ func (s *Service) RemoveServicePrincipal(ctx context.Context, p RemoveServicePri
 // RemoveSupervisoryReviewPolicyV2Params are the parameters of Remove-SupervisoryReviewPolicyV2.
 type RemoveSupervisoryReviewPolicyV2Params struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"`
+	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveSupervisoryReviewPolicyV2Params) params() map[string]any {
@@ -12209,9 +12209,9 @@ func (s *Service) RemoveThreatResponseRule(ctx context.Context, p RemoveThreatRe
 
 // RemoveUnifiedAuditLogRetentionPolicyParams are the parameters of Remove-UnifiedAuditLogRetentionPolicy.
 type RemoveUnifiedAuditLogRetentionPolicyParams struct {
-	DomainController any  `ps:"DomainController"`
+	DomainController any  `ps:"DomainController"` // Fqdn
 	ForceDeletion    bool `ps:"ForceDeletion"`
-	Identity         any  `ps:"Identity"`
+	Identity         any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveUnifiedAuditLogRetentionPolicyParams) params() map[string]any {
@@ -12235,7 +12235,7 @@ func (s *Service) RemoveUnifiedAuditLogRetentionPolicy(ctx context.Context, p Re
 
 // RestoreItemsDeletedByRetentionSystemParams are the parameters of Restore-ItemsDeletedByRetentionSystem.
 type RestoreItemsDeletedByRetentionSystemParams struct {
-	PolicyIdOrRuleIdOrTagTd any    `ps:"PolicyIdOrRuleIdOrTagTd"`
+	PolicyIdOrRuleIdOrTagTd string `ps:"PolicyIdOrRuleIdOrTagTd"`
 	RestoreFrom             any    `ps:"RestoreFrom"`
 	RestoreTo               any    `ps:"RestoreTo"`
 	SiteIds                 string `ps:"SiteIds"`
@@ -12243,7 +12243,7 @@ type RestoreItemsDeletedByRetentionSystemParams struct {
 
 func (p RestoreItemsDeletedByRetentionSystemParams) params() map[string]any {
 	m := map[string]any{}
-	if p.PolicyIdOrRuleIdOrTagTd != nil {
+	if p.PolicyIdOrRuleIdOrTagTd != "" {
 		m["PolicyIdOrRuleIdOrTagTd"] = p.PolicyIdOrRuleIdOrTagTd
 	}
 	if p.RestoreFrom != nil {
@@ -12272,13 +12272,13 @@ type RestoreTemporaryDeletedQuarantineMessageParams struct {
 
 func (p RestoreTemporaryDeletedQuarantineMessageParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.Identities) > 0 {
+	if p.Identities != nil {
 		m["Identities"] = p.Identities
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.RecipientAddress) > 0 {
+	if p.RecipientAddress != nil {
 		m["RecipientAddress"] = p.RecipientAddress
 	}
 	return m
@@ -12295,7 +12295,7 @@ type SetActivityAlertParams struct {
 	Category     any    `ps:"Category"`
 	Condition    string `ps:"Condition"`
 	Description  string `ps:"Description"`
-	Disabled     bool   `ps:"Disabled"`
+	Disabled     *bool  `ps:"Disabled"`
 	EmailCulture any    `ps:"EmailCulture"`
 	Identity     any    `ps:"Identity"`
 	Multiplier   any    `ps:"Multiplier"`
@@ -12304,8 +12304,8 @@ type SetActivityAlertParams struct {
 	RecordType   any    `ps:"RecordType"`
 	ScopeLevel   any    `ps:"ScopeLevel"`
 	Severity     any    `ps:"Severity"`
-	Threshold    int    `ps:"Threshold"`
-	TimeWindow   int    `ps:"TimeWindow"`
+	Threshold    *int64 `ps:"Threshold"`
+	TimeWindow   *int64 `ps:"TimeWindow"`
 	UserId       any    `ps:"UserId"`
 }
 
@@ -12320,8 +12320,8 @@ func (p SetActivityAlertParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
 	if p.EmailCulture != nil {
 		m["EmailCulture"] = p.EmailCulture
@@ -12347,11 +12347,11 @@ func (p SetActivityAlertParams) params() map[string]any {
 	if p.Severity != nil {
 		m["Severity"] = p.Severity
 	}
-	if p.Threshold != 0 {
-		m["Threshold"] = p.Threshold
+	if p.Threshold != nil {
+		m["Threshold"] = *p.Threshold
 	}
-	if p.TimeWindow != 0 {
-		m["TimeWindow"] = p.TimeWindow
+	if p.TimeWindow != nil {
+		m["TimeWindow"] = *p.TimeWindow
 	}
 	if p.UserId != nil {
 		m["UserId"] = p.UserId
@@ -12366,24 +12366,24 @@ func (s *Service) SetActivityAlert(ctx context.Context, p SetActivityAlertParams
 
 // SetAdaptiveScopeParams are the parameters of Set-AdaptiveScope.
 type SetAdaptiveScopeParams struct {
-	AdministrativeUnit           any      `ps:"AdministrativeUnit"`
+	AdministrativeUnit           string   `ps:"AdministrativeUnit"`
 	Comment                      string   `ps:"Comment"`
 	EnabledStates                []string `ps:"EnabledStates"`
-	FilterConditions             any      `ps:"FilterConditions"`
-	Identity                     any      `ps:"Identity"`
+	FilterConditions             any      `ps:"FilterConditions"` // PswsHashtable
+	Identity                     any      `ps:"Identity"`         // ComplianceRuleIdParameter
 	LinkedRecipientEnabledStates []string `ps:"LinkedRecipientEnabledStates"`
 	RawQuery                     string   `ps:"RawQuery"`
 }
 
 func (p SetAdaptiveScopeParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AdministrativeUnit != nil {
+	if p.AdministrativeUnit != "" {
 		m["AdministrativeUnit"] = p.AdministrativeUnit
 	}
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.EnabledStates) > 0 {
+	if p.EnabledStates != nil {
 		m["EnabledStates"] = p.EnabledStates
 	}
 	if p.FilterConditions != nil {
@@ -12392,7 +12392,7 @@ func (p SetAdaptiveScopeParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.LinkedRecipientEnabledStates) > 0 {
+	if p.LinkedRecipientEnabledStates != nil {
 		m["LinkedRecipientEnabledStates"] = p.LinkedRecipientEnabledStates
 	}
 	if p.RawQuery != "" {
@@ -12417,7 +12417,7 @@ type SetAdministrativeUnitExtensionParams struct {
 
 func (p SetAdministrativeUnitExtensionParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.EnabledStates) > 0 {
+	if p.EnabledStates != nil {
 		m["EnabledStates"] = p.EnabledStates
 	}
 	if p.FilterConditions != nil {
@@ -12426,7 +12426,7 @@ func (p SetAdministrativeUnitExtensionParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.LinkedRecipientEnabledStates) > 0 {
+	if p.LinkedRecipientEnabledStates != nil {
 		m["LinkedRecipientEnabledStates"] = p.LinkedRecipientEnabledStates
 	}
 	if p.RawQuery != "" {
@@ -12443,45 +12443,66 @@ func (s *Service) SetAdministrativeUnitExtension(ctx context.Context, p SetAdmin
 // SetAppRetentionCompliancePolicyParams are the parameters of Set-AppRetentionCompliancePolicy.
 // DefaultParameterSetName: Identity
 type SetAppRetentionCompliancePolicyParams struct {
-	AddAdaptiveScopeLocation           any      `ps:"AddAdaptiveScopeLocation"`
-	AddExchangeLocation                any      `ps:"AddExchangeLocation"`
-	AddExchangeLocationException       any      `ps:"AddExchangeLocationException"`
-	AddModernGroupLocation             any      `ps:"AddModernGroupLocation"`
-	AddModernGroupLocationException    any      `ps:"AddModernGroupLocationException"`
-	Applications                       []string `ps:"Applications"`
-	Comment                            string   `ps:"Comment"`
-	DeletedResources                   string   `ps:"DeletedResources"`
-	Enabled                            bool     `ps:"Enabled"`
-	Force                              bool     `ps:"Force"`
-	Identity                           any      `ps:"Identity"`
-	PolicyRBACScopes                   any      `ps:"PolicyRBACScopes"`
-	RemoveAdaptiveScopeLocation        any      `ps:"RemoveAdaptiveScopeLocation"`
-	RemoveExchangeLocation             any      `ps:"RemoveExchangeLocation"`
-	RemoveExchangeLocationException    any      `ps:"RemoveExchangeLocationException"`
-	RemoveModernGroupLocation          any      `ps:"RemoveModernGroupLocation"`
-	RemoveModernGroupLocationException any      `ps:"RemoveModernGroupLocationException"`
-	RestrictiveRetention               bool     `ps:"RestrictiveRetention"`
-	RetryDistribution                  bool     `ps:"RetryDistribution"`
+	AddAdaptiveScopeLocation                []string              `ps:"AddAdaptiveScopeLocation"`
+	AddAdaptiveScopeLocationDelta           *adminapi.StringDelta `ps:"AddAdaptiveScopeLocation"` // adds/removes values of AddAdaptiveScopeLocation; takes precedence over it
+	AddExchangeLocation                     []string              `ps:"AddExchangeLocation"`
+	AddExchangeLocationDelta                *adminapi.StringDelta `ps:"AddExchangeLocation"` // adds/removes values of AddExchangeLocation; takes precedence over it
+	AddExchangeLocationException            []string              `ps:"AddExchangeLocationException"`
+	AddExchangeLocationExceptionDelta       *adminapi.StringDelta `ps:"AddExchangeLocationException"` // adds/removes values of AddExchangeLocationException; takes precedence over it
+	AddModernGroupLocation                  []string              `ps:"AddModernGroupLocation"`
+	AddModernGroupLocationDelta             *adminapi.StringDelta `ps:"AddModernGroupLocation"` // adds/removes values of AddModernGroupLocation; takes precedence over it
+	AddModernGroupLocationException         []string              `ps:"AddModernGroupLocationException"`
+	AddModernGroupLocationExceptionDelta    *adminapi.StringDelta `ps:"AddModernGroupLocationException"` // adds/removes values of AddModernGroupLocationException; takes precedence over it
+	Applications                            []string              `ps:"Applications"`
+	Comment                                 string                `ps:"Comment"`
+	DeletedResources                        string                `ps:"DeletedResources"`
+	Enabled                                 *bool                 `ps:"Enabled"`
+	Force                                   bool                  `ps:"Force"`
+	Identity                                any                   `ps:"Identity"` // PolicyIdParameter
+	PolicyRBACScopes                        []string              `ps:"PolicyRBACScopes"`
+	PolicyRBACScopesDelta                   *adminapi.StringDelta `ps:"PolicyRBACScopes"` // adds/removes values of PolicyRBACScopes; takes precedence over it
+	RemoveAdaptiveScopeLocation             []string              `ps:"RemoveAdaptiveScopeLocation"`
+	RemoveAdaptiveScopeLocationDelta        *adminapi.StringDelta `ps:"RemoveAdaptiveScopeLocation"` // adds/removes values of RemoveAdaptiveScopeLocation; takes precedence over it
+	RemoveExchangeLocation                  []string              `ps:"RemoveExchangeLocation"`
+	RemoveExchangeLocationDelta             *adminapi.StringDelta `ps:"RemoveExchangeLocation"` // adds/removes values of RemoveExchangeLocation; takes precedence over it
+	RemoveExchangeLocationException         []string              `ps:"RemoveExchangeLocationException"`
+	RemoveExchangeLocationExceptionDelta    *adminapi.StringDelta `ps:"RemoveExchangeLocationException"` // adds/removes values of RemoveExchangeLocationException; takes precedence over it
+	RemoveModernGroupLocation               []string              `ps:"RemoveModernGroupLocation"`
+	RemoveModernGroupLocationDelta          *adminapi.StringDelta `ps:"RemoveModernGroupLocation"` // adds/removes values of RemoveModernGroupLocation; takes precedence over it
+	RemoveModernGroupLocationException      []string              `ps:"RemoveModernGroupLocationException"`
+	RemoveModernGroupLocationExceptionDelta *adminapi.StringDelta `ps:"RemoveModernGroupLocationException"` // adds/removes values of RemoveModernGroupLocationException; takes precedence over it
+	RestrictiveRetention                    *bool                 `ps:"RestrictiveRetention"`
+	RetryDistribution                       bool                  `ps:"RetryDistribution"`
 }
 
 func (p SetAppRetentionCompliancePolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddAdaptiveScopeLocation != nil {
+	if p.AddAdaptiveScopeLocationDelta != nil {
+		m["AddAdaptiveScopeLocation"] = *p.AddAdaptiveScopeLocationDelta
+	} else if p.AddAdaptiveScopeLocation != nil {
 		m["AddAdaptiveScopeLocation"] = p.AddAdaptiveScopeLocation
 	}
-	if p.AddExchangeLocation != nil {
+	if p.AddExchangeLocationDelta != nil {
+		m["AddExchangeLocation"] = *p.AddExchangeLocationDelta
+	} else if p.AddExchangeLocation != nil {
 		m["AddExchangeLocation"] = p.AddExchangeLocation
 	}
-	if p.AddExchangeLocationException != nil {
+	if p.AddExchangeLocationExceptionDelta != nil {
+		m["AddExchangeLocationException"] = *p.AddExchangeLocationExceptionDelta
+	} else if p.AddExchangeLocationException != nil {
 		m["AddExchangeLocationException"] = p.AddExchangeLocationException
 	}
-	if p.AddModernGroupLocation != nil {
+	if p.AddModernGroupLocationDelta != nil {
+		m["AddModernGroupLocation"] = *p.AddModernGroupLocationDelta
+	} else if p.AddModernGroupLocation != nil {
 		m["AddModernGroupLocation"] = p.AddModernGroupLocation
 	}
-	if p.AddModernGroupLocationException != nil {
+	if p.AddModernGroupLocationExceptionDelta != nil {
+		m["AddModernGroupLocationException"] = *p.AddModernGroupLocationExceptionDelta
+	} else if p.AddModernGroupLocationException != nil {
 		m["AddModernGroupLocationException"] = p.AddModernGroupLocationException
 	}
-	if len(p.Applications) > 0 {
+	if p.Applications != nil {
 		m["Applications"] = p.Applications
 	}
 	if p.Comment != "" {
@@ -12490,8 +12511,8 @@ func (p SetAppRetentionCompliancePolicyParams) params() map[string]any {
 	if p.DeletedResources != "" {
 		m["DeletedResources"] = p.DeletedResources
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -12499,26 +12520,38 @@ func (p SetAppRetentionCompliancePolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.PolicyRBACScopes != nil {
+	if p.PolicyRBACScopesDelta != nil {
+		m["PolicyRBACScopes"] = *p.PolicyRBACScopesDelta
+	} else if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
-	if p.RemoveAdaptiveScopeLocation != nil {
+	if p.RemoveAdaptiveScopeLocationDelta != nil {
+		m["RemoveAdaptiveScopeLocation"] = *p.RemoveAdaptiveScopeLocationDelta
+	} else if p.RemoveAdaptiveScopeLocation != nil {
 		m["RemoveAdaptiveScopeLocation"] = p.RemoveAdaptiveScopeLocation
 	}
-	if p.RemoveExchangeLocation != nil {
+	if p.RemoveExchangeLocationDelta != nil {
+		m["RemoveExchangeLocation"] = *p.RemoveExchangeLocationDelta
+	} else if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
 	}
-	if p.RemoveExchangeLocationException != nil {
+	if p.RemoveExchangeLocationExceptionDelta != nil {
+		m["RemoveExchangeLocationException"] = *p.RemoveExchangeLocationExceptionDelta
+	} else if p.RemoveExchangeLocationException != nil {
 		m["RemoveExchangeLocationException"] = p.RemoveExchangeLocationException
 	}
-	if p.RemoveModernGroupLocation != nil {
+	if p.RemoveModernGroupLocationDelta != nil {
+		m["RemoveModernGroupLocation"] = *p.RemoveModernGroupLocationDelta
+	} else if p.RemoveModernGroupLocation != nil {
 		m["RemoveModernGroupLocation"] = p.RemoveModernGroupLocation
 	}
-	if p.RemoveModernGroupLocationException != nil {
+	if p.RemoveModernGroupLocationExceptionDelta != nil {
+		m["RemoveModernGroupLocationException"] = *p.RemoveModernGroupLocationExceptionDelta
+	} else if p.RemoveModernGroupLocationException != nil {
 		m["RemoveModernGroupLocationException"] = p.RemoveModernGroupLocationException
 	}
-	if p.RestrictiveRetention {
-		m["RestrictiveRetention"] = true
+	if p.RestrictiveRetention != nil {
+		m["RestrictiveRetention"] = *p.RestrictiveRetention
 	}
 	if p.RetryDistribution {
 		m["RetryDistribution"] = true
@@ -12534,18 +12567,19 @@ func (s *Service) SetAppRetentionCompliancePolicy(ctx context.Context, p SetAppR
 // SetAppRetentionComplianceRuleParams are the parameters of Set-AppRetentionComplianceRule.
 // DefaultParameterSetName: Identity
 type SetAppRetentionComplianceRuleParams struct {
-	ApplyComplianceTag                  string   `ps:"ApplyComplianceTag"`
-	Comment                             string   `ps:"Comment"`
-	ContentContainsSensitiveInformation []string `ps:"ContentContainsSensitiveInformation"`
-	ContentDateFrom                     any      `ps:"ContentDateFrom"`
-	ContentDateTo                       any      `ps:"ContentDateTo"`
-	ContentMatchQuery                   string   `ps:"ContentMatchQuery"`
-	ExcludedItemClasses                 any      `ps:"ExcludedItemClasses"`
-	ExpirationDateOption                string   `ps:"ExpirationDateOption"`
-	Identity                            any      `ps:"Identity"`
-	RetentionComplianceAction           string   `ps:"RetentionComplianceAction"`
-	RetentionDuration                   any      `ps:"RetentionDuration"`
-	RetentionDurationDisplayHint        any      `ps:"RetentionDurationDisplayHint"`
+	ApplyComplianceTag                  string                `ps:"ApplyComplianceTag"`
+	Comment                             string                `ps:"Comment"`
+	ContentContainsSensitiveInformation any                   `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
+	ContentDateFrom                     any                   `ps:"ContentDateFrom"`                     // System.DateTime
+	ContentDateTo                       any                   `ps:"ContentDateTo"`                       // System.DateTime
+	ContentMatchQuery                   string                `ps:"ContentMatchQuery"`
+	ExcludedItemClasses                 []string              `ps:"ExcludedItemClasses"`
+	ExcludedItemClassesDelta            *adminapi.StringDelta `ps:"ExcludedItemClasses"` // adds/removes values of ExcludedItemClasses; takes precedence over it
+	ExpirationDateOption                string                `ps:"ExpirationDateOption"`
+	Identity                            any                   `ps:"Identity"` // ComplianceRuleIdParameter
+	RetentionComplianceAction           string                `ps:"RetentionComplianceAction"`
+	RetentionDuration                   any                   `ps:"RetentionDuration"`            // Unlimited
+	RetentionDurationDisplayHint        any                   `ps:"RetentionDurationDisplayHint"` // HoldDurationHint
 }
 
 func (p SetAppRetentionComplianceRuleParams) params() map[string]any {
@@ -12556,7 +12590,7 @@ func (p SetAppRetentionComplianceRuleParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
 	if p.ContentDateFrom != nil {
@@ -12568,7 +12602,9 @@ func (p SetAppRetentionComplianceRuleParams) params() map[string]any {
 	if p.ContentMatchQuery != "" {
 		m["ContentMatchQuery"] = p.ContentMatchQuery
 	}
-	if p.ExcludedItemClasses != nil {
+	if p.ExcludedItemClassesDelta != nil {
+		m["ExcludedItemClasses"] = *p.ExcludedItemClassesDelta
+	} else if p.ExcludedItemClasses != nil {
 		m["ExcludedItemClasses"] = p.ExcludedItemClasses
 	}
 	if p.ExpirationDateOption != "" {
@@ -12597,8 +12633,9 @@ func (s *Service) SetAppRetentionComplianceRule(ctx context.Context, p SetAppRet
 // SetAuditConfigParams are the parameters of Set-AuditConfig.
 // DefaultParameterSetName: Identity
 type SetAuditConfigParams struct {
-	DomainController any `ps:"DomainController"`
-	Workload         any `ps:"Workload"`
+	DomainController any                   `ps:"DomainController"` // Fqdn
+	Workload         []string              `ps:"Workload"`
+	WorkloadDelta    *adminapi.StringDelta `ps:"Workload"` // adds/removes values of Workload; takes precedence over it
 }
 
 func (p SetAuditConfigParams) params() map[string]any {
@@ -12606,7 +12643,9 @@ func (p SetAuditConfigParams) params() map[string]any {
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
 	}
-	if p.Workload != nil {
+	if p.WorkloadDelta != nil {
+		m["Workload"] = *p.WorkloadDelta
+	} else if p.Workload != nil {
 		m["Workload"] = p.Workload
 	}
 	return m
@@ -12647,64 +12686,87 @@ func (s *Service) SetAuditConfigurationRule(ctx context.Context, p SetAuditConfi
 // SetAutoSensitivityLabelPolicyParams are the parameters of Set-AutoSensitivityLabelPolicy.
 // DefaultParameterSetName: Identity
 type SetAutoSensitivityLabelPolicyParams struct {
-	AddExchangeLocation                     any      `ps:"AddExchangeLocation"`
-	AddOneDriveLocation                     any      `ps:"AddOneDriveLocation"`
-	AddOneDriveLocationException            any      `ps:"AddOneDriveLocationException"`
-	AddPowerBILocation                      any      `ps:"AddPowerBILocation"`
-	AddPowerBILocationException             any      `ps:"AddPowerBILocationException"`
-	AddSharePointLocation                   any      `ps:"AddSharePointLocation"`
-	AddSharePointLocationException          any      `ps:"AddSharePointLocationException"`
-	ApplySensitivityLabel                   string   `ps:"ApplySensitivityLabel"`
-	ApplySensitivityLabelOverwriteWorkloads any      `ps:"ApplySensitivityLabelOverwriteWorkloads"`
-	AutoEnableAfter                         any      `ps:"AutoEnableAfter"`
-	Comment                                 string   `ps:"Comment"`
-	Enabled                                 bool     `ps:"Enabled"`
-	EnforcementPlanes                       any      `ps:"EnforcementPlanes"`
-	ExceptIfOneDriveSharedBy                []string `ps:"ExceptIfOneDriveSharedBy"`
-	ExceptIfOneDriveSharedByMemberOf        []string `ps:"ExceptIfOneDriveSharedByMemberOf"`
-	ExchangeAdaptiveScopes                  any      `ps:"ExchangeAdaptiveScopes"`
-	ExchangeAdaptiveScopesException         any      `ps:"ExchangeAdaptiveScopesException"`
-	ExchangeSender                          []string `ps:"ExchangeSender"`
-	ExchangeSenderException                 []string `ps:"ExchangeSenderException"`
-	ExchangeSenderMemberOf                  []string `ps:"ExchangeSenderMemberOf"`
-	ExchangeSenderMemberOfException         []string `ps:"ExchangeSenderMemberOfException"`
-	ExternalMailRightsManagementOwner       any      `ps:"ExternalMailRightsManagementOwner"`
-	Force                                   bool     `ps:"Force"`
-	Identity                                any      `ps:"Identity"`
-	IncludeSimulationPolicyGrading          bool     `ps:"IncludeSimulationPolicyGrading"`
-	Locations                               string   `ps:"Locations"`
-	Mode                                    any      `ps:"Mode"`
-	OneDriveAdaptiveScopes                  any      `ps:"OneDriveAdaptiveScopes"`
-	OneDriveAdaptiveScopesException         any      `ps:"OneDriveAdaptiveScopesException"`
-	OneDriveSharedBy                        []string `ps:"OneDriveSharedBy"`
-	OneDriveSharedByMemberOf                []string `ps:"OneDriveSharedByMemberOf"`
-	OverwriteLabel                          bool     `ps:"OverwriteLabel"`
-	PolicyRBACScopes                        any      `ps:"PolicyRBACScopes"`
-	PolicyTemplateInfo                      any      `ps:"PolicyTemplateInfo"`
-	Priority                                any      `ps:"Priority"`
-	RemoveExchangeLocation                  any      `ps:"RemoveExchangeLocation"`
-	RemoveOneDriveLocation                  any      `ps:"RemoveOneDriveLocation"`
-	RemoveOneDriveLocationException         any      `ps:"RemoveOneDriveLocationException"`
-	RemovePowerBILocation                   any      `ps:"RemovePowerBILocation"`
-	RemovePowerBILocationException          any      `ps:"RemovePowerBILocationException"`
-	RemoveSharePointLocation                any      `ps:"RemoveSharePointLocation"`
-	RemoveSharePointLocationException       any      `ps:"RemoveSharePointLocationException"`
-	RetryDistribution                       bool     `ps:"RetryDistribution"`
-	SharePointAdaptiveScopes                any      `ps:"SharePointAdaptiveScopes"`
-	SharePointAdaptiveScopesException       any      `ps:"SharePointAdaptiveScopesException"`
-	SpoAipIntegrationEnabled                bool     `ps:"SpoAipIntegrationEnabled"`
-	StartSimulation                         bool     `ps:"StartSimulation"`
+	AddExchangeLocation                     []string              `ps:"AddExchangeLocation"`
+	AddExchangeLocationDelta                *adminapi.StringDelta `ps:"AddExchangeLocation"` // adds/removes values of AddExchangeLocation; takes precedence over it
+	AddOneDriveLocation                     []string              `ps:"AddOneDriveLocation"`
+	AddOneDriveLocationDelta                *adminapi.StringDelta `ps:"AddOneDriveLocation"` // adds/removes values of AddOneDriveLocation; takes precedence over it
+	AddOneDriveLocationException            []string              `ps:"AddOneDriveLocationException"`
+	AddOneDriveLocationExceptionDelta       *adminapi.StringDelta `ps:"AddOneDriveLocationException"` // adds/removes values of AddOneDriveLocationException; takes precedence over it
+	AddPowerBILocation                      any                   `ps:"AddPowerBILocation"`
+	AddPowerBILocationException             any                   `ps:"AddPowerBILocationException"`
+	AddSharePointLocation                   []string              `ps:"AddSharePointLocation"`
+	AddSharePointLocationDelta              *adminapi.StringDelta `ps:"AddSharePointLocation"` // adds/removes values of AddSharePointLocation; takes precedence over it
+	AddSharePointLocationException          []string              `ps:"AddSharePointLocationException"`
+	AddSharePointLocationExceptionDelta     *adminapi.StringDelta `ps:"AddSharePointLocationException"` // adds/removes values of AddSharePointLocationException; takes precedence over it
+	ApplySensitivityLabel                   string                `ps:"ApplySensitivityLabel"`
+	ApplySensitivityLabelOverwriteWorkloads any                   `ps:"ApplySensitivityLabelOverwriteWorkloads"` // Workload
+	AutoEnableAfter                         any                   `ps:"AutoEnableAfter"`                         // TimeSpan
+	Comment                                 string                `ps:"Comment"`
+	Enabled                                 *bool                 `ps:"Enabled"`
+	EnforcementPlanes                       any                   `ps:"EnforcementPlanes"`
+	ExceptIfOneDriveSharedBy                []string              `ps:"ExceptIfOneDriveSharedBy"`
+	ExceptIfOneDriveSharedByMemberOf        []string              `ps:"ExceptIfOneDriveSharedByMemberOf"`
+	ExchangeAdaptiveScopes                  []string              `ps:"ExchangeAdaptiveScopes"`
+	ExchangeAdaptiveScopesDelta             *adminapi.StringDelta `ps:"ExchangeAdaptiveScopes"` // adds/removes values of ExchangeAdaptiveScopes; takes precedence over it
+	ExchangeAdaptiveScopesException         []string              `ps:"ExchangeAdaptiveScopesException"`
+	ExchangeAdaptiveScopesExceptionDelta    *adminapi.StringDelta `ps:"ExchangeAdaptiveScopesException"` // adds/removes values of ExchangeAdaptiveScopesException; takes precedence over it
+	ExchangeSender                          []string              `ps:"ExchangeSender"`
+	ExchangeSenderException                 []string              `ps:"ExchangeSenderException"`
+	ExchangeSenderMemberOf                  []string              `ps:"ExchangeSenderMemberOf"`
+	ExchangeSenderMemberOfException         []string              `ps:"ExchangeSenderMemberOfException"`
+	ExternalMailRightsManagementOwner       any                   `ps:"ExternalMailRightsManagementOwner"` // SmtpAddress
+	Force                                   bool                  `ps:"Force"`
+	Identity                                any                   `ps:"Identity"` // PolicyIdParameter
+	IncludeSimulationPolicyGrading          *bool                 `ps:"IncludeSimulationPolicyGrading"`
+	Locations                               string                `ps:"Locations"`
+	Mode                                    any                   `ps:"Mode"` // PolicyMode
+	OneDriveAdaptiveScopes                  []string              `ps:"OneDriveAdaptiveScopes"`
+	OneDriveAdaptiveScopesDelta             *adminapi.StringDelta `ps:"OneDriveAdaptiveScopes"` // adds/removes values of OneDriveAdaptiveScopes; takes precedence over it
+	OneDriveAdaptiveScopesException         []string              `ps:"OneDriveAdaptiveScopesException"`
+	OneDriveAdaptiveScopesExceptionDelta    *adminapi.StringDelta `ps:"OneDriveAdaptiveScopesException"` // adds/removes values of OneDriveAdaptiveScopesException; takes precedence over it
+	OneDriveSharedBy                        []string              `ps:"OneDriveSharedBy"`
+	OneDriveSharedByMemberOf                []string              `ps:"OneDriveSharedByMemberOf"`
+	OverwriteLabel                          *bool                 `ps:"OverwriteLabel"`
+	PolicyRBACScopes                        []string              `ps:"PolicyRBACScopes"`
+	PolicyRBACScopesDelta                   *adminapi.StringDelta `ps:"PolicyRBACScopes"`   // adds/removes values of PolicyRBACScopes; takes precedence over it
+	PolicyTemplateInfo                      any                   `ps:"PolicyTemplateInfo"` // PswsHashtable
+	Priority                                *int64                `ps:"Priority"`
+	RemoveExchangeLocation                  []string              `ps:"RemoveExchangeLocation"`
+	RemoveExchangeLocationDelta             *adminapi.StringDelta `ps:"RemoveExchangeLocation"` // adds/removes values of RemoveExchangeLocation; takes precedence over it
+	RemoveOneDriveLocation                  []string              `ps:"RemoveOneDriveLocation"`
+	RemoveOneDriveLocationDelta             *adminapi.StringDelta `ps:"RemoveOneDriveLocation"` // adds/removes values of RemoveOneDriveLocation; takes precedence over it
+	RemoveOneDriveLocationException         []string              `ps:"RemoveOneDriveLocationException"`
+	RemoveOneDriveLocationExceptionDelta    *adminapi.StringDelta `ps:"RemoveOneDriveLocationException"` // adds/removes values of RemoveOneDriveLocationException; takes precedence over it
+	RemovePowerBILocation                   any                   `ps:"RemovePowerBILocation"`
+	RemovePowerBILocationException          any                   `ps:"RemovePowerBILocationException"`
+	RemoveSharePointLocation                []string              `ps:"RemoveSharePointLocation"`
+	RemoveSharePointLocationDelta           *adminapi.StringDelta `ps:"RemoveSharePointLocation"` // adds/removes values of RemoveSharePointLocation; takes precedence over it
+	RemoveSharePointLocationException       []string              `ps:"RemoveSharePointLocationException"`
+	RemoveSharePointLocationExceptionDelta  *adminapi.StringDelta `ps:"RemoveSharePointLocationException"` // adds/removes values of RemoveSharePointLocationException; takes precedence over it
+	RetryDistribution                       bool                  `ps:"RetryDistribution"`
+	SharePointAdaptiveScopes                []string              `ps:"SharePointAdaptiveScopes"`
+	SharePointAdaptiveScopesDelta           *adminapi.StringDelta `ps:"SharePointAdaptiveScopes"` // adds/removes values of SharePointAdaptiveScopes; takes precedence over it
+	SharePointAdaptiveScopesException       []string              `ps:"SharePointAdaptiveScopesException"`
+	SharePointAdaptiveScopesExceptionDelta  *adminapi.StringDelta `ps:"SharePointAdaptiveScopesException"` // adds/removes values of SharePointAdaptiveScopesException; takes precedence over it
+	SpoAipIntegrationEnabled                *bool                 `ps:"SpoAipIntegrationEnabled"`
+	StartSimulation                         *bool                 `ps:"StartSimulation"`
 }
 
 func (p SetAutoSensitivityLabelPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddExchangeLocation != nil {
+	if p.AddExchangeLocationDelta != nil {
+		m["AddExchangeLocation"] = *p.AddExchangeLocationDelta
+	} else if p.AddExchangeLocation != nil {
 		m["AddExchangeLocation"] = p.AddExchangeLocation
 	}
-	if p.AddOneDriveLocation != nil {
+	if p.AddOneDriveLocationDelta != nil {
+		m["AddOneDriveLocation"] = *p.AddOneDriveLocationDelta
+	} else if p.AddOneDriveLocation != nil {
 		m["AddOneDriveLocation"] = p.AddOneDriveLocation
 	}
-	if p.AddOneDriveLocationException != nil {
+	if p.AddOneDriveLocationExceptionDelta != nil {
+		m["AddOneDriveLocationException"] = *p.AddOneDriveLocationExceptionDelta
+	} else if p.AddOneDriveLocationException != nil {
 		m["AddOneDriveLocationException"] = p.AddOneDriveLocationException
 	}
 	if p.AddPowerBILocation != nil {
@@ -12713,10 +12775,14 @@ func (p SetAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.AddPowerBILocationException != nil {
 		m["AddPowerBILocationException"] = p.AddPowerBILocationException
 	}
-	if p.AddSharePointLocation != nil {
+	if p.AddSharePointLocationDelta != nil {
+		m["AddSharePointLocation"] = *p.AddSharePointLocationDelta
+	} else if p.AddSharePointLocation != nil {
 		m["AddSharePointLocation"] = p.AddSharePointLocation
 	}
-	if p.AddSharePointLocationException != nil {
+	if p.AddSharePointLocationExceptionDelta != nil {
+		m["AddSharePointLocationException"] = *p.AddSharePointLocationExceptionDelta
+	} else if p.AddSharePointLocationException != nil {
 		m["AddSharePointLocationException"] = p.AddSharePointLocationException
 	}
 	if p.ApplySensitivityLabel != "" {
@@ -12731,34 +12797,38 @@ func (p SetAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.EnforcementPlanes != nil {
 		m["EnforcementPlanes"] = p.EnforcementPlanes
 	}
-	if len(p.ExceptIfOneDriveSharedBy) > 0 {
+	if p.ExceptIfOneDriveSharedBy != nil {
 		m["ExceptIfOneDriveSharedBy"] = p.ExceptIfOneDriveSharedBy
 	}
-	if len(p.ExceptIfOneDriveSharedByMemberOf) > 0 {
+	if p.ExceptIfOneDriveSharedByMemberOf != nil {
 		m["ExceptIfOneDriveSharedByMemberOf"] = p.ExceptIfOneDriveSharedByMemberOf
 	}
-	if p.ExchangeAdaptiveScopes != nil {
+	if p.ExchangeAdaptiveScopesDelta != nil {
+		m["ExchangeAdaptiveScopes"] = *p.ExchangeAdaptiveScopesDelta
+	} else if p.ExchangeAdaptiveScopes != nil {
 		m["ExchangeAdaptiveScopes"] = p.ExchangeAdaptiveScopes
 	}
-	if p.ExchangeAdaptiveScopesException != nil {
+	if p.ExchangeAdaptiveScopesExceptionDelta != nil {
+		m["ExchangeAdaptiveScopesException"] = *p.ExchangeAdaptiveScopesExceptionDelta
+	} else if p.ExchangeAdaptiveScopesException != nil {
 		m["ExchangeAdaptiveScopesException"] = p.ExchangeAdaptiveScopesException
 	}
-	if len(p.ExchangeSender) > 0 {
+	if p.ExchangeSender != nil {
 		m["ExchangeSender"] = p.ExchangeSender
 	}
-	if len(p.ExchangeSenderException) > 0 {
+	if p.ExchangeSenderException != nil {
 		m["ExchangeSenderException"] = p.ExchangeSenderException
 	}
-	if len(p.ExchangeSenderMemberOf) > 0 {
+	if p.ExchangeSenderMemberOf != nil {
 		m["ExchangeSenderMemberOf"] = p.ExchangeSenderMemberOf
 	}
-	if len(p.ExchangeSenderMemberOfException) > 0 {
+	if p.ExchangeSenderMemberOfException != nil {
 		m["ExchangeSenderMemberOfException"] = p.ExchangeSenderMemberOfException
 	}
 	if p.ExternalMailRightsManagementOwner != nil {
@@ -12770,8 +12840,8 @@ func (p SetAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeSimulationPolicyGrading {
-		m["IncludeSimulationPolicyGrading"] = true
+	if p.IncludeSimulationPolicyGrading != nil {
+		m["IncludeSimulationPolicyGrading"] = *p.IncludeSimulationPolicyGrading
 	}
 	if p.Locations != "" {
 		m["Locations"] = p.Locations
@@ -12779,37 +12849,49 @@ func (p SetAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.Mode != nil {
 		m["Mode"] = p.Mode
 	}
-	if p.OneDriveAdaptiveScopes != nil {
+	if p.OneDriveAdaptiveScopesDelta != nil {
+		m["OneDriveAdaptiveScopes"] = *p.OneDriveAdaptiveScopesDelta
+	} else if p.OneDriveAdaptiveScopes != nil {
 		m["OneDriveAdaptiveScopes"] = p.OneDriveAdaptiveScopes
 	}
-	if p.OneDriveAdaptiveScopesException != nil {
+	if p.OneDriveAdaptiveScopesExceptionDelta != nil {
+		m["OneDriveAdaptiveScopesException"] = *p.OneDriveAdaptiveScopesExceptionDelta
+	} else if p.OneDriveAdaptiveScopesException != nil {
 		m["OneDriveAdaptiveScopesException"] = p.OneDriveAdaptiveScopesException
 	}
-	if len(p.OneDriveSharedBy) > 0 {
+	if p.OneDriveSharedBy != nil {
 		m["OneDriveSharedBy"] = p.OneDriveSharedBy
 	}
-	if len(p.OneDriveSharedByMemberOf) > 0 {
+	if p.OneDriveSharedByMemberOf != nil {
 		m["OneDriveSharedByMemberOf"] = p.OneDriveSharedByMemberOf
 	}
-	if p.OverwriteLabel {
-		m["OverwriteLabel"] = true
+	if p.OverwriteLabel != nil {
+		m["OverwriteLabel"] = *p.OverwriteLabel
 	}
-	if p.PolicyRBACScopes != nil {
+	if p.PolicyRBACScopesDelta != nil {
+		m["PolicyRBACScopes"] = *p.PolicyRBACScopesDelta
+	} else if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
 	if p.PolicyTemplateInfo != nil {
 		m["PolicyTemplateInfo"] = p.PolicyTemplateInfo
 	}
 	if p.Priority != nil {
-		m["Priority"] = p.Priority
+		m["Priority"] = *p.Priority
 	}
-	if p.RemoveExchangeLocation != nil {
+	if p.RemoveExchangeLocationDelta != nil {
+		m["RemoveExchangeLocation"] = *p.RemoveExchangeLocationDelta
+	} else if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
 	}
-	if p.RemoveOneDriveLocation != nil {
+	if p.RemoveOneDriveLocationDelta != nil {
+		m["RemoveOneDriveLocation"] = *p.RemoveOneDriveLocationDelta
+	} else if p.RemoveOneDriveLocation != nil {
 		m["RemoveOneDriveLocation"] = p.RemoveOneDriveLocation
 	}
-	if p.RemoveOneDriveLocationException != nil {
+	if p.RemoveOneDriveLocationExceptionDelta != nil {
+		m["RemoveOneDriveLocationException"] = *p.RemoveOneDriveLocationExceptionDelta
+	} else if p.RemoveOneDriveLocationException != nil {
 		m["RemoveOneDriveLocationException"] = p.RemoveOneDriveLocationException
 	}
 	if p.RemovePowerBILocation != nil {
@@ -12818,26 +12900,34 @@ func (p SetAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.RemovePowerBILocationException != nil {
 		m["RemovePowerBILocationException"] = p.RemovePowerBILocationException
 	}
-	if p.RemoveSharePointLocation != nil {
+	if p.RemoveSharePointLocationDelta != nil {
+		m["RemoveSharePointLocation"] = *p.RemoveSharePointLocationDelta
+	} else if p.RemoveSharePointLocation != nil {
 		m["RemoveSharePointLocation"] = p.RemoveSharePointLocation
 	}
-	if p.RemoveSharePointLocationException != nil {
+	if p.RemoveSharePointLocationExceptionDelta != nil {
+		m["RemoveSharePointLocationException"] = *p.RemoveSharePointLocationExceptionDelta
+	} else if p.RemoveSharePointLocationException != nil {
 		m["RemoveSharePointLocationException"] = p.RemoveSharePointLocationException
 	}
 	if p.RetryDistribution {
 		m["RetryDistribution"] = true
 	}
-	if p.SharePointAdaptiveScopes != nil {
+	if p.SharePointAdaptiveScopesDelta != nil {
+		m["SharePointAdaptiveScopes"] = *p.SharePointAdaptiveScopesDelta
+	} else if p.SharePointAdaptiveScopes != nil {
 		m["SharePointAdaptiveScopes"] = p.SharePointAdaptiveScopes
 	}
-	if p.SharePointAdaptiveScopesException != nil {
+	if p.SharePointAdaptiveScopesExceptionDelta != nil {
+		m["SharePointAdaptiveScopesException"] = *p.SharePointAdaptiveScopesExceptionDelta
+	} else if p.SharePointAdaptiveScopesException != nil {
 		m["SharePointAdaptiveScopesException"] = p.SharePointAdaptiveScopesException
 	}
-	if p.SpoAipIntegrationEnabled {
-		m["SpoAipIntegrationEnabled"] = true
+	if p.SpoAipIntegrationEnabled != nil {
+		m["SpoAipIntegrationEnabled"] = *p.SpoAipIntegrationEnabled
 	}
-	if p.StartSimulation {
-		m["StartSimulation"] = true
+	if p.StartSimulation != nil {
+		m["StartSimulation"] = *p.StartSimulation
 	}
 	return m
 }
@@ -12849,67 +12939,93 @@ func (s *Service) SetAutoSensitivityLabelPolicy(ctx context.Context, p SetAutoSe
 
 // SetAutoSensitivityLabelRuleParams are the parameters of Set-AutoSensitivityLabelRule.
 type SetAutoSensitivityLabelRuleParams struct {
-	AccessScope                                  any      `ps:"AccessScope"`
-	ActivationDate                               any      `ps:"ActivationDate"`
-	AdvancedRule                                 string   `ps:"AdvancedRule"`
-	AnyOfRecipientAddressContainsWords           any      `ps:"AnyOfRecipientAddressContainsWords"`
-	AnyOfRecipientAddressMatchesPatterns         any      `ps:"AnyOfRecipientAddressMatchesPatterns"`
-	Comment                                      string   `ps:"Comment"`
-	ContentContainsSensitiveInformation          []string `ps:"ContentContainsSensitiveInformation"`
-	ContentExtensionMatchesWords                 any      `ps:"ContentExtensionMatchesWords"`
-	ContentIsNotLabeled                          bool     `ps:"ContentIsNotLabeled"`
-	ContentPropertyContainsWords                 any      `ps:"ContentPropertyContainsWords"`
-	DefaultSpoDocLibraryHasLabel                 bool     `ps:"DefaultSpoDocLibraryHasLabel"`
-	Disabled                                     bool     `ps:"Disabled"`
-	DocumentCreatedBy                            any      `ps:"DocumentCreatedBy"`
-	DocumentIsPasswordProtected                  bool     `ps:"DocumentIsPasswordProtected"`
-	DocumentIsUnsupported                        bool     `ps:"DocumentIsUnsupported"`
-	DocumentNameMatchesWords                     any      `ps:"DocumentNameMatchesWords"`
-	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`
-	ExceptIfAccessScope                          any      `ps:"ExceptIfAccessScope"`
-	ExceptIfAnyOfRecipientAddressContainsWords   any      `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
-	ExceptIfAnyOfRecipientAddressMatchesPatterns any      `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
-	ExceptIfContentContainsSensitiveInformation  []string `ps:"ExceptIfContentContainsSensitiveInformation"`
-	ExceptIfContentExtensionMatchesWords         any      `ps:"ExceptIfContentExtensionMatchesWords"`
-	ExceptIfContentPropertyContainsWords         any      `ps:"ExceptIfContentPropertyContainsWords"`
-	ExceptIfDocumentCreatedBy                    any      `ps:"ExceptIfDocumentCreatedBy"`
-	ExceptIfDocumentIsPasswordProtected          bool     `ps:"ExceptIfDocumentIsPasswordProtected"`
-	ExceptIfDocumentIsUnsupported                bool     `ps:"ExceptIfDocumentIsUnsupported"`
-	ExceptIfDocumentNameMatchesWords             any      `ps:"ExceptIfDocumentNameMatchesWords"`
-	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"`
-	ExceptIfFrom                                 []string `ps:"ExceptIfFrom"`
-	ExceptIfFromAddressContainsWords             any      `ps:"ExceptIfFromAddressContainsWords"`
-	ExceptIfFromAddressMatchesPatterns           any      `ps:"ExceptIfFromAddressMatchesPatterns"`
-	ExceptIfFromMemberOf                         []string `ps:"ExceptIfFromMemberOf"`
-	ExceptIfHeaderMatchesPatterns                any      `ps:"ExceptIfHeaderMatchesPatterns"`
-	ExceptIfProcessingLimitExceeded              bool     `ps:"ExceptIfProcessingLimitExceeded"`
-	ExceptIfRecipientDomainIs                    any      `ps:"ExceptIfRecipientDomainIs"`
-	ExceptIfSenderDomainIs                       any      `ps:"ExceptIfSenderDomainIs"`
-	ExceptIfSenderIPRanges                       any      `ps:"ExceptIfSenderIPRanges"`
-	ExceptIfSentTo                               any      `ps:"ExceptIfSentTo"`
-	ExceptIfSentToMemberOf                       []string `ps:"ExceptIfSentToMemberOf"`
-	ExceptIfSharedWithDomain                     any      `ps:"ExceptIfSharedWithDomain"`
-	ExceptIfSubjectMatchesPatterns               any      `ps:"ExceptIfSubjectMatchesPatterns"`
-	ExpiryDate                                   any      `ps:"ExpiryDate"`
-	From                                         []string `ps:"From"`
-	FromAddressContainsWords                     any      `ps:"FromAddressContainsWords"`
-	FromAddressMatchesPatterns                   any      `ps:"FromAddressMatchesPatterns"`
-	FromMemberOf                                 []string `ps:"FromMemberOf"`
-	HeaderMatchesPatterns                        any      `ps:"HeaderMatchesPatterns"`
-	Identity                                     any      `ps:"Identity"`
-	Priority                                     any      `ps:"Priority"`
-	ProcessingLimitExceeded                      bool     `ps:"ProcessingLimitExceeded"`
-	RecipientDomainIs                            any      `ps:"RecipientDomainIs"`
-	ReportSeverityLevel                          any      `ps:"ReportSeverityLevel"`
-	RuleErrorAction                              any      `ps:"RuleErrorAction"`
-	SenderDomainIs                               any      `ps:"SenderDomainIs"`
-	SenderIPRanges                               any      `ps:"SenderIPRanges"`
-	SentTo                                       any      `ps:"SentTo"`
-	SentToMemberOf                               []string `ps:"SentToMemberOf"`
-	SharedWithDomain                             any      `ps:"SharedWithDomain"`
-	SourceType                                   string   `ps:"SourceType"`
-	SubjectMatchesPatterns                       any      `ps:"SubjectMatchesPatterns"`
-	Workload                                     any      `ps:"Workload"`
+	AccessScope                                       any                   `ps:"AccessScope"`    // AccessScope
+	ActivationDate                                    any                   `ps:"ActivationDate"` // System.DateTime
+	AdvancedRule                                      string                `ps:"AdvancedRule"`
+	AnyOfRecipientAddressContainsWords                []string              `ps:"AnyOfRecipientAddressContainsWords"`
+	AnyOfRecipientAddressContainsWordsDelta           *adminapi.StringDelta `ps:"AnyOfRecipientAddressContainsWords"` // adds/removes values of AnyOfRecipientAddressContainsWords; takes precedence over it
+	AnyOfRecipientAddressMatchesPatterns              []string              `ps:"AnyOfRecipientAddressMatchesPatterns"`
+	AnyOfRecipientAddressMatchesPatternsDelta         *adminapi.StringDelta `ps:"AnyOfRecipientAddressMatchesPatterns"` // adds/removes values of AnyOfRecipientAddressMatchesPatterns; takes precedence over it
+	Comment                                           string                `ps:"Comment"`
+	ContentContainsSensitiveInformation               any                   `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
+	ContentExtensionMatchesWords                      []string              `ps:"ContentExtensionMatchesWords"`
+	ContentExtensionMatchesWordsDelta                 *adminapi.StringDelta `ps:"ContentExtensionMatchesWords"` // adds/removes values of ContentExtensionMatchesWords; takes precedence over it
+	ContentIsNotLabeled                               *bool                 `ps:"ContentIsNotLabeled"`
+	ContentPropertyContainsWords                      []string              `ps:"ContentPropertyContainsWords"`
+	ContentPropertyContainsWordsDelta                 *adminapi.StringDelta `ps:"ContentPropertyContainsWords"` // adds/removes values of ContentPropertyContainsWords; takes precedence over it
+	DefaultSpoDocLibraryHasLabel                      *bool                 `ps:"DefaultSpoDocLibraryHasLabel"`
+	Disabled                                          *bool                 `ps:"Disabled"`
+	DocumentCreatedBy                                 []string              `ps:"DocumentCreatedBy"`
+	DocumentCreatedByDelta                            *adminapi.StringDelta `ps:"DocumentCreatedBy"` // adds/removes values of DocumentCreatedBy; takes precedence over it
+	DocumentIsPasswordProtected                       *bool                 `ps:"DocumentIsPasswordProtected"`
+	DocumentIsUnsupported                             *bool                 `ps:"DocumentIsUnsupported"`
+	DocumentNameMatchesWords                          []string              `ps:"DocumentNameMatchesWords"`
+	DocumentNameMatchesWordsDelta                     *adminapi.StringDelta `ps:"DocumentNameMatchesWords"` // adds/removes values of DocumentNameMatchesWords; takes precedence over it
+	DocumentSizeOver                                  any                   `ps:"DocumentSizeOver"`         // Microsoft.Exchange.Data.ByteQuantifiedSize
+	ExceptIfAccessScope                               any                   `ps:"ExceptIfAccessScope"`      // AccessScope
+	ExceptIfAnyOfRecipientAddressContainsWords        []string              `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
+	ExceptIfAnyOfRecipientAddressContainsWordsDelta   *adminapi.StringDelta `ps:"ExceptIfAnyOfRecipientAddressContainsWords"` // adds/removes values of ExceptIfAnyOfRecipientAddressContainsWords; takes precedence over it
+	ExceptIfAnyOfRecipientAddressMatchesPatterns      []string              `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
+	ExceptIfAnyOfRecipientAddressMatchesPatternsDelta *adminapi.StringDelta `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"` // adds/removes values of ExceptIfAnyOfRecipientAddressMatchesPatterns; takes precedence over it
+	ExceptIfContentContainsSensitiveInformation       any                   `ps:"ExceptIfContentContainsSensitiveInformation"`  // PswsHashtable[]
+	ExceptIfContentExtensionMatchesWords              []string              `ps:"ExceptIfContentExtensionMatchesWords"`
+	ExceptIfContentExtensionMatchesWordsDelta         *adminapi.StringDelta `ps:"ExceptIfContentExtensionMatchesWords"` // adds/removes values of ExceptIfContentExtensionMatchesWords; takes precedence over it
+	ExceptIfContentPropertyContainsWords              []string              `ps:"ExceptIfContentPropertyContainsWords"`
+	ExceptIfContentPropertyContainsWordsDelta         *adminapi.StringDelta `ps:"ExceptIfContentPropertyContainsWords"` // adds/removes values of ExceptIfContentPropertyContainsWords; takes precedence over it
+	ExceptIfDocumentCreatedBy                         []string              `ps:"ExceptIfDocumentCreatedBy"`
+	ExceptIfDocumentCreatedByDelta                    *adminapi.StringDelta `ps:"ExceptIfDocumentCreatedBy"` // adds/removes values of ExceptIfDocumentCreatedBy; takes precedence over it
+	ExceptIfDocumentIsPasswordProtected               *bool                 `ps:"ExceptIfDocumentIsPasswordProtected"`
+	ExceptIfDocumentIsUnsupported                     *bool                 `ps:"ExceptIfDocumentIsUnsupported"`
+	ExceptIfDocumentNameMatchesWords                  []string              `ps:"ExceptIfDocumentNameMatchesWords"`
+	ExceptIfDocumentNameMatchesWordsDelta             *adminapi.StringDelta `ps:"ExceptIfDocumentNameMatchesWords"` // adds/removes values of ExceptIfDocumentNameMatchesWords; takes precedence over it
+	ExceptIfDocumentSizeOver                          any                   `ps:"ExceptIfDocumentSizeOver"`         // Microsoft.Exchange.Data.ByteQuantifiedSize
+	ExceptIfFrom                                      []string              `ps:"ExceptIfFrom"`
+	ExceptIfFromAddressContainsWords                  []string              `ps:"ExceptIfFromAddressContainsWords"`
+	ExceptIfFromAddressContainsWordsDelta             *adminapi.StringDelta `ps:"ExceptIfFromAddressContainsWords"` // adds/removes values of ExceptIfFromAddressContainsWords; takes precedence over it
+	ExceptIfFromAddressMatchesPatterns                []string              `ps:"ExceptIfFromAddressMatchesPatterns"`
+	ExceptIfFromAddressMatchesPatternsDelta           *adminapi.StringDelta `ps:"ExceptIfFromAddressMatchesPatterns"` // adds/removes values of ExceptIfFromAddressMatchesPatterns; takes precedence over it
+	ExceptIfFromMemberOf                              []string              `ps:"ExceptIfFromMemberOf"`
+	ExceptIfHeaderMatchesPatterns                     any                   `ps:"ExceptIfHeaderMatchesPatterns"` // PswsHashtable
+	ExceptIfProcessingLimitExceeded                   *bool                 `ps:"ExceptIfProcessingLimitExceeded"`
+	ExceptIfRecipientDomainIs                         []string              `ps:"ExceptIfRecipientDomainIs"`
+	ExceptIfRecipientDomainIsDelta                    *adminapi.StringDelta `ps:"ExceptIfRecipientDomainIs"` // adds/removes values of ExceptIfRecipientDomainIs; takes precedence over it
+	ExceptIfSenderDomainIs                            []string              `ps:"ExceptIfSenderDomainIs"`
+	ExceptIfSenderDomainIsDelta                       *adminapi.StringDelta `ps:"ExceptIfSenderDomainIs"` // adds/removes values of ExceptIfSenderDomainIs; takes precedence over it
+	ExceptIfSenderIPRanges                            []string              `ps:"ExceptIfSenderIPRanges"`
+	ExceptIfSenderIPRangesDelta                       *adminapi.StringDelta `ps:"ExceptIfSenderIPRanges"` // adds/removes values of ExceptIfSenderIPRanges; takes precedence over it
+	ExceptIfSentTo                                    []string              `ps:"ExceptIfSentTo"`
+	ExceptIfSentToDelta                               *adminapi.StringDelta `ps:"ExceptIfSentTo"` // adds/removes values of ExceptIfSentTo; takes precedence over it
+	ExceptIfSentToMemberOf                            []string              `ps:"ExceptIfSentToMemberOf"`
+	ExceptIfSharedWithDomain                          any                   `ps:"ExceptIfSharedWithDomain"`
+	ExceptIfSubjectMatchesPatterns                    []string              `ps:"ExceptIfSubjectMatchesPatterns"`
+	ExceptIfSubjectMatchesPatternsDelta               *adminapi.StringDelta `ps:"ExceptIfSubjectMatchesPatterns"` // adds/removes values of ExceptIfSubjectMatchesPatterns; takes precedence over it
+	ExpiryDate                                        any                   `ps:"ExpiryDate"`                     // System.DateTime
+	From                                              []string              `ps:"From"`
+	FromAddressContainsWords                          []string              `ps:"FromAddressContainsWords"`
+	FromAddressContainsWordsDelta                     *adminapi.StringDelta `ps:"FromAddressContainsWords"` // adds/removes values of FromAddressContainsWords; takes precedence over it
+	FromAddressMatchesPatterns                        []string              `ps:"FromAddressMatchesPatterns"`
+	FromAddressMatchesPatternsDelta                   *adminapi.StringDelta `ps:"FromAddressMatchesPatterns"` // adds/removes values of FromAddressMatchesPatterns; takes precedence over it
+	FromMemberOf                                      []string              `ps:"FromMemberOf"`
+	HeaderMatchesPatterns                             any                   `ps:"HeaderMatchesPatterns"` // PswsHashtable
+	Identity                                          any                   `ps:"Identity"`              // ComplianceRuleIdParameter
+	Priority                                          *int64                `ps:"Priority"`
+	ProcessingLimitExceeded                           *bool                 `ps:"ProcessingLimitExceeded"`
+	RecipientDomainIs                                 []string              `ps:"RecipientDomainIs"`
+	RecipientDomainIsDelta                            *adminapi.StringDelta `ps:"RecipientDomainIs"`   // adds/removes values of RecipientDomainIs; takes precedence over it
+	ReportSeverityLevel                               any                   `ps:"ReportSeverityLevel"` // RuleSeverity
+	RuleErrorAction                                   any                   `ps:"RuleErrorAction"`     // PolicyRuleErrorAction
+	SenderDomainIs                                    []string              `ps:"SenderDomainIs"`
+	SenderDomainIsDelta                               *adminapi.StringDelta `ps:"SenderDomainIs"` // adds/removes values of SenderDomainIs; takes precedence over it
+	SenderIPRanges                                    []string              `ps:"SenderIPRanges"`
+	SenderIPRangesDelta                               *adminapi.StringDelta `ps:"SenderIPRanges"` // adds/removes values of SenderIPRanges; takes precedence over it
+	SentTo                                            []string              `ps:"SentTo"`
+	SentToDelta                                       *adminapi.StringDelta `ps:"SentTo"` // adds/removes values of SentTo; takes precedence over it
+	SentToMemberOf                                    []string              `ps:"SentToMemberOf"`
+	SharedWithDomain                                  any                   `ps:"SharedWithDomain"`
+	SourceType                                        string                `ps:"SourceType"`
+	SubjectMatchesPatterns                            []string              `ps:"SubjectMatchesPatterns"`
+	SubjectMatchesPatternsDelta                       *adminapi.StringDelta `ps:"SubjectMatchesPatterns"` // adds/removes values of SubjectMatchesPatterns; takes precedence over it
+	Workload                                          any                   `ps:"Workload"`               // Workload
 }
 
 func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
@@ -12923,43 +13039,55 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.AdvancedRule != "" {
 		m["AdvancedRule"] = p.AdvancedRule
 	}
-	if p.AnyOfRecipientAddressContainsWords != nil {
+	if p.AnyOfRecipientAddressContainsWordsDelta != nil {
+		m["AnyOfRecipientAddressContainsWords"] = *p.AnyOfRecipientAddressContainsWordsDelta
+	} else if p.AnyOfRecipientAddressContainsWords != nil {
 		m["AnyOfRecipientAddressContainsWords"] = p.AnyOfRecipientAddressContainsWords
 	}
-	if p.AnyOfRecipientAddressMatchesPatterns != nil {
+	if p.AnyOfRecipientAddressMatchesPatternsDelta != nil {
+		m["AnyOfRecipientAddressMatchesPatterns"] = *p.AnyOfRecipientAddressMatchesPatternsDelta
+	} else if p.AnyOfRecipientAddressMatchesPatterns != nil {
 		m["AnyOfRecipientAddressMatchesPatterns"] = p.AnyOfRecipientAddressMatchesPatterns
 	}
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
-	if p.ContentExtensionMatchesWords != nil {
+	if p.ContentExtensionMatchesWordsDelta != nil {
+		m["ContentExtensionMatchesWords"] = *p.ContentExtensionMatchesWordsDelta
+	} else if p.ContentExtensionMatchesWords != nil {
 		m["ContentExtensionMatchesWords"] = p.ContentExtensionMatchesWords
 	}
-	if p.ContentIsNotLabeled {
-		m["ContentIsNotLabeled"] = true
+	if p.ContentIsNotLabeled != nil {
+		m["ContentIsNotLabeled"] = *p.ContentIsNotLabeled
 	}
-	if p.ContentPropertyContainsWords != nil {
+	if p.ContentPropertyContainsWordsDelta != nil {
+		m["ContentPropertyContainsWords"] = *p.ContentPropertyContainsWordsDelta
+	} else if p.ContentPropertyContainsWords != nil {
 		m["ContentPropertyContainsWords"] = p.ContentPropertyContainsWords
 	}
-	if p.DefaultSpoDocLibraryHasLabel {
-		m["DefaultSpoDocLibraryHasLabel"] = true
+	if p.DefaultSpoDocLibraryHasLabel != nil {
+		m["DefaultSpoDocLibraryHasLabel"] = *p.DefaultSpoDocLibraryHasLabel
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
-	if p.DocumentCreatedBy != nil {
+	if p.DocumentCreatedByDelta != nil {
+		m["DocumentCreatedBy"] = *p.DocumentCreatedByDelta
+	} else if p.DocumentCreatedBy != nil {
 		m["DocumentCreatedBy"] = p.DocumentCreatedBy
 	}
-	if p.DocumentIsPasswordProtected {
-		m["DocumentIsPasswordProtected"] = true
+	if p.DocumentIsPasswordProtected != nil {
+		m["DocumentIsPasswordProtected"] = *p.DocumentIsPasswordProtected
 	}
-	if p.DocumentIsUnsupported {
-		m["DocumentIsUnsupported"] = true
+	if p.DocumentIsUnsupported != nil {
+		m["DocumentIsUnsupported"] = *p.DocumentIsUnsupported
 	}
-	if p.DocumentNameMatchesWords != nil {
+	if p.DocumentNameMatchesWordsDelta != nil {
+		m["DocumentNameMatchesWords"] = *p.DocumentNameMatchesWordsDelta
+	} else if p.DocumentNameMatchesWords != nil {
 		m["DocumentNameMatchesWords"] = p.DocumentNameMatchesWords
 	}
 	if p.DocumentSizeOver != nil {
@@ -12968,88 +13096,118 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.ExceptIfAccessScope != nil {
 		m["ExceptIfAccessScope"] = p.ExceptIfAccessScope
 	}
-	if p.ExceptIfAnyOfRecipientAddressContainsWords != nil {
+	if p.ExceptIfAnyOfRecipientAddressContainsWordsDelta != nil {
+		m["ExceptIfAnyOfRecipientAddressContainsWords"] = *p.ExceptIfAnyOfRecipientAddressContainsWordsDelta
+	} else if p.ExceptIfAnyOfRecipientAddressContainsWords != nil {
 		m["ExceptIfAnyOfRecipientAddressContainsWords"] = p.ExceptIfAnyOfRecipientAddressContainsWords
 	}
-	if p.ExceptIfAnyOfRecipientAddressMatchesPatterns != nil {
+	if p.ExceptIfAnyOfRecipientAddressMatchesPatternsDelta != nil {
+		m["ExceptIfAnyOfRecipientAddressMatchesPatterns"] = *p.ExceptIfAnyOfRecipientAddressMatchesPatternsDelta
+	} else if p.ExceptIfAnyOfRecipientAddressMatchesPatterns != nil {
 		m["ExceptIfAnyOfRecipientAddressMatchesPatterns"] = p.ExceptIfAnyOfRecipientAddressMatchesPatterns
 	}
-	if len(p.ExceptIfContentContainsSensitiveInformation) > 0 {
+	if p.ExceptIfContentContainsSensitiveInformation != nil {
 		m["ExceptIfContentContainsSensitiveInformation"] = p.ExceptIfContentContainsSensitiveInformation
 	}
-	if p.ExceptIfContentExtensionMatchesWords != nil {
+	if p.ExceptIfContentExtensionMatchesWordsDelta != nil {
+		m["ExceptIfContentExtensionMatchesWords"] = *p.ExceptIfContentExtensionMatchesWordsDelta
+	} else if p.ExceptIfContentExtensionMatchesWords != nil {
 		m["ExceptIfContentExtensionMatchesWords"] = p.ExceptIfContentExtensionMatchesWords
 	}
-	if p.ExceptIfContentPropertyContainsWords != nil {
+	if p.ExceptIfContentPropertyContainsWordsDelta != nil {
+		m["ExceptIfContentPropertyContainsWords"] = *p.ExceptIfContentPropertyContainsWordsDelta
+	} else if p.ExceptIfContentPropertyContainsWords != nil {
 		m["ExceptIfContentPropertyContainsWords"] = p.ExceptIfContentPropertyContainsWords
 	}
-	if p.ExceptIfDocumentCreatedBy != nil {
+	if p.ExceptIfDocumentCreatedByDelta != nil {
+		m["ExceptIfDocumentCreatedBy"] = *p.ExceptIfDocumentCreatedByDelta
+	} else if p.ExceptIfDocumentCreatedBy != nil {
 		m["ExceptIfDocumentCreatedBy"] = p.ExceptIfDocumentCreatedBy
 	}
-	if p.ExceptIfDocumentIsPasswordProtected {
-		m["ExceptIfDocumentIsPasswordProtected"] = true
+	if p.ExceptIfDocumentIsPasswordProtected != nil {
+		m["ExceptIfDocumentIsPasswordProtected"] = *p.ExceptIfDocumentIsPasswordProtected
 	}
-	if p.ExceptIfDocumentIsUnsupported {
-		m["ExceptIfDocumentIsUnsupported"] = true
+	if p.ExceptIfDocumentIsUnsupported != nil {
+		m["ExceptIfDocumentIsUnsupported"] = *p.ExceptIfDocumentIsUnsupported
 	}
-	if p.ExceptIfDocumentNameMatchesWords != nil {
+	if p.ExceptIfDocumentNameMatchesWordsDelta != nil {
+		m["ExceptIfDocumentNameMatchesWords"] = *p.ExceptIfDocumentNameMatchesWordsDelta
+	} else if p.ExceptIfDocumentNameMatchesWords != nil {
 		m["ExceptIfDocumentNameMatchesWords"] = p.ExceptIfDocumentNameMatchesWords
 	}
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
-	if len(p.ExceptIfFrom) > 0 {
+	if p.ExceptIfFrom != nil {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
-	if p.ExceptIfFromAddressContainsWords != nil {
+	if p.ExceptIfFromAddressContainsWordsDelta != nil {
+		m["ExceptIfFromAddressContainsWords"] = *p.ExceptIfFromAddressContainsWordsDelta
+	} else if p.ExceptIfFromAddressContainsWords != nil {
 		m["ExceptIfFromAddressContainsWords"] = p.ExceptIfFromAddressContainsWords
 	}
-	if p.ExceptIfFromAddressMatchesPatterns != nil {
+	if p.ExceptIfFromAddressMatchesPatternsDelta != nil {
+		m["ExceptIfFromAddressMatchesPatterns"] = *p.ExceptIfFromAddressMatchesPatternsDelta
+	} else if p.ExceptIfFromAddressMatchesPatterns != nil {
 		m["ExceptIfFromAddressMatchesPatterns"] = p.ExceptIfFromAddressMatchesPatterns
 	}
-	if len(p.ExceptIfFromMemberOf) > 0 {
+	if p.ExceptIfFromMemberOf != nil {
 		m["ExceptIfFromMemberOf"] = p.ExceptIfFromMemberOf
 	}
 	if p.ExceptIfHeaderMatchesPatterns != nil {
 		m["ExceptIfHeaderMatchesPatterns"] = p.ExceptIfHeaderMatchesPatterns
 	}
-	if p.ExceptIfProcessingLimitExceeded {
-		m["ExceptIfProcessingLimitExceeded"] = true
+	if p.ExceptIfProcessingLimitExceeded != nil {
+		m["ExceptIfProcessingLimitExceeded"] = *p.ExceptIfProcessingLimitExceeded
 	}
-	if p.ExceptIfRecipientDomainIs != nil {
+	if p.ExceptIfRecipientDomainIsDelta != nil {
+		m["ExceptIfRecipientDomainIs"] = *p.ExceptIfRecipientDomainIsDelta
+	} else if p.ExceptIfRecipientDomainIs != nil {
 		m["ExceptIfRecipientDomainIs"] = p.ExceptIfRecipientDomainIs
 	}
-	if p.ExceptIfSenderDomainIs != nil {
+	if p.ExceptIfSenderDomainIsDelta != nil {
+		m["ExceptIfSenderDomainIs"] = *p.ExceptIfSenderDomainIsDelta
+	} else if p.ExceptIfSenderDomainIs != nil {
 		m["ExceptIfSenderDomainIs"] = p.ExceptIfSenderDomainIs
 	}
-	if p.ExceptIfSenderIPRanges != nil {
+	if p.ExceptIfSenderIPRangesDelta != nil {
+		m["ExceptIfSenderIPRanges"] = *p.ExceptIfSenderIPRangesDelta
+	} else if p.ExceptIfSenderIPRanges != nil {
 		m["ExceptIfSenderIPRanges"] = p.ExceptIfSenderIPRanges
 	}
-	if p.ExceptIfSentTo != nil {
+	if p.ExceptIfSentToDelta != nil {
+		m["ExceptIfSentTo"] = *p.ExceptIfSentToDelta
+	} else if p.ExceptIfSentTo != nil {
 		m["ExceptIfSentTo"] = p.ExceptIfSentTo
 	}
-	if len(p.ExceptIfSentToMemberOf) > 0 {
+	if p.ExceptIfSentToMemberOf != nil {
 		m["ExceptIfSentToMemberOf"] = p.ExceptIfSentToMemberOf
 	}
 	if p.ExceptIfSharedWithDomain != nil {
 		m["ExceptIfSharedWithDomain"] = p.ExceptIfSharedWithDomain
 	}
-	if p.ExceptIfSubjectMatchesPatterns != nil {
+	if p.ExceptIfSubjectMatchesPatternsDelta != nil {
+		m["ExceptIfSubjectMatchesPatterns"] = *p.ExceptIfSubjectMatchesPatternsDelta
+	} else if p.ExceptIfSubjectMatchesPatterns != nil {
 		m["ExceptIfSubjectMatchesPatterns"] = p.ExceptIfSubjectMatchesPatterns
 	}
 	if p.ExpiryDate != nil {
 		m["ExpiryDate"] = p.ExpiryDate
 	}
-	if len(p.From) > 0 {
+	if p.From != nil {
 		m["From"] = p.From
 	}
-	if p.FromAddressContainsWords != nil {
+	if p.FromAddressContainsWordsDelta != nil {
+		m["FromAddressContainsWords"] = *p.FromAddressContainsWordsDelta
+	} else if p.FromAddressContainsWords != nil {
 		m["FromAddressContainsWords"] = p.FromAddressContainsWords
 	}
-	if p.FromAddressMatchesPatterns != nil {
+	if p.FromAddressMatchesPatternsDelta != nil {
+		m["FromAddressMatchesPatterns"] = *p.FromAddressMatchesPatternsDelta
+	} else if p.FromAddressMatchesPatterns != nil {
 		m["FromAddressMatchesPatterns"] = p.FromAddressMatchesPatterns
 	}
-	if len(p.FromMemberOf) > 0 {
+	if p.FromMemberOf != nil {
 		m["FromMemberOf"] = p.FromMemberOf
 	}
 	if p.HeaderMatchesPatterns != nil {
@@ -13059,12 +13217,14 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 		m["Identity"] = p.Identity
 	}
 	if p.Priority != nil {
-		m["Priority"] = p.Priority
+		m["Priority"] = *p.Priority
 	}
-	if p.ProcessingLimitExceeded {
-		m["ProcessingLimitExceeded"] = true
+	if p.ProcessingLimitExceeded != nil {
+		m["ProcessingLimitExceeded"] = *p.ProcessingLimitExceeded
 	}
-	if p.RecipientDomainIs != nil {
+	if p.RecipientDomainIsDelta != nil {
+		m["RecipientDomainIs"] = *p.RecipientDomainIsDelta
+	} else if p.RecipientDomainIs != nil {
 		m["RecipientDomainIs"] = p.RecipientDomainIs
 	}
 	if p.ReportSeverityLevel != nil {
@@ -13073,16 +13233,22 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.RuleErrorAction != nil {
 		m["RuleErrorAction"] = p.RuleErrorAction
 	}
-	if p.SenderDomainIs != nil {
+	if p.SenderDomainIsDelta != nil {
+		m["SenderDomainIs"] = *p.SenderDomainIsDelta
+	} else if p.SenderDomainIs != nil {
 		m["SenderDomainIs"] = p.SenderDomainIs
 	}
-	if p.SenderIPRanges != nil {
+	if p.SenderIPRangesDelta != nil {
+		m["SenderIPRanges"] = *p.SenderIPRangesDelta
+	} else if p.SenderIPRanges != nil {
 		m["SenderIPRanges"] = p.SenderIPRanges
 	}
-	if p.SentTo != nil {
+	if p.SentToDelta != nil {
+		m["SentTo"] = *p.SentToDelta
+	} else if p.SentTo != nil {
 		m["SentTo"] = p.SentTo
 	}
-	if len(p.SentToMemberOf) > 0 {
+	if p.SentToMemberOf != nil {
 		m["SentToMemberOf"] = p.SentToMemberOf
 	}
 	if p.SharedWithDomain != nil {
@@ -13091,7 +13257,9 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.SourceType != "" {
 		m["SourceType"] = p.SourceType
 	}
-	if p.SubjectMatchesPatterns != nil {
+	if p.SubjectMatchesPatternsDelta != nil {
+		m["SubjectMatchesPatterns"] = *p.SubjectMatchesPatternsDelta
+	} else if p.SubjectMatchesPatterns != nil {
 		m["SubjectMatchesPatterns"] = p.SubjectMatchesPatterns
 	}
 	if p.Workload != nil {
@@ -13108,36 +13276,48 @@ func (s *Service) SetAutoSensitivityLabelRule(ctx context.Context, p SetAutoSens
 // SetCaseHoldPolicyParams are the parameters of Set-CaseHoldPolicy.
 // DefaultParameterSetName: Identity
 type SetCaseHoldPolicyParams struct {
-	AddExchangeLocation        any    `ps:"AddExchangeLocation"`
-	AddPublicFolderLocation    any    `ps:"AddPublicFolderLocation"`
-	AddSharePointLocation      any    `ps:"AddSharePointLocation"`
-	Comment                    string `ps:"Comment"`
-	Enabled                    bool   `ps:"Enabled"`
-	Force                      bool   `ps:"Force"`
-	Identity                   any    `ps:"Identity"`
-	RemoveExchangeLocation     any    `ps:"RemoveExchangeLocation"`
-	RemovePublicFolderLocation any    `ps:"RemovePublicFolderLocation"`
-	RemoveSharePointLocation   any    `ps:"RemoveSharePointLocation"`
-	RetryDistribution          bool   `ps:"RetryDistribution"`
-	UpdateStatistics           bool   `ps:"UpdateStatistics"`
+	AddExchangeLocation             []string              `ps:"AddExchangeLocation"`
+	AddExchangeLocationDelta        *adminapi.StringDelta `ps:"AddExchangeLocation"` // adds/removes values of AddExchangeLocation; takes precedence over it
+	AddPublicFolderLocation         []string              `ps:"AddPublicFolderLocation"`
+	AddPublicFolderLocationDelta    *adminapi.StringDelta `ps:"AddPublicFolderLocation"` // adds/removes values of AddPublicFolderLocation; takes precedence over it
+	AddSharePointLocation           []string              `ps:"AddSharePointLocation"`
+	AddSharePointLocationDelta      *adminapi.StringDelta `ps:"AddSharePointLocation"` // adds/removes values of AddSharePointLocation; takes precedence over it
+	Comment                         string                `ps:"Comment"`
+	Enabled                         *bool                 `ps:"Enabled"`
+	Force                           bool                  `ps:"Force"`
+	Identity                        any                   `ps:"Identity"` // PolicyIdParameter
+	RemoveExchangeLocation          []string              `ps:"RemoveExchangeLocation"`
+	RemoveExchangeLocationDelta     *adminapi.StringDelta `ps:"RemoveExchangeLocation"` // adds/removes values of RemoveExchangeLocation; takes precedence over it
+	RemovePublicFolderLocation      []string              `ps:"RemovePublicFolderLocation"`
+	RemovePublicFolderLocationDelta *adminapi.StringDelta `ps:"RemovePublicFolderLocation"` // adds/removes values of RemovePublicFolderLocation; takes precedence over it
+	RemoveSharePointLocation        []string              `ps:"RemoveSharePointLocation"`
+	RemoveSharePointLocationDelta   *adminapi.StringDelta `ps:"RemoveSharePointLocation"` // adds/removes values of RemoveSharePointLocation; takes precedence over it
+	RetryDistribution               bool                  `ps:"RetryDistribution"`
+	UpdateStatistics                bool                  `ps:"UpdateStatistics"`
 }
 
 func (p SetCaseHoldPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddExchangeLocation != nil {
+	if p.AddExchangeLocationDelta != nil {
+		m["AddExchangeLocation"] = *p.AddExchangeLocationDelta
+	} else if p.AddExchangeLocation != nil {
 		m["AddExchangeLocation"] = p.AddExchangeLocation
 	}
-	if p.AddPublicFolderLocation != nil {
+	if p.AddPublicFolderLocationDelta != nil {
+		m["AddPublicFolderLocation"] = *p.AddPublicFolderLocationDelta
+	} else if p.AddPublicFolderLocation != nil {
 		m["AddPublicFolderLocation"] = p.AddPublicFolderLocation
 	}
-	if p.AddSharePointLocation != nil {
+	if p.AddSharePointLocationDelta != nil {
+		m["AddSharePointLocation"] = *p.AddSharePointLocationDelta
+	} else if p.AddSharePointLocation != nil {
 		m["AddSharePointLocation"] = p.AddSharePointLocation
 	}
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -13145,13 +13325,19 @@ func (p SetCaseHoldPolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.RemoveExchangeLocation != nil {
+	if p.RemoveExchangeLocationDelta != nil {
+		m["RemoveExchangeLocation"] = *p.RemoveExchangeLocationDelta
+	} else if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
 	}
-	if p.RemovePublicFolderLocation != nil {
+	if p.RemovePublicFolderLocationDelta != nil {
+		m["RemovePublicFolderLocation"] = *p.RemovePublicFolderLocationDelta
+	} else if p.RemovePublicFolderLocation != nil {
 		m["RemovePublicFolderLocation"] = p.RemovePublicFolderLocation
 	}
-	if p.RemoveSharePointLocation != nil {
+	if p.RemoveSharePointLocationDelta != nil {
+		m["RemoveSharePointLocation"] = *p.RemoveSharePointLocationDelta
+	} else if p.RemoveSharePointLocation != nil {
 		m["RemoveSharePointLocation"] = p.RemoveSharePointLocation
 	}
 	if p.RetryDistribution {
@@ -13175,8 +13361,8 @@ type SetCaseHoldRuleParams struct {
 	ContentDateFrom   any    `ps:"ContentDateFrom"`
 	ContentDateTo     any    `ps:"ContentDateTo"`
 	ContentMatchQuery string `ps:"ContentMatchQuery"`
-	Disabled          bool   `ps:"Disabled"`
-	Identity          any    `ps:"Identity"`
+	Disabled          *bool  `ps:"Disabled"`
+	Identity          any    `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p SetCaseHoldRuleParams) params() map[string]any {
@@ -13193,8 +13379,8 @@ func (p SetCaseHoldRuleParams) params() map[string]any {
 	if p.ContentMatchQuery != "" {
 		m["ContentMatchQuery"] = p.ContentMatchQuery
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -13223,7 +13409,7 @@ func (p SetClassificationGradingPolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.SensitiveInformationTypeIds) > 0 {
+	if p.SensitiveInformationTypeIds != nil {
 		m["SensitiveInformationTypeIds"] = p.SensitiveInformationTypeIds
 	}
 	return m
@@ -13260,12 +13446,12 @@ func (s *Service) SetComplianceBoundary(ctx context.Context, p SetComplianceBoun
 // DefaultParameterSetName: Identity
 type SetComplianceCaseParams struct {
 	AddOrUpdateSources bool     `ps:"AddOrUpdateSources"`
-	CaseType           any      `ps:"CaseType"`
+	CaseType           any      `ps:"CaseType"` // ComplianceCaseType
 	Close              bool     `ps:"Close"`
 	Description        string   `ps:"Description"`
-	DomainController   any      `ps:"DomainController"`
+	DomainController   any      `ps:"DomainController"` // Fqdn
 	ExternalId         string   `ps:"ExternalId"`
-	Identity           any      `ps:"Identity"`
+	Identity           any      `ps:"Identity"` // ComplianceCaseIdParameter
 	Name               string   `ps:"Name"`
 	RemoveSources      bool     `ps:"RemoveSources"`
 	Reopen             bool     `ps:"Reopen"`
@@ -13304,7 +13490,7 @@ func (p SetComplianceCaseParams) params() map[string]any {
 	if p.Reopen {
 		m["Reopen"] = true
 	}
-	if len(p.Sources) > 0 {
+	if p.Sources != nil {
 		m["Sources"] = p.Sources
 	}
 	return m
@@ -13333,37 +13519,37 @@ type SetComplianceCustodianParams struct {
 
 func (p SetComplianceCustodianParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.AddExchangeLocation) > 0 {
+	if p.AddExchangeLocation != nil {
 		m["AddExchangeLocation"] = p.AddExchangeLocation
 	}
-	if len(p.AddPublicFolderLocation) > 0 {
+	if p.AddPublicFolderLocation != nil {
 		m["AddPublicFolderLocation"] = p.AddPublicFolderLocation
 	}
-	if len(p.AddSharePointLocation) > 0 {
+	if p.AddSharePointLocation != nil {
 		m["AddSharePointLocation"] = p.AddSharePointLocation
 	}
 	if p.ContactEmail != "" {
 		m["ContactEmail"] = p.ContactEmail
 	}
-	if len(p.ExchangeLocation) > 0 {
+	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.PublicFolderLocation) > 0 {
+	if p.PublicFolderLocation != nil {
 		m["PublicFolderLocation"] = p.PublicFolderLocation
 	}
-	if len(p.RemoveExchangeLocation) > 0 {
+	if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
 	}
-	if len(p.RemovePublicFolderLocation) > 0 {
+	if p.RemovePublicFolderLocation != nil {
 		m["RemovePublicFolderLocation"] = p.RemovePublicFolderLocation
 	}
-	if len(p.RemoveSharePointLocation) > 0 {
+	if p.RemoveSharePointLocation != nil {
 		m["RemoveSharePointLocation"] = p.RemoveSharePointLocation
 	}
-	if len(p.SharePointLocation) > 0 {
+	if p.SharePointLocation != nil {
 		m["SharePointLocation"] = p.SharePointLocation
 	}
 	return m
@@ -13395,10 +13581,10 @@ func (p SetComplianceNoticeParams) params() map[string]any {
 	if p.Acknowledged {
 		m["Acknowledged"] = true
 	}
-	if len(p.AcknowledgedCustodians) > 0 {
+	if p.AcknowledgedCustodians != nil {
 		m["AcknowledgedCustodians"] = p.AcknowledgedCustodians
 	}
-	if len(p.AddedCustodians) > 0 {
+	if p.AddedCustodians != nil {
 		m["AddedCustodians"] = p.AddedCustodians
 	}
 	if p.ContentBody != "" {
@@ -13435,13 +13621,13 @@ func (s *Service) SetComplianceNotice(ctx context.Context, p SetComplianceNotice
 
 // SetCompliancePreservationSettingParams are the parameters of Set-CompliancePreservationSetting.
 type SetCompliancePreservationSettingParams struct {
-	CaseHoldCloudAttachmentEnabled bool `ps:"CaseHoldCloudAttachmentEnabled"`
+	CaseHoldCloudAttachmentEnabled *bool `ps:"CaseHoldCloudAttachmentEnabled"`
 }
 
 func (p SetCompliancePreservationSettingParams) params() map[string]any {
 	m := map[string]any{}
-	if p.CaseHoldCloudAttachmentEnabled {
-		m["CaseHoldCloudAttachmentEnabled"] = true
+	if p.CaseHoldCloudAttachmentEnabled != nil {
+		m["CaseHoldCloudAttachmentEnabled"] = *p.CaseHoldCloudAttachmentEnabled
 	}
 	return m
 }
@@ -13454,15 +13640,16 @@ func (s *Service) SetCompliancePreservationSetting(ctx context.Context, p SetCom
 // SetComplianceRetentionEventParams are the parameters of Set-ComplianceRetentionEvent.
 // DefaultParameterSetName: Identity
 type SetComplianceRetentionEventParams struct {
-	Action                 any    `ps:"Action"`
-	AssetId                string `ps:"AssetId"`
-	Comment                string `ps:"Comment"`
-	DomainController       any    `ps:"DomainController"`
-	EventTags              any    `ps:"EventTags"`
-	EventType              any    `ps:"EventType"`
-	ExchangeAssetIdQuery   string `ps:"ExchangeAssetIdQuery"`
-	Identity               any    `ps:"Identity"`
-	SharePointAssetIdQuery string `ps:"SharePointAssetIdQuery"`
+	Action                 any                   `ps:"Action"`
+	AssetId                string                `ps:"AssetId"`
+	Comment                string                `ps:"Comment"`
+	DomainController       any                   `ps:"DomainController"` // Fqdn
+	EventTags              []string              `ps:"EventTags"`
+	EventTagsDelta         *adminapi.StringDelta `ps:"EventTags"` // adds/removes values of EventTags; takes precedence over it
+	EventType              any                   `ps:"EventType"` // ComplianceRuleIdParameter
+	ExchangeAssetIdQuery   string                `ps:"ExchangeAssetIdQuery"`
+	Identity               any                   `ps:"Identity"`
+	SharePointAssetIdQuery string                `ps:"SharePointAssetIdQuery"`
 }
 
 func (p SetComplianceRetentionEventParams) params() map[string]any {
@@ -13479,7 +13666,9 @@ func (p SetComplianceRetentionEventParams) params() map[string]any {
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
 	}
-	if p.EventTags != nil {
+	if p.EventTagsDelta != nil {
+		m["EventTags"] = *p.EventTagsDelta
+	} else if p.EventTags != nil {
 		m["EventTags"] = p.EventTags
 	}
 	if p.EventType != nil {
@@ -13506,7 +13695,7 @@ func (s *Service) SetComplianceRetentionEvent(ctx context.Context, p SetComplian
 // DefaultParameterSetName: Identity
 type SetComplianceRetentionEventTypeParams struct {
 	Comment  string `ps:"Comment"`
-	Identity any    `ps:"Identity"`
+	Identity any    `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p SetComplianceRetentionEventTypeParams) params() map[string]any {
@@ -13536,17 +13725,17 @@ type SetComplianceSearchParams struct {
 	AddPublicFolderLocationExclusion      []string `ps:"AddPublicFolderLocationExclusion"`
 	AddSharePointLocation                 []string `ps:"AddSharePointLocation"`
 	AddSharePointLocationExclusion        []string `ps:"AddSharePointLocationExclusion"`
-	AllowNotFoundExchangeLocationsEnabled bool     `ps:"AllowNotFoundExchangeLocationsEnabled"`
+	AllowNotFoundExchangeLocationsEnabled *bool    `ps:"AllowNotFoundExchangeLocationsEnabled"`
 	ContentMatchQuery                     string   `ps:"ContentMatchQuery"`
 	Description                           string   `ps:"Description"`
 	ExchangeLocation                      []string `ps:"ExchangeLocation"`
 	ExchangeLocationExclusion             []string `ps:"ExchangeLocationExclusion"`
 	Force                                 bool     `ps:"Force"`
 	HoldNames                             []string `ps:"HoldNames"`
-	Identity                              any      `ps:"Identity"`
-	IncludeOrgContent                     bool     `ps:"IncludeOrgContent"`
-	IncludeUserAppContent                 bool     `ps:"IncludeUserAppContent"`
-	Language                              any      `ps:"Language"`
+	Identity                              any      `ps:"Identity"` // ComplianceSearchIdParameter
+	IncludeOrgContent                     *bool    `ps:"IncludeOrgContent"`
+	IncludeUserAppContent                 *bool    `ps:"IncludeUserAppContent"`
+	Language                              any      `ps:"Language"` // CultureInfo
 	Name                                  string   `ps:"Name"`
 	OneDriveLocation                      []string `ps:"OneDriveLocation"`
 	OneDriveLocationExclusion             []string `ps:"OneDriveLocationExclusion"`
@@ -13568,32 +13757,32 @@ type SetComplianceSearchParams struct {
 
 func (p SetComplianceSearchParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.AddExchangeLocation) > 0 {
+	if p.AddExchangeLocation != nil {
 		m["AddExchangeLocation"] = p.AddExchangeLocation
 	}
-	if len(p.AddExchangeLocationExclusion) > 0 {
+	if p.AddExchangeLocationExclusion != nil {
 		m["AddExchangeLocationExclusion"] = p.AddExchangeLocationExclusion
 	}
-	if len(p.AddOneDriveLocation) > 0 {
+	if p.AddOneDriveLocation != nil {
 		m["AddOneDriveLocation"] = p.AddOneDriveLocation
 	}
-	if len(p.AddOneDriveLocationExclusion) > 0 {
+	if p.AddOneDriveLocationExclusion != nil {
 		m["AddOneDriveLocationExclusion"] = p.AddOneDriveLocationExclusion
 	}
-	if len(p.AddPublicFolderLocation) > 0 {
+	if p.AddPublicFolderLocation != nil {
 		m["AddPublicFolderLocation"] = p.AddPublicFolderLocation
 	}
-	if len(p.AddPublicFolderLocationExclusion) > 0 {
+	if p.AddPublicFolderLocationExclusion != nil {
 		m["AddPublicFolderLocationExclusion"] = p.AddPublicFolderLocationExclusion
 	}
-	if len(p.AddSharePointLocation) > 0 {
+	if p.AddSharePointLocation != nil {
 		m["AddSharePointLocation"] = p.AddSharePointLocation
 	}
-	if len(p.AddSharePointLocationExclusion) > 0 {
+	if p.AddSharePointLocationExclusion != nil {
 		m["AddSharePointLocationExclusion"] = p.AddSharePointLocationExclusion
 	}
-	if p.AllowNotFoundExchangeLocationsEnabled {
-		m["AllowNotFoundExchangeLocationsEnabled"] = true
+	if p.AllowNotFoundExchangeLocationsEnabled != nil {
+		m["AllowNotFoundExchangeLocationsEnabled"] = *p.AllowNotFoundExchangeLocationsEnabled
 	}
 	if p.ContentMatchQuery != "" {
 		m["ContentMatchQuery"] = p.ContentMatchQuery
@@ -13601,26 +13790,26 @@ func (p SetComplianceSearchParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if len(p.ExchangeLocation) > 0 {
+	if p.ExchangeLocation != nil {
 		m["ExchangeLocation"] = p.ExchangeLocation
 	}
-	if len(p.ExchangeLocationExclusion) > 0 {
+	if p.ExchangeLocationExclusion != nil {
 		m["ExchangeLocationExclusion"] = p.ExchangeLocationExclusion
 	}
 	if p.Force {
 		m["Force"] = true
 	}
-	if len(p.HoldNames) > 0 {
+	if p.HoldNames != nil {
 		m["HoldNames"] = p.HoldNames
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeOrgContent {
-		m["IncludeOrgContent"] = true
+	if p.IncludeOrgContent != nil {
+		m["IncludeOrgContent"] = *p.IncludeOrgContent
 	}
-	if p.IncludeUserAppContent {
-		m["IncludeUserAppContent"] = true
+	if p.IncludeUserAppContent != nil {
+		m["IncludeUserAppContent"] = *p.IncludeUserAppContent
 	}
 	if p.Language != nil {
 		m["Language"] = p.Language
@@ -13628,52 +13817,52 @@ func (p SetComplianceSearchParams) params() map[string]any {
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if len(p.OneDriveLocation) > 0 {
+	if p.OneDriveLocation != nil {
 		m["OneDriveLocation"] = p.OneDriveLocation
 	}
-	if len(p.OneDriveLocationExclusion) > 0 {
+	if p.OneDriveLocationExclusion != nil {
 		m["OneDriveLocationExclusion"] = p.OneDriveLocationExclusion
 	}
-	if len(p.PublicFolderLocation) > 0 {
+	if p.PublicFolderLocation != nil {
 		m["PublicFolderLocation"] = p.PublicFolderLocation
 	}
-	if len(p.PublicFolderLocationExclusion) > 0 {
+	if p.PublicFolderLocationExclusion != nil {
 		m["PublicFolderLocationExclusion"] = p.PublicFolderLocationExclusion
 	}
-	if len(p.RefinerNames) > 0 {
+	if p.RefinerNames != nil {
 		m["RefinerNames"] = p.RefinerNames
 	}
-	if len(p.RemoveExchangeLocation) > 0 {
+	if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
 	}
-	if len(p.RemoveExchangeLocationExclusion) > 0 {
+	if p.RemoveExchangeLocationExclusion != nil {
 		m["RemoveExchangeLocationExclusion"] = p.RemoveExchangeLocationExclusion
 	}
-	if len(p.RemoveOneDriveLocation) > 0 {
+	if p.RemoveOneDriveLocation != nil {
 		m["RemoveOneDriveLocation"] = p.RemoveOneDriveLocation
 	}
-	if len(p.RemoveOneDriveLocationExclusion) > 0 {
+	if p.RemoveOneDriveLocationExclusion != nil {
 		m["RemoveOneDriveLocationExclusion"] = p.RemoveOneDriveLocationExclusion
 	}
-	if len(p.RemovePublicFolderLocation) > 0 {
+	if p.RemovePublicFolderLocation != nil {
 		m["RemovePublicFolderLocation"] = p.RemovePublicFolderLocation
 	}
-	if len(p.RemovePublicFolderLocationExclusion) > 0 {
+	if p.RemovePublicFolderLocationExclusion != nil {
 		m["RemovePublicFolderLocationExclusion"] = p.RemovePublicFolderLocationExclusion
 	}
-	if len(p.RemoveSharePointLocation) > 0 {
+	if p.RemoveSharePointLocation != nil {
 		m["RemoveSharePointLocation"] = p.RemoveSharePointLocation
 	}
-	if len(p.RemoveSharePointLocationExclusion) > 0 {
+	if p.RemoveSharePointLocationExclusion != nil {
 		m["RemoveSharePointLocationExclusion"] = p.RemoveSharePointLocationExclusion
 	}
-	if len(p.SearchNames) > 0 {
+	if p.SearchNames != nil {
 		m["SearchNames"] = p.SearchNames
 	}
-	if len(p.SharePointLocation) > 0 {
+	if p.SharePointLocation != nil {
 		m["SharePointLocation"] = p.SharePointLocation
 	}
-	if len(p.SharePointLocationExclusion) > 0 {
+	if p.SharePointLocationExclusion != nil {
 		m["SharePointLocationExclusion"] = p.SharePointLocationExclusion
 	}
 	return m
@@ -13688,7 +13877,7 @@ func (s *Service) SetComplianceSearch(ctx context.Context, p SetComplianceSearch
 // DefaultParameterSetName: Identity
 type SetComplianceSearchActionParams struct {
 	ChangeExportKey bool `ps:"ChangeExportKey"`
-	Identity        any  `ps:"Identity"`
+	Identity        any  `ps:"Identity"` // ComplianceSearchActionIdParameter
 }
 
 func (p SetComplianceSearchActionParams) params() map[string]any {
@@ -13713,17 +13902,17 @@ type SetComplianceTagParams struct {
 	ArchiveEnabled            bool     `ps:"ArchiveEnabled"`
 	ArchiveTriggerBasedOn     string   `ps:"ArchiveTriggerBasedOn"`
 	ArchiveTriggerInDays      any      `ps:"ArchiveTriggerInDays"`
-	AutoApprovalPeriod        any      `ps:"AutoApprovalPeriod"`
+	AutoApprovalPeriod        *int64   `ps:"AutoApprovalPeriod"`
 	Comment                   string   `ps:"Comment"`
 	ComplianceTagForNextStage string   `ps:"ComplianceTagForNextStage"`
-	EventType                 any      `ps:"EventType"`
+	EventType                 any      `ps:"EventType"` // ComplianceRuleIdParameter
 	FilePlanProperty          string   `ps:"FilePlanProperty"`
-	FlowId                    any      `ps:"FlowId"`
+	FlowId                    any      `ps:"FlowId"` // System.Guid
 	Force                     bool     `ps:"Force"`
-	Identity                  any      `ps:"Identity"`
+	Identity                  any      `ps:"Identity"` // ComplianceRuleIdParameter
 	MultiStageReviewProperty  string   `ps:"MultiStageReviewProperty"`
 	Notes                     string   `ps:"Notes"`
-	RetentionDuration         any      `ps:"RetentionDuration"`
+	RetentionDuration         any      `ps:"RetentionDuration"` // Unlimited
 	ReviewerEmail             []string `ps:"ReviewerEmail"`
 	WebHookUrl                string   `ps:"WebHookUrl"`
 }
@@ -13740,7 +13929,7 @@ func (p SetComplianceTagParams) params() map[string]any {
 		m["ArchiveTriggerInDays"] = p.ArchiveTriggerInDays
 	}
 	if p.AutoApprovalPeriod != nil {
-		m["AutoApprovalPeriod"] = p.AutoApprovalPeriod
+		m["AutoApprovalPeriod"] = *p.AutoApprovalPeriod
 	}
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
@@ -13772,7 +13961,7 @@ func (p SetComplianceTagParams) params() map[string]any {
 	if p.RetentionDuration != nil {
 		m["RetentionDuration"] = p.RetentionDuration
 	}
-	if len(p.ReviewerEmail) > 0 {
+	if p.ReviewerEmail != nil {
 		m["ReviewerEmail"] = p.ReviewerEmail
 	}
 	if p.WebHookUrl != "" {
@@ -13803,13 +13992,13 @@ type SetCustomDlpEmailTemplateParams struct {
 
 func (p SetCustomDlpEmailTemplateParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.Bcc) > 0 {
+	if p.Bcc != nil {
 		m["Bcc"] = p.Bcc
 	}
 	if p.Body != "" {
 		m["Body"] = p.Body
 	}
-	if len(p.Cc) > 0 {
+	if p.Cc != nil {
 		m["Cc"] = p.Cc
 	}
 	if p.Description != "" {
@@ -13830,7 +14019,7 @@ func (p SetCustomDlpEmailTemplateParams) params() map[string]any {
 	if p.Subject != "" {
 		m["Subject"] = p.Subject
 	}
-	if len(p.To) > 0 {
+	if p.To != nil {
 		m["To"] = p.To
 	}
 	return m
@@ -13845,9 +14034,9 @@ func (s *Service) SetCustomDlpEmailTemplate(ctx context.Context, p SetCustomDlpE
 // DefaultParameterSetName: Identity
 type SetDeviceConditionalAccessPolicyParams struct {
 	Comment           string `ps:"Comment"`
-	Enabled           bool   `ps:"Enabled"`
+	Enabled           *bool  `ps:"Enabled"`
 	Force             bool   `ps:"Force"`
-	Identity          any    `ps:"Identity"`
+	Identity          any    `ps:"Identity"` // PolicyIdParameter
 	RetryDistribution bool   `ps:"RetryDistribution"`
 }
 
@@ -13856,8 +14045,8 @@ func (p SetDeviceConditionalAccessPolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -13879,57 +14068,58 @@ func (s *Service) SetDeviceConditionalAccessPolicy(ctx context.Context, p SetDev
 // SetDeviceConditionalAccessRuleParams are the parameters of Set-DeviceConditionalAccessRule.
 // DefaultParameterSetName: Identity
 type SetDeviceConditionalAccessRuleParams struct {
-	AccountName                   string `ps:"AccountName"`
-	AccountUserName               string `ps:"AccountUserName"`
-	AllowAppStore                 any    `ps:"AllowAppStore"`
-	AllowAssistantWhileLocked     any    `ps:"AllowAssistantWhileLocked"`
-	AllowConvenienceLogon         any    `ps:"AllowConvenienceLogon"`
-	AllowDiagnosticSubmission     any    `ps:"AllowDiagnosticSubmission"`
-	AllowiCloudBackup             any    `ps:"AllowiCloudBackup"`
-	AllowiCloudDocSync            any    `ps:"AllowiCloudDocSync"`
-	AllowiCloudPhotoSync          any    `ps:"AllowiCloudPhotoSync"`
-	AllowJailbroken               any    `ps:"AllowJailbroken"`
-	AllowPassbookWhileLocked      any    `ps:"AllowPassbookWhileLocked"`
-	AllowScreenshot               any    `ps:"AllowScreenshot"`
-	AllowSimplePassword           any    `ps:"AllowSimplePassword"`
-	AllowVideoConferencing        any    `ps:"AllowVideoConferencing"`
-	AllowVoiceAssistant           any    `ps:"AllowVoiceAssistant"`
-	AllowVoiceDialing             any    `ps:"AllowVoiceDialing"`
-	AntiVirusSignatureStatus      any    `ps:"AntiVirusSignatureStatus"`
-	AntiVirusStatus               any    `ps:"AntiVirusStatus"`
-	AppsRating                    any    `ps:"AppsRating"`
-	AutoUpdateStatus              any    `ps:"AutoUpdateStatus"`
-	BluetoothEnabled              any    `ps:"BluetoothEnabled"`
-	CameraEnabled                 any    `ps:"CameraEnabled"`
-	DomainController              any    `ps:"DomainController"`
-	EmailAddress                  string `ps:"EmailAddress"`
-	EnableRemovableStorage        any    `ps:"EnableRemovableStorage"`
-	ExchangeActiveSyncHost        string `ps:"ExchangeActiveSyncHost"`
-	FirewallStatus                any    `ps:"FirewallStatus"`
-	ForceAppStorePassword         any    `ps:"ForceAppStorePassword"`
-	ForceEncryptedBackup          any    `ps:"ForceEncryptedBackup"`
-	Identity                      any    `ps:"Identity"`
-	MaxPasswordAttemptsBeforeWipe any    `ps:"MaxPasswordAttemptsBeforeWipe"`
-	MaxPasswordGracePeriod        any    `ps:"MaxPasswordGracePeriod"`
-	MoviesRating                  any    `ps:"MoviesRating"`
-	PasswordComplexity            any    `ps:"PasswordComplexity"`
-	PasswordExpirationDays        any    `ps:"PasswordExpirationDays"`
-	PasswordHistoryCount          any    `ps:"PasswordHistoryCount"`
-	PasswordMinComplexChars       any    `ps:"PasswordMinComplexChars"`
-	PasswordMinimumLength         any    `ps:"PasswordMinimumLength"`
-	PasswordQuality               any    `ps:"PasswordQuality"`
-	PasswordRequired              any    `ps:"PasswordRequired"`
-	PasswordTimeout               any    `ps:"PasswordTimeout"`
-	PhoneMemoryEncrypted          any    `ps:"PhoneMemoryEncrypted"`
-	RegionRatings                 any    `ps:"RegionRatings"`
-	RequireEmailProfile           any    `ps:"RequireEmailProfile"`
-	SmartScreenEnabled            any    `ps:"SmartScreenEnabled"`
-	SystemSecurityTLS             any    `ps:"SystemSecurityTLS"`
-	TargetGroups                  any    `ps:"TargetGroups"`
-	TVShowsRating                 any    `ps:"TVShowsRating"`
-	UserAccountControlStatus      any    `ps:"UserAccountControlStatus"`
-	WLANEnabled                   any    `ps:"WLANEnabled"`
-	WorkFoldersSyncUrl            string `ps:"WorkFoldersSyncUrl"`
+	AccountName                   string                `ps:"AccountName"`
+	AccountUserName               string                `ps:"AccountUserName"`
+	AllowAppStore                 *bool                 `ps:"AllowAppStore"`
+	AllowAssistantWhileLocked     *bool                 `ps:"AllowAssistantWhileLocked"`
+	AllowConvenienceLogon         *bool                 `ps:"AllowConvenienceLogon"`
+	AllowDiagnosticSubmission     *bool                 `ps:"AllowDiagnosticSubmission"`
+	AllowiCloudBackup             *bool                 `ps:"AllowiCloudBackup"`
+	AllowiCloudDocSync            *bool                 `ps:"AllowiCloudDocSync"`
+	AllowiCloudPhotoSync          *bool                 `ps:"AllowiCloudPhotoSync"`
+	AllowJailbroken               *bool                 `ps:"AllowJailbroken"`
+	AllowPassbookWhileLocked      *bool                 `ps:"AllowPassbookWhileLocked"`
+	AllowScreenshot               *bool                 `ps:"AllowScreenshot"`
+	AllowSimplePassword           *bool                 `ps:"AllowSimplePassword"`
+	AllowVideoConferencing        *bool                 `ps:"AllowVideoConferencing"`
+	AllowVoiceAssistant           *bool                 `ps:"AllowVoiceAssistant"`
+	AllowVoiceDialing             *bool                 `ps:"AllowVoiceDialing"`
+	AntiVirusSignatureStatus      *int64                `ps:"AntiVirusSignatureStatus"`
+	AntiVirusStatus               *int64                `ps:"AntiVirusStatus"`
+	AppsRating                    any                   `ps:"AppsRating"`       // CARatingAppsEntry
+	AutoUpdateStatus              any                   `ps:"AutoUpdateStatus"` // CAAutoUpdateStatusEntry
+	BluetoothEnabled              *bool                 `ps:"BluetoothEnabled"`
+	CameraEnabled                 *bool                 `ps:"CameraEnabled"`
+	DomainController              any                   `ps:"DomainController"` // Fqdn
+	EmailAddress                  string                `ps:"EmailAddress"`
+	EnableRemovableStorage        *bool                 `ps:"EnableRemovableStorage"`
+	ExchangeActiveSyncHost        string                `ps:"ExchangeActiveSyncHost"`
+	FirewallStatus                any                   `ps:"FirewallStatus"` // Required
+	ForceAppStorePassword         *bool                 `ps:"ForceAppStorePassword"`
+	ForceEncryptedBackup          *bool                 `ps:"ForceEncryptedBackup"`
+	Identity                      any                   `ps:"Identity"` // ComplianceRuleIdParameter
+	MaxPasswordAttemptsBeforeWipe *int64                `ps:"MaxPasswordAttemptsBeforeWipe"`
+	MaxPasswordGracePeriod        any                   `ps:"MaxPasswordGracePeriod"` // TimeSpan
+	MoviesRating                  any                   `ps:"MoviesRating"`           // CARatingMovieEntry
+	PasswordComplexity            *int64                `ps:"PasswordComplexity"`
+	PasswordExpirationDays        *int64                `ps:"PasswordExpirationDays"`
+	PasswordHistoryCount          *int64                `ps:"PasswordHistoryCount"`
+	PasswordMinComplexChars       *int64                `ps:"PasswordMinComplexChars"`
+	PasswordMinimumLength         *int64                `ps:"PasswordMinimumLength"`
+	PasswordQuality               *int64                `ps:"PasswordQuality"`
+	PasswordRequired              *bool                 `ps:"PasswordRequired"`
+	PasswordTimeout               any                   `ps:"PasswordTimeout"` // TimeSpan
+	PhoneMemoryEncrypted          *bool                 `ps:"PhoneMemoryEncrypted"`
+	RegionRatings                 any                   `ps:"RegionRatings"` // CARatingRegionEntry
+	RequireEmailProfile           *bool                 `ps:"RequireEmailProfile"`
+	SmartScreenEnabled            *bool                 `ps:"SmartScreenEnabled"`
+	SystemSecurityTLS             *bool                 `ps:"SystemSecurityTLS"`
+	TargetGroups                  []string              `ps:"TargetGroups"`
+	TargetGroupsDelta             *adminapi.StringDelta `ps:"TargetGroups"`             // adds/removes values of TargetGroups; takes precedence over it
+	TVShowsRating                 any                   `ps:"TVShowsRating"`            // CARatingTvShowEntry
+	UserAccountControlStatus      any                   `ps:"UserAccountControlStatus"` // CAUserAccountControlStatusEntry
+	WLANEnabled                   *bool                 `ps:"WLANEnabled"`
+	WorkFoldersSyncUrl            string                `ps:"WorkFoldersSyncUrl"`
 }
 
 func (p SetDeviceConditionalAccessRuleParams) params() map[string]any {
@@ -13941,52 +14131,52 @@ func (p SetDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["AccountUserName"] = p.AccountUserName
 	}
 	if p.AllowAppStore != nil {
-		m["AllowAppStore"] = p.AllowAppStore
+		m["AllowAppStore"] = *p.AllowAppStore
 	}
 	if p.AllowAssistantWhileLocked != nil {
-		m["AllowAssistantWhileLocked"] = p.AllowAssistantWhileLocked
+		m["AllowAssistantWhileLocked"] = *p.AllowAssistantWhileLocked
 	}
 	if p.AllowConvenienceLogon != nil {
-		m["AllowConvenienceLogon"] = p.AllowConvenienceLogon
+		m["AllowConvenienceLogon"] = *p.AllowConvenienceLogon
 	}
 	if p.AllowDiagnosticSubmission != nil {
-		m["AllowDiagnosticSubmission"] = p.AllowDiagnosticSubmission
+		m["AllowDiagnosticSubmission"] = *p.AllowDiagnosticSubmission
 	}
 	if p.AllowiCloudBackup != nil {
-		m["AllowiCloudBackup"] = p.AllowiCloudBackup
+		m["AllowiCloudBackup"] = *p.AllowiCloudBackup
 	}
 	if p.AllowiCloudDocSync != nil {
-		m["AllowiCloudDocSync"] = p.AllowiCloudDocSync
+		m["AllowiCloudDocSync"] = *p.AllowiCloudDocSync
 	}
 	if p.AllowiCloudPhotoSync != nil {
-		m["AllowiCloudPhotoSync"] = p.AllowiCloudPhotoSync
+		m["AllowiCloudPhotoSync"] = *p.AllowiCloudPhotoSync
 	}
 	if p.AllowJailbroken != nil {
-		m["AllowJailbroken"] = p.AllowJailbroken
+		m["AllowJailbroken"] = *p.AllowJailbroken
 	}
 	if p.AllowPassbookWhileLocked != nil {
-		m["AllowPassbookWhileLocked"] = p.AllowPassbookWhileLocked
+		m["AllowPassbookWhileLocked"] = *p.AllowPassbookWhileLocked
 	}
 	if p.AllowScreenshot != nil {
-		m["AllowScreenshot"] = p.AllowScreenshot
+		m["AllowScreenshot"] = *p.AllowScreenshot
 	}
 	if p.AllowSimplePassword != nil {
-		m["AllowSimplePassword"] = p.AllowSimplePassword
+		m["AllowSimplePassword"] = *p.AllowSimplePassword
 	}
 	if p.AllowVideoConferencing != nil {
-		m["AllowVideoConferencing"] = p.AllowVideoConferencing
+		m["AllowVideoConferencing"] = *p.AllowVideoConferencing
 	}
 	if p.AllowVoiceAssistant != nil {
-		m["AllowVoiceAssistant"] = p.AllowVoiceAssistant
+		m["AllowVoiceAssistant"] = *p.AllowVoiceAssistant
 	}
 	if p.AllowVoiceDialing != nil {
-		m["AllowVoiceDialing"] = p.AllowVoiceDialing
+		m["AllowVoiceDialing"] = *p.AllowVoiceDialing
 	}
 	if p.AntiVirusSignatureStatus != nil {
-		m["AntiVirusSignatureStatus"] = p.AntiVirusSignatureStatus
+		m["AntiVirusSignatureStatus"] = *p.AntiVirusSignatureStatus
 	}
 	if p.AntiVirusStatus != nil {
-		m["AntiVirusStatus"] = p.AntiVirusStatus
+		m["AntiVirusStatus"] = *p.AntiVirusStatus
 	}
 	if p.AppsRating != nil {
 		m["AppsRating"] = p.AppsRating
@@ -13995,10 +14185,10 @@ func (p SetDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["AutoUpdateStatus"] = p.AutoUpdateStatus
 	}
 	if p.BluetoothEnabled != nil {
-		m["BluetoothEnabled"] = p.BluetoothEnabled
+		m["BluetoothEnabled"] = *p.BluetoothEnabled
 	}
 	if p.CameraEnabled != nil {
-		m["CameraEnabled"] = p.CameraEnabled
+		m["CameraEnabled"] = *p.CameraEnabled
 	}
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
@@ -14007,7 +14197,7 @@ func (p SetDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["EmailAddress"] = p.EmailAddress
 	}
 	if p.EnableRemovableStorage != nil {
-		m["EnableRemovableStorage"] = p.EnableRemovableStorage
+		m["EnableRemovableStorage"] = *p.EnableRemovableStorage
 	}
 	if p.ExchangeActiveSyncHost != "" {
 		m["ExchangeActiveSyncHost"] = p.ExchangeActiveSyncHost
@@ -14016,16 +14206,16 @@ func (p SetDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["FirewallStatus"] = p.FirewallStatus
 	}
 	if p.ForceAppStorePassword != nil {
-		m["ForceAppStorePassword"] = p.ForceAppStorePassword
+		m["ForceAppStorePassword"] = *p.ForceAppStorePassword
 	}
 	if p.ForceEncryptedBackup != nil {
-		m["ForceEncryptedBackup"] = p.ForceEncryptedBackup
+		m["ForceEncryptedBackup"] = *p.ForceEncryptedBackup
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
 	if p.MaxPasswordAttemptsBeforeWipe != nil {
-		m["MaxPasswordAttemptsBeforeWipe"] = p.MaxPasswordAttemptsBeforeWipe
+		m["MaxPasswordAttemptsBeforeWipe"] = *p.MaxPasswordAttemptsBeforeWipe
 	}
 	if p.MaxPasswordGracePeriod != nil {
 		m["MaxPasswordGracePeriod"] = p.MaxPasswordGracePeriod
@@ -14034,45 +14224,47 @@ func (p SetDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["MoviesRating"] = p.MoviesRating
 	}
 	if p.PasswordComplexity != nil {
-		m["PasswordComplexity"] = p.PasswordComplexity
+		m["PasswordComplexity"] = *p.PasswordComplexity
 	}
 	if p.PasswordExpirationDays != nil {
-		m["PasswordExpirationDays"] = p.PasswordExpirationDays
+		m["PasswordExpirationDays"] = *p.PasswordExpirationDays
 	}
 	if p.PasswordHistoryCount != nil {
-		m["PasswordHistoryCount"] = p.PasswordHistoryCount
+		m["PasswordHistoryCount"] = *p.PasswordHistoryCount
 	}
 	if p.PasswordMinComplexChars != nil {
-		m["PasswordMinComplexChars"] = p.PasswordMinComplexChars
+		m["PasswordMinComplexChars"] = *p.PasswordMinComplexChars
 	}
 	if p.PasswordMinimumLength != nil {
-		m["PasswordMinimumLength"] = p.PasswordMinimumLength
+		m["PasswordMinimumLength"] = *p.PasswordMinimumLength
 	}
 	if p.PasswordQuality != nil {
-		m["PasswordQuality"] = p.PasswordQuality
+		m["PasswordQuality"] = *p.PasswordQuality
 	}
 	if p.PasswordRequired != nil {
-		m["PasswordRequired"] = p.PasswordRequired
+		m["PasswordRequired"] = *p.PasswordRequired
 	}
 	if p.PasswordTimeout != nil {
 		m["PasswordTimeout"] = p.PasswordTimeout
 	}
 	if p.PhoneMemoryEncrypted != nil {
-		m["PhoneMemoryEncrypted"] = p.PhoneMemoryEncrypted
+		m["PhoneMemoryEncrypted"] = *p.PhoneMemoryEncrypted
 	}
 	if p.RegionRatings != nil {
 		m["RegionRatings"] = p.RegionRatings
 	}
 	if p.RequireEmailProfile != nil {
-		m["RequireEmailProfile"] = p.RequireEmailProfile
+		m["RequireEmailProfile"] = *p.RequireEmailProfile
 	}
 	if p.SmartScreenEnabled != nil {
-		m["SmartScreenEnabled"] = p.SmartScreenEnabled
+		m["SmartScreenEnabled"] = *p.SmartScreenEnabled
 	}
 	if p.SystemSecurityTLS != nil {
-		m["SystemSecurityTLS"] = p.SystemSecurityTLS
+		m["SystemSecurityTLS"] = *p.SystemSecurityTLS
 	}
-	if p.TargetGroups != nil {
+	if p.TargetGroupsDelta != nil {
+		m["TargetGroups"] = *p.TargetGroupsDelta
+	} else if p.TargetGroups != nil {
 		m["TargetGroups"] = p.TargetGroups
 	}
 	if p.TVShowsRating != nil {
@@ -14082,7 +14274,7 @@ func (p SetDeviceConditionalAccessRuleParams) params() map[string]any {
 		m["UserAccountControlStatus"] = p.UserAccountControlStatus
 	}
 	if p.WLANEnabled != nil {
-		m["WLANEnabled"] = p.WLANEnabled
+		m["WLANEnabled"] = *p.WLANEnabled
 	}
 	if p.WorkFoldersSyncUrl != "" {
 		m["WorkFoldersSyncUrl"] = p.WorkFoldersSyncUrl
@@ -14099,9 +14291,9 @@ func (s *Service) SetDeviceConditionalAccessRule(ctx context.Context, p SetDevic
 // DefaultParameterSetName: Identity
 type SetDeviceConfigurationPolicyParams struct {
 	Comment           string `ps:"Comment"`
-	Enabled           bool   `ps:"Enabled"`
+	Enabled           *bool  `ps:"Enabled"`
 	Force             bool   `ps:"Force"`
-	Identity          any    `ps:"Identity"`
+	Identity          any    `ps:"Identity"` // PolicyIdParameter
 	RetryDistribution bool   `ps:"RetryDistribution"`
 }
 
@@ -14110,8 +14302,8 @@ func (p SetDeviceConfigurationPolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -14133,56 +14325,57 @@ func (s *Service) SetDeviceConfigurationPolicy(ctx context.Context, p SetDeviceC
 // SetDeviceConfigurationRuleParams are the parameters of Set-DeviceConfigurationRule.
 // DefaultParameterSetName: Identity
 type SetDeviceConfigurationRuleParams struct {
-	AccountName                   string `ps:"AccountName"`
-	AccountUserName               string `ps:"AccountUserName"`
-	AllowAppStore                 any    `ps:"AllowAppStore"`
-	AllowAssistantWhileLocked     any    `ps:"AllowAssistantWhileLocked"`
-	AllowConvenienceLogon         any    `ps:"AllowConvenienceLogon"`
-	AllowDiagnosticSubmission     any    `ps:"AllowDiagnosticSubmission"`
-	AllowiCloudBackup             any    `ps:"AllowiCloudBackup"`
-	AllowiCloudDocSync            any    `ps:"AllowiCloudDocSync"`
-	AllowiCloudPhotoSync          any    `ps:"AllowiCloudPhotoSync"`
-	AllowPassbookWhileLocked      any    `ps:"AllowPassbookWhileLocked"`
-	AllowScreenshot               any    `ps:"AllowScreenshot"`
-	AllowSimplePassword           any    `ps:"AllowSimplePassword"`
-	AllowVideoConferencing        any    `ps:"AllowVideoConferencing"`
-	AllowVoiceAssistant           any    `ps:"AllowVoiceAssistant"`
-	AllowVoiceDialing             any    `ps:"AllowVoiceDialing"`
-	AntiVirusSignatureStatus      any    `ps:"AntiVirusSignatureStatus"`
-	AntiVirusStatus               any    `ps:"AntiVirusStatus"`
-	AppsRating                    any    `ps:"AppsRating"`
-	AutoUpdateStatus              any    `ps:"AutoUpdateStatus"`
-	BluetoothEnabled              any    `ps:"BluetoothEnabled"`
-	CameraEnabled                 any    `ps:"CameraEnabled"`
-	DomainController              any    `ps:"DomainController"`
-	EmailAddress                  string `ps:"EmailAddress"`
-	EnableRemovableStorage        any    `ps:"EnableRemovableStorage"`
-	ExchangeActiveSyncHost        string `ps:"ExchangeActiveSyncHost"`
-	FirewallStatus                any    `ps:"FirewallStatus"`
-	ForceAppStorePassword         any    `ps:"ForceAppStorePassword"`
-	ForceEncryptedBackup          any    `ps:"ForceEncryptedBackup"`
-	Identity                      any    `ps:"Identity"`
-	MaxPasswordAttemptsBeforeWipe any    `ps:"MaxPasswordAttemptsBeforeWipe"`
-	MaxPasswordGracePeriod        any    `ps:"MaxPasswordGracePeriod"`
-	MoviesRating                  any    `ps:"MoviesRating"`
-	PasswordComplexity            any    `ps:"PasswordComplexity"`
-	PasswordExpirationDays        any    `ps:"PasswordExpirationDays"`
-	PasswordHistoryCount          any    `ps:"PasswordHistoryCount"`
-	PasswordMinComplexChars       any    `ps:"PasswordMinComplexChars"`
-	PasswordMinimumLength         any    `ps:"PasswordMinimumLength"`
-	PasswordQuality               any    `ps:"PasswordQuality"`
-	PasswordRequired              any    `ps:"PasswordRequired"`
-	PasswordTimeout               any    `ps:"PasswordTimeout"`
-	PhoneMemoryEncrypted          any    `ps:"PhoneMemoryEncrypted"`
-	RegionRatings                 any    `ps:"RegionRatings"`
-	RequireEmailProfile           any    `ps:"RequireEmailProfile"`
-	SmartScreenEnabled            any    `ps:"SmartScreenEnabled"`
-	SystemSecurityTLS             any    `ps:"SystemSecurityTLS"`
-	TargetGroups                  any    `ps:"TargetGroups"`
-	TVShowsRating                 any    `ps:"TVShowsRating"`
-	UserAccountControlStatus      any    `ps:"UserAccountControlStatus"`
-	WLANEnabled                   any    `ps:"WLANEnabled"`
-	WorkFoldersSyncUrl            string `ps:"WorkFoldersSyncUrl"`
+	AccountName                   string                `ps:"AccountName"`
+	AccountUserName               string                `ps:"AccountUserName"`
+	AllowAppStore                 *bool                 `ps:"AllowAppStore"`
+	AllowAssistantWhileLocked     *bool                 `ps:"AllowAssistantWhileLocked"`
+	AllowConvenienceLogon         *bool                 `ps:"AllowConvenienceLogon"`
+	AllowDiagnosticSubmission     *bool                 `ps:"AllowDiagnosticSubmission"`
+	AllowiCloudBackup             *bool                 `ps:"AllowiCloudBackup"`
+	AllowiCloudDocSync            *bool                 `ps:"AllowiCloudDocSync"`
+	AllowiCloudPhotoSync          *bool                 `ps:"AllowiCloudPhotoSync"`
+	AllowPassbookWhileLocked      *bool                 `ps:"AllowPassbookWhileLocked"`
+	AllowScreenshot               *bool                 `ps:"AllowScreenshot"`
+	AllowSimplePassword           *bool                 `ps:"AllowSimplePassword"`
+	AllowVideoConferencing        *bool                 `ps:"AllowVideoConferencing"`
+	AllowVoiceAssistant           *bool                 `ps:"AllowVoiceAssistant"`
+	AllowVoiceDialing             *bool                 `ps:"AllowVoiceDialing"`
+	AntiVirusSignatureStatus      *int64                `ps:"AntiVirusSignatureStatus"`
+	AntiVirusStatus               *int64                `ps:"AntiVirusStatus"`
+	AppsRating                    any                   `ps:"AppsRating"`       // RatingAppsEntry
+	AutoUpdateStatus              any                   `ps:"AutoUpdateStatus"` // AutoUpdateStatusEntry
+	BluetoothEnabled              *bool                 `ps:"BluetoothEnabled"`
+	CameraEnabled                 *bool                 `ps:"CameraEnabled"`
+	DomainController              any                   `ps:"DomainController"` // Fqdn
+	EmailAddress                  string                `ps:"EmailAddress"`
+	EnableRemovableStorage        *bool                 `ps:"EnableRemovableStorage"`
+	ExchangeActiveSyncHost        string                `ps:"ExchangeActiveSyncHost"`
+	FirewallStatus                any                   `ps:"FirewallStatus"` // Required
+	ForceAppStorePassword         *bool                 `ps:"ForceAppStorePassword"`
+	ForceEncryptedBackup          *bool                 `ps:"ForceEncryptedBackup"`
+	Identity                      any                   `ps:"Identity"` // ComplianceRuleIdParameter
+	MaxPasswordAttemptsBeforeWipe *int64                `ps:"MaxPasswordAttemptsBeforeWipe"`
+	MaxPasswordGracePeriod        any                   `ps:"MaxPasswordGracePeriod"` // TimeSpan
+	MoviesRating                  any                   `ps:"MoviesRating"`           // RatingMovieEntry
+	PasswordComplexity            *int64                `ps:"PasswordComplexity"`
+	PasswordExpirationDays        *int64                `ps:"PasswordExpirationDays"`
+	PasswordHistoryCount          *int64                `ps:"PasswordHistoryCount"`
+	PasswordMinComplexChars       *int64                `ps:"PasswordMinComplexChars"`
+	PasswordMinimumLength         *int64                `ps:"PasswordMinimumLength"`
+	PasswordQuality               *int64                `ps:"PasswordQuality"`
+	PasswordRequired              *bool                 `ps:"PasswordRequired"`
+	PasswordTimeout               any                   `ps:"PasswordTimeout"` // TimeSpan
+	PhoneMemoryEncrypted          *bool                 `ps:"PhoneMemoryEncrypted"`
+	RegionRatings                 any                   `ps:"RegionRatings"` // RatingRegionEntry
+	RequireEmailProfile           *bool                 `ps:"RequireEmailProfile"`
+	SmartScreenEnabled            *bool                 `ps:"SmartScreenEnabled"`
+	SystemSecurityTLS             *bool                 `ps:"SystemSecurityTLS"`
+	TargetGroups                  []string              `ps:"TargetGroups"`
+	TargetGroupsDelta             *adminapi.StringDelta `ps:"TargetGroups"`             // adds/removes values of TargetGroups; takes precedence over it
+	TVShowsRating                 any                   `ps:"TVShowsRating"`            // RatingTvShowEntry
+	UserAccountControlStatus      any                   `ps:"UserAccountControlStatus"` // UserAccountControlStatusEntry
+	WLANEnabled                   *bool                 `ps:"WLANEnabled"`
+	WorkFoldersSyncUrl            string                `ps:"WorkFoldersSyncUrl"`
 }
 
 func (p SetDeviceConfigurationRuleParams) params() map[string]any {
@@ -14194,49 +14387,49 @@ func (p SetDeviceConfigurationRuleParams) params() map[string]any {
 		m["AccountUserName"] = p.AccountUserName
 	}
 	if p.AllowAppStore != nil {
-		m["AllowAppStore"] = p.AllowAppStore
+		m["AllowAppStore"] = *p.AllowAppStore
 	}
 	if p.AllowAssistantWhileLocked != nil {
-		m["AllowAssistantWhileLocked"] = p.AllowAssistantWhileLocked
+		m["AllowAssistantWhileLocked"] = *p.AllowAssistantWhileLocked
 	}
 	if p.AllowConvenienceLogon != nil {
-		m["AllowConvenienceLogon"] = p.AllowConvenienceLogon
+		m["AllowConvenienceLogon"] = *p.AllowConvenienceLogon
 	}
 	if p.AllowDiagnosticSubmission != nil {
-		m["AllowDiagnosticSubmission"] = p.AllowDiagnosticSubmission
+		m["AllowDiagnosticSubmission"] = *p.AllowDiagnosticSubmission
 	}
 	if p.AllowiCloudBackup != nil {
-		m["AllowiCloudBackup"] = p.AllowiCloudBackup
+		m["AllowiCloudBackup"] = *p.AllowiCloudBackup
 	}
 	if p.AllowiCloudDocSync != nil {
-		m["AllowiCloudDocSync"] = p.AllowiCloudDocSync
+		m["AllowiCloudDocSync"] = *p.AllowiCloudDocSync
 	}
 	if p.AllowiCloudPhotoSync != nil {
-		m["AllowiCloudPhotoSync"] = p.AllowiCloudPhotoSync
+		m["AllowiCloudPhotoSync"] = *p.AllowiCloudPhotoSync
 	}
 	if p.AllowPassbookWhileLocked != nil {
-		m["AllowPassbookWhileLocked"] = p.AllowPassbookWhileLocked
+		m["AllowPassbookWhileLocked"] = *p.AllowPassbookWhileLocked
 	}
 	if p.AllowScreenshot != nil {
-		m["AllowScreenshot"] = p.AllowScreenshot
+		m["AllowScreenshot"] = *p.AllowScreenshot
 	}
 	if p.AllowSimplePassword != nil {
-		m["AllowSimplePassword"] = p.AllowSimplePassword
+		m["AllowSimplePassword"] = *p.AllowSimplePassword
 	}
 	if p.AllowVideoConferencing != nil {
-		m["AllowVideoConferencing"] = p.AllowVideoConferencing
+		m["AllowVideoConferencing"] = *p.AllowVideoConferencing
 	}
 	if p.AllowVoiceAssistant != nil {
-		m["AllowVoiceAssistant"] = p.AllowVoiceAssistant
+		m["AllowVoiceAssistant"] = *p.AllowVoiceAssistant
 	}
 	if p.AllowVoiceDialing != nil {
-		m["AllowVoiceDialing"] = p.AllowVoiceDialing
+		m["AllowVoiceDialing"] = *p.AllowVoiceDialing
 	}
 	if p.AntiVirusSignatureStatus != nil {
-		m["AntiVirusSignatureStatus"] = p.AntiVirusSignatureStatus
+		m["AntiVirusSignatureStatus"] = *p.AntiVirusSignatureStatus
 	}
 	if p.AntiVirusStatus != nil {
-		m["AntiVirusStatus"] = p.AntiVirusStatus
+		m["AntiVirusStatus"] = *p.AntiVirusStatus
 	}
 	if p.AppsRating != nil {
 		m["AppsRating"] = p.AppsRating
@@ -14245,10 +14438,10 @@ func (p SetDeviceConfigurationRuleParams) params() map[string]any {
 		m["AutoUpdateStatus"] = p.AutoUpdateStatus
 	}
 	if p.BluetoothEnabled != nil {
-		m["BluetoothEnabled"] = p.BluetoothEnabled
+		m["BluetoothEnabled"] = *p.BluetoothEnabled
 	}
 	if p.CameraEnabled != nil {
-		m["CameraEnabled"] = p.CameraEnabled
+		m["CameraEnabled"] = *p.CameraEnabled
 	}
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
@@ -14257,7 +14450,7 @@ func (p SetDeviceConfigurationRuleParams) params() map[string]any {
 		m["EmailAddress"] = p.EmailAddress
 	}
 	if p.EnableRemovableStorage != nil {
-		m["EnableRemovableStorage"] = p.EnableRemovableStorage
+		m["EnableRemovableStorage"] = *p.EnableRemovableStorage
 	}
 	if p.ExchangeActiveSyncHost != "" {
 		m["ExchangeActiveSyncHost"] = p.ExchangeActiveSyncHost
@@ -14266,16 +14459,16 @@ func (p SetDeviceConfigurationRuleParams) params() map[string]any {
 		m["FirewallStatus"] = p.FirewallStatus
 	}
 	if p.ForceAppStorePassword != nil {
-		m["ForceAppStorePassword"] = p.ForceAppStorePassword
+		m["ForceAppStorePassword"] = *p.ForceAppStorePassword
 	}
 	if p.ForceEncryptedBackup != nil {
-		m["ForceEncryptedBackup"] = p.ForceEncryptedBackup
+		m["ForceEncryptedBackup"] = *p.ForceEncryptedBackup
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
 	if p.MaxPasswordAttemptsBeforeWipe != nil {
-		m["MaxPasswordAttemptsBeforeWipe"] = p.MaxPasswordAttemptsBeforeWipe
+		m["MaxPasswordAttemptsBeforeWipe"] = *p.MaxPasswordAttemptsBeforeWipe
 	}
 	if p.MaxPasswordGracePeriod != nil {
 		m["MaxPasswordGracePeriod"] = p.MaxPasswordGracePeriod
@@ -14284,45 +14477,47 @@ func (p SetDeviceConfigurationRuleParams) params() map[string]any {
 		m["MoviesRating"] = p.MoviesRating
 	}
 	if p.PasswordComplexity != nil {
-		m["PasswordComplexity"] = p.PasswordComplexity
+		m["PasswordComplexity"] = *p.PasswordComplexity
 	}
 	if p.PasswordExpirationDays != nil {
-		m["PasswordExpirationDays"] = p.PasswordExpirationDays
+		m["PasswordExpirationDays"] = *p.PasswordExpirationDays
 	}
 	if p.PasswordHistoryCount != nil {
-		m["PasswordHistoryCount"] = p.PasswordHistoryCount
+		m["PasswordHistoryCount"] = *p.PasswordHistoryCount
 	}
 	if p.PasswordMinComplexChars != nil {
-		m["PasswordMinComplexChars"] = p.PasswordMinComplexChars
+		m["PasswordMinComplexChars"] = *p.PasswordMinComplexChars
 	}
 	if p.PasswordMinimumLength != nil {
-		m["PasswordMinimumLength"] = p.PasswordMinimumLength
+		m["PasswordMinimumLength"] = *p.PasswordMinimumLength
 	}
 	if p.PasswordQuality != nil {
-		m["PasswordQuality"] = p.PasswordQuality
+		m["PasswordQuality"] = *p.PasswordQuality
 	}
 	if p.PasswordRequired != nil {
-		m["PasswordRequired"] = p.PasswordRequired
+		m["PasswordRequired"] = *p.PasswordRequired
 	}
 	if p.PasswordTimeout != nil {
 		m["PasswordTimeout"] = p.PasswordTimeout
 	}
 	if p.PhoneMemoryEncrypted != nil {
-		m["PhoneMemoryEncrypted"] = p.PhoneMemoryEncrypted
+		m["PhoneMemoryEncrypted"] = *p.PhoneMemoryEncrypted
 	}
 	if p.RegionRatings != nil {
 		m["RegionRatings"] = p.RegionRatings
 	}
 	if p.RequireEmailProfile != nil {
-		m["RequireEmailProfile"] = p.RequireEmailProfile
+		m["RequireEmailProfile"] = *p.RequireEmailProfile
 	}
 	if p.SmartScreenEnabled != nil {
-		m["SmartScreenEnabled"] = p.SmartScreenEnabled
+		m["SmartScreenEnabled"] = *p.SmartScreenEnabled
 	}
 	if p.SystemSecurityTLS != nil {
-		m["SystemSecurityTLS"] = p.SystemSecurityTLS
+		m["SystemSecurityTLS"] = *p.SystemSecurityTLS
 	}
-	if p.TargetGroups != nil {
+	if p.TargetGroupsDelta != nil {
+		m["TargetGroups"] = *p.TargetGroupsDelta
+	} else if p.TargetGroups != nil {
 		m["TargetGroups"] = p.TargetGroups
 	}
 	if p.TVShowsRating != nil {
@@ -14332,7 +14527,7 @@ func (p SetDeviceConfigurationRuleParams) params() map[string]any {
 		m["UserAccountControlStatus"] = p.UserAccountControlStatus
 	}
 	if p.WLANEnabled != nil {
-		m["WLANEnabled"] = p.WLANEnabled
+		m["WLANEnabled"] = *p.WLANEnabled
 	}
 	if p.WorkFoldersSyncUrl != "" {
 		m["WorkFoldersSyncUrl"] = p.WorkFoldersSyncUrl
@@ -14349,9 +14544,9 @@ func (s *Service) SetDeviceConfigurationRule(ctx context.Context, p SetDeviceCon
 // DefaultParameterSetName: Identity
 type SetDeviceTenantPolicyParams struct {
 	Comment           string `ps:"Comment"`
-	Enabled           bool   `ps:"Enabled"`
+	Enabled           *bool  `ps:"Enabled"`
 	Force             bool   `ps:"Force"`
-	Identity          any    `ps:"Identity"`
+	Identity          any    `ps:"Identity"` // PolicyIdParameter
 	RetryDistribution bool   `ps:"RetryDistribution"`
 }
 
@@ -14360,8 +14555,8 @@ func (p SetDeviceTenantPolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -14383,11 +14578,12 @@ func (s *Service) SetDeviceTenantPolicy(ctx context.Context, p SetDeviceTenantPo
 // SetDeviceTenantRuleParams are the parameters of Set-DeviceTenantRule.
 // DefaultParameterSetName: Identity
 type SetDeviceTenantRuleParams struct {
-	ApplyPolicyTo           any `ps:"ApplyPolicyTo"`
-	BlockUnsupportedDevices any `ps:"BlockUnsupportedDevices"`
-	DomainController        any `ps:"DomainController"`
-	ExclusionList           any `ps:"ExclusionList"`
-	Identity                any `ps:"Identity"`
+	ApplyPolicyTo           any                   `ps:"ApplyPolicyTo"` // PolicyResourceScope
+	BlockUnsupportedDevices *bool                 `ps:"BlockUnsupportedDevices"`
+	DomainController        any                   `ps:"DomainController"` // Fqdn
+	ExclusionList           []string              `ps:"ExclusionList"`
+	ExclusionListDelta      *adminapi.StringDelta `ps:"ExclusionList"` // adds/removes values of ExclusionList; takes precedence over it
+	Identity                any                   `ps:"Identity"`      // ComplianceRuleIdParameter
 }
 
 func (p SetDeviceTenantRuleParams) params() map[string]any {
@@ -14396,12 +14592,14 @@ func (p SetDeviceTenantRuleParams) params() map[string]any {
 		m["ApplyPolicyTo"] = p.ApplyPolicyTo
 	}
 	if p.BlockUnsupportedDevices != nil {
-		m["BlockUnsupportedDevices"] = p.BlockUnsupportedDevices
+		m["BlockUnsupportedDevices"] = *p.BlockUnsupportedDevices
 	}
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
 	}
-	if p.ExclusionList != nil {
+	if p.ExclusionListDelta != nil {
+		m["ExclusionList"] = *p.ExclusionListDelta
+	} else if p.ExclusionList != nil {
 		m["ExclusionList"] = p.ExclusionList
 	}
 	if p.Identity != nil {
@@ -14453,117 +14651,189 @@ func (s *Service) SetDlpAlertTuningRule(ctx context.Context, p SetDlpAlertTuning
 // SetDlpCompliancePolicyParams are the parameters of Set-DlpCompliancePolicy.
 // DefaultParameterSetName: Identity
 type SetDlpCompliancePolicyParams struct {
-	AddEndpointDlpLocation                      any      `ps:"AddEndpointDlpLocation"`
-	AddEndpointDlpLocationException             any      `ps:"AddEndpointDlpLocationException"`
-	AddExchangeLocation                         any      `ps:"AddExchangeLocation"`
-	AddOneDriveLocation                         any      `ps:"AddOneDriveLocation"`
-	AddOneDriveLocationException                any      `ps:"AddOneDriveLocationException"`
-	AddOnPremisesScannerDlpLocation             any      `ps:"AddOnPremisesScannerDlpLocation"`
-	AddOnPremisesScannerDlpLocationException    any      `ps:"AddOnPremisesScannerDlpLocationException"`
-	AddPowerBIDlpLocation                       any      `ps:"AddPowerBIDlpLocation"`
-	AddPowerBIDlpLocationException              any      `ps:"AddPowerBIDlpLocationException"`
-	AddSharePointLocation                       any      `ps:"AddSharePointLocation"`
-	AddSharePointLocationException              any      `ps:"AddSharePointLocationException"`
-	AddTeamsLocation                            any      `ps:"AddTeamsLocation"`
-	AddTeamsLocationException                   any      `ps:"AddTeamsLocationException"`
-	AddThirdPartyAppDlpLocation                 any      `ps:"AddThirdPartyAppDlpLocation"`
-	AddThirdPartyAppDlpLocationException        any      `ps:"AddThirdPartyAppDlpLocationException"`
-	AutoEnableAfter                             any      `ps:"AutoEnableAfter"`
-	Comment                                     string   `ps:"Comment"`
-	DisplayName                                 string   `ps:"DisplayName"`
-	EndpointDlpAdaptiveScopes                   any      `ps:"EndpointDlpAdaptiveScopes"`
-	EndpointDlpAdaptiveScopesException          any      `ps:"EndpointDlpAdaptiveScopesException"`
-	EndpointDlpExtendedLocations                string   `ps:"EndpointDlpExtendedLocations"`
-	EnforcementPlanes                           any      `ps:"EnforcementPlanes"`
-	ExceptIfOneDriveSharedBy                    []string `ps:"ExceptIfOneDriveSharedBy"`
-	ExceptIfOneDriveSharedByMemberOf            []string `ps:"ExceptIfOneDriveSharedByMemberOf"`
-	ExchangeAdaptiveScopes                      any      `ps:"ExchangeAdaptiveScopes"`
-	ExchangeAdaptiveScopesException             any      `ps:"ExchangeAdaptiveScopesException"`
-	ExchangeSender                              []string `ps:"ExchangeSender"`
-	ExchangeSenderException                     []string `ps:"ExchangeSenderException"`
-	ExchangeSenderMemberOf                      []string `ps:"ExchangeSenderMemberOf"`
-	ExchangeSenderMemberOfException             []string `ps:"ExchangeSenderMemberOfException"`
-	Force                                       bool     `ps:"Force"`
-	Identity                                    any      `ps:"Identity"`
-	IsFromSmartInsights                         any      `ps:"IsFromSmartInsights"`
-	Locations                                   string   `ps:"Locations"`
-	Mode                                        any      `ps:"Mode"`
-	NewName                                     string   `ps:"NewName"`
-	OneDriveAdaptiveScopes                      any      `ps:"OneDriveAdaptiveScopes"`
-	OneDriveAdaptiveScopesException             any      `ps:"OneDriveAdaptiveScopesException"`
-	OneDriveSharedBy                            []string `ps:"OneDriveSharedBy"`
-	OneDriveSharedByMemberOf                    []string `ps:"OneDriveSharedByMemberOf"`
-	PolicyRBACScopes                            any      `ps:"PolicyRBACScopes"`
-	PolicyTemplateInfo                          any      `ps:"PolicyTemplateInfo"`
-	Priority                                    any      `ps:"Priority"`
-	RemoveEndpointDlpLocation                   any      `ps:"RemoveEndpointDlpLocation"`
-	RemoveEndpointDlpLocationException          any      `ps:"RemoveEndpointDlpLocationException"`
-	RemoveExchangeLocation                      any      `ps:"RemoveExchangeLocation"`
-	RemoveOneDriveLocation                      any      `ps:"RemoveOneDriveLocation"`
-	RemoveOneDriveLocationException             any      `ps:"RemoveOneDriveLocationException"`
-	RemoveOnPremisesScannerDlpLocation          any      `ps:"RemoveOnPremisesScannerDlpLocation"`
-	RemoveOnPremisesScannerDlpLocationException any      `ps:"RemoveOnPremisesScannerDlpLocationException"`
-	RemovePowerBIDlpLocation                    any      `ps:"RemovePowerBIDlpLocation"`
-	RemovePowerBIDlpLocationException           any      `ps:"RemovePowerBIDlpLocationException"`
-	RemoveSharePointLocation                    any      `ps:"RemoveSharePointLocation"`
-	RemoveSharePointLocationException           any      `ps:"RemoveSharePointLocationException"`
-	RemoveTeamsLocation                         any      `ps:"RemoveTeamsLocation"`
-	RemoveTeamsLocationException                any      `ps:"RemoveTeamsLocationException"`
-	RemoveThirdPartyAppDlpLocation              any      `ps:"RemoveThirdPartyAppDlpLocation"`
-	RemoveThirdPartyAppDlpLocationException     any      `ps:"RemoveThirdPartyAppDlpLocationException"`
-	RetryDistribution                           bool     `ps:"RetryDistribution"`
-	SharePointAdaptiveScopes                    any      `ps:"SharePointAdaptiveScopes"`
-	SharePointAdaptiveScopesException           any      `ps:"SharePointAdaptiveScopesException"`
-	StartSimulation                             bool     `ps:"StartSimulation"`
-	TeamsAdaptiveScopes                         any      `ps:"TeamsAdaptiveScopes"`
-	TeamsAdaptiveScopesException                any      `ps:"TeamsAdaptiveScopesException"`
+	AddEndpointDlpLocation                           []string              `ps:"AddEndpointDlpLocation"`
+	AddEndpointDlpLocationDelta                      *adminapi.StringDelta `ps:"AddEndpointDlpLocation"` // adds/removes values of AddEndpointDlpLocation; takes precedence over it
+	AddEndpointDlpLocationException                  []string              `ps:"AddEndpointDlpLocationException"`
+	AddEndpointDlpLocationExceptionDelta             *adminapi.StringDelta `ps:"AddEndpointDlpLocationException"` // adds/removes values of AddEndpointDlpLocationException; takes precedence over it
+	AddExchangeLocation                              []string              `ps:"AddExchangeLocation"`
+	AddExchangeLocationDelta                         *adminapi.StringDelta `ps:"AddExchangeLocation"` // adds/removes values of AddExchangeLocation; takes precedence over it
+	AddOneDriveLocation                              []string              `ps:"AddOneDriveLocation"`
+	AddOneDriveLocationDelta                         *adminapi.StringDelta `ps:"AddOneDriveLocation"` // adds/removes values of AddOneDriveLocation; takes precedence over it
+	AddOneDriveLocationException                     []string              `ps:"AddOneDriveLocationException"`
+	AddOneDriveLocationExceptionDelta                *adminapi.StringDelta `ps:"AddOneDriveLocationException"` // adds/removes values of AddOneDriveLocationException; takes precedence over it
+	AddOnPremisesScannerDlpLocation                  []string              `ps:"AddOnPremisesScannerDlpLocation"`
+	AddOnPremisesScannerDlpLocationDelta             *adminapi.StringDelta `ps:"AddOnPremisesScannerDlpLocation"` // adds/removes values of AddOnPremisesScannerDlpLocation; takes precedence over it
+	AddOnPremisesScannerDlpLocationException         []string              `ps:"AddOnPremisesScannerDlpLocationException"`
+	AddOnPremisesScannerDlpLocationExceptionDelta    *adminapi.StringDelta `ps:"AddOnPremisesScannerDlpLocationException"` // adds/removes values of AddOnPremisesScannerDlpLocationException; takes precedence over it
+	AddPowerBIDlpLocation                            []string              `ps:"AddPowerBIDlpLocation"`
+	AddPowerBIDlpLocationDelta                       *adminapi.StringDelta `ps:"AddPowerBIDlpLocation"` // adds/removes values of AddPowerBIDlpLocation; takes precedence over it
+	AddPowerBIDlpLocationException                   []string              `ps:"AddPowerBIDlpLocationException"`
+	AddPowerBIDlpLocationExceptionDelta              *adminapi.StringDelta `ps:"AddPowerBIDlpLocationException"` // adds/removes values of AddPowerBIDlpLocationException; takes precedence over it
+	AddSharePointLocation                            []string              `ps:"AddSharePointLocation"`
+	AddSharePointLocationDelta                       *adminapi.StringDelta `ps:"AddSharePointLocation"` // adds/removes values of AddSharePointLocation; takes precedence over it
+	AddSharePointLocationException                   []string              `ps:"AddSharePointLocationException"`
+	AddSharePointLocationExceptionDelta              *adminapi.StringDelta `ps:"AddSharePointLocationException"` // adds/removes values of AddSharePointLocationException; takes precedence over it
+	AddTeamsLocation                                 []string              `ps:"AddTeamsLocation"`
+	AddTeamsLocationDelta                            *adminapi.StringDelta `ps:"AddTeamsLocation"` // adds/removes values of AddTeamsLocation; takes precedence over it
+	AddTeamsLocationException                        []string              `ps:"AddTeamsLocationException"`
+	AddTeamsLocationExceptionDelta                   *adminapi.StringDelta `ps:"AddTeamsLocationException"` // adds/removes values of AddTeamsLocationException; takes precedence over it
+	AddThirdPartyAppDlpLocation                      []string              `ps:"AddThirdPartyAppDlpLocation"`
+	AddThirdPartyAppDlpLocationDelta                 *adminapi.StringDelta `ps:"AddThirdPartyAppDlpLocation"` // adds/removes values of AddThirdPartyAppDlpLocation; takes precedence over it
+	AddThirdPartyAppDlpLocationException             []string              `ps:"AddThirdPartyAppDlpLocationException"`
+	AddThirdPartyAppDlpLocationExceptionDelta        *adminapi.StringDelta `ps:"AddThirdPartyAppDlpLocationException"` // adds/removes values of AddThirdPartyAppDlpLocationException; takes precedence over it
+	AutoEnableAfter                                  any                   `ps:"AutoEnableAfter"`
+	Comment                                          string                `ps:"Comment"`
+	DisplayName                                      string                `ps:"DisplayName"`
+	EndpointDlpAdaptiveScopes                        []string              `ps:"EndpointDlpAdaptiveScopes"`
+	EndpointDlpAdaptiveScopesDelta                   *adminapi.StringDelta `ps:"EndpointDlpAdaptiveScopes"` // adds/removes values of EndpointDlpAdaptiveScopes; takes precedence over it
+	EndpointDlpAdaptiveScopesException               []string              `ps:"EndpointDlpAdaptiveScopesException"`
+	EndpointDlpAdaptiveScopesExceptionDelta          *adminapi.StringDelta `ps:"EndpointDlpAdaptiveScopesException"` // adds/removes values of EndpointDlpAdaptiveScopesException; takes precedence over it
+	EndpointDlpExtendedLocations                     string                `ps:"EndpointDlpExtendedLocations"`
+	EnforcementPlanes                                []string              `ps:"EnforcementPlanes"`
+	EnforcementPlanesDelta                           *adminapi.StringDelta `ps:"EnforcementPlanes"` // adds/removes values of EnforcementPlanes; takes precedence over it
+	ExceptIfOneDriveSharedBy                         []string              `ps:"ExceptIfOneDriveSharedBy"`
+	ExceptIfOneDriveSharedByMemberOf                 []string              `ps:"ExceptIfOneDriveSharedByMemberOf"`
+	ExchangeAdaptiveScopes                           []string              `ps:"ExchangeAdaptiveScopes"`
+	ExchangeAdaptiveScopesDelta                      *adminapi.StringDelta `ps:"ExchangeAdaptiveScopes"` // adds/removes values of ExchangeAdaptiveScopes; takes precedence over it
+	ExchangeAdaptiveScopesException                  []string              `ps:"ExchangeAdaptiveScopesException"`
+	ExchangeAdaptiveScopesExceptionDelta             *adminapi.StringDelta `ps:"ExchangeAdaptiveScopesException"` // adds/removes values of ExchangeAdaptiveScopesException; takes precedence over it
+	ExchangeSender                                   []string              `ps:"ExchangeSender"`
+	ExchangeSenderException                          []string              `ps:"ExchangeSenderException"`
+	ExchangeSenderMemberOf                           []string              `ps:"ExchangeSenderMemberOf"`
+	ExchangeSenderMemberOfException                  []string              `ps:"ExchangeSenderMemberOfException"`
+	Force                                            bool                  `ps:"Force"`
+	Identity                                         any                   `ps:"Identity"` // PolicyIdParameter
+	IsFromSmartInsights                              *bool                 `ps:"IsFromSmartInsights"`
+	Locations                                        string                `ps:"Locations"`
+	Mode                                             any                   `ps:"Mode"` // PolicyMode
+	NewName                                          string                `ps:"NewName"`
+	OneDriveAdaptiveScopes                           []string              `ps:"OneDriveAdaptiveScopes"`
+	OneDriveAdaptiveScopesDelta                      *adminapi.StringDelta `ps:"OneDriveAdaptiveScopes"` // adds/removes values of OneDriveAdaptiveScopes; takes precedence over it
+	OneDriveAdaptiveScopesException                  []string              `ps:"OneDriveAdaptiveScopesException"`
+	OneDriveAdaptiveScopesExceptionDelta             *adminapi.StringDelta `ps:"OneDriveAdaptiveScopesException"` // adds/removes values of OneDriveAdaptiveScopesException; takes precedence over it
+	OneDriveSharedBy                                 []string              `ps:"OneDriveSharedBy"`
+	OneDriveSharedByMemberOf                         []string              `ps:"OneDriveSharedByMemberOf"`
+	PolicyRBACScopes                                 []string              `ps:"PolicyRBACScopes"`
+	PolicyRBACScopesDelta                            *adminapi.StringDelta `ps:"PolicyRBACScopes"`   // adds/removes values of PolicyRBACScopes; takes precedence over it
+	PolicyTemplateInfo                               any                   `ps:"PolicyTemplateInfo"` // PswsHashtable
+	Priority                                         *int64                `ps:"Priority"`
+	RemoveEndpointDlpLocation                        []string              `ps:"RemoveEndpointDlpLocation"`
+	RemoveEndpointDlpLocationDelta                   *adminapi.StringDelta `ps:"RemoveEndpointDlpLocation"` // adds/removes values of RemoveEndpointDlpLocation; takes precedence over it
+	RemoveEndpointDlpLocationException               []string              `ps:"RemoveEndpointDlpLocationException"`
+	RemoveEndpointDlpLocationExceptionDelta          *adminapi.StringDelta `ps:"RemoveEndpointDlpLocationException"` // adds/removes values of RemoveEndpointDlpLocationException; takes precedence over it
+	RemoveExchangeLocation                           []string              `ps:"RemoveExchangeLocation"`
+	RemoveExchangeLocationDelta                      *adminapi.StringDelta `ps:"RemoveExchangeLocation"` // adds/removes values of RemoveExchangeLocation; takes precedence over it
+	RemoveOneDriveLocation                           []string              `ps:"RemoveOneDriveLocation"`
+	RemoveOneDriveLocationDelta                      *adminapi.StringDelta `ps:"RemoveOneDriveLocation"` // adds/removes values of RemoveOneDriveLocation; takes precedence over it
+	RemoveOneDriveLocationException                  []string              `ps:"RemoveOneDriveLocationException"`
+	RemoveOneDriveLocationExceptionDelta             *adminapi.StringDelta `ps:"RemoveOneDriveLocationException"` // adds/removes values of RemoveOneDriveLocationException; takes precedence over it
+	RemoveOnPremisesScannerDlpLocation               []string              `ps:"RemoveOnPremisesScannerDlpLocation"`
+	RemoveOnPremisesScannerDlpLocationDelta          *adminapi.StringDelta `ps:"RemoveOnPremisesScannerDlpLocation"` // adds/removes values of RemoveOnPremisesScannerDlpLocation; takes precedence over it
+	RemoveOnPremisesScannerDlpLocationException      []string              `ps:"RemoveOnPremisesScannerDlpLocationException"`
+	RemoveOnPremisesScannerDlpLocationExceptionDelta *adminapi.StringDelta `ps:"RemoveOnPremisesScannerDlpLocationException"` // adds/removes values of RemoveOnPremisesScannerDlpLocationException; takes precedence over it
+	RemovePowerBIDlpLocation                         []string              `ps:"RemovePowerBIDlpLocation"`
+	RemovePowerBIDlpLocationDelta                    *adminapi.StringDelta `ps:"RemovePowerBIDlpLocation"` // adds/removes values of RemovePowerBIDlpLocation; takes precedence over it
+	RemovePowerBIDlpLocationException                []string              `ps:"RemovePowerBIDlpLocationException"`
+	RemovePowerBIDlpLocationExceptionDelta           *adminapi.StringDelta `ps:"RemovePowerBIDlpLocationException"` // adds/removes values of RemovePowerBIDlpLocationException; takes precedence over it
+	RemoveSharePointLocation                         []string              `ps:"RemoveSharePointLocation"`
+	RemoveSharePointLocationDelta                    *adminapi.StringDelta `ps:"RemoveSharePointLocation"` // adds/removes values of RemoveSharePointLocation; takes precedence over it
+	RemoveSharePointLocationException                []string              `ps:"RemoveSharePointLocationException"`
+	RemoveSharePointLocationExceptionDelta           *adminapi.StringDelta `ps:"RemoveSharePointLocationException"` // adds/removes values of RemoveSharePointLocationException; takes precedence over it
+	RemoveTeamsLocation                              []string              `ps:"RemoveTeamsLocation"`
+	RemoveTeamsLocationDelta                         *adminapi.StringDelta `ps:"RemoveTeamsLocation"` // adds/removes values of RemoveTeamsLocation; takes precedence over it
+	RemoveTeamsLocationException                     []string              `ps:"RemoveTeamsLocationException"`
+	RemoveTeamsLocationExceptionDelta                *adminapi.StringDelta `ps:"RemoveTeamsLocationException"` // adds/removes values of RemoveTeamsLocationException; takes precedence over it
+	RemoveThirdPartyAppDlpLocation                   []string              `ps:"RemoveThirdPartyAppDlpLocation"`
+	RemoveThirdPartyAppDlpLocationDelta              *adminapi.StringDelta `ps:"RemoveThirdPartyAppDlpLocation"` // adds/removes values of RemoveThirdPartyAppDlpLocation; takes precedence over it
+	RemoveThirdPartyAppDlpLocationException          []string              `ps:"RemoveThirdPartyAppDlpLocationException"`
+	RemoveThirdPartyAppDlpLocationExceptionDelta     *adminapi.StringDelta `ps:"RemoveThirdPartyAppDlpLocationException"` // adds/removes values of RemoveThirdPartyAppDlpLocationException; takes precedence over it
+	RetryDistribution                                bool                  `ps:"RetryDistribution"`
+	SharePointAdaptiveScopes                         []string              `ps:"SharePointAdaptiveScopes"`
+	SharePointAdaptiveScopesDelta                    *adminapi.StringDelta `ps:"SharePointAdaptiveScopes"` // adds/removes values of SharePointAdaptiveScopes; takes precedence over it
+	SharePointAdaptiveScopesException                []string              `ps:"SharePointAdaptiveScopesException"`
+	SharePointAdaptiveScopesExceptionDelta           *adminapi.StringDelta `ps:"SharePointAdaptiveScopesException"` // adds/removes values of SharePointAdaptiveScopesException; takes precedence over it
+	StartSimulation                                  *bool                 `ps:"StartSimulation"`
+	TeamsAdaptiveScopes                              []string              `ps:"TeamsAdaptiveScopes"`
+	TeamsAdaptiveScopesDelta                         *adminapi.StringDelta `ps:"TeamsAdaptiveScopes"` // adds/removes values of TeamsAdaptiveScopes; takes precedence over it
+	TeamsAdaptiveScopesException                     []string              `ps:"TeamsAdaptiveScopesException"`
+	TeamsAdaptiveScopesExceptionDelta                *adminapi.StringDelta `ps:"TeamsAdaptiveScopesException"` // adds/removes values of TeamsAdaptiveScopesException; takes precedence over it
 }
 
 func (p SetDlpCompliancePolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddEndpointDlpLocation != nil {
+	if p.AddEndpointDlpLocationDelta != nil {
+		m["AddEndpointDlpLocation"] = *p.AddEndpointDlpLocationDelta
+	} else if p.AddEndpointDlpLocation != nil {
 		m["AddEndpointDlpLocation"] = p.AddEndpointDlpLocation
 	}
-	if p.AddEndpointDlpLocationException != nil {
+	if p.AddEndpointDlpLocationExceptionDelta != nil {
+		m["AddEndpointDlpLocationException"] = *p.AddEndpointDlpLocationExceptionDelta
+	} else if p.AddEndpointDlpLocationException != nil {
 		m["AddEndpointDlpLocationException"] = p.AddEndpointDlpLocationException
 	}
-	if p.AddExchangeLocation != nil {
+	if p.AddExchangeLocationDelta != nil {
+		m["AddExchangeLocation"] = *p.AddExchangeLocationDelta
+	} else if p.AddExchangeLocation != nil {
 		m["AddExchangeLocation"] = p.AddExchangeLocation
 	}
-	if p.AddOneDriveLocation != nil {
+	if p.AddOneDriveLocationDelta != nil {
+		m["AddOneDriveLocation"] = *p.AddOneDriveLocationDelta
+	} else if p.AddOneDriveLocation != nil {
 		m["AddOneDriveLocation"] = p.AddOneDriveLocation
 	}
-	if p.AddOneDriveLocationException != nil {
+	if p.AddOneDriveLocationExceptionDelta != nil {
+		m["AddOneDriveLocationException"] = *p.AddOneDriveLocationExceptionDelta
+	} else if p.AddOneDriveLocationException != nil {
 		m["AddOneDriveLocationException"] = p.AddOneDriveLocationException
 	}
-	if p.AddOnPremisesScannerDlpLocation != nil {
+	if p.AddOnPremisesScannerDlpLocationDelta != nil {
+		m["AddOnPremisesScannerDlpLocation"] = *p.AddOnPremisesScannerDlpLocationDelta
+	} else if p.AddOnPremisesScannerDlpLocation != nil {
 		m["AddOnPremisesScannerDlpLocation"] = p.AddOnPremisesScannerDlpLocation
 	}
-	if p.AddOnPremisesScannerDlpLocationException != nil {
+	if p.AddOnPremisesScannerDlpLocationExceptionDelta != nil {
+		m["AddOnPremisesScannerDlpLocationException"] = *p.AddOnPremisesScannerDlpLocationExceptionDelta
+	} else if p.AddOnPremisesScannerDlpLocationException != nil {
 		m["AddOnPremisesScannerDlpLocationException"] = p.AddOnPremisesScannerDlpLocationException
 	}
-	if p.AddPowerBIDlpLocation != nil {
+	if p.AddPowerBIDlpLocationDelta != nil {
+		m["AddPowerBIDlpLocation"] = *p.AddPowerBIDlpLocationDelta
+	} else if p.AddPowerBIDlpLocation != nil {
 		m["AddPowerBIDlpLocation"] = p.AddPowerBIDlpLocation
 	}
-	if p.AddPowerBIDlpLocationException != nil {
+	if p.AddPowerBIDlpLocationExceptionDelta != nil {
+		m["AddPowerBIDlpLocationException"] = *p.AddPowerBIDlpLocationExceptionDelta
+	} else if p.AddPowerBIDlpLocationException != nil {
 		m["AddPowerBIDlpLocationException"] = p.AddPowerBIDlpLocationException
 	}
-	if p.AddSharePointLocation != nil {
+	if p.AddSharePointLocationDelta != nil {
+		m["AddSharePointLocation"] = *p.AddSharePointLocationDelta
+	} else if p.AddSharePointLocation != nil {
 		m["AddSharePointLocation"] = p.AddSharePointLocation
 	}
-	if p.AddSharePointLocationException != nil {
+	if p.AddSharePointLocationExceptionDelta != nil {
+		m["AddSharePointLocationException"] = *p.AddSharePointLocationExceptionDelta
+	} else if p.AddSharePointLocationException != nil {
 		m["AddSharePointLocationException"] = p.AddSharePointLocationException
 	}
-	if p.AddTeamsLocation != nil {
+	if p.AddTeamsLocationDelta != nil {
+		m["AddTeamsLocation"] = *p.AddTeamsLocationDelta
+	} else if p.AddTeamsLocation != nil {
 		m["AddTeamsLocation"] = p.AddTeamsLocation
 	}
-	if p.AddTeamsLocationException != nil {
+	if p.AddTeamsLocationExceptionDelta != nil {
+		m["AddTeamsLocationException"] = *p.AddTeamsLocationExceptionDelta
+	} else if p.AddTeamsLocationException != nil {
 		m["AddTeamsLocationException"] = p.AddTeamsLocationException
 	}
-	if p.AddThirdPartyAppDlpLocation != nil {
+	if p.AddThirdPartyAppDlpLocationDelta != nil {
+		m["AddThirdPartyAppDlpLocation"] = *p.AddThirdPartyAppDlpLocationDelta
+	} else if p.AddThirdPartyAppDlpLocation != nil {
 		m["AddThirdPartyAppDlpLocation"] = p.AddThirdPartyAppDlpLocation
 	}
-	if p.AddThirdPartyAppDlpLocationException != nil {
+	if p.AddThirdPartyAppDlpLocationExceptionDelta != nil {
+		m["AddThirdPartyAppDlpLocationException"] = *p.AddThirdPartyAppDlpLocationExceptionDelta
+	} else if p.AddThirdPartyAppDlpLocationException != nil {
 		m["AddThirdPartyAppDlpLocationException"] = p.AddThirdPartyAppDlpLocationException
 	}
 	if p.AutoEnableAfter != nil {
@@ -14575,40 +14845,50 @@ func (p SetDlpCompliancePolicyParams) params() map[string]any {
 	if p.DisplayName != "" {
 		m["DisplayName"] = p.DisplayName
 	}
-	if p.EndpointDlpAdaptiveScopes != nil {
+	if p.EndpointDlpAdaptiveScopesDelta != nil {
+		m["EndpointDlpAdaptiveScopes"] = *p.EndpointDlpAdaptiveScopesDelta
+	} else if p.EndpointDlpAdaptiveScopes != nil {
 		m["EndpointDlpAdaptiveScopes"] = p.EndpointDlpAdaptiveScopes
 	}
-	if p.EndpointDlpAdaptiveScopesException != nil {
+	if p.EndpointDlpAdaptiveScopesExceptionDelta != nil {
+		m["EndpointDlpAdaptiveScopesException"] = *p.EndpointDlpAdaptiveScopesExceptionDelta
+	} else if p.EndpointDlpAdaptiveScopesException != nil {
 		m["EndpointDlpAdaptiveScopesException"] = p.EndpointDlpAdaptiveScopesException
 	}
 	if p.EndpointDlpExtendedLocations != "" {
 		m["EndpointDlpExtendedLocations"] = p.EndpointDlpExtendedLocations
 	}
-	if p.EnforcementPlanes != nil {
+	if p.EnforcementPlanesDelta != nil {
+		m["EnforcementPlanes"] = *p.EnforcementPlanesDelta
+	} else if p.EnforcementPlanes != nil {
 		m["EnforcementPlanes"] = p.EnforcementPlanes
 	}
-	if len(p.ExceptIfOneDriveSharedBy) > 0 {
+	if p.ExceptIfOneDriveSharedBy != nil {
 		m["ExceptIfOneDriveSharedBy"] = p.ExceptIfOneDriveSharedBy
 	}
-	if len(p.ExceptIfOneDriveSharedByMemberOf) > 0 {
+	if p.ExceptIfOneDriveSharedByMemberOf != nil {
 		m["ExceptIfOneDriveSharedByMemberOf"] = p.ExceptIfOneDriveSharedByMemberOf
 	}
-	if p.ExchangeAdaptiveScopes != nil {
+	if p.ExchangeAdaptiveScopesDelta != nil {
+		m["ExchangeAdaptiveScopes"] = *p.ExchangeAdaptiveScopesDelta
+	} else if p.ExchangeAdaptiveScopes != nil {
 		m["ExchangeAdaptiveScopes"] = p.ExchangeAdaptiveScopes
 	}
-	if p.ExchangeAdaptiveScopesException != nil {
+	if p.ExchangeAdaptiveScopesExceptionDelta != nil {
+		m["ExchangeAdaptiveScopesException"] = *p.ExchangeAdaptiveScopesExceptionDelta
+	} else if p.ExchangeAdaptiveScopesException != nil {
 		m["ExchangeAdaptiveScopesException"] = p.ExchangeAdaptiveScopesException
 	}
-	if len(p.ExchangeSender) > 0 {
+	if p.ExchangeSender != nil {
 		m["ExchangeSender"] = p.ExchangeSender
 	}
-	if len(p.ExchangeSenderException) > 0 {
+	if p.ExchangeSenderException != nil {
 		m["ExchangeSenderException"] = p.ExchangeSenderException
 	}
-	if len(p.ExchangeSenderMemberOf) > 0 {
+	if p.ExchangeSenderMemberOf != nil {
 		m["ExchangeSenderMemberOf"] = p.ExchangeSenderMemberOf
 	}
-	if len(p.ExchangeSenderMemberOfException) > 0 {
+	if p.ExchangeSenderMemberOfException != nil {
 		m["ExchangeSenderMemberOfException"] = p.ExchangeSenderMemberOfException
 	}
 	if p.Force {
@@ -14618,7 +14898,7 @@ func (p SetDlpCompliancePolicyParams) params() map[string]any {
 		m["Identity"] = p.Identity
 	}
 	if p.IsFromSmartInsights != nil {
-		m["IsFromSmartInsights"] = p.IsFromSmartInsights
+		m["IsFromSmartInsights"] = *p.IsFromSmartInsights
 	}
 	if p.Locations != "" {
 		m["Locations"] = p.Locations
@@ -14629,88 +14909,132 @@ func (p SetDlpCompliancePolicyParams) params() map[string]any {
 	if p.NewName != "" {
 		m["NewName"] = p.NewName
 	}
-	if p.OneDriveAdaptiveScopes != nil {
+	if p.OneDriveAdaptiveScopesDelta != nil {
+		m["OneDriveAdaptiveScopes"] = *p.OneDriveAdaptiveScopesDelta
+	} else if p.OneDriveAdaptiveScopes != nil {
 		m["OneDriveAdaptiveScopes"] = p.OneDriveAdaptiveScopes
 	}
-	if p.OneDriveAdaptiveScopesException != nil {
+	if p.OneDriveAdaptiveScopesExceptionDelta != nil {
+		m["OneDriveAdaptiveScopesException"] = *p.OneDriveAdaptiveScopesExceptionDelta
+	} else if p.OneDriveAdaptiveScopesException != nil {
 		m["OneDriveAdaptiveScopesException"] = p.OneDriveAdaptiveScopesException
 	}
-	if len(p.OneDriveSharedBy) > 0 {
+	if p.OneDriveSharedBy != nil {
 		m["OneDriveSharedBy"] = p.OneDriveSharedBy
 	}
-	if len(p.OneDriveSharedByMemberOf) > 0 {
+	if p.OneDriveSharedByMemberOf != nil {
 		m["OneDriveSharedByMemberOf"] = p.OneDriveSharedByMemberOf
 	}
-	if p.PolicyRBACScopes != nil {
+	if p.PolicyRBACScopesDelta != nil {
+		m["PolicyRBACScopes"] = *p.PolicyRBACScopesDelta
+	} else if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
 	if p.PolicyTemplateInfo != nil {
 		m["PolicyTemplateInfo"] = p.PolicyTemplateInfo
 	}
 	if p.Priority != nil {
-		m["Priority"] = p.Priority
+		m["Priority"] = *p.Priority
 	}
-	if p.RemoveEndpointDlpLocation != nil {
+	if p.RemoveEndpointDlpLocationDelta != nil {
+		m["RemoveEndpointDlpLocation"] = *p.RemoveEndpointDlpLocationDelta
+	} else if p.RemoveEndpointDlpLocation != nil {
 		m["RemoveEndpointDlpLocation"] = p.RemoveEndpointDlpLocation
 	}
-	if p.RemoveEndpointDlpLocationException != nil {
+	if p.RemoveEndpointDlpLocationExceptionDelta != nil {
+		m["RemoveEndpointDlpLocationException"] = *p.RemoveEndpointDlpLocationExceptionDelta
+	} else if p.RemoveEndpointDlpLocationException != nil {
 		m["RemoveEndpointDlpLocationException"] = p.RemoveEndpointDlpLocationException
 	}
-	if p.RemoveExchangeLocation != nil {
+	if p.RemoveExchangeLocationDelta != nil {
+		m["RemoveExchangeLocation"] = *p.RemoveExchangeLocationDelta
+	} else if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
 	}
-	if p.RemoveOneDriveLocation != nil {
+	if p.RemoveOneDriveLocationDelta != nil {
+		m["RemoveOneDriveLocation"] = *p.RemoveOneDriveLocationDelta
+	} else if p.RemoveOneDriveLocation != nil {
 		m["RemoveOneDriveLocation"] = p.RemoveOneDriveLocation
 	}
-	if p.RemoveOneDriveLocationException != nil {
+	if p.RemoveOneDriveLocationExceptionDelta != nil {
+		m["RemoveOneDriveLocationException"] = *p.RemoveOneDriveLocationExceptionDelta
+	} else if p.RemoveOneDriveLocationException != nil {
 		m["RemoveOneDriveLocationException"] = p.RemoveOneDriveLocationException
 	}
-	if p.RemoveOnPremisesScannerDlpLocation != nil {
+	if p.RemoveOnPremisesScannerDlpLocationDelta != nil {
+		m["RemoveOnPremisesScannerDlpLocation"] = *p.RemoveOnPremisesScannerDlpLocationDelta
+	} else if p.RemoveOnPremisesScannerDlpLocation != nil {
 		m["RemoveOnPremisesScannerDlpLocation"] = p.RemoveOnPremisesScannerDlpLocation
 	}
-	if p.RemoveOnPremisesScannerDlpLocationException != nil {
+	if p.RemoveOnPremisesScannerDlpLocationExceptionDelta != nil {
+		m["RemoveOnPremisesScannerDlpLocationException"] = *p.RemoveOnPremisesScannerDlpLocationExceptionDelta
+	} else if p.RemoveOnPremisesScannerDlpLocationException != nil {
 		m["RemoveOnPremisesScannerDlpLocationException"] = p.RemoveOnPremisesScannerDlpLocationException
 	}
-	if p.RemovePowerBIDlpLocation != nil {
+	if p.RemovePowerBIDlpLocationDelta != nil {
+		m["RemovePowerBIDlpLocation"] = *p.RemovePowerBIDlpLocationDelta
+	} else if p.RemovePowerBIDlpLocation != nil {
 		m["RemovePowerBIDlpLocation"] = p.RemovePowerBIDlpLocation
 	}
-	if p.RemovePowerBIDlpLocationException != nil {
+	if p.RemovePowerBIDlpLocationExceptionDelta != nil {
+		m["RemovePowerBIDlpLocationException"] = *p.RemovePowerBIDlpLocationExceptionDelta
+	} else if p.RemovePowerBIDlpLocationException != nil {
 		m["RemovePowerBIDlpLocationException"] = p.RemovePowerBIDlpLocationException
 	}
-	if p.RemoveSharePointLocation != nil {
+	if p.RemoveSharePointLocationDelta != nil {
+		m["RemoveSharePointLocation"] = *p.RemoveSharePointLocationDelta
+	} else if p.RemoveSharePointLocation != nil {
 		m["RemoveSharePointLocation"] = p.RemoveSharePointLocation
 	}
-	if p.RemoveSharePointLocationException != nil {
+	if p.RemoveSharePointLocationExceptionDelta != nil {
+		m["RemoveSharePointLocationException"] = *p.RemoveSharePointLocationExceptionDelta
+	} else if p.RemoveSharePointLocationException != nil {
 		m["RemoveSharePointLocationException"] = p.RemoveSharePointLocationException
 	}
-	if p.RemoveTeamsLocation != nil {
+	if p.RemoveTeamsLocationDelta != nil {
+		m["RemoveTeamsLocation"] = *p.RemoveTeamsLocationDelta
+	} else if p.RemoveTeamsLocation != nil {
 		m["RemoveTeamsLocation"] = p.RemoveTeamsLocation
 	}
-	if p.RemoveTeamsLocationException != nil {
+	if p.RemoveTeamsLocationExceptionDelta != nil {
+		m["RemoveTeamsLocationException"] = *p.RemoveTeamsLocationExceptionDelta
+	} else if p.RemoveTeamsLocationException != nil {
 		m["RemoveTeamsLocationException"] = p.RemoveTeamsLocationException
 	}
-	if p.RemoveThirdPartyAppDlpLocation != nil {
+	if p.RemoveThirdPartyAppDlpLocationDelta != nil {
+		m["RemoveThirdPartyAppDlpLocation"] = *p.RemoveThirdPartyAppDlpLocationDelta
+	} else if p.RemoveThirdPartyAppDlpLocation != nil {
 		m["RemoveThirdPartyAppDlpLocation"] = p.RemoveThirdPartyAppDlpLocation
 	}
-	if p.RemoveThirdPartyAppDlpLocationException != nil {
+	if p.RemoveThirdPartyAppDlpLocationExceptionDelta != nil {
+		m["RemoveThirdPartyAppDlpLocationException"] = *p.RemoveThirdPartyAppDlpLocationExceptionDelta
+	} else if p.RemoveThirdPartyAppDlpLocationException != nil {
 		m["RemoveThirdPartyAppDlpLocationException"] = p.RemoveThirdPartyAppDlpLocationException
 	}
 	if p.RetryDistribution {
 		m["RetryDistribution"] = true
 	}
-	if p.SharePointAdaptiveScopes != nil {
+	if p.SharePointAdaptiveScopesDelta != nil {
+		m["SharePointAdaptiveScopes"] = *p.SharePointAdaptiveScopesDelta
+	} else if p.SharePointAdaptiveScopes != nil {
 		m["SharePointAdaptiveScopes"] = p.SharePointAdaptiveScopes
 	}
-	if p.SharePointAdaptiveScopesException != nil {
+	if p.SharePointAdaptiveScopesExceptionDelta != nil {
+		m["SharePointAdaptiveScopesException"] = *p.SharePointAdaptiveScopesExceptionDelta
+	} else if p.SharePointAdaptiveScopesException != nil {
 		m["SharePointAdaptiveScopesException"] = p.SharePointAdaptiveScopesException
 	}
-	if p.StartSimulation {
-		m["StartSimulation"] = true
+	if p.StartSimulation != nil {
+		m["StartSimulation"] = *p.StartSimulation
 	}
-	if p.TeamsAdaptiveScopes != nil {
+	if p.TeamsAdaptiveScopesDelta != nil {
+		m["TeamsAdaptiveScopes"] = *p.TeamsAdaptiveScopesDelta
+	} else if p.TeamsAdaptiveScopes != nil {
 		m["TeamsAdaptiveScopes"] = p.TeamsAdaptiveScopes
 	}
-	if p.TeamsAdaptiveScopesException != nil {
+	if p.TeamsAdaptiveScopesExceptionDelta != nil {
+		m["TeamsAdaptiveScopesException"] = *p.TeamsAdaptiveScopesExceptionDelta
+	} else if p.TeamsAdaptiveScopesException != nil {
 		m["TeamsAdaptiveScopesException"] = p.TeamsAdaptiveScopesException
 	}
 	return m
@@ -14724,198 +15048,248 @@ func (s *Service) SetDlpCompliancePolicy(ctx context.Context, p SetDlpCompliance
 // SetDlpComplianceRuleParams are the parameters of Set-DlpComplianceRule.
 // DefaultParameterSetName: Identity
 type SetDlpComplianceRuleParams struct {
-	AccessedBy                                   []string `ps:"AccessedBy"`
-	AccessedByMemberOf                           []string `ps:"AccessedByMemberOf"`
-	AccessScope                                  any      `ps:"AccessScope"`
-	AccessTimeControl                            any      `ps:"AccessTimeControl"`
-	ActivationDate                               any      `ps:"ActivationDate"`
-	AddRecipients                                any      `ps:"AddRecipients"`
-	AdvancedRule                                 string   `ps:"AdvancedRule"`
-	AlertProperties                              any      `ps:"AlertProperties"`
-	AnyOfRecipientAddressContainsWords           any      `ps:"AnyOfRecipientAddressContainsWords"`
-	AnyOfRecipientAddressMatchesPatterns         any      `ps:"AnyOfRecipientAddressMatchesPatterns"`
-	ApplyBrandingTemplate                        string   `ps:"ApplyBrandingTemplate"`
-	ApplyHtmlDisclaimer                          any      `ps:"ApplyHtmlDisclaimer"`
-	AttachmentCountOver                          any      `ps:"AttachmentCountOver"`
-	AttachmentIsNotLabeled                       bool     `ps:"AttachmentIsNotLabeled"`
-	BlockAccess                                  bool     `ps:"BlockAccess"`
-	BlockAccessScope                             any      `ps:"BlockAccessScope"`
-	Comment                                      string   `ps:"Comment"`
-	ContentCharacterSetContainsWords             any      `ps:"ContentCharacterSetContainsWords"`
-	ContentContainsSensitiveInformation          []string `ps:"ContentContainsSensitiveInformation"`
-	ContentExtensionMatchesWords                 any      `ps:"ContentExtensionMatchesWords"`
-	ContentFileTypeMatches                       any      `ps:"ContentFileTypeMatches"`
-	ContentIsNotLabeled                          bool     `ps:"ContentIsNotLabeled"`
-	ContentIsShared                              bool     `ps:"ContentIsShared"`
-	ContentMissingSensitivityLabel               any      `ps:"ContentMissingSensitivityLabel"`
-	ContentPropertyContainsWords                 any      `ps:"ContentPropertyContainsWords"`
-	ContextPropertiesContainWords                any      `ps:"ContextPropertiesContainWords"`
-	DeviceManagementType                         any      `ps:"DeviceManagementType"`
-	Disabled                                     bool     `ps:"Disabled"`
-	DisplayName                                  string   `ps:"DisplayName"`
-	DocumentContainsWords                        any      `ps:"DocumentContainsWords"`
-	DocumentCreatedBy                            any      `ps:"DocumentCreatedBy"`
-	DocumentCreatedByMemberOf                    []string `ps:"DocumentCreatedByMemberOf"`
-	DocumentIsPasswordProtected                  bool     `ps:"DocumentIsPasswordProtected"`
-	DocumentIsUnsupported                        bool     `ps:"DocumentIsUnsupported"`
-	DocumentMatchesPatterns                      any      `ps:"DocumentMatchesPatterns"`
-	DocumentNameMatchesPatterns                  any      `ps:"DocumentNameMatchesPatterns"`
-	DocumentNameMatchesWords                     any      `ps:"DocumentNameMatchesWords"`
-	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`
-	EncryptRMSTemplate                           any      `ps:"EncryptRMSTemplate"`
-	EndpointDlpBrowserRestrictions               []string `ps:"EndpointDlpBrowserRestrictions"`
-	EndpointDlpRestrictions                      []string `ps:"EndpointDlpRestrictions"`
-	EnforcePortalAccess                          bool     `ps:"EnforcePortalAccess"`
-	EvaluateRulePerComponent                     bool     `ps:"EvaluateRulePerComponent"`
-	ExceptIfAccessedBy                           []string `ps:"ExceptIfAccessedBy"`
-	ExceptIfAccessedByMemberOf                   []string `ps:"ExceptIfAccessedByMemberOf"`
-	ExceptIfAccessScope                          any      `ps:"ExceptIfAccessScope"`
-	ExceptIfAnyOfRecipientAddressContainsWords   any      `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
-	ExceptIfAnyOfRecipientAddressMatchesPatterns any      `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
-	ExceptIfContentCharacterSetContainsWords     any      `ps:"ExceptIfContentCharacterSetContainsWords"`
-	ExceptIfContentContainsSensitiveInformation  []string `ps:"ExceptIfContentContainsSensitiveInformation"`
-	ExceptIfContentExtensionMatchesWords         any      `ps:"ExceptIfContentExtensionMatchesWords"`
-	ExceptIfContentFileTypeMatches               any      `ps:"ExceptIfContentFileTypeMatches"`
-	ExceptIfContentIsShared                      bool     `ps:"ExceptIfContentIsShared"`
-	ExceptIfContentPropertyContainsWords         any      `ps:"ExceptIfContentPropertyContainsWords"`
-	ExceptIfContextPropertiesContainWords        any      `ps:"ExceptIfContextPropertiesContainWords"`
-	ExceptIfDeviceManagementType                 any      `ps:"ExceptIfDeviceManagementType"` // one of: Managed, Unmanaged
-	ExceptIfDocumentContainsWords                any      `ps:"ExceptIfDocumentContainsWords"`
-	ExceptIfDocumentCreatedBy                    any      `ps:"ExceptIfDocumentCreatedBy"`
-	ExceptIfDocumentCreatedByMemberOf            []string `ps:"ExceptIfDocumentCreatedByMemberOf"`
-	ExceptIfDocumentIsPasswordProtected          bool     `ps:"ExceptIfDocumentIsPasswordProtected"`
-	ExceptIfDocumentIsUnsupported                bool     `ps:"ExceptIfDocumentIsUnsupported"`
-	ExceptIfDocumentMatchesPatterns              any      `ps:"ExceptIfDocumentMatchesPatterns"`
-	ExceptIfDocumentNameMatchesPatterns          any      `ps:"ExceptIfDocumentNameMatchesPatterns"`
-	ExceptIfDocumentNameMatchesWords             any      `ps:"ExceptIfDocumentNameMatchesWords"`
-	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"`
-	ExceptIfFrom                                 []string `ps:"ExceptIfFrom"`
-	ExceptIfFromAddressContainsWords             any      `ps:"ExceptIfFromAddressContainsWords"`
-	ExceptIfFromAddressMatchesPatterns           any      `ps:"ExceptIfFromAddressMatchesPatterns"`
-	ExceptIfFromMemberOf                         []string `ps:"ExceptIfFromMemberOf"`
-	ExceptIfFromScope                            any      `ps:"ExceptIfFromScope"`
-	ExceptIfHasSenderOverride                    bool     `ps:"ExceptIfHasSenderOverride"`
-	ExceptIfHeaderContainsTokens                 any      `ps:"ExceptIfHeaderContainsTokens"`
-	ExceptIfHeaderContainsWords                  any      `ps:"ExceptIfHeaderContainsWords"`
-	ExceptIfHeaderMatchesPatterns                any      `ps:"ExceptIfHeaderMatchesPatterns"`
-	ExceptIfMessageLabelChangeDetected           any      `ps:"ExceptIfMessageLabelChangeDetected"`
-	ExceptIfMessageSizeOver                      any      `ps:"ExceptIfMessageSizeOver"`
-	ExceptIfMessageTypeMatches                   any      `ps:"ExceptIfMessageTypeMatches"`
-	ExceptIfProcessingLimitExceeded              bool     `ps:"ExceptIfProcessingLimitExceeded"`
-	ExceptIfRecipientADAttributeContainsWords    any      `ps:"ExceptIfRecipientADAttributeContainsWords"`
-	ExceptIfRecipientADAttributeMatchesPatterns  any      `ps:"ExceptIfRecipientADAttributeMatchesPatterns"`
-	ExceptIfRecipientDomainIs                    any      `ps:"ExceptIfRecipientDomainIs"`
-	ExceptIfSenderADAttributeContainsWords       any      `ps:"ExceptIfSenderADAttributeContainsWords"`
-	ExceptIfSenderADAttributeMatchesPatterns     any      `ps:"ExceptIfSenderADAttributeMatchesPatterns"`
-	ExceptIfSenderDomainIs                       any      `ps:"ExceptIfSenderDomainIs"`
-	ExceptIfSenderIPRanges                       any      `ps:"ExceptIfSenderIPRanges"`
-	ExceptIfSentTo                               any      `ps:"ExceptIfSentTo"`
-	ExceptIfSentToMemberOf                       []string `ps:"ExceptIfSentToMemberOf"`
-	ExceptIfSharedWithDomain                     any      `ps:"ExceptIfSharedWithDomain"`
-	ExceptIfSubjectContainsWords                 any      `ps:"ExceptIfSubjectContainsWords"`
-	ExceptIfSubjectMatchesPatterns               any      `ps:"ExceptIfSubjectMatchesPatterns"`
-	ExceptIfSubjectOrBodyContainsWords           any      `ps:"ExceptIfSubjectOrBodyContainsWords"`
-	ExceptIfSubjectOrBodyMatchesPatterns         any      `ps:"ExceptIfSubjectOrBodyMatchesPatterns"`
-	ExceptIfTeamsSharedWithParticipantCategory   any      `ps:"ExceptIfTeamsSharedWithParticipantCategory"`
-	ExceptIfUnscannableDocumentExtensionIs       any      `ps:"ExceptIfUnscannableDocumentExtensionIs"`
-	ExceptIfWithImportance                       any      `ps:"ExceptIfWithImportance"`
-	ExpiryDate                                   any      `ps:"ExpiryDate"`
-	From                                         []string `ps:"From"`
-	FromAddressContainsWords                     any      `ps:"FromAddressContainsWords"`
-	FromAddressMatchesPatterns                   any      `ps:"FromAddressMatchesPatterns"`
-	FromMemberOf                                 []string `ps:"FromMemberOf"`
-	FromScope                                    any      `ps:"FromScope"`
-	GenerateAlert                                any      `ps:"GenerateAlert"`
-	GenerateIncidentReport                       any      `ps:"GenerateIncidentReport"`
-	HasActivity                                  any      `ps:"HasActivity"`
-	HasLabelDowngradedFrom                       any      `ps:"HasLabelDowngradedFrom"`
-	HasSenderOverride                            bool     `ps:"HasSenderOverride"`
-	HeaderContainsTokens                         any      `ps:"HeaderContainsTokens"`
-	HeaderContainsWords                          any      `ps:"HeaderContainsWords"`
-	HeaderMatchesPatterns                        any      `ps:"HeaderMatchesPatterns"`
-	Identity                                     any      `ps:"Identity"`
-	IncidentReportContent                        []string `ps:"IncidentReportContent"`
-	MapRecipients                                any      `ps:"MapRecipients"`
-	MessageIsNotLabeled                          bool     `ps:"MessageIsNotLabeled"`
-	MessageLabelChangeDetected                   any      `ps:"MessageLabelChangeDetected"`
-	MessageSizeOver                              any      `ps:"MessageSizeOver"`
-	MessageTypeMatches                           any      `ps:"MessageTypeMatches"`
-	MipRestrictAccess                            []string `ps:"MipRestrictAccess"`
-	Moderate                                     any      `ps:"Moderate"`
-	ModifySubject                                any      `ps:"ModifySubject"`
-	MoveToQuarantineLocation                     bool     `ps:"MoveToQuarantineLocation"`
-	NonBifurcatingAccessScope                    any      `ps:"NonBifurcatingAccessScope"`
-	NotifyAllowOverride                          []string `ps:"NotifyAllowOverride"`
-	NotifyEmailCustomSenderDisplayName           string   `ps:"NotifyEmailCustomSenderDisplayName"`
-	NotifyEmailCustomSubject                     string   `ps:"NotifyEmailCustomSubject"`
-	NotifyEmailCustomText                        string   `ps:"NotifyEmailCustomText"`
-	NotifyEmailExchangeIncludeAttachment         bool     `ps:"NotifyEmailExchangeIncludeAttachment"`
-	NotifyEmailOnedriveRemediationActions        any      `ps:"NotifyEmailOnedriveRemediationActions"`
-	NotifyEndpointUser                           any      `ps:"NotifyEndpointUser"`
-	NotifyJustificationCustomText                string   `ps:"NotifyJustificationCustomText"`
-	NotifyJustificationCustomTextTranslations    any      `ps:"NotifyJustificationCustomTextTranslations"`
-	NotifyOverrideRequirements                   any      `ps:"NotifyOverrideRequirements"`
-	NotifyPolicyTipCustomDialog                  string   `ps:"NotifyPolicyTipCustomDialog"`
-	NotifyPolicyTipCustomText                    string   `ps:"NotifyPolicyTipCustomText"`
-	NotifyPolicyTipCustomTextTranslations        any      `ps:"NotifyPolicyTipCustomTextTranslations"`
-	NotifyPolicyTipDisplayOption                 any      `ps:"NotifyPolicyTipDisplayOption"`
-	NotifyPolicyTipUrl                           string   `ps:"NotifyPolicyTipUrl"`
-	NotifyUser                                   any      `ps:"NotifyUser"`
-	NotifyUserType                               any      `ps:"NotifyUserType"`
-	OnPremisesScannerDlpRestrictions             []string `ps:"OnPremisesScannerDlpRestrictions"`
-	PowerBIDlpRestrictions                       []string `ps:"PowerBIDlpRestrictions"`
-	PrependSubject                               string   `ps:"PrependSubject"`
-	Priority                                     any      `ps:"Priority"`
-	ProcessingLimitExceeded                      bool     `ps:"ProcessingLimitExceeded"`
-	Quarantine                                   bool     `ps:"Quarantine"`
-	RecipientADAttributeContainsWords            any      `ps:"RecipientADAttributeContainsWords"`
-	RecipientADAttributeMatchesPatterns          any      `ps:"RecipientADAttributeMatchesPatterns"`
-	RecipientDomainIs                            any      `ps:"RecipientDomainIs"`
-	RedactSensitiveInfo                          any      `ps:"RedactSensitiveInfo"`
-	RedirectMessageTo                            []string `ps:"RedirectMessageTo"`
-	RemoveHeader                                 any      `ps:"RemoveHeader"`
-	RemoveRMSTemplate                            bool     `ps:"RemoveRMSTemplate"`
-	ReportSeverityLevel                          any      `ps:"ReportSeverityLevel"`
-	RestrictAccess                               []string `ps:"RestrictAccess"`
-	RestrictBrowserAccess                        bool     `ps:"RestrictBrowserAccess"`
-	RestrictWebGrounding                         bool     `ps:"RestrictWebGrounding"`
-	RuleErrorAction                              any      `ps:"RuleErrorAction"`
-	SenderADAttributeContainsWords               any      `ps:"SenderADAttributeContainsWords"`
-	SenderADAttributeMatchesPatterns             any      `ps:"SenderADAttributeMatchesPatterns"`
-	SenderAddressLocation                        any      `ps:"SenderAddressLocation"`
-	SenderDomainIs                               any      `ps:"SenderDomainIs"`
-	SenderIPRanges                               any      `ps:"SenderIPRanges"`
-	SenderType                                   any      `ps:"SenderType"`
-	SentTo                                       any      `ps:"SentTo"`
-	SentToMemberOf                               []string `ps:"SentToMemberOf"`
-	SetHeader                                    any      `ps:"SetHeader"`
-	SharedByIRMAgentRisk                         any      `ps:"SharedByIRMAgentRisk"`
-	SharedByIRMUserRisk                          any      `ps:"SharedByIRMUserRisk"`
-	SharedWithDomain                             any      `ps:"SharedWithDomain"`
-	SharepointBlockDomains                       any      `ps:"SharepointBlockDomains"`
-	SharepointBlockDomainsExcept                 any      `ps:"SharepointBlockDomainsExcept"`
-	SharepointBlockDomainsOrUsers                bool     `ps:"SharepointBlockDomainsOrUsers"`
-	SharepointBlockUsers                         any      `ps:"SharepointBlockUsers"`
-	SharepointBlockUsersExcept                   any      `ps:"SharepointBlockUsersExcept"`
-	SharepointMoveToQuarantineLocation           bool     `ps:"SharepointMoveToQuarantineLocation"`
-	StopPolicyProcessing                         bool     `ps:"StopPolicyProcessing"`
-	SubjectContainsWords                         any      `ps:"SubjectContainsWords"`
-	SubjectMatchesPatterns                       any      `ps:"SubjectMatchesPatterns"`
-	SubjectOrBodyContainsWords                   any      `ps:"SubjectOrBodyContainsWords"`
-	SubjectOrBodyMatchesPatterns                 any      `ps:"SubjectOrBodyMatchesPatterns"`
-	TeamsSharedWithParticipantCategory           any      `ps:"TeamsSharedWithParticipantCategory"`
-	ThirdPartyAppDlpRestrictions                 []string `ps:"ThirdPartyAppDlpRestrictions"`
-	TriggerPowerAutomateFlow                     string   `ps:"TriggerPowerAutomateFlow"`
-	UnscannableDocumentExtensionIs               any      `ps:"UnscannableDocumentExtensionIs"`
-	WithImportance                               any      `ps:"WithImportance"`
+	AccessedBy                                        []string              `ps:"AccessedBy"`
+	AccessedByMemberOf                                []string              `ps:"AccessedByMemberOf"`
+	AccessScope                                       any                   `ps:"AccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.AccessScope
+	AccessTimeControl                                 any                   `ps:"AccessTimeControl"`
+	ActivationDate                                    any                   `ps:"ActivationDate"` // System.DateTime
+	AddRecipients                                     any                   `ps:"AddRecipients"`  // PswsHashtable
+	AdvancedRule                                      string                `ps:"AdvancedRule"`
+	AlertProperties                                   any                   `ps:"AlertProperties"` // PswsHashtable
+	AnyOfRecipientAddressContainsWords                []string              `ps:"AnyOfRecipientAddressContainsWords"`
+	AnyOfRecipientAddressContainsWordsDelta           *adminapi.StringDelta `ps:"AnyOfRecipientAddressContainsWords"` // adds/removes values of AnyOfRecipientAddressContainsWords; takes precedence over it
+	AnyOfRecipientAddressMatchesPatterns              []string              `ps:"AnyOfRecipientAddressMatchesPatterns"`
+	AnyOfRecipientAddressMatchesPatternsDelta         *adminapi.StringDelta `ps:"AnyOfRecipientAddressMatchesPatterns"` // adds/removes values of AnyOfRecipientAddressMatchesPatterns; takes precedence over it
+	ApplyBrandingTemplate                             string                `ps:"ApplyBrandingTemplate"`
+	ApplyHtmlDisclaimer                               any                   `ps:"ApplyHtmlDisclaimer"` // PswsHashtable
+	AttachmentCountOver                               any                   `ps:"AttachmentCountOver"`
+	AttachmentIsNotLabeled                            *bool                 `ps:"AttachmentIsNotLabeled"`
+	BlockAccess                                       *bool                 `ps:"BlockAccess"`
+	BlockAccessScope                                  any                   `ps:"BlockAccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.BlockAccessScope
+	Comment                                           string                `ps:"Comment"`
+	ContentCharacterSetContainsWords                  []string              `ps:"ContentCharacterSetContainsWords"`
+	ContentCharacterSetContainsWordsDelta             *adminapi.StringDelta `ps:"ContentCharacterSetContainsWords"`    // adds/removes values of ContentCharacterSetContainsWords; takes precedence over it
+	ContentContainsSensitiveInformation               any                   `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
+	ContentExtensionMatchesWords                      []string              `ps:"ContentExtensionMatchesWords"`
+	ContentExtensionMatchesWordsDelta                 *adminapi.StringDelta `ps:"ContentExtensionMatchesWords"` // adds/removes values of ContentExtensionMatchesWords; takes precedence over it
+	ContentFileTypeMatches                            []string              `ps:"ContentFileTypeMatches"`
+	ContentFileTypeMatchesDelta                       *adminapi.StringDelta `ps:"ContentFileTypeMatches"` // adds/removes values of ContentFileTypeMatches; takes precedence over it
+	ContentIsNotLabeled                               *bool                 `ps:"ContentIsNotLabeled"`
+	ContentIsShared                                   *bool                 `ps:"ContentIsShared"`
+	ContentMissingSensitivityLabel                    any                   `ps:"ContentMissingSensitivityLabel"`
+	ContentPropertyContainsWords                      []string              `ps:"ContentPropertyContainsWords"`
+	ContentPropertyContainsWordsDelta                 *adminapi.StringDelta `ps:"ContentPropertyContainsWords"` // adds/removes values of ContentPropertyContainsWords; takes precedence over it
+	ContextPropertiesContainWords                     any                   `ps:"ContextPropertiesContainWords"`
+	DeviceManagementType                              any                   `ps:"DeviceManagementType"`
+	Disabled                                          *bool                 `ps:"Disabled"`
+	DisplayName                                       string                `ps:"DisplayName"`
+	DocumentContainsWords                             []string              `ps:"DocumentContainsWords"`
+	DocumentContainsWordsDelta                        *adminapi.StringDelta `ps:"DocumentContainsWords"` // adds/removes values of DocumentContainsWords; takes precedence over it
+	DocumentCreatedBy                                 []string              `ps:"DocumentCreatedBy"`
+	DocumentCreatedByDelta                            *adminapi.StringDelta `ps:"DocumentCreatedBy"` // adds/removes values of DocumentCreatedBy; takes precedence over it
+	DocumentCreatedByMemberOf                         []string              `ps:"DocumentCreatedByMemberOf"`
+	DocumentIsPasswordProtected                       *bool                 `ps:"DocumentIsPasswordProtected"`
+	DocumentIsUnsupported                             *bool                 `ps:"DocumentIsUnsupported"`
+	DocumentMatchesPatterns                           []string              `ps:"DocumentMatchesPatterns"`
+	DocumentMatchesPatternsDelta                      *adminapi.StringDelta `ps:"DocumentMatchesPatterns"` // adds/removes values of DocumentMatchesPatterns; takes precedence over it
+	DocumentNameMatchesPatterns                       []string              `ps:"DocumentNameMatchesPatterns"`
+	DocumentNameMatchesPatternsDelta                  *adminapi.StringDelta `ps:"DocumentNameMatchesPatterns"` // adds/removes values of DocumentNameMatchesPatterns; takes precedence over it
+	DocumentNameMatchesWords                          []string              `ps:"DocumentNameMatchesWords"`
+	DocumentNameMatchesWordsDelta                     *adminapi.StringDelta `ps:"DocumentNameMatchesWords"` // adds/removes values of DocumentNameMatchesWords; takes precedence over it
+	DocumentSizeOver                                  any                   `ps:"DocumentSizeOver"`         // Microsoft.Exchange.Data.ByteQuantifiedSize
+	EncryptRMSTemplate                                any                   `ps:"EncryptRMSTemplate"`       // RmsTemplateIdParameter
+	EndpointDlpBrowserRestrictions                    []string              `ps:"EndpointDlpBrowserRestrictions"`
+	EndpointDlpRestrictions                           any                   `ps:"EndpointDlpRestrictions"` // PswsHashtable[]
+	EnforcePortalAccess                               *bool                 `ps:"EnforcePortalAccess"`
+	EvaluateRulePerComponent                          *bool                 `ps:"EvaluateRulePerComponent"`
+	ExceptIfAccessedBy                                []string              `ps:"ExceptIfAccessedBy"`
+	ExceptIfAccessedByMemberOf                        []string              `ps:"ExceptIfAccessedByMemberOf"`
+	ExceptIfAccessScope                               any                   `ps:"ExceptIfAccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.AccessScope
+	ExceptIfAnyOfRecipientAddressContainsWords        []string              `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
+	ExceptIfAnyOfRecipientAddressContainsWordsDelta   *adminapi.StringDelta `ps:"ExceptIfAnyOfRecipientAddressContainsWords"` // adds/removes values of ExceptIfAnyOfRecipientAddressContainsWords; takes precedence over it
+	ExceptIfAnyOfRecipientAddressMatchesPatterns      []string              `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
+	ExceptIfAnyOfRecipientAddressMatchesPatternsDelta *adminapi.StringDelta `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"` // adds/removes values of ExceptIfAnyOfRecipientAddressMatchesPatterns; takes precedence over it
+	ExceptIfContentCharacterSetContainsWords          []string              `ps:"ExceptIfContentCharacterSetContainsWords"`
+	ExceptIfContentCharacterSetContainsWordsDelta     *adminapi.StringDelta `ps:"ExceptIfContentCharacterSetContainsWords"`    // adds/removes values of ExceptIfContentCharacterSetContainsWords; takes precedence over it
+	ExceptIfContentContainsSensitiveInformation       any                   `ps:"ExceptIfContentContainsSensitiveInformation"` // PswsHashtable[]
+	ExceptIfContentExtensionMatchesWords              []string              `ps:"ExceptIfContentExtensionMatchesWords"`
+	ExceptIfContentExtensionMatchesWordsDelta         *adminapi.StringDelta `ps:"ExceptIfContentExtensionMatchesWords"` // adds/removes values of ExceptIfContentExtensionMatchesWords; takes precedence over it
+	ExceptIfContentFileTypeMatches                    []string              `ps:"ExceptIfContentFileTypeMatches"`
+	ExceptIfContentFileTypeMatchesDelta               *adminapi.StringDelta `ps:"ExceptIfContentFileTypeMatches"` // adds/removes values of ExceptIfContentFileTypeMatches; takes precedence over it
+	ExceptIfContentIsShared                           *bool                 `ps:"ExceptIfContentIsShared"`
+	ExceptIfContentPropertyContainsWords              []string              `ps:"ExceptIfContentPropertyContainsWords"`
+	ExceptIfContentPropertyContainsWordsDelta         *adminapi.StringDelta `ps:"ExceptIfContentPropertyContainsWords"` // adds/removes values of ExceptIfContentPropertyContainsWords; takes precedence over it
+	ExceptIfContextPropertiesContainWords             any                   `ps:"ExceptIfContextPropertiesContainWords"`
+	ExceptIfDeviceManagementType                      any                   `ps:"ExceptIfDeviceManagementType"` // one of: Managed, Unmanaged
+	ExceptIfDocumentContainsWords                     []string              `ps:"ExceptIfDocumentContainsWords"`
+	ExceptIfDocumentContainsWordsDelta                *adminapi.StringDelta `ps:"ExceptIfDocumentContainsWords"` // adds/removes values of ExceptIfDocumentContainsWords; takes precedence over it
+	ExceptIfDocumentCreatedBy                         []string              `ps:"ExceptIfDocumentCreatedBy"`
+	ExceptIfDocumentCreatedByDelta                    *adminapi.StringDelta `ps:"ExceptIfDocumentCreatedBy"` // adds/removes values of ExceptIfDocumentCreatedBy; takes precedence over it
+	ExceptIfDocumentCreatedByMemberOf                 []string              `ps:"ExceptIfDocumentCreatedByMemberOf"`
+	ExceptIfDocumentIsPasswordProtected               *bool                 `ps:"ExceptIfDocumentIsPasswordProtected"`
+	ExceptIfDocumentIsUnsupported                     *bool                 `ps:"ExceptIfDocumentIsUnsupported"`
+	ExceptIfDocumentMatchesPatterns                   []string              `ps:"ExceptIfDocumentMatchesPatterns"`
+	ExceptIfDocumentMatchesPatternsDelta              *adminapi.StringDelta `ps:"ExceptIfDocumentMatchesPatterns"` // adds/removes values of ExceptIfDocumentMatchesPatterns; takes precedence over it
+	ExceptIfDocumentNameMatchesPatterns               []string              `ps:"ExceptIfDocumentNameMatchesPatterns"`
+	ExceptIfDocumentNameMatchesPatternsDelta          *adminapi.StringDelta `ps:"ExceptIfDocumentNameMatchesPatterns"` // adds/removes values of ExceptIfDocumentNameMatchesPatterns; takes precedence over it
+	ExceptIfDocumentNameMatchesWords                  []string              `ps:"ExceptIfDocumentNameMatchesWords"`
+	ExceptIfDocumentNameMatchesWordsDelta             *adminapi.StringDelta `ps:"ExceptIfDocumentNameMatchesWords"` // adds/removes values of ExceptIfDocumentNameMatchesWords; takes precedence over it
+	ExceptIfDocumentSizeOver                          any                   `ps:"ExceptIfDocumentSizeOver"`         // Microsoft.Exchange.Data.ByteQuantifiedSize
+	ExceptIfFrom                                      []string              `ps:"ExceptIfFrom"`
+	ExceptIfFromAddressContainsWords                  []string              `ps:"ExceptIfFromAddressContainsWords"`
+	ExceptIfFromAddressContainsWordsDelta             *adminapi.StringDelta `ps:"ExceptIfFromAddressContainsWords"` // adds/removes values of ExceptIfFromAddressContainsWords; takes precedence over it
+	ExceptIfFromAddressMatchesPatterns                []string              `ps:"ExceptIfFromAddressMatchesPatterns"`
+	ExceptIfFromAddressMatchesPatternsDelta           *adminapi.StringDelta `ps:"ExceptIfFromAddressMatchesPatterns"` // adds/removes values of ExceptIfFromAddressMatchesPatterns; takes precedence over it
+	ExceptIfFromMemberOf                              []string              `ps:"ExceptIfFromMemberOf"`
+	ExceptIfFromScope                                 any                   `ps:"ExceptIfFromScope"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.FromScope
+	ExceptIfHasSenderOverride                         *bool                 `ps:"ExceptIfHasSenderOverride"`
+	ExceptIfHeaderContainsTokens                      any                   `ps:"ExceptIfHeaderContainsTokens"`
+	ExceptIfHeaderContainsWords                       any                   `ps:"ExceptIfHeaderContainsWords"`   // PswsHashtable
+	ExceptIfHeaderMatchesPatterns                     any                   `ps:"ExceptIfHeaderMatchesPatterns"` // PswsHashtable
+	ExceptIfMessageLabelChangeDetected                any                   `ps:"ExceptIfMessageLabelChangeDetected"`
+	ExceptIfMessageSizeOver                           any                   `ps:"ExceptIfMessageSizeOver"`    // Microsoft.Exchange.Data.ByteQuantifiedSize
+	ExceptIfMessageTypeMatches                        any                   `ps:"ExceptIfMessageTypeMatches"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.MessageTypes
+	ExceptIfProcessingLimitExceeded                   *bool                 `ps:"ExceptIfProcessingLimitExceeded"`
+	ExceptIfRecipientADAttributeContainsWords         any                   `ps:"ExceptIfRecipientADAttributeContainsWords"`   // PswsHashtable
+	ExceptIfRecipientADAttributeMatchesPatterns       any                   `ps:"ExceptIfRecipientADAttributeMatchesPatterns"` // PswsHashtable
+	ExceptIfRecipientDomainIs                         []string              `ps:"ExceptIfRecipientDomainIs"`
+	ExceptIfRecipientDomainIsDelta                    *adminapi.StringDelta `ps:"ExceptIfRecipientDomainIs"`                // adds/removes values of ExceptIfRecipientDomainIs; takes precedence over it
+	ExceptIfSenderADAttributeContainsWords            any                   `ps:"ExceptIfSenderADAttributeContainsWords"`   // PswsHashtable
+	ExceptIfSenderADAttributeMatchesPatterns          any                   `ps:"ExceptIfSenderADAttributeMatchesPatterns"` // PswsHashtable
+	ExceptIfSenderDomainIs                            []string              `ps:"ExceptIfSenderDomainIs"`
+	ExceptIfSenderDomainIsDelta                       *adminapi.StringDelta `ps:"ExceptIfSenderDomainIs"` // adds/removes values of ExceptIfSenderDomainIs; takes precedence over it
+	ExceptIfSenderIPRanges                            []string              `ps:"ExceptIfSenderIPRanges"`
+	ExceptIfSenderIPRangesDelta                       *adminapi.StringDelta `ps:"ExceptIfSenderIPRanges"` // adds/removes values of ExceptIfSenderIPRanges; takes precedence over it
+	ExceptIfSentTo                                    []string              `ps:"ExceptIfSentTo"`
+	ExceptIfSentToDelta                               *adminapi.StringDelta `ps:"ExceptIfSentTo"` // adds/removes values of ExceptIfSentTo; takes precedence over it
+	ExceptIfSentToMemberOf                            []string              `ps:"ExceptIfSentToMemberOf"`
+	ExceptIfSharedWithDomain                          any                   `ps:"ExceptIfSharedWithDomain"`
+	ExceptIfSubjectContainsWords                      []string              `ps:"ExceptIfSubjectContainsWords"`
+	ExceptIfSubjectContainsWordsDelta                 *adminapi.StringDelta `ps:"ExceptIfSubjectContainsWords"` // adds/removes values of ExceptIfSubjectContainsWords; takes precedence over it
+	ExceptIfSubjectMatchesPatterns                    []string              `ps:"ExceptIfSubjectMatchesPatterns"`
+	ExceptIfSubjectMatchesPatternsDelta               *adminapi.StringDelta `ps:"ExceptIfSubjectMatchesPatterns"` // adds/removes values of ExceptIfSubjectMatchesPatterns; takes precedence over it
+	ExceptIfSubjectOrBodyContainsWords                []string              `ps:"ExceptIfSubjectOrBodyContainsWords"`
+	ExceptIfSubjectOrBodyContainsWordsDelta           *adminapi.StringDelta `ps:"ExceptIfSubjectOrBodyContainsWords"` // adds/removes values of ExceptIfSubjectOrBodyContainsWords; takes precedence over it
+	ExceptIfSubjectOrBodyMatchesPatterns              []string              `ps:"ExceptIfSubjectOrBodyMatchesPatterns"`
+	ExceptIfSubjectOrBodyMatchesPatternsDelta         *adminapi.StringDelta `ps:"ExceptIfSubjectOrBodyMatchesPatterns"` // adds/removes values of ExceptIfSubjectOrBodyMatchesPatterns; takes precedence over it
+	ExceptIfTeamsSharedWithParticipantCategory        any                   `ps:"ExceptIfTeamsSharedWithParticipantCategory"`
+	ExceptIfUnscannableDocumentExtensionIs            []string              `ps:"ExceptIfUnscannableDocumentExtensionIs"`
+	ExceptIfUnscannableDocumentExtensionIsDelta       *adminapi.StringDelta `ps:"ExceptIfUnscannableDocumentExtensionIs"` // adds/removes values of ExceptIfUnscannableDocumentExtensionIs; takes precedence over it
+	ExceptIfWithImportance                            any                   `ps:"ExceptIfWithImportance"`                 // Microsoft.Office.CompliancePolicy.Tasks.WithImportance
+	ExpiryDate                                        any                   `ps:"ExpiryDate"`                             // System.DateTime
+	From                                              []string              `ps:"From"`
+	FromAddressContainsWords                          []string              `ps:"FromAddressContainsWords"`
+	FromAddressContainsWordsDelta                     *adminapi.StringDelta `ps:"FromAddressContainsWords"` // adds/removes values of FromAddressContainsWords; takes precedence over it
+	FromAddressMatchesPatterns                        []string              `ps:"FromAddressMatchesPatterns"`
+	FromAddressMatchesPatternsDelta                   *adminapi.StringDelta `ps:"FromAddressMatchesPatterns"` // adds/removes values of FromAddressMatchesPatterns; takes precedence over it
+	FromMemberOf                                      []string              `ps:"FromMemberOf"`
+	FromScope                                         any                   `ps:"FromScope"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.FromScope
+	GenerateAlert                                     []string              `ps:"GenerateAlert"`
+	GenerateAlertDelta                                *adminapi.StringDelta `ps:"GenerateAlert"` // adds/removes values of GenerateAlert; takes precedence over it
+	GenerateIncidentReport                            []string              `ps:"GenerateIncidentReport"`
+	GenerateIncidentReportDelta                       *adminapi.StringDelta `ps:"GenerateIncidentReport"` // adds/removes values of GenerateIncidentReport; takes precedence over it
+	HasActivity                                       any                   `ps:"HasActivity"`            // Activity
+	HasLabelDowngradedFrom                            any                   `ps:"HasLabelDowngradedFrom"`
+	HasSenderOverride                                 *bool                 `ps:"HasSenderOverride"`
+	HeaderContainsTokens                              any                   `ps:"HeaderContainsTokens"`
+	HeaderContainsWords                               any                   `ps:"HeaderContainsWords"`   // PswsHashtable
+	HeaderMatchesPatterns                             any                   `ps:"HeaderMatchesPatterns"` // PswsHashtable
+	Identity                                          any                   `ps:"Identity"`              // ComplianceRuleIdParameter
+	IncidentReportContent                             []string              `ps:"IncidentReportContent"`
+	MapRecipients                                     any                   `ps:"MapRecipients"`
+	MessageIsNotLabeled                               *bool                 `ps:"MessageIsNotLabeled"`
+	MessageLabelChangeDetected                        any                   `ps:"MessageLabelChangeDetected"`
+	MessageSizeOver                                   any                   `ps:"MessageSizeOver"`    // Microsoft.Exchange.Data.ByteQuantifiedSize
+	MessageTypeMatches                                any                   `ps:"MessageTypeMatches"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.MessageTypes
+	MipRestrictAccess                                 any                   `ps:"MipRestrictAccess"`  // PswsHashtable[]
+	Moderate                                          any                   `ps:"Moderate"`           // PswsHashtable
+	ModifySubject                                     any                   `ps:"ModifySubject"`      // PswsHashtable
+	MoveToQuarantineLocation                          *bool                 `ps:"MoveToQuarantineLocation"`
+	NonBifurcatingAccessScope                         any                   `ps:"NonBifurcatingAccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.NonBifurcatingAccessScope
+	NotifyAllowOverride                               []string              `ps:"NotifyAllowOverride"`
+	NotifyEmailCustomSenderDisplayName                string                `ps:"NotifyEmailCustomSenderDisplayName"`
+	NotifyEmailCustomSubject                          string                `ps:"NotifyEmailCustomSubject"`
+	NotifyEmailCustomText                             string                `ps:"NotifyEmailCustomText"`
+	NotifyEmailExchangeIncludeAttachment              *bool                 `ps:"NotifyEmailExchangeIncludeAttachment"`
+	NotifyEmailOnedriveRemediationActions             any                   `ps:"NotifyEmailOnedriveRemediationActions"` // NotifyEmailRemediationActions
+	NotifyEndpointUser                                any                   `ps:"NotifyEndpointUser"`
+	NotifyJustificationCustomText                     string                `ps:"NotifyJustificationCustomText"`
+	NotifyJustificationCustomTextTranslations         any                   `ps:"NotifyJustificationCustomTextTranslations"`
+	NotifyOverrideRequirements                        any                   `ps:"NotifyOverrideRequirements"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyOverrideRequirements
+	NotifyPolicyTipCustomDialog                       string                `ps:"NotifyPolicyTipCustomDialog"`
+	NotifyPolicyTipCustomText                         string                `ps:"NotifyPolicyTipCustomText"`
+	NotifyPolicyTipCustomTextTranslations             []string              `ps:"NotifyPolicyTipCustomTextTranslations"`
+	NotifyPolicyTipCustomTextTranslationsDelta        *adminapi.StringDelta `ps:"NotifyPolicyTipCustomTextTranslations"` // adds/removes values of NotifyPolicyTipCustomTextTranslations; takes precedence over it
+	NotifyPolicyTipDisplayOption                      any                   `ps:"NotifyPolicyTipDisplayOption"`          // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyTipDisplayOption
+	NotifyPolicyTipUrl                                string                `ps:"NotifyPolicyTipUrl"`
+	NotifyUser                                        []string              `ps:"NotifyUser"`
+	NotifyUserDelta                                   *adminapi.StringDelta `ps:"NotifyUser"`                       // adds/removes values of NotifyUser; takes precedence over it
+	NotifyUserType                                    any                   `ps:"NotifyUserType"`                   // Microsoft.Office.CompliancePolicy.PolicyEvaluation.NotifyUserType
+	OnPremisesScannerDlpRestrictions                  any                   `ps:"OnPremisesScannerDlpRestrictions"` // PswsHashtable[]
+	PowerBIDlpRestrictions                            []string              `ps:"PowerBIDlpRestrictions"`
+	PrependSubject                                    string                `ps:"PrependSubject"`
+	Priority                                          *int64                `ps:"Priority"`
+	ProcessingLimitExceeded                           *bool                 `ps:"ProcessingLimitExceeded"`
+	Quarantine                                        *bool                 `ps:"Quarantine"`
+	RecipientADAttributeContainsWords                 any                   `ps:"RecipientADAttributeContainsWords"`   // PswsHashtable
+	RecipientADAttributeMatchesPatterns               any                   `ps:"RecipientADAttributeMatchesPatterns"` // PswsHashtable
+	RecipientDomainIs                                 []string              `ps:"RecipientDomainIs"`
+	RecipientDomainIsDelta                            *adminapi.StringDelta `ps:"RecipientDomainIs"` // adds/removes values of RecipientDomainIs; takes precedence over it
+	RedactSensitiveInfo                               any                   `ps:"RedactSensitiveInfo"`
+	RedirectMessageTo                                 []string              `ps:"RedirectMessageTo"`
+	RemoveHeader                                      []string              `ps:"RemoveHeader"`
+	RemoveHeaderDelta                                 *adminapi.StringDelta `ps:"RemoveHeader"` // adds/removes values of RemoveHeader; takes precedence over it
+	RemoveRMSTemplate                                 *bool                 `ps:"RemoveRMSTemplate"`
+	ReportSeverityLevel                               any                   `ps:"ReportSeverityLevel"` // RuleSeverity
+	RestrictAccess                                    any                   `ps:"RestrictAccess"`      // System.Collections.Hashtable[]
+	RestrictBrowserAccess                             *bool                 `ps:"RestrictBrowserAccess"`
+	RestrictWebGrounding                              *bool                 `ps:"RestrictWebGrounding"`
+	RuleErrorAction                                   any                   `ps:"RuleErrorAction"`                  // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyRuleErrorAction
+	SenderADAttributeContainsWords                    any                   `ps:"SenderADAttributeContainsWords"`   // PswsHashtable
+	SenderADAttributeMatchesPatterns                  any                   `ps:"SenderADAttributeMatchesPatterns"` // PswsHashtable
+	SenderAddressLocation                             any                   `ps:"SenderAddressLocation"`            // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicySenderAddressLocation
+	SenderDomainIs                                    []string              `ps:"SenderDomainIs"`
+	SenderDomainIsDelta                               *adminapi.StringDelta `ps:"SenderDomainIs"` // adds/removes values of SenderDomainIs; takes precedence over it
+	SenderIPRanges                                    []string              `ps:"SenderIPRanges"`
+	SenderIPRangesDelta                               *adminapi.StringDelta `ps:"SenderIPRanges"` // adds/removes values of SenderIPRanges; takes precedence over it
+	SenderType                                        any                   `ps:"SenderType"`
+	SentTo                                            []string              `ps:"SentTo"`
+	SentToDelta                                       *adminapi.StringDelta `ps:"SentTo"` // adds/removes values of SentTo; takes precedence over it
+	SentToMemberOf                                    []string              `ps:"SentToMemberOf"`
+	SetHeader                                         any                   `ps:"SetHeader"` // PswsHashtable
+	SharedByIRMAgentRisk                              any                   `ps:"SharedByIRMAgentRisk"`
+	SharedByIRMUserRisk                               []string              `ps:"SharedByIRMUserRisk"`
+	SharedByIRMUserRiskDelta                          *adminapi.StringDelta `ps:"SharedByIRMUserRisk"` // adds/removes values of SharedByIRMUserRisk; takes precedence over it
+	SharedWithDomain                                  any                   `ps:"SharedWithDomain"`
+	SharepointBlockDomains                            any                   `ps:"SharepointBlockDomains"`
+	SharepointBlockDomainsExcept                      any                   `ps:"SharepointBlockDomainsExcept"`
+	SharepointBlockDomainsOrUsers                     *bool                 `ps:"SharepointBlockDomainsOrUsers"`
+	SharepointBlockUsers                              any                   `ps:"SharepointBlockUsers"`
+	SharepointBlockUsersExcept                        any                   `ps:"SharepointBlockUsersExcept"`
+	SharepointMoveToQuarantineLocation                *bool                 `ps:"SharepointMoveToQuarantineLocation"`
+	StopPolicyProcessing                              *bool                 `ps:"StopPolicyProcessing"`
+	SubjectContainsWords                              []string              `ps:"SubjectContainsWords"`
+	SubjectContainsWordsDelta                         *adminapi.StringDelta `ps:"SubjectContainsWords"` // adds/removes values of SubjectContainsWords; takes precedence over it
+	SubjectMatchesPatterns                            []string              `ps:"SubjectMatchesPatterns"`
+	SubjectMatchesPatternsDelta                       *adminapi.StringDelta `ps:"SubjectMatchesPatterns"` // adds/removes values of SubjectMatchesPatterns; takes precedence over it
+	SubjectOrBodyContainsWords                        []string              `ps:"SubjectOrBodyContainsWords"`
+	SubjectOrBodyContainsWordsDelta                   *adminapi.StringDelta `ps:"SubjectOrBodyContainsWords"` // adds/removes values of SubjectOrBodyContainsWords; takes precedence over it
+	SubjectOrBodyMatchesPatterns                      []string              `ps:"SubjectOrBodyMatchesPatterns"`
+	SubjectOrBodyMatchesPatternsDelta                 *adminapi.StringDelta `ps:"SubjectOrBodyMatchesPatterns"` // adds/removes values of SubjectOrBodyMatchesPatterns; takes precedence over it
+	TeamsSharedWithParticipantCategory                any                   `ps:"TeamsSharedWithParticipantCategory"`
+	ThirdPartyAppDlpRestrictions                      []string              `ps:"ThirdPartyAppDlpRestrictions"`
+	TriggerPowerAutomateFlow                          string                `ps:"TriggerPowerAutomateFlow"`
+	UnscannableDocumentExtensionIs                    []string              `ps:"UnscannableDocumentExtensionIs"`
+	UnscannableDocumentExtensionIsDelta               *adminapi.StringDelta `ps:"UnscannableDocumentExtensionIs"` // adds/removes values of UnscannableDocumentExtensionIs; takes precedence over it
+	WithImportance                                    any                   `ps:"WithImportance"`                 // Microsoft.Office.CompliancePolicy.Tasks.WithImportance
 }
 
 func (p SetDlpComplianceRuleParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.AccessedBy) > 0 {
+	if p.AccessedBy != nil {
 		m["AccessedBy"] = p.AccessedBy
 	}
-	if len(p.AccessedByMemberOf) > 0 {
+	if p.AccessedByMemberOf != nil {
 		m["AccessedByMemberOf"] = p.AccessedByMemberOf
 	}
 	if p.AccessScope != nil {
@@ -14936,10 +15310,14 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.AlertProperties != nil {
 		m["AlertProperties"] = p.AlertProperties
 	}
-	if p.AnyOfRecipientAddressContainsWords != nil {
+	if p.AnyOfRecipientAddressContainsWordsDelta != nil {
+		m["AnyOfRecipientAddressContainsWords"] = *p.AnyOfRecipientAddressContainsWordsDelta
+	} else if p.AnyOfRecipientAddressContainsWords != nil {
 		m["AnyOfRecipientAddressContainsWords"] = p.AnyOfRecipientAddressContainsWords
 	}
-	if p.AnyOfRecipientAddressMatchesPatterns != nil {
+	if p.AnyOfRecipientAddressMatchesPatternsDelta != nil {
+		m["AnyOfRecipientAddressMatchesPatterns"] = *p.AnyOfRecipientAddressMatchesPatternsDelta
+	} else if p.AnyOfRecipientAddressMatchesPatterns != nil {
 		m["AnyOfRecipientAddressMatchesPatterns"] = p.AnyOfRecipientAddressMatchesPatterns
 	}
 	if p.ApplyBrandingTemplate != "" {
@@ -14951,11 +15329,11 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.AttachmentCountOver != nil {
 		m["AttachmentCountOver"] = p.AttachmentCountOver
 	}
-	if p.AttachmentIsNotLabeled {
-		m["AttachmentIsNotLabeled"] = true
+	if p.AttachmentIsNotLabeled != nil {
+		m["AttachmentIsNotLabeled"] = *p.AttachmentIsNotLabeled
 	}
-	if p.BlockAccess {
-		m["BlockAccess"] = true
+	if p.BlockAccess != nil {
+		m["BlockAccess"] = *p.BlockAccess
 	}
 	if p.BlockAccessScope != nil {
 		m["BlockAccessScope"] = p.BlockAccessScope
@@ -14963,28 +15341,36 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.ContentCharacterSetContainsWords != nil {
+	if p.ContentCharacterSetContainsWordsDelta != nil {
+		m["ContentCharacterSetContainsWords"] = *p.ContentCharacterSetContainsWordsDelta
+	} else if p.ContentCharacterSetContainsWords != nil {
 		m["ContentCharacterSetContainsWords"] = p.ContentCharacterSetContainsWords
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
-	if p.ContentExtensionMatchesWords != nil {
+	if p.ContentExtensionMatchesWordsDelta != nil {
+		m["ContentExtensionMatchesWords"] = *p.ContentExtensionMatchesWordsDelta
+	} else if p.ContentExtensionMatchesWords != nil {
 		m["ContentExtensionMatchesWords"] = p.ContentExtensionMatchesWords
 	}
-	if p.ContentFileTypeMatches != nil {
+	if p.ContentFileTypeMatchesDelta != nil {
+		m["ContentFileTypeMatches"] = *p.ContentFileTypeMatchesDelta
+	} else if p.ContentFileTypeMatches != nil {
 		m["ContentFileTypeMatches"] = p.ContentFileTypeMatches
 	}
-	if p.ContentIsNotLabeled {
-		m["ContentIsNotLabeled"] = true
+	if p.ContentIsNotLabeled != nil {
+		m["ContentIsNotLabeled"] = *p.ContentIsNotLabeled
 	}
-	if p.ContentIsShared {
-		m["ContentIsShared"] = true
+	if p.ContentIsShared != nil {
+		m["ContentIsShared"] = *p.ContentIsShared
 	}
 	if p.ContentMissingSensitivityLabel != nil {
 		m["ContentMissingSensitivityLabel"] = p.ContentMissingSensitivityLabel
 	}
-	if p.ContentPropertyContainsWords != nil {
+	if p.ContentPropertyContainsWordsDelta != nil {
+		m["ContentPropertyContainsWords"] = *p.ContentPropertyContainsWordsDelta
+	} else if p.ContentPropertyContainsWords != nil {
 		m["ContentPropertyContainsWords"] = p.ContentPropertyContainsWords
 	}
 	if p.ContextPropertiesContainWords != nil {
@@ -14993,34 +15379,44 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.DeviceManagementType != nil {
 		m["DeviceManagementType"] = p.DeviceManagementType
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
 	if p.DisplayName != "" {
 		m["DisplayName"] = p.DisplayName
 	}
-	if p.DocumentContainsWords != nil {
+	if p.DocumentContainsWordsDelta != nil {
+		m["DocumentContainsWords"] = *p.DocumentContainsWordsDelta
+	} else if p.DocumentContainsWords != nil {
 		m["DocumentContainsWords"] = p.DocumentContainsWords
 	}
-	if p.DocumentCreatedBy != nil {
+	if p.DocumentCreatedByDelta != nil {
+		m["DocumentCreatedBy"] = *p.DocumentCreatedByDelta
+	} else if p.DocumentCreatedBy != nil {
 		m["DocumentCreatedBy"] = p.DocumentCreatedBy
 	}
-	if len(p.DocumentCreatedByMemberOf) > 0 {
+	if p.DocumentCreatedByMemberOf != nil {
 		m["DocumentCreatedByMemberOf"] = p.DocumentCreatedByMemberOf
 	}
-	if p.DocumentIsPasswordProtected {
-		m["DocumentIsPasswordProtected"] = true
+	if p.DocumentIsPasswordProtected != nil {
+		m["DocumentIsPasswordProtected"] = *p.DocumentIsPasswordProtected
 	}
-	if p.DocumentIsUnsupported {
-		m["DocumentIsUnsupported"] = true
+	if p.DocumentIsUnsupported != nil {
+		m["DocumentIsUnsupported"] = *p.DocumentIsUnsupported
 	}
-	if p.DocumentMatchesPatterns != nil {
+	if p.DocumentMatchesPatternsDelta != nil {
+		m["DocumentMatchesPatterns"] = *p.DocumentMatchesPatternsDelta
+	} else if p.DocumentMatchesPatterns != nil {
 		m["DocumentMatchesPatterns"] = p.DocumentMatchesPatterns
 	}
-	if p.DocumentNameMatchesPatterns != nil {
+	if p.DocumentNameMatchesPatternsDelta != nil {
+		m["DocumentNameMatchesPatterns"] = *p.DocumentNameMatchesPatternsDelta
+	} else if p.DocumentNameMatchesPatterns != nil {
 		m["DocumentNameMatchesPatterns"] = p.DocumentNameMatchesPatterns
 	}
-	if p.DocumentNameMatchesWords != nil {
+	if p.DocumentNameMatchesWordsDelta != nil {
+		m["DocumentNameMatchesWords"] = *p.DocumentNameMatchesWordsDelta
+	} else if p.DocumentNameMatchesWords != nil {
 		m["DocumentNameMatchesWords"] = p.DocumentNameMatchesWords
 	}
 	if p.DocumentSizeOver != nil {
@@ -15029,49 +15425,61 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.EncryptRMSTemplate != nil {
 		m["EncryptRMSTemplate"] = p.EncryptRMSTemplate
 	}
-	if len(p.EndpointDlpBrowserRestrictions) > 0 {
+	if p.EndpointDlpBrowserRestrictions != nil {
 		m["EndpointDlpBrowserRestrictions"] = p.EndpointDlpBrowserRestrictions
 	}
-	if len(p.EndpointDlpRestrictions) > 0 {
+	if p.EndpointDlpRestrictions != nil {
 		m["EndpointDlpRestrictions"] = p.EndpointDlpRestrictions
 	}
-	if p.EnforcePortalAccess {
-		m["EnforcePortalAccess"] = true
+	if p.EnforcePortalAccess != nil {
+		m["EnforcePortalAccess"] = *p.EnforcePortalAccess
 	}
-	if p.EvaluateRulePerComponent {
-		m["EvaluateRulePerComponent"] = true
+	if p.EvaluateRulePerComponent != nil {
+		m["EvaluateRulePerComponent"] = *p.EvaluateRulePerComponent
 	}
-	if len(p.ExceptIfAccessedBy) > 0 {
+	if p.ExceptIfAccessedBy != nil {
 		m["ExceptIfAccessedBy"] = p.ExceptIfAccessedBy
 	}
-	if len(p.ExceptIfAccessedByMemberOf) > 0 {
+	if p.ExceptIfAccessedByMemberOf != nil {
 		m["ExceptIfAccessedByMemberOf"] = p.ExceptIfAccessedByMemberOf
 	}
 	if p.ExceptIfAccessScope != nil {
 		m["ExceptIfAccessScope"] = p.ExceptIfAccessScope
 	}
-	if p.ExceptIfAnyOfRecipientAddressContainsWords != nil {
+	if p.ExceptIfAnyOfRecipientAddressContainsWordsDelta != nil {
+		m["ExceptIfAnyOfRecipientAddressContainsWords"] = *p.ExceptIfAnyOfRecipientAddressContainsWordsDelta
+	} else if p.ExceptIfAnyOfRecipientAddressContainsWords != nil {
 		m["ExceptIfAnyOfRecipientAddressContainsWords"] = p.ExceptIfAnyOfRecipientAddressContainsWords
 	}
-	if p.ExceptIfAnyOfRecipientAddressMatchesPatterns != nil {
+	if p.ExceptIfAnyOfRecipientAddressMatchesPatternsDelta != nil {
+		m["ExceptIfAnyOfRecipientAddressMatchesPatterns"] = *p.ExceptIfAnyOfRecipientAddressMatchesPatternsDelta
+	} else if p.ExceptIfAnyOfRecipientAddressMatchesPatterns != nil {
 		m["ExceptIfAnyOfRecipientAddressMatchesPatterns"] = p.ExceptIfAnyOfRecipientAddressMatchesPatterns
 	}
-	if p.ExceptIfContentCharacterSetContainsWords != nil {
+	if p.ExceptIfContentCharacterSetContainsWordsDelta != nil {
+		m["ExceptIfContentCharacterSetContainsWords"] = *p.ExceptIfContentCharacterSetContainsWordsDelta
+	} else if p.ExceptIfContentCharacterSetContainsWords != nil {
 		m["ExceptIfContentCharacterSetContainsWords"] = p.ExceptIfContentCharacterSetContainsWords
 	}
-	if len(p.ExceptIfContentContainsSensitiveInformation) > 0 {
+	if p.ExceptIfContentContainsSensitiveInformation != nil {
 		m["ExceptIfContentContainsSensitiveInformation"] = p.ExceptIfContentContainsSensitiveInformation
 	}
-	if p.ExceptIfContentExtensionMatchesWords != nil {
+	if p.ExceptIfContentExtensionMatchesWordsDelta != nil {
+		m["ExceptIfContentExtensionMatchesWords"] = *p.ExceptIfContentExtensionMatchesWordsDelta
+	} else if p.ExceptIfContentExtensionMatchesWords != nil {
 		m["ExceptIfContentExtensionMatchesWords"] = p.ExceptIfContentExtensionMatchesWords
 	}
-	if p.ExceptIfContentFileTypeMatches != nil {
+	if p.ExceptIfContentFileTypeMatchesDelta != nil {
+		m["ExceptIfContentFileTypeMatches"] = *p.ExceptIfContentFileTypeMatchesDelta
+	} else if p.ExceptIfContentFileTypeMatches != nil {
 		m["ExceptIfContentFileTypeMatches"] = p.ExceptIfContentFileTypeMatches
 	}
-	if p.ExceptIfContentIsShared {
-		m["ExceptIfContentIsShared"] = true
+	if p.ExceptIfContentIsShared != nil {
+		m["ExceptIfContentIsShared"] = *p.ExceptIfContentIsShared
 	}
-	if p.ExceptIfContentPropertyContainsWords != nil {
+	if p.ExceptIfContentPropertyContainsWordsDelta != nil {
+		m["ExceptIfContentPropertyContainsWords"] = *p.ExceptIfContentPropertyContainsWordsDelta
+	} else if p.ExceptIfContentPropertyContainsWords != nil {
 		m["ExceptIfContentPropertyContainsWords"] = p.ExceptIfContentPropertyContainsWords
 	}
 	if p.ExceptIfContextPropertiesContainWords != nil {
@@ -15080,50 +15488,64 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfDeviceManagementType != nil {
 		m["ExceptIfDeviceManagementType"] = p.ExceptIfDeviceManagementType
 	}
-	if p.ExceptIfDocumentContainsWords != nil {
+	if p.ExceptIfDocumentContainsWordsDelta != nil {
+		m["ExceptIfDocumentContainsWords"] = *p.ExceptIfDocumentContainsWordsDelta
+	} else if p.ExceptIfDocumentContainsWords != nil {
 		m["ExceptIfDocumentContainsWords"] = p.ExceptIfDocumentContainsWords
 	}
-	if p.ExceptIfDocumentCreatedBy != nil {
+	if p.ExceptIfDocumentCreatedByDelta != nil {
+		m["ExceptIfDocumentCreatedBy"] = *p.ExceptIfDocumentCreatedByDelta
+	} else if p.ExceptIfDocumentCreatedBy != nil {
 		m["ExceptIfDocumentCreatedBy"] = p.ExceptIfDocumentCreatedBy
 	}
-	if len(p.ExceptIfDocumentCreatedByMemberOf) > 0 {
+	if p.ExceptIfDocumentCreatedByMemberOf != nil {
 		m["ExceptIfDocumentCreatedByMemberOf"] = p.ExceptIfDocumentCreatedByMemberOf
 	}
-	if p.ExceptIfDocumentIsPasswordProtected {
-		m["ExceptIfDocumentIsPasswordProtected"] = true
+	if p.ExceptIfDocumentIsPasswordProtected != nil {
+		m["ExceptIfDocumentIsPasswordProtected"] = *p.ExceptIfDocumentIsPasswordProtected
 	}
-	if p.ExceptIfDocumentIsUnsupported {
-		m["ExceptIfDocumentIsUnsupported"] = true
+	if p.ExceptIfDocumentIsUnsupported != nil {
+		m["ExceptIfDocumentIsUnsupported"] = *p.ExceptIfDocumentIsUnsupported
 	}
-	if p.ExceptIfDocumentMatchesPatterns != nil {
+	if p.ExceptIfDocumentMatchesPatternsDelta != nil {
+		m["ExceptIfDocumentMatchesPatterns"] = *p.ExceptIfDocumentMatchesPatternsDelta
+	} else if p.ExceptIfDocumentMatchesPatterns != nil {
 		m["ExceptIfDocumentMatchesPatterns"] = p.ExceptIfDocumentMatchesPatterns
 	}
-	if p.ExceptIfDocumentNameMatchesPatterns != nil {
+	if p.ExceptIfDocumentNameMatchesPatternsDelta != nil {
+		m["ExceptIfDocumentNameMatchesPatterns"] = *p.ExceptIfDocumentNameMatchesPatternsDelta
+	} else if p.ExceptIfDocumentNameMatchesPatterns != nil {
 		m["ExceptIfDocumentNameMatchesPatterns"] = p.ExceptIfDocumentNameMatchesPatterns
 	}
-	if p.ExceptIfDocumentNameMatchesWords != nil {
+	if p.ExceptIfDocumentNameMatchesWordsDelta != nil {
+		m["ExceptIfDocumentNameMatchesWords"] = *p.ExceptIfDocumentNameMatchesWordsDelta
+	} else if p.ExceptIfDocumentNameMatchesWords != nil {
 		m["ExceptIfDocumentNameMatchesWords"] = p.ExceptIfDocumentNameMatchesWords
 	}
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
-	if len(p.ExceptIfFrom) > 0 {
+	if p.ExceptIfFrom != nil {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
-	if p.ExceptIfFromAddressContainsWords != nil {
+	if p.ExceptIfFromAddressContainsWordsDelta != nil {
+		m["ExceptIfFromAddressContainsWords"] = *p.ExceptIfFromAddressContainsWordsDelta
+	} else if p.ExceptIfFromAddressContainsWords != nil {
 		m["ExceptIfFromAddressContainsWords"] = p.ExceptIfFromAddressContainsWords
 	}
-	if p.ExceptIfFromAddressMatchesPatterns != nil {
+	if p.ExceptIfFromAddressMatchesPatternsDelta != nil {
+		m["ExceptIfFromAddressMatchesPatterns"] = *p.ExceptIfFromAddressMatchesPatternsDelta
+	} else if p.ExceptIfFromAddressMatchesPatterns != nil {
 		m["ExceptIfFromAddressMatchesPatterns"] = p.ExceptIfFromAddressMatchesPatterns
 	}
-	if len(p.ExceptIfFromMemberOf) > 0 {
+	if p.ExceptIfFromMemberOf != nil {
 		m["ExceptIfFromMemberOf"] = p.ExceptIfFromMemberOf
 	}
 	if p.ExceptIfFromScope != nil {
 		m["ExceptIfFromScope"] = p.ExceptIfFromScope
 	}
-	if p.ExceptIfHasSenderOverride {
-		m["ExceptIfHasSenderOverride"] = true
+	if p.ExceptIfHasSenderOverride != nil {
+		m["ExceptIfHasSenderOverride"] = *p.ExceptIfHasSenderOverride
 	}
 	if p.ExceptIfHeaderContainsTokens != nil {
 		m["ExceptIfHeaderContainsTokens"] = p.ExceptIfHeaderContainsTokens
@@ -15143,8 +15565,8 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfMessageTypeMatches != nil {
 		m["ExceptIfMessageTypeMatches"] = p.ExceptIfMessageTypeMatches
 	}
-	if p.ExceptIfProcessingLimitExceeded {
-		m["ExceptIfProcessingLimitExceeded"] = true
+	if p.ExceptIfProcessingLimitExceeded != nil {
+		m["ExceptIfProcessingLimitExceeded"] = *p.ExceptIfProcessingLimitExceeded
 	}
 	if p.ExceptIfRecipientADAttributeContainsWords != nil {
 		m["ExceptIfRecipientADAttributeContainsWords"] = p.ExceptIfRecipientADAttributeContainsWords
@@ -15152,7 +15574,9 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfRecipientADAttributeMatchesPatterns != nil {
 		m["ExceptIfRecipientADAttributeMatchesPatterns"] = p.ExceptIfRecipientADAttributeMatchesPatterns
 	}
-	if p.ExceptIfRecipientDomainIs != nil {
+	if p.ExceptIfRecipientDomainIsDelta != nil {
+		m["ExceptIfRecipientDomainIs"] = *p.ExceptIfRecipientDomainIsDelta
+	} else if p.ExceptIfRecipientDomainIs != nil {
 		m["ExceptIfRecipientDomainIs"] = p.ExceptIfRecipientDomainIs
 	}
 	if p.ExceptIfSenderADAttributeContainsWords != nil {
@@ -15161,37 +15585,53 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfSenderADAttributeMatchesPatterns != nil {
 		m["ExceptIfSenderADAttributeMatchesPatterns"] = p.ExceptIfSenderADAttributeMatchesPatterns
 	}
-	if p.ExceptIfSenderDomainIs != nil {
+	if p.ExceptIfSenderDomainIsDelta != nil {
+		m["ExceptIfSenderDomainIs"] = *p.ExceptIfSenderDomainIsDelta
+	} else if p.ExceptIfSenderDomainIs != nil {
 		m["ExceptIfSenderDomainIs"] = p.ExceptIfSenderDomainIs
 	}
-	if p.ExceptIfSenderIPRanges != nil {
+	if p.ExceptIfSenderIPRangesDelta != nil {
+		m["ExceptIfSenderIPRanges"] = *p.ExceptIfSenderIPRangesDelta
+	} else if p.ExceptIfSenderIPRanges != nil {
 		m["ExceptIfSenderIPRanges"] = p.ExceptIfSenderIPRanges
 	}
-	if p.ExceptIfSentTo != nil {
+	if p.ExceptIfSentToDelta != nil {
+		m["ExceptIfSentTo"] = *p.ExceptIfSentToDelta
+	} else if p.ExceptIfSentTo != nil {
 		m["ExceptIfSentTo"] = p.ExceptIfSentTo
 	}
-	if len(p.ExceptIfSentToMemberOf) > 0 {
+	if p.ExceptIfSentToMemberOf != nil {
 		m["ExceptIfSentToMemberOf"] = p.ExceptIfSentToMemberOf
 	}
 	if p.ExceptIfSharedWithDomain != nil {
 		m["ExceptIfSharedWithDomain"] = p.ExceptIfSharedWithDomain
 	}
-	if p.ExceptIfSubjectContainsWords != nil {
+	if p.ExceptIfSubjectContainsWordsDelta != nil {
+		m["ExceptIfSubjectContainsWords"] = *p.ExceptIfSubjectContainsWordsDelta
+	} else if p.ExceptIfSubjectContainsWords != nil {
 		m["ExceptIfSubjectContainsWords"] = p.ExceptIfSubjectContainsWords
 	}
-	if p.ExceptIfSubjectMatchesPatterns != nil {
+	if p.ExceptIfSubjectMatchesPatternsDelta != nil {
+		m["ExceptIfSubjectMatchesPatterns"] = *p.ExceptIfSubjectMatchesPatternsDelta
+	} else if p.ExceptIfSubjectMatchesPatterns != nil {
 		m["ExceptIfSubjectMatchesPatterns"] = p.ExceptIfSubjectMatchesPatterns
 	}
-	if p.ExceptIfSubjectOrBodyContainsWords != nil {
+	if p.ExceptIfSubjectOrBodyContainsWordsDelta != nil {
+		m["ExceptIfSubjectOrBodyContainsWords"] = *p.ExceptIfSubjectOrBodyContainsWordsDelta
+	} else if p.ExceptIfSubjectOrBodyContainsWords != nil {
 		m["ExceptIfSubjectOrBodyContainsWords"] = p.ExceptIfSubjectOrBodyContainsWords
 	}
-	if p.ExceptIfSubjectOrBodyMatchesPatterns != nil {
+	if p.ExceptIfSubjectOrBodyMatchesPatternsDelta != nil {
+		m["ExceptIfSubjectOrBodyMatchesPatterns"] = *p.ExceptIfSubjectOrBodyMatchesPatternsDelta
+	} else if p.ExceptIfSubjectOrBodyMatchesPatterns != nil {
 		m["ExceptIfSubjectOrBodyMatchesPatterns"] = p.ExceptIfSubjectOrBodyMatchesPatterns
 	}
 	if p.ExceptIfTeamsSharedWithParticipantCategory != nil {
 		m["ExceptIfTeamsSharedWithParticipantCategory"] = p.ExceptIfTeamsSharedWithParticipantCategory
 	}
-	if p.ExceptIfUnscannableDocumentExtensionIs != nil {
+	if p.ExceptIfUnscannableDocumentExtensionIsDelta != nil {
+		m["ExceptIfUnscannableDocumentExtensionIs"] = *p.ExceptIfUnscannableDocumentExtensionIsDelta
+	} else if p.ExceptIfUnscannableDocumentExtensionIs != nil {
 		m["ExceptIfUnscannableDocumentExtensionIs"] = p.ExceptIfUnscannableDocumentExtensionIs
 	}
 	if p.ExceptIfWithImportance != nil {
@@ -15200,25 +15640,33 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.ExpiryDate != nil {
 		m["ExpiryDate"] = p.ExpiryDate
 	}
-	if len(p.From) > 0 {
+	if p.From != nil {
 		m["From"] = p.From
 	}
-	if p.FromAddressContainsWords != nil {
+	if p.FromAddressContainsWordsDelta != nil {
+		m["FromAddressContainsWords"] = *p.FromAddressContainsWordsDelta
+	} else if p.FromAddressContainsWords != nil {
 		m["FromAddressContainsWords"] = p.FromAddressContainsWords
 	}
-	if p.FromAddressMatchesPatterns != nil {
+	if p.FromAddressMatchesPatternsDelta != nil {
+		m["FromAddressMatchesPatterns"] = *p.FromAddressMatchesPatternsDelta
+	} else if p.FromAddressMatchesPatterns != nil {
 		m["FromAddressMatchesPatterns"] = p.FromAddressMatchesPatterns
 	}
-	if len(p.FromMemberOf) > 0 {
+	if p.FromMemberOf != nil {
 		m["FromMemberOf"] = p.FromMemberOf
 	}
 	if p.FromScope != nil {
 		m["FromScope"] = p.FromScope
 	}
-	if p.GenerateAlert != nil {
+	if p.GenerateAlertDelta != nil {
+		m["GenerateAlert"] = *p.GenerateAlertDelta
+	} else if p.GenerateAlert != nil {
 		m["GenerateAlert"] = p.GenerateAlert
 	}
-	if p.GenerateIncidentReport != nil {
+	if p.GenerateIncidentReportDelta != nil {
+		m["GenerateIncidentReport"] = *p.GenerateIncidentReportDelta
+	} else if p.GenerateIncidentReport != nil {
 		m["GenerateIncidentReport"] = p.GenerateIncidentReport
 	}
 	if p.HasActivity != nil {
@@ -15227,8 +15675,8 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.HasLabelDowngradedFrom != nil {
 		m["HasLabelDowngradedFrom"] = p.HasLabelDowngradedFrom
 	}
-	if p.HasSenderOverride {
-		m["HasSenderOverride"] = true
+	if p.HasSenderOverride != nil {
+		m["HasSenderOverride"] = *p.HasSenderOverride
 	}
 	if p.HeaderContainsTokens != nil {
 		m["HeaderContainsTokens"] = p.HeaderContainsTokens
@@ -15242,14 +15690,14 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.IncidentReportContent) > 0 {
+	if p.IncidentReportContent != nil {
 		m["IncidentReportContent"] = p.IncidentReportContent
 	}
 	if p.MapRecipients != nil {
 		m["MapRecipients"] = p.MapRecipients
 	}
-	if p.MessageIsNotLabeled {
-		m["MessageIsNotLabeled"] = true
+	if p.MessageIsNotLabeled != nil {
+		m["MessageIsNotLabeled"] = *p.MessageIsNotLabeled
 	}
 	if p.MessageLabelChangeDetected != nil {
 		m["MessageLabelChangeDetected"] = p.MessageLabelChangeDetected
@@ -15260,7 +15708,7 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.MessageTypeMatches != nil {
 		m["MessageTypeMatches"] = p.MessageTypeMatches
 	}
-	if len(p.MipRestrictAccess) > 0 {
+	if p.MipRestrictAccess != nil {
 		m["MipRestrictAccess"] = p.MipRestrictAccess
 	}
 	if p.Moderate != nil {
@@ -15269,13 +15717,13 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.ModifySubject != nil {
 		m["ModifySubject"] = p.ModifySubject
 	}
-	if p.MoveToQuarantineLocation {
-		m["MoveToQuarantineLocation"] = true
+	if p.MoveToQuarantineLocation != nil {
+		m["MoveToQuarantineLocation"] = *p.MoveToQuarantineLocation
 	}
 	if p.NonBifurcatingAccessScope != nil {
 		m["NonBifurcatingAccessScope"] = p.NonBifurcatingAccessScope
 	}
-	if len(p.NotifyAllowOverride) > 0 {
+	if p.NotifyAllowOverride != nil {
 		m["NotifyAllowOverride"] = p.NotifyAllowOverride
 	}
 	if p.NotifyEmailCustomSenderDisplayName != "" {
@@ -15287,8 +15735,8 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.NotifyEmailCustomText != "" {
 		m["NotifyEmailCustomText"] = p.NotifyEmailCustomText
 	}
-	if p.NotifyEmailExchangeIncludeAttachment {
-		m["NotifyEmailExchangeIncludeAttachment"] = true
+	if p.NotifyEmailExchangeIncludeAttachment != nil {
+		m["NotifyEmailExchangeIncludeAttachment"] = *p.NotifyEmailExchangeIncludeAttachment
 	}
 	if p.NotifyEmailOnedriveRemediationActions != nil {
 		m["NotifyEmailOnedriveRemediationActions"] = p.NotifyEmailOnedriveRemediationActions
@@ -15311,7 +15759,9 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.NotifyPolicyTipCustomText != "" {
 		m["NotifyPolicyTipCustomText"] = p.NotifyPolicyTipCustomText
 	}
-	if p.NotifyPolicyTipCustomTextTranslations != nil {
+	if p.NotifyPolicyTipCustomTextTranslationsDelta != nil {
+		m["NotifyPolicyTipCustomTextTranslations"] = *p.NotifyPolicyTipCustomTextTranslationsDelta
+	} else if p.NotifyPolicyTipCustomTextTranslations != nil {
 		m["NotifyPolicyTipCustomTextTranslations"] = p.NotifyPolicyTipCustomTextTranslations
 	}
 	if p.NotifyPolicyTipDisplayOption != nil {
@@ -15320,29 +15770,31 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.NotifyPolicyTipUrl != "" {
 		m["NotifyPolicyTipUrl"] = p.NotifyPolicyTipUrl
 	}
-	if p.NotifyUser != nil {
+	if p.NotifyUserDelta != nil {
+		m["NotifyUser"] = *p.NotifyUserDelta
+	} else if p.NotifyUser != nil {
 		m["NotifyUser"] = p.NotifyUser
 	}
 	if p.NotifyUserType != nil {
 		m["NotifyUserType"] = p.NotifyUserType
 	}
-	if len(p.OnPremisesScannerDlpRestrictions) > 0 {
+	if p.OnPremisesScannerDlpRestrictions != nil {
 		m["OnPremisesScannerDlpRestrictions"] = p.OnPremisesScannerDlpRestrictions
 	}
-	if len(p.PowerBIDlpRestrictions) > 0 {
+	if p.PowerBIDlpRestrictions != nil {
 		m["PowerBIDlpRestrictions"] = p.PowerBIDlpRestrictions
 	}
 	if p.PrependSubject != "" {
 		m["PrependSubject"] = p.PrependSubject
 	}
 	if p.Priority != nil {
-		m["Priority"] = p.Priority
+		m["Priority"] = *p.Priority
 	}
-	if p.ProcessingLimitExceeded {
-		m["ProcessingLimitExceeded"] = true
+	if p.ProcessingLimitExceeded != nil {
+		m["ProcessingLimitExceeded"] = *p.ProcessingLimitExceeded
 	}
-	if p.Quarantine {
-		m["Quarantine"] = true
+	if p.Quarantine != nil {
+		m["Quarantine"] = *p.Quarantine
 	}
 	if p.RecipientADAttributeContainsWords != nil {
 		m["RecipientADAttributeContainsWords"] = p.RecipientADAttributeContainsWords
@@ -15350,32 +15802,36 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.RecipientADAttributeMatchesPatterns != nil {
 		m["RecipientADAttributeMatchesPatterns"] = p.RecipientADAttributeMatchesPatterns
 	}
-	if p.RecipientDomainIs != nil {
+	if p.RecipientDomainIsDelta != nil {
+		m["RecipientDomainIs"] = *p.RecipientDomainIsDelta
+	} else if p.RecipientDomainIs != nil {
 		m["RecipientDomainIs"] = p.RecipientDomainIs
 	}
 	if p.RedactSensitiveInfo != nil {
 		m["RedactSensitiveInfo"] = p.RedactSensitiveInfo
 	}
-	if len(p.RedirectMessageTo) > 0 {
+	if p.RedirectMessageTo != nil {
 		m["RedirectMessageTo"] = p.RedirectMessageTo
 	}
-	if p.RemoveHeader != nil {
+	if p.RemoveHeaderDelta != nil {
+		m["RemoveHeader"] = *p.RemoveHeaderDelta
+	} else if p.RemoveHeader != nil {
 		m["RemoveHeader"] = p.RemoveHeader
 	}
-	if p.RemoveRMSTemplate {
-		m["RemoveRMSTemplate"] = true
+	if p.RemoveRMSTemplate != nil {
+		m["RemoveRMSTemplate"] = *p.RemoveRMSTemplate
 	}
 	if p.ReportSeverityLevel != nil {
 		m["ReportSeverityLevel"] = p.ReportSeverityLevel
 	}
-	if len(p.RestrictAccess) > 0 {
+	if p.RestrictAccess != nil {
 		m["RestrictAccess"] = p.RestrictAccess
 	}
-	if p.RestrictBrowserAccess {
-		m["RestrictBrowserAccess"] = true
+	if p.RestrictBrowserAccess != nil {
+		m["RestrictBrowserAccess"] = *p.RestrictBrowserAccess
 	}
-	if p.RestrictWebGrounding {
-		m["RestrictWebGrounding"] = true
+	if p.RestrictWebGrounding != nil {
+		m["RestrictWebGrounding"] = *p.RestrictWebGrounding
 	}
 	if p.RuleErrorAction != nil {
 		m["RuleErrorAction"] = p.RuleErrorAction
@@ -15389,19 +15845,25 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.SenderAddressLocation != nil {
 		m["SenderAddressLocation"] = p.SenderAddressLocation
 	}
-	if p.SenderDomainIs != nil {
+	if p.SenderDomainIsDelta != nil {
+		m["SenderDomainIs"] = *p.SenderDomainIsDelta
+	} else if p.SenderDomainIs != nil {
 		m["SenderDomainIs"] = p.SenderDomainIs
 	}
-	if p.SenderIPRanges != nil {
+	if p.SenderIPRangesDelta != nil {
+		m["SenderIPRanges"] = *p.SenderIPRangesDelta
+	} else if p.SenderIPRanges != nil {
 		m["SenderIPRanges"] = p.SenderIPRanges
 	}
 	if p.SenderType != nil {
 		m["SenderType"] = p.SenderType
 	}
-	if p.SentTo != nil {
+	if p.SentToDelta != nil {
+		m["SentTo"] = *p.SentToDelta
+	} else if p.SentTo != nil {
 		m["SentTo"] = p.SentTo
 	}
-	if len(p.SentToMemberOf) > 0 {
+	if p.SentToMemberOf != nil {
 		m["SentToMemberOf"] = p.SentToMemberOf
 	}
 	if p.SetHeader != nil {
@@ -15410,7 +15872,9 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.SharedByIRMAgentRisk != nil {
 		m["SharedByIRMAgentRisk"] = p.SharedByIRMAgentRisk
 	}
-	if p.SharedByIRMUserRisk != nil {
+	if p.SharedByIRMUserRiskDelta != nil {
+		m["SharedByIRMUserRisk"] = *p.SharedByIRMUserRiskDelta
+	} else if p.SharedByIRMUserRisk != nil {
 		m["SharedByIRMUserRisk"] = p.SharedByIRMUserRisk
 	}
 	if p.SharedWithDomain != nil {
@@ -15422,8 +15886,8 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.SharepointBlockDomainsExcept != nil {
 		m["SharepointBlockDomainsExcept"] = p.SharepointBlockDomainsExcept
 	}
-	if p.SharepointBlockDomainsOrUsers {
-		m["SharepointBlockDomainsOrUsers"] = true
+	if p.SharepointBlockDomainsOrUsers != nil {
+		m["SharepointBlockDomainsOrUsers"] = *p.SharepointBlockDomainsOrUsers
 	}
 	if p.SharepointBlockUsers != nil {
 		m["SharepointBlockUsers"] = p.SharepointBlockUsers
@@ -15431,34 +15895,44 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.SharepointBlockUsersExcept != nil {
 		m["SharepointBlockUsersExcept"] = p.SharepointBlockUsersExcept
 	}
-	if p.SharepointMoveToQuarantineLocation {
-		m["SharepointMoveToQuarantineLocation"] = true
+	if p.SharepointMoveToQuarantineLocation != nil {
+		m["SharepointMoveToQuarantineLocation"] = *p.SharepointMoveToQuarantineLocation
 	}
-	if p.StopPolicyProcessing {
-		m["StopPolicyProcessing"] = true
+	if p.StopPolicyProcessing != nil {
+		m["StopPolicyProcessing"] = *p.StopPolicyProcessing
 	}
-	if p.SubjectContainsWords != nil {
+	if p.SubjectContainsWordsDelta != nil {
+		m["SubjectContainsWords"] = *p.SubjectContainsWordsDelta
+	} else if p.SubjectContainsWords != nil {
 		m["SubjectContainsWords"] = p.SubjectContainsWords
 	}
-	if p.SubjectMatchesPatterns != nil {
+	if p.SubjectMatchesPatternsDelta != nil {
+		m["SubjectMatchesPatterns"] = *p.SubjectMatchesPatternsDelta
+	} else if p.SubjectMatchesPatterns != nil {
 		m["SubjectMatchesPatterns"] = p.SubjectMatchesPatterns
 	}
-	if p.SubjectOrBodyContainsWords != nil {
+	if p.SubjectOrBodyContainsWordsDelta != nil {
+		m["SubjectOrBodyContainsWords"] = *p.SubjectOrBodyContainsWordsDelta
+	} else if p.SubjectOrBodyContainsWords != nil {
 		m["SubjectOrBodyContainsWords"] = p.SubjectOrBodyContainsWords
 	}
-	if p.SubjectOrBodyMatchesPatterns != nil {
+	if p.SubjectOrBodyMatchesPatternsDelta != nil {
+		m["SubjectOrBodyMatchesPatterns"] = *p.SubjectOrBodyMatchesPatternsDelta
+	} else if p.SubjectOrBodyMatchesPatterns != nil {
 		m["SubjectOrBodyMatchesPatterns"] = p.SubjectOrBodyMatchesPatterns
 	}
 	if p.TeamsSharedWithParticipantCategory != nil {
 		m["TeamsSharedWithParticipantCategory"] = p.TeamsSharedWithParticipantCategory
 	}
-	if len(p.ThirdPartyAppDlpRestrictions) > 0 {
+	if p.ThirdPartyAppDlpRestrictions != nil {
 		m["ThirdPartyAppDlpRestrictions"] = p.ThirdPartyAppDlpRestrictions
 	}
 	if p.TriggerPowerAutomateFlow != "" {
 		m["TriggerPowerAutomateFlow"] = p.TriggerPowerAutomateFlow
 	}
-	if p.UnscannableDocumentExtensionIs != nil {
+	if p.UnscannableDocumentExtensionIsDelta != nil {
+		m["UnscannableDocumentExtensionIs"] = *p.UnscannableDocumentExtensionIsDelta
+	} else if p.UnscannableDocumentExtensionIs != nil {
 		m["UnscannableDocumentExtensionIs"] = p.UnscannableDocumentExtensionIs
 	}
 	if p.WithImportance != nil {
@@ -15474,12 +15948,12 @@ func (s *Service) SetDlpComplianceRule(ctx context.Context, p SetDlpComplianceRu
 
 // SetDlpEdmSchemaParams are the parameters of Set-DlpEdmSchema.
 type SetDlpEdmSchemaParams struct {
-	FileData []string `ps:"FileData"`
+	FileData any `ps:"FileData"` // Byte[]
 }
 
 func (p SetDlpEdmSchemaParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.FileData) > 0 {
+	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
 	return m
@@ -15492,12 +15966,12 @@ func (s *Service) SetDlpEdmSchema(ctx context.Context, p SetDlpEdmSchemaParams) 
 
 // SetDlpKeywordDictionaryParams are the parameters of Set-DlpKeywordDictionary.
 type SetDlpKeywordDictionaryParams struct {
-	Description          string   `ps:"Description"`
-	DoNotPersistKeywords bool     `ps:"DoNotPersistKeywords"`
-	FileData             []string `ps:"FileData"`
-	Identity             any      `ps:"Identity"`
-	MatchStyle           string   `ps:"MatchStyle"` // one of: word, string
-	Name                 string   `ps:"Name"`
+	Description          string `ps:"Description"`
+	DoNotPersistKeywords bool   `ps:"DoNotPersistKeywords"`
+	FileData             any    `ps:"FileData"`   // Byte[]
+	Identity             any    `ps:"Identity"`   // SensitiveInformationTypeIdParameter
+	MatchStyle           string `ps:"MatchStyle"` // one of: word, string
+	Name                 string `ps:"Name"`
 }
 
 func (p SetDlpKeywordDictionaryParams) params() map[string]any {
@@ -15508,7 +15982,7 @@ func (p SetDlpKeywordDictionaryParams) params() map[string]any {
 	if p.DoNotPersistKeywords {
 		m["DoNotPersistKeywords"] = true
 	}
-	if len(p.FileData) > 0 {
+	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
 	if p.Identity != nil {
@@ -15530,15 +16004,16 @@ func (s *Service) SetDlpKeywordDictionary(ctx context.Context, p SetDlpKeywordDi
 
 // SetDlpSensitiveInformationTypeParams are the parameters of Set-DlpSensitiveInformationType.
 type SetDlpSensitiveInformationTypeParams struct {
-	Description     string   `ps:"Description"`
-	FileData        []string `ps:"FileData"`
-	Fingerprints    any      `ps:"Fingerprints"`
-	Identity        any      `ps:"Identity"`
-	IsExact         bool     `ps:"IsExact"`
-	Locale          any      `ps:"Locale"`
-	Name            string   `ps:"Name"`
-	Threshold       any      `ps:"Threshold"`
-	ThresholdConfig any      `ps:"ThresholdConfig"`
+	Description       string                `ps:"Description"`
+	FileData          any                   `ps:"FileData"` // Byte[]
+	Fingerprints      []string              `ps:"Fingerprints"`
+	FingerprintsDelta *adminapi.StringDelta `ps:"Fingerprints"` // adds/removes values of Fingerprints; takes precedence over it
+	Identity          any                   `ps:"Identity"`     // SensitiveInformationTypeIdParameter
+	IsExact           *bool                 `ps:"IsExact"`
+	Locale            any                   `ps:"Locale"` // CultureInfo
+	Name              string                `ps:"Name"`
+	Threshold         *int64                `ps:"Threshold"`
+	ThresholdConfig   any                   `ps:"ThresholdConfig"` // PswsHashtable
 }
 
 func (p SetDlpSensitiveInformationTypeParams) params() map[string]any {
@@ -15546,17 +16021,19 @@ func (p SetDlpSensitiveInformationTypeParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if len(p.FileData) > 0 {
+	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
-	if p.Fingerprints != nil {
+	if p.FingerprintsDelta != nil {
+		m["Fingerprints"] = *p.FingerprintsDelta
+	} else if p.Fingerprints != nil {
 		m["Fingerprints"] = p.Fingerprints
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IsExact {
-		m["IsExact"] = true
+	if p.IsExact != nil {
+		m["IsExact"] = *p.IsExact
 	}
 	if p.Locale != nil {
 		m["Locale"] = p.Locale
@@ -15565,7 +16042,7 @@ func (p SetDlpSensitiveInformationTypeParams) params() map[string]any {
 		m["Name"] = p.Name
 	}
 	if p.Threshold != nil {
-		m["Threshold"] = p.Threshold
+		m["Threshold"] = *p.Threshold
 	}
 	if p.ThresholdConfig != nil {
 		m["ThresholdConfig"] = p.ThresholdConfig
@@ -15581,17 +16058,17 @@ func (s *Service) SetDlpSensitiveInformationType(ctx context.Context, p SetDlpSe
 // SetDlpSensitiveInformationTypeConfigParams are the parameters of Set-DlpSensitiveInformationTypeConfig.
 // DefaultParameterSetName: Identity
 type SetDlpSensitiveInformationTypeConfigParams struct {
-	FingerprintThreshold int  `ps:"FingerprintThreshold"`
-	RegExGrammarLimit    bool `ps:"RegExGrammarLimit"`
+	FingerprintThreshold *int64 `ps:"FingerprintThreshold"`
+	RegExGrammarLimit    *bool  `ps:"RegExGrammarLimit"`
 }
 
 func (p SetDlpSensitiveInformationTypeConfigParams) params() map[string]any {
 	m := map[string]any{}
-	if p.FingerprintThreshold != 0 {
-		m["FingerprintThreshold"] = p.FingerprintThreshold
+	if p.FingerprintThreshold != nil {
+		m["FingerprintThreshold"] = *p.FingerprintThreshold
 	}
-	if p.RegExGrammarLimit {
-		m["RegExGrammarLimit"] = true
+	if p.RegExGrammarLimit != nil {
+		m["RegExGrammarLimit"] = *p.RegExGrammarLimit
 	}
 	return m
 }
@@ -15603,12 +16080,12 @@ func (s *Service) SetDlpSensitiveInformationTypeConfig(ctx context.Context, p Se
 
 // SetDlpSensitiveInformationTypeRulePackageParams are the parameters of Set-DlpSensitiveInformationTypeRulePackage.
 type SetDlpSensitiveInformationTypeRulePackageParams struct {
-	FileData []string `ps:"FileData"`
+	FileData any `ps:"FileData"` // Byte[]
 }
 
 func (p SetDlpSensitiveInformationTypeRulePackageParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.FileData) > 0 {
+	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
 	return m
@@ -15622,15 +16099,15 @@ func (s *Service) SetDlpSensitiveInformationTypeRulePackage(ctx context.Context,
 // SetDspmPolicyParams are the parameters of Set-DspmPolicy.
 // DefaultParameterSetName: Identity
 type SetDspmPolicyParams struct {
-	Enabled       bool   `ps:"Enabled"`
+	Enabled       *bool  `ps:"Enabled"`
 	Identity      any    `ps:"Identity"`
 	TenantSetting string `ps:"TenantSetting"`
 }
 
 func (p SetDspmPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -15650,9 +16127,9 @@ func (s *Service) SetDspmPolicy(ctx context.Context, p SetDspmPolicyParams) (*ad
 // DefaultParameterSetName: Identity
 type SetFeatureConfigurationParams struct {
 	Comment          string `ps:"Comment"`
-	Identity         any    `ps:"Identity"`
+	Identity         any    `ps:"Identity"` // PolicyIdParameter
 	Locations        string `ps:"Locations"`
-	Mode             any    `ps:"Mode"`
+	Mode             any    `ps:"Mode"` // PolicyMode
 	PolicyRBACScopes any    `ps:"PolicyRBACScopes"`
 	ScenarioConfig   string `ps:"ScenarioConfig"`
 }
@@ -15689,7 +16166,7 @@ func (s *Service) SetFeatureConfiguration(ctx context.Context, p SetFeatureConfi
 // DefaultParameterSetName: Identity
 type SetFilePlanPropertyAuthorityParams struct {
 	DisplayName string `ps:"DisplayName"`
-	Identity    any    `ps:"Identity"`
+	Identity    any    `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p SetFilePlanPropertyAuthorityParams) params() map[string]any {
@@ -15712,7 +16189,7 @@ func (s *Service) SetFilePlanPropertyAuthority(ctx context.Context, p SetFilePla
 // DefaultParameterSetName: Identity
 type SetFilePlanPropertyCategoryParams struct {
 	DisplayName string `ps:"DisplayName"`
-	Identity    any    `ps:"Identity"`
+	Identity    any    `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p SetFilePlanPropertyCategoryParams) params() map[string]any {
@@ -15737,7 +16214,7 @@ type SetFilePlanPropertyCitationParams struct {
 	CitationJurisdiction string `ps:"CitationJurisdiction"`
 	CitationUrl          string `ps:"CitationUrl"`
 	DisplayName          string `ps:"DisplayName"`
-	Identity             any    `ps:"Identity"`
+	Identity             any    `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p SetFilePlanPropertyCitationParams) params() map[string]any {
@@ -15766,7 +16243,7 @@ func (s *Service) SetFilePlanPropertyCitation(ctx context.Context, p SetFilePlan
 // DefaultParameterSetName: Identity
 type SetFilePlanPropertyDepartmentParams struct {
 	DisplayName string `ps:"DisplayName"`
-	Identity    any    `ps:"Identity"`
+	Identity    any    `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p SetFilePlanPropertyDepartmentParams) params() map[string]any {
@@ -15789,7 +16266,7 @@ func (s *Service) SetFilePlanPropertyDepartment(ctx context.Context, p SetFilePl
 // DefaultParameterSetName: Identity
 type SetFilePlanPropertyReferenceIdParams struct {
 	DisplayName string `ps:"DisplayName"`
-	Identity    any    `ps:"Identity"`
+	Identity    any    `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p SetFilePlanPropertyReferenceIdParams) params() map[string]any {
@@ -15812,7 +16289,7 @@ func (s *Service) SetFilePlanPropertyReferenceId(ctx context.Context, p SetFileP
 // DefaultParameterSetName: Identity
 type SetFilePlanPropertySubCategoryParams struct {
 	DisplayName string `ps:"DisplayName"`
-	Identity    any    `ps:"Identity"`
+	Identity    any    `ps:"Identity"` // ComplianceRuleIdParameter
 }
 
 func (p SetFilePlanPropertySubCategoryParams) params() map[string]any {
@@ -15868,35 +16345,47 @@ func (s *Service) SetGlobalList(ctx context.Context, p SetGlobalListParams) (*ad
 // SetHoldCompliancePolicyParams are the parameters of Set-HoldCompliancePolicy.
 // DefaultParameterSetName: Identity
 type SetHoldCompliancePolicyParams struct {
-	AddExchangeLocation        any    `ps:"AddExchangeLocation"`
-	AddPublicFolderLocation    any    `ps:"AddPublicFolderLocation"`
-	AddSharePointLocation      any    `ps:"AddSharePointLocation"`
-	Comment                    string `ps:"Comment"`
-	Enabled                    bool   `ps:"Enabled"`
-	Force                      bool   `ps:"Force"`
-	Identity                   any    `ps:"Identity"`
-	RemoveExchangeLocation     any    `ps:"RemoveExchangeLocation"`
-	RemovePublicFolderLocation any    `ps:"RemovePublicFolderLocation"`
-	RemoveSharePointLocation   any    `ps:"RemoveSharePointLocation"`
-	RetryDistribution          bool   `ps:"RetryDistribution"`
+	AddExchangeLocation             []string              `ps:"AddExchangeLocation"`
+	AddExchangeLocationDelta        *adminapi.StringDelta `ps:"AddExchangeLocation"` // adds/removes values of AddExchangeLocation; takes precedence over it
+	AddPublicFolderLocation         []string              `ps:"AddPublicFolderLocation"`
+	AddPublicFolderLocationDelta    *adminapi.StringDelta `ps:"AddPublicFolderLocation"` // adds/removes values of AddPublicFolderLocation; takes precedence over it
+	AddSharePointLocation           []string              `ps:"AddSharePointLocation"`
+	AddSharePointLocationDelta      *adminapi.StringDelta `ps:"AddSharePointLocation"` // adds/removes values of AddSharePointLocation; takes precedence over it
+	Comment                         string                `ps:"Comment"`
+	Enabled                         *bool                 `ps:"Enabled"`
+	Force                           bool                  `ps:"Force"`
+	Identity                        any                   `ps:"Identity"` // PolicyIdParameter
+	RemoveExchangeLocation          []string              `ps:"RemoveExchangeLocation"`
+	RemoveExchangeLocationDelta     *adminapi.StringDelta `ps:"RemoveExchangeLocation"` // adds/removes values of RemoveExchangeLocation; takes precedence over it
+	RemovePublicFolderLocation      []string              `ps:"RemovePublicFolderLocation"`
+	RemovePublicFolderLocationDelta *adminapi.StringDelta `ps:"RemovePublicFolderLocation"` // adds/removes values of RemovePublicFolderLocation; takes precedence over it
+	RemoveSharePointLocation        []string              `ps:"RemoveSharePointLocation"`
+	RemoveSharePointLocationDelta   *adminapi.StringDelta `ps:"RemoveSharePointLocation"` // adds/removes values of RemoveSharePointLocation; takes precedence over it
+	RetryDistribution               bool                  `ps:"RetryDistribution"`
 }
 
 func (p SetHoldCompliancePolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddExchangeLocation != nil {
+	if p.AddExchangeLocationDelta != nil {
+		m["AddExchangeLocation"] = *p.AddExchangeLocationDelta
+	} else if p.AddExchangeLocation != nil {
 		m["AddExchangeLocation"] = p.AddExchangeLocation
 	}
-	if p.AddPublicFolderLocation != nil {
+	if p.AddPublicFolderLocationDelta != nil {
+		m["AddPublicFolderLocation"] = *p.AddPublicFolderLocationDelta
+	} else if p.AddPublicFolderLocation != nil {
 		m["AddPublicFolderLocation"] = p.AddPublicFolderLocation
 	}
-	if p.AddSharePointLocation != nil {
+	if p.AddSharePointLocationDelta != nil {
+		m["AddSharePointLocation"] = *p.AddSharePointLocationDelta
+	} else if p.AddSharePointLocation != nil {
 		m["AddSharePointLocation"] = p.AddSharePointLocation
 	}
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -15904,13 +16393,19 @@ func (p SetHoldCompliancePolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.RemoveExchangeLocation != nil {
+	if p.RemoveExchangeLocationDelta != nil {
+		m["RemoveExchangeLocation"] = *p.RemoveExchangeLocationDelta
+	} else if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
 	}
-	if p.RemovePublicFolderLocation != nil {
+	if p.RemovePublicFolderLocationDelta != nil {
+		m["RemovePublicFolderLocation"] = *p.RemovePublicFolderLocationDelta
+	} else if p.RemovePublicFolderLocation != nil {
 		m["RemovePublicFolderLocation"] = p.RemovePublicFolderLocation
 	}
-	if p.RemoveSharePointLocation != nil {
+	if p.RemoveSharePointLocationDelta != nil {
+		m["RemoveSharePointLocation"] = *p.RemoveSharePointLocationDelta
+	} else if p.RemoveSharePointLocation != nil {
 		m["RemoveSharePointLocation"] = p.RemoveSharePointLocation
 	}
 	if p.RetryDistribution {
@@ -15928,13 +16423,13 @@ func (s *Service) SetHoldCompliancePolicy(ctx context.Context, p SetHoldComplian
 // DefaultParameterSetName: Identity
 type SetHoldComplianceRuleParams struct {
 	Comment                 string `ps:"Comment"`
-	ContentDateFrom         any    `ps:"ContentDateFrom"`
-	ContentDateTo           any    `ps:"ContentDateTo"`
+	ContentDateFrom         any    `ps:"ContentDateFrom"` // DateTime
+	ContentDateTo           any    `ps:"ContentDateTo"`   // DateTime
 	ContentMatchQuery       string `ps:"ContentMatchQuery"`
-	Disabled                bool   `ps:"Disabled"`
-	HoldContent             any    `ps:"HoldContent"`
-	HoldDurationDisplayHint any    `ps:"HoldDurationDisplayHint"`
-	Identity                any    `ps:"Identity"`
+	Disabled                *bool  `ps:"Disabled"`
+	HoldContent             any    `ps:"HoldContent"`             // Unlimited
+	HoldDurationDisplayHint any    `ps:"HoldDurationDisplayHint"` // HoldDurationHint
+	Identity                any    `ps:"Identity"`                // ComplianceRuleIdParameter
 }
 
 func (p SetHoldComplianceRuleParams) params() map[string]any {
@@ -15951,8 +16446,8 @@ func (p SetHoldComplianceRuleParams) params() map[string]any {
 	if p.ContentMatchQuery != "" {
 		m["ContentMatchQuery"] = p.ContentMatchQuery
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
 	if p.HoldContent != nil {
 		m["HoldContent"] = p.HoldContent
@@ -15974,14 +16469,16 @@ func (s *Service) SetHoldComplianceRule(ctx context.Context, p SetHoldCompliance
 // SetInformationBarrierPolicyParams are the parameters of Set-InformationBarrierPolicy.
 // DefaultParameterSetName: InformationBarrierDefault
 type SetInformationBarrierPolicyParams struct {
-	Comment              string `ps:"Comment"`
-	Force                bool   `ps:"Force"`
-	Identity             any    `ps:"Identity"`
-	ModerationAllowed    bool   `ps:"ModerationAllowed"`
-	SegmentAllowedFilter string `ps:"SegmentAllowedFilter"`
-	SegmentsAllowed      any    `ps:"SegmentsAllowed"`
-	SegmentsBlocked      any    `ps:"SegmentsBlocked"`
-	State                any    `ps:"State"`
+	Comment              string                `ps:"Comment"`
+	Force                bool                  `ps:"Force"`
+	Identity             any                   `ps:"Identity"` // PolicyIdParameter
+	ModerationAllowed    *bool                 `ps:"ModerationAllowed"`
+	SegmentAllowedFilter string                `ps:"SegmentAllowedFilter"`
+	SegmentsAllowed      []string              `ps:"SegmentsAllowed"`
+	SegmentsAllowedDelta *adminapi.StringDelta `ps:"SegmentsAllowed"` // adds/removes values of SegmentsAllowed; takes precedence over it
+	SegmentsBlocked      []string              `ps:"SegmentsBlocked"`
+	SegmentsBlockedDelta *adminapi.StringDelta `ps:"SegmentsBlocked"` // adds/removes values of SegmentsBlocked; takes precedence over it
+	State                any                   `ps:"State"`           // EopInformationBarrierPolicyState
 }
 
 func (p SetInformationBarrierPolicyParams) params() map[string]any {
@@ -15995,16 +16492,20 @@ func (p SetInformationBarrierPolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ModerationAllowed {
-		m["ModerationAllowed"] = true
+	if p.ModerationAllowed != nil {
+		m["ModerationAllowed"] = *p.ModerationAllowed
 	}
 	if p.SegmentAllowedFilter != "" {
 		m["SegmentAllowedFilter"] = p.SegmentAllowedFilter
 	}
-	if p.SegmentsAllowed != nil {
+	if p.SegmentsAllowedDelta != nil {
+		m["SegmentsAllowed"] = *p.SegmentsAllowedDelta
+	} else if p.SegmentsAllowed != nil {
 		m["SegmentsAllowed"] = p.SegmentsAllowed
 	}
-	if p.SegmentsBlocked != nil {
+	if p.SegmentsBlockedDelta != nil {
+		m["SegmentsBlocked"] = *p.SegmentsBlockedDelta
+	} else if p.SegmentsBlocked != nil {
 		m["SegmentsBlocked"] = p.SegmentsBlocked
 	}
 	if p.State != nil {
@@ -16069,29 +16570,29 @@ type SetInsiderRiskPolicyParams struct {
 	DlpPoliciesAsTrigger               any    `ps:"DlpPoliciesAsTrigger"`
 	DlpPolicy                          any    `ps:"DlpPolicy"`
 	DlpSensitiveTypes                  any    `ps:"DlpSensitiveTypes"`
-	Enabled                            bool   `ps:"Enabled"`
+	Enabled                            *bool  `ps:"Enabled"`
 	ExtensibleIndicators               any    `ps:"ExtensibleIndicators"`
 	ExtensibleTriggerInsightGroups     any    `ps:"ExtensibleTriggerInsightGroups"`
 	FileExtensions                     any    `ps:"FileExtensions"`
-	FutureTerminationWindow            int    `ps:"FutureTerminationWindow"`
-	HistoricTimeSpan                   int    `ps:"HistoricTimeSpan"`
+	FutureTerminationWindow            *int64 `ps:"FutureTerminationWindow"`
+	HistoricTimeSpan                   *int64 `ps:"HistoricTimeSpan"`
 	Identity                           any    `ps:"Identity"`
 	Indicators                         any    `ps:"Indicators"`
-	InScopeTimeSpan                    int    `ps:"InScopeTimeSpan"`
-	IsCustom                           bool   `ps:"IsCustom"`
-	IsPriorityContentOnlyScoring       bool   `ps:"IsPriorityContentOnlyScoring"`
+	InScopeTimeSpan                    *int64 `ps:"InScopeTimeSpan"`
+	IsCustom                           *bool  `ps:"IsCustom"`
+	IsPriorityContentOnlyScoring       *bool  `ps:"IsPriorityContentOnlyScoring"`
 	MLClassifierTypes                  any    `ps:"MLClassifierTypes"`
-	OptInDrpForDlp                     bool   `ps:"OptInDrpForDlp"`
-	PastTerminationWindow              int    `ps:"PastTerminationWindow"`
+	OptInDrpForDlp                     *bool  `ps:"OptInDrpForDlp"`
+	PastTerminationWindow              *int64 `ps:"PastTerminationWindow"`
 	PolicyRBACScopes                   any    `ps:"PolicyRBACScopes"`
-	PostTerminationActivity            bool   `ps:"PostTerminationActivity"`
+	PostTerminationActivity            *bool  `ps:"PostTerminationActivity"`
 	RemoveExchangeLocation             any    `ps:"RemoveExchangeLocation"`
 	RemoveExchangeLocationException    any    `ps:"RemoveExchangeLocationException"`
 	RemoveIrmAdaptiveScopeLocation     any    `ps:"RemoveIrmAdaptiveScopeLocation"`
 	RemoveModernGroupLocation          any    `ps:"RemoveModernGroupLocation"`
 	RemoveModernGroupLocationException any    `ps:"RemoveModernGroupLocationException"`
 	RetryDistribution                  bool   `ps:"RetryDistribution"`
-	SchemaVersion                      int    `ps:"SchemaVersion"`
+	SchemaVersion                      *int64 `ps:"SchemaVersion"`
 	SensitivityLabels                  any    `ps:"SensitivityLabels"`
 	SessionRecordingSettings           string `ps:"SessionRecordingSettings"`
 	SharepointSites                    any    `ps:"SharepointSites"`
@@ -16144,8 +16645,8 @@ func (p SetInsiderRiskPolicyParams) params() map[string]any {
 	if p.DlpSensitiveTypes != nil {
 		m["DlpSensitiveTypes"] = p.DlpSensitiveTypes
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.ExtensibleIndicators != nil {
 		m["ExtensibleIndicators"] = p.ExtensibleIndicators
@@ -16156,11 +16657,11 @@ func (p SetInsiderRiskPolicyParams) params() map[string]any {
 	if p.FileExtensions != nil {
 		m["FileExtensions"] = p.FileExtensions
 	}
-	if p.FutureTerminationWindow != 0 {
-		m["FutureTerminationWindow"] = p.FutureTerminationWindow
+	if p.FutureTerminationWindow != nil {
+		m["FutureTerminationWindow"] = *p.FutureTerminationWindow
 	}
-	if p.HistoricTimeSpan != 0 {
-		m["HistoricTimeSpan"] = p.HistoricTimeSpan
+	if p.HistoricTimeSpan != nil {
+		m["HistoricTimeSpan"] = *p.HistoricTimeSpan
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -16168,29 +16669,29 @@ func (p SetInsiderRiskPolicyParams) params() map[string]any {
 	if p.Indicators != nil {
 		m["Indicators"] = p.Indicators
 	}
-	if p.InScopeTimeSpan != 0 {
-		m["InScopeTimeSpan"] = p.InScopeTimeSpan
+	if p.InScopeTimeSpan != nil {
+		m["InScopeTimeSpan"] = *p.InScopeTimeSpan
 	}
-	if p.IsCustom {
-		m["IsCustom"] = true
+	if p.IsCustom != nil {
+		m["IsCustom"] = *p.IsCustom
 	}
-	if p.IsPriorityContentOnlyScoring {
-		m["IsPriorityContentOnlyScoring"] = true
+	if p.IsPriorityContentOnlyScoring != nil {
+		m["IsPriorityContentOnlyScoring"] = *p.IsPriorityContentOnlyScoring
 	}
 	if p.MLClassifierTypes != nil {
 		m["MLClassifierTypes"] = p.MLClassifierTypes
 	}
-	if p.OptInDrpForDlp {
-		m["OptInDrpForDlp"] = true
+	if p.OptInDrpForDlp != nil {
+		m["OptInDrpForDlp"] = *p.OptInDrpForDlp
 	}
-	if p.PastTerminationWindow != 0 {
-		m["PastTerminationWindow"] = p.PastTerminationWindow
+	if p.PastTerminationWindow != nil {
+		m["PastTerminationWindow"] = *p.PastTerminationWindow
 	}
 	if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
-	if p.PostTerminationActivity {
-		m["PostTerminationActivity"] = true
+	if p.PostTerminationActivity != nil {
+		m["PostTerminationActivity"] = *p.PostTerminationActivity
 	}
 	if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
@@ -16210,8 +16711,8 @@ func (p SetInsiderRiskPolicyParams) params() map[string]any {
 	if p.RetryDistribution {
 		m["RetryDistribution"] = true
 	}
-	if p.SchemaVersion != 0 {
-		m["SchemaVersion"] = p.SchemaVersion
+	if p.SchemaVersion != nil {
+		m["SchemaVersion"] = *p.SchemaVersion
 	}
 	if p.SensitivityLabels != nil {
 		m["SensitivityLabels"] = p.SensitivityLabels
@@ -16251,10 +16752,10 @@ func (s *Service) SetInsiderRiskPolicy(ctx context.Context, p SetInsiderRiskPoli
 // SetInsiderRiskPolicyLiteParams are the parameters of Set-InsiderRiskPolicyLite.
 // DefaultParameterSetName: Identity
 type SetInsiderRiskPolicyLiteParams struct {
-	ExtensibleIndicators any  `ps:"ExtensibleIndicators"`
-	Identity             any  `ps:"Identity"`
-	Indicators           any  `ps:"Indicators"`
-	IsCustom             bool `ps:"IsCustom"`
+	ExtensibleIndicators any   `ps:"ExtensibleIndicators"`
+	Identity             any   `ps:"Identity"`
+	Indicators           any   `ps:"Indicators"`
+	IsCustom             *bool `ps:"IsCustom"`
 }
 
 func (p SetInsiderRiskPolicyLiteParams) params() map[string]any {
@@ -16268,8 +16769,8 @@ func (p SetInsiderRiskPolicyLiteParams) params() map[string]any {
 	if p.Indicators != nil {
 		m["Indicators"] = p.Indicators
 	}
-	if p.IsCustom {
-		m["IsCustom"] = true
+	if p.IsCustom != nil {
+		m["IsCustom"] = *p.IsCustom
 	}
 	return m
 }
@@ -16330,10 +16831,10 @@ func (p SetJitConfigurationParams) params() map[string]any {
 	if p.EndpointConfig != "" {
 		m["EndpointConfig"] = p.EndpointConfig
 	}
-	if len(p.ExceptIfOneDriveSharedBy) > 0 {
+	if p.ExceptIfOneDriveSharedBy != nil {
 		m["ExceptIfOneDriveSharedBy"] = p.ExceptIfOneDriveSharedBy
 	}
-	if len(p.ExceptIfOneDriveSharedByMemberOf) > 0 {
+	if p.ExceptIfOneDriveSharedByMemberOf != nil {
 		m["ExceptIfOneDriveSharedByMemberOf"] = p.ExceptIfOneDriveSharedByMemberOf
 	}
 	if p.Identity != nil {
@@ -16342,10 +16843,10 @@ func (p SetJitConfigurationParams) params() map[string]any {
 	if p.Mode != nil {
 		m["Mode"] = p.Mode
 	}
-	if len(p.OneDriveSharedBy) > 0 {
+	if p.OneDriveSharedBy != nil {
 		m["OneDriveSharedBy"] = p.OneDriveSharedBy
 	}
-	if len(p.OneDriveSharedByMemberOf) > 0 {
+	if p.OneDriveSharedByMemberOf != nil {
 		m["OneDriveSharedByMemberOf"] = p.OneDriveSharedByMemberOf
 	}
 	if p.RemoveEndpointDlpLocation != nil {
@@ -16377,99 +16878,102 @@ func (s *Service) SetJitConfiguration(ctx context.Context, p SetJitConfiguration
 // SetLabelParams are the parameters of Set-Label.
 // DefaultParameterSetName: Identity
 type SetLabelParams struct {
-	AbacEnabled                                           any    `ps:"AbacEnabled"`
-	AdvancedSettings                                      any    `ps:"AdvancedSettings"`
-	ApplyContentMarkingFooterAlignment                    any    `ps:"ApplyContentMarkingFooterAlignment"`
-	ApplyContentMarkingFooterEnabled                      any    `ps:"ApplyContentMarkingFooterEnabled"`
-	ApplyContentMarkingFooterFontColor                    string `ps:"ApplyContentMarkingFooterFontColor"`
-	ApplyContentMarkingFooterFontName                     string `ps:"ApplyContentMarkingFooterFontName"`
-	ApplyContentMarkingFooterFontSize                     any    `ps:"ApplyContentMarkingFooterFontSize"`
-	ApplyContentMarkingFooterMargin                       any    `ps:"ApplyContentMarkingFooterMargin"`
-	ApplyContentMarkingFooterText                         string `ps:"ApplyContentMarkingFooterText"`
-	ApplyContentMarkingHeaderAlignment                    any    `ps:"ApplyContentMarkingHeaderAlignment"`
-	ApplyContentMarkingHeaderEnabled                      any    `ps:"ApplyContentMarkingHeaderEnabled"`
-	ApplyContentMarkingHeaderFontColor                    string `ps:"ApplyContentMarkingHeaderFontColor"`
-	ApplyContentMarkingHeaderFontName                     string `ps:"ApplyContentMarkingHeaderFontName"`
-	ApplyContentMarkingHeaderFontSize                     any    `ps:"ApplyContentMarkingHeaderFontSize"`
-	ApplyContentMarkingHeaderMargin                       any    `ps:"ApplyContentMarkingHeaderMargin"`
-	ApplyContentMarkingHeaderText                         string `ps:"ApplyContentMarkingHeaderText"`
-	ApplyDynamicWatermarkingEnabled                       any    `ps:"ApplyDynamicWatermarkingEnabled"`
-	ApplyMessageMetaData                                  any    `ps:"ApplyMessageMetaData"`
-	ApplyMessageMetaDataEnabled                           any    `ps:"ApplyMessageMetaDataEnabled"`
-	ApplyWaterMarkingEnabled                              any    `ps:"ApplyWaterMarkingEnabled"`
-	ApplyWaterMarkingFontColor                            string `ps:"ApplyWaterMarkingFontColor"`
-	ApplyWaterMarkingFontName                             string `ps:"ApplyWaterMarkingFontName"`
-	ApplyWaterMarkingFontSize                             any    `ps:"ApplyWaterMarkingFontSize"`
-	ApplyWaterMarkingLayout                               any    `ps:"ApplyWaterMarkingLayout"`
-	ApplyWaterMarkingText                                 string `ps:"ApplyWaterMarkingText"`
-	ColumnAssetCondition                                  string `ps:"ColumnAssetCondition"`
-	Comment                                               string `ps:"Comment"`
-	ConditionalAccessAuthContext                          string `ps:"ConditionalAccessAuthContext"`
-	Conditions                                            any    `ps:"Conditions"`
-	ContentType                                           any    `ps:"ContentType"`
-	DefaultContentLabel                                   string `ps:"DefaultContentLabel"`
-	DenyAccessEnabled                                     any    `ps:"DenyAccessEnabled"`
-	DenyAccessExcludedPrincipals                          string `ps:"DenyAccessExcludedPrincipals"`
-	DenyAccessIncludedPrincipals                          string `ps:"DenyAccessIncludedPrincipals"`
-	DenyAccessRights                                      string `ps:"DenyAccessRights"`
-	DenyAccessWorkload                                    string `ps:"DenyAccessWorkload"`
-	DisplayName                                           string `ps:"DisplayName"`
-	DynamicWatermarkDisplay                               string `ps:"DynamicWatermarkDisplay"`
-	EncryptionContentExpiredOnDateInDaysOrNever           string `ps:"EncryptionContentExpiredOnDateInDaysOrNever"`
-	EncryptionDisableAutomaticOwnerRights                 any    `ps:"EncryptionDisableAutomaticOwnerRights"`
-	EncryptionDoNotForward                                any    `ps:"EncryptionDoNotForward"`
-	EncryptionDoubleKeyEncryptionUrl                      string `ps:"EncryptionDoubleKeyEncryptionUrl"`
-	EncryptionEnabled                                     any    `ps:"EncryptionEnabled"`
-	EncryptionEncryptOnly                                 any    `ps:"EncryptionEncryptOnly"`
-	EncryptionOfflineAccessDays                           any    `ps:"EncryptionOfflineAccessDays"`
-	EncryptionPromptUser                                  any    `ps:"EncryptionPromptUser"`
-	EncryptionProtectionType                              any    `ps:"EncryptionProtectionType"`
-	EncryptionRightsDefinitions                           any    `ps:"EncryptionRightsDefinitions"`
-	EncryptionRightsUrl                                   string `ps:"EncryptionRightsUrl"`
-	Identity                                              any    `ps:"Identity"`
-	InformationProtectionAttributeRequired                any    `ps:"InformationProtectionAttributeRequired"`
-	InheritToChildItems                                   any    `ps:"InheritToChildItems"`
-	LabelActions                                          any    `ps:"LabelActions"`
-	LocaleSettings                                        any    `ps:"LocaleSettings"`
-	MigrationId                                           string `ps:"MigrationId"`
-	NextLabel                                             any    `ps:"NextLabel"`
-	ParentId                                              any    `ps:"ParentId"`
-	PreviousLabel                                         any    `ps:"PreviousLabel"`
-	Priority                                              any    `ps:"Priority"`
-	RemoveParentLink                                      bool   `ps:"RemoveParentLink"`
-	RuleBlob                                              string `ps:"RuleBlob"`
-	SchematizedDataCondition                              string `ps:"SchematizedDataCondition"`
-	Setting                                               any    `ps:"Setting"`
-	Settings                                              any    `ps:"Settings"`
-	SiteAndGroupProtectionAllowAccessToGuestUsers         any    `ps:"SiteAndGroupProtectionAllowAccessToGuestUsers"`
-	SiteAndGroupProtectionAllowEmailFromGuestUsers        any    `ps:"SiteAndGroupProtectionAllowEmailFromGuestUsers"`
-	SiteAndGroupProtectionAllowFullAccess                 any    `ps:"SiteAndGroupProtectionAllowFullAccess"`
-	SiteAndGroupProtectionAllowLimitedAccess              any    `ps:"SiteAndGroupProtectionAllowLimitedAccess"`
-	SiteAndGroupProtectionBlockAccess                     any    `ps:"SiteAndGroupProtectionBlockAccess"`
-	SiteAndGroupProtectionEnabled                         any    `ps:"SiteAndGroupProtectionEnabled"`
-	SiteAndGroupProtectionLevel                           any    `ps:"SiteAndGroupProtectionLevel"`
-	SiteAndGroupProtectionPrivacy                         any    `ps:"SiteAndGroupProtectionPrivacy"`
-	SiteExternalSharingControlType                        any    `ps:"SiteExternalSharingControlType"`
-	TeamsAllowedPresenters                                any    `ps:"TeamsAllowedPresenters"`
-	TeamsAllowMeetingChat                                 any    `ps:"TeamsAllowMeetingChat"`
-	TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch     any    `ps:"TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch"`
-	TeamsBypassLobbyForDialInUsers                        any    `ps:"TeamsBypassLobbyForDialInUsers"`
-	TeamsChannelProtectionEnabled                         any    `ps:"TeamsChannelProtectionEnabled"`
-	TeamsChannelSharedWithExternalTenants                 any    `ps:"TeamsChannelSharedWithExternalTenants"`
-	TeamsChannelSharedWithPrivateTeamsOnly                any    `ps:"TeamsChannelSharedWithPrivateTeamsOnly"`
-	TeamsChannelSharedWithSameLabelOnly                   any    `ps:"TeamsChannelSharedWithSameLabelOnly"`
-	TeamsCopyRestrictionEnforced                          any    `ps:"TeamsCopyRestrictionEnforced"`
-	TeamsDetectSensitiveContentDuringScreenSharingEnabled any    `ps:"TeamsDetectSensitiveContentDuringScreenSharingEnabled"`
-	TeamsDisableLobby                                     any    `ps:"TeamsDisableLobby"`
-	TeamsEndToEndEncryptionEnabled                        any    `ps:"TeamsEndToEndEncryptionEnabled"`
-	TeamsLobbyBypassScope                                 any    `ps:"TeamsLobbyBypassScope"`
-	TeamsLobbyRestrictionEnforced                         any    `ps:"TeamsLobbyRestrictionEnforced"`
-	TeamsPresentersRestrictionEnforced                    any    `ps:"TeamsPresentersRestrictionEnforced"`
-	TeamsProtectionEnabled                                any    `ps:"TeamsProtectionEnabled"`
-	TeamsRecordAutomatically                              any    `ps:"TeamsRecordAutomatically"`
-	TeamsVideoWatermark                                   any    `ps:"TeamsVideoWatermark"`
-	TeamsWhoCanRecord                                     any    `ps:"TeamsWhoCanRecord"`
-	Tooltip                                               string `ps:"Tooltip"`
+	AbacEnabled                                           any                   `ps:"AbacEnabled"`
+	AdvancedSettings                                      any                   `ps:"AdvancedSettings"`                   // PswsHashtable
+	ApplyContentMarkingFooterAlignment                    any                   `ps:"ApplyContentMarkingFooterAlignment"` // Microsoft.Office.CompliancePolicy.Tasks.FlattenLabelActionUtils+ContentAlignment
+	ApplyContentMarkingFooterEnabled                      *bool                 `ps:"ApplyContentMarkingFooterEnabled"`
+	ApplyContentMarkingFooterFontColor                    string                `ps:"ApplyContentMarkingFooterFontColor"`
+	ApplyContentMarkingFooterFontName                     string                `ps:"ApplyContentMarkingFooterFontName"`
+	ApplyContentMarkingFooterFontSize                     *int64                `ps:"ApplyContentMarkingFooterFontSize"`
+	ApplyContentMarkingFooterMargin                       *int64                `ps:"ApplyContentMarkingFooterMargin"`
+	ApplyContentMarkingFooterText                         string                `ps:"ApplyContentMarkingFooterText"`
+	ApplyContentMarkingHeaderAlignment                    any                   `ps:"ApplyContentMarkingHeaderAlignment"` // Microsoft.Office.CompliancePolicy.Tasks.FlattenLabelActionUtils+ContentAlignment
+	ApplyContentMarkingHeaderEnabled                      *bool                 `ps:"ApplyContentMarkingHeaderEnabled"`
+	ApplyContentMarkingHeaderFontColor                    string                `ps:"ApplyContentMarkingHeaderFontColor"`
+	ApplyContentMarkingHeaderFontName                     string                `ps:"ApplyContentMarkingHeaderFontName"`
+	ApplyContentMarkingHeaderFontSize                     *int64                `ps:"ApplyContentMarkingHeaderFontSize"`
+	ApplyContentMarkingHeaderMargin                       *int64                `ps:"ApplyContentMarkingHeaderMargin"`
+	ApplyContentMarkingHeaderText                         string                `ps:"ApplyContentMarkingHeaderText"`
+	ApplyDynamicWatermarkingEnabled                       *bool                 `ps:"ApplyDynamicWatermarkingEnabled"`
+	ApplyMessageMetaData                                  any                   `ps:"ApplyMessageMetaData"`
+	ApplyMessageMetaDataEnabled                           any                   `ps:"ApplyMessageMetaDataEnabled"`
+	ApplyWaterMarkingEnabled                              *bool                 `ps:"ApplyWaterMarkingEnabled"`
+	ApplyWaterMarkingFontColor                            string                `ps:"ApplyWaterMarkingFontColor"`
+	ApplyWaterMarkingFontName                             string                `ps:"ApplyWaterMarkingFontName"`
+	ApplyWaterMarkingFontSize                             *int64                `ps:"ApplyWaterMarkingFontSize"`
+	ApplyWaterMarkingLayout                               any                   `ps:"ApplyWaterMarkingLayout"` // Microsoft.Office.CompliancePolicy.Tasks.FlattenLabelActionUtils+WaterMarkingLayout
+	ApplyWaterMarkingText                                 string                `ps:"ApplyWaterMarkingText"`
+	ColumnAssetCondition                                  string                `ps:"ColumnAssetCondition"`
+	Comment                                               string                `ps:"Comment"`
+	ConditionalAccessAuthContext                          string                `ps:"ConditionalAccessAuthContext"`
+	Conditions                                            []string              `ps:"Conditions"`
+	ConditionsDelta                                       *adminapi.StringDelta `ps:"Conditions"`  // adds/removes values of Conditions; takes precedence over it
+	ContentType                                           any                   `ps:"ContentType"` // MipLabelContentType
+	DefaultContentLabel                                   string                `ps:"DefaultContentLabel"`
+	DenyAccessEnabled                                     any                   `ps:"DenyAccessEnabled"`
+	DenyAccessExcludedPrincipals                          string                `ps:"DenyAccessExcludedPrincipals"`
+	DenyAccessIncludedPrincipals                          string                `ps:"DenyAccessIncludedPrincipals"`
+	DenyAccessRights                                      string                `ps:"DenyAccessRights"`
+	DenyAccessWorkload                                    string                `ps:"DenyAccessWorkload"`
+	DisplayName                                           string                `ps:"DisplayName"`
+	DynamicWatermarkDisplay                               string                `ps:"DynamicWatermarkDisplay"`
+	EncryptionContentExpiredOnDateInDaysOrNever           string                `ps:"EncryptionContentExpiredOnDateInDaysOrNever"`
+	EncryptionDisableAutomaticOwnerRights                 any                   `ps:"EncryptionDisableAutomaticOwnerRights"`
+	EncryptionDoNotForward                                *bool                 `ps:"EncryptionDoNotForward"`
+	EncryptionDoubleKeyEncryptionUrl                      string                `ps:"EncryptionDoubleKeyEncryptionUrl"`
+	EncryptionEnabled                                     *bool                 `ps:"EncryptionEnabled"`
+	EncryptionEncryptOnly                                 *bool                 `ps:"EncryptionEncryptOnly"`
+	EncryptionOfflineAccessDays                           *int64                `ps:"EncryptionOfflineAccessDays"`
+	EncryptionPromptUser                                  *bool                 `ps:"EncryptionPromptUser"`
+	EncryptionProtectionType                              any                   `ps:"EncryptionProtectionType"`    // Microsoft.Office.CompliancePolicy.Tasks.FlattenLabelActionUtils+SupportedProtectionType
+	EncryptionRightsDefinitions                           any                   `ps:"EncryptionRightsDefinitions"` // EncryptionRightsDefinitionsParameter
+	EncryptionRightsUrl                                   string                `ps:"EncryptionRightsUrl"`
+	Identity                                              any                   `ps:"Identity"` // ComplianceRuleIdParameter
+	InformationProtectionAttributeRequired                any                   `ps:"InformationProtectionAttributeRequired"`
+	InheritToChildItems                                   any                   `ps:"InheritToChildItems"`
+	LabelActions                                          []string              `ps:"LabelActions"`
+	LabelActionsDelta                                     *adminapi.StringDelta `ps:"LabelActions"` // adds/removes values of LabelActions; takes precedence over it
+	LocaleSettings                                        []string              `ps:"LocaleSettings"`
+	LocaleSettingsDelta                                   *adminapi.StringDelta `ps:"LocaleSettings"` // adds/removes values of LocaleSettings; takes precedence over it
+	MigrationId                                           string                `ps:"MigrationId"`
+	NextLabel                                             any                   `ps:"NextLabel"`     // ComplianceRuleIdParameter
+	ParentId                                              any                   `ps:"ParentId"`      // ComplianceRuleIdParameter
+	PreviousLabel                                         any                   `ps:"PreviousLabel"` // ComplianceRuleIdParameter
+	Priority                                              *int64                `ps:"Priority"`
+	RemoveParentLink                                      bool                  `ps:"RemoveParentLink"`
+	RuleBlob                                              string                `ps:"RuleBlob"`
+	SchematizedDataCondition                              string                `ps:"SchematizedDataCondition"`
+	Setting                                               any                   `ps:"Setting"`  // PswsHashtable
+	Settings                                              any                   `ps:"Settings"` // PswsHashtable
+	SiteAndGroupProtectionAllowAccessToGuestUsers         *bool                 `ps:"SiteAndGroupProtectionAllowAccessToGuestUsers"`
+	SiteAndGroupProtectionAllowEmailFromGuestUsers        *bool                 `ps:"SiteAndGroupProtectionAllowEmailFromGuestUsers"`
+	SiteAndGroupProtectionAllowFullAccess                 *bool                 `ps:"SiteAndGroupProtectionAllowFullAccess"`
+	SiteAndGroupProtectionAllowLimitedAccess              *bool                 `ps:"SiteAndGroupProtectionAllowLimitedAccess"`
+	SiteAndGroupProtectionBlockAccess                     *bool                 `ps:"SiteAndGroupProtectionBlockAccess"`
+	SiteAndGroupProtectionEnabled                         *bool                 `ps:"SiteAndGroupProtectionEnabled"`
+	SiteAndGroupProtectionLevel                           any                   `ps:"SiteAndGroupProtectionLevel"`    // SiteAndGroupProtectionLevelParameter
+	SiteAndGroupProtectionPrivacy                         any                   `ps:"SiteAndGroupProtectionPrivacy"`  // Microsoft.Office.CompliancePolicy.PolicyConfiguration.AccessType
+	SiteExternalSharingControlType                        any                   `ps:"SiteExternalSharingControlType"` // Microsoft.Office.CompliancePolicy.Tasks.SiteExternalSharingControlType
+	TeamsAllowedPresenters                                any                   `ps:"TeamsAllowedPresenters"`         // Microsoft.Office.CompliancePolicy.PolicyConfiguration.AllowedPresenters
+	TeamsAllowMeetingChat                                 any                   `ps:"TeamsAllowMeetingChat"`          // Microsoft.Office.CompliancePolicy.PolicyConfiguration.MeetingChatMode
+	TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch     *bool                 `ps:"TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch"`
+	TeamsBypassLobbyForDialInUsers                        *bool                 `ps:"TeamsBypassLobbyForDialInUsers"`
+	TeamsChannelProtectionEnabled                         *bool                 `ps:"TeamsChannelProtectionEnabled"`
+	TeamsChannelSharedWithExternalTenants                 *bool                 `ps:"TeamsChannelSharedWithExternalTenants"`
+	TeamsChannelSharedWithPrivateTeamsOnly                *bool                 `ps:"TeamsChannelSharedWithPrivateTeamsOnly"`
+	TeamsChannelSharedWithSameLabelOnly                   *bool                 `ps:"TeamsChannelSharedWithSameLabelOnly"`
+	TeamsCopyRestrictionEnforced                          *bool                 `ps:"TeamsCopyRestrictionEnforced"`
+	TeamsDetectSensitiveContentDuringScreenSharingEnabled *bool                 `ps:"TeamsDetectSensitiveContentDuringScreenSharingEnabled"`
+	TeamsDisableLobby                                     *bool                 `ps:"TeamsDisableLobby"`
+	TeamsEndToEndEncryptionEnabled                        *bool                 `ps:"TeamsEndToEndEncryptionEnabled"`
+	TeamsLobbyBypassScope                                 any                   `ps:"TeamsLobbyBypassScope"` // Microsoft.Office.CompliancePolicy.PolicyConfiguration.LobbyBypassScope
+	TeamsLobbyRestrictionEnforced                         *bool                 `ps:"TeamsLobbyRestrictionEnforced"`
+	TeamsPresentersRestrictionEnforced                    *bool                 `ps:"TeamsPresentersRestrictionEnforced"`
+	TeamsProtectionEnabled                                *bool                 `ps:"TeamsProtectionEnabled"`
+	TeamsRecordAutomatically                              *bool                 `ps:"TeamsRecordAutomatically"`
+	TeamsVideoWatermark                                   any                   `ps:"TeamsVideoWatermark"` // Microsoft.Office.CompliancePolicy.PolicyConfiguration.WaterMarkProtectionValues
+	TeamsWhoCanRecord                                     any                   `ps:"TeamsWhoCanRecord"`   // Microsoft.Office.CompliancePolicy.PolicyConfiguration.WhoCanRecordOptions
+	Tooltip                                               string                `ps:"Tooltip"`
 }
 
 func (p SetLabelParams) params() map[string]any {
@@ -16484,7 +16988,7 @@ func (p SetLabelParams) params() map[string]any {
 		m["ApplyContentMarkingFooterAlignment"] = p.ApplyContentMarkingFooterAlignment
 	}
 	if p.ApplyContentMarkingFooterEnabled != nil {
-		m["ApplyContentMarkingFooterEnabled"] = p.ApplyContentMarkingFooterEnabled
+		m["ApplyContentMarkingFooterEnabled"] = *p.ApplyContentMarkingFooterEnabled
 	}
 	if p.ApplyContentMarkingFooterFontColor != "" {
 		m["ApplyContentMarkingFooterFontColor"] = p.ApplyContentMarkingFooterFontColor
@@ -16493,10 +16997,10 @@ func (p SetLabelParams) params() map[string]any {
 		m["ApplyContentMarkingFooterFontName"] = p.ApplyContentMarkingFooterFontName
 	}
 	if p.ApplyContentMarkingFooterFontSize != nil {
-		m["ApplyContentMarkingFooterFontSize"] = p.ApplyContentMarkingFooterFontSize
+		m["ApplyContentMarkingFooterFontSize"] = *p.ApplyContentMarkingFooterFontSize
 	}
 	if p.ApplyContentMarkingFooterMargin != nil {
-		m["ApplyContentMarkingFooterMargin"] = p.ApplyContentMarkingFooterMargin
+		m["ApplyContentMarkingFooterMargin"] = *p.ApplyContentMarkingFooterMargin
 	}
 	if p.ApplyContentMarkingFooterText != "" {
 		m["ApplyContentMarkingFooterText"] = p.ApplyContentMarkingFooterText
@@ -16505,7 +17009,7 @@ func (p SetLabelParams) params() map[string]any {
 		m["ApplyContentMarkingHeaderAlignment"] = p.ApplyContentMarkingHeaderAlignment
 	}
 	if p.ApplyContentMarkingHeaderEnabled != nil {
-		m["ApplyContentMarkingHeaderEnabled"] = p.ApplyContentMarkingHeaderEnabled
+		m["ApplyContentMarkingHeaderEnabled"] = *p.ApplyContentMarkingHeaderEnabled
 	}
 	if p.ApplyContentMarkingHeaderFontColor != "" {
 		m["ApplyContentMarkingHeaderFontColor"] = p.ApplyContentMarkingHeaderFontColor
@@ -16514,16 +17018,16 @@ func (p SetLabelParams) params() map[string]any {
 		m["ApplyContentMarkingHeaderFontName"] = p.ApplyContentMarkingHeaderFontName
 	}
 	if p.ApplyContentMarkingHeaderFontSize != nil {
-		m["ApplyContentMarkingHeaderFontSize"] = p.ApplyContentMarkingHeaderFontSize
+		m["ApplyContentMarkingHeaderFontSize"] = *p.ApplyContentMarkingHeaderFontSize
 	}
 	if p.ApplyContentMarkingHeaderMargin != nil {
-		m["ApplyContentMarkingHeaderMargin"] = p.ApplyContentMarkingHeaderMargin
+		m["ApplyContentMarkingHeaderMargin"] = *p.ApplyContentMarkingHeaderMargin
 	}
 	if p.ApplyContentMarkingHeaderText != "" {
 		m["ApplyContentMarkingHeaderText"] = p.ApplyContentMarkingHeaderText
 	}
 	if p.ApplyDynamicWatermarkingEnabled != nil {
-		m["ApplyDynamicWatermarkingEnabled"] = p.ApplyDynamicWatermarkingEnabled
+		m["ApplyDynamicWatermarkingEnabled"] = *p.ApplyDynamicWatermarkingEnabled
 	}
 	if p.ApplyMessageMetaData != nil {
 		m["ApplyMessageMetaData"] = p.ApplyMessageMetaData
@@ -16532,7 +17036,7 @@ func (p SetLabelParams) params() map[string]any {
 		m["ApplyMessageMetaDataEnabled"] = p.ApplyMessageMetaDataEnabled
 	}
 	if p.ApplyWaterMarkingEnabled != nil {
-		m["ApplyWaterMarkingEnabled"] = p.ApplyWaterMarkingEnabled
+		m["ApplyWaterMarkingEnabled"] = *p.ApplyWaterMarkingEnabled
 	}
 	if p.ApplyWaterMarkingFontColor != "" {
 		m["ApplyWaterMarkingFontColor"] = p.ApplyWaterMarkingFontColor
@@ -16541,7 +17045,7 @@ func (p SetLabelParams) params() map[string]any {
 		m["ApplyWaterMarkingFontName"] = p.ApplyWaterMarkingFontName
 	}
 	if p.ApplyWaterMarkingFontSize != nil {
-		m["ApplyWaterMarkingFontSize"] = p.ApplyWaterMarkingFontSize
+		m["ApplyWaterMarkingFontSize"] = *p.ApplyWaterMarkingFontSize
 	}
 	if p.ApplyWaterMarkingLayout != nil {
 		m["ApplyWaterMarkingLayout"] = p.ApplyWaterMarkingLayout
@@ -16558,7 +17062,9 @@ func (p SetLabelParams) params() map[string]any {
 	if p.ConditionalAccessAuthContext != "" {
 		m["ConditionalAccessAuthContext"] = p.ConditionalAccessAuthContext
 	}
-	if p.Conditions != nil {
+	if p.ConditionsDelta != nil {
+		m["Conditions"] = *p.ConditionsDelta
+	} else if p.Conditions != nil {
 		m["Conditions"] = p.Conditions
 	}
 	if p.ContentType != nil {
@@ -16595,22 +17101,22 @@ func (p SetLabelParams) params() map[string]any {
 		m["EncryptionDisableAutomaticOwnerRights"] = p.EncryptionDisableAutomaticOwnerRights
 	}
 	if p.EncryptionDoNotForward != nil {
-		m["EncryptionDoNotForward"] = p.EncryptionDoNotForward
+		m["EncryptionDoNotForward"] = *p.EncryptionDoNotForward
 	}
 	if p.EncryptionDoubleKeyEncryptionUrl != "" {
 		m["EncryptionDoubleKeyEncryptionUrl"] = p.EncryptionDoubleKeyEncryptionUrl
 	}
 	if p.EncryptionEnabled != nil {
-		m["EncryptionEnabled"] = p.EncryptionEnabled
+		m["EncryptionEnabled"] = *p.EncryptionEnabled
 	}
 	if p.EncryptionEncryptOnly != nil {
-		m["EncryptionEncryptOnly"] = p.EncryptionEncryptOnly
+		m["EncryptionEncryptOnly"] = *p.EncryptionEncryptOnly
 	}
 	if p.EncryptionOfflineAccessDays != nil {
-		m["EncryptionOfflineAccessDays"] = p.EncryptionOfflineAccessDays
+		m["EncryptionOfflineAccessDays"] = *p.EncryptionOfflineAccessDays
 	}
 	if p.EncryptionPromptUser != nil {
-		m["EncryptionPromptUser"] = p.EncryptionPromptUser
+		m["EncryptionPromptUser"] = *p.EncryptionPromptUser
 	}
 	if p.EncryptionProtectionType != nil {
 		m["EncryptionProtectionType"] = p.EncryptionProtectionType
@@ -16630,10 +17136,14 @@ func (p SetLabelParams) params() map[string]any {
 	if p.InheritToChildItems != nil {
 		m["InheritToChildItems"] = p.InheritToChildItems
 	}
-	if p.LabelActions != nil {
+	if p.LabelActionsDelta != nil {
+		m["LabelActions"] = *p.LabelActionsDelta
+	} else if p.LabelActions != nil {
 		m["LabelActions"] = p.LabelActions
 	}
-	if p.LocaleSettings != nil {
+	if p.LocaleSettingsDelta != nil {
+		m["LocaleSettings"] = *p.LocaleSettingsDelta
+	} else if p.LocaleSettings != nil {
 		m["LocaleSettings"] = p.LocaleSettings
 	}
 	if p.MigrationId != "" {
@@ -16649,7 +17159,7 @@ func (p SetLabelParams) params() map[string]any {
 		m["PreviousLabel"] = p.PreviousLabel
 	}
 	if p.Priority != nil {
-		m["Priority"] = p.Priority
+		m["Priority"] = *p.Priority
 	}
 	if p.RemoveParentLink {
 		m["RemoveParentLink"] = true
@@ -16667,22 +17177,22 @@ func (p SetLabelParams) params() map[string]any {
 		m["Settings"] = p.Settings
 	}
 	if p.SiteAndGroupProtectionAllowAccessToGuestUsers != nil {
-		m["SiteAndGroupProtectionAllowAccessToGuestUsers"] = p.SiteAndGroupProtectionAllowAccessToGuestUsers
+		m["SiteAndGroupProtectionAllowAccessToGuestUsers"] = *p.SiteAndGroupProtectionAllowAccessToGuestUsers
 	}
 	if p.SiteAndGroupProtectionAllowEmailFromGuestUsers != nil {
-		m["SiteAndGroupProtectionAllowEmailFromGuestUsers"] = p.SiteAndGroupProtectionAllowEmailFromGuestUsers
+		m["SiteAndGroupProtectionAllowEmailFromGuestUsers"] = *p.SiteAndGroupProtectionAllowEmailFromGuestUsers
 	}
 	if p.SiteAndGroupProtectionAllowFullAccess != nil {
-		m["SiteAndGroupProtectionAllowFullAccess"] = p.SiteAndGroupProtectionAllowFullAccess
+		m["SiteAndGroupProtectionAllowFullAccess"] = *p.SiteAndGroupProtectionAllowFullAccess
 	}
 	if p.SiteAndGroupProtectionAllowLimitedAccess != nil {
-		m["SiteAndGroupProtectionAllowLimitedAccess"] = p.SiteAndGroupProtectionAllowLimitedAccess
+		m["SiteAndGroupProtectionAllowLimitedAccess"] = *p.SiteAndGroupProtectionAllowLimitedAccess
 	}
 	if p.SiteAndGroupProtectionBlockAccess != nil {
-		m["SiteAndGroupProtectionBlockAccess"] = p.SiteAndGroupProtectionBlockAccess
+		m["SiteAndGroupProtectionBlockAccess"] = *p.SiteAndGroupProtectionBlockAccess
 	}
 	if p.SiteAndGroupProtectionEnabled != nil {
-		m["SiteAndGroupProtectionEnabled"] = p.SiteAndGroupProtectionEnabled
+		m["SiteAndGroupProtectionEnabled"] = *p.SiteAndGroupProtectionEnabled
 	}
 	if p.SiteAndGroupProtectionLevel != nil {
 		m["SiteAndGroupProtectionLevel"] = p.SiteAndGroupProtectionLevel
@@ -16700,49 +17210,49 @@ func (p SetLabelParams) params() map[string]any {
 		m["TeamsAllowMeetingChat"] = p.TeamsAllowMeetingChat
 	}
 	if p.TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch != nil {
-		m["TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch"] = p.TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch
+		m["TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch"] = *p.TeamsAllowPrivateTeamsToBeDiscoverableUsingSearch
 	}
 	if p.TeamsBypassLobbyForDialInUsers != nil {
-		m["TeamsBypassLobbyForDialInUsers"] = p.TeamsBypassLobbyForDialInUsers
+		m["TeamsBypassLobbyForDialInUsers"] = *p.TeamsBypassLobbyForDialInUsers
 	}
 	if p.TeamsChannelProtectionEnabled != nil {
-		m["TeamsChannelProtectionEnabled"] = p.TeamsChannelProtectionEnabled
+		m["TeamsChannelProtectionEnabled"] = *p.TeamsChannelProtectionEnabled
 	}
 	if p.TeamsChannelSharedWithExternalTenants != nil {
-		m["TeamsChannelSharedWithExternalTenants"] = p.TeamsChannelSharedWithExternalTenants
+		m["TeamsChannelSharedWithExternalTenants"] = *p.TeamsChannelSharedWithExternalTenants
 	}
 	if p.TeamsChannelSharedWithPrivateTeamsOnly != nil {
-		m["TeamsChannelSharedWithPrivateTeamsOnly"] = p.TeamsChannelSharedWithPrivateTeamsOnly
+		m["TeamsChannelSharedWithPrivateTeamsOnly"] = *p.TeamsChannelSharedWithPrivateTeamsOnly
 	}
 	if p.TeamsChannelSharedWithSameLabelOnly != nil {
-		m["TeamsChannelSharedWithSameLabelOnly"] = p.TeamsChannelSharedWithSameLabelOnly
+		m["TeamsChannelSharedWithSameLabelOnly"] = *p.TeamsChannelSharedWithSameLabelOnly
 	}
 	if p.TeamsCopyRestrictionEnforced != nil {
-		m["TeamsCopyRestrictionEnforced"] = p.TeamsCopyRestrictionEnforced
+		m["TeamsCopyRestrictionEnforced"] = *p.TeamsCopyRestrictionEnforced
 	}
 	if p.TeamsDetectSensitiveContentDuringScreenSharingEnabled != nil {
-		m["TeamsDetectSensitiveContentDuringScreenSharingEnabled"] = p.TeamsDetectSensitiveContentDuringScreenSharingEnabled
+		m["TeamsDetectSensitiveContentDuringScreenSharingEnabled"] = *p.TeamsDetectSensitiveContentDuringScreenSharingEnabled
 	}
 	if p.TeamsDisableLobby != nil {
-		m["TeamsDisableLobby"] = p.TeamsDisableLobby
+		m["TeamsDisableLobby"] = *p.TeamsDisableLobby
 	}
 	if p.TeamsEndToEndEncryptionEnabled != nil {
-		m["TeamsEndToEndEncryptionEnabled"] = p.TeamsEndToEndEncryptionEnabled
+		m["TeamsEndToEndEncryptionEnabled"] = *p.TeamsEndToEndEncryptionEnabled
 	}
 	if p.TeamsLobbyBypassScope != nil {
 		m["TeamsLobbyBypassScope"] = p.TeamsLobbyBypassScope
 	}
 	if p.TeamsLobbyRestrictionEnforced != nil {
-		m["TeamsLobbyRestrictionEnforced"] = p.TeamsLobbyRestrictionEnforced
+		m["TeamsLobbyRestrictionEnforced"] = *p.TeamsLobbyRestrictionEnforced
 	}
 	if p.TeamsPresentersRestrictionEnforced != nil {
-		m["TeamsPresentersRestrictionEnforced"] = p.TeamsPresentersRestrictionEnforced
+		m["TeamsPresentersRestrictionEnforced"] = *p.TeamsPresentersRestrictionEnforced
 	}
 	if p.TeamsProtectionEnabled != nil {
-		m["TeamsProtectionEnabled"] = p.TeamsProtectionEnabled
+		m["TeamsProtectionEnabled"] = *p.TeamsProtectionEnabled
 	}
 	if p.TeamsRecordAutomatically != nil {
-		m["TeamsRecordAutomatically"] = p.TeamsRecordAutomatically
+		m["TeamsRecordAutomatically"] = *p.TeamsRecordAutomatically
 	}
 	if p.TeamsVideoWatermark != nil {
 		m["TeamsVideoWatermark"] = p.TeamsVideoWatermark
@@ -16818,82 +17328,133 @@ func (s *Service) SetLabelExplorerConfig(ctx context.Context, p SetLabelExplorer
 // SetLabelPolicyParams are the parameters of Set-LabelPolicy.
 // DefaultParameterSetName: Identity
 type SetLabelPolicyParams struct {
-	AddExchangeLocation                any    `ps:"AddExchangeLocation"`
-	AddExchangeLocationException       any    `ps:"AddExchangeLocationException"`
-	AddLabels                          any    `ps:"AddLabels"`
-	AddModernGroupLocation             any    `ps:"AddModernGroupLocation"`
-	AddModernGroupLocationException    any    `ps:"AddModernGroupLocationException"`
-	AddOneDriveLocation                any    `ps:"AddOneDriveLocation"`
-	AddOneDriveLocationException       any    `ps:"AddOneDriveLocationException"`
-	AddPublicFolderLocation            any    `ps:"AddPublicFolderLocation"`
-	AddSharePointLocation              any    `ps:"AddSharePointLocation"`
-	AddSharePointLocationException     any    `ps:"AddSharePointLocationException"`
-	AddSkypeLocation                   any    `ps:"AddSkypeLocation"`
-	AddSkypeLocationException          any    `ps:"AddSkypeLocationException"`
-	AdvancedSettings                   any    `ps:"AdvancedSettings"`
-	Comment                            string `ps:"Comment"`
-	ExchangeAdaptiveScopes             any    `ps:"ExchangeAdaptiveScopes"`
-	ExchangeAdaptiveScopesException    any    `ps:"ExchangeAdaptiveScopesException"`
-	Force                              bool   `ps:"Force"`
-	Identity                           any    `ps:"Identity"`
-	Locations                          string `ps:"Locations"`
-	MigrationId                        string `ps:"MigrationId"`
-	NextLabelPolicy                    any    `ps:"NextLabelPolicy"`
-	PolicyRBACScopes                   any    `ps:"PolicyRBACScopes"`
-	PreviousLabelPolicy                any    `ps:"PreviousLabelPolicy"`
-	RemoveExchangeLocation             any    `ps:"RemoveExchangeLocation"`
-	RemoveExchangeLocationException    any    `ps:"RemoveExchangeLocationException"`
-	RemoveLabels                       any    `ps:"RemoveLabels"`
-	RemoveModernGroupLocation          any    `ps:"RemoveModernGroupLocation"`
-	RemoveModernGroupLocationException any    `ps:"RemoveModernGroupLocationException"`
-	RemoveOneDriveLocation             any    `ps:"RemoveOneDriveLocation"`
-	RemoveOneDriveLocationException    any    `ps:"RemoveOneDriveLocationException"`
-	RemovePublicFolderLocation         any    `ps:"RemovePublicFolderLocation"`
-	RemoveSharePointLocation           any    `ps:"RemoveSharePointLocation"`
-	RemoveSharePointLocationException  any    `ps:"RemoveSharePointLocationException"`
-	RemoveSkypeLocation                any    `ps:"RemoveSkypeLocation"`
-	RemoveSkypeLocationException       any    `ps:"RemoveSkypeLocationException"`
-	RetryDistribution                  bool   `ps:"RetryDistribution"`
-	Setting                            any    `ps:"Setting"`
-	Settings                           any    `ps:"Settings"`
+	AddExchangeLocation                     []string              `ps:"AddExchangeLocation"`
+	AddExchangeLocationDelta                *adminapi.StringDelta `ps:"AddExchangeLocation"` // adds/removes values of AddExchangeLocation; takes precedence over it
+	AddExchangeLocationException            []string              `ps:"AddExchangeLocationException"`
+	AddExchangeLocationExceptionDelta       *adminapi.StringDelta `ps:"AddExchangeLocationException"` // adds/removes values of AddExchangeLocationException; takes precedence over it
+	AddLabels                               []string              `ps:"AddLabels"`
+	AddLabelsDelta                          *adminapi.StringDelta `ps:"AddLabels"` // adds/removes values of AddLabels; takes precedence over it
+	AddModernGroupLocation                  []string              `ps:"AddModernGroupLocation"`
+	AddModernGroupLocationDelta             *adminapi.StringDelta `ps:"AddModernGroupLocation"` // adds/removes values of AddModernGroupLocation; takes precedence over it
+	AddModernGroupLocationException         []string              `ps:"AddModernGroupLocationException"`
+	AddModernGroupLocationExceptionDelta    *adminapi.StringDelta `ps:"AddModernGroupLocationException"` // adds/removes values of AddModernGroupLocationException; takes precedence over it
+	AddOneDriveLocation                     []string              `ps:"AddOneDriveLocation"`
+	AddOneDriveLocationDelta                *adminapi.StringDelta `ps:"AddOneDriveLocation"` // adds/removes values of AddOneDriveLocation; takes precedence over it
+	AddOneDriveLocationException            []string              `ps:"AddOneDriveLocationException"`
+	AddOneDriveLocationExceptionDelta       *adminapi.StringDelta `ps:"AddOneDriveLocationException"` // adds/removes values of AddOneDriveLocationException; takes precedence over it
+	AddPublicFolderLocation                 []string              `ps:"AddPublicFolderLocation"`
+	AddPublicFolderLocationDelta            *adminapi.StringDelta `ps:"AddPublicFolderLocation"` // adds/removes values of AddPublicFolderLocation; takes precedence over it
+	AddSharePointLocation                   []string              `ps:"AddSharePointLocation"`
+	AddSharePointLocationDelta              *adminapi.StringDelta `ps:"AddSharePointLocation"` // adds/removes values of AddSharePointLocation; takes precedence over it
+	AddSharePointLocationException          []string              `ps:"AddSharePointLocationException"`
+	AddSharePointLocationExceptionDelta     *adminapi.StringDelta `ps:"AddSharePointLocationException"` // adds/removes values of AddSharePointLocationException; takes precedence over it
+	AddSkypeLocation                        []string              `ps:"AddSkypeLocation"`
+	AddSkypeLocationDelta                   *adminapi.StringDelta `ps:"AddSkypeLocation"` // adds/removes values of AddSkypeLocation; takes precedence over it
+	AddSkypeLocationException               []string              `ps:"AddSkypeLocationException"`
+	AddSkypeLocationExceptionDelta          *adminapi.StringDelta `ps:"AddSkypeLocationException"` // adds/removes values of AddSkypeLocationException; takes precedence over it
+	AdvancedSettings                        any                   `ps:"AdvancedSettings"`          // PswsHashtable
+	Comment                                 string                `ps:"Comment"`
+	ExchangeAdaptiveScopes                  []string              `ps:"ExchangeAdaptiveScopes"`
+	ExchangeAdaptiveScopesDelta             *adminapi.StringDelta `ps:"ExchangeAdaptiveScopes"` // adds/removes values of ExchangeAdaptiveScopes; takes precedence over it
+	ExchangeAdaptiveScopesException         []string              `ps:"ExchangeAdaptiveScopesException"`
+	ExchangeAdaptiveScopesExceptionDelta    *adminapi.StringDelta `ps:"ExchangeAdaptiveScopesException"` // adds/removes values of ExchangeAdaptiveScopesException; takes precedence over it
+	Force                                   bool                  `ps:"Force"`
+	Identity                                any                   `ps:"Identity"` // PolicyIdParameter
+	Locations                               string                `ps:"Locations"`
+	MigrationId                             string                `ps:"MigrationId"`
+	NextLabelPolicy                         any                   `ps:"NextLabelPolicy"` // PolicyIdParameter
+	PolicyRBACScopes                        []string              `ps:"PolicyRBACScopes"`
+	PolicyRBACScopesDelta                   *adminapi.StringDelta `ps:"PolicyRBACScopes"`    // adds/removes values of PolicyRBACScopes; takes precedence over it
+	PreviousLabelPolicy                     any                   `ps:"PreviousLabelPolicy"` // PolicyIdParameter
+	RemoveExchangeLocation                  []string              `ps:"RemoveExchangeLocation"`
+	RemoveExchangeLocationDelta             *adminapi.StringDelta `ps:"RemoveExchangeLocation"` // adds/removes values of RemoveExchangeLocation; takes precedence over it
+	RemoveExchangeLocationException         []string              `ps:"RemoveExchangeLocationException"`
+	RemoveExchangeLocationExceptionDelta    *adminapi.StringDelta `ps:"RemoveExchangeLocationException"` // adds/removes values of RemoveExchangeLocationException; takes precedence over it
+	RemoveLabels                            []string              `ps:"RemoveLabels"`
+	RemoveLabelsDelta                       *adminapi.StringDelta `ps:"RemoveLabels"` // adds/removes values of RemoveLabels; takes precedence over it
+	RemoveModernGroupLocation               []string              `ps:"RemoveModernGroupLocation"`
+	RemoveModernGroupLocationDelta          *adminapi.StringDelta `ps:"RemoveModernGroupLocation"` // adds/removes values of RemoveModernGroupLocation; takes precedence over it
+	RemoveModernGroupLocationException      []string              `ps:"RemoveModernGroupLocationException"`
+	RemoveModernGroupLocationExceptionDelta *adminapi.StringDelta `ps:"RemoveModernGroupLocationException"` // adds/removes values of RemoveModernGroupLocationException; takes precedence over it
+	RemoveOneDriveLocation                  []string              `ps:"RemoveOneDriveLocation"`
+	RemoveOneDriveLocationDelta             *adminapi.StringDelta `ps:"RemoveOneDriveLocation"` // adds/removes values of RemoveOneDriveLocation; takes precedence over it
+	RemoveOneDriveLocationException         []string              `ps:"RemoveOneDriveLocationException"`
+	RemoveOneDriveLocationExceptionDelta    *adminapi.StringDelta `ps:"RemoveOneDriveLocationException"` // adds/removes values of RemoveOneDriveLocationException; takes precedence over it
+	RemovePublicFolderLocation              []string              `ps:"RemovePublicFolderLocation"`
+	RemovePublicFolderLocationDelta         *adminapi.StringDelta `ps:"RemovePublicFolderLocation"` // adds/removes values of RemovePublicFolderLocation; takes precedence over it
+	RemoveSharePointLocation                []string              `ps:"RemoveSharePointLocation"`
+	RemoveSharePointLocationDelta           *adminapi.StringDelta `ps:"RemoveSharePointLocation"` // adds/removes values of RemoveSharePointLocation; takes precedence over it
+	RemoveSharePointLocationException       []string              `ps:"RemoveSharePointLocationException"`
+	RemoveSharePointLocationExceptionDelta  *adminapi.StringDelta `ps:"RemoveSharePointLocationException"` // adds/removes values of RemoveSharePointLocationException; takes precedence over it
+	RemoveSkypeLocation                     []string              `ps:"RemoveSkypeLocation"`
+	RemoveSkypeLocationDelta                *adminapi.StringDelta `ps:"RemoveSkypeLocation"` // adds/removes values of RemoveSkypeLocation; takes precedence over it
+	RemoveSkypeLocationException            []string              `ps:"RemoveSkypeLocationException"`
+	RemoveSkypeLocationExceptionDelta       *adminapi.StringDelta `ps:"RemoveSkypeLocationException"` // adds/removes values of RemoveSkypeLocationException; takes precedence over it
+	RetryDistribution                       bool                  `ps:"RetryDistribution"`
+	Setting                                 any                   `ps:"Setting"`  // PswsHashtable
+	Settings                                any                   `ps:"Settings"` // PswsHashtable
 }
 
 func (p SetLabelPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddExchangeLocation != nil {
+	if p.AddExchangeLocationDelta != nil {
+		m["AddExchangeLocation"] = *p.AddExchangeLocationDelta
+	} else if p.AddExchangeLocation != nil {
 		m["AddExchangeLocation"] = p.AddExchangeLocation
 	}
-	if p.AddExchangeLocationException != nil {
+	if p.AddExchangeLocationExceptionDelta != nil {
+		m["AddExchangeLocationException"] = *p.AddExchangeLocationExceptionDelta
+	} else if p.AddExchangeLocationException != nil {
 		m["AddExchangeLocationException"] = p.AddExchangeLocationException
 	}
-	if p.AddLabels != nil {
+	if p.AddLabelsDelta != nil {
+		m["AddLabels"] = *p.AddLabelsDelta
+	} else if p.AddLabels != nil {
 		m["AddLabels"] = p.AddLabels
 	}
-	if p.AddModernGroupLocation != nil {
+	if p.AddModernGroupLocationDelta != nil {
+		m["AddModernGroupLocation"] = *p.AddModernGroupLocationDelta
+	} else if p.AddModernGroupLocation != nil {
 		m["AddModernGroupLocation"] = p.AddModernGroupLocation
 	}
-	if p.AddModernGroupLocationException != nil {
+	if p.AddModernGroupLocationExceptionDelta != nil {
+		m["AddModernGroupLocationException"] = *p.AddModernGroupLocationExceptionDelta
+	} else if p.AddModernGroupLocationException != nil {
 		m["AddModernGroupLocationException"] = p.AddModernGroupLocationException
 	}
-	if p.AddOneDriveLocation != nil {
+	if p.AddOneDriveLocationDelta != nil {
+		m["AddOneDriveLocation"] = *p.AddOneDriveLocationDelta
+	} else if p.AddOneDriveLocation != nil {
 		m["AddOneDriveLocation"] = p.AddOneDriveLocation
 	}
-	if p.AddOneDriveLocationException != nil {
+	if p.AddOneDriveLocationExceptionDelta != nil {
+		m["AddOneDriveLocationException"] = *p.AddOneDriveLocationExceptionDelta
+	} else if p.AddOneDriveLocationException != nil {
 		m["AddOneDriveLocationException"] = p.AddOneDriveLocationException
 	}
-	if p.AddPublicFolderLocation != nil {
+	if p.AddPublicFolderLocationDelta != nil {
+		m["AddPublicFolderLocation"] = *p.AddPublicFolderLocationDelta
+	} else if p.AddPublicFolderLocation != nil {
 		m["AddPublicFolderLocation"] = p.AddPublicFolderLocation
 	}
-	if p.AddSharePointLocation != nil {
+	if p.AddSharePointLocationDelta != nil {
+		m["AddSharePointLocation"] = *p.AddSharePointLocationDelta
+	} else if p.AddSharePointLocation != nil {
 		m["AddSharePointLocation"] = p.AddSharePointLocation
 	}
-	if p.AddSharePointLocationException != nil {
+	if p.AddSharePointLocationExceptionDelta != nil {
+		m["AddSharePointLocationException"] = *p.AddSharePointLocationExceptionDelta
+	} else if p.AddSharePointLocationException != nil {
 		m["AddSharePointLocationException"] = p.AddSharePointLocationException
 	}
-	if p.AddSkypeLocation != nil {
+	if p.AddSkypeLocationDelta != nil {
+		m["AddSkypeLocation"] = *p.AddSkypeLocationDelta
+	} else if p.AddSkypeLocation != nil {
 		m["AddSkypeLocation"] = p.AddSkypeLocation
 	}
-	if p.AddSkypeLocationException != nil {
+	if p.AddSkypeLocationExceptionDelta != nil {
+		m["AddSkypeLocationException"] = *p.AddSkypeLocationExceptionDelta
+	} else if p.AddSkypeLocationException != nil {
 		m["AddSkypeLocationException"] = p.AddSkypeLocationException
 	}
 	if p.AdvancedSettings != nil {
@@ -16902,10 +17463,14 @@ func (p SetLabelPolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.ExchangeAdaptiveScopes != nil {
+	if p.ExchangeAdaptiveScopesDelta != nil {
+		m["ExchangeAdaptiveScopes"] = *p.ExchangeAdaptiveScopesDelta
+	} else if p.ExchangeAdaptiveScopes != nil {
 		m["ExchangeAdaptiveScopes"] = p.ExchangeAdaptiveScopes
 	}
-	if p.ExchangeAdaptiveScopesException != nil {
+	if p.ExchangeAdaptiveScopesExceptionDelta != nil {
+		m["ExchangeAdaptiveScopesException"] = *p.ExchangeAdaptiveScopesExceptionDelta
+	} else if p.ExchangeAdaptiveScopesException != nil {
 		m["ExchangeAdaptiveScopesException"] = p.ExchangeAdaptiveScopesException
 	}
 	if p.Force {
@@ -16923,46 +17488,72 @@ func (p SetLabelPolicyParams) params() map[string]any {
 	if p.NextLabelPolicy != nil {
 		m["NextLabelPolicy"] = p.NextLabelPolicy
 	}
-	if p.PolicyRBACScopes != nil {
+	if p.PolicyRBACScopesDelta != nil {
+		m["PolicyRBACScopes"] = *p.PolicyRBACScopesDelta
+	} else if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
 	if p.PreviousLabelPolicy != nil {
 		m["PreviousLabelPolicy"] = p.PreviousLabelPolicy
 	}
-	if p.RemoveExchangeLocation != nil {
+	if p.RemoveExchangeLocationDelta != nil {
+		m["RemoveExchangeLocation"] = *p.RemoveExchangeLocationDelta
+	} else if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
 	}
-	if p.RemoveExchangeLocationException != nil {
+	if p.RemoveExchangeLocationExceptionDelta != nil {
+		m["RemoveExchangeLocationException"] = *p.RemoveExchangeLocationExceptionDelta
+	} else if p.RemoveExchangeLocationException != nil {
 		m["RemoveExchangeLocationException"] = p.RemoveExchangeLocationException
 	}
-	if p.RemoveLabels != nil {
+	if p.RemoveLabelsDelta != nil {
+		m["RemoveLabels"] = *p.RemoveLabelsDelta
+	} else if p.RemoveLabels != nil {
 		m["RemoveLabels"] = p.RemoveLabels
 	}
-	if p.RemoveModernGroupLocation != nil {
+	if p.RemoveModernGroupLocationDelta != nil {
+		m["RemoveModernGroupLocation"] = *p.RemoveModernGroupLocationDelta
+	} else if p.RemoveModernGroupLocation != nil {
 		m["RemoveModernGroupLocation"] = p.RemoveModernGroupLocation
 	}
-	if p.RemoveModernGroupLocationException != nil {
+	if p.RemoveModernGroupLocationExceptionDelta != nil {
+		m["RemoveModernGroupLocationException"] = *p.RemoveModernGroupLocationExceptionDelta
+	} else if p.RemoveModernGroupLocationException != nil {
 		m["RemoveModernGroupLocationException"] = p.RemoveModernGroupLocationException
 	}
-	if p.RemoveOneDriveLocation != nil {
+	if p.RemoveOneDriveLocationDelta != nil {
+		m["RemoveOneDriveLocation"] = *p.RemoveOneDriveLocationDelta
+	} else if p.RemoveOneDriveLocation != nil {
 		m["RemoveOneDriveLocation"] = p.RemoveOneDriveLocation
 	}
-	if p.RemoveOneDriveLocationException != nil {
+	if p.RemoveOneDriveLocationExceptionDelta != nil {
+		m["RemoveOneDriveLocationException"] = *p.RemoveOneDriveLocationExceptionDelta
+	} else if p.RemoveOneDriveLocationException != nil {
 		m["RemoveOneDriveLocationException"] = p.RemoveOneDriveLocationException
 	}
-	if p.RemovePublicFolderLocation != nil {
+	if p.RemovePublicFolderLocationDelta != nil {
+		m["RemovePublicFolderLocation"] = *p.RemovePublicFolderLocationDelta
+	} else if p.RemovePublicFolderLocation != nil {
 		m["RemovePublicFolderLocation"] = p.RemovePublicFolderLocation
 	}
-	if p.RemoveSharePointLocation != nil {
+	if p.RemoveSharePointLocationDelta != nil {
+		m["RemoveSharePointLocation"] = *p.RemoveSharePointLocationDelta
+	} else if p.RemoveSharePointLocation != nil {
 		m["RemoveSharePointLocation"] = p.RemoveSharePointLocation
 	}
-	if p.RemoveSharePointLocationException != nil {
+	if p.RemoveSharePointLocationExceptionDelta != nil {
+		m["RemoveSharePointLocationException"] = *p.RemoveSharePointLocationExceptionDelta
+	} else if p.RemoveSharePointLocationException != nil {
 		m["RemoveSharePointLocationException"] = p.RemoveSharePointLocationException
 	}
-	if p.RemoveSkypeLocation != nil {
+	if p.RemoveSkypeLocationDelta != nil {
+		m["RemoveSkypeLocation"] = *p.RemoveSkypeLocationDelta
+	} else if p.RemoveSkypeLocation != nil {
 		m["RemoveSkypeLocation"] = p.RemoveSkypeLocation
 	}
-	if p.RemoveSkypeLocationException != nil {
+	if p.RemoveSkypeLocationExceptionDelta != nil {
+		m["RemoveSkypeLocationException"] = *p.RemoveSkypeLocationExceptionDelta
+	} else if p.RemoveSkypeLocationException != nil {
 		m["RemoveSkypeLocationException"] = p.RemoveSkypeLocationException
 	}
 	if p.RetryDistribution {
@@ -16987,12 +17578,12 @@ type SetMachineAssistedTagResourceParams struct {
 	DiscardModel    string `ps:"DiscardModel"`
 	Feedbacks       string `ps:"Feedbacks"`
 	Identity        any    `ps:"Identity"`
-	ModelId         any    `ps:"ModelId"`
+	ModelId         string `ps:"ModelId"`
 	ModelName       string `ps:"ModelName"`
 	Resource        any    `ps:"Resource"`
 	ReviewCompleted string `ps:"ReviewCompleted"`
-	TaskId          any    `ps:"TaskId"`
-	TrainingId      any    `ps:"TrainingId"`
+	TaskId          string `ps:"TaskId"`
+	TrainingId      string `ps:"TrainingId"`
 }
 
 func (p SetMachineAssistedTagResourceParams) params() map[string]any {
@@ -17006,7 +17597,7 @@ func (p SetMachineAssistedTagResourceParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ModelId != nil {
+	if p.ModelId != "" {
 		m["ModelId"] = p.ModelId
 	}
 	if p.ModelName != "" {
@@ -17018,10 +17609,10 @@ func (p SetMachineAssistedTagResourceParams) params() map[string]any {
 	if p.ReviewCompleted != "" {
 		m["ReviewCompleted"] = p.ReviewCompleted
 	}
-	if p.TaskId != nil {
+	if p.TaskId != "" {
 		m["TaskId"] = p.TaskId
 	}
-	if p.TrainingId != nil {
+	if p.TrainingId != "" {
 		m["TrainingId"] = p.TrainingId
 	}
 	return m
@@ -17044,7 +17635,7 @@ type SetMultiTenantOrganizationConfigParams struct {
 
 func (p SetMultiTenantOrganizationConfigParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.AddAuthorizedMemberTenants) > 0 {
+	if p.AddAuthorizedMemberTenants != nil {
 		m["AddAuthorizedMemberTenants"] = p.AddAuthorizedMemberTenants
 	}
 	if p.AuthorizedOwnerTenantForMemberTenant != nil {
@@ -17056,7 +17647,7 @@ func (p SetMultiTenantOrganizationConfigParams) params() map[string]any {
 	if p.IsMultiTenantOrganizationEnabled != nil {
 		m["IsMultiTenantOrganizationEnabled"] = p.IsMultiTenantOrganizationEnabled
 	}
-	if len(p.RemoveAuthorizedMemberTenants) > 0 {
+	if p.RemoveAuthorizedMemberTenants != nil {
 		m["RemoveAuthorizedMemberTenants"] = p.RemoveAuthorizedMemberTenants
 	}
 	return m
@@ -17084,7 +17675,7 @@ type SetOcrConfigurationParams struct {
 	EnforcementPlanes                    any      `ps:"EnforcementPlanes"`
 	ExceptIfOneDriveSharedBy             []string `ps:"ExceptIfOneDriveSharedBy"`
 	ExceptIfOneDriveSharedByMemberOf     []string `ps:"ExceptIfOneDriveSharedByMemberOf"`
-	ExchangeScopeOcrAnyRecipientExternal bool     `ps:"ExchangeScopeOcrAnyRecipientExternal"`
+	ExchangeScopeOcrAnyRecipientExternal *bool    `ps:"ExchangeScopeOcrAnyRecipientExternal"`
 	ExchangeSender                       []string `ps:"ExchangeSender"`
 	ExchangeSenderException              []string `ps:"ExchangeSenderException"`
 	ExchangeSenderMemberOf               []string `ps:"ExchangeSenderMemberOf"`
@@ -17145,25 +17736,25 @@ func (p SetOcrConfigurationParams) params() map[string]any {
 	if p.EnforcementPlanes != nil {
 		m["EnforcementPlanes"] = p.EnforcementPlanes
 	}
-	if len(p.ExceptIfOneDriveSharedBy) > 0 {
+	if p.ExceptIfOneDriveSharedBy != nil {
 		m["ExceptIfOneDriveSharedBy"] = p.ExceptIfOneDriveSharedBy
 	}
-	if len(p.ExceptIfOneDriveSharedByMemberOf) > 0 {
+	if p.ExceptIfOneDriveSharedByMemberOf != nil {
 		m["ExceptIfOneDriveSharedByMemberOf"] = p.ExceptIfOneDriveSharedByMemberOf
 	}
-	if p.ExchangeScopeOcrAnyRecipientExternal {
-		m["ExchangeScopeOcrAnyRecipientExternal"] = true
+	if p.ExchangeScopeOcrAnyRecipientExternal != nil {
+		m["ExchangeScopeOcrAnyRecipientExternal"] = *p.ExchangeScopeOcrAnyRecipientExternal
 	}
-	if len(p.ExchangeSender) > 0 {
+	if p.ExchangeSender != nil {
 		m["ExchangeSender"] = p.ExchangeSender
 	}
-	if len(p.ExchangeSenderException) > 0 {
+	if p.ExchangeSenderException != nil {
 		m["ExchangeSenderException"] = p.ExchangeSenderException
 	}
-	if len(p.ExchangeSenderMemberOf) > 0 {
+	if p.ExchangeSenderMemberOf != nil {
 		m["ExchangeSenderMemberOf"] = p.ExchangeSenderMemberOf
 	}
-	if len(p.ExchangeSenderMemberOfException) > 0 {
+	if p.ExchangeSenderMemberOfException != nil {
 		m["ExchangeSenderMemberOfException"] = p.ExchangeSenderMemberOfException
 	}
 	if p.Identity != nil {
@@ -17178,10 +17769,10 @@ func (p SetOcrConfigurationParams) params() map[string]any {
 	if p.OcrMode != nil {
 		m["OcrMode"] = p.OcrMode
 	}
-	if len(p.OneDriveSharedBy) > 0 {
+	if p.OneDriveSharedBy != nil {
 		m["OneDriveSharedBy"] = p.OneDriveSharedBy
 	}
-	if len(p.OneDriveSharedByMemberOf) > 0 {
+	if p.OneDriveSharedByMemberOf != nil {
 		m["OneDriveSharedByMemberOf"] = p.OneDriveSharedByMemberOf
 	}
 	if p.RemoveEndpointDlpLocation != nil {
@@ -17225,7 +17816,7 @@ func (s *Service) SetOcrConfiguration(ctx context.Context, p SetOcrConfiguration
 // SetOrganizationSegmentParams are the parameters of Set-OrganizationSegment.
 // DefaultParameterSetName: OrganizationSegmentsDefault
 type SetOrganizationSegmentParams struct {
-	Identity        any    `ps:"Identity"`
+	Identity        any    `ps:"Identity"` // PolicyIdParameter
 	UserGroupFilter string `ps:"UserGroupFilter"`
 }
 
@@ -17248,48 +17839,48 @@ func (s *Service) SetOrganizationSegment(ctx context.Context, p SetOrganizationS
 // SetPolicyConfigParams are the parameters of Set-PolicyConfig.
 // DefaultParameterSetName: Identity
 type SetPolicyConfigParams struct {
-	AggregationTimeWindowForDlpAlerts          any      `ps:"AggregationTimeWindowForDlpAlerts"`
-	CaseHoldPolicyLimit                        int      `ps:"CaseHoldPolicyLimit"`
-	ClassificationScheme                       any      `ps:"ClassificationScheme"`
+	AggregationTimeWindowForDlpAlerts          *int64   `ps:"AggregationTimeWindowForDlpAlerts"`
+	CaseHoldPolicyLimit                        *int64   `ps:"CaseHoldPolicyLimit"`
+	ClassificationScheme                       any      `ps:"ClassificationScheme"` // ClassificationScheme
 	ComplianceUrl                              string   `ps:"ComplianceUrl"`
 	DlpAlertFoldingConfiguration               any      `ps:"DlpAlertFoldingConfiguration"`
 	DlpAlertSlaConfig                          string   `ps:"DlpAlertSlaConfig"`
-	DlpAppGroups                               []string `ps:"DlpAppGroups"`
-	DlpAppGroupsPsws                           []string `ps:"DlpAppGroupsPsws"`
+	DlpAppGroups                               any      `ps:"DlpAppGroups"`     // PswsHashtable[]
+	DlpAppGroupsPsws                           any      `ps:"DlpAppGroupsPsws"` // PswsHashtable[]
 	DlpErrorHandlingConfig                     string   `ps:"DlpErrorHandlingConfig"`
-	DlpExtensionGroups                         any      `ps:"DlpExtensionGroups"`
-	DlpNetworkShareGroups                      any      `ps:"DlpNetworkShareGroups"`
-	DlpPrinterGroups                           any      `ps:"DlpPrinterGroups"`
-	DlpRemovableMediaGroups                    any      `ps:"DlpRemovableMediaGroups"`
-	DocumentIsUnsupportedSeverity              any      `ps:"DocumentIsUnsupportedSeverity"`
-	EnableAbacFeature                          bool     `ps:"EnableAbacFeature"`
-	EnableAdvancedRuleBuilder                  bool     `ps:"EnableAdvancedRuleBuilder"`
-	EnableLabelCoauth                          bool     `ps:"EnableLabelCoauth"`
-	EnableSensitivityLabelingForPdf            bool     `ps:"EnableSensitivityLabelingForPdf"`
-	EnableSpoAipMigration                      bool     `ps:"EnableSpoAipMigration"`
-	EndpointDlpGlobalSettings                  []string `ps:"EndpointDlpGlobalSettings"`
-	EndpointDlpGlobalSettingsPsws              []string `ps:"EndpointDlpGlobalSettingsPsws"`
-	ExtendTeamsDlpPoliciesToSharePointOneDrive bool     `ps:"ExtendTeamsDlpPoliciesToSharePointOneDrive"`
-	Identity                                   any      `ps:"Identity"`
-	InformationBarrierMode                     any      `ps:"InformationBarrierMode"`
-	InformationBarrierPeopleSearchRestriction  any      `ps:"InformationBarrierPeopleSearchRestriction"`
-	IsDefaultMlDlpPoliciesOptedOut             bool     `ps:"IsDefaultMlDlpPoliciesOptedOut"`
-	IsDlpSimulationOptedIn                     bool     `ps:"IsDlpSimulationOptedIn"`
-	IsEventFoldingOnDlpAlertsOptedOut          bool     `ps:"IsEventFoldingOnDlpAlertsOptedOut"`
-	IsUserBaseDlpAlertAggregationEnabled       bool     `ps:"IsUserBaseDlpAlertAggregationEnabled"`
+	DlpExtensionGroups                         any      `ps:"DlpExtensionGroups"`            // PswsHashtable[]
+	DlpNetworkShareGroups                      any      `ps:"DlpNetworkShareGroups"`         // PswsHashtable
+	DlpPrinterGroups                           any      `ps:"DlpPrinterGroups"`              // PswsHashtable
+	DlpRemovableMediaGroups                    any      `ps:"DlpRemovableMediaGroups"`       // PswsHashtable
+	DocumentIsUnsupportedSeverity              any      `ps:"DocumentIsUnsupportedSeverity"` // RuleSeverity
+	EnableAbacFeature                          *bool    `ps:"EnableAbacFeature"`
+	EnableAdvancedRuleBuilder                  *bool    `ps:"EnableAdvancedRuleBuilder"`
+	EnableLabelCoauth                          *bool    `ps:"EnableLabelCoauth"`
+	EnableSensitivityLabelingForPdf            *bool    `ps:"EnableSensitivityLabelingForPdf"`
+	EnableSpoAipMigration                      *bool    `ps:"EnableSpoAipMigration"`
+	EndpointDlpGlobalSettings                  any      `ps:"EndpointDlpGlobalSettings"`     // PswsHashtable[]
+	EndpointDlpGlobalSettingsPsws              any      `ps:"EndpointDlpGlobalSettingsPsws"` // PswsHashtable[]
+	ExtendTeamsDlpPoliciesToSharePointOneDrive *bool    `ps:"ExtendTeamsDlpPoliciesToSharePointOneDrive"`
+	Identity                                   any      `ps:"Identity"`                                  // OrganizationIdParameter
+	InformationBarrierMode                     any      `ps:"InformationBarrierMode"`                    // InformationBarrierMode
+	InformationBarrierPeopleSearchRestriction  any      `ps:"InformationBarrierPeopleSearchRestriction"` // InformationBarrierPeopleSearchRestriction
+	IsDefaultMlDlpPoliciesOptedOut             *bool    `ps:"IsDefaultMlDlpPoliciesOptedOut"`
+	IsDlpSimulationOptedIn                     *bool    `ps:"IsDlpSimulationOptedIn"`
+	IsEventFoldingOnDlpAlertsOptedOut          *bool    `ps:"IsEventFoldingOnDlpAlertsOptedOut"`
+	IsUserBaseDlpAlertAggregationEnabled       *bool    `ps:"IsUserBaseDlpAlertAggregationEnabled"`
 	JitEnforcementSettings                     string   `ps:"JitEnforcementSettings"`
 	MessageHeadersToRetainInOutlook            []string `ps:"MessageHeadersToRetainInOutlook"`
 	MigrateLabelScheme                         bool     `ps:"MigrateLabelScheme"`
-	MigrateLabelSchemeDisplayNames             any      `ps:"MigrateLabelSchemeDisplayNames"`
-	OnPremisesWorkload                         any      `ps:"OnPremisesWorkload"`
-	ProcessingLimitExceededSeverity            any      `ps:"ProcessingLimitExceededSeverity"`
-	PurviewLabelConsent                        bool     `ps:"PurviewLabelConsent"`
-	ReservedForFutureUse                       bool     `ps:"ReservedForFutureUse"`
-	RetentionForwardCrawl                      bool     `ps:"RetentionForwardCrawl"`
-	RuleErrorAction                            any      `ps:"RuleErrorAction"`
-	SenderAddressLocation                      any      `ps:"SenderAddressLocation"`
-	SiteGroups                                 []string `ps:"SiteGroups"`
-	SiteGroupsPsws                             []string `ps:"SiteGroupsPsws"`
+	MigrateLabelSchemeDisplayNames             any      `ps:"MigrateLabelSchemeDisplayNames"`  // System.Collections.Hashtable[]
+	OnPremisesWorkload                         any      `ps:"OnPremisesWorkload"`              // Workload
+	ProcessingLimitExceededSeverity            any      `ps:"ProcessingLimitExceededSeverity"` // RuleSeverity
+	PurviewLabelConsent                        *bool    `ps:"PurviewLabelConsent"`
+	ReservedForFutureUse                       *bool    `ps:"ReservedForFutureUse"`
+	RetentionForwardCrawl                      *bool    `ps:"RetentionForwardCrawl"`
+	RuleErrorAction                            any      `ps:"RuleErrorAction"`       // PolicyRuleErrorAction
+	SenderAddressLocation                      any      `ps:"SenderAddressLocation"` // PolicySenderAddressLocation
+	SiteGroups                                 any      `ps:"SiteGroups"`            // PswsHashtable[]
+	SiteGroupsPsws                             any      `ps:"SiteGroupsPsws"`        // PswsHashtable[]
 	SpoQuarantineLocation                      string   `ps:"SpoQuarantineLocation"`
 	SpoQuarantineText                          string   `ps:"SpoQuarantineText"`
 	TextExtractionConfig                       string   `ps:"TextExtractionConfig"`
@@ -17298,10 +17889,10 @@ type SetPolicyConfigParams struct {
 func (p SetPolicyConfigParams) params() map[string]any {
 	m := map[string]any{}
 	if p.AggregationTimeWindowForDlpAlerts != nil {
-		m["AggregationTimeWindowForDlpAlerts"] = p.AggregationTimeWindowForDlpAlerts
+		m["AggregationTimeWindowForDlpAlerts"] = *p.AggregationTimeWindowForDlpAlerts
 	}
-	if p.CaseHoldPolicyLimit != 0 {
-		m["CaseHoldPolicyLimit"] = p.CaseHoldPolicyLimit
+	if p.CaseHoldPolicyLimit != nil {
+		m["CaseHoldPolicyLimit"] = *p.CaseHoldPolicyLimit
 	}
 	if p.ClassificationScheme != nil {
 		m["ClassificationScheme"] = p.ClassificationScheme
@@ -17315,10 +17906,10 @@ func (p SetPolicyConfigParams) params() map[string]any {
 	if p.DlpAlertSlaConfig != "" {
 		m["DlpAlertSlaConfig"] = p.DlpAlertSlaConfig
 	}
-	if len(p.DlpAppGroups) > 0 {
+	if p.DlpAppGroups != nil {
 		m["DlpAppGroups"] = p.DlpAppGroups
 	}
-	if len(p.DlpAppGroupsPsws) > 0 {
+	if p.DlpAppGroupsPsws != nil {
 		m["DlpAppGroupsPsws"] = p.DlpAppGroupsPsws
 	}
 	if p.DlpErrorHandlingConfig != "" {
@@ -17339,29 +17930,29 @@ func (p SetPolicyConfigParams) params() map[string]any {
 	if p.DocumentIsUnsupportedSeverity != nil {
 		m["DocumentIsUnsupportedSeverity"] = p.DocumentIsUnsupportedSeverity
 	}
-	if p.EnableAbacFeature {
-		m["EnableAbacFeature"] = true
+	if p.EnableAbacFeature != nil {
+		m["EnableAbacFeature"] = *p.EnableAbacFeature
 	}
-	if p.EnableAdvancedRuleBuilder {
-		m["EnableAdvancedRuleBuilder"] = true
+	if p.EnableAdvancedRuleBuilder != nil {
+		m["EnableAdvancedRuleBuilder"] = *p.EnableAdvancedRuleBuilder
 	}
-	if p.EnableLabelCoauth {
-		m["EnableLabelCoauth"] = true
+	if p.EnableLabelCoauth != nil {
+		m["EnableLabelCoauth"] = *p.EnableLabelCoauth
 	}
-	if p.EnableSensitivityLabelingForPdf {
-		m["EnableSensitivityLabelingForPdf"] = true
+	if p.EnableSensitivityLabelingForPdf != nil {
+		m["EnableSensitivityLabelingForPdf"] = *p.EnableSensitivityLabelingForPdf
 	}
-	if p.EnableSpoAipMigration {
-		m["EnableSpoAipMigration"] = true
+	if p.EnableSpoAipMigration != nil {
+		m["EnableSpoAipMigration"] = *p.EnableSpoAipMigration
 	}
-	if len(p.EndpointDlpGlobalSettings) > 0 {
+	if p.EndpointDlpGlobalSettings != nil {
 		m["EndpointDlpGlobalSettings"] = p.EndpointDlpGlobalSettings
 	}
-	if len(p.EndpointDlpGlobalSettingsPsws) > 0 {
+	if p.EndpointDlpGlobalSettingsPsws != nil {
 		m["EndpointDlpGlobalSettingsPsws"] = p.EndpointDlpGlobalSettingsPsws
 	}
-	if p.ExtendTeamsDlpPoliciesToSharePointOneDrive {
-		m["ExtendTeamsDlpPoliciesToSharePointOneDrive"] = true
+	if p.ExtendTeamsDlpPoliciesToSharePointOneDrive != nil {
+		m["ExtendTeamsDlpPoliciesToSharePointOneDrive"] = *p.ExtendTeamsDlpPoliciesToSharePointOneDrive
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -17372,22 +17963,22 @@ func (p SetPolicyConfigParams) params() map[string]any {
 	if p.InformationBarrierPeopleSearchRestriction != nil {
 		m["InformationBarrierPeopleSearchRestriction"] = p.InformationBarrierPeopleSearchRestriction
 	}
-	if p.IsDefaultMlDlpPoliciesOptedOut {
-		m["IsDefaultMlDlpPoliciesOptedOut"] = true
+	if p.IsDefaultMlDlpPoliciesOptedOut != nil {
+		m["IsDefaultMlDlpPoliciesOptedOut"] = *p.IsDefaultMlDlpPoliciesOptedOut
 	}
-	if p.IsDlpSimulationOptedIn {
-		m["IsDlpSimulationOptedIn"] = true
+	if p.IsDlpSimulationOptedIn != nil {
+		m["IsDlpSimulationOptedIn"] = *p.IsDlpSimulationOptedIn
 	}
-	if p.IsEventFoldingOnDlpAlertsOptedOut {
-		m["IsEventFoldingOnDlpAlertsOptedOut"] = true
+	if p.IsEventFoldingOnDlpAlertsOptedOut != nil {
+		m["IsEventFoldingOnDlpAlertsOptedOut"] = *p.IsEventFoldingOnDlpAlertsOptedOut
 	}
-	if p.IsUserBaseDlpAlertAggregationEnabled {
-		m["IsUserBaseDlpAlertAggregationEnabled"] = true
+	if p.IsUserBaseDlpAlertAggregationEnabled != nil {
+		m["IsUserBaseDlpAlertAggregationEnabled"] = *p.IsUserBaseDlpAlertAggregationEnabled
 	}
 	if p.JitEnforcementSettings != "" {
 		m["JitEnforcementSettings"] = p.JitEnforcementSettings
 	}
-	if len(p.MessageHeadersToRetainInOutlook) > 0 {
+	if p.MessageHeadersToRetainInOutlook != nil {
 		m["MessageHeadersToRetainInOutlook"] = p.MessageHeadersToRetainInOutlook
 	}
 	if p.MigrateLabelScheme {
@@ -17402,14 +17993,14 @@ func (p SetPolicyConfigParams) params() map[string]any {
 	if p.ProcessingLimitExceededSeverity != nil {
 		m["ProcessingLimitExceededSeverity"] = p.ProcessingLimitExceededSeverity
 	}
-	if p.PurviewLabelConsent {
-		m["PurviewLabelConsent"] = true
+	if p.PurviewLabelConsent != nil {
+		m["PurviewLabelConsent"] = *p.PurviewLabelConsent
 	}
-	if p.ReservedForFutureUse {
-		m["ReservedForFutureUse"] = true
+	if p.ReservedForFutureUse != nil {
+		m["ReservedForFutureUse"] = *p.ReservedForFutureUse
 	}
-	if p.RetentionForwardCrawl {
-		m["RetentionForwardCrawl"] = true
+	if p.RetentionForwardCrawl != nil {
+		m["RetentionForwardCrawl"] = *p.RetentionForwardCrawl
 	}
 	if p.RuleErrorAction != nil {
 		m["RuleErrorAction"] = p.RuleErrorAction
@@ -17417,10 +18008,10 @@ func (p SetPolicyConfigParams) params() map[string]any {
 	if p.SenderAddressLocation != nil {
 		m["SenderAddressLocation"] = p.SenderAddressLocation
 	}
-	if len(p.SiteGroups) > 0 {
+	if p.SiteGroups != nil {
 		m["SiteGroups"] = p.SiteGroups
 	}
-	if len(p.SiteGroupsPsws) > 0 {
+	if p.SiteGroupsPsws != nil {
 		m["SiteGroupsPsws"] = p.SiteGroupsPsws
 	}
 	if p.SpoQuarantineLocation != "" {
@@ -17479,7 +18070,7 @@ func (s *Service) SetPrivacyManagementComplianceTag(ctx context.Context, p SetPr
 // DefaultParameterSetName: Identity
 type SetPrivacyManagementPolicyParams struct {
 	Comment  string `ps:"Comment"`
-	Enabled  bool   `ps:"Enabled"`
+	Enabled  *bool  `ps:"Enabled"`
 	Identity any    `ps:"Identity"`
 	Mode     any    `ps:"Mode"`
 }
@@ -17489,8 +18080,8 @@ func (p SetPrivacyManagementPolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -17512,7 +18103,7 @@ type SetPrivacyManagementRuleParams struct {
 	Comment                             string   `ps:"Comment"`
 	ContentContainsSensitiveInformation []string `ps:"ContentContainsSensitiveInformation"`
 	CrossBoundaryTransfers              []string `ps:"CrossBoundaryTransfers"`
-	Disabled                            bool     `ps:"Disabled"`
+	Disabled                            *bool    `ps:"Disabled"`
 	EndpointOperations                  []string `ps:"EndpointOperations"`
 	ExchangeSites                       any      `ps:"ExchangeSites"`
 	Groups                              any      `ps:"Groups"`
@@ -17535,16 +18126,16 @@ func (p SetPrivacyManagementRuleParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
-	if len(p.CrossBoundaryTransfers) > 0 {
+	if p.CrossBoundaryTransfers != nil {
 		m["CrossBoundaryTransfers"] = p.CrossBoundaryTransfers
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
-	if len(p.EndpointOperations) > 0 {
+	if p.EndpointOperations != nil {
 		m["EndpointOperations"] = p.EndpointOperations
 	}
 	if p.ExchangeSites != nil {
@@ -17568,7 +18159,7 @@ func (p SetPrivacyManagementRuleParams) params() map[string]any {
 	if p.PolicySettings != "" {
 		m["PolicySettings"] = p.PolicySettings
 	}
-	if len(p.PrivacyAccessLevel) > 0 {
+	if p.PrivacyAccessLevel != nil {
 		m["PrivacyAccessLevel"] = p.PrivacyAccessLevel
 	}
 	if p.PurviewSites != nil {
@@ -17600,31 +18191,37 @@ func (s *Service) SetPrivacyManagementRule(ctx context.Context, p SetPrivacyMana
 // SetProtectionAlertParams are the parameters of Set-ProtectionAlert.
 // DefaultParameterSetName: Identity
 type SetProtectionAlertParams struct {
-	AggregationType                                             any    `ps:"AggregationType"`
-	AlertBy                                                     any    `ps:"AlertBy"`
-	AlertFor                                                    any    `ps:"AlertFor"`
-	Category                                                    any    `ps:"Category"`
-	Comment                                                     string `ps:"Comment"`
-	Description                                                 string `ps:"Description"`
-	Disabled                                                    bool   `ps:"Disabled"`
-	ExternalScenarioData                                        any    `ps:"ExternalScenarioData"`
-	Filter                                                      string `ps:"Filter"`
-	Identity                                                    any    `ps:"Identity"`
-	NotificationCulture                                         any    `ps:"NotificationCulture"`
-	NotificationEnabled                                         bool   `ps:"NotificationEnabled"`
-	NotifyUser                                                  any    `ps:"NotifyUser"`
-	NotifyUserOnFilterMatch                                     bool   `ps:"NotifyUserOnFilterMatch"`
-	NotifyUserSuppressionExpiryDate                             any    `ps:"NotifyUserSuppressionExpiryDate"`
-	NotifyUserThrottleThreshold                                 any    `ps:"NotifyUserThrottleThreshold"`
-	NotifyUserThrottleWindow                                    any    `ps:"NotifyUserThrottleWindow"`
-	Operation                                                   any    `ps:"Operation"`
-	PrivacyManagementScopedSensitiveInformationTypes            any    `ps:"PrivacyManagementScopedSensitiveInformationTypes"`
-	PrivacyManagementScopedSensitiveInformationTypesForCounting any    `ps:"PrivacyManagementScopedSensitiveInformationTypesForCounting"`
-	PrivacyManagementScopedSensitiveInformationTypesThreshold   any    `ps:"PrivacyManagementScopedSensitiveInformationTypesThreshold"`
-	Severity                                                    any    `ps:"Severity"`
-	Threshold                                                   any    `ps:"Threshold"`
-	TimeWindow                                                  any    `ps:"TimeWindow"`
-	VolumeThreshold                                             any    `ps:"VolumeThreshold"`
+	AggregationType                                                  any                   `ps:"AggregationType"` // AlertAggregationType
+	AlertBy                                                          []string              `ps:"AlertBy"`
+	AlertByDelta                                                     *adminapi.StringDelta `ps:"AlertBy"` // adds/removes values of AlertBy; takes precedence over it
+	AlertFor                                                         []string              `ps:"AlertFor"`
+	AlertForDelta                                                    *adminapi.StringDelta `ps:"AlertFor"` // adds/removes values of AlertFor; takes precedence over it
+	Category                                                         any                   `ps:"Category"` // AlertRuleCategory
+	Comment                                                          string                `ps:"Comment"`
+	Description                                                      string                `ps:"Description"`
+	Disabled                                                         *bool                 `ps:"Disabled"`
+	ExternalScenarioData                                             any                   `ps:"ExternalScenarioData"`
+	Filter                                                           string                `ps:"Filter"`
+	Identity                                                         any                   `ps:"Identity"`            // ComplianceRuleIdParameter
+	NotificationCulture                                              any                   `ps:"NotificationCulture"` // CultureInfo
+	NotificationEnabled                                              *bool                 `ps:"NotificationEnabled"`
+	NotifyUser                                                       []string              `ps:"NotifyUser"`
+	NotifyUserDelta                                                  *adminapi.StringDelta `ps:"NotifyUser"` // adds/removes values of NotifyUser; takes precedence over it
+	NotifyUserOnFilterMatch                                          *bool                 `ps:"NotifyUserOnFilterMatch"`
+	NotifyUserSuppressionExpiryDate                                  any                   `ps:"NotifyUserSuppressionExpiryDate"` // DateTime
+	NotifyUserThrottleThreshold                                      *int64                `ps:"NotifyUserThrottleThreshold"`
+	NotifyUserThrottleWindow                                         *int64                `ps:"NotifyUserThrottleWindow"`
+	Operation                                                        []string              `ps:"Operation"`
+	OperationDelta                                                   *adminapi.StringDelta `ps:"Operation"` // adds/removes values of Operation; takes precedence over it
+	PrivacyManagementScopedSensitiveInformationTypes                 []string              `ps:"PrivacyManagementScopedSensitiveInformationTypes"`
+	PrivacyManagementScopedSensitiveInformationTypesDelta            *adminapi.StringDelta `ps:"PrivacyManagementScopedSensitiveInformationTypes"` // adds/removes values of PrivacyManagementScopedSensitiveInformationTypes; takes precedence over it
+	PrivacyManagementScopedSensitiveInformationTypesForCounting      []string              `ps:"PrivacyManagementScopedSensitiveInformationTypesForCounting"`
+	PrivacyManagementScopedSensitiveInformationTypesForCountingDelta *adminapi.StringDelta `ps:"PrivacyManagementScopedSensitiveInformationTypesForCounting"` // adds/removes values of PrivacyManagementScopedSensitiveInformationTypesForCounting; takes precedence over it
+	PrivacyManagementScopedSensitiveInformationTypesThreshold        *int64                `ps:"PrivacyManagementScopedSensitiveInformationTypesThreshold"`
+	Severity                                                         any                   `ps:"Severity"` // RuleSeverity
+	Threshold                                                        *int64                `ps:"Threshold"`
+	TimeWindow                                                       *int64                `ps:"TimeWindow"`
+	VolumeThreshold                                                  *int64                `ps:"VolumeThreshold"`
 }
 
 func (p SetProtectionAlertParams) params() map[string]any {
@@ -17632,10 +18229,14 @@ func (p SetProtectionAlertParams) params() map[string]any {
 	if p.AggregationType != nil {
 		m["AggregationType"] = p.AggregationType
 	}
-	if p.AlertBy != nil {
+	if p.AlertByDelta != nil {
+		m["AlertBy"] = *p.AlertByDelta
+	} else if p.AlertBy != nil {
 		m["AlertBy"] = p.AlertBy
 	}
-	if p.AlertFor != nil {
+	if p.AlertForDelta != nil {
+		m["AlertFor"] = *p.AlertForDelta
+	} else if p.AlertFor != nil {
 		m["AlertFor"] = p.AlertFor
 	}
 	if p.Category != nil {
@@ -17647,8 +18248,8 @@ func (p SetProtectionAlertParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
 	if p.ExternalScenarioData != nil {
 		m["ExternalScenarioData"] = p.ExternalScenarioData
@@ -17662,47 +18263,55 @@ func (p SetProtectionAlertParams) params() map[string]any {
 	if p.NotificationCulture != nil {
 		m["NotificationCulture"] = p.NotificationCulture
 	}
-	if p.NotificationEnabled {
-		m["NotificationEnabled"] = true
+	if p.NotificationEnabled != nil {
+		m["NotificationEnabled"] = *p.NotificationEnabled
 	}
-	if p.NotifyUser != nil {
+	if p.NotifyUserDelta != nil {
+		m["NotifyUser"] = *p.NotifyUserDelta
+	} else if p.NotifyUser != nil {
 		m["NotifyUser"] = p.NotifyUser
 	}
-	if p.NotifyUserOnFilterMatch {
-		m["NotifyUserOnFilterMatch"] = true
+	if p.NotifyUserOnFilterMatch != nil {
+		m["NotifyUserOnFilterMatch"] = *p.NotifyUserOnFilterMatch
 	}
 	if p.NotifyUserSuppressionExpiryDate != nil {
 		m["NotifyUserSuppressionExpiryDate"] = p.NotifyUserSuppressionExpiryDate
 	}
 	if p.NotifyUserThrottleThreshold != nil {
-		m["NotifyUserThrottleThreshold"] = p.NotifyUserThrottleThreshold
+		m["NotifyUserThrottleThreshold"] = *p.NotifyUserThrottleThreshold
 	}
 	if p.NotifyUserThrottleWindow != nil {
-		m["NotifyUserThrottleWindow"] = p.NotifyUserThrottleWindow
+		m["NotifyUserThrottleWindow"] = *p.NotifyUserThrottleWindow
 	}
-	if p.Operation != nil {
+	if p.OperationDelta != nil {
+		m["Operation"] = *p.OperationDelta
+	} else if p.Operation != nil {
 		m["Operation"] = p.Operation
 	}
-	if p.PrivacyManagementScopedSensitiveInformationTypes != nil {
+	if p.PrivacyManagementScopedSensitiveInformationTypesDelta != nil {
+		m["PrivacyManagementScopedSensitiveInformationTypes"] = *p.PrivacyManagementScopedSensitiveInformationTypesDelta
+	} else if p.PrivacyManagementScopedSensitiveInformationTypes != nil {
 		m["PrivacyManagementScopedSensitiveInformationTypes"] = p.PrivacyManagementScopedSensitiveInformationTypes
 	}
-	if p.PrivacyManagementScopedSensitiveInformationTypesForCounting != nil {
+	if p.PrivacyManagementScopedSensitiveInformationTypesForCountingDelta != nil {
+		m["PrivacyManagementScopedSensitiveInformationTypesForCounting"] = *p.PrivacyManagementScopedSensitiveInformationTypesForCountingDelta
+	} else if p.PrivacyManagementScopedSensitiveInformationTypesForCounting != nil {
 		m["PrivacyManagementScopedSensitiveInformationTypesForCounting"] = p.PrivacyManagementScopedSensitiveInformationTypesForCounting
 	}
 	if p.PrivacyManagementScopedSensitiveInformationTypesThreshold != nil {
-		m["PrivacyManagementScopedSensitiveInformationTypesThreshold"] = p.PrivacyManagementScopedSensitiveInformationTypesThreshold
+		m["PrivacyManagementScopedSensitiveInformationTypesThreshold"] = *p.PrivacyManagementScopedSensitiveInformationTypesThreshold
 	}
 	if p.Severity != nil {
 		m["Severity"] = p.Severity
 	}
 	if p.Threshold != nil {
-		m["Threshold"] = p.Threshold
+		m["Threshold"] = *p.Threshold
 	}
 	if p.TimeWindow != nil {
-		m["TimeWindow"] = p.TimeWindow
+		m["TimeWindow"] = *p.TimeWindow
 	}
 	if p.VolumeThreshold != nil {
-		m["VolumeThreshold"] = p.VolumeThreshold
+		m["VolumeThreshold"] = *p.VolumeThreshold
 	}
 	return m
 }
@@ -17715,15 +18324,15 @@ func (s *Service) SetProtectionAlert(ctx context.Context, p SetProtectionAlertPa
 // SetProtectionCompliancePolicyParams are the parameters of Set-ProtectionCompliancePolicy.
 // DefaultParameterSetName: Identity
 type SetProtectionCompliancePolicyParams struct {
-	Enabled   bool   `ps:"Enabled"`
+	Enabled   *bool  `ps:"Enabled"`
 	Identity  any    `ps:"Identity"`
 	Locations string `ps:"Locations"`
 }
 
 func (p SetProtectionCompliancePolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -17758,7 +18367,7 @@ func (p SetProtectionComplianceRuleParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.LabelActions) > 0 {
+	if p.LabelActions != nil {
 		m["LabelActions"] = p.LabelActions
 	}
 	return m
@@ -17773,8 +18382,8 @@ func (s *Service) SetProtectionComplianceRule(ctx context.Context, p SetProtecti
 type SetRecordReviewNotificationTemplateConfigParams struct {
 	CustomizedNotificationDataString string `ps:"CustomizedNotificationDataString"`
 	CustomizedReminderDataString     string `ps:"CustomizedReminderDataString"`
-	IsCustomizedNotificationTemplate bool   `ps:"IsCustomizedNotificationTemplate"`
-	IsCustomizedReminderTemplate     bool   `ps:"IsCustomizedReminderTemplate"`
+	IsCustomizedNotificationTemplate *bool  `ps:"IsCustomizedNotificationTemplate"`
+	IsCustomizedReminderTemplate     *bool  `ps:"IsCustomizedReminderTemplate"`
 }
 
 func (p SetRecordReviewNotificationTemplateConfigParams) params() map[string]any {
@@ -17785,11 +18394,11 @@ func (p SetRecordReviewNotificationTemplateConfigParams) params() map[string]any
 	if p.CustomizedReminderDataString != "" {
 		m["CustomizedReminderDataString"] = p.CustomizedReminderDataString
 	}
-	if p.IsCustomizedNotificationTemplate {
-		m["IsCustomizedNotificationTemplate"] = true
+	if p.IsCustomizedNotificationTemplate != nil {
+		m["IsCustomizedNotificationTemplate"] = *p.IsCustomizedNotificationTemplate
 	}
-	if p.IsCustomizedReminderTemplate {
-		m["IsCustomizedReminderTemplate"] = true
+	if p.IsCustomizedReminderTemplate != nil {
+		m["IsCustomizedReminderTemplate"] = *p.IsCustomizedReminderTemplate
 	}
 	return m
 }
@@ -17801,13 +18410,13 @@ func (s *Service) SetRecordReviewNotificationTemplateConfig(ctx context.Context,
 
 // SetRegulatoryComplianceUIParams are the parameters of Set-RegulatoryComplianceUI.
 type SetRegulatoryComplianceUIParams struct {
-	Enabled bool `ps:"Enabled"`
+	Enabled *bool `ps:"Enabled"`
 }
 
 func (p SetRegulatoryComplianceUIParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	return m
 }
@@ -17820,107 +18429,175 @@ func (s *Service) SetRegulatoryComplianceUI(ctx context.Context, p SetRegulatory
 // SetRetentionCompliancePolicyParams are the parameters of Set-RetentionCompliancePolicy.
 // DefaultParameterSetName: Identity
 type SetRetentionCompliancePolicyParams struct {
-	AddAdaptiveScopeLocation            any    `ps:"AddAdaptiveScopeLocation"`
-	AddExchangeLocation                 any    `ps:"AddExchangeLocation"`
-	AddExchangeLocationException        any    `ps:"AddExchangeLocationException"`
-	AddModernGroupLocation              any    `ps:"AddModernGroupLocation"`
-	AddModernGroupLocationException     any    `ps:"AddModernGroupLocationException"`
-	AddOneDriveLocation                 any    `ps:"AddOneDriveLocation"`
-	AddOneDriveLocationException        any    `ps:"AddOneDriveLocationException"`
-	AddPublicFolderLocation             any    `ps:"AddPublicFolderLocation"`
-	AddSharePointLocation               any    `ps:"AddSharePointLocation"`
-	AddSharePointLocationException      any    `ps:"AddSharePointLocationException"`
-	AddSkypeLocation                    any    `ps:"AddSkypeLocation"`
-	AddSkypeLocationException           any    `ps:"AddSkypeLocationException"`
-	AddTeamsChannelLocation             any    `ps:"AddTeamsChannelLocation"`
-	AddTeamsChannelLocationException    any    `ps:"AddTeamsChannelLocationException"`
-	AddTeamsChatLocation                any    `ps:"AddTeamsChatLocation"`
-	AddTeamsChatLocationException       any    `ps:"AddTeamsChatLocationException"`
-	Applications                        any    `ps:"Applications"`
-	Comment                             string `ps:"Comment"`
-	DeletedResources                    string `ps:"DeletedResources"`
-	Enabled                             bool   `ps:"Enabled"`
-	EnforceSimulationPolicy             bool   `ps:"EnforceSimulationPolicy"`
-	ExcludeSPE                          bool   `ps:"ExcludeSPE"`
-	Force                               bool   `ps:"Force"`
-	ForceBypassScopeCheck               bool   `ps:"ForceBypassScopeCheck"`
-	ForceStartSimulation                bool   `ps:"ForceStartSimulation"`
-	Identity                            any    `ps:"Identity"`
-	IncludeUserOwnedContainers          bool   `ps:"IncludeUserOwnedContainers"`
-	PolicyRBACScopes                    any    `ps:"PolicyRBACScopes"`
-	PolicyTemplateInfo                  any    `ps:"PolicyTemplateInfo"`
-	RemoveAdaptiveScopeLocation         any    `ps:"RemoveAdaptiveScopeLocation"`
-	RemoveExchangeLocation              any    `ps:"RemoveExchangeLocation"`
-	RemoveExchangeLocationException     any    `ps:"RemoveExchangeLocationException"`
-	RemoveModernGroupLocation           any    `ps:"RemoveModernGroupLocation"`
-	RemoveModernGroupLocationException  any    `ps:"RemoveModernGroupLocationException"`
-	RemoveOneDriveLocation              any    `ps:"RemoveOneDriveLocation"`
-	RemoveOneDriveLocationException     any    `ps:"RemoveOneDriveLocationException"`
-	RemovePublicFolderLocation          any    `ps:"RemovePublicFolderLocation"`
-	RemoveSharePointLocation            any    `ps:"RemoveSharePointLocation"`
-	RemoveSharePointLocationException   any    `ps:"RemoveSharePointLocationException"`
-	RemoveSkypeLocation                 any    `ps:"RemoveSkypeLocation"`
-	RemoveSkypeLocationException        any    `ps:"RemoveSkypeLocationException"`
-	RemoveTeamsChannelLocation          any    `ps:"RemoveTeamsChannelLocation"`
-	RemoveTeamsChannelLocationException any    `ps:"RemoveTeamsChannelLocationException"`
-	RemoveTeamsChatLocation             any    `ps:"RemoveTeamsChatLocation"`
-	RemoveTeamsChatLocationException    any    `ps:"RemoveTeamsChatLocationException"`
-	RestrictiveRetention                bool   `ps:"RestrictiveRetention"`
-	RetryDistribution                   bool   `ps:"RetryDistribution"`
-	StartSimulation                     bool   `ps:"StartSimulation"`
+	AddAdaptiveScopeLocation                 []string              `ps:"AddAdaptiveScopeLocation"`
+	AddAdaptiveScopeLocationDelta            *adminapi.StringDelta `ps:"AddAdaptiveScopeLocation"` // adds/removes values of AddAdaptiveScopeLocation; takes precedence over it
+	AddExchangeLocation                      []string              `ps:"AddExchangeLocation"`
+	AddExchangeLocationDelta                 *adminapi.StringDelta `ps:"AddExchangeLocation"` // adds/removes values of AddExchangeLocation; takes precedence over it
+	AddExchangeLocationException             []string              `ps:"AddExchangeLocationException"`
+	AddExchangeLocationExceptionDelta        *adminapi.StringDelta `ps:"AddExchangeLocationException"` // adds/removes values of AddExchangeLocationException; takes precedence over it
+	AddModernGroupLocation                   []string              `ps:"AddModernGroupLocation"`
+	AddModernGroupLocationDelta              *adminapi.StringDelta `ps:"AddModernGroupLocation"` // adds/removes values of AddModernGroupLocation; takes precedence over it
+	AddModernGroupLocationException          []string              `ps:"AddModernGroupLocationException"`
+	AddModernGroupLocationExceptionDelta     *adminapi.StringDelta `ps:"AddModernGroupLocationException"` // adds/removes values of AddModernGroupLocationException; takes precedence over it
+	AddOneDriveLocation                      []string              `ps:"AddOneDriveLocation"`
+	AddOneDriveLocationDelta                 *adminapi.StringDelta `ps:"AddOneDriveLocation"` // adds/removes values of AddOneDriveLocation; takes precedence over it
+	AddOneDriveLocationException             []string              `ps:"AddOneDriveLocationException"`
+	AddOneDriveLocationExceptionDelta        *adminapi.StringDelta `ps:"AddOneDriveLocationException"` // adds/removes values of AddOneDriveLocationException; takes precedence over it
+	AddPublicFolderLocation                  []string              `ps:"AddPublicFolderLocation"`
+	AddPublicFolderLocationDelta             *adminapi.StringDelta `ps:"AddPublicFolderLocation"` // adds/removes values of AddPublicFolderLocation; takes precedence over it
+	AddSharePointLocation                    []string              `ps:"AddSharePointLocation"`
+	AddSharePointLocationDelta               *adminapi.StringDelta `ps:"AddSharePointLocation"` // adds/removes values of AddSharePointLocation; takes precedence over it
+	AddSharePointLocationException           []string              `ps:"AddSharePointLocationException"`
+	AddSharePointLocationExceptionDelta      *adminapi.StringDelta `ps:"AddSharePointLocationException"` // adds/removes values of AddSharePointLocationException; takes precedence over it
+	AddSkypeLocation                         []string              `ps:"AddSkypeLocation"`
+	AddSkypeLocationDelta                    *adminapi.StringDelta `ps:"AddSkypeLocation"` // adds/removes values of AddSkypeLocation; takes precedence over it
+	AddSkypeLocationException                []string              `ps:"AddSkypeLocationException"`
+	AddSkypeLocationExceptionDelta           *adminapi.StringDelta `ps:"AddSkypeLocationException"` // adds/removes values of AddSkypeLocationException; takes precedence over it
+	AddTeamsChannelLocation                  []string              `ps:"AddTeamsChannelLocation"`
+	AddTeamsChannelLocationDelta             *adminapi.StringDelta `ps:"AddTeamsChannelLocation"` // adds/removes values of AddTeamsChannelLocation; takes precedence over it
+	AddTeamsChannelLocationException         []string              `ps:"AddTeamsChannelLocationException"`
+	AddTeamsChannelLocationExceptionDelta    *adminapi.StringDelta `ps:"AddTeamsChannelLocationException"` // adds/removes values of AddTeamsChannelLocationException; takes precedence over it
+	AddTeamsChatLocation                     []string              `ps:"AddTeamsChatLocation"`
+	AddTeamsChatLocationDelta                *adminapi.StringDelta `ps:"AddTeamsChatLocation"` // adds/removes values of AddTeamsChatLocation; takes precedence over it
+	AddTeamsChatLocationException            []string              `ps:"AddTeamsChatLocationException"`
+	AddTeamsChatLocationExceptionDelta       *adminapi.StringDelta `ps:"AddTeamsChatLocationException"` // adds/removes values of AddTeamsChatLocationException; takes precedence over it
+	Applications                             []string              `ps:"Applications"`
+	ApplicationsDelta                        *adminapi.StringDelta `ps:"Applications"` // adds/removes values of Applications; takes precedence over it
+	Comment                                  string                `ps:"Comment"`
+	DeletedResources                         string                `ps:"DeletedResources"`
+	Enabled                                  *bool                 `ps:"Enabled"`
+	EnforceSimulationPolicy                  *bool                 `ps:"EnforceSimulationPolicy"`
+	ExcludeSPE                               bool                  `ps:"ExcludeSPE"`
+	Force                                    bool                  `ps:"Force"`
+	ForceBypassScopeCheck                    bool                  `ps:"ForceBypassScopeCheck"`
+	ForceStartSimulation                     *bool                 `ps:"ForceStartSimulation"`
+	Identity                                 any                   `ps:"Identity"` // PolicyIdParameter
+	IncludeUserOwnedContainers               bool                  `ps:"IncludeUserOwnedContainers"`
+	PolicyRBACScopes                         []string              `ps:"PolicyRBACScopes"`
+	PolicyRBACScopesDelta                    *adminapi.StringDelta `ps:"PolicyRBACScopes"`   // adds/removes values of PolicyRBACScopes; takes precedence over it
+	PolicyTemplateInfo                       any                   `ps:"PolicyTemplateInfo"` // PswsHashtable
+	RemoveAdaptiveScopeLocation              []string              `ps:"RemoveAdaptiveScopeLocation"`
+	RemoveAdaptiveScopeLocationDelta         *adminapi.StringDelta `ps:"RemoveAdaptiveScopeLocation"` // adds/removes values of RemoveAdaptiveScopeLocation; takes precedence over it
+	RemoveExchangeLocation                   []string              `ps:"RemoveExchangeLocation"`
+	RemoveExchangeLocationDelta              *adminapi.StringDelta `ps:"RemoveExchangeLocation"` // adds/removes values of RemoveExchangeLocation; takes precedence over it
+	RemoveExchangeLocationException          []string              `ps:"RemoveExchangeLocationException"`
+	RemoveExchangeLocationExceptionDelta     *adminapi.StringDelta `ps:"RemoveExchangeLocationException"` // adds/removes values of RemoveExchangeLocationException; takes precedence over it
+	RemoveModernGroupLocation                []string              `ps:"RemoveModernGroupLocation"`
+	RemoveModernGroupLocationDelta           *adminapi.StringDelta `ps:"RemoveModernGroupLocation"` // adds/removes values of RemoveModernGroupLocation; takes precedence over it
+	RemoveModernGroupLocationException       []string              `ps:"RemoveModernGroupLocationException"`
+	RemoveModernGroupLocationExceptionDelta  *adminapi.StringDelta `ps:"RemoveModernGroupLocationException"` // adds/removes values of RemoveModernGroupLocationException; takes precedence over it
+	RemoveOneDriveLocation                   []string              `ps:"RemoveOneDriveLocation"`
+	RemoveOneDriveLocationDelta              *adminapi.StringDelta `ps:"RemoveOneDriveLocation"` // adds/removes values of RemoveOneDriveLocation; takes precedence over it
+	RemoveOneDriveLocationException          []string              `ps:"RemoveOneDriveLocationException"`
+	RemoveOneDriveLocationExceptionDelta     *adminapi.StringDelta `ps:"RemoveOneDriveLocationException"` // adds/removes values of RemoveOneDriveLocationException; takes precedence over it
+	RemovePublicFolderLocation               []string              `ps:"RemovePublicFolderLocation"`
+	RemovePublicFolderLocationDelta          *adminapi.StringDelta `ps:"RemovePublicFolderLocation"` // adds/removes values of RemovePublicFolderLocation; takes precedence over it
+	RemoveSharePointLocation                 []string              `ps:"RemoveSharePointLocation"`
+	RemoveSharePointLocationDelta            *adminapi.StringDelta `ps:"RemoveSharePointLocation"` // adds/removes values of RemoveSharePointLocation; takes precedence over it
+	RemoveSharePointLocationException        []string              `ps:"RemoveSharePointLocationException"`
+	RemoveSharePointLocationExceptionDelta   *adminapi.StringDelta `ps:"RemoveSharePointLocationException"` // adds/removes values of RemoveSharePointLocationException; takes precedence over it
+	RemoveSkypeLocation                      []string              `ps:"RemoveSkypeLocation"`
+	RemoveSkypeLocationDelta                 *adminapi.StringDelta `ps:"RemoveSkypeLocation"` // adds/removes values of RemoveSkypeLocation; takes precedence over it
+	RemoveSkypeLocationException             []string              `ps:"RemoveSkypeLocationException"`
+	RemoveSkypeLocationExceptionDelta        *adminapi.StringDelta `ps:"RemoveSkypeLocationException"` // adds/removes values of RemoveSkypeLocationException; takes precedence over it
+	RemoveTeamsChannelLocation               []string              `ps:"RemoveTeamsChannelLocation"`
+	RemoveTeamsChannelLocationDelta          *adminapi.StringDelta `ps:"RemoveTeamsChannelLocation"` // adds/removes values of RemoveTeamsChannelLocation; takes precedence over it
+	RemoveTeamsChannelLocationException      []string              `ps:"RemoveTeamsChannelLocationException"`
+	RemoveTeamsChannelLocationExceptionDelta *adminapi.StringDelta `ps:"RemoveTeamsChannelLocationException"` // adds/removes values of RemoveTeamsChannelLocationException; takes precedence over it
+	RemoveTeamsChatLocation                  []string              `ps:"RemoveTeamsChatLocation"`
+	RemoveTeamsChatLocationDelta             *adminapi.StringDelta `ps:"RemoveTeamsChatLocation"` // adds/removes values of RemoveTeamsChatLocation; takes precedence over it
+	RemoveTeamsChatLocationException         []string              `ps:"RemoveTeamsChatLocationException"`
+	RemoveTeamsChatLocationExceptionDelta    *adminapi.StringDelta `ps:"RemoveTeamsChatLocationException"` // adds/removes values of RemoveTeamsChatLocationException; takes precedence over it
+	RestrictiveRetention                     *bool                 `ps:"RestrictiveRetention"`
+	RetryDistribution                        bool                  `ps:"RetryDistribution"`
+	StartSimulation                          *bool                 `ps:"StartSimulation"`
 }
 
 func (p SetRetentionCompliancePolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddAdaptiveScopeLocation != nil {
+	if p.AddAdaptiveScopeLocationDelta != nil {
+		m["AddAdaptiveScopeLocation"] = *p.AddAdaptiveScopeLocationDelta
+	} else if p.AddAdaptiveScopeLocation != nil {
 		m["AddAdaptiveScopeLocation"] = p.AddAdaptiveScopeLocation
 	}
-	if p.AddExchangeLocation != nil {
+	if p.AddExchangeLocationDelta != nil {
+		m["AddExchangeLocation"] = *p.AddExchangeLocationDelta
+	} else if p.AddExchangeLocation != nil {
 		m["AddExchangeLocation"] = p.AddExchangeLocation
 	}
-	if p.AddExchangeLocationException != nil {
+	if p.AddExchangeLocationExceptionDelta != nil {
+		m["AddExchangeLocationException"] = *p.AddExchangeLocationExceptionDelta
+	} else if p.AddExchangeLocationException != nil {
 		m["AddExchangeLocationException"] = p.AddExchangeLocationException
 	}
-	if p.AddModernGroupLocation != nil {
+	if p.AddModernGroupLocationDelta != nil {
+		m["AddModernGroupLocation"] = *p.AddModernGroupLocationDelta
+	} else if p.AddModernGroupLocation != nil {
 		m["AddModernGroupLocation"] = p.AddModernGroupLocation
 	}
-	if p.AddModernGroupLocationException != nil {
+	if p.AddModernGroupLocationExceptionDelta != nil {
+		m["AddModernGroupLocationException"] = *p.AddModernGroupLocationExceptionDelta
+	} else if p.AddModernGroupLocationException != nil {
 		m["AddModernGroupLocationException"] = p.AddModernGroupLocationException
 	}
-	if p.AddOneDriveLocation != nil {
+	if p.AddOneDriveLocationDelta != nil {
+		m["AddOneDriveLocation"] = *p.AddOneDriveLocationDelta
+	} else if p.AddOneDriveLocation != nil {
 		m["AddOneDriveLocation"] = p.AddOneDriveLocation
 	}
-	if p.AddOneDriveLocationException != nil {
+	if p.AddOneDriveLocationExceptionDelta != nil {
+		m["AddOneDriveLocationException"] = *p.AddOneDriveLocationExceptionDelta
+	} else if p.AddOneDriveLocationException != nil {
 		m["AddOneDriveLocationException"] = p.AddOneDriveLocationException
 	}
-	if p.AddPublicFolderLocation != nil {
+	if p.AddPublicFolderLocationDelta != nil {
+		m["AddPublicFolderLocation"] = *p.AddPublicFolderLocationDelta
+	} else if p.AddPublicFolderLocation != nil {
 		m["AddPublicFolderLocation"] = p.AddPublicFolderLocation
 	}
-	if p.AddSharePointLocation != nil {
+	if p.AddSharePointLocationDelta != nil {
+		m["AddSharePointLocation"] = *p.AddSharePointLocationDelta
+	} else if p.AddSharePointLocation != nil {
 		m["AddSharePointLocation"] = p.AddSharePointLocation
 	}
-	if p.AddSharePointLocationException != nil {
+	if p.AddSharePointLocationExceptionDelta != nil {
+		m["AddSharePointLocationException"] = *p.AddSharePointLocationExceptionDelta
+	} else if p.AddSharePointLocationException != nil {
 		m["AddSharePointLocationException"] = p.AddSharePointLocationException
 	}
-	if p.AddSkypeLocation != nil {
+	if p.AddSkypeLocationDelta != nil {
+		m["AddSkypeLocation"] = *p.AddSkypeLocationDelta
+	} else if p.AddSkypeLocation != nil {
 		m["AddSkypeLocation"] = p.AddSkypeLocation
 	}
-	if p.AddSkypeLocationException != nil {
+	if p.AddSkypeLocationExceptionDelta != nil {
+		m["AddSkypeLocationException"] = *p.AddSkypeLocationExceptionDelta
+	} else if p.AddSkypeLocationException != nil {
 		m["AddSkypeLocationException"] = p.AddSkypeLocationException
 	}
-	if p.AddTeamsChannelLocation != nil {
+	if p.AddTeamsChannelLocationDelta != nil {
+		m["AddTeamsChannelLocation"] = *p.AddTeamsChannelLocationDelta
+	} else if p.AddTeamsChannelLocation != nil {
 		m["AddTeamsChannelLocation"] = p.AddTeamsChannelLocation
 	}
-	if p.AddTeamsChannelLocationException != nil {
+	if p.AddTeamsChannelLocationExceptionDelta != nil {
+		m["AddTeamsChannelLocationException"] = *p.AddTeamsChannelLocationExceptionDelta
+	} else if p.AddTeamsChannelLocationException != nil {
 		m["AddTeamsChannelLocationException"] = p.AddTeamsChannelLocationException
 	}
-	if p.AddTeamsChatLocation != nil {
+	if p.AddTeamsChatLocationDelta != nil {
+		m["AddTeamsChatLocation"] = *p.AddTeamsChatLocationDelta
+	} else if p.AddTeamsChatLocation != nil {
 		m["AddTeamsChatLocation"] = p.AddTeamsChatLocation
 	}
-	if p.AddTeamsChatLocationException != nil {
+	if p.AddTeamsChatLocationExceptionDelta != nil {
+		m["AddTeamsChatLocationException"] = *p.AddTeamsChatLocationExceptionDelta
+	} else if p.AddTeamsChatLocationException != nil {
 		m["AddTeamsChatLocationException"] = p.AddTeamsChatLocationException
 	}
-	if p.Applications != nil {
+	if p.ApplicationsDelta != nil {
+		m["Applications"] = *p.ApplicationsDelta
+	} else if p.Applications != nil {
 		m["Applications"] = p.Applications
 	}
 	if p.Comment != "" {
@@ -17929,11 +18606,11 @@ func (p SetRetentionCompliancePolicyParams) params() map[string]any {
 	if p.DeletedResources != "" {
 		m["DeletedResources"] = p.DeletedResources
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
-	if p.EnforceSimulationPolicy {
-		m["EnforceSimulationPolicy"] = true
+	if p.EnforceSimulationPolicy != nil {
+		m["EnforceSimulationPolicy"] = *p.EnforceSimulationPolicy
 	}
 	if p.ExcludeSPE {
 		m["ExcludeSPE"] = true
@@ -17944,8 +18621,8 @@ func (p SetRetentionCompliancePolicyParams) params() map[string]any {
 	if p.ForceBypassScopeCheck {
 		m["ForceBypassScopeCheck"] = true
 	}
-	if p.ForceStartSimulation {
-		m["ForceStartSimulation"] = true
+	if p.ForceStartSimulation != nil {
+		m["ForceStartSimulation"] = *p.ForceStartSimulation
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -17953,68 +18630,102 @@ func (p SetRetentionCompliancePolicyParams) params() map[string]any {
 	if p.IncludeUserOwnedContainers {
 		m["IncludeUserOwnedContainers"] = true
 	}
-	if p.PolicyRBACScopes != nil {
+	if p.PolicyRBACScopesDelta != nil {
+		m["PolicyRBACScopes"] = *p.PolicyRBACScopesDelta
+	} else if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
 	if p.PolicyTemplateInfo != nil {
 		m["PolicyTemplateInfo"] = p.PolicyTemplateInfo
 	}
-	if p.RemoveAdaptiveScopeLocation != nil {
+	if p.RemoveAdaptiveScopeLocationDelta != nil {
+		m["RemoveAdaptiveScopeLocation"] = *p.RemoveAdaptiveScopeLocationDelta
+	} else if p.RemoveAdaptiveScopeLocation != nil {
 		m["RemoveAdaptiveScopeLocation"] = p.RemoveAdaptiveScopeLocation
 	}
-	if p.RemoveExchangeLocation != nil {
+	if p.RemoveExchangeLocationDelta != nil {
+		m["RemoveExchangeLocation"] = *p.RemoveExchangeLocationDelta
+	} else if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
 	}
-	if p.RemoveExchangeLocationException != nil {
+	if p.RemoveExchangeLocationExceptionDelta != nil {
+		m["RemoveExchangeLocationException"] = *p.RemoveExchangeLocationExceptionDelta
+	} else if p.RemoveExchangeLocationException != nil {
 		m["RemoveExchangeLocationException"] = p.RemoveExchangeLocationException
 	}
-	if p.RemoveModernGroupLocation != nil {
+	if p.RemoveModernGroupLocationDelta != nil {
+		m["RemoveModernGroupLocation"] = *p.RemoveModernGroupLocationDelta
+	} else if p.RemoveModernGroupLocation != nil {
 		m["RemoveModernGroupLocation"] = p.RemoveModernGroupLocation
 	}
-	if p.RemoveModernGroupLocationException != nil {
+	if p.RemoveModernGroupLocationExceptionDelta != nil {
+		m["RemoveModernGroupLocationException"] = *p.RemoveModernGroupLocationExceptionDelta
+	} else if p.RemoveModernGroupLocationException != nil {
 		m["RemoveModernGroupLocationException"] = p.RemoveModernGroupLocationException
 	}
-	if p.RemoveOneDriveLocation != nil {
+	if p.RemoveOneDriveLocationDelta != nil {
+		m["RemoveOneDriveLocation"] = *p.RemoveOneDriveLocationDelta
+	} else if p.RemoveOneDriveLocation != nil {
 		m["RemoveOneDriveLocation"] = p.RemoveOneDriveLocation
 	}
-	if p.RemoveOneDriveLocationException != nil {
+	if p.RemoveOneDriveLocationExceptionDelta != nil {
+		m["RemoveOneDriveLocationException"] = *p.RemoveOneDriveLocationExceptionDelta
+	} else if p.RemoveOneDriveLocationException != nil {
 		m["RemoveOneDriveLocationException"] = p.RemoveOneDriveLocationException
 	}
-	if p.RemovePublicFolderLocation != nil {
+	if p.RemovePublicFolderLocationDelta != nil {
+		m["RemovePublicFolderLocation"] = *p.RemovePublicFolderLocationDelta
+	} else if p.RemovePublicFolderLocation != nil {
 		m["RemovePublicFolderLocation"] = p.RemovePublicFolderLocation
 	}
-	if p.RemoveSharePointLocation != nil {
+	if p.RemoveSharePointLocationDelta != nil {
+		m["RemoveSharePointLocation"] = *p.RemoveSharePointLocationDelta
+	} else if p.RemoveSharePointLocation != nil {
 		m["RemoveSharePointLocation"] = p.RemoveSharePointLocation
 	}
-	if p.RemoveSharePointLocationException != nil {
+	if p.RemoveSharePointLocationExceptionDelta != nil {
+		m["RemoveSharePointLocationException"] = *p.RemoveSharePointLocationExceptionDelta
+	} else if p.RemoveSharePointLocationException != nil {
 		m["RemoveSharePointLocationException"] = p.RemoveSharePointLocationException
 	}
-	if p.RemoveSkypeLocation != nil {
+	if p.RemoveSkypeLocationDelta != nil {
+		m["RemoveSkypeLocation"] = *p.RemoveSkypeLocationDelta
+	} else if p.RemoveSkypeLocation != nil {
 		m["RemoveSkypeLocation"] = p.RemoveSkypeLocation
 	}
-	if p.RemoveSkypeLocationException != nil {
+	if p.RemoveSkypeLocationExceptionDelta != nil {
+		m["RemoveSkypeLocationException"] = *p.RemoveSkypeLocationExceptionDelta
+	} else if p.RemoveSkypeLocationException != nil {
 		m["RemoveSkypeLocationException"] = p.RemoveSkypeLocationException
 	}
-	if p.RemoveTeamsChannelLocation != nil {
+	if p.RemoveTeamsChannelLocationDelta != nil {
+		m["RemoveTeamsChannelLocation"] = *p.RemoveTeamsChannelLocationDelta
+	} else if p.RemoveTeamsChannelLocation != nil {
 		m["RemoveTeamsChannelLocation"] = p.RemoveTeamsChannelLocation
 	}
-	if p.RemoveTeamsChannelLocationException != nil {
+	if p.RemoveTeamsChannelLocationExceptionDelta != nil {
+		m["RemoveTeamsChannelLocationException"] = *p.RemoveTeamsChannelLocationExceptionDelta
+	} else if p.RemoveTeamsChannelLocationException != nil {
 		m["RemoveTeamsChannelLocationException"] = p.RemoveTeamsChannelLocationException
 	}
-	if p.RemoveTeamsChatLocation != nil {
+	if p.RemoveTeamsChatLocationDelta != nil {
+		m["RemoveTeamsChatLocation"] = *p.RemoveTeamsChatLocationDelta
+	} else if p.RemoveTeamsChatLocation != nil {
 		m["RemoveTeamsChatLocation"] = p.RemoveTeamsChatLocation
 	}
-	if p.RemoveTeamsChatLocationException != nil {
+	if p.RemoveTeamsChatLocationExceptionDelta != nil {
+		m["RemoveTeamsChatLocationException"] = *p.RemoveTeamsChatLocationExceptionDelta
+	} else if p.RemoveTeamsChatLocationException != nil {
 		m["RemoveTeamsChatLocationException"] = p.RemoveTeamsChatLocationException
 	}
-	if p.RestrictiveRetention {
-		m["RestrictiveRetention"] = true
+	if p.RestrictiveRetention != nil {
+		m["RestrictiveRetention"] = *p.RestrictiveRetention
 	}
 	if p.RetryDistribution {
 		m["RetryDistribution"] = true
 	}
-	if p.StartSimulation {
-		m["StartSimulation"] = true
+	if p.StartSimulation != nil {
+		m["StartSimulation"] = *p.StartSimulation
 	}
 	return m
 }
@@ -18027,22 +18738,23 @@ func (s *Service) SetRetentionCompliancePolicy(ctx context.Context, p SetRetenti
 // SetRetentionComplianceRuleParams are the parameters of Set-RetentionComplianceRule.
 // DefaultParameterSetName: Identity
 type SetRetentionComplianceRuleParams struct {
-	ApplyComplianceTag                  string   `ps:"ApplyComplianceTag"`
-	ArchiveEnabled                      bool     `ps:"ArchiveEnabled"`
-	ArchiveTriggerBasedOn               string   `ps:"ArchiveTriggerBasedOn"`
-	ArchiveTriggerInDays                any      `ps:"ArchiveTriggerInDays"`
-	Comment                             string   `ps:"Comment"`
-	ContentContainsSensitiveInformation []string `ps:"ContentContainsSensitiveInformation"`
-	ContentDateFrom                     any      `ps:"ContentDateFrom"`
-	ContentDateTo                       any      `ps:"ContentDateTo"`
-	ContentMatchQuery                   string   `ps:"ContentMatchQuery"`
-	ExcludedItemClasses                 any      `ps:"ExcludedItemClasses"`
-	ExpirationDateOption                string   `ps:"ExpirationDateOption"`
-	Identity                            any      `ps:"Identity"`
-	IRMRiskyUserProfiles                any      `ps:"IRMRiskyUserProfiles"`
-	RetentionComplianceAction           string   `ps:"RetentionComplianceAction"`
-	RetentionDuration                   any      `ps:"RetentionDuration"`
-	RetentionDurationDisplayHint        any      `ps:"RetentionDurationDisplayHint"`
+	ApplyComplianceTag                  string                `ps:"ApplyComplianceTag"`
+	ArchiveEnabled                      bool                  `ps:"ArchiveEnabled"`
+	ArchiveTriggerBasedOn               string                `ps:"ArchiveTriggerBasedOn"`
+	ArchiveTriggerInDays                any                   `ps:"ArchiveTriggerInDays"`
+	Comment                             string                `ps:"Comment"`
+	ContentContainsSensitiveInformation any                   `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
+	ContentDateFrom                     any                   `ps:"ContentDateFrom"`                     // DateTime
+	ContentDateTo                       any                   `ps:"ContentDateTo"`                       // DateTime
+	ContentMatchQuery                   string                `ps:"ContentMatchQuery"`
+	ExcludedItemClasses                 []string              `ps:"ExcludedItemClasses"`
+	ExcludedItemClassesDelta            *adminapi.StringDelta `ps:"ExcludedItemClasses"` // adds/removes values of ExcludedItemClasses; takes precedence over it
+	ExpirationDateOption                string                `ps:"ExpirationDateOption"`
+	Identity                            any                   `ps:"Identity"`             // ComplianceRuleIdParameter
+	IRMRiskyUserProfiles                any                   `ps:"IRMRiskyUserProfiles"` // String
+	RetentionComplianceAction           string                `ps:"RetentionComplianceAction"`
+	RetentionDuration                   any                   `ps:"RetentionDuration"`            // Unlimited
+	RetentionDurationDisplayHint        any                   `ps:"RetentionDurationDisplayHint"` // HoldDurationHint
 }
 
 func (p SetRetentionComplianceRuleParams) params() map[string]any {
@@ -18062,7 +18774,7 @@ func (p SetRetentionComplianceRuleParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
 	if p.ContentDateFrom != nil {
@@ -18074,7 +18786,9 @@ func (p SetRetentionComplianceRuleParams) params() map[string]any {
 	if p.ContentMatchQuery != "" {
 		m["ContentMatchQuery"] = p.ContentMatchQuery
 	}
-	if p.ExcludedItemClasses != nil {
+	if p.ExcludedItemClassesDelta != nil {
+		m["ExcludedItemClasses"] = *p.ExcludedItemClassesDelta
+	} else if p.ExcludedItemClasses != nil {
 		m["ExcludedItemClasses"] = p.ExcludedItemClasses
 	}
 	if p.ExpirationDateOption != "" {
@@ -18105,94 +18819,131 @@ func (s *Service) SetRetentionComplianceRule(ctx context.Context, p SetRetention
 
 // SetSensitiveInformationScanParams are the parameters of Set-SensitiveInformationScan.
 type SetSensitiveInformationScanParams struct {
-	AddEndpointDlpLocation                     any      `ps:"AddEndpointDlpLocation"`
-	AddEndpointDlpLocationException            any      `ps:"AddEndpointDlpLocationException"`
-	AddExchangeLocation                        any      `ps:"AddExchangeLocation"`
-	AddOneDriveLocation                        any      `ps:"AddOneDriveLocation"`
-	AddOneDriveLocationException               any      `ps:"AddOneDriveLocationException"`
-	AddSharePointLocation                      any      `ps:"AddSharePointLocation"`
-	AddSharePointLocationException             any      `ps:"AddSharePointLocationException"`
-	AddTeamsLocation                           any      `ps:"AddTeamsLocation"`
-	AddTeamsLocationException                  any      `ps:"AddTeamsLocationException"`
-	CancelImpactAssessment                     bool     `ps:"CancelImpactAssessment"`
-	CancelScan                                 bool     `ps:"CancelScan"`
-	Comment                                    string   `ps:"Comment"`
-	ExceptIfOneDriveSharedBy                   []string `ps:"ExceptIfOneDriveSharedBy"`
-	ExceptIfOneDriveSharedByMemberOf           []string `ps:"ExceptIfOneDriveSharedByMemberOf"`
-	ExchangeAdaptiveScopes                     any      `ps:"ExchangeAdaptiveScopes"`
-	ExchangeAdaptiveScopesException            any      `ps:"ExchangeAdaptiveScopesException"`
-	ExchangeSender                             []string `ps:"ExchangeSender"`
-	ExchangeSenderException                    []string `ps:"ExchangeSenderException"`
-	ExchangeSenderMemberOf                     []string `ps:"ExchangeSenderMemberOf"`
-	ExchangeSenderMemberOfException            []string `ps:"ExchangeSenderMemberOfException"`
-	Identity                                   any      `ps:"Identity"`
-	Mode                                       any      `ps:"Mode"`
-	OneDriveAdaptiveScopes                     any      `ps:"OneDriveAdaptiveScopes"`
-	OneDriveAdaptiveScopesException            any      `ps:"OneDriveAdaptiveScopesException"`
-	OneDriveSharedBy                           []string `ps:"OneDriveSharedBy"`
-	OneDriveSharedByMemberOf                   []string `ps:"OneDriveSharedByMemberOf"`
-	PolicyRBACScopes                           any      `ps:"PolicyRBACScopes"`
-	RemoveEndpointDlpLocation                  any      `ps:"RemoveEndpointDlpLocation"`
-	RemoveEndpointDlpLocationException         any      `ps:"RemoveEndpointDlpLocationException"`
-	RemoveExchangeLocation                     any      `ps:"RemoveExchangeLocation"`
-	RemoveOneDriveLocation                     any      `ps:"RemoveOneDriveLocation"`
-	RemoveOneDriveLocationException            any      `ps:"RemoveOneDriveLocationException"`
-	RemoveSharePointLocation                   any      `ps:"RemoveSharePointLocation"`
-	RemoveSharePointLocationException          any      `ps:"RemoveSharePointLocationException"`
-	RemoveTeamsLocation                        any      `ps:"RemoveTeamsLocation"`
-	RemoveTeamsLocationException               any      `ps:"RemoveTeamsLocationException"`
-	ScanBudget                                 any      `ps:"ScanBudget"`
-	ScanType                                   string   `ps:"ScanType"`
-	SharePointAdaptiveScopes                   any      `ps:"SharePointAdaptiveScopes"`
-	SharePointAdaptiveScopesException          any      `ps:"SharePointAdaptiveScopesException"`
-	StartImpactAssessment                      bool     `ps:"StartImpactAssessment"`
-	StopImpactAssessmentAndStartClassification bool     `ps:"StopImpactAssessmentAndStartClassification"`
-	TeamsAdaptiveScopes                        any      `ps:"TeamsAdaptiveScopes"`
-	TeamsAdaptiveScopesException               any      `ps:"TeamsAdaptiveScopesException"`
+	AddEndpointDlpLocation                     []string              `ps:"AddEndpointDlpLocation"`
+	AddEndpointDlpLocationDelta                *adminapi.StringDelta `ps:"AddEndpointDlpLocation"` // adds/removes values of AddEndpointDlpLocation; takes precedence over it
+	AddEndpointDlpLocationException            []string              `ps:"AddEndpointDlpLocationException"`
+	AddEndpointDlpLocationExceptionDelta       *adminapi.StringDelta `ps:"AddEndpointDlpLocationException"` // adds/removes values of AddEndpointDlpLocationException; takes precedence over it
+	AddExchangeLocation                        []string              `ps:"AddExchangeLocation"`
+	AddExchangeLocationDelta                   *adminapi.StringDelta `ps:"AddExchangeLocation"` // adds/removes values of AddExchangeLocation; takes precedence over it
+	AddOneDriveLocation                        []string              `ps:"AddOneDriveLocation"`
+	AddOneDriveLocationDelta                   *adminapi.StringDelta `ps:"AddOneDriveLocation"` // adds/removes values of AddOneDriveLocation; takes precedence over it
+	AddOneDriveLocationException               []string              `ps:"AddOneDriveLocationException"`
+	AddOneDriveLocationExceptionDelta          *adminapi.StringDelta `ps:"AddOneDriveLocationException"` // adds/removes values of AddOneDriveLocationException; takes precedence over it
+	AddSharePointLocation                      []string              `ps:"AddSharePointLocation"`
+	AddSharePointLocationDelta                 *adminapi.StringDelta `ps:"AddSharePointLocation"` // adds/removes values of AddSharePointLocation; takes precedence over it
+	AddSharePointLocationException             []string              `ps:"AddSharePointLocationException"`
+	AddSharePointLocationExceptionDelta        *adminapi.StringDelta `ps:"AddSharePointLocationException"` // adds/removes values of AddSharePointLocationException; takes precedence over it
+	AddTeamsLocation                           []string              `ps:"AddTeamsLocation"`
+	AddTeamsLocationDelta                      *adminapi.StringDelta `ps:"AddTeamsLocation"` // adds/removes values of AddTeamsLocation; takes precedence over it
+	AddTeamsLocationException                  []string              `ps:"AddTeamsLocationException"`
+	AddTeamsLocationExceptionDelta             *adminapi.StringDelta `ps:"AddTeamsLocationException"` // adds/removes values of AddTeamsLocationException; takes precedence over it
+	CancelImpactAssessment                     *bool                 `ps:"CancelImpactAssessment"`
+	CancelScan                                 *bool                 `ps:"CancelScan"`
+	Comment                                    string                `ps:"Comment"`
+	ExceptIfOneDriveSharedBy                   []string              `ps:"ExceptIfOneDriveSharedBy"`
+	ExceptIfOneDriveSharedByMemberOf           []string              `ps:"ExceptIfOneDriveSharedByMemberOf"`
+	ExchangeAdaptiveScopes                     any                   `ps:"ExchangeAdaptiveScopes"`
+	ExchangeAdaptiveScopesException            any                   `ps:"ExchangeAdaptiveScopesException"`
+	ExchangeSender                             []string              `ps:"ExchangeSender"`
+	ExchangeSenderException                    []string              `ps:"ExchangeSenderException"`
+	ExchangeSenderMemberOf                     []string              `ps:"ExchangeSenderMemberOf"`
+	ExchangeSenderMemberOfException            []string              `ps:"ExchangeSenderMemberOfException"`
+	Identity                                   any                   `ps:"Identity"` // PolicyIdParameter
+	Mode                                       any                   `ps:"Mode"`     // PolicyMode
+	OneDriveAdaptiveScopes                     any                   `ps:"OneDriveAdaptiveScopes"`
+	OneDriveAdaptiveScopesException            any                   `ps:"OneDriveAdaptiveScopesException"`
+	OneDriveSharedBy                           []string              `ps:"OneDriveSharedBy"`
+	OneDriveSharedByMemberOf                   []string              `ps:"OneDriveSharedByMemberOf"`
+	PolicyRBACScopes                           []string              `ps:"PolicyRBACScopes"`
+	PolicyRBACScopesDelta                      *adminapi.StringDelta `ps:"PolicyRBACScopes"` // adds/removes values of PolicyRBACScopes; takes precedence over it
+	RemoveEndpointDlpLocation                  []string              `ps:"RemoveEndpointDlpLocation"`
+	RemoveEndpointDlpLocationDelta             *adminapi.StringDelta `ps:"RemoveEndpointDlpLocation"` // adds/removes values of RemoveEndpointDlpLocation; takes precedence over it
+	RemoveEndpointDlpLocationException         []string              `ps:"RemoveEndpointDlpLocationException"`
+	RemoveEndpointDlpLocationExceptionDelta    *adminapi.StringDelta `ps:"RemoveEndpointDlpLocationException"` // adds/removes values of RemoveEndpointDlpLocationException; takes precedence over it
+	RemoveExchangeLocation                     []string              `ps:"RemoveExchangeLocation"`
+	RemoveExchangeLocationDelta                *adminapi.StringDelta `ps:"RemoveExchangeLocation"` // adds/removes values of RemoveExchangeLocation; takes precedence over it
+	RemoveOneDriveLocation                     []string              `ps:"RemoveOneDriveLocation"`
+	RemoveOneDriveLocationDelta                *adminapi.StringDelta `ps:"RemoveOneDriveLocation"` // adds/removes values of RemoveOneDriveLocation; takes precedence over it
+	RemoveOneDriveLocationException            []string              `ps:"RemoveOneDriveLocationException"`
+	RemoveOneDriveLocationExceptionDelta       *adminapi.StringDelta `ps:"RemoveOneDriveLocationException"` // adds/removes values of RemoveOneDriveLocationException; takes precedence over it
+	RemoveSharePointLocation                   []string              `ps:"RemoveSharePointLocation"`
+	RemoveSharePointLocationDelta              *adminapi.StringDelta `ps:"RemoveSharePointLocation"` // adds/removes values of RemoveSharePointLocation; takes precedence over it
+	RemoveSharePointLocationException          []string              `ps:"RemoveSharePointLocationException"`
+	RemoveSharePointLocationExceptionDelta     *adminapi.StringDelta `ps:"RemoveSharePointLocationException"` // adds/removes values of RemoveSharePointLocationException; takes precedence over it
+	RemoveTeamsLocation                        []string              `ps:"RemoveTeamsLocation"`
+	RemoveTeamsLocationDelta                   *adminapi.StringDelta `ps:"RemoveTeamsLocation"` // adds/removes values of RemoveTeamsLocation; takes precedence over it
+	RemoveTeamsLocationException               []string              `ps:"RemoveTeamsLocationException"`
+	RemoveTeamsLocationExceptionDelta          *adminapi.StringDelta `ps:"RemoveTeamsLocationException"` // adds/removes values of RemoveTeamsLocationException; takes precedence over it
+	ScanBudget                                 any                   `ps:"ScanBudget"`
+	ScanType                                   string                `ps:"ScanType"`
+	SharePointAdaptiveScopes                   any                   `ps:"SharePointAdaptiveScopes"`
+	SharePointAdaptiveScopesException          any                   `ps:"SharePointAdaptiveScopesException"`
+	StartImpactAssessment                      *bool                 `ps:"StartImpactAssessment"`
+	StopImpactAssessmentAndStartClassification *bool                 `ps:"StopImpactAssessmentAndStartClassification"`
+	TeamsAdaptiveScopes                        any                   `ps:"TeamsAdaptiveScopes"`
+	TeamsAdaptiveScopesException               any                   `ps:"TeamsAdaptiveScopesException"`
 }
 
 func (p SetSensitiveInformationScanParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddEndpointDlpLocation != nil {
+	if p.AddEndpointDlpLocationDelta != nil {
+		m["AddEndpointDlpLocation"] = *p.AddEndpointDlpLocationDelta
+	} else if p.AddEndpointDlpLocation != nil {
 		m["AddEndpointDlpLocation"] = p.AddEndpointDlpLocation
 	}
-	if p.AddEndpointDlpLocationException != nil {
+	if p.AddEndpointDlpLocationExceptionDelta != nil {
+		m["AddEndpointDlpLocationException"] = *p.AddEndpointDlpLocationExceptionDelta
+	} else if p.AddEndpointDlpLocationException != nil {
 		m["AddEndpointDlpLocationException"] = p.AddEndpointDlpLocationException
 	}
-	if p.AddExchangeLocation != nil {
+	if p.AddExchangeLocationDelta != nil {
+		m["AddExchangeLocation"] = *p.AddExchangeLocationDelta
+	} else if p.AddExchangeLocation != nil {
 		m["AddExchangeLocation"] = p.AddExchangeLocation
 	}
-	if p.AddOneDriveLocation != nil {
+	if p.AddOneDriveLocationDelta != nil {
+		m["AddOneDriveLocation"] = *p.AddOneDriveLocationDelta
+	} else if p.AddOneDriveLocation != nil {
 		m["AddOneDriveLocation"] = p.AddOneDriveLocation
 	}
-	if p.AddOneDriveLocationException != nil {
+	if p.AddOneDriveLocationExceptionDelta != nil {
+		m["AddOneDriveLocationException"] = *p.AddOneDriveLocationExceptionDelta
+	} else if p.AddOneDriveLocationException != nil {
 		m["AddOneDriveLocationException"] = p.AddOneDriveLocationException
 	}
-	if p.AddSharePointLocation != nil {
+	if p.AddSharePointLocationDelta != nil {
+		m["AddSharePointLocation"] = *p.AddSharePointLocationDelta
+	} else if p.AddSharePointLocation != nil {
 		m["AddSharePointLocation"] = p.AddSharePointLocation
 	}
-	if p.AddSharePointLocationException != nil {
+	if p.AddSharePointLocationExceptionDelta != nil {
+		m["AddSharePointLocationException"] = *p.AddSharePointLocationExceptionDelta
+	} else if p.AddSharePointLocationException != nil {
 		m["AddSharePointLocationException"] = p.AddSharePointLocationException
 	}
-	if p.AddTeamsLocation != nil {
+	if p.AddTeamsLocationDelta != nil {
+		m["AddTeamsLocation"] = *p.AddTeamsLocationDelta
+	} else if p.AddTeamsLocation != nil {
 		m["AddTeamsLocation"] = p.AddTeamsLocation
 	}
-	if p.AddTeamsLocationException != nil {
+	if p.AddTeamsLocationExceptionDelta != nil {
+		m["AddTeamsLocationException"] = *p.AddTeamsLocationExceptionDelta
+	} else if p.AddTeamsLocationException != nil {
 		m["AddTeamsLocationException"] = p.AddTeamsLocationException
 	}
-	if p.CancelImpactAssessment {
-		m["CancelImpactAssessment"] = true
+	if p.CancelImpactAssessment != nil {
+		m["CancelImpactAssessment"] = *p.CancelImpactAssessment
 	}
-	if p.CancelScan {
-		m["CancelScan"] = true
+	if p.CancelScan != nil {
+		m["CancelScan"] = *p.CancelScan
 	}
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.ExceptIfOneDriveSharedBy) > 0 {
+	if p.ExceptIfOneDriveSharedBy != nil {
 		m["ExceptIfOneDriveSharedBy"] = p.ExceptIfOneDriveSharedBy
 	}
-	if len(p.ExceptIfOneDriveSharedByMemberOf) > 0 {
+	if p.ExceptIfOneDriveSharedByMemberOf != nil {
 		m["ExceptIfOneDriveSharedByMemberOf"] = p.ExceptIfOneDriveSharedByMemberOf
 	}
 	if p.ExchangeAdaptiveScopes != nil {
@@ -18201,16 +18952,16 @@ func (p SetSensitiveInformationScanParams) params() map[string]any {
 	if p.ExchangeAdaptiveScopesException != nil {
 		m["ExchangeAdaptiveScopesException"] = p.ExchangeAdaptiveScopesException
 	}
-	if len(p.ExchangeSender) > 0 {
+	if p.ExchangeSender != nil {
 		m["ExchangeSender"] = p.ExchangeSender
 	}
-	if len(p.ExchangeSenderException) > 0 {
+	if p.ExchangeSenderException != nil {
 		m["ExchangeSenderException"] = p.ExchangeSenderException
 	}
-	if len(p.ExchangeSenderMemberOf) > 0 {
+	if p.ExchangeSenderMemberOf != nil {
 		m["ExchangeSenderMemberOf"] = p.ExchangeSenderMemberOf
 	}
-	if len(p.ExchangeSenderMemberOfException) > 0 {
+	if p.ExchangeSenderMemberOfException != nil {
 		m["ExchangeSenderMemberOfException"] = p.ExchangeSenderMemberOfException
 	}
 	if p.Identity != nil {
@@ -18225,40 +18976,60 @@ func (p SetSensitiveInformationScanParams) params() map[string]any {
 	if p.OneDriveAdaptiveScopesException != nil {
 		m["OneDriveAdaptiveScopesException"] = p.OneDriveAdaptiveScopesException
 	}
-	if len(p.OneDriveSharedBy) > 0 {
+	if p.OneDriveSharedBy != nil {
 		m["OneDriveSharedBy"] = p.OneDriveSharedBy
 	}
-	if len(p.OneDriveSharedByMemberOf) > 0 {
+	if p.OneDriveSharedByMemberOf != nil {
 		m["OneDriveSharedByMemberOf"] = p.OneDriveSharedByMemberOf
 	}
-	if p.PolicyRBACScopes != nil {
+	if p.PolicyRBACScopesDelta != nil {
+		m["PolicyRBACScopes"] = *p.PolicyRBACScopesDelta
+	} else if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
-	if p.RemoveEndpointDlpLocation != nil {
+	if p.RemoveEndpointDlpLocationDelta != nil {
+		m["RemoveEndpointDlpLocation"] = *p.RemoveEndpointDlpLocationDelta
+	} else if p.RemoveEndpointDlpLocation != nil {
 		m["RemoveEndpointDlpLocation"] = p.RemoveEndpointDlpLocation
 	}
-	if p.RemoveEndpointDlpLocationException != nil {
+	if p.RemoveEndpointDlpLocationExceptionDelta != nil {
+		m["RemoveEndpointDlpLocationException"] = *p.RemoveEndpointDlpLocationExceptionDelta
+	} else if p.RemoveEndpointDlpLocationException != nil {
 		m["RemoveEndpointDlpLocationException"] = p.RemoveEndpointDlpLocationException
 	}
-	if p.RemoveExchangeLocation != nil {
+	if p.RemoveExchangeLocationDelta != nil {
+		m["RemoveExchangeLocation"] = *p.RemoveExchangeLocationDelta
+	} else if p.RemoveExchangeLocation != nil {
 		m["RemoveExchangeLocation"] = p.RemoveExchangeLocation
 	}
-	if p.RemoveOneDriveLocation != nil {
+	if p.RemoveOneDriveLocationDelta != nil {
+		m["RemoveOneDriveLocation"] = *p.RemoveOneDriveLocationDelta
+	} else if p.RemoveOneDriveLocation != nil {
 		m["RemoveOneDriveLocation"] = p.RemoveOneDriveLocation
 	}
-	if p.RemoveOneDriveLocationException != nil {
+	if p.RemoveOneDriveLocationExceptionDelta != nil {
+		m["RemoveOneDriveLocationException"] = *p.RemoveOneDriveLocationExceptionDelta
+	} else if p.RemoveOneDriveLocationException != nil {
 		m["RemoveOneDriveLocationException"] = p.RemoveOneDriveLocationException
 	}
-	if p.RemoveSharePointLocation != nil {
+	if p.RemoveSharePointLocationDelta != nil {
+		m["RemoveSharePointLocation"] = *p.RemoveSharePointLocationDelta
+	} else if p.RemoveSharePointLocation != nil {
 		m["RemoveSharePointLocation"] = p.RemoveSharePointLocation
 	}
-	if p.RemoveSharePointLocationException != nil {
+	if p.RemoveSharePointLocationExceptionDelta != nil {
+		m["RemoveSharePointLocationException"] = *p.RemoveSharePointLocationExceptionDelta
+	} else if p.RemoveSharePointLocationException != nil {
 		m["RemoveSharePointLocationException"] = p.RemoveSharePointLocationException
 	}
-	if p.RemoveTeamsLocation != nil {
+	if p.RemoveTeamsLocationDelta != nil {
+		m["RemoveTeamsLocation"] = *p.RemoveTeamsLocationDelta
+	} else if p.RemoveTeamsLocation != nil {
 		m["RemoveTeamsLocation"] = p.RemoveTeamsLocation
 	}
-	if p.RemoveTeamsLocationException != nil {
+	if p.RemoveTeamsLocationExceptionDelta != nil {
+		m["RemoveTeamsLocationException"] = *p.RemoveTeamsLocationExceptionDelta
+	} else if p.RemoveTeamsLocationException != nil {
 		m["RemoveTeamsLocationException"] = p.RemoveTeamsLocationException
 	}
 	if p.ScanBudget != nil {
@@ -18273,11 +19044,11 @@ func (p SetSensitiveInformationScanParams) params() map[string]any {
 	if p.SharePointAdaptiveScopesException != nil {
 		m["SharePointAdaptiveScopesException"] = p.SharePointAdaptiveScopesException
 	}
-	if p.StartImpactAssessment {
-		m["StartImpactAssessment"] = true
+	if p.StartImpactAssessment != nil {
+		m["StartImpactAssessment"] = *p.StartImpactAssessment
 	}
-	if p.StopImpactAssessmentAndStartClassification {
-		m["StopImpactAssessmentAndStartClassification"] = true
+	if p.StopImpactAssessmentAndStartClassification != nil {
+		m["StopImpactAssessmentAndStartClassification"] = *p.StopImpactAssessmentAndStartClassification
 	}
 	if p.TeamsAdaptiveScopes != nil {
 		m["TeamsAdaptiveScopes"] = p.TeamsAdaptiveScopes
@@ -18295,23 +19066,27 @@ func (s *Service) SetSensitiveInformationScan(ctx context.Context, p SetSensitiv
 
 // SetSensitiveInformationScanRuleParams are the parameters of Set-SensitiveInformationScanRule.
 type SetSensitiveInformationScanRuleParams struct {
-	Comment                                        string   `ps:"Comment"`
-	ContentContainsSensitiveInformation            []string `ps:"ContentContainsSensitiveInformation"`
-	ContentCreatedOrUpdatedDateFrom                any      `ps:"ContentCreatedOrUpdatedDateFrom"`
-	ContentCreatedOrUpdatedDateTo                  any      `ps:"ContentCreatedOrUpdatedDateTo"`
-	ContentExtensionMatchesWords                   any      `ps:"ContentExtensionMatchesWords"`
-	ContentIsNotLabeled                            bool     `ps:"ContentIsNotLabeled"`
-	ContentPropertyContainsWords                   any      `ps:"ContentPropertyContainsWords"`
-	DocumentSizeOver                               any      `ps:"DocumentSizeOver"`
-	ExceptIfContentContainsSensitiveInformation    []string `ps:"ExceptIfContentContainsSensitiveInformation"`
-	ExceptIfContentExtensionMatchesWords           any      `ps:"ExceptIfContentExtensionMatchesWords"`
-	ExceptIfContentPropertyContainsWords           any      `ps:"ExceptIfContentPropertyContainsWords"`
-	ExceptIfDocumentSizeOver                       any      `ps:"ExceptIfDocumentSizeOver"`
-	ExceptIfOdcContentContainsSensitiveInformation []string `ps:"ExceptIfOdcContentContainsSensitiveInformation"`
-	Identity                                       any      `ps:"Identity"`
-	OdcContentContainsSensitiveInformation         []string `ps:"OdcContentContainsSensitiveInformation"`
-	StartImpactAssessment                          bool     `ps:"StartImpactAssessment"`
-	Workload                                       any      `ps:"Workload"`
+	Comment                                        string                `ps:"Comment"`
+	ContentContainsSensitiveInformation            []string              `ps:"ContentContainsSensitiveInformation"`
+	ContentCreatedOrUpdatedDateFrom                any                   `ps:"ContentCreatedOrUpdatedDateFrom"` // System.DateTime
+	ContentCreatedOrUpdatedDateTo                  any                   `ps:"ContentCreatedOrUpdatedDateTo"`   // System.DateTime
+	ContentExtensionMatchesWords                   []string              `ps:"ContentExtensionMatchesWords"`
+	ContentExtensionMatchesWordsDelta              *adminapi.StringDelta `ps:"ContentExtensionMatchesWords"` // adds/removes values of ContentExtensionMatchesWords; takes precedence over it
+	ContentIsNotLabeled                            *bool                 `ps:"ContentIsNotLabeled"`
+	ContentPropertyContainsWords                   []string              `ps:"ContentPropertyContainsWords"`
+	ContentPropertyContainsWordsDelta              *adminapi.StringDelta `ps:"ContentPropertyContainsWords"` // adds/removes values of ContentPropertyContainsWords; takes precedence over it
+	DocumentSizeOver                               any                   `ps:"DocumentSizeOver"`
+	ExceptIfContentContainsSensitiveInformation    []string              `ps:"ExceptIfContentContainsSensitiveInformation"`
+	ExceptIfContentExtensionMatchesWords           []string              `ps:"ExceptIfContentExtensionMatchesWords"`
+	ExceptIfContentExtensionMatchesWordsDelta      *adminapi.StringDelta `ps:"ExceptIfContentExtensionMatchesWords"` // adds/removes values of ExceptIfContentExtensionMatchesWords; takes precedence over it
+	ExceptIfContentPropertyContainsWords           []string              `ps:"ExceptIfContentPropertyContainsWords"`
+	ExceptIfContentPropertyContainsWordsDelta      *adminapi.StringDelta `ps:"ExceptIfContentPropertyContainsWords"` // adds/removes values of ExceptIfContentPropertyContainsWords; takes precedence over it
+	ExceptIfDocumentSizeOver                       any                   `ps:"ExceptIfDocumentSizeOver"`
+	ExceptIfOdcContentContainsSensitiveInformation []string              `ps:"ExceptIfOdcContentContainsSensitiveInformation"`
+	Identity                                       any                   `ps:"Identity"` // ComplianceRuleIdParameter
+	OdcContentContainsSensitiveInformation         []string              `ps:"OdcContentContainsSensitiveInformation"`
+	StartImpactAssessment                          *bool                 `ps:"StartImpactAssessment"`
+	Workload                                       any                   `ps:"Workload"` // PolicyConfiguration.Workload
 }
 
 func (p SetSensitiveInformationScanRuleParams) params() map[string]any {
@@ -18319,7 +19094,7 @@ func (p SetSensitiveInformationScanRuleParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
 	if p.ContentCreatedOrUpdatedDateFrom != nil {
@@ -18328,41 +19103,49 @@ func (p SetSensitiveInformationScanRuleParams) params() map[string]any {
 	if p.ContentCreatedOrUpdatedDateTo != nil {
 		m["ContentCreatedOrUpdatedDateTo"] = p.ContentCreatedOrUpdatedDateTo
 	}
-	if p.ContentExtensionMatchesWords != nil {
+	if p.ContentExtensionMatchesWordsDelta != nil {
+		m["ContentExtensionMatchesWords"] = *p.ContentExtensionMatchesWordsDelta
+	} else if p.ContentExtensionMatchesWords != nil {
 		m["ContentExtensionMatchesWords"] = p.ContentExtensionMatchesWords
 	}
-	if p.ContentIsNotLabeled {
-		m["ContentIsNotLabeled"] = true
+	if p.ContentIsNotLabeled != nil {
+		m["ContentIsNotLabeled"] = *p.ContentIsNotLabeled
 	}
-	if p.ContentPropertyContainsWords != nil {
+	if p.ContentPropertyContainsWordsDelta != nil {
+		m["ContentPropertyContainsWords"] = *p.ContentPropertyContainsWordsDelta
+	} else if p.ContentPropertyContainsWords != nil {
 		m["ContentPropertyContainsWords"] = p.ContentPropertyContainsWords
 	}
 	if p.DocumentSizeOver != nil {
 		m["DocumentSizeOver"] = p.DocumentSizeOver
 	}
-	if len(p.ExceptIfContentContainsSensitiveInformation) > 0 {
+	if p.ExceptIfContentContainsSensitiveInformation != nil {
 		m["ExceptIfContentContainsSensitiveInformation"] = p.ExceptIfContentContainsSensitiveInformation
 	}
-	if p.ExceptIfContentExtensionMatchesWords != nil {
+	if p.ExceptIfContentExtensionMatchesWordsDelta != nil {
+		m["ExceptIfContentExtensionMatchesWords"] = *p.ExceptIfContentExtensionMatchesWordsDelta
+	} else if p.ExceptIfContentExtensionMatchesWords != nil {
 		m["ExceptIfContentExtensionMatchesWords"] = p.ExceptIfContentExtensionMatchesWords
 	}
-	if p.ExceptIfContentPropertyContainsWords != nil {
+	if p.ExceptIfContentPropertyContainsWordsDelta != nil {
+		m["ExceptIfContentPropertyContainsWords"] = *p.ExceptIfContentPropertyContainsWordsDelta
+	} else if p.ExceptIfContentPropertyContainsWords != nil {
 		m["ExceptIfContentPropertyContainsWords"] = p.ExceptIfContentPropertyContainsWords
 	}
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
-	if len(p.ExceptIfOdcContentContainsSensitiveInformation) > 0 {
+	if p.ExceptIfOdcContentContainsSensitiveInformation != nil {
 		m["ExceptIfOdcContentContainsSensitiveInformation"] = p.ExceptIfOdcContentContainsSensitiveInformation
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.OdcContentContainsSensitiveInformation) > 0 {
+	if p.OdcContentContainsSensitiveInformation != nil {
 		m["OdcContentContainsSensitiveInformation"] = p.OdcContentContainsSensitiveInformation
 	}
-	if p.StartImpactAssessment {
-		m["StartImpactAssessment"] = true
+	if p.StartImpactAssessment != nil {
+		m["StartImpactAssessment"] = *p.StartImpactAssessment
 	}
 	if p.Workload != nil {
 		m["Workload"] = p.Workload
@@ -18401,7 +19184,7 @@ func (s *Service) SetServiceDomainGroup(ctx context.Context, p SetServiceDomainG
 // DefaultParameterSetName: Identity
 type SetServicePrincipalParams struct {
 	DisplayName string `ps:"DisplayName"`
-	Identity    any    `ps:"Identity"`
+	Identity    any    `ps:"Identity"` // ServicePrincipalIdParameter
 }
 
 func (p SetServicePrincipalParams) params() map[string]any {
@@ -18423,30 +19206,31 @@ func (s *Service) SetServicePrincipal(ctx context.Context, p SetServicePrincipal
 // SetSupervisoryReviewPolicyV2Params are the parameters of Set-SupervisoryReviewPolicyV2.
 // DefaultParameterSetName: Identity
 type SetSupervisoryReviewPolicyV2Params struct {
-	AddReviewers             []string `ps:"AddReviewers"`
-	Comment                  string   `ps:"Comment"`
-	Enabled                  bool     `ps:"Enabled"`
-	Force                    bool     `ps:"Force"`
-	Identity                 any      `ps:"Identity"`
-	PolicyRBACScopes         any      `ps:"PolicyRBACScopes"`
-	PolicyTemplate           string   `ps:"PolicyTemplate"`
-	PreservationPeriodInDays int      `ps:"PreservationPeriodInDays"`
-	RemoveReviewers          []string `ps:"RemoveReviewers"`
-	RetentionPeriodInDays    int      `ps:"RetentionPeriodInDays"`
-	Reviewers                []string `ps:"Reviewers"`
-	UserReportingWorkloads   []string `ps:"UserReportingWorkloads"`
+	AddReviewers             []string              `ps:"AddReviewers"`
+	Comment                  string                `ps:"Comment"`
+	Enabled                  *bool                 `ps:"Enabled"`
+	Force                    bool                  `ps:"Force"`
+	Identity                 any                   `ps:"Identity"` // PolicyIdParameter
+	PolicyRBACScopes         []string              `ps:"PolicyRBACScopes"`
+	PolicyRBACScopesDelta    *adminapi.StringDelta `ps:"PolicyRBACScopes"` // adds/removes values of PolicyRBACScopes; takes precedence over it
+	PolicyTemplate           string                `ps:"PolicyTemplate"`
+	PreservationPeriodInDays *int64                `ps:"PreservationPeriodInDays"`
+	RemoveReviewers          []string              `ps:"RemoveReviewers"`
+	RetentionPeriodInDays    *int64                `ps:"RetentionPeriodInDays"`
+	Reviewers                []string              `ps:"Reviewers"`
+	UserReportingWorkloads   []string              `ps:"UserReportingWorkloads"`
 }
 
 func (p SetSupervisoryReviewPolicyV2Params) params() map[string]any {
 	m := map[string]any{}
-	if len(p.AddReviewers) > 0 {
+	if p.AddReviewers != nil {
 		m["AddReviewers"] = p.AddReviewers
 	}
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -18454,25 +19238,27 @@ func (p SetSupervisoryReviewPolicyV2Params) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.PolicyRBACScopes != nil {
+	if p.PolicyRBACScopesDelta != nil {
+		m["PolicyRBACScopes"] = *p.PolicyRBACScopesDelta
+	} else if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
 	if p.PolicyTemplate != "" {
 		m["PolicyTemplate"] = p.PolicyTemplate
 	}
-	if p.PreservationPeriodInDays != 0 {
-		m["PreservationPeriodInDays"] = p.PreservationPeriodInDays
+	if p.PreservationPeriodInDays != nil {
+		m["PreservationPeriodInDays"] = *p.PreservationPeriodInDays
 	}
-	if len(p.RemoveReviewers) > 0 {
+	if p.RemoveReviewers != nil {
 		m["RemoveReviewers"] = p.RemoveReviewers
 	}
-	if p.RetentionPeriodInDays != 0 {
-		m["RetentionPeriodInDays"] = p.RetentionPeriodInDays
+	if p.RetentionPeriodInDays != nil {
+		m["RetentionPeriodInDays"] = *p.RetentionPeriodInDays
 	}
-	if len(p.Reviewers) > 0 {
+	if p.Reviewers != nil {
 		m["Reviewers"] = p.Reviewers
 	}
-	if len(p.UserReportingWorkloads) > 0 {
+	if p.UserReportingWorkloads != nil {
 		m["UserReportingWorkloads"] = p.UserReportingWorkloads
 	}
 	return m
@@ -18486,28 +19272,37 @@ func (s *Service) SetSupervisoryReviewPolicyV2(ctx context.Context, p SetSupervi
 // SetSupervisoryReviewRuleParams are the parameters of Set-SupervisoryReviewRule.
 // DefaultParameterSetName: Identity
 type SetSupervisoryReviewRuleParams struct {
-	AdvancedRule                        string   `ps:"AdvancedRule"`
-	CcsiDataModelOperator               string   `ps:"CcsiDataModelOperator"`
-	Condition                           string   `ps:"Condition"`
-	ContentContainsSensitiveInformation []string `ps:"ContentContainsSensitiveInformation"`
-	ContentMatchesDataModel             string   `ps:"ContentMatchesDataModel"`
-	ContentSources                      []string `ps:"ContentSources"`
-	DayXInsights                        bool     `ps:"DayXInsights"`
-	ExceptIfFrom                        any      `ps:"ExceptIfFrom"`
-	ExceptIfRecipientDomainIs           any      `ps:"ExceptIfRecipientDomainIs"`
-	ExceptIfRevieweeIs                  any      `ps:"ExceptIfRevieweeIs"`
-	ExceptIfSenderDomainIs              any      `ps:"ExceptIfSenderDomainIs"`
-	ExceptIfSentTo                      any      `ps:"ExceptIfSentTo"`
-	ExceptIfSubjectOrBodyContainsWords  any      `ps:"ExceptIfSubjectOrBodyContainsWords"`
-	From                                any      `ps:"From"`
-	Identity                            any      `ps:"Identity"`
-	IncludeAdaptiveScopes               []string `ps:"IncludeAdaptiveScopes"`
-	InPurviewFilter                     string   `ps:"InPurviewFilter"`
-	Ocr                                 bool     `ps:"Ocr"`
-	PolicyRBACScopes                    any      `ps:"PolicyRBACScopes"`
-	RateOfSampling                      string   `ps:"RateOfSampling"`
-	SamplingRate                        int      `ps:"SamplingRate"`
-	SentTo                              any      `ps:"SentTo"`
+	AdvancedRule                            string                `ps:"AdvancedRule"`
+	CcsiDataModelOperator                   string                `ps:"CcsiDataModelOperator"`
+	Condition                               string                `ps:"Condition"`
+	ContentContainsSensitiveInformation     any                   `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
+	ContentMatchesDataModel                 string                `ps:"ContentMatchesDataModel"`
+	ContentSources                          []string              `ps:"ContentSources"`
+	DayXInsights                            *bool                 `ps:"DayXInsights"`
+	ExceptIfFrom                            []string              `ps:"ExceptIfFrom"`
+	ExceptIfFromDelta                       *adminapi.StringDelta `ps:"ExceptIfFrom"` // adds/removes values of ExceptIfFrom; takes precedence over it
+	ExceptIfRecipientDomainIs               []string              `ps:"ExceptIfRecipientDomainIs"`
+	ExceptIfRecipientDomainIsDelta          *adminapi.StringDelta `ps:"ExceptIfRecipientDomainIs"` // adds/removes values of ExceptIfRecipientDomainIs; takes precedence over it
+	ExceptIfRevieweeIs                      []string              `ps:"ExceptIfRevieweeIs"`
+	ExceptIfRevieweeIsDelta                 *adminapi.StringDelta `ps:"ExceptIfRevieweeIs"` // adds/removes values of ExceptIfRevieweeIs; takes precedence over it
+	ExceptIfSenderDomainIs                  []string              `ps:"ExceptIfSenderDomainIs"`
+	ExceptIfSenderDomainIsDelta             *adminapi.StringDelta `ps:"ExceptIfSenderDomainIs"` // adds/removes values of ExceptIfSenderDomainIs; takes precedence over it
+	ExceptIfSentTo                          []string              `ps:"ExceptIfSentTo"`
+	ExceptIfSentToDelta                     *adminapi.StringDelta `ps:"ExceptIfSentTo"` // adds/removes values of ExceptIfSentTo; takes precedence over it
+	ExceptIfSubjectOrBodyContainsWords      []string              `ps:"ExceptIfSubjectOrBodyContainsWords"`
+	ExceptIfSubjectOrBodyContainsWordsDelta *adminapi.StringDelta `ps:"ExceptIfSubjectOrBodyContainsWords"` // adds/removes values of ExceptIfSubjectOrBodyContainsWords; takes precedence over it
+	From                                    []string              `ps:"From"`
+	FromDelta                               *adminapi.StringDelta `ps:"From"`     // adds/removes values of From; takes precedence over it
+	Identity                                any                   `ps:"Identity"` // ComplianceRuleIdParameter
+	IncludeAdaptiveScopes                   []string              `ps:"IncludeAdaptiveScopes"`
+	InPurviewFilter                         string                `ps:"InPurviewFilter"`
+	Ocr                                     *bool                 `ps:"Ocr"`
+	PolicyRBACScopes                        []string              `ps:"PolicyRBACScopes"`
+	PolicyRBACScopesDelta                   *adminapi.StringDelta `ps:"PolicyRBACScopes"` // adds/removes values of PolicyRBACScopes; takes precedence over it
+	RateOfSampling                          string                `ps:"RateOfSampling"`
+	SamplingRate                            *int64                `ps:"SamplingRate"`
+	SentTo                                  []string              `ps:"SentTo"`
+	SentToDelta                             *adminapi.StringDelta `ps:"SentTo"` // adds/removes values of SentTo; takes precedence over it
 }
 
 func (p SetSupervisoryReviewRuleParams) params() map[string]any {
@@ -18521,61 +19316,79 @@ func (p SetSupervisoryReviewRuleParams) params() map[string]any {
 	if p.Condition != "" {
 		m["Condition"] = p.Condition
 	}
-	if len(p.ContentContainsSensitiveInformation) > 0 {
+	if p.ContentContainsSensitiveInformation != nil {
 		m["ContentContainsSensitiveInformation"] = p.ContentContainsSensitiveInformation
 	}
 	if p.ContentMatchesDataModel != "" {
 		m["ContentMatchesDataModel"] = p.ContentMatchesDataModel
 	}
-	if len(p.ContentSources) > 0 {
+	if p.ContentSources != nil {
 		m["ContentSources"] = p.ContentSources
 	}
-	if p.DayXInsights {
-		m["DayXInsights"] = true
+	if p.DayXInsights != nil {
+		m["DayXInsights"] = *p.DayXInsights
 	}
-	if p.ExceptIfFrom != nil {
+	if p.ExceptIfFromDelta != nil {
+		m["ExceptIfFrom"] = *p.ExceptIfFromDelta
+	} else if p.ExceptIfFrom != nil {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
-	if p.ExceptIfRecipientDomainIs != nil {
+	if p.ExceptIfRecipientDomainIsDelta != nil {
+		m["ExceptIfRecipientDomainIs"] = *p.ExceptIfRecipientDomainIsDelta
+	} else if p.ExceptIfRecipientDomainIs != nil {
 		m["ExceptIfRecipientDomainIs"] = p.ExceptIfRecipientDomainIs
 	}
-	if p.ExceptIfRevieweeIs != nil {
+	if p.ExceptIfRevieweeIsDelta != nil {
+		m["ExceptIfRevieweeIs"] = *p.ExceptIfRevieweeIsDelta
+	} else if p.ExceptIfRevieweeIs != nil {
 		m["ExceptIfRevieweeIs"] = p.ExceptIfRevieweeIs
 	}
-	if p.ExceptIfSenderDomainIs != nil {
+	if p.ExceptIfSenderDomainIsDelta != nil {
+		m["ExceptIfSenderDomainIs"] = *p.ExceptIfSenderDomainIsDelta
+	} else if p.ExceptIfSenderDomainIs != nil {
 		m["ExceptIfSenderDomainIs"] = p.ExceptIfSenderDomainIs
 	}
-	if p.ExceptIfSentTo != nil {
+	if p.ExceptIfSentToDelta != nil {
+		m["ExceptIfSentTo"] = *p.ExceptIfSentToDelta
+	} else if p.ExceptIfSentTo != nil {
 		m["ExceptIfSentTo"] = p.ExceptIfSentTo
 	}
-	if p.ExceptIfSubjectOrBodyContainsWords != nil {
+	if p.ExceptIfSubjectOrBodyContainsWordsDelta != nil {
+		m["ExceptIfSubjectOrBodyContainsWords"] = *p.ExceptIfSubjectOrBodyContainsWordsDelta
+	} else if p.ExceptIfSubjectOrBodyContainsWords != nil {
 		m["ExceptIfSubjectOrBodyContainsWords"] = p.ExceptIfSubjectOrBodyContainsWords
 	}
-	if p.From != nil {
+	if p.FromDelta != nil {
+		m["From"] = *p.FromDelta
+	} else if p.From != nil {
 		m["From"] = p.From
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.IncludeAdaptiveScopes) > 0 {
+	if p.IncludeAdaptiveScopes != nil {
 		m["IncludeAdaptiveScopes"] = p.IncludeAdaptiveScopes
 	}
 	if p.InPurviewFilter != "" {
 		m["InPurviewFilter"] = p.InPurviewFilter
 	}
-	if p.Ocr {
-		m["Ocr"] = true
+	if p.Ocr != nil {
+		m["Ocr"] = *p.Ocr
 	}
-	if p.PolicyRBACScopes != nil {
+	if p.PolicyRBACScopesDelta != nil {
+		m["PolicyRBACScopes"] = *p.PolicyRBACScopesDelta
+	} else if p.PolicyRBACScopes != nil {
 		m["PolicyRBACScopes"] = p.PolicyRBACScopes
 	}
 	if p.RateOfSampling != "" {
 		m["RateOfSampling"] = p.RateOfSampling
 	}
-	if p.SamplingRate != 0 {
-		m["SamplingRate"] = p.SamplingRate
+	if p.SamplingRate != nil {
+		m["SamplingRate"] = *p.SamplingRate
 	}
-	if p.SentTo != nil {
+	if p.SentToDelta != nil {
+		m["SentTo"] = *p.SentToDelta
+	} else if p.SentTo != nil {
 		m["SentTo"] = p.SentTo
 	}
 	return m
@@ -18594,14 +19407,14 @@ type SetTeamsRetentionCompliancePolicyParams struct {
 	AddTeamsChatLocation                any    `ps:"AddTeamsChatLocation"`
 	AddTeamsChatLocationException       any    `ps:"AddTeamsChatLocationException"`
 	Comment                             string `ps:"Comment"`
-	Enabled                             bool   `ps:"Enabled"`
+	Enabled                             *bool  `ps:"Enabled"`
 	Force                               bool   `ps:"Force"`
 	Identity                            any    `ps:"Identity"`
 	RemoveTeamsChannelLocation          any    `ps:"RemoveTeamsChannelLocation"`
 	RemoveTeamsChannelLocationException any    `ps:"RemoveTeamsChannelLocationException"`
 	RemoveTeamsChatLocation             any    `ps:"RemoveTeamsChatLocation"`
 	RemoveTeamsChatLocationException    any    `ps:"RemoveTeamsChatLocationException"`
-	RestrictiveRetention                bool   `ps:"RestrictiveRetention"`
+	RestrictiveRetention                *bool  `ps:"RestrictiveRetention"`
 	RetryDistribution                   bool   `ps:"RetryDistribution"`
 }
 
@@ -18622,8 +19435,8 @@ func (p SetTeamsRetentionCompliancePolicyParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Enabled {
-		m["Enabled"] = true
+	if p.Enabled != nil {
+		m["Enabled"] = *p.Enabled
 	}
 	if p.Force {
 		m["Force"] = true
@@ -18643,8 +19456,8 @@ func (p SetTeamsRetentionCompliancePolicyParams) params() map[string]any {
 	if p.RemoveTeamsChatLocationException != nil {
 		m["RemoveTeamsChatLocationException"] = p.RemoveTeamsChatLocationException
 	}
-	if p.RestrictiveRetention {
-		m["RestrictiveRetention"] = true
+	if p.RestrictiveRetention != nil {
+		m["RestrictiveRetention"] = *p.RestrictiveRetention
 	}
 	if p.RetryDistribution {
 		m["RetryDistribution"] = true
@@ -18732,22 +19545,22 @@ func (s *Service) SetThreatResponsePolicy(ctx context.Context, p SetThreatRespon
 type SetThreatResponseRuleParams struct {
 	ActivationDate                        any    `ps:"ActivationDate"`
 	Comment                               string `ps:"Comment"`
-	DisableActiveSync                     bool   `ps:"DisableActiveSync"`
-	DisableAutoForwardDefaultRemoteDomain bool   `ps:"DisableAutoForwardDefaultRemoteDomain"`
-	DisableBasicAuth                      bool   `ps:"DisableBasicAuth"`
-	Disabled                              bool   `ps:"Disabled"`
-	DisableEWS                            bool   `ps:"DisableEWS"`
-	DisableForwardingSMTPAddress          bool   `ps:"DisableForwardingSMTPAddress"`
-	DisableIMAP                           bool   `ps:"DisableIMAP"`
-	DisableMAPI                           bool   `ps:"DisableMAPI"`
-	DisableMAPIOverHTTP                   bool   `ps:"DisableMAPIOverHTTP"`
-	DisableOWA                            bool   `ps:"DisableOWA"`
-	DisablePOP                            bool   `ps:"DisablePOP"`
-	DisableTransportRuleForwarding        bool   `ps:"DisableTransportRuleForwarding"`
-	ExceptIfHighRiskUser                  bool   `ps:"ExceptIfHighRiskUser"`
+	DisableActiveSync                     *bool  `ps:"DisableActiveSync"`
+	DisableAutoForwardDefaultRemoteDomain *bool  `ps:"DisableAutoForwardDefaultRemoteDomain"`
+	DisableBasicAuth                      *bool  `ps:"DisableBasicAuth"`
+	Disabled                              *bool  `ps:"Disabled"`
+	DisableEWS                            *bool  `ps:"DisableEWS"`
+	DisableForwardingSMTPAddress          *bool  `ps:"DisableForwardingSMTPAddress"`
+	DisableIMAP                           *bool  `ps:"DisableIMAP"`
+	DisableMAPI                           *bool  `ps:"DisableMAPI"`
+	DisableMAPIOverHTTP                   *bool  `ps:"DisableMAPIOverHTTP"`
+	DisableOWA                            *bool  `ps:"DisableOWA"`
+	DisablePOP                            *bool  `ps:"DisablePOP"`
+	DisableTransportRuleForwarding        *bool  `ps:"DisableTransportRuleForwarding"`
+	ExceptIfHighRiskUser                  *bool  `ps:"ExceptIfHighRiskUser"`
 	ExceptIfMemberOfDL                    any    `ps:"ExceptIfMemberOfDL"`
 	ExpiryDate                            any    `ps:"ExpiryDate"`
-	HighRiskUser                          bool   `ps:"HighRiskUser"`
+	HighRiskUser                          *bool  `ps:"HighRiskUser"`
 	Identity                              any    `ps:"Identity"`
 	MemberOfDL                            any    `ps:"MemberOfDL"`
 }
@@ -18760,44 +19573,44 @@ func (p SetThreatResponseRuleParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.DisableActiveSync {
-		m["DisableActiveSync"] = true
+	if p.DisableActiveSync != nil {
+		m["DisableActiveSync"] = *p.DisableActiveSync
 	}
-	if p.DisableAutoForwardDefaultRemoteDomain {
-		m["DisableAutoForwardDefaultRemoteDomain"] = true
+	if p.DisableAutoForwardDefaultRemoteDomain != nil {
+		m["DisableAutoForwardDefaultRemoteDomain"] = *p.DisableAutoForwardDefaultRemoteDomain
 	}
-	if p.DisableBasicAuth {
-		m["DisableBasicAuth"] = true
+	if p.DisableBasicAuth != nil {
+		m["DisableBasicAuth"] = *p.DisableBasicAuth
 	}
-	if p.Disabled {
-		m["Disabled"] = true
+	if p.Disabled != nil {
+		m["Disabled"] = *p.Disabled
 	}
-	if p.DisableEWS {
-		m["DisableEWS"] = true
+	if p.DisableEWS != nil {
+		m["DisableEWS"] = *p.DisableEWS
 	}
-	if p.DisableForwardingSMTPAddress {
-		m["DisableForwardingSMTPAddress"] = true
+	if p.DisableForwardingSMTPAddress != nil {
+		m["DisableForwardingSMTPAddress"] = *p.DisableForwardingSMTPAddress
 	}
-	if p.DisableIMAP {
-		m["DisableIMAP"] = true
+	if p.DisableIMAP != nil {
+		m["DisableIMAP"] = *p.DisableIMAP
 	}
-	if p.DisableMAPI {
-		m["DisableMAPI"] = true
+	if p.DisableMAPI != nil {
+		m["DisableMAPI"] = *p.DisableMAPI
 	}
-	if p.DisableMAPIOverHTTP {
-		m["DisableMAPIOverHTTP"] = true
+	if p.DisableMAPIOverHTTP != nil {
+		m["DisableMAPIOverHTTP"] = *p.DisableMAPIOverHTTP
 	}
-	if p.DisableOWA {
-		m["DisableOWA"] = true
+	if p.DisableOWA != nil {
+		m["DisableOWA"] = *p.DisableOWA
 	}
-	if p.DisablePOP {
-		m["DisablePOP"] = true
+	if p.DisablePOP != nil {
+		m["DisablePOP"] = *p.DisablePOP
 	}
-	if p.DisableTransportRuleForwarding {
-		m["DisableTransportRuleForwarding"] = true
+	if p.DisableTransportRuleForwarding != nil {
+		m["DisableTransportRuleForwarding"] = *p.DisableTransportRuleForwarding
 	}
-	if p.ExceptIfHighRiskUser {
-		m["ExceptIfHighRiskUser"] = true
+	if p.ExceptIfHighRiskUser != nil {
+		m["ExceptIfHighRiskUser"] = *p.ExceptIfHighRiskUser
 	}
 	if p.ExceptIfMemberOfDL != nil {
 		m["ExceptIfMemberOfDL"] = p.ExceptIfMemberOfDL
@@ -18805,8 +19618,8 @@ func (p SetThreatResponseRuleParams) params() map[string]any {
 	if p.ExpiryDate != nil {
 		m["ExpiryDate"] = p.ExpiryDate
 	}
-	if p.HighRiskUser {
-		m["HighRiskUser"] = true
+	if p.HighRiskUser != nil {
+		m["HighRiskUser"] = *p.HighRiskUser
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -18825,13 +19638,16 @@ func (s *Service) SetThreatResponseRule(ctx context.Context, p SetThreatResponse
 // SetUnifiedAuditLogRetentionPolicyParams are the parameters of Set-UnifiedAuditLogRetentionPolicy.
 // DefaultParameterSetName: Identity
 type SetUnifiedAuditLogRetentionPolicyParams struct {
-	Description       string `ps:"Description"`
-	Identity          any    `ps:"Identity"`
-	Operations        any    `ps:"Operations"`
-	Priority          int    `ps:"Priority"`
-	RecordTypes       any    `ps:"RecordTypes"`
-	RetentionDuration any    `ps:"RetentionDuration"`
-	UserIds           any    `ps:"UserIds"`
+	Description       string                `ps:"Description"`
+	Identity          any                   `ps:"Identity"` // PolicyIdParameter
+	Operations        []string              `ps:"Operations"`
+	OperationsDelta   *adminapi.StringDelta `ps:"Operations"` // adds/removes values of Operations; takes precedence over it
+	Priority          *int64                `ps:"Priority"`
+	RecordTypes       []string              `ps:"RecordTypes"`
+	RecordTypesDelta  *adminapi.StringDelta `ps:"RecordTypes"`       // adds/removes values of RecordTypes; takes precedence over it
+	RetentionDuration any                   `ps:"RetentionDuration"` // UnifiedAuditLogRetentionDuration
+	UserIds           []string              `ps:"UserIds"`
+	UserIdsDelta      *adminapi.StringDelta `ps:"UserIds"` // adds/removes values of UserIds; takes precedence over it
 }
 
 func (p SetUnifiedAuditLogRetentionPolicyParams) params() map[string]any {
@@ -18842,19 +19658,25 @@ func (p SetUnifiedAuditLogRetentionPolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.Operations != nil {
+	if p.OperationsDelta != nil {
+		m["Operations"] = *p.OperationsDelta
+	} else if p.Operations != nil {
 		m["Operations"] = p.Operations
 	}
-	if p.Priority != 0 {
-		m["Priority"] = p.Priority
+	if p.Priority != nil {
+		m["Priority"] = *p.Priority
 	}
-	if p.RecordTypes != nil {
+	if p.RecordTypesDelta != nil {
+		m["RecordTypes"] = *p.RecordTypesDelta
+	} else if p.RecordTypes != nil {
 		m["RecordTypes"] = p.RecordTypes
 	}
 	if p.RetentionDuration != nil {
 		m["RetentionDuration"] = p.RetentionDuration
 	}
-	if p.UserIds != nil {
+	if p.UserIdsDelta != nil {
+		m["UserIds"] = *p.UserIdsDelta
+	} else if p.UserIds != nil {
 		m["UserIds"] = p.UserIds
 	}
 	return m
@@ -18869,7 +19691,7 @@ func (s *Service) SetUnifiedAuditLogRetentionPolicy(ctx context.Context, p SetUn
 // DefaultParameterSetName: Identity
 type StartComplianceSearchParams struct {
 	Force        bool `ps:"Force"`
-	Identity     any  `ps:"Identity"`
+	Identity     any  `ps:"Identity"` // ComplianceSearchIdParameter
 	RetryOnError bool `ps:"RetryOnError"`
 	UseBigFunnel bool `ps:"UseBigFunnel"`
 }
@@ -18919,7 +19741,7 @@ func (s *Service) StartDlpSensitiveInformationScan(ctx context.Context, p StartD
 // DefaultParameterSetName: Identity
 type StartInformationBarrierPoliciesApplicationParams struct {
 	CleanupGroupSegmentLink bool `ps:"CleanupGroupSegmentLink"`
-	Identity                any  `ps:"Identity"`
+	Identity                any  `ps:"Identity"` // PolicyIdParameter
 	Rollback                bool `ps:"Rollback"`
 	Upgrade                 bool `ps:"Upgrade"`
 }
@@ -18949,7 +19771,7 @@ func (s *Service) StartInformationBarrierPoliciesApplication(ctx context.Context
 // StopComplianceSearchParams are the parameters of Stop-ComplianceSearch.
 // DefaultParameterSetName: Identity
 type StopComplianceSearchParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // ComplianceSearchIdParameter
 }
 
 func (p StopComplianceSearchParams) params() map[string]any {
@@ -18968,7 +19790,7 @@ func (s *Service) StopComplianceSearch(ctx context.Context, p StopComplianceSear
 // StopInformationBarrierPoliciesApplicationParams are the parameters of Stop-InformationBarrierPoliciesApplication.
 // DefaultParameterSetName: Identity
 type StopInformationBarrierPoliciesApplicationParams struct {
-	Identity any `ps:"Identity"`
+	Identity any `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p StopInformationBarrierPoliciesApplicationParams) params() map[string]any {
@@ -18996,7 +19818,7 @@ func (p SyncLabelParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if len(p.MemberTenants) > 0 {
+	if p.MemberTenants != nil {
 		m["MemberTenants"] = p.MemberTenants
 	}
 	return m
@@ -19010,9 +19832,9 @@ func (s *Service) SyncLabel(ctx context.Context, p SyncLabelParams) (*adminapi.R
 // TestDataClassificationParams are the parameters of Test-DataClassification.
 type TestDataClassificationParams struct {
 	ClassificationNames       []string `ps:"ClassificationNames"`
-	DiagnosticPlatform        any      `ps:"DiagnosticPlatform"`
-	DiagnosticPurpose         any      `ps:"DiagnosticPurpose"`
-	DomainController          any      `ps:"DomainController"`
+	DiagnosticPlatform        any      `ps:"DiagnosticPlatform"` // DiagnosticPlatform
+	DiagnosticPurpose         any      `ps:"DiagnosticPurpose"`  // DiagnosticPurpose
+	DomainController          any      `ps:"DomainController"`   // Fqdn
 	FileExtension             string   `ps:"FileExtension"`
 	TestTextExtractionResults []string `ps:"TestTextExtractionResults"`
 	TextToClassify            string   `ps:"TextToClassify"`
@@ -19020,7 +19842,7 @@ type TestDataClassificationParams struct {
 
 func (p TestDataClassificationParams) params() map[string]any {
 	m := map[string]any{}
-	if len(p.ClassificationNames) > 0 {
+	if p.ClassificationNames != nil {
 		m["ClassificationNames"] = p.ClassificationNames
 	}
 	if p.DiagnosticPlatform != nil {
@@ -19035,7 +19857,7 @@ func (p TestDataClassificationParams) params() map[string]any {
 	if p.FileExtension != "" {
 		m["FileExtension"] = p.FileExtension
 	}
-	if len(p.TestTextExtractionResults) > 0 {
+	if p.TestTextExtractionResults != nil {
 		m["TestTextExtractionResults"] = p.TestTextExtractionResults
 	}
 	if p.TextToClassify != "" {
@@ -19096,8 +19918,8 @@ func (s *Service) TestLabelConfig(ctx context.Context, p TestLabelConfigParams) 
 
 // TestTextExtractionParams are the parameters of Test-TextExtraction.
 type TestTextExtractionParams struct {
-	DomainController any      `ps:"DomainController"`
-	FileData         []string `ps:"FileData"`
+	DomainController any `ps:"DomainController"` // Fqdn
+	FileData         any `ps:"FileData"`         // Byte[]
 }
 
 func (p TestTextExtractionParams) params() map[string]any {
@@ -19105,7 +19927,7 @@ func (p TestTextExtractionParams) params() map[string]any {
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
 	}
-	if len(p.FileData) > 0 {
+	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
 	return m
@@ -19127,7 +19949,7 @@ func (p UpdateComplianceCaseMemberParams) params() map[string]any {
 	if p.Case != "" {
 		m["Case"] = p.Case
 	}
-	if len(p.Members) > 0 {
+	if p.Members != nil {
 		m["Members"] = p.Members
 	}
 	return m
