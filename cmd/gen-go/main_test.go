@@ -1,26 +1,46 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/terraprovider/go-exoscc/spec"
+)
 
 func TestGoType(t *testing.T) {
 	cases := []struct {
-		p    param
+		p    spec.Param
 		want string
 	}{
-		{param{Type: "switch", IsSwitch: true}, "bool"},
-		{param{Type: "string"}, "string"},
-		{param{Type: "System.String"}, "string"},
-		{param{Type: "System.Object[]"}, "[]string"},
-		{param{Type: "string[]"}, "[]string"},
-		{param{Type: "System.Int32"}, "int"},
-		{param{Type: "System.Boolean"}, "bool"},
-		{param{Type: "System.Guid"}, "string"},
-		{param{Type: "System.Object"}, "any"},
-		{param{Type: "Microsoft.Exchange.Whatever"}, "any"},
+		{spec.Param{Type: "switch", IsSwitch: true}, "bool"},
+		{spec.Param{Type: "string"}, "string"},
+		{spec.Param{Type: "System.Object[]"}, "[]string"},
+		{spec.Param{Type: "int"}, "*int64"},
+		{spec.Param{Type: "bool"}, "*bool"},
+		{spec.Param{Type: "System.Object", DeclaredType: "System.Boolean"}, "*bool"},
+		{spec.Param{Type: "System.Object", DeclaredType: "MultiValuedProperty"}, "[]string"},
+		{spec.Param{Type: "System.Object", DeclaredType: "Unlimited"}, "any"},
+		{spec.Param{Type: "System.Object"}, "any"},
 	}
 	for _, c := range cases {
 		if got := goType(c.p); got != c.want {
 			t.Errorf("goType(%+v) = %q, want %q", c.p, got, c.want)
+		}
+	}
+}
+
+func TestFieldComment(t *testing.T) {
+	cases := []struct {
+		p    spec.Param
+		want string
+	}{
+		{spec.Param{Type: "System.Object", DeclaredType: "Unlimited"}, " // Unlimited"},
+		{spec.Param{Type: "System.Object", DeclaredType: "System.Boolean"}, ""},
+		{spec.Param{Type: "string", ValidateSet: spec.FlexStrings{"A", "B"}}, " // one of: A, B"},
+		{spec.Param{Type: "System.Object", DeclaredType: "Mode", ValidateSet: spec.FlexStrings{"On"}}, " // one of: On; Mode"},
+	}
+	for _, c := range cases {
+		if got := fieldComment(c.p); got != c.want {
+			t.Errorf("fieldComment(%+v) = %q, want %q", c.p, got, c.want)
 		}
 	}
 }
@@ -59,28 +79,14 @@ func TestBoundCheck(t *testing.T) {
 	}{
 		{"Archive", "Archive", "bool", `if p.Archive { m["Archive"] = true }`},
 		{"Anr", "Anr", "string", `if p.Anr != "" { m["Anr"] = p.Anr }`},
-		{"ResultSize", "ResultSize", "int", `if p.ResultSize != 0 { m["ResultSize"] = p.ResultSize }`},
-		{"Roles", "Roles", "[]string", `if len(p.Roles) > 0 { m["Roles"] = p.Roles }`},
+		{"Enabled", "Enabled", "*bool", `if p.Enabled != nil { m["Enabled"] = *p.Enabled }`},
+		{"ResultSize", "ResultSize", "*int64", `if p.ResultSize != nil { m["ResultSize"] = *p.ResultSize }`},
+		{"Roles", "Roles", "[]string", `if p.Roles != nil { m["Roles"] = p.Roles }`},
 		{"Identity", "Identity", "any", `if p.Identity != nil { m["Identity"] = p.Identity }`},
 	}
 	for _, c := range cases {
 		if got := boundCheck(c.field, c.psName, c.gotype); got != c.want {
 			t.Errorf("boundCheck(%q,%q,%q) = %q, want %q", c.field, c.psName, c.gotype, got, c.want)
 		}
-	}
-}
-
-func TestFlexStringsUnmarshal(t *testing.T) {
-	var single flexStrings
-	if err := single.UnmarshalJSON([]byte(`"Only"`)); err != nil || len(single) != 1 || single[0] != "Only" {
-		t.Fatalf("single: %v %v", single, err)
-	}
-	var many flexStrings
-	if err := many.UnmarshalJSON([]byte(`["A","B"]`)); err != nil || len(many) != 2 {
-		t.Fatalf("many: %v %v", many, err)
-	}
-	var none flexStrings
-	if err := none.UnmarshalJSON([]byte(`null`)); err != nil || none != nil {
-		t.Fatalf("null: %v %v", none, err)
 	}
 }

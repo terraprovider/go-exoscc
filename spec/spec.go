@@ -21,9 +21,12 @@ var purviewJSON []byte
 
 // Catalog is a parsed cmdlet catalog for one service.
 type Catalog struct {
-	Source      string   `json:"source"`
-	CmdletCount int      `json:"cmdletCount"`
-	Cmdlets     []Cmdlet `json:"cmdlets"`
+	Source      string `json:"source"`
+	CmdletCount int    `json:"cmdletCount"`
+	// DocsSource is the pinned MicrosoftDocs/office-docs-powershell commit the
+	// DeclaredType values were read from ("" if the catalog was not annotated).
+	DocsSource string   `json:"docsSource,omitempty"`
+	Cmdlets    []Cmdlet `json:"cmdlets"`
 }
 
 // Cmdlet is a single PowerShell cmdlet (a Verb-Noun) and its parameters.
@@ -35,10 +38,13 @@ type Cmdlet struct {
 	Parameters          []Param `json:"parameters"`
 }
 
-// Param is one cmdlet parameter.
+// Param is one cmdlet parameter. Type is the psm1 proxy's type constraint (often
+// just System.Object); DeclaredType is the .NET type from the cmdlet's docs page
+// (see cmd/annotate-docs), e.g. "System.Boolean" or "MultiValuedProperty".
 type Param struct {
 	Name          string      `json:"name"`
 	Type          string      `json:"type"`
+	DeclaredType  string      `json:"declaredType,omitempty"`
 	IsSwitch      bool        `json:"isSwitch"`
 	ParameterSets []ParamSet  `json:"parameterSets"`
 	ValidateSet   FlexStrings `json:"validateSet"`
@@ -88,12 +94,14 @@ func (f *FlexStrings) UnmarshalJSON(b []byte) error {
 }
 
 // EXO returns the Exchange Online catalog.
-func EXO() (*Catalog, error) { return parse(exoJSON) }
+func EXO() (*Catalog, error) { return Parse(exoJSON) }
 
 // Purview returns the Security & Compliance (Purview) catalog.
-func Purview() (*Catalog, error) { return parse(purviewJSON) }
+func Purview() (*Catalog, error) { return Parse(purviewJSON) }
 
-func parse(raw []byte) (*Catalog, error) {
+// Parse decodes a catalog JSON document (as written by extract-catalog.ps1 and
+// cmd/annotate-docs).
+func Parse(raw []byte) (*Catalog, error) {
 	var c Catalog
 	if err := json.Unmarshal(raw, &c); err != nil {
 		return nil, err

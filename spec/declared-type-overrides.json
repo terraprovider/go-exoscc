@@ -1,0 +1,26 @@
+[
+  {
+    "cmdlet": "New-AntiPhishPolicy",
+    "parameter": "TargetedDomainProtectionAction",
+    "type": "System.String",
+    "reason": "documented as MultiValuedProperty, but the API takes and returns a single action"
+  },
+  {
+    "cmdlet": "New-AntiPhishPolicy",
+    "parameter": "TargetedUserProtectionAction",
+    "type": "System.String",
+    "reason": "documented as MultiValuedProperty, but the API takes and returns a single action"
+  },
+  {
+    "cmdlet": "Set-AntiPhishPolicy",
+    "parameter": "TargetedDomainProtectionAction",
+    "type": "System.String",
+    "reason": "documented as MultiValuedProperty, but the API takes and returns a single action"
+  },
+  {
+    "cmdlet": "Set-AntiPhishPolicy",
+    "parameter": "TargetedUserProtectionAction",
+    "type": "System.String",
+    "reason": "documented as MultiValuedProperty, but the API takes and returns a single action"
+  }
+]

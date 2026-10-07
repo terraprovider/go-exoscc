@@ -80,8 +80,8 @@ token problem.
 | `models` | types generated from `$metadata` (enums + structs) for `Result.Decode` |
 | `msalauth` | MSAL-backed token providers |
 
-`cmd/gen-go`, `cmd/gen-models` (generators), `cmd/fetch-spec` (pulls the live spec),
-`cmd/verify` (smoke test). Generated files are `zz_generated_*.go` — **do not edit**.
+`cmd/gen-go`, `cmd/gen-models` (generators), `cmd/annotate-docs` (declared
+parameter types), `cmd/fetch-spec` (pulls the live spec), `cmd/verify` (smoke test). Generated files are `zz_generated_*.go` — **do not edit**.
 
 ## How the bindings are generated
 
@@ -89,11 +89,26 @@ token problem.
 Admin API  --cmd/fetch-spec-->  ExchangeOnline.psm1  --generator/extract-catalog.ps1 (PowerShell AST)-->  spec/catalog/*.json
     │                            $metadata  -----------------------------------------------------------> spec/metadata/*.xml
     └──────────────────────────────────────────────  cmd/gen-go / cmd/gen-models  ──────────────────────>  exo/ purview/ models/
+MicrosoftDocs/office-docs-powershell  --cmd/annotate-docs-->  spec/catalog/*.json (declaredType per parameter)
 ```
 
 - `spec/catalog/*.json` and `spec/metadata/*.xml` are the derived, committed inputs.
 - The raw Microsoft `ExchangeOnline.psm1` is fetched **transiently** and never
   committed.
+- The psm1 types most parameters as `System.Object`. `cmd/annotate-docs` records
+  each parameter's documented .NET type (`declaredType`) from the cmdlet reference
+  at the commit pinned in `spec/docs-ref` (`tools/fetch-docs.sh`); known docs
+  errors are corrected in `spec/declared-type-overrides.json`.
+  `spec.Param.Kind()` maps the types to the binding:
+
+  | Kind | Go field | Sent when |
+  |------|----------|-----------|
+  | switch | `bool` | `true` |
+  | Boolean | `*bool` | non-nil (so `false` can be sent) |
+  | Int16/32/64, UInt32/64 | `*int64` | non-nil (so `0` can be sent) |
+  | `X[]`, MultiValuedProperty, `*Collection` | `[]string` | non-nil (an empty slice clears the list) |
+  | String | `string` | non-empty |
+  | anything else (Unlimited, `*IdParameter`, enums, …) | `any` | non-nil |
 - Both **EXO** and **Purview** refresh fully app-only. `fetch-spec` auto-discovers
   the tenant routing domain (via EXO `Get-OrganizationConfig`) and uses the
   `OAuthUser@<domain>` anchor so the compliance calls resolve to the tenant's

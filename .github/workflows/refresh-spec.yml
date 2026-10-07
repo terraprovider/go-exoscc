@@ -62,6 +62,16 @@ jobs:
             ./generator/extract-catalog.ps1 -Psm1 .spec-cache/Purview-ExchangeOnline.psm1 -Out spec/catalog/Purview-catalog.json
           }
 
+      - name: Annotate declared parameter types from the docs (pinned in spec/docs-ref)
+        run: |
+          ./tools/fetch-docs.sh .spec-cache/docs
+          for c in EXO Purview; do
+            if [ -f "spec/catalog/$c-catalog.json" ]; then
+              go run ./cmd/annotate-docs -catalog "spec/catalog/$c-catalog.json" \
+                -docs .spec-cache/docs/exchange/exchange-ps/ExchangePowerShell -docs-ref "$(cat spec/docs-ref)"
+            fi
+          done
+
       - name: Regenerate bindings + models
         run: |
           go run ./cmd/gen-go -catalog spec/catalog/EXO-catalog.json -pkg exo \
@@ -87,7 +97,7 @@ jobs:
           delete-branch: true
           body: |
             Automated regeneration from the live Admin API spec
-            (`fetch-spec` -> `extract-catalog` -> `gen-go`/`gen-models`).
+            (`fetch-spec` -> `extract-catalog` -> `annotate-docs` -> `gen-go`/`gen-models`).
 
             The raw Microsoft psm1 is fetched transiently and **not** committed;
             only the derived catalog JSON, `$metadata` and generated Go change here.

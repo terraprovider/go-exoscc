@@ -2,8 +2,10 @@
 // generator/extract-catalog.ps1 (PowerShell AST -> JSON). One Params struct and
 // one *Service method per cmdlet; the body just calls adminapi.Client.Invoke.
 //
-// Re-runnable: on any API change, re-fetch the psm1, re-run extract-catalog.ps1,
-// then re-run this. Output is gofmt'd and marked DO NOT EDIT.
+// Field types come from spec.Param.Kind, so run cmd/annotate-docs on the catalog
+// first to type the psm1's System.Object parameters. Re-runnable: on any API
+// change, re-fetch the psm1, re-run extract-catalog.ps1 and annotate-docs, then
+// re-run this. Output is gofmt'd and marked DO NOT EDIT.
 //
 //	go run ./cmd/gen-go -catalog spec/catalog/EXO-catalog.json \
 //	    -pkg exo -client github.com/terraprovider/go-exoscc/adminapi -out exo/zz_generated_exo.go
@@ -11,59 +13,15 @@ package main
 
 import (
 	"bytes"
-	"encoding/json"
 	"flag"
 	"fmt"
 	"go/format"
 	"os"
 	"sort"
 	"strings"
+
+	"github.com/terraprovider/go-exoscc/spec"
 )
-
-type catalog struct {
-	Source      string   `json:"source"`
-	CmdletCount int      `json:"cmdletCount"`
-	Cmdlets     []cmdlet `json:"cmdlets"`
-}
-type cmdlet struct {
-	Cmdlet              string  `json:"cmdlet"`
-	Verb                string  `json:"verb"`
-	Noun                string  `json:"noun"`
-	DefaultParameterSet string  `json:"defaultParameterSet"`
-	Parameters          []param `json:"parameters"`
-}
-type param struct {
-	Name        string      `json:"name"`
-	Type        string      `json:"type"`
-	IsSwitch    bool        `json:"isSwitch"`
-	ValidateSet flexStrings `json:"validateSet"`
-	Aliases     flexStrings `json:"aliases"`
-}
-
-// flexStrings unmarshals either a JSON string or a JSON array of strings — PowerShell's
-// ConvertTo-Json collapses single-element arrays to a scalar.
-type flexStrings []string
-
-func (f *flexStrings) UnmarshalJSON(b []byte) error {
-	b = bytes.TrimSpace(b)
-	if len(b) == 0 || string(b) == "null" {
-		return nil
-	}
-	if b[0] == '[' {
-		var a []string
-		if err := json.Unmarshal(b, &a); err != nil {
-			return err
-		}
-		*f = a
-		return nil
-	}
-	var s string
-	if err := json.Unmarshal(b, &s); err != nil {
-		return err
-	}
-	*f = flexStrings{s}
-	return nil
-}
 
 func main() {
 	var catPath, pkg, clientPath, out string
@@ -79,12 +37,16 @@ func main() {
 
 	raw, err := os.ReadFile(catPath)
 	must(err)
-	var cat catalog
-	must(json.Unmarshal(raw, &cat))
+	cat, err := spec.Parse(bytes.TrimPrefix(raw, []byte("\xef\xbb\xbf")))
+	must(err)
 	sort.Slice(cat.Cmdlets, func(i, j int) bool { return cat.Cmdlets[i].Cmdlet < cat.Cmdlets[j].Cmdlet })
 
 	var b bytes.Buffer
-	fmt.Fprintf(&b, "// Code generated from %s by gen-go. DO NOT EDIT.\n\n", cat.Source)
+	from := cat.Source
+	if cat.DocsSource != "" {
+		from += " and " + cat.DocsSource
+	}
+	fmt.Fprintf(&b, "// Code generated from %s by gen-go. DO NOT EDIT.\n\n", from)
 	fmt.Fprintf(&b, "package %s\n\n", pkg)
 	fmt.Fprintf(&b, "import (\n\t%q\n\n\t%q\n)\n\n", "context", clientPath)
 	fmt.Fprintf(&b, "// Service exposes the %d cmdlets of %s as typed methods.\n", len(cat.Cmdlets), cat.Source)
@@ -106,7 +68,7 @@ func main() {
 	fmt.Printf("gen-go: %d cmdlets -> %s\n", len(cat.Cmdlets), out)
 }
 
-func emitCmdlet(b *bytes.Buffer, cm cmdlet, _ map[string]bool) {
+func emitCmdlet(b *bytes.Buffer, cm spec.Cmdlet, _ map[string]bool) {
 	method := goName(cm.Cmdlet)
 	pstruct := method + "Params"
 
@@ -123,11 +85,7 @@ func emitCmdlet(b *bytes.Buffer, cm cmdlet, _ map[string]bool) {
 			continue
 		}
 		used[field] = true
-		comment := ""
-		if len(p.ValidateSet) > 0 {
-			comment = " // one of: " + strings.Join(p.ValidateSet, ", ")
-		}
-		fmt.Fprintf(b, "\t%s %s `ps:%q`%s\n", field, goType(p), p.Name, comment)
+		fmt.Fprintf(b, "\t%s %s `ps:%q`%s\n", field, goType(p), p.Name, fieldComment(p))
 	}
 	fmt.Fprintf(b, "}\n\n")
 
@@ -150,38 +108,51 @@ func emitCmdlet(b *bytes.Buffer, cm cmdlet, _ map[string]bool) {
 	fmt.Fprintf(b, "\treturn s.C.Invoke(ctx, %q, p.params())\n}\n\n", cm.Cmdlet)
 }
 
+// fieldComment documents what the Go type can't: the allowed values, and the
+// declared .NET type of an untyped (any) parameter.
+func fieldComment(p spec.Param) string {
+	var notes []string
+	if len(p.ValidateSet) > 0 {
+		notes = append(notes, "one of: "+strings.Join(p.ValidateSet, ", "))
+	}
+	if p.Kind() == spec.KindAny && p.DeclaredType != "" {
+		notes = append(notes, p.DeclaredType)
+	}
+	if len(notes) == 0 {
+		return ""
+	}
+	return " // " + strings.Join(notes, "; ")
+}
+
+// boundCheck emits the params() line that binds a field only when the caller set
+// it. Pointers and slices are bound whenever non-nil, so false, 0 and an empty
+// list (which clears a multi-valued property) can be sent.
 func boundCheck(field, psName, gotype string) string {
 	switch gotype {
-	case "bool":
+	case "bool": // switch
 		return fmt.Sprintf("if p.%s { m[%q] = true }", field, psName)
 	case "string":
 		return fmt.Sprintf("if p.%s != \"\" { m[%q] = p.%s }", field, psName, field)
-	case "int":
-		return fmt.Sprintf("if p.%s != 0 { m[%q] = p.%s }", field, psName, field)
-	case "[]string":
-		return fmt.Sprintf("if len(p.%s) > 0 { m[%q] = p.%s }", field, psName, field)
-	default: // any
+	case "*bool", "*int64":
+		return fmt.Sprintf("if p.%s != nil { m[%q] = *p.%s }", field, psName, field)
+	default: // []string, any
 		return fmt.Sprintf("if p.%s != nil { m[%q] = p.%s }", field, psName, field)
 	}
 }
 
-// goType maps a PowerShell parameter type to a Go type.
-func goType(p param) string {
-	if p.IsSwitch {
+// goType maps a parameter's spec.Kind to its Go field type.
+func goType(p spec.Param) string {
+	switch p.Kind() {
+	case spec.KindSwitch:
 		return "bool"
-	}
-	t := strings.ToLower(p.Type)
-	switch {
-	case strings.HasSuffix(t, "[]"):
+	case spec.KindBool:
+		return "*bool"
+	case spec.KindInt64:
+		return "*int64"
+	case spec.KindString:
+		return "string"
+	case spec.KindList:
 		return "[]string"
-	case t == "string" || strings.HasSuffix(t, ".string"):
-		return "string"
-	case t == "bool" || strings.HasSuffix(t, ".boolean"):
-		return "bool"
-	case t == "int" || strings.HasSuffix(t, ".int32") || strings.HasSuffix(t, ".int64"):
-		return "int"
-	case strings.HasSuffix(t, ".guid"):
-		return "string"
 	default:
 		return "any"
 	}
