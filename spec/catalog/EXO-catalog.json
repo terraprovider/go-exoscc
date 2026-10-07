@@ -34711,6 +34711,7 @@
         {
           "name": "IPAllowList",
           "type": "System.Object",
+          "declaredType": "MultiValuedProperty",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -34727,6 +34728,7 @@
         {
           "name": "IPBlockList",
           "type": "System.Object",
+          "declaredType": "MultiValuedProperty",
           "isSwitch": false,
           "parameterSets": [
             {

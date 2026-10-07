@@ -8395,7 +8395,7 @@ type NewLabelParams struct {
 	ColumnAssetCondition                                  string   `ps:"ColumnAssetCondition"`
 	Comment                                               string   `ps:"Comment"`
 	ConditionalAccessAuthContext                          string   `ps:"ConditionalAccessAuthContext"`
-	Conditions                                            any      `ps:"Conditions"`  // MulitValuedProperty
+	Conditions                                            []string `ps:"Conditions"`
 	ContentType                                           any      `ps:"ContentType"` // MipLabelContentType
 	DefaultContentLabel                                   string   `ps:"DefaultContentLabel"`
 	DenyAccessEnabled                                     any      `ps:"DenyAccessEnabled"`
@@ -12540,7 +12540,7 @@ type SetAppRetentionComplianceRuleParams struct {
 	ContentDateFrom                     any      `ps:"ContentDateFrom"` // System.DateTime
 	ContentDateTo                       any      `ps:"ContentDateTo"`   // System.DateTime
 	ContentMatchQuery                   string   `ps:"ContentMatchQuery"`
-	ExcludedItemClasses                 any      `ps:"ExcludedItemClasses"` // Unlimited
+	ExcludedItemClasses                 []string `ps:"ExcludedItemClasses"`
 	ExpirationDateOption                string   `ps:"ExpirationDateOption"`
 	Identity                            any      `ps:"Identity"` // ComplianceRuleIdParameter
 	RetentionComplianceAction           string   `ps:"RetentionComplianceAction"`
@@ -13454,15 +13454,15 @@ func (s *Service) SetCompliancePreservationSetting(ctx context.Context, p SetCom
 // SetComplianceRetentionEventParams are the parameters of Set-ComplianceRetentionEvent.
 // DefaultParameterSetName: Identity
 type SetComplianceRetentionEventParams struct {
-	Action                 any    `ps:"Action"`
-	AssetId                string `ps:"AssetId"`
-	Comment                string `ps:"Comment"`
-	DomainController       any    `ps:"DomainController"`
-	EventTags              any    `ps:"EventTags"`
-	EventType              any    `ps:"EventType"`
-	ExchangeAssetIdQuery   string `ps:"ExchangeAssetIdQuery"`
-	Identity               any    `ps:"Identity"`
-	SharePointAssetIdQuery string `ps:"SharePointAssetIdQuery"`
+	Action                 any      `ps:"Action"`
+	AssetId                string   `ps:"AssetId"`
+	Comment                string   `ps:"Comment"`
+	DomainController       any      `ps:"DomainController"` // Fqdn
+	EventTags              []string `ps:"EventTags"`
+	EventType              any      `ps:"EventType"` // ComplianceRuleIdParameter
+	ExchangeAssetIdQuery   string   `ps:"ExchangeAssetIdQuery"`
+	Identity               any      `ps:"Identity"`
+	SharePointAssetIdQuery string   `ps:"SharePointAssetIdQuery"`
 }
 
 func (p SetComplianceRetentionEventParams) params() map[string]any {
@@ -14512,8 +14512,8 @@ type SetDlpCompliancePolicyParams struct {
 	RemoveThirdPartyAppDlpLocation              []string `ps:"RemoveThirdPartyAppDlpLocation"`
 	RemoveThirdPartyAppDlpLocationException     []string `ps:"RemoveThirdPartyAppDlpLocationException"`
 	RetryDistribution                           bool     `ps:"RetryDistribution"`
-	SharePointAdaptiveScopes                    any      `ps:"SharePointAdaptiveScopes"`
-	SharePointAdaptiveScopesException           any      `ps:"SharePointAdaptiveScopesException"`
+	SharePointAdaptiveScopes                    []string `ps:"SharePointAdaptiveScopes"`
+	SharePointAdaptiveScopesException           []string `ps:"SharePointAdaptiveScopesException"`
 	StartSimulation                             *bool    `ps:"StartSimulation"`
 	TeamsAdaptiveScopes                         []string `ps:"TeamsAdaptiveScopes"`
 	TeamsAdaptiveScopesException                []string `ps:"TeamsAdaptiveScopesException"`

@@ -22,5 +22,17 @@
     "parameter": "TargetedUserProtectionAction",
     "type": "System.String",
     "reason": "documented as MultiValuedProperty, but the API takes and returns a single action"
+  },
+  {
+    "cmdlet": "Set-AppRetentionComplianceRule",
+    "parameter": "ExcludedItemClasses",
+    "type": "MultiValuedProperty",
+    "reason": "documented as Unlimited, but it takes a list of item classes (MultiValuedProperty on New-AppRetentionComplianceRule)"
+  },
+  {
+    "cmdlet": "New-Label",
+    "parameter": "Conditions",
+    "type": "MultiValuedProperty",
+    "reason": "documented as the misspelled type MulitValuedProperty"
   }
 ]

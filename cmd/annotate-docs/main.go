@@ -5,6 +5,10 @@
 // the yaml block of every "### -<Param>" section. That type is written to the
 // catalog as "declaredType", and spec.Param.Kind uses it to type the bindings.
 //
+// A System.Object parameter with no documented type inherits the declared type
+// of the same-named parameter on the noun's other New/Set cmdlet, so one
+// Terraform attribute that writes both gets one type.
+//
 // Known docs errors are corrected in spec/declared-type-overrides.json. The docs
 // commit is pinned in spec/docs-ref and recorded in the catalog's "docsSource".
 // Re-runnable and idempotent; run it after extract-catalog.ps1 (tools/regen.sh
@@ -97,8 +101,8 @@ func main() {
 	out, err := encode(cat)
 	must(err)
 	must(os.WriteFile(catPath, out, 0o644))
-	fmt.Printf("annotate-docs: %s: %d/%d params typed, %d cmdlets without a docs page, %d overrides\n",
-		catPath, stats.typed, stats.params, len(stats.noPage), stats.overridden)
+	fmt.Printf("annotate-docs: %s: %d/%d params typed (%d inherited New<->Set), %d cmdlets without a docs page, %d overrides\n",
+		catPath, stats.typed, stats.params, stats.inherited, len(stats.noPage), stats.overridden)
 }
 
 // encode writes the catalog in extract-catalog.ps1's layout (2-space indent, no
@@ -113,8 +117,8 @@ func encode(cat catalog) ([]byte, error) {
 }
 
 type stats struct {
-	params, typed, overridden int
-	noPage                    []string
+	params, typed, overridden, inherited int
+	noPage                               []string
 }
 
 // annotate sets DeclaredType on every parameter from its docs page (or an
@@ -150,12 +154,52 @@ func annotate(cat *catalog, pages map[string]string, ovs []override) (stats, err
 			}
 		}
 	}
+	st.inherited = inheritNewSet(cat)
+	st.typed += st.inherited
 	for k, u := range used {
 		if !u && cat.hasCmdlet(ovs[k].Cmdlet) {
 			return st, fmt.Errorf("override %s -%s matches no parameter", ovs[k].Cmdlet, ovs[k].Parameter)
 		}
 	}
 	return st, nil
+}
+
+// inheritNewSet gives an undocumented System.Object parameter of New-<Noun> or
+// Set-<Noun> the declared type of the same-named parameter on the other verb.
+// Sources are only parameters typed from the docs or an override: a target is
+// untyped by definition, so nothing is inherited twice.
+func inheritNewSet(cat *catalog) int {
+	other := map[string]string{"new": "set", "set": "new"}
+	declared := map[string]string{} // "verb noun param" (lower) -> declared type
+	for _, cm := range cat.Cmdlets {
+		if _, ok := other[strings.ToLower(cm.Verb)]; !ok {
+			continue
+		}
+		for _, p := range cm.Parameters {
+			if p.DeclaredType != "" {
+				declared[strings.ToLower(cm.Verb+" "+cm.Noun+" "+p.Name)] = p.DeclaredType
+			}
+		}
+	}
+	n := 0
+	for i := range cat.Cmdlets {
+		cm := &cat.Cmdlets[i]
+		ov, ok := other[strings.ToLower(cm.Verb)]
+		if !ok {
+			continue
+		}
+		for j := range cm.Parameters {
+			p := &cm.Parameters[j]
+			if p.DeclaredType != "" || !strings.EqualFold(p.Type, "System.Object") {
+				continue
+			}
+			if t := declared[strings.ToLower(ov+" "+cm.Noun+" "+p.Name)]; t != "" {
+				p.DeclaredType = t
+				n++
+			}
+		}
+	}
+	return n
 }
 
 func (c *catalog) hasCmdlet(name string) bool {

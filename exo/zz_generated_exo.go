@@ -13651,12 +13651,12 @@ func (s *Service) NewFingerprint(ctx context.Context, p NewFingerprintParams) (*
 
 // NewHostedConnectionFilterPolicyParams are the parameters of New-HostedConnectionFilterPolicy.
 type NewHostedConnectionFilterPolicyParams struct {
-	AdminDisplayName    string `ps:"AdminDisplayName"`
-	ConfigurationXmlRaw string `ps:"ConfigurationXmlRaw"`
-	EnableSafeList      *bool  `ps:"EnableSafeList"`
-	IPAllowList         any    `ps:"IPAllowList"`
-	IPBlockList         any    `ps:"IPBlockList"`
-	Name                string `ps:"Name"`
+	AdminDisplayName    string   `ps:"AdminDisplayName"`
+	ConfigurationXmlRaw string   `ps:"ConfigurationXmlRaw"`
+	EnableSafeList      *bool    `ps:"EnableSafeList"`
+	IPAllowList         []string `ps:"IPAllowList"`
+	IPBlockList         []string `ps:"IPBlockList"`
+	Name                string   `ps:"Name"`
 }
 
 func (p NewHostedConnectionFilterPolicyParams) params() map[string]any {

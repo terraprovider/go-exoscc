@@ -86,3 +86,34 @@ func TestRoundTripPreservesCatalog(t *testing.T) {
 		}
 	}
 }
+
+func TestInheritNewSet(t *testing.T) {
+	cat := catalog{Cmdlets: []cmdlet{
+		{Cmdlet: "New-Policy", Verb: "New", Noun: "Policy", Parameters: []param{
+			{Name: "IPAllowList", Type: "System.Object"},
+			{Name: "Mode", Type: "System.Object", DeclaredType: "PolicyMode"},
+			{Name: "Typed", Type: "string"},
+		}},
+		{Cmdlet: "Set-Policy", Verb: "Set", Noun: "Policy", Parameters: []param{
+			{Name: "IPAllowList", Type: "System.Object", DeclaredType: "MultiValuedProperty"},
+			{Name: "Mode", Type: "System.Object"},
+			{Name: "Typed", Type: "System.Object", DeclaredType: "Boolean"},
+		}},
+		{Cmdlet: "Get-Policy", Verb: "Get", Noun: "Policy", Parameters: []param{
+			{Name: "IPAllowList", Type: "System.Object"},
+		}},
+	}}
+	if n := inheritNewSet(&cat); n != 2 {
+		t.Errorf("inherited %d, want 2", n)
+	}
+	got := func(c, p int) string { return cat.Cmdlets[c].Parameters[p].DeclaredType }
+	if got(0, 0) != "MultiValuedProperty" || got(1, 1) != "PolicyMode" {
+		t.Errorf("New -IPAllowList = %q, Set -Mode = %q", got(0, 0), got(1, 1))
+	}
+	if got(0, 2) != "" {
+		t.Errorf("a concrete psm1 type must not inherit, got %q", got(0, 2))
+	}
+	if got(2, 0) != "" {
+		t.Errorf("Get must not inherit, got %q", got(2, 0))
+	}
+}
