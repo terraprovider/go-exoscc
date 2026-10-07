@@ -23,7 +23,7 @@ func TestParamsSendsZeroValues(t *testing.T) {
 }
 
 // A delta takes precedence over the full list and goes out as the annotated
-// StringFieldDeltaUpdateData complex value.
+// GenericHashTable object, as the proxy psm1 sends a hashtable.
 func TestParamsSendsDelta(t *testing.T) {
 	p := SetExternalInOutlookParams{
 		AllowList:      []string{"ignored"},
@@ -33,7 +33,7 @@ func TestParamsSendsDelta(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := `{"AllowList":{"@odata.type":"#Exchange.StringFieldDeltaUpdateData","Remove":["a"]}}`
+	want := `{"AllowList":{"@odata.type":"#Exchange.GenericHashTable","Remove":["a"]}}`
 	if string(b) != want {
 		t.Errorf("params() = %s, want %s", b, want)
 	}

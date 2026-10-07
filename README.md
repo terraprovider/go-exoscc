@@ -112,7 +112,7 @@ MicrosoftDocs/office-docs-powershell  --cmd/annotate-docs-->  spec/catalog/*.jso
 
   Sending an empty list does **not** clear a MultiValuedProperty. To clear or
   edit one in place, Set-* cmdlets have a `<Field>Delta *adminapi.StringDelta`
-  companion (`{Add, Remove}`, sent as `Exchange.StringFieldDeltaUpdateData`) for
+  companion (`{Add, Remove}`, sent like the module sends `@{Add=…;Remove=…}`: an `Exchange.GenericHashTable` object) for
   every `spec.Param.DeltaCapable()` parameter; it takes precedence over `<Field>`.
 - Both **EXO** and **Purview** refresh fully app-only. `fetch-spec` auto-discovers
   the tenant routing domain (via EXO `Get-OrganizationConfig`) and uses the

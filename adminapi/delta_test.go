@@ -10,8 +10,8 @@ func TestStringDeltaMarshal(t *testing.T) {
 		d    StringDelta
 		want string
 	}{
-		{StringDelta{Remove: []string{"a"}}, `{"@odata.type":"#Exchange.StringFieldDeltaUpdateData","Remove":["a"]}`},
-		{StringDelta{Add: []string{"b"}, Remove: []string{"a"}}, `{"@odata.type":"#Exchange.StringFieldDeltaUpdateData","Add":["b"],"Remove":["a"]}`},
+		{StringDelta{Remove: []string{"a"}}, `{"@odata.type":"#Exchange.GenericHashTable","Remove":["a"]}`},
+		{StringDelta{Add: []string{"b"}, Remove: []string{"a"}}, `{"@odata.type":"#Exchange.GenericHashTable","Add":["b"],"Remove":["a"]}`},
 	}
 	for _, c := range cases {
 		// As it is sent: a value inside the Parameters map.
