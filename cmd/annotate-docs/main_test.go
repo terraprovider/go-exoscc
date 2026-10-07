@@ -40,13 +40,13 @@ func TestAnnotate(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	cat := catalog{Cmdlets: []cmdlet{
+	cat := catalog{Source: "EXO-ExchangeOnline.psm1", Cmdlets: []cmdlet{
 		{Cmdlet: "Set-Thing", Parameters: []param{{Name: "Enabled"}, {Name: "actions"}, {Name: "Undocumented", DeclaredType: "stale"}}},
 		{Cmdlet: "Get-Hidden", Parameters: []param{{Name: "Identity"}}},
 	}}
 	ovs := []override{
-		{Cmdlet: "Set-Thing", Parameter: "Actions", Type: "System.String"},
-		{Cmdlet: "Not-InThisCatalog", Parameter: "X", Type: "System.String"}, // other catalog: ignored
+		{Catalog: "EXO", Cmdlet: "Set-Thing", Parameter: "Actions", Type: "System.String"},
+		{Catalog: "Purview", Cmdlet: "Not-InThisCatalog", Parameter: "X", Type: "System.String"}, // other catalog: ignored
 	}
 	st, err := annotate(&cat, pages, ovs)
 	if err != nil {
@@ -60,9 +60,14 @@ func TestAnnotate(t *testing.T) {
 		t.Errorf("stats = %+v", st)
 	}
 
-	_, err = annotate(&cat, pages, []override{{Cmdlet: "Set-Thing", Parameter: "Gone", Type: "System.String"}})
-	if err == nil {
-		t.Error("stale override for a cataloged cmdlet should fail")
+	for _, ov := range []override{
+		{Catalog: "EXO", Cmdlet: "Set-Thing", Parameter: "Gone", Type: "System.String"},      // stale parameter
+		{Catalog: "EXO", Cmdlet: "Set-Missing", Parameter: "Actions", Type: "System.String"}, // misspelled/removed cmdlet
+		{Cmdlet: "Set-Thing", Parameter: "Actions", Type: "System.String"},                   // unscoped
+	} {
+		if _, err := annotate(&cat, pages, []override{ov}); err == nil {
+			t.Errorf("override %+v should fail", ov)
+		}
 	}
 }
 

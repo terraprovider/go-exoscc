@@ -1,35 +1,41 @@
 [
   {
+    "catalog": "EXO",
     "cmdlet": "New-AntiPhishPolicy",
     "parameter": "TargetedDomainProtectionAction",
     "type": "System.String",
     "reason": "documented as MultiValuedProperty, but the API takes and returns a single action"
   },
   {
+    "catalog": "EXO",
     "cmdlet": "New-AntiPhishPolicy",
     "parameter": "TargetedUserProtectionAction",
     "type": "System.String",
     "reason": "documented as MultiValuedProperty, but the API takes and returns a single action"
   },
   {
+    "catalog": "EXO",
     "cmdlet": "Set-AntiPhishPolicy",
     "parameter": "TargetedDomainProtectionAction",
     "type": "System.String",
     "reason": "documented as MultiValuedProperty, but the API takes and returns a single action"
   },
   {
+    "catalog": "EXO",
     "cmdlet": "Set-AntiPhishPolicy",
     "parameter": "TargetedUserProtectionAction",
     "type": "System.String",
     "reason": "documented as MultiValuedProperty, but the API takes and returns a single action"
   },
   {
+    "catalog": "Purview",
     "cmdlet": "Set-AppRetentionComplianceRule",
     "parameter": "ExcludedItemClasses",
     "type": "MultiValuedProperty",
     "reason": "documented as Unlimited, but it takes a list of item classes (MultiValuedProperty on New-AppRetentionComplianceRule)"
   },
   {
+    "catalog": "Purview",
     "cmdlet": "New-Label",
     "parameter": "Conditions",
     "type": "MultiValuedProperty",

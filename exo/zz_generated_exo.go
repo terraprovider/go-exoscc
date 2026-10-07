@@ -6885,19 +6885,19 @@ func (s *Service) GetMailboxAnalysisRequest(ctx context.Context, p GetMailboxAna
 // GetMailboxAnalysisRequestStatisticsParams are the parameters of Get-MailboxAnalysisRequestStatistics.
 // DefaultParameterSetName: Identity
 type GetMailboxAnalysisRequestStatisticsParams struct {
-	ArchiveRecoverableItemsOnly bool     `ps:"ArchiveRecoverableItemsOnly"`
-	Auto                        bool     `ps:"Auto"`
-	CSVData                     []string `ps:"CSVData"`
-	DiagnosticInfo              string   `ps:"DiagnosticInfo"`
-	FolderScope                 any      `ps:"FolderScope"`
-	Identity                    any      `ps:"Identity"`
-	IncludeAnalysisResult       bool     `ps:"IncludeAnalysisResult"`
-	IncludeFolderDetails        bool     `ps:"IncludeFolderDetails"`
-	IncludeMappingResult        bool     `ps:"IncludeMappingResult"`
-	IncludeReport               bool     `ps:"IncludeReport"`
-	ItemsEndTime                string   `ps:"ItemsEndTime"`
-	ItemsStartTime              string   `ps:"ItemsStartTime"`
-	ReportOnly                  bool     `ps:"ReportOnly"`
+	ArchiveRecoverableItemsOnly bool   `ps:"ArchiveRecoverableItemsOnly"`
+	Auto                        bool   `ps:"Auto"`
+	CSVData                     any    `ps:"CSVData"`
+	DiagnosticInfo              string `ps:"DiagnosticInfo"`
+	FolderScope                 any    `ps:"FolderScope"`
+	Identity                    any    `ps:"Identity"`
+	IncludeAnalysisResult       bool   `ps:"IncludeAnalysisResult"`
+	IncludeFolderDetails        bool   `ps:"IncludeFolderDetails"`
+	IncludeMappingResult        bool   `ps:"IncludeMappingResult"`
+	IncludeReport               bool   `ps:"IncludeReport"`
+	ItemsEndTime                string `ps:"ItemsEndTime"`
+	ItemsStartTime              string `ps:"ItemsStartTime"`
+	ReportOnly                  bool   `ps:"ReportOnly"`
 }
 
 func (p GetMailboxAnalysisRequestStatisticsParams) params() map[string]any {
@@ -11743,9 +11743,9 @@ func (s *Service) GetUser(ctx context.Context, p GetUserParams) (*adminapi.Resul
 // ImportDlpPolicyCollectionParams are the parameters of Import-DlpPolicyCollection.
 // DefaultParameterSetName: Identity
 type ImportDlpPolicyCollectionParams struct {
-	FileData []string `ps:"FileData"`
-	Force    bool     `ps:"Force"`
-	Identity any      `ps:"Identity"` // DlpPolicyIdParameter
+	FileData any  `ps:"FileData"` // Byte[]
+	Force    bool `ps:"Force"`
+	Identity any  `ps:"Identity"` // DlpPolicyIdParameter
 }
 
 func (p ImportDlpPolicyCollectionParams) params() map[string]any {
@@ -11770,9 +11770,9 @@ func (s *Service) ImportDlpPolicyCollection(ctx context.Context, p ImportDlpPoli
 // ImportRecipientDataPropertyParams are the parameters of Import-RecipientDataProperty.
 // DefaultParameterSetName: ImportPicture
 type ImportRecipientDataPropertyParams struct {
-	FileData []string `ps:"FileData"`
-	Identity any      `ps:"Identity"` // MailboxUserContactIdParameter
-	Picture  bool     `ps:"Picture"`
+	FileData any  `ps:"FileData"` // Byte[]
+	Identity any  `ps:"Identity"` // MailboxUserContactIdParameter
+	Picture  bool `ps:"Picture"`
 }
 
 func (p ImportRecipientDataPropertyParams) params() map[string]any {
@@ -12637,7 +12637,7 @@ type NewAppParams struct {
 	DownloadOnly               bool     `ps:"DownloadOnly"`
 	Enabled                    *bool    `ps:"Enabled"`
 	Etoken                     string   `ps:"Etoken"`
-	FileData                   []string `ps:"FileData"`
+	FileData                   any      `ps:"FileData"`   // Byte[]
 	FileStream                 any      `ps:"FileStream"` // Stream
 	Identity                   string   `ps:"Identity"`
 	Mailbox                    any      `ps:"Mailbox"` // MailboxIdParameter
@@ -12862,7 +12862,7 @@ func (s *Service) NewAvailabilityConfig(ctx context.Context, p NewAvailabilityCo
 // NewClassificationRuleCollectionParams are the parameters of New-ClassificationRuleCollection.
 // DefaultParameterSetName: ArbitraryCollection
 type NewClassificationRuleCollectionParams struct {
-	FileData []string `ps:"FileData"`
+	FileData any `ps:"FileData"` // Byte[]
 }
 
 func (p NewClassificationRuleCollectionParams) params() map[string]any {
@@ -13191,13 +13191,13 @@ func (s *Service) NewDkimSigningConfigSelectorCnames(ctx context.Context, p NewD
 
 // NewDlpPolicyParams are the parameters of New-DlpPolicy.
 type NewDlpPolicyParams struct {
-	Description  string   `ps:"Description"`
-	Mode         any      `ps:"Mode"` // RuleMode
-	Name         string   `ps:"Name"`
-	Parameters   any      `ps:"Parameters"` // Hashtable
-	State        any      `ps:"State"`      // RuleState
-	Template     string   `ps:"Template"`
-	TemplateData []string `ps:"TemplateData"`
+	Description  string `ps:"Description"`
+	Mode         any    `ps:"Mode"` // RuleMode
+	Name         string `ps:"Name"`
+	Parameters   any    `ps:"Parameters"` // Hashtable
+	State        any    `ps:"State"`      // RuleState
+	Template     string `ps:"Template"`
+	TemplateData any    `ps:"TemplateData"` // Byte[]
 }
 
 func (p NewDlpPolicyParams) params() map[string]any {
@@ -13629,8 +13629,8 @@ func (s *Service) NewExoSecOpsOverrideRule(ctx context.Context, p NewExoSecOpsOv
 
 // NewFingerprintParams are the parameters of New-Fingerprint.
 type NewFingerprintParams struct {
-	Description string   `ps:"Description"`
-	FileData    []string `ps:"FileData"`
+	Description string `ps:"Description"`
+	FileData    any    `ps:"FileData"` // Byte[]
 }
 
 func (p NewFingerprintParams) params() map[string]any {
@@ -15705,7 +15705,7 @@ type NewMigrationBatchParams struct {
 	ConnectionLogicalId        string   `ps:"ConnectionLogicalId"`
 	ContentFilter              string   `ps:"ContentFilter"`
 	ContentFilterLanguage      any      `ps:"ContentFilterLanguage"` // CultureInfo
-	CSVData                    []string `ps:"CSVData"`
+	CSVData                    any      `ps:"CSVData"`               // Byte[]
 	Daily                      bool     `ps:"Daily"`
 	DataFusion                 bool     `ps:"DataFusion"`
 	DisableOnCopy              bool     `ps:"DisableOnCopy"`
@@ -15742,7 +15742,7 @@ type NewMigrationBatchParams struct {
 	SlackPublicDataConnector   bool     `ps:"SlackPublicDataConnector"`
 	SlackWorkspaceId           string   `ps:"SlackWorkspaceId"`
 	SourceEndpoint             any      `ps:"SourceEndpoint"` // MigrationEndpointIdParameter
-	SourceMappings             []string `ps:"SourceMappings"`
+	SourceMappings             any      `ps:"SourceMappings"`
 	SourcePFPrimaryMailboxGuid string   `ps:"SourcePFPrimaryMailboxGuid"`
 	StagedRollOutGroupId       string   `ps:"StagedRollOutGroupId"`
 	StartAfter                 any      `ps:"StartAfter"` // DateTime
@@ -15755,7 +15755,7 @@ type NewMigrationBatchParams struct {
 	Users                      []string `ps:"Users"`
 	WorkflowControlFlags       any      `ps:"WorkflowControlFlags"` // MigrationWorkflowControlFlags
 	WorkflowTemplate           string   `ps:"WorkflowTemplate"`
-	XMLData                    []string `ps:"XMLData"`
+	XMLData                    any      `ps:"XMLData"` // Byte[]
 }
 
 func (p NewMigrationBatchParams) params() map[string]any {
@@ -15966,39 +15966,39 @@ func (s *Service) NewMigrationBatch(ctx context.Context, p NewMigrationBatchPara
 // NewMigrationEndpointParams are the parameters of New-MigrationEndpoint.
 // DefaultParameterSetName: ExchangeRemoteMove
 type NewMigrationEndpointParams struct {
-	AcceptUntrustedCertificates        bool     `ps:"AcceptUntrustedCertificates"`
-	ApplicationId                      string   `ps:"ApplicationId"`
-	AppSecretKeyVaultUrl               string   `ps:"AppSecretKeyVaultUrl"`
-	Authentication                     any      `ps:"Authentication"` // AuthenticationMethod
-	Autodiscover                       bool     `ps:"Autodiscover"`
-	Compliance                         bool     `ps:"Compliance"`
-	Credentials                        any      `ps:"Credentials"`  // PSCredential
-	EmailAddress                       any      `ps:"EmailAddress"` // SmtpAddress
-	ExchangeOutlookAnywhere            bool     `ps:"ExchangeOutlookAnywhere"`
-	ExchangeRemoteMove                 bool     `ps:"ExchangeRemoteMove"`
-	ExchangeServer                     string   `ps:"ExchangeServer"`
-	Gmail                              bool     `ps:"Gmail"`
-	IMAP                               bool     `ps:"IMAP"`
-	MailboxPermission                  any      `ps:"MailboxPermission"`             // MigrationMailboxPermission
-	MaxConcurrentIncrementalSyncs      any      `ps:"MaxConcurrentIncrementalSyncs"` // Unlimited
-	MaxConcurrentMigrations            any      `ps:"MaxConcurrentMigrations"`       // Unlimited
-	Name                               string   `ps:"Name"`
-	NspiServer                         string   `ps:"NspiServer"`
-	OAuthCode                          any      `ps:"OAuthCode"` // SecureString
-	Partition                          any      `ps:"Partition"` // MailboxIdParameter
-	Port                               *int64   `ps:"Port"`
-	PublicFolder                       bool     `ps:"PublicFolder"`
-	PublicFolderDatabaseServerLegacyDN string   `ps:"PublicFolderDatabaseServerLegacyDN"`
-	PublicFolderToUnifiedGroup         bool     `ps:"PublicFolderToUnifiedGroup"`
-	RedirectUri                        string   `ps:"RedirectUri"`
-	RemoteServer                       any      `ps:"RemoteServer"` // Fqdn
-	RemoteTenant                       string   `ps:"RemoteTenant"`
-	RPCProxyServer                     any      `ps:"RPCProxyServer"` // Fqdn
-	Security                           any      `ps:"Security"`       // IMAPSecurityMechanism
-	ServiceAccountKeyFileData          []string `ps:"ServiceAccountKeyFileData"`
-	SkipVerification                   bool     `ps:"SkipVerification"`
-	SourceMailboxLegacyDN              string   `ps:"SourceMailboxLegacyDN"`
-	TestMailbox                        any      `ps:"TestMailbox"` // MailboxIdParameter
+	AcceptUntrustedCertificates        bool   `ps:"AcceptUntrustedCertificates"`
+	ApplicationId                      string `ps:"ApplicationId"`
+	AppSecretKeyVaultUrl               string `ps:"AppSecretKeyVaultUrl"`
+	Authentication                     any    `ps:"Authentication"` // AuthenticationMethod
+	Autodiscover                       bool   `ps:"Autodiscover"`
+	Compliance                         bool   `ps:"Compliance"`
+	Credentials                        any    `ps:"Credentials"`  // PSCredential
+	EmailAddress                       any    `ps:"EmailAddress"` // SmtpAddress
+	ExchangeOutlookAnywhere            bool   `ps:"ExchangeOutlookAnywhere"`
+	ExchangeRemoteMove                 bool   `ps:"ExchangeRemoteMove"`
+	ExchangeServer                     string `ps:"ExchangeServer"`
+	Gmail                              bool   `ps:"Gmail"`
+	IMAP                               bool   `ps:"IMAP"`
+	MailboxPermission                  any    `ps:"MailboxPermission"`             // MigrationMailboxPermission
+	MaxConcurrentIncrementalSyncs      any    `ps:"MaxConcurrentIncrementalSyncs"` // Unlimited
+	MaxConcurrentMigrations            any    `ps:"MaxConcurrentMigrations"`       // Unlimited
+	Name                               string `ps:"Name"`
+	NspiServer                         string `ps:"NspiServer"`
+	OAuthCode                          any    `ps:"OAuthCode"` // SecureString
+	Partition                          any    `ps:"Partition"` // MailboxIdParameter
+	Port                               *int64 `ps:"Port"`
+	PublicFolder                       bool   `ps:"PublicFolder"`
+	PublicFolderDatabaseServerLegacyDN string `ps:"PublicFolderDatabaseServerLegacyDN"`
+	PublicFolderToUnifiedGroup         bool   `ps:"PublicFolderToUnifiedGroup"`
+	RedirectUri                        string `ps:"RedirectUri"`
+	RemoteServer                       any    `ps:"RemoteServer"` // Fqdn
+	RemoteTenant                       string `ps:"RemoteTenant"`
+	RPCProxyServer                     any    `ps:"RPCProxyServer"`            // Fqdn
+	Security                           any    `ps:"Security"`                  // IMAPSecurityMechanism
+	ServiceAccountKeyFileData          any    `ps:"ServiceAccountKeyFileData"` // Byte[]
+	SkipVerification                   bool   `ps:"SkipVerification"`
+	SourceMailboxLegacyDN              string `ps:"SourceMailboxLegacyDN"`
+	TestMailbox                        any    `ps:"TestMailbox"` // MailboxIdParameter
 }
 
 func (p NewMigrationEndpointParams) params() map[string]any {
@@ -16474,18 +16474,18 @@ func (s *Service) NewMoveRequest(ctx context.Context, p NewMoveRequestParams) (*
 // NewOMEConfigurationParams are the parameters of New-OMEConfiguration.
 // DefaultParameterSetName: Identity
 type NewOMEConfigurationParams struct {
-	BackgroundColor          string   `ps:"BackgroundColor"`
-	DisclaimerText           string   `ps:"DisclaimerText"`
-	EmailText                string   `ps:"EmailText"`
-	ExternalMailExpiryInDays any      `ps:"ExternalMailExpiryInDays"` // String
-	Identity                 any      `ps:"Identity"`                 // OrganizationIdParameter
-	Image                    []string `ps:"Image"`
-	IntroductionText         string   `ps:"IntroductionText"`
-	OTPEnabled               *bool    `ps:"OTPEnabled"`
-	PortalText               string   `ps:"PortalText"`
-	PrivacyStatementUrl      string   `ps:"PrivacyStatementUrl"`
-	ReadButtonText           string   `ps:"ReadButtonText"`
-	SocialIdSignIn           *bool    `ps:"SocialIdSignIn"`
+	BackgroundColor          string `ps:"BackgroundColor"`
+	DisclaimerText           string `ps:"DisclaimerText"`
+	EmailText                string `ps:"EmailText"`
+	ExternalMailExpiryInDays any    `ps:"ExternalMailExpiryInDays"` // String
+	Identity                 any    `ps:"Identity"`                 // OrganizationIdParameter
+	Image                    any    `ps:"Image"`                    // Byte[]
+	IntroductionText         string `ps:"IntroductionText"`
+	OTPEnabled               *bool  `ps:"OTPEnabled"`
+	PortalText               string `ps:"PortalText"`
+	PrivacyStatementUrl      string `ps:"PrivacyStatementUrl"`
+	ReadButtonText           string `ps:"ReadButtonText"`
+	SocialIdSignIn           *bool  `ps:"SocialIdSignIn"`
 }
 
 func (p NewOMEConfigurationParams) params() map[string]any {
@@ -18376,13 +18376,13 @@ func (s *Service) NewSharingPolicy(ctx context.Context, p NewSharingPolicyParams
 // NewSlackTenantScanRequestParams are the parameters of New-SlackTenantScanRequest.
 // DefaultParameterSetName: Identity
 type NewSlackTenantScanRequestParams struct {
-	AADIdentityType any      `ps:"AADIdentityType"`
-	Format          string   `ps:"Format"`
-	GroupAObjectId  string   `ps:"GroupAObjectId"`
-	GroupBObjectId  string   `ps:"GroupBObjectId"`
-	Partition       any      `ps:"Partition"`
-	SourceEndpoint  any      `ps:"SourceEndpoint"`
-	SourceMappings  []string `ps:"SourceMappings"`
+	AADIdentityType any    `ps:"AADIdentityType"`
+	Format          string `ps:"Format"`
+	GroupAObjectId  string `ps:"GroupAObjectId"`
+	GroupBObjectId  string `ps:"GroupBObjectId"`
+	Partition       any    `ps:"Partition"`
+	SourceEndpoint  any    `ps:"SourceEndpoint"`
+	SourceMappings  any    `ps:"SourceMappings"`
 }
 
 func (p NewSlackTenantScanRequestParams) params() map[string]any {
@@ -18948,10 +18948,10 @@ type NewTransportRuleParams struct {
 	ExceptIfHeaderMatchesMessageHeader           any      `ps:"ExceptIfHeaderMatchesMessageHeader"` // HeaderName
 	ExceptIfHeaderMatchesPatterns                []string `ps:"ExceptIfHeaderMatchesPatterns"`
 	ExceptIfManagerAddresses                     []string `ps:"ExceptIfManagerAddresses"`
-	ExceptIfManagerForEvaluatedUser              any      `ps:"ExceptIfManagerForEvaluatedUser"` // EvaluatedUser
-	ExceptIfMessageContainsDataClassifications   []string `ps:"ExceptIfMessageContainsDataClassifications"`
-	ExceptIfMessageSizeOver                      any      `ps:"ExceptIfMessageSizeOver"`    // ByteQuantifiedSize
-	ExceptIfMessageTypeMatches                   any      `ps:"ExceptIfMessageTypeMatches"` // MessageType
+	ExceptIfManagerForEvaluatedUser              any      `ps:"ExceptIfManagerForEvaluatedUser"`            // EvaluatedUser
+	ExceptIfMessageContainsDataClassifications   any      `ps:"ExceptIfMessageContainsDataClassifications"` // Hashtable[]
+	ExceptIfMessageSizeOver                      any      `ps:"ExceptIfMessageSizeOver"`                    // ByteQuantifiedSize
+	ExceptIfMessageTypeMatches                   any      `ps:"ExceptIfMessageTypeMatches"`                 // MessageType
 	ExceptIfRecipientADAttributeContainsWords    []string `ps:"ExceptIfRecipientADAttributeContainsWords"`
 	ExceptIfRecipientADAttributeMatchesPatterns  []string `ps:"ExceptIfRecipientADAttributeMatchesPatterns"`
 	ExceptIfRecipientAddressContainsWords        []string `ps:"ExceptIfRecipientAddressContainsWords"`
@@ -18991,11 +18991,11 @@ type NewTransportRuleParams struct {
 	IncidentReportContent                        []string `ps:"IncidentReportContent"`
 	LogEventText                                 any      `ps:"LogEventText"` // EventLogText
 	ManagerAddresses                             []string `ps:"ManagerAddresses"`
-	ManagerForEvaluatedUser                      any      `ps:"ManagerForEvaluatedUser"` // EvaluatedUser
-	MessageContainsDataClassifications           []string `ps:"MessageContainsDataClassifications"`
-	MessageSizeOver                              any      `ps:"MessageSizeOver"`    // ByteQuantifiedSize
-	MessageTypeMatches                           any      `ps:"MessageTypeMatches"` // MessageType
-	Mode                                         any      `ps:"Mode"`               // RuleMode
+	ManagerForEvaluatedUser                      any      `ps:"ManagerForEvaluatedUser"`            // EvaluatedUser
+	MessageContainsDataClassifications           any      `ps:"MessageContainsDataClassifications"` // Hashtable[]
+	MessageSizeOver                              any      `ps:"MessageSizeOver"`                    // ByteQuantifiedSize
+	MessageTypeMatches                           any      `ps:"MessageTypeMatches"`                 // MessageType
+	Mode                                         any      `ps:"Mode"`                               // RuleMode
 	ModerateMessageByManager                     *bool    `ps:"ModerateMessageByManager"`
 	ModerateMessageByUser                        []string `ps:"ModerateMessageByUser"`
 	Name                                         string   `ps:"Name"`
@@ -24049,7 +24049,7 @@ func (s *Service) SetCalendarSettings(ctx context.Context, p SetCalendarSettings
 
 // SetClassificationRuleCollectionParams are the parameters of Set-ClassificationRuleCollection.
 type SetClassificationRuleCollectionParams struct {
-	FileData []string `ps:"FileData"`
+	FileData any `ps:"FileData"` // Byte[]
 }
 
 func (p SetClassificationRuleCollectionParams) params() map[string]any {
@@ -30132,8 +30132,8 @@ type SetMigrationBatchParams struct {
 	AllowUnknownColumnsInCSV *bool                 `ps:"AllowUnknownColumnsInCSV"`
 	ApproveSkippedItems      bool                  `ps:"ApproveSkippedItems"`
 	CompleteAfter            any                   `ps:"CompleteAfter"` // DateTime
-	CSVData                  []string              `ps:"CSVData"`
-	Identity                 any                   `ps:"Identity"` // MigrationBatchIdParameter
+	CSVData                  any                   `ps:"CSVData"`       // Byte[]
+	Identity                 any                   `ps:"Identity"`      // MigrationBatchIdParameter
 	MoveOptions              []string              `ps:"MoveOptions"`
 	MoveOptionsDelta         *adminapi.StringDelta `ps:"MoveOptions"` // adds/removes values of MoveOptions; takes precedence over it
 	NotificationEmails       []string              `ps:"NotificationEmails"`
@@ -30238,27 +30238,27 @@ func (s *Service) SetMigrationConfig(ctx context.Context, p SetMigrationConfigPa
 // SetMigrationEndpointParams are the parameters of Set-MigrationEndpoint.
 // DefaultParameterSetName: Identity
 type SetMigrationEndpointParams struct {
-	AcceptUntrustedCertificates        *bool    `ps:"AcceptUntrustedCertificates"`
-	ApplicationId                      string   `ps:"ApplicationId"`
-	AppSecretKeyVaultUrl               string   `ps:"AppSecretKeyVaultUrl"`
-	Authentication                     any      `ps:"Authentication"` // AuthenticationMethod
-	Credentials                        any      `ps:"Credentials"`    // PSCredential
-	ExchangeServer                     string   `ps:"ExchangeServer"`
-	Identity                           any      `ps:"Identity"`                      // MigrationEndpointIdParameter
-	MailboxPermission                  any      `ps:"MailboxPermission"`             // MigrationMailboxPermission
-	MaxConcurrentIncrementalSyncs      any      `ps:"MaxConcurrentIncrementalSyncs"` // Unlimited
-	MaxConcurrentMigrations            any      `ps:"MaxConcurrentMigrations"`       // Unlimited
-	NspiServer                         string   `ps:"NspiServer"`
-	Partition                          any      `ps:"Partition"` // MailboxIdParameter
-	Port                               *int64   `ps:"Port"`
-	PublicFolderDatabaseServerLegacyDN string   `ps:"PublicFolderDatabaseServerLegacyDN"`
-	RemoteServer                       any      `ps:"RemoteServer"`   // Fqdn
-	RPCProxyServer                     any      `ps:"RPCProxyServer"` // Fqdn
-	Security                           any      `ps:"Security"`       // IMAPSecurityMechanism
-	ServiceAccountKeyFileData          []string `ps:"ServiceAccountKeyFileData"`
-	SkipVerification                   bool     `ps:"SkipVerification"`
-	SourceMailboxLegacyDN              string   `ps:"SourceMailboxLegacyDN"`
-	TestMailbox                        any      `ps:"TestMailbox"` // MailboxIdParameter
+	AcceptUntrustedCertificates        *bool  `ps:"AcceptUntrustedCertificates"`
+	ApplicationId                      string `ps:"ApplicationId"`
+	AppSecretKeyVaultUrl               string `ps:"AppSecretKeyVaultUrl"`
+	Authentication                     any    `ps:"Authentication"` // AuthenticationMethod
+	Credentials                        any    `ps:"Credentials"`    // PSCredential
+	ExchangeServer                     string `ps:"ExchangeServer"`
+	Identity                           any    `ps:"Identity"`                      // MigrationEndpointIdParameter
+	MailboxPermission                  any    `ps:"MailboxPermission"`             // MigrationMailboxPermission
+	MaxConcurrentIncrementalSyncs      any    `ps:"MaxConcurrentIncrementalSyncs"` // Unlimited
+	MaxConcurrentMigrations            any    `ps:"MaxConcurrentMigrations"`       // Unlimited
+	NspiServer                         string `ps:"NspiServer"`
+	Partition                          any    `ps:"Partition"` // MailboxIdParameter
+	Port                               *int64 `ps:"Port"`
+	PublicFolderDatabaseServerLegacyDN string `ps:"PublicFolderDatabaseServerLegacyDN"`
+	RemoteServer                       any    `ps:"RemoteServer"`              // Fqdn
+	RPCProxyServer                     any    `ps:"RPCProxyServer"`            // Fqdn
+	Security                           any    `ps:"Security"`                  // IMAPSecurityMechanism
+	ServiceAccountKeyFileData          any    `ps:"ServiceAccountKeyFileData"` // Byte[]
+	SkipVerification                   bool   `ps:"SkipVerification"`
+	SourceMailboxLegacyDN              string `ps:"SourceMailboxLegacyDN"`
+	TestMailbox                        any    `ps:"TestMailbox"` // MailboxIdParameter
 }
 
 func (p SetMigrationEndpointParams) params() map[string]any {
@@ -30708,18 +30708,18 @@ func (s *Service) SetMoveRequest(ctx context.Context, p SetMoveRequestParams) (*
 // SetOMEConfigurationParams are the parameters of Set-OMEConfiguration.
 // DefaultParameterSetName: Identity
 type SetOMEConfigurationParams struct {
-	BackgroundColor          string   `ps:"BackgroundColor"`
-	DisclaimerText           string   `ps:"DisclaimerText"`
-	EmailText                string   `ps:"EmailText"`
-	ExternalMailExpiryInDays any      `ps:"ExternalMailExpiryInDays"` // String
-	Identity                 any      `ps:"Identity"`                 // OMEConfigurationIdParameter
-	Image                    []string `ps:"Image"`
-	IntroductionText         string   `ps:"IntroductionText"`
-	OTPEnabled               *bool    `ps:"OTPEnabled"`
-	PortalText               string   `ps:"PortalText"`
-	PrivacyStatementUrl      string   `ps:"PrivacyStatementUrl"`
-	ReadButtonText           string   `ps:"ReadButtonText"`
-	SocialIdSignIn           *bool    `ps:"SocialIdSignIn"`
+	BackgroundColor          string `ps:"BackgroundColor"`
+	DisclaimerText           string `ps:"DisclaimerText"`
+	EmailText                string `ps:"EmailText"`
+	ExternalMailExpiryInDays any    `ps:"ExternalMailExpiryInDays"` // String
+	Identity                 any    `ps:"Identity"`                 // OMEConfigurationIdParameter
+	Image                    any    `ps:"Image"`                    // Byte[]
+	IntroductionText         string `ps:"IntroductionText"`
+	OTPEnabled               *bool  `ps:"OTPEnabled"`
+	PortalText               string `ps:"PortalText"`
+	PrivacyStatementUrl      string `ps:"PrivacyStatementUrl"`
+	ReadButtonText           string `ps:"ReadButtonText"`
+	SocialIdSignIn           *bool  `ps:"SocialIdSignIn"`
 }
 
 func (p SetOMEConfigurationParams) params() map[string]any {
@@ -33982,33 +33982,33 @@ func (s *Service) SetSharingPolicy(ctx context.Context, p SetSharingPolicyParams
 // SetSmimeConfigParams are the parameters of Set-SmimeConfig.
 // DefaultParameterSetName: Identity
 type SetSmimeConfigParams struct {
-	Identity                                         any      `ps:"Identity"` // OrganizationIdParameter
-	NoSignOnReply                                    *bool    `ps:"NoSignOnReply"`
-	OWAAllowUserChoiceOfSigningCertificate           *bool    `ps:"OWAAllowUserChoiceOfSigningCertificate"`
-	OWAAlwaysEncrypt                                 *bool    `ps:"OWAAlwaysEncrypt"`
-	OWAAlwaysSign                                    *bool    `ps:"OWAAlwaysSign"`
-	OWABCCEncryptedEmailForking                      *int64   `ps:"OWABCCEncryptedEmailForking"`
-	OWACheckCRLOnSend                                *bool    `ps:"OWACheckCRLOnSend"`
-	OWAClearSign                                     *bool    `ps:"OWAClearSign"`
-	OWACopyRecipientHeaders                          *bool    `ps:"OWACopyRecipientHeaders"`
-	OWACRLConnectionTimeout                          *int64   `ps:"OWACRLConnectionTimeout"`
-	OWACRLRetrievalTimeout                           *int64   `ps:"OWACRLRetrievalTimeout"`
-	OWADisableCRLCheck                               *bool    `ps:"OWADisableCRLCheck"`
-	OWADLExpansionTimeout                            *int64   `ps:"OWADLExpansionTimeout"`
-	OWAEncryptionAlgorithms                          string   `ps:"OWAEncryptionAlgorithms"`
-	OWAEncryptTemporaryBuffers                       *bool    `ps:"OWAEncryptTemporaryBuffers"`
-	OWAForceSMIMEClientUpgrade                       *bool    `ps:"OWAForceSMIMEClientUpgrade"`
-	OWAIncludeCertificateChainAndRootCertificate     *bool    `ps:"OWAIncludeCertificateChainAndRootCertificate"`
-	OWAIncludeCertificateChainWithoutRootCertificate *bool    `ps:"OWAIncludeCertificateChainWithoutRootCertificate"`
-	OWAIncludeSMIMECapabilitiesInMessage             *bool    `ps:"OWAIncludeSMIMECapabilitiesInMessage"`
-	OWAOnlyUseSmartCard                              *bool    `ps:"OWAOnlyUseSmartCard"`
-	OWASenderCertificateAttributesToDisplay          string   `ps:"OWASenderCertificateAttributesToDisplay"`
-	OWASignedEmailCertificateInclusion               *bool    `ps:"OWASignedEmailCertificateInclusion"`
-	OWASigningAlgorithms                             string   `ps:"OWASigningAlgorithms"`
-	OWATripleWrapSignedEncryptedMail                 *bool    `ps:"OWATripleWrapSignedEncryptedMail"`
-	OWAUseKeyIdentifier                              *bool    `ps:"OWAUseKeyIdentifier"`
-	OWAUseSecondaryProxiesWhenFindingCertificates    *bool    `ps:"OWAUseSecondaryProxiesWhenFindingCertificates"`
-	SMIMECertificateIssuingCA                        []string `ps:"SMIMECertificateIssuingCA"`
+	Identity                                         any    `ps:"Identity"` // OrganizationIdParameter
+	NoSignOnReply                                    *bool  `ps:"NoSignOnReply"`
+	OWAAllowUserChoiceOfSigningCertificate           *bool  `ps:"OWAAllowUserChoiceOfSigningCertificate"`
+	OWAAlwaysEncrypt                                 *bool  `ps:"OWAAlwaysEncrypt"`
+	OWAAlwaysSign                                    *bool  `ps:"OWAAlwaysSign"`
+	OWABCCEncryptedEmailForking                      *int64 `ps:"OWABCCEncryptedEmailForking"`
+	OWACheckCRLOnSend                                *bool  `ps:"OWACheckCRLOnSend"`
+	OWAClearSign                                     *bool  `ps:"OWAClearSign"`
+	OWACopyRecipientHeaders                          *bool  `ps:"OWACopyRecipientHeaders"`
+	OWACRLConnectionTimeout                          *int64 `ps:"OWACRLConnectionTimeout"`
+	OWACRLRetrievalTimeout                           *int64 `ps:"OWACRLRetrievalTimeout"`
+	OWADisableCRLCheck                               *bool  `ps:"OWADisableCRLCheck"`
+	OWADLExpansionTimeout                            *int64 `ps:"OWADLExpansionTimeout"`
+	OWAEncryptionAlgorithms                          string `ps:"OWAEncryptionAlgorithms"`
+	OWAEncryptTemporaryBuffers                       *bool  `ps:"OWAEncryptTemporaryBuffers"`
+	OWAForceSMIMEClientUpgrade                       *bool  `ps:"OWAForceSMIMEClientUpgrade"`
+	OWAIncludeCertificateChainAndRootCertificate     *bool  `ps:"OWAIncludeCertificateChainAndRootCertificate"`
+	OWAIncludeCertificateChainWithoutRootCertificate *bool  `ps:"OWAIncludeCertificateChainWithoutRootCertificate"`
+	OWAIncludeSMIMECapabilitiesInMessage             *bool  `ps:"OWAIncludeSMIMECapabilitiesInMessage"`
+	OWAOnlyUseSmartCard                              *bool  `ps:"OWAOnlyUseSmartCard"`
+	OWASenderCertificateAttributesToDisplay          string `ps:"OWASenderCertificateAttributesToDisplay"`
+	OWASignedEmailCertificateInclusion               *bool  `ps:"OWASignedEmailCertificateInclusion"`
+	OWASigningAlgorithms                             string `ps:"OWASigningAlgorithms"`
+	OWATripleWrapSignedEncryptedMail                 *bool  `ps:"OWATripleWrapSignedEncryptedMail"`
+	OWAUseKeyIdentifier                              *bool  `ps:"OWAUseKeyIdentifier"`
+	OWAUseSecondaryProxiesWhenFindingCertificates    *bool  `ps:"OWAUseSecondaryProxiesWhenFindingCertificates"`
+	SMIMECertificateIssuingCA                        any    `ps:"SMIMECertificateIssuingCA"` // Byte[]
 }
 
 func (p SetSmimeConfigParams) params() map[string]any {
@@ -34570,10 +34570,10 @@ type SetTransportRuleParams struct {
 	ExceptIfHeaderMatchesMessageHeader           any                   `ps:"ExceptIfHeaderMatchesMessageHeader"` // HeaderName
 	ExceptIfHeaderMatchesPatterns                []string              `ps:"ExceptIfHeaderMatchesPatterns"`
 	ExceptIfManagerAddresses                     []string              `ps:"ExceptIfManagerAddresses"`
-	ExceptIfManagerForEvaluatedUser              any                   `ps:"ExceptIfManagerForEvaluatedUser"` // EvaluatedUser
-	ExceptIfMessageContainsDataClassifications   []string              `ps:"ExceptIfMessageContainsDataClassifications"`
-	ExceptIfMessageSizeOver                      any                   `ps:"ExceptIfMessageSizeOver"`    // ByteQuantifiedSize
-	ExceptIfMessageTypeMatches                   any                   `ps:"ExceptIfMessageTypeMatches"` // MessageType
+	ExceptIfManagerForEvaluatedUser              any                   `ps:"ExceptIfManagerForEvaluatedUser"`            // EvaluatedUser
+	ExceptIfMessageContainsDataClassifications   any                   `ps:"ExceptIfMessageContainsDataClassifications"` // Hashtable[]
+	ExceptIfMessageSizeOver                      any                   `ps:"ExceptIfMessageSizeOver"`                    // ByteQuantifiedSize
+	ExceptIfMessageTypeMatches                   any                   `ps:"ExceptIfMessageTypeMatches"`                 // MessageType
 	ExceptIfRecipientADAttributeContainsWords    []string              `ps:"ExceptIfRecipientADAttributeContainsWords"`
 	ExceptIfRecipientADAttributeMatchesPatterns  []string              `ps:"ExceptIfRecipientADAttributeMatchesPatterns"`
 	ExceptIfRecipientAddressContainsWords        []string              `ps:"ExceptIfRecipientAddressContainsWords"`
@@ -34615,11 +34615,11 @@ type SetTransportRuleParams struct {
 	IncidentReportContent                        []string              `ps:"IncidentReportContent"`
 	LogEventText                                 any                   `ps:"LogEventText"` // EventLogText
 	ManagerAddresses                             []string              `ps:"ManagerAddresses"`
-	ManagerForEvaluatedUser                      any                   `ps:"ManagerForEvaluatedUser"` // EvaluatedUser
-	MessageContainsDataClassifications           []string              `ps:"MessageContainsDataClassifications"`
-	MessageSizeOver                              any                   `ps:"MessageSizeOver"`    // ByteQuantifiedSize
-	MessageTypeMatches                           any                   `ps:"MessageTypeMatches"` // MessageType
-	Mode                                         any                   `ps:"Mode"`               // RuleMode
+	ManagerForEvaluatedUser                      any                   `ps:"ManagerForEvaluatedUser"`            // EvaluatedUser
+	MessageContainsDataClassifications           any                   `ps:"MessageContainsDataClassifications"` // Hashtable[]
+	MessageSizeOver                              any                   `ps:"MessageSizeOver"`                    // ByteQuantifiedSize
+	MessageTypeMatches                           any                   `ps:"MessageTypeMatches"`                 // MessageType
+	Mode                                         any                   `ps:"Mode"`                               // RuleMode
 	ModerateMessageByManager                     *bool                 `ps:"ModerateMessageByManager"`
 	ModerateMessageByUser                        []string              `ps:"ModerateMessageByUser"`
 	Name                                         string                `ps:"Name"`
@@ -36447,7 +36447,7 @@ func (s *Service) TestMailboxAssistant(ctx context.Context, p TestMailboxAssista
 // TestMessageParams are the parameters of Test-Message.
 type TestMessageParams struct {
 	Force           bool     `ps:"Force"`
-	MessageFileData []string `ps:"MessageFileData"`
+	MessageFileData any      `ps:"MessageFileData"` // Byte[]
 	Recipients      []string `ps:"Recipients"`
 	Sender          any      `ps:"Sender"`       // SmtpAddress
 	SendReportTo    any      `ps:"SendReportTo"` // RecipientIdParameter
@@ -36489,31 +36489,31 @@ func (s *Service) TestMessage(ctx context.Context, p TestMessageParams) (*admina
 // TestMigrationServerAvailabilityParams are the parameters of Test-MigrationServerAvailability.
 // DefaultParameterSetName: Identity
 type TestMigrationServerAvailabilityParams struct {
-	AcceptUntrustedCertificates        bool     `ps:"AcceptUntrustedCertificates"`
-	Authentication                     any      `ps:"Authentication"` // AuthenticationMethod
-	Autodiscover                       bool     `ps:"Autodiscover"`
-	Compliance                         bool     `ps:"Compliance"`
-	Credentials                        any      `ps:"Credentials"`  // PSCredential
-	EmailAddress                       any      `ps:"EmailAddress"` // SmtpAddress
-	Endpoint                           any      `ps:"Endpoint"`     // MigrationEndpointIdParameter
-	ExchangeOutlookAnywhere            bool     `ps:"ExchangeOutlookAnywhere"`
-	ExchangeRemoteMove                 bool     `ps:"ExchangeRemoteMove"`
-	ExchangeServer                     string   `ps:"ExchangeServer"`
-	FilePath                           string   `ps:"FilePath"`
-	Gmail                              bool     `ps:"Gmail"`
-	Imap                               bool     `ps:"Imap"`
-	MailboxPermission                  any      `ps:"MailboxPermission"` // MigrationMailboxPermission
-	Partition                          any      `ps:"Partition"`         // MailboxIdParameter
-	Port                               *int64   `ps:"Port"`
-	PublicFolder                       bool     `ps:"PublicFolder"`
-	PublicFolderDatabaseServerLegacyDN string   `ps:"PublicFolderDatabaseServerLegacyDN"`
-	PublicFolderToUnifiedGroup         bool     `ps:"PublicFolderToUnifiedGroup"`
-	RemoteServer                       any      `ps:"RemoteServer"`   // Fqdn
-	RPCProxyServer                     any      `ps:"RPCProxyServer"` // Fqdn
-	Security                           any      `ps:"Security"`       // IMAPSecurityMechanism
-	ServiceAccountKeyFileData          []string `ps:"ServiceAccountKeyFileData"`
-	SourceMailboxLegacyDN              string   `ps:"SourceMailboxLegacyDN"`
-	TestMailbox                        any      `ps:"TestMailbox"` // MailboxIdParameter
+	AcceptUntrustedCertificates        bool   `ps:"AcceptUntrustedCertificates"`
+	Authentication                     any    `ps:"Authentication"` // AuthenticationMethod
+	Autodiscover                       bool   `ps:"Autodiscover"`
+	Compliance                         bool   `ps:"Compliance"`
+	Credentials                        any    `ps:"Credentials"`  // PSCredential
+	EmailAddress                       any    `ps:"EmailAddress"` // SmtpAddress
+	Endpoint                           any    `ps:"Endpoint"`     // MigrationEndpointIdParameter
+	ExchangeOutlookAnywhere            bool   `ps:"ExchangeOutlookAnywhere"`
+	ExchangeRemoteMove                 bool   `ps:"ExchangeRemoteMove"`
+	ExchangeServer                     string `ps:"ExchangeServer"`
+	FilePath                           string `ps:"FilePath"`
+	Gmail                              bool   `ps:"Gmail"`
+	Imap                               bool   `ps:"Imap"`
+	MailboxPermission                  any    `ps:"MailboxPermission"` // MigrationMailboxPermission
+	Partition                          any    `ps:"Partition"`         // MailboxIdParameter
+	Port                               *int64 `ps:"Port"`
+	PublicFolder                       bool   `ps:"PublicFolder"`
+	PublicFolderDatabaseServerLegacyDN string `ps:"PublicFolderDatabaseServerLegacyDN"`
+	PublicFolderToUnifiedGroup         bool   `ps:"PublicFolderToUnifiedGroup"`
+	RemoteServer                       any    `ps:"RemoteServer"`              // Fqdn
+	RPCProxyServer                     any    `ps:"RPCProxyServer"`            // Fqdn
+	Security                           any    `ps:"Security"`                  // IMAPSecurityMechanism
+	ServiceAccountKeyFileData          any    `ps:"ServiceAccountKeyFileData"` // Byte[]
+	SourceMailboxLegacyDN              string `ps:"SourceMailboxLegacyDN"`
+	TestMailbox                        any    `ps:"TestMailbox"` // MailboxIdParameter
 }
 
 func (p TestMigrationServerAvailabilityParams) params() map[string]any {
@@ -36701,8 +36701,8 @@ func (s *Service) TestStoreEndpoint(ctx context.Context, p TestStoreEndpointPara
 
 // TestTextExtractionParams are the parameters of Test-TextExtraction.
 type TestTextExtractionParams struct {
-	DomainController any      `ps:"DomainController"` // Fqdn
-	FileData         []string `ps:"FileData"`
+	DomainController any `ps:"DomainController"` // Fqdn
+	FileData         any `ps:"FileData"`         // Byte[]
 }
 
 func (p TestTextExtractionParams) params() map[string]any {

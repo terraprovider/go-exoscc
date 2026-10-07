@@ -100,7 +100,7 @@ type CheckPurviewConfigParams struct {
 	DateTimeUTC            string   `ps:"DateTimeUTC"`
 	DeviceName             string   `ps:"DeviceName"`
 	File                   string   `ps:"File"`
-	FileAsBytes            []string `ps:"FileAsBytes"`
+	FileAsBytes            any      `ps:"FileAsBytes"` // Byte[]
 	IncidentId             string   `ps:"IncidentId"`
 	ItemId                 string   `ps:"ItemId"`
 	MessageId              string   `ps:"MessageId"`
@@ -4243,7 +4243,7 @@ func (s *Service) GetUser(ctx context.Context, p GetUserParams) (*adminapi.Resul
 // ImportDlpComplianceRuleCollectionParams are the parameters of Import-DlpComplianceRuleCollection.
 type ImportDlpComplianceRuleCollectionParams struct {
 	ExtendedWorkloadPolicies []string `ps:"ExtendedWorkloadPolicies"`
-	FileData                 []string `ps:"FileData"`
+	FileData                 any      `ps:"FileData"`
 	Force                    bool     `ps:"Force"`
 	ImportErrorAction        any      `ps:"ImportErrorAction"`
 	ImportMode               any      `ps:"ImportMode"`
@@ -4726,7 +4726,7 @@ func (s *Service) NewAppRetentionCompliancePolicy(ctx context.Context, p NewAppR
 type NewAppRetentionComplianceRuleParams struct {
 	ApplyComplianceTag                  string   `ps:"ApplyComplianceTag"`
 	Comment                             string   `ps:"Comment"`
-	ContentContainsSensitiveInformation []string `ps:"ContentContainsSensitiveInformation"`
+	ContentContainsSensitiveInformation any      `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
 	ContentMatchQuery                   string   `ps:"ContentMatchQuery"`
 	ExcludedItemClasses                 []string `ps:"ExcludedItemClasses"`
 	ExpirationDateOption                string   `ps:"ExpirationDateOption"`
@@ -5010,7 +5010,7 @@ type NewAutoSensitivityLabelRuleParams struct {
 	AnyOfRecipientAddressContainsWords           []string `ps:"AnyOfRecipientAddressContainsWords"`
 	AnyOfRecipientAddressMatchesPatterns         []string `ps:"AnyOfRecipientAddressMatchesPatterns"`
 	Comment                                      string   `ps:"Comment"`
-	ContentContainsSensitiveInformation          []string `ps:"ContentContainsSensitiveInformation"`
+	ContentContainsSensitiveInformation          any      `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
 	ContentExtensionMatchesWords                 []string `ps:"ContentExtensionMatchesWords"`
 	ContentIsNotLabeled                          *bool    `ps:"ContentIsNotLabeled"`
 	ContentPropertyContainsWords                 []string `ps:"ContentPropertyContainsWords"`
@@ -5024,7 +5024,7 @@ type NewAutoSensitivityLabelRuleParams struct {
 	ExceptIfAccessScope                          any      `ps:"ExceptIfAccessScope"` // AccessScope
 	ExceptIfAnyOfRecipientAddressContainsWords   []string `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
 	ExceptIfAnyOfRecipientAddressMatchesPatterns []string `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
-	ExceptIfContentContainsSensitiveInformation  []string `ps:"ExceptIfContentContainsSensitiveInformation"`
+	ExceptIfContentContainsSensitiveInformation  any      `ps:"ExceptIfContentContainsSensitiveInformation"` // PswsHashtable[]
 	ExceptIfContentExtensionMatchesWords         []string `ps:"ExceptIfContentExtensionMatchesWords"`
 	ExceptIfContentPropertyContainsWords         []string `ps:"ExceptIfContentPropertyContainsWords"`
 	ExceptIfDocumentCreatedBy                    []string `ps:"ExceptIfDocumentCreatedBy"`
@@ -6808,7 +6808,7 @@ type NewDlpComplianceRuleParams struct {
 	BlockAccessScope                             any      `ps:"BlockAccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.BlockAccessScope
 	Comment                                      string   `ps:"Comment"`
 	ContentCharacterSetContainsWords             []string `ps:"ContentCharacterSetContainsWords"`
-	ContentContainsSensitiveInformation          []string `ps:"ContentContainsSensitiveInformation"`
+	ContentContainsSensitiveInformation          any      `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
 	ContentExtensionMatchesWords                 []string `ps:"ContentExtensionMatchesWords"`
 	ContentFileTypeMatches                       []string `ps:"ContentFileTypeMatches"`
 	ContentIsNotLabeled                          *bool    `ps:"ContentIsNotLabeled"`
@@ -6830,7 +6830,7 @@ type NewDlpComplianceRuleParams struct {
 	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`   // Microsoft.Exchange.Data.ByteQuantifiedSize
 	EncryptRMSTemplate                           any      `ps:"EncryptRMSTemplate"` // RmsTemplateIdParameter
 	EndpointDlpBrowserRestrictions               []string `ps:"EndpointDlpBrowserRestrictions"`
-	EndpointDlpRestrictions                      []string `ps:"EndpointDlpRestrictions"`
+	EndpointDlpRestrictions                      any      `ps:"EndpointDlpRestrictions"` // PswsHashtable[]
 	EnforcePortalAccess                          *bool    `ps:"EnforcePortalAccess"`
 	EvaluateRulePerComponent                     *bool    `ps:"EvaluateRulePerComponent"`
 	ExceptIfAccessedBy                           []string `ps:"ExceptIfAccessedBy"`
@@ -6839,7 +6839,7 @@ type NewDlpComplianceRuleParams struct {
 	ExceptIfAnyOfRecipientAddressContainsWords   []string `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
 	ExceptIfAnyOfRecipientAddressMatchesPatterns []string `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
 	ExceptIfContentCharacterSetContainsWords     []string `ps:"ExceptIfContentCharacterSetContainsWords"`
-	ExceptIfContentContainsSensitiveInformation  []string `ps:"ExceptIfContentContainsSensitiveInformation"`
+	ExceptIfContentContainsSensitiveInformation  any      `ps:"ExceptIfContentContainsSensitiveInformation"` // PswsHashtable[]
 	ExceptIfContentExtensionMatchesWords         []string `ps:"ExceptIfContentExtensionMatchesWords"`
 	ExceptIfContentFileTypeMatches               []string `ps:"ExceptIfContentFileTypeMatches"`
 	ExceptIfContentIsShared                      *bool    `ps:"ExceptIfContentIsShared"`
@@ -6907,9 +6907,9 @@ type NewDlpComplianceRuleParams struct {
 	MessageLabelChangeDetected                   any      `ps:"MessageLabelChangeDetected"`
 	MessageSizeOver                              any      `ps:"MessageSizeOver"`    // Microsoft.Exchange.Data.ByteQuantifiedSize
 	MessageTypeMatches                           any      `ps:"MessageTypeMatches"` // MessageTypes
-	MipRestrictAccess                            []string `ps:"MipRestrictAccess"`
-	Moderate                                     any      `ps:"Moderate"`      // PswsHashtable
-	ModifySubject                                any      `ps:"ModifySubject"` // PswsHashtable
+	MipRestrictAccess                            any      `ps:"MipRestrictAccess"`  // PswsHashtable[]
+	Moderate                                     any      `ps:"Moderate"`           // PswsHashtable
+	ModifySubject                                any      `ps:"ModifySubject"`      // PswsHashtable
 	MoveToQuarantineLocation                     *bool    `ps:"MoveToQuarantineLocation"`
 	Name                                         string   `ps:"Name"`
 	NonBifurcatingAccessScope                    any      `ps:"NonBifurcatingAccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.NonBifurcatingAccessScope
@@ -6929,9 +6929,9 @@ type NewDlpComplianceRuleParams struct {
 	NotifyPolicyTipDisplayOption                 any      `ps:"NotifyPolicyTipDisplayOption"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyTipDisplayOption
 	NotifyPolicyTipUrl                           string   `ps:"NotifyPolicyTipUrl"`
 	NotifyUser                                   []string `ps:"NotifyUser"`
-	NotifyUserType                               any      `ps:"NotifyUserType"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.NotifyUserType
-	OnPremisesScannerDlpRestrictions             []string `ps:"OnPremisesScannerDlpRestrictions"`
-	Policy                                       any      `ps:"Policy"` // PolicyIdParameter
+	NotifyUserType                               any      `ps:"NotifyUserType"`                   // Microsoft.Office.CompliancePolicy.PolicyEvaluation.NotifyUserType
+	OnPremisesScannerDlpRestrictions             any      `ps:"OnPremisesScannerDlpRestrictions"` // PswsHashtable[]
+	Policy                                       any      `ps:"Policy"`                           // PolicyIdParameter
 	PowerBIDlpRestrictions                       []string `ps:"PowerBIDlpRestrictions"`
 	PrependSubject                               string   `ps:"PrependSubject"`
 	Priority                                     *int64   `ps:"Priority"`
@@ -6945,7 +6945,7 @@ type NewDlpComplianceRuleParams struct {
 	RemoveHeader                                 []string `ps:"RemoveHeader"`
 	RemoveRMSTemplate                            *bool    `ps:"RemoveRMSTemplate"`
 	ReportSeverityLevel                          any      `ps:"ReportSeverityLevel"` // RuleSeverity
-	RestrictAccess                               []string `ps:"RestrictAccess"`
+	RestrictAccess                               any      `ps:"RestrictAccess"`      // System.Collections.Hashtable[]
 	RestrictBrowserAccess                        *bool    `ps:"RestrictBrowserAccess"`
 	RestrictWebGrounding                         *bool    `ps:"RestrictWebGrounding"`
 	RuleErrorAction                              any      `ps:"RuleErrorAction"`                  // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyRuleErrorAction
@@ -7560,7 +7560,7 @@ func (s *Service) NewDlpComplianceRule(ctx context.Context, p NewDlpComplianceRu
 
 // NewDlpEdmSchemaParams are the parameters of New-DlpEdmSchema.
 type NewDlpEdmSchemaParams struct {
-	FileData []string `ps:"FileData"`
+	FileData any `ps:"FileData"` // Byte[]
 }
 
 func (p NewDlpEdmSchemaParams) params() map[string]any {
@@ -7578,11 +7578,11 @@ func (s *Service) NewDlpEdmSchema(ctx context.Context, p NewDlpEdmSchemaParams) 
 
 // NewDlpFingerprintParams are the parameters of New-DlpFingerprint.
 type NewDlpFingerprintParams struct {
-	Description     string   `ps:"Description"`
-	FileData        []string `ps:"FileData"`
-	IsExact         *bool    `ps:"IsExact"`
-	Threshold       *int64   `ps:"Threshold"`
-	ThresholdConfig any      `ps:"ThresholdConfig"` // PswsHashtable
+	Description     string `ps:"Description"`
+	FileData        any    `ps:"FileData"` // Byte[]
+	IsExact         *bool  `ps:"IsExact"`
+	Threshold       *int64 `ps:"Threshold"`
+	ThresholdConfig any    `ps:"ThresholdConfig"` // PswsHashtable
 }
 
 func (p NewDlpFingerprintParams) params() map[string]any {
@@ -7612,13 +7612,13 @@ func (s *Service) NewDlpFingerprint(ctx context.Context, p NewDlpFingerprintPara
 
 // NewDlpKeywordDictionaryParams are the parameters of New-DlpKeywordDictionary.
 type NewDlpKeywordDictionaryParams struct {
-	Description            string   `ps:"Description"`
-	DoNotPersistDictionary bool     `ps:"DoNotPersistDictionary"`
-	DoNotPersistKeywords   bool     `ps:"DoNotPersistKeywords"`
-	FileData               []string `ps:"FileData"`
-	MatchStyle             string   `ps:"MatchStyle"` // one of: word, string
-	Name                   string   `ps:"Name"`
-	Organization           any      `ps:"Organization"` // OrganizationIdParameter
+	Description            string `ps:"Description"`
+	DoNotPersistDictionary bool   `ps:"DoNotPersistDictionary"`
+	DoNotPersistKeywords   bool   `ps:"DoNotPersistKeywords"`
+	FileData               any    `ps:"FileData"`   // Byte[]
+	MatchStyle             string `ps:"MatchStyle"` // one of: word, string
+	Name                   string `ps:"Name"`
+	Organization           any    `ps:"Organization"` // OrganizationIdParameter
 }
 
 func (p NewDlpKeywordDictionaryParams) params() map[string]any {
@@ -7655,7 +7655,7 @@ func (s *Service) NewDlpKeywordDictionary(ctx context.Context, p NewDlpKeywordDi
 // NewDlpSensitiveInformationTypeParams are the parameters of New-DlpSensitiveInformationType.
 type NewDlpSensitiveInformationTypeParams struct {
 	Description     string   `ps:"Description"`
-	FileData        []string `ps:"FileData"`
+	FileData        any      `ps:"FileData"` // Byte[]
 	Fingerprints    []string `ps:"Fingerprints"`
 	IsExact         *bool    `ps:"IsExact"`
 	Locale          any      `ps:"Locale"` // CultureInfo
@@ -7700,8 +7700,8 @@ func (s *Service) NewDlpSensitiveInformationType(ctx context.Context, p NewDlpSe
 
 // NewDlpSensitiveInformationTypeRulePackageParams are the parameters of New-DlpSensitiveInformationTypeRulePackage.
 type NewDlpSensitiveInformationTypeRulePackageParams struct {
-	FileData    []string `ps:"FileData"`
-	MigrationId string   `ps:"MigrationId"`
+	FileData    any    `ps:"FileData"` // Byte[]
+	MigrationId string `ps:"MigrationId"`
 }
 
 func (p NewDlpSensitiveInformationTypeRulePackageParams) params() map[string]any {
@@ -9629,7 +9629,7 @@ type NewRetentionComplianceRuleParams struct {
 	ArchiveTriggerBasedOn               string   `ps:"ArchiveTriggerBasedOn"`
 	ArchiveTriggerInDays                any      `ps:"ArchiveTriggerInDays"`
 	Comment                             string   `ps:"Comment"`
-	ContentContainsSensitiveInformation []string `ps:"ContentContainsSensitiveInformation"`
+	ContentContainsSensitiveInformation any      `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
 	ContentMatchQuery                   string   `ps:"ContentMatchQuery"`
 	ExcludedItemClasses                 []string `ps:"ExcludedItemClasses"`
 	ExpirationDateOption                string   `ps:"ExpirationDateOption"`
@@ -10062,7 +10062,7 @@ type NewSupervisoryReviewRuleParams struct {
 	AdvancedRule                        string   `ps:"AdvancedRule"`
 	CcsiDataModelOperator               string   `ps:"CcsiDataModelOperator"`
 	Condition                           string   `ps:"Condition"`
-	ContentContainsSensitiveInformation []string `ps:"ContentContainsSensitiveInformation"`
+	ContentContainsSensitiveInformation any      `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
 	ContentMatchesDataModel             string   `ps:"ContentMatchesDataModel"`
 	ContentSources                      []string `ps:"ContentSources"`
 	DayXInsights                        *bool    `ps:"DayXInsights"`
@@ -12569,9 +12569,9 @@ func (s *Service) SetAppRetentionCompliancePolicy(ctx context.Context, p SetAppR
 type SetAppRetentionComplianceRuleParams struct {
 	ApplyComplianceTag                  string                `ps:"ApplyComplianceTag"`
 	Comment                             string                `ps:"Comment"`
-	ContentContainsSensitiveInformation []string              `ps:"ContentContainsSensitiveInformation"`
-	ContentDateFrom                     any                   `ps:"ContentDateFrom"` // System.DateTime
-	ContentDateTo                       any                   `ps:"ContentDateTo"`   // System.DateTime
+	ContentContainsSensitiveInformation any                   `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
+	ContentDateFrom                     any                   `ps:"ContentDateFrom"`                     // System.DateTime
+	ContentDateTo                       any                   `ps:"ContentDateTo"`                       // System.DateTime
 	ContentMatchQuery                   string                `ps:"ContentMatchQuery"`
 	ExcludedItemClasses                 []string              `ps:"ExcludedItemClasses"`
 	ExcludedItemClassesDelta            *adminapi.StringDelta `ps:"ExcludedItemClasses"` // adds/removes values of ExcludedItemClasses; takes precedence over it
@@ -12947,7 +12947,7 @@ type SetAutoSensitivityLabelRuleParams struct {
 	AnyOfRecipientAddressMatchesPatterns              []string              `ps:"AnyOfRecipientAddressMatchesPatterns"`
 	AnyOfRecipientAddressMatchesPatternsDelta         *adminapi.StringDelta `ps:"AnyOfRecipientAddressMatchesPatterns"` // adds/removes values of AnyOfRecipientAddressMatchesPatterns; takes precedence over it
 	Comment                                           string                `ps:"Comment"`
-	ContentContainsSensitiveInformation               []string              `ps:"ContentContainsSensitiveInformation"`
+	ContentContainsSensitiveInformation               any                   `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
 	ContentExtensionMatchesWords                      []string              `ps:"ContentExtensionMatchesWords"`
 	ContentExtensionMatchesWordsDelta                 *adminapi.StringDelta `ps:"ContentExtensionMatchesWords"` // adds/removes values of ContentExtensionMatchesWords; takes precedence over it
 	ContentIsNotLabeled                               *bool                 `ps:"ContentIsNotLabeled"`
@@ -12967,7 +12967,7 @@ type SetAutoSensitivityLabelRuleParams struct {
 	ExceptIfAnyOfRecipientAddressContainsWordsDelta   *adminapi.StringDelta `ps:"ExceptIfAnyOfRecipientAddressContainsWords"` // adds/removes values of ExceptIfAnyOfRecipientAddressContainsWords; takes precedence over it
 	ExceptIfAnyOfRecipientAddressMatchesPatterns      []string              `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
 	ExceptIfAnyOfRecipientAddressMatchesPatternsDelta *adminapi.StringDelta `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"` // adds/removes values of ExceptIfAnyOfRecipientAddressMatchesPatterns; takes precedence over it
-	ExceptIfContentContainsSensitiveInformation       []string              `ps:"ExceptIfContentContainsSensitiveInformation"`
+	ExceptIfContentContainsSensitiveInformation       any                   `ps:"ExceptIfContentContainsSensitiveInformation"`  // PswsHashtable[]
 	ExceptIfContentExtensionMatchesWords              []string              `ps:"ExceptIfContentExtensionMatchesWords"`
 	ExceptIfContentExtensionMatchesWordsDelta         *adminapi.StringDelta `ps:"ExceptIfContentExtensionMatchesWords"` // adds/removes values of ExceptIfContentExtensionMatchesWords; takes precedence over it
 	ExceptIfContentPropertyContainsWords              []string              `ps:"ExceptIfContentPropertyContainsWords"`
@@ -15068,8 +15068,8 @@ type SetDlpComplianceRuleParams struct {
 	BlockAccessScope                                  any                   `ps:"BlockAccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.BlockAccessScope
 	Comment                                           string                `ps:"Comment"`
 	ContentCharacterSetContainsWords                  []string              `ps:"ContentCharacterSetContainsWords"`
-	ContentCharacterSetContainsWordsDelta             *adminapi.StringDelta `ps:"ContentCharacterSetContainsWords"` // adds/removes values of ContentCharacterSetContainsWords; takes precedence over it
-	ContentContainsSensitiveInformation               []string              `ps:"ContentContainsSensitiveInformation"`
+	ContentCharacterSetContainsWordsDelta             *adminapi.StringDelta `ps:"ContentCharacterSetContainsWords"`    // adds/removes values of ContentCharacterSetContainsWords; takes precedence over it
+	ContentContainsSensitiveInformation               any                   `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
 	ContentExtensionMatchesWords                      []string              `ps:"ContentExtensionMatchesWords"`
 	ContentExtensionMatchesWordsDelta                 *adminapi.StringDelta `ps:"ContentExtensionMatchesWords"` // adds/removes values of ContentExtensionMatchesWords; takes precedence over it
 	ContentFileTypeMatches                            []string              `ps:"ContentFileTypeMatches"`
@@ -15099,7 +15099,7 @@ type SetDlpComplianceRuleParams struct {
 	DocumentSizeOver                                  any                   `ps:"DocumentSizeOver"`         // Microsoft.Exchange.Data.ByteQuantifiedSize
 	EncryptRMSTemplate                                any                   `ps:"EncryptRMSTemplate"`       // RmsTemplateIdParameter
 	EndpointDlpBrowserRestrictions                    []string              `ps:"EndpointDlpBrowserRestrictions"`
-	EndpointDlpRestrictions                           []string              `ps:"EndpointDlpRestrictions"`
+	EndpointDlpRestrictions                           any                   `ps:"EndpointDlpRestrictions"` // PswsHashtable[]
 	EnforcePortalAccess                               *bool                 `ps:"EnforcePortalAccess"`
 	EvaluateRulePerComponent                          *bool                 `ps:"EvaluateRulePerComponent"`
 	ExceptIfAccessedBy                                []string              `ps:"ExceptIfAccessedBy"`
@@ -15110,8 +15110,8 @@ type SetDlpComplianceRuleParams struct {
 	ExceptIfAnyOfRecipientAddressMatchesPatterns      []string              `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
 	ExceptIfAnyOfRecipientAddressMatchesPatternsDelta *adminapi.StringDelta `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"` // adds/removes values of ExceptIfAnyOfRecipientAddressMatchesPatterns; takes precedence over it
 	ExceptIfContentCharacterSetContainsWords          []string              `ps:"ExceptIfContentCharacterSetContainsWords"`
-	ExceptIfContentCharacterSetContainsWordsDelta     *adminapi.StringDelta `ps:"ExceptIfContentCharacterSetContainsWords"` // adds/removes values of ExceptIfContentCharacterSetContainsWords; takes precedence over it
-	ExceptIfContentContainsSensitiveInformation       []string              `ps:"ExceptIfContentContainsSensitiveInformation"`
+	ExceptIfContentCharacterSetContainsWordsDelta     *adminapi.StringDelta `ps:"ExceptIfContentCharacterSetContainsWords"`    // adds/removes values of ExceptIfContentCharacterSetContainsWords; takes precedence over it
+	ExceptIfContentContainsSensitiveInformation       any                   `ps:"ExceptIfContentContainsSensitiveInformation"` // PswsHashtable[]
 	ExceptIfContentExtensionMatchesWords              []string              `ps:"ExceptIfContentExtensionMatchesWords"`
 	ExceptIfContentExtensionMatchesWordsDelta         *adminapi.StringDelta `ps:"ExceptIfContentExtensionMatchesWords"` // adds/removes values of ExceptIfContentExtensionMatchesWords; takes precedence over it
 	ExceptIfContentFileTypeMatches                    []string              `ps:"ExceptIfContentFileTypeMatches"`
@@ -15201,9 +15201,9 @@ type SetDlpComplianceRuleParams struct {
 	MessageLabelChangeDetected                        any                   `ps:"MessageLabelChangeDetected"`
 	MessageSizeOver                                   any                   `ps:"MessageSizeOver"`    // Microsoft.Exchange.Data.ByteQuantifiedSize
 	MessageTypeMatches                                any                   `ps:"MessageTypeMatches"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.MessageTypes
-	MipRestrictAccess                                 []string              `ps:"MipRestrictAccess"`
-	Moderate                                          any                   `ps:"Moderate"`      // PswsHashtable
-	ModifySubject                                     any                   `ps:"ModifySubject"` // PswsHashtable
+	MipRestrictAccess                                 any                   `ps:"MipRestrictAccess"`  // PswsHashtable[]
+	Moderate                                          any                   `ps:"Moderate"`           // PswsHashtable
+	ModifySubject                                     any                   `ps:"ModifySubject"`      // PswsHashtable
 	MoveToQuarantineLocation                          *bool                 `ps:"MoveToQuarantineLocation"`
 	NonBifurcatingAccessScope                         any                   `ps:"NonBifurcatingAccessScope"` // Microsoft.Office.CompliancePolicy.Tasks.NonBifurcatingAccessScope
 	NotifyAllowOverride                               []string              `ps:"NotifyAllowOverride"`
@@ -15223,9 +15223,9 @@ type SetDlpComplianceRuleParams struct {
 	NotifyPolicyTipDisplayOption                      any                   `ps:"NotifyPolicyTipDisplayOption"`          // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyTipDisplayOption
 	NotifyPolicyTipUrl                                string                `ps:"NotifyPolicyTipUrl"`
 	NotifyUser                                        []string              `ps:"NotifyUser"`
-	NotifyUserDelta                                   *adminapi.StringDelta `ps:"NotifyUser"`     // adds/removes values of NotifyUser; takes precedence over it
-	NotifyUserType                                    any                   `ps:"NotifyUserType"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.NotifyUserType
-	OnPremisesScannerDlpRestrictions                  []string              `ps:"OnPremisesScannerDlpRestrictions"`
+	NotifyUserDelta                                   *adminapi.StringDelta `ps:"NotifyUser"`                       // adds/removes values of NotifyUser; takes precedence over it
+	NotifyUserType                                    any                   `ps:"NotifyUserType"`                   // Microsoft.Office.CompliancePolicy.PolicyEvaluation.NotifyUserType
+	OnPremisesScannerDlpRestrictions                  any                   `ps:"OnPremisesScannerDlpRestrictions"` // PswsHashtable[]
 	PowerBIDlpRestrictions                            []string              `ps:"PowerBIDlpRestrictions"`
 	PrependSubject                                    string                `ps:"PrependSubject"`
 	Priority                                          *int64                `ps:"Priority"`
@@ -15241,7 +15241,7 @@ type SetDlpComplianceRuleParams struct {
 	RemoveHeaderDelta                                 *adminapi.StringDelta `ps:"RemoveHeader"` // adds/removes values of RemoveHeader; takes precedence over it
 	RemoveRMSTemplate                                 *bool                 `ps:"RemoveRMSTemplate"`
 	ReportSeverityLevel                               any                   `ps:"ReportSeverityLevel"` // RuleSeverity
-	RestrictAccess                                    []string              `ps:"RestrictAccess"`
+	RestrictAccess                                    any                   `ps:"RestrictAccess"`      // System.Collections.Hashtable[]
 	RestrictBrowserAccess                             *bool                 `ps:"RestrictBrowserAccess"`
 	RestrictWebGrounding                              *bool                 `ps:"RestrictWebGrounding"`
 	RuleErrorAction                                   any                   `ps:"RuleErrorAction"`                  // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyRuleErrorAction
@@ -15948,7 +15948,7 @@ func (s *Service) SetDlpComplianceRule(ctx context.Context, p SetDlpComplianceRu
 
 // SetDlpEdmSchemaParams are the parameters of Set-DlpEdmSchema.
 type SetDlpEdmSchemaParams struct {
-	FileData []string `ps:"FileData"`
+	FileData any `ps:"FileData"` // Byte[]
 }
 
 func (p SetDlpEdmSchemaParams) params() map[string]any {
@@ -15966,12 +15966,12 @@ func (s *Service) SetDlpEdmSchema(ctx context.Context, p SetDlpEdmSchemaParams) 
 
 // SetDlpKeywordDictionaryParams are the parameters of Set-DlpKeywordDictionary.
 type SetDlpKeywordDictionaryParams struct {
-	Description          string   `ps:"Description"`
-	DoNotPersistKeywords bool     `ps:"DoNotPersistKeywords"`
-	FileData             []string `ps:"FileData"`
-	Identity             any      `ps:"Identity"`   // SensitiveInformationTypeIdParameter
-	MatchStyle           string   `ps:"MatchStyle"` // one of: word, string
-	Name                 string   `ps:"Name"`
+	Description          string `ps:"Description"`
+	DoNotPersistKeywords bool   `ps:"DoNotPersistKeywords"`
+	FileData             any    `ps:"FileData"`   // Byte[]
+	Identity             any    `ps:"Identity"`   // SensitiveInformationTypeIdParameter
+	MatchStyle           string `ps:"MatchStyle"` // one of: word, string
+	Name                 string `ps:"Name"`
 }
 
 func (p SetDlpKeywordDictionaryParams) params() map[string]any {
@@ -16005,7 +16005,7 @@ func (s *Service) SetDlpKeywordDictionary(ctx context.Context, p SetDlpKeywordDi
 // SetDlpSensitiveInformationTypeParams are the parameters of Set-DlpSensitiveInformationType.
 type SetDlpSensitiveInformationTypeParams struct {
 	Description       string                `ps:"Description"`
-	FileData          []string              `ps:"FileData"`
+	FileData          any                   `ps:"FileData"` // Byte[]
 	Fingerprints      []string              `ps:"Fingerprints"`
 	FingerprintsDelta *adminapi.StringDelta `ps:"Fingerprints"` // adds/removes values of Fingerprints; takes precedence over it
 	Identity          any                   `ps:"Identity"`     // SensitiveInformationTypeIdParameter
@@ -16080,7 +16080,7 @@ func (s *Service) SetDlpSensitiveInformationTypeConfig(ctx context.Context, p Se
 
 // SetDlpSensitiveInformationTypeRulePackageParams are the parameters of Set-DlpSensitiveInformationTypeRulePackage.
 type SetDlpSensitiveInformationTypeRulePackageParams struct {
-	FileData []string `ps:"FileData"`
+	FileData any `ps:"FileData"` // Byte[]
 }
 
 func (p SetDlpSensitiveInformationTypeRulePackageParams) params() map[string]any {
@@ -17845,10 +17845,10 @@ type SetPolicyConfigParams struct {
 	ComplianceUrl                              string   `ps:"ComplianceUrl"`
 	DlpAlertFoldingConfiguration               any      `ps:"DlpAlertFoldingConfiguration"`
 	DlpAlertSlaConfig                          string   `ps:"DlpAlertSlaConfig"`
-	DlpAppGroups                               []string `ps:"DlpAppGroups"`
-	DlpAppGroupsPsws                           []string `ps:"DlpAppGroupsPsws"`
+	DlpAppGroups                               any      `ps:"DlpAppGroups"`     // PswsHashtable[]
+	DlpAppGroupsPsws                           any      `ps:"DlpAppGroupsPsws"` // PswsHashtable[]
 	DlpErrorHandlingConfig                     string   `ps:"DlpErrorHandlingConfig"`
-	DlpExtensionGroups                         []string `ps:"DlpExtensionGroups"`
+	DlpExtensionGroups                         any      `ps:"DlpExtensionGroups"`            // PswsHashtable[]
 	DlpNetworkShareGroups                      any      `ps:"DlpNetworkShareGroups"`         // PswsHashtable
 	DlpPrinterGroups                           any      `ps:"DlpPrinterGroups"`              // PswsHashtable
 	DlpRemovableMediaGroups                    any      `ps:"DlpRemovableMediaGroups"`       // PswsHashtable
@@ -17858,8 +17858,8 @@ type SetPolicyConfigParams struct {
 	EnableLabelCoauth                          *bool    `ps:"EnableLabelCoauth"`
 	EnableSensitivityLabelingForPdf            *bool    `ps:"EnableSensitivityLabelingForPdf"`
 	EnableSpoAipMigration                      *bool    `ps:"EnableSpoAipMigration"`
-	EndpointDlpGlobalSettings                  []string `ps:"EndpointDlpGlobalSettings"`
-	EndpointDlpGlobalSettingsPsws              []string `ps:"EndpointDlpGlobalSettingsPsws"`
+	EndpointDlpGlobalSettings                  any      `ps:"EndpointDlpGlobalSettings"`     // PswsHashtable[]
+	EndpointDlpGlobalSettingsPsws              any      `ps:"EndpointDlpGlobalSettingsPsws"` // PswsHashtable[]
 	ExtendTeamsDlpPoliciesToSharePointOneDrive *bool    `ps:"ExtendTeamsDlpPoliciesToSharePointOneDrive"`
 	Identity                                   any      `ps:"Identity"`                                  // OrganizationIdParameter
 	InformationBarrierMode                     any      `ps:"InformationBarrierMode"`                    // InformationBarrierMode
@@ -17871,7 +17871,7 @@ type SetPolicyConfigParams struct {
 	JitEnforcementSettings                     string   `ps:"JitEnforcementSettings"`
 	MessageHeadersToRetainInOutlook            []string `ps:"MessageHeadersToRetainInOutlook"`
 	MigrateLabelScheme                         bool     `ps:"MigrateLabelScheme"`
-	MigrateLabelSchemeDisplayNames             []string `ps:"MigrateLabelSchemeDisplayNames"`
+	MigrateLabelSchemeDisplayNames             any      `ps:"MigrateLabelSchemeDisplayNames"`  // System.Collections.Hashtable[]
 	OnPremisesWorkload                         any      `ps:"OnPremisesWorkload"`              // Workload
 	ProcessingLimitExceededSeverity            any      `ps:"ProcessingLimitExceededSeverity"` // RuleSeverity
 	PurviewLabelConsent                        *bool    `ps:"PurviewLabelConsent"`
@@ -17879,8 +17879,8 @@ type SetPolicyConfigParams struct {
 	RetentionForwardCrawl                      *bool    `ps:"RetentionForwardCrawl"`
 	RuleErrorAction                            any      `ps:"RuleErrorAction"`       // PolicyRuleErrorAction
 	SenderAddressLocation                      any      `ps:"SenderAddressLocation"` // PolicySenderAddressLocation
-	SiteGroups                                 []string `ps:"SiteGroups"`
-	SiteGroupsPsws                             []string `ps:"SiteGroupsPsws"`
+	SiteGroups                                 any      `ps:"SiteGroups"`            // PswsHashtable[]
+	SiteGroupsPsws                             any      `ps:"SiteGroupsPsws"`        // PswsHashtable[]
 	SpoQuarantineLocation                      string   `ps:"SpoQuarantineLocation"`
 	SpoQuarantineText                          string   `ps:"SpoQuarantineText"`
 	TextExtractionConfig                       string   `ps:"TextExtractionConfig"`
@@ -18743,9 +18743,9 @@ type SetRetentionComplianceRuleParams struct {
 	ArchiveTriggerBasedOn               string                `ps:"ArchiveTriggerBasedOn"`
 	ArchiveTriggerInDays                any                   `ps:"ArchiveTriggerInDays"`
 	Comment                             string                `ps:"Comment"`
-	ContentContainsSensitiveInformation []string              `ps:"ContentContainsSensitiveInformation"`
-	ContentDateFrom                     any                   `ps:"ContentDateFrom"` // DateTime
-	ContentDateTo                       any                   `ps:"ContentDateTo"`   // DateTime
+	ContentContainsSensitiveInformation any                   `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
+	ContentDateFrom                     any                   `ps:"ContentDateFrom"`                     // DateTime
+	ContentDateTo                       any                   `ps:"ContentDateTo"`                       // DateTime
 	ContentMatchQuery                   string                `ps:"ContentMatchQuery"`
 	ExcludedItemClasses                 []string              `ps:"ExcludedItemClasses"`
 	ExcludedItemClassesDelta            *adminapi.StringDelta `ps:"ExcludedItemClasses"` // adds/removes values of ExcludedItemClasses; takes precedence over it
@@ -19275,7 +19275,7 @@ type SetSupervisoryReviewRuleParams struct {
 	AdvancedRule                            string                `ps:"AdvancedRule"`
 	CcsiDataModelOperator                   string                `ps:"CcsiDataModelOperator"`
 	Condition                               string                `ps:"Condition"`
-	ContentContainsSensitiveInformation     []string              `ps:"ContentContainsSensitiveInformation"`
+	ContentContainsSensitiveInformation     any                   `ps:"ContentContainsSensitiveInformation"` // PswsHashtable[]
 	ContentMatchesDataModel                 string                `ps:"ContentMatchesDataModel"`
 	ContentSources                          []string              `ps:"ContentSources"`
 	DayXInsights                            *bool                 `ps:"DayXInsights"`
@@ -19918,8 +19918,8 @@ func (s *Service) TestLabelConfig(ctx context.Context, p TestLabelConfigParams) 
 
 // TestTextExtractionParams are the parameters of Test-TextExtraction.
 type TestTextExtractionParams struct {
-	DomainController any      `ps:"DomainController"` // Fqdn
-	FileData         []string `ps:"FileData"`
+	DomainController any `ps:"DomainController"` // Fqdn
+	FileData         any `ps:"FileData"`         // Byte[]
 }
 
 func (p TestTextExtractionParams) params() map[string]any {

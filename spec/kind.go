@@ -12,20 +12,26 @@ const (
 	KindBool   Kind = "bool"   // *bool; sent when non-nil (false is sendable)
 	KindInt64  Kind = "int64"  // *int64; sent when non-nil (0 is sendable)
 	KindString Kind = "string" // string; sent when non-empty
-	KindList   Kind = "list"   // []string; sent when non-nil (empty clears)
+	KindList   Kind = "list"   // []string; sent when non-nil (full replace; an empty slice does not clear, see adminapi.StringDelta)
 	KindAny    Kind = "any"    // any; sent when non-nil
 )
 
 // Kind returns the parameter's binding kind. A concrete psm1 type constraint
 // always wins; DeclaredType only refines parameters the psm1 types as
-// System.Object.
+// System.Object, and the element type of System.Object[]. Arrays of structured
+// elements (hashtables, bytes) are KindAny, not string lists.
 func (p Param) Kind() Kind {
 	if p.IsSwitch {
 		return KindSwitch
 	}
 	t := strings.ToLower(p.Type)
 	switch {
-	case strings.HasSuffix(t, "[]"), strings.HasPrefix(t, "system.collections.generic.list["):
+	case strings.HasSuffix(t, "[]"):
+		if structuredElem(t) || (t == "system.object[]" && structuredElem(normalizeDeclared(p.DeclaredType))) {
+			return KindAny
+		}
+		return KindList
+	case strings.HasPrefix(t, "system.collections.generic.list["):
 		return KindList
 	case t == "string" || t == "system.string" || t == "guid" || t == "system.guid":
 		return KindString
@@ -49,6 +55,9 @@ func declaredKind(declared string) Kind {
 		return KindAny
 	}
 	if strings.HasSuffix(d, "[]") {
+		if structuredElem(d) {
+			return KindAny
+		}
 		return KindList
 	}
 	switch {
@@ -82,6 +91,21 @@ func normalizeDeclared(declared string) string {
 func (p Param) DeltaCapable() bool {
 	return !p.IsSwitch && strings.EqualFold(p.Type, "System.Object") &&
 		normalizeDeclared(p.DeclaredType) == "MultiValuedProperty"
+}
+
+// structuredElem reports whether an array type ("Hashtable[]",
+// "System.Collections.Hashtable[]", "byte[]") has elements that can't be sent as
+// strings.
+func structuredElem(arr string) bool {
+	e := strings.ToLower(strings.TrimSuffix(arr, "[]"))
+	if i := strings.LastIndex(e, "."); i >= 0 {
+		e = e[i+1:]
+	}
+	switch e {
+	case "hashtable", "pswshashtable", "byte":
+		return true
+	}
+	return false
 }
 
 func isIntType(t string) bool {

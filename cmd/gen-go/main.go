@@ -132,8 +132,9 @@ func fieldComment(p spec.Param) string {
 }
 
 // boundCheck emits the params() line that binds a field only when the caller set
-// it. Pointers and slices are bound whenever non-nil, so false, 0 and an empty
-// list (which clears a multi-valued property) can be sent.
+// it. Pointers and slices are bound whenever non-nil, so false and 0 can be
+// sent. An empty list is sent too, but Exchange ignores it; clearing a
+// multi-valued property needs the <Field>Delta (see deltaBoundCheck).
 func boundCheck(field, psName, gotype string) string {
 	switch gotype {
 	case "bool": // switch

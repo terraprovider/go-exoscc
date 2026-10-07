@@ -61,8 +61,11 @@ type param struct {
 	Aliases       json.RawMessage `json:"aliases"`
 }
 
-// override corrects one parameter whose documented type is wrong.
+// override corrects one parameter whose documented type is wrong. Catalog
+// scopes it to one catalog ("EXO" or "Purview", the prefix of the catalog's
+// source), so an override that matches nothing in its catalog is caught.
 type override struct {
+	Catalog   string `json:"catalog"`
 	Cmdlet    string `json:"cmdlet"`
 	Parameter string `json:"parameter"`
 	Type      string `json:"type"`
@@ -122,10 +125,25 @@ type stats struct {
 }
 
 // annotate sets DeclaredType on every parameter from its docs page (or an
-// override). Overrides that match no parameter are an error, so the list can't
+// override). An override that matches no parameter in its catalog is an error,
+// so the list can't
 // silently go stale.
 func annotate(cat *catalog, pages map[string]string, ovs []override) (stats, error) {
 	var st stats
+	name := cat.name()
+	if name == "" {
+		return st, fmt.Errorf("catalog source %q has no <Catalog>- prefix", cat.Source)
+	}
+	var mine []override
+	for _, ov := range ovs {
+		if ov.Catalog == "" {
+			return st, fmt.Errorf("override %s -%s has no catalog", ov.Cmdlet, ov.Parameter)
+		}
+		if strings.EqualFold(ov.Catalog, name) {
+			mine = append(mine, ov)
+		}
+	}
+	ovs = mine
 	used := make([]bool, len(ovs))
 	for i := range cat.Cmdlets {
 		cm := &cat.Cmdlets[i]
@@ -157,8 +175,8 @@ func annotate(cat *catalog, pages map[string]string, ovs []override) (stats, err
 	st.inherited = inheritNewSet(cat)
 	st.typed += st.inherited
 	for k, u := range used {
-		if !u && cat.hasCmdlet(ovs[k].Cmdlet) {
-			return st, fmt.Errorf("override %s -%s matches no parameter", ovs[k].Cmdlet, ovs[k].Parameter)
+		if !u {
+			return st, fmt.Errorf("override %s -%s matches no parameter in the %s catalog", ovs[k].Cmdlet, ovs[k].Parameter, name)
 		}
 	}
 	return st, nil
@@ -202,13 +220,14 @@ func inheritNewSet(cat *catalog) int {
 	return n
 }
 
-func (c *catalog) hasCmdlet(name string) bool {
-	for _, cm := range c.Cmdlets {
-		if strings.EqualFold(cm.Cmdlet, name) {
-			return true
-		}
+// name is the catalog's service name, the prefix of its source
+// ("EXO-ExchangeOnline.psm1" -> "EXO").
+func (c *catalog) name() string {
+	name, _, ok := strings.Cut(c.Source, "-")
+	if !ok {
+		return ""
 	}
-	return false
+	return name
 }
 
 // indexPages maps lower-cased cmdlet name -> docs page path.
