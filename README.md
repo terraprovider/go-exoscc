@@ -106,9 +106,14 @@ MicrosoftDocs/office-docs-powershell  --cmd/annotate-docs-->  spec/catalog/*.jso
   | switch | `bool` | `true` |
   | Boolean | `*bool` | non-nil (so `false` can be sent) |
   | Int16/32/64, UInt32/64 | `*int64` | non-nil (so `0` can be sent) |
-  | `X[]`, MultiValuedProperty, `*Collection` | `[]string` | non-nil (an empty slice clears the list) |
+  | `X[]`, MultiValuedProperty, `*Collection` | `[]string` | non-nil (full replace) |
   | String | `string` | non-empty |
   | anything else (Unlimited, `*IdParameter`, enums, …) | `any` | non-nil |
+
+  Sending an empty list does **not** clear a MultiValuedProperty. To clear or
+  edit one in place, Set-* cmdlets have a `<Field>Delta *adminapi.StringDelta`
+  companion (`{Add, Remove}`, sent as `Exchange.StringFieldDeltaUpdateData`) for
+  every `spec.Param.DeltaCapable()` parameter; it takes precedence over `<Field>`.
 - Both **EXO** and **Purview** refresh fully app-only. `fetch-spec` auto-discovers
   the tenant routing domain (via EXO `Get-OrganizationConfig`) and uses the
   `OAuthUser@<domain>` anchor so the compliance calls resolve to the tenant's

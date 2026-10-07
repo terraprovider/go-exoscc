@@ -28,6 +28,20 @@ func TestGoType(t *testing.T) {
 	}
 }
 
+func TestHasDelta(t *testing.T) {
+	mvp := spec.Param{Type: "System.Object", DeclaredType: "MultiValuedProperty"}
+	if !hasDelta(spec.Cmdlet{Verb: "Set"}, mvp) {
+		t.Error("Set-* MultiValuedProperty should get a delta")
+	}
+	if hasDelta(spec.Cmdlet{Verb: "New"}, mvp) {
+		t.Error("New-* must not get a delta")
+	}
+	want := `if p.AllowListDelta != nil { m["AllowList"] = *p.AllowListDelta } else if p.AllowList != nil { m["AllowList"] = p.AllowList }`
+	if got := deltaBoundCheck("AllowList", "AllowList"); got != want {
+		t.Errorf("deltaBoundCheck = %q, want %q", got, want)
+	}
+}
+
 func TestFieldComment(t *testing.T) {
 	cases := []struct {
 		p    spec.Param

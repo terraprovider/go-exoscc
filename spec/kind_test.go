@@ -33,6 +33,8 @@ func TestKind(t *testing.T) {
 		{Param{Type: "System.Object", DeclaredType: "MultiValuedProperty"}, KindList},
 		{Param{Type: "System.Object", DeclaredType: "ProxyAddressCollection"}, KindList},
 		{Param{Type: "System.Object", DeclaredType: "RecipientIdParameter[]"}, KindList},
+		{Param{Type: "System.Object", DeclaredType: "<MultiValuedProperty>"}, KindList},
+		{Param{Type: "System.Object", DeclaredType: "System.Collections.Hashtable[]"}, KindList},
 		{Param{Type: "System.Object", DeclaredType: "Unlimited"}, KindAny},
 		{Param{Type: "System.Object", DeclaredType: "System.String"}, KindAny},
 		{Param{Type: "System.Object", DeclaredType: "MailboxIdParameter"}, KindAny},
@@ -43,6 +45,25 @@ func TestKind(t *testing.T) {
 	for _, c := range cases {
 		if got := c.p.Kind(); got != c.want {
 			t.Errorf("%+v.Kind() = %q, want %q", c.p, got, c.want)
+		}
+	}
+}
+
+func TestDeltaCapable(t *testing.T) {
+	cases := []struct {
+		p    Param
+		want bool
+	}{
+		{Param{Type: "System.Object", DeclaredType: "MultiValuedProperty"}, true},
+		{Param{Type: "System.Object", DeclaredType: "<MultiValuedProperty>"}, true},
+		{Param{Type: "System.Object[]", DeclaredType: "MultiValuedProperty"}, false},
+		{Param{Type: "System.Object", DeclaredType: "ProxyAddressCollection"}, false},
+		{Param{Type: "System.Object", DeclaredType: "String[]"}, false},
+		{Param{Type: "System.Object"}, false},
+	}
+	for _, c := range cases {
+		if got := c.p.DeltaCapable(); got != c.want {
+			t.Errorf("%+v.DeltaCapable() = %v, want %v", c.p, got, c.want)
 		}
 	}
 }

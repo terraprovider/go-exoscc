@@ -22883,61 +22883,62 @@ func (s *Service) SetActiveSyncDeviceAccessRule(ctx context.Context, p SetActive
 // SetActiveSyncMailboxPolicyParams are the parameters of Set-ActiveSyncMailboxPolicy.
 // DefaultParameterSetName: Identity
 type SetActiveSyncMailboxPolicyParams struct {
-	AllowApplePushNotifications              *bool    `ps:"AllowApplePushNotifications"`
-	AllowBluetooth                           any      `ps:"AllowBluetooth"` // BluetoothType
-	AllowBrowser                             *bool    `ps:"AllowBrowser"`
-	AllowCamera                              *bool    `ps:"AllowCamera"`
-	AllowConsumerEmail                       *bool    `ps:"AllowConsumerEmail"`
-	AllowDesktopSync                         *bool    `ps:"AllowDesktopSync"`
-	AllowExternalDeviceManagement            *bool    `ps:"AllowExternalDeviceManagement"`
-	AllowHTMLEmail                           *bool    `ps:"AllowHTMLEmail"`
-	AllowInternetSharing                     *bool    `ps:"AllowInternetSharing"`
-	AllowIrDA                                *bool    `ps:"AllowIrDA"`
-	AllowMobileOTAUpdate                     *bool    `ps:"AllowMobileOTAUpdate"`
-	AllowNonProvisionableDevices             *bool    `ps:"AllowNonProvisionableDevices"`
-	AllowPOPIMAPEmail                        *bool    `ps:"AllowPOPIMAPEmail"`
-	AllowRemoteDesktop                       *bool    `ps:"AllowRemoteDesktop"`
-	AllowSimpleDevicePassword                *bool    `ps:"AllowSimpleDevicePassword"`
-	AllowSMIMEEncryptionAlgorithmNegotiation any      `ps:"AllowSMIMEEncryptionAlgorithmNegotiation"` // SMIMEEncryptionAlgorithmNegotiationType
-	AllowSMIMESoftCerts                      *bool    `ps:"AllowSMIMESoftCerts"`
-	AllowStorageCard                         *bool    `ps:"AllowStorageCard"`
-	AllowTextMessaging                       *bool    `ps:"AllowTextMessaging"`
-	AllowUnsignedApplications                *bool    `ps:"AllowUnsignedApplications"`
-	AllowUnsignedInstallationPackages        *bool    `ps:"AllowUnsignedInstallationPackages"`
-	AllowWiFi                                *bool    `ps:"AllowWiFi"`
-	AlphanumericDevicePasswordRequired       *bool    `ps:"AlphanumericDevicePasswordRequired"`
-	ApprovedApplicationList                  []string `ps:"ApprovedApplicationList"`
-	AttachmentsEnabled                       *bool    `ps:"AttachmentsEnabled"`
-	DeviceEncryptionEnabled                  *bool    `ps:"DeviceEncryptionEnabled"`
-	DevicePasswordEnabled                    *bool    `ps:"DevicePasswordEnabled"`
-	DevicePasswordExpiration                 any      `ps:"DevicePasswordExpiration"` // Unlimited
-	DevicePasswordHistory                    *int64   `ps:"DevicePasswordHistory"`
-	DevicePolicyRefreshInterval              any      `ps:"DevicePolicyRefreshInterval"` // Unlimited
-	Identity                                 any      `ps:"Identity"`                    // MailboxPolicyIdParameter
-	IrmEnabled                               *bool    `ps:"IrmEnabled"`
-	IsDefault                                *bool    `ps:"IsDefault"`
-	IsDefaultPolicy                          *bool    `ps:"IsDefaultPolicy"`
-	MaxAttachmentSize                        any      `ps:"MaxAttachmentSize"`               // Unlimited
-	MaxCalendarAgeFilter                     any      `ps:"MaxCalendarAgeFilter"`            // CalendarAgeFilterType
-	MaxDevicePasswordFailedAttempts          any      `ps:"MaxDevicePasswordFailedAttempts"` // Unlimited
-	MaxEmailAgeFilter                        any      `ps:"MaxEmailAgeFilter"`               // EmailAgeFilterType
-	MaxEmailBodyTruncationSize               any      `ps:"MaxEmailBodyTruncationSize"`      // Unlimited
-	MaxEmailHTMLBodyTruncationSize           any      `ps:"MaxEmailHTMLBodyTruncationSize"`  // Unlimited
-	MaxInactivityTimeDeviceLock              any      `ps:"MaxInactivityTimeDeviceLock"`     // Unlimited
-	MinDevicePasswordComplexCharacters       *int64   `ps:"MinDevicePasswordComplexCharacters"`
-	MinDevicePasswordLength                  *int64   `ps:"MinDevicePasswordLength"`
-	Name                                     string   `ps:"Name"`
-	PasswordRecoveryEnabled                  *bool    `ps:"PasswordRecoveryEnabled"`
-	RequireDeviceEncryption                  *bool    `ps:"RequireDeviceEncryption"`
-	RequireEncryptedSMIMEMessages            *bool    `ps:"RequireEncryptedSMIMEMessages"`
-	RequireEncryptionSMIMEAlgorithm          any      `ps:"RequireEncryptionSMIMEAlgorithm"` // EncryptionSMIMEAlgorithmType
-	RequireManualSyncWhenRoaming             *bool    `ps:"RequireManualSyncWhenRoaming"`
-	RequireSignedSMIMEAlgorithm              any      `ps:"RequireSignedSMIMEAlgorithm"` // SignedSMIMEAlgorithmType
-	RequireSignedSMIMEMessages               *bool    `ps:"RequireSignedSMIMEMessages"`
-	RequireStorageCardEncryption             *bool    `ps:"RequireStorageCardEncryption"`
-	UnapprovedInROMApplicationList           []string `ps:"UnapprovedInROMApplicationList"`
-	UNCAccessEnabled                         *bool    `ps:"UNCAccessEnabled"`
-	WSSAccessEnabled                         *bool    `ps:"WSSAccessEnabled"`
+	AllowApplePushNotifications              *bool                 `ps:"AllowApplePushNotifications"`
+	AllowBluetooth                           any                   `ps:"AllowBluetooth"` // BluetoothType
+	AllowBrowser                             *bool                 `ps:"AllowBrowser"`
+	AllowCamera                              *bool                 `ps:"AllowCamera"`
+	AllowConsumerEmail                       *bool                 `ps:"AllowConsumerEmail"`
+	AllowDesktopSync                         *bool                 `ps:"AllowDesktopSync"`
+	AllowExternalDeviceManagement            *bool                 `ps:"AllowExternalDeviceManagement"`
+	AllowHTMLEmail                           *bool                 `ps:"AllowHTMLEmail"`
+	AllowInternetSharing                     *bool                 `ps:"AllowInternetSharing"`
+	AllowIrDA                                *bool                 `ps:"AllowIrDA"`
+	AllowMobileOTAUpdate                     *bool                 `ps:"AllowMobileOTAUpdate"`
+	AllowNonProvisionableDevices             *bool                 `ps:"AllowNonProvisionableDevices"`
+	AllowPOPIMAPEmail                        *bool                 `ps:"AllowPOPIMAPEmail"`
+	AllowRemoteDesktop                       *bool                 `ps:"AllowRemoteDesktop"`
+	AllowSimpleDevicePassword                *bool                 `ps:"AllowSimpleDevicePassword"`
+	AllowSMIMEEncryptionAlgorithmNegotiation any                   `ps:"AllowSMIMEEncryptionAlgorithmNegotiation"` // SMIMEEncryptionAlgorithmNegotiationType
+	AllowSMIMESoftCerts                      *bool                 `ps:"AllowSMIMESoftCerts"`
+	AllowStorageCard                         *bool                 `ps:"AllowStorageCard"`
+	AllowTextMessaging                       *bool                 `ps:"AllowTextMessaging"`
+	AllowUnsignedApplications                *bool                 `ps:"AllowUnsignedApplications"`
+	AllowUnsignedInstallationPackages        *bool                 `ps:"AllowUnsignedInstallationPackages"`
+	AllowWiFi                                *bool                 `ps:"AllowWiFi"`
+	AlphanumericDevicePasswordRequired       *bool                 `ps:"AlphanumericDevicePasswordRequired"`
+	ApprovedApplicationList                  []string              `ps:"ApprovedApplicationList"`
+	AttachmentsEnabled                       *bool                 `ps:"AttachmentsEnabled"`
+	DeviceEncryptionEnabled                  *bool                 `ps:"DeviceEncryptionEnabled"`
+	DevicePasswordEnabled                    *bool                 `ps:"DevicePasswordEnabled"`
+	DevicePasswordExpiration                 any                   `ps:"DevicePasswordExpiration"` // Unlimited
+	DevicePasswordHistory                    *int64                `ps:"DevicePasswordHistory"`
+	DevicePolicyRefreshInterval              any                   `ps:"DevicePolicyRefreshInterval"` // Unlimited
+	Identity                                 any                   `ps:"Identity"`                    // MailboxPolicyIdParameter
+	IrmEnabled                               *bool                 `ps:"IrmEnabled"`
+	IsDefault                                *bool                 `ps:"IsDefault"`
+	IsDefaultPolicy                          *bool                 `ps:"IsDefaultPolicy"`
+	MaxAttachmentSize                        any                   `ps:"MaxAttachmentSize"`               // Unlimited
+	MaxCalendarAgeFilter                     any                   `ps:"MaxCalendarAgeFilter"`            // CalendarAgeFilterType
+	MaxDevicePasswordFailedAttempts          any                   `ps:"MaxDevicePasswordFailedAttempts"` // Unlimited
+	MaxEmailAgeFilter                        any                   `ps:"MaxEmailAgeFilter"`               // EmailAgeFilterType
+	MaxEmailBodyTruncationSize               any                   `ps:"MaxEmailBodyTruncationSize"`      // Unlimited
+	MaxEmailHTMLBodyTruncationSize           any                   `ps:"MaxEmailHTMLBodyTruncationSize"`  // Unlimited
+	MaxInactivityTimeDeviceLock              any                   `ps:"MaxInactivityTimeDeviceLock"`     // Unlimited
+	MinDevicePasswordComplexCharacters       *int64                `ps:"MinDevicePasswordComplexCharacters"`
+	MinDevicePasswordLength                  *int64                `ps:"MinDevicePasswordLength"`
+	Name                                     string                `ps:"Name"`
+	PasswordRecoveryEnabled                  *bool                 `ps:"PasswordRecoveryEnabled"`
+	RequireDeviceEncryption                  *bool                 `ps:"RequireDeviceEncryption"`
+	RequireEncryptedSMIMEMessages            *bool                 `ps:"RequireEncryptedSMIMEMessages"`
+	RequireEncryptionSMIMEAlgorithm          any                   `ps:"RequireEncryptionSMIMEAlgorithm"` // EncryptionSMIMEAlgorithmType
+	RequireManualSyncWhenRoaming             *bool                 `ps:"RequireManualSyncWhenRoaming"`
+	RequireSignedSMIMEAlgorithm              any                   `ps:"RequireSignedSMIMEAlgorithm"` // SignedSMIMEAlgorithmType
+	RequireSignedSMIMEMessages               *bool                 `ps:"RequireSignedSMIMEMessages"`
+	RequireStorageCardEncryption             *bool                 `ps:"RequireStorageCardEncryption"`
+	UnapprovedInROMApplicationList           []string              `ps:"UnapprovedInROMApplicationList"`
+	UnapprovedInROMApplicationListDelta      *adminapi.StringDelta `ps:"UnapprovedInROMApplicationList"` // adds/removes values of UnapprovedInROMApplicationList; takes precedence over it
+	UNCAccessEnabled                         *bool                 `ps:"UNCAccessEnabled"`
+	WSSAccessEnabled                         *bool                 `ps:"WSSAccessEnabled"`
 }
 
 func (p SetActiveSyncMailboxPolicyParams) params() map[string]any {
@@ -23098,7 +23099,9 @@ func (p SetActiveSyncMailboxPolicyParams) params() map[string]any {
 	if p.RequireStorageCardEncryption != nil {
 		m["RequireStorageCardEncryption"] = *p.RequireStorageCardEncryption
 	}
-	if p.UnapprovedInROMApplicationList != nil {
+	if p.UnapprovedInROMApplicationListDelta != nil {
+		m["UnapprovedInROMApplicationList"] = *p.UnapprovedInROMApplicationListDelta
+	} else if p.UnapprovedInROMApplicationList != nil {
 		m["UnapprovedInROMApplicationList"] = p.UnapprovedInROMApplicationList
 	}
 	if p.UNCAccessEnabled != nil {
@@ -23118,20 +23121,23 @@ func (s *Service) SetActiveSyncMailboxPolicy(ctx context.Context, p SetActiveSyn
 // SetActiveSyncOrganizationSettingsParams are the parameters of Set-ActiveSyncOrganizationSettings.
 // DefaultParameterSetName: Default
 type SetActiveSyncOrganizationSettingsParams struct {
-	AdminMailRecipients                    []string `ps:"AdminMailRecipients"`
-	AllowAccessForUnSupportedPlatform      *bool    `ps:"AllowAccessForUnSupportedPlatform"`
-	AllowRMSSupportForUnenlightenedApps    *bool    `ps:"AllowRMSSupportForUnenlightenedApps"`
-	DefaultAccessLevel                     any      `ps:"DefaultAccessLevel"` // DeviceAccessLevel
-	EnableMobileMailboxPolicyWhenCAInplace *bool    `ps:"EnableMobileMailboxPolicyWhenCAInplace"`
-	Identity                               any      `ps:"Identity"` // ActiveSyncOrganizationSettingsIdParameter
-	OtaNotificationMailInsert              string   `ps:"OtaNotificationMailInsert"`
-	TenantAdminPreference                  any      `ps:"TenantAdminPreference"` // TenantAdminPreference
-	UserMailInsert                         string   `ps:"UserMailInsert"`
+	AdminMailRecipients                    []string              `ps:"AdminMailRecipients"`
+	AdminMailRecipientsDelta               *adminapi.StringDelta `ps:"AdminMailRecipients"` // adds/removes values of AdminMailRecipients; takes precedence over it
+	AllowAccessForUnSupportedPlatform      *bool                 `ps:"AllowAccessForUnSupportedPlatform"`
+	AllowRMSSupportForUnenlightenedApps    *bool                 `ps:"AllowRMSSupportForUnenlightenedApps"`
+	DefaultAccessLevel                     any                   `ps:"DefaultAccessLevel"` // DeviceAccessLevel
+	EnableMobileMailboxPolicyWhenCAInplace *bool                 `ps:"EnableMobileMailboxPolicyWhenCAInplace"`
+	Identity                               any                   `ps:"Identity"` // ActiveSyncOrganizationSettingsIdParameter
+	OtaNotificationMailInsert              string                `ps:"OtaNotificationMailInsert"`
+	TenantAdminPreference                  any                   `ps:"TenantAdminPreference"` // TenantAdminPreference
+	UserMailInsert                         string                `ps:"UserMailInsert"`
 }
 
 func (p SetActiveSyncOrganizationSettingsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AdminMailRecipients != nil {
+	if p.AdminMailRecipientsDelta != nil {
+		m["AdminMailRecipients"] = *p.AdminMailRecipientsDelta
+	} else if p.AdminMailRecipients != nil {
 		m["AdminMailRecipients"] = p.AdminMailRecipients
 	}
 	if p.AllowAccessForUnSupportedPlatform != nil {
@@ -23192,43 +23198,50 @@ func (s *Service) SetAdminAuditLogConfig(ctx context.Context, p SetAdminAuditLog
 // SetAntiPhishPolicyParams are the parameters of Set-AntiPhishPolicy.
 // DefaultParameterSetName: Identity
 type SetAntiPhishPolicyParams struct {
-	AdminDisplayName                              string   `ps:"AdminDisplayName"`
-	AuthenticationFailAction                      any      `ps:"AuthenticationFailAction"` // SpoofAuthenticationFailAction
-	DmarcQuarantineAction                         any      `ps:"DmarcQuarantineAction"`    // SpoofDmarcQuarantineAction
-	DmarcRejectAction                             any      `ps:"DmarcRejectAction"`        // SpoofDmarcRejectAction
-	Enabled                                       *bool    `ps:"Enabled"`
-	EnableFirstContactSafetyTips                  *bool    `ps:"EnableFirstContactSafetyTips"`
-	EnableMailboxIntelligence                     *bool    `ps:"EnableMailboxIntelligence"`
-	EnableMailboxIntelligenceProtection           *bool    `ps:"EnableMailboxIntelligenceProtection"`
-	EnableOrganizationDomainsProtection           *bool    `ps:"EnableOrganizationDomainsProtection"`
-	EnableSimilarDomainsSafetyTips                *bool    `ps:"EnableSimilarDomainsSafetyTips"`
-	EnableSimilarUsersSafetyTips                  *bool    `ps:"EnableSimilarUsersSafetyTips"`
-	EnableSpoofIntelligence                       *bool    `ps:"EnableSpoofIntelligence"`
-	EnableTargetedDomainsProtection               *bool    `ps:"EnableTargetedDomainsProtection"`
-	EnableTargetedUserProtection                  *bool    `ps:"EnableTargetedUserProtection"`
-	EnableUnauthenticatedSender                   *bool    `ps:"EnableUnauthenticatedSender"`
-	EnableUnusualCharactersSafetyTips             *bool    `ps:"EnableUnusualCharactersSafetyTips"`
-	EnableViaTag                                  *bool    `ps:"EnableViaTag"`
-	ExcludedDomains                               []string `ps:"ExcludedDomains"`
-	ExcludedSenders                               []string `ps:"ExcludedSenders"`
-	HonorDmarcPolicy                              *bool    `ps:"HonorDmarcPolicy"`
-	Identity                                      any      `ps:"Identity"`                            // AntiPhishPolicyIdParameter
-	ImpersonationProtectionState                  any      `ps:"ImpersonationProtectionState"`        // ImpersonationProtectionState
-	MailboxIntelligenceProtectionAction           any      `ps:"MailboxIntelligenceProtectionAction"` // ImpersonationAction
-	MailboxIntelligenceProtectionActionRecipients []string `ps:"MailboxIntelligenceProtectionActionRecipients"`
-	MailboxIntelligenceQuarantineTag              string   `ps:"MailboxIntelligenceQuarantineTag"`
-	MakeDefault                                   bool     `ps:"MakeDefault"`
-	PhishThresholdLevel                           *int64   `ps:"PhishThresholdLevel"`
-	PolicyTag                                     string   `ps:"PolicyTag"`
-	SpoofQuarantineTag                            string   `ps:"SpoofQuarantineTag"`
-	TargetedDomainActionRecipients                []string `ps:"TargetedDomainActionRecipients"`
-	TargetedDomainProtectionAction                any      `ps:"TargetedDomainProtectionAction"` // System.String
-	TargetedDomainQuarantineTag                   string   `ps:"TargetedDomainQuarantineTag"`
-	TargetedDomainsToProtect                      []string `ps:"TargetedDomainsToProtect"`
-	TargetedUserActionRecipients                  []string `ps:"TargetedUserActionRecipients"`
-	TargetedUserProtectionAction                  any      `ps:"TargetedUserProtectionAction"` // System.String
-	TargetedUserQuarantineTag                     string   `ps:"TargetedUserQuarantineTag"`
-	TargetedUsersToProtect                        []string `ps:"TargetedUsersToProtect"`
+	AdminDisplayName                                   string                `ps:"AdminDisplayName"`
+	AuthenticationFailAction                           any                   `ps:"AuthenticationFailAction"` // SpoofAuthenticationFailAction
+	DmarcQuarantineAction                              any                   `ps:"DmarcQuarantineAction"`    // SpoofDmarcQuarantineAction
+	DmarcRejectAction                                  any                   `ps:"DmarcRejectAction"`        // SpoofDmarcRejectAction
+	Enabled                                            *bool                 `ps:"Enabled"`
+	EnableFirstContactSafetyTips                       *bool                 `ps:"EnableFirstContactSafetyTips"`
+	EnableMailboxIntelligence                          *bool                 `ps:"EnableMailboxIntelligence"`
+	EnableMailboxIntelligenceProtection                *bool                 `ps:"EnableMailboxIntelligenceProtection"`
+	EnableOrganizationDomainsProtection                *bool                 `ps:"EnableOrganizationDomainsProtection"`
+	EnableSimilarDomainsSafetyTips                     *bool                 `ps:"EnableSimilarDomainsSafetyTips"`
+	EnableSimilarUsersSafetyTips                       *bool                 `ps:"EnableSimilarUsersSafetyTips"`
+	EnableSpoofIntelligence                            *bool                 `ps:"EnableSpoofIntelligence"`
+	EnableTargetedDomainsProtection                    *bool                 `ps:"EnableTargetedDomainsProtection"`
+	EnableTargetedUserProtection                       *bool                 `ps:"EnableTargetedUserProtection"`
+	EnableUnauthenticatedSender                        *bool                 `ps:"EnableUnauthenticatedSender"`
+	EnableUnusualCharactersSafetyTips                  *bool                 `ps:"EnableUnusualCharactersSafetyTips"`
+	EnableViaTag                                       *bool                 `ps:"EnableViaTag"`
+	ExcludedDomains                                    []string              `ps:"ExcludedDomains"`
+	ExcludedDomainsDelta                               *adminapi.StringDelta `ps:"ExcludedDomains"` // adds/removes values of ExcludedDomains; takes precedence over it
+	ExcludedSenders                                    []string              `ps:"ExcludedSenders"`
+	ExcludedSendersDelta                               *adminapi.StringDelta `ps:"ExcludedSenders"` // adds/removes values of ExcludedSenders; takes precedence over it
+	HonorDmarcPolicy                                   *bool                 `ps:"HonorDmarcPolicy"`
+	Identity                                           any                   `ps:"Identity"`                            // AntiPhishPolicyIdParameter
+	ImpersonationProtectionState                       any                   `ps:"ImpersonationProtectionState"`        // ImpersonationProtectionState
+	MailboxIntelligenceProtectionAction                any                   `ps:"MailboxIntelligenceProtectionAction"` // ImpersonationAction
+	MailboxIntelligenceProtectionActionRecipients      []string              `ps:"MailboxIntelligenceProtectionActionRecipients"`
+	MailboxIntelligenceProtectionActionRecipientsDelta *adminapi.StringDelta `ps:"MailboxIntelligenceProtectionActionRecipients"` // adds/removes values of MailboxIntelligenceProtectionActionRecipients; takes precedence over it
+	MailboxIntelligenceQuarantineTag                   string                `ps:"MailboxIntelligenceQuarantineTag"`
+	MakeDefault                                        bool                  `ps:"MakeDefault"`
+	PhishThresholdLevel                                *int64                `ps:"PhishThresholdLevel"`
+	PolicyTag                                          string                `ps:"PolicyTag"`
+	SpoofQuarantineTag                                 string                `ps:"SpoofQuarantineTag"`
+	TargetedDomainActionRecipients                     []string              `ps:"TargetedDomainActionRecipients"`
+	TargetedDomainActionRecipientsDelta                *adminapi.StringDelta `ps:"TargetedDomainActionRecipients"` // adds/removes values of TargetedDomainActionRecipients; takes precedence over it
+	TargetedDomainProtectionAction                     any                   `ps:"TargetedDomainProtectionAction"` // System.String
+	TargetedDomainQuarantineTag                        string                `ps:"TargetedDomainQuarantineTag"`
+	TargetedDomainsToProtect                           []string              `ps:"TargetedDomainsToProtect"`
+	TargetedDomainsToProtectDelta                      *adminapi.StringDelta `ps:"TargetedDomainsToProtect"` // adds/removes values of TargetedDomainsToProtect; takes precedence over it
+	TargetedUserActionRecipients                       []string              `ps:"TargetedUserActionRecipients"`
+	TargetedUserActionRecipientsDelta                  *adminapi.StringDelta `ps:"TargetedUserActionRecipients"` // adds/removes values of TargetedUserActionRecipients; takes precedence over it
+	TargetedUserProtectionAction                       any                   `ps:"TargetedUserProtectionAction"` // System.String
+	TargetedUserQuarantineTag                          string                `ps:"TargetedUserQuarantineTag"`
+	TargetedUsersToProtect                             []string              `ps:"TargetedUsersToProtect"`
+	TargetedUsersToProtectDelta                        *adminapi.StringDelta `ps:"TargetedUsersToProtect"` // adds/removes values of TargetedUsersToProtect; takes precedence over it
 }
 
 func (p SetAntiPhishPolicyParams) params() map[string]any {
@@ -23284,10 +23297,14 @@ func (p SetAntiPhishPolicyParams) params() map[string]any {
 	if p.EnableViaTag != nil {
 		m["EnableViaTag"] = *p.EnableViaTag
 	}
-	if p.ExcludedDomains != nil {
+	if p.ExcludedDomainsDelta != nil {
+		m["ExcludedDomains"] = *p.ExcludedDomainsDelta
+	} else if p.ExcludedDomains != nil {
 		m["ExcludedDomains"] = p.ExcludedDomains
 	}
-	if p.ExcludedSenders != nil {
+	if p.ExcludedSendersDelta != nil {
+		m["ExcludedSenders"] = *p.ExcludedSendersDelta
+	} else if p.ExcludedSenders != nil {
 		m["ExcludedSenders"] = p.ExcludedSenders
 	}
 	if p.HonorDmarcPolicy != nil {
@@ -23302,7 +23319,9 @@ func (p SetAntiPhishPolicyParams) params() map[string]any {
 	if p.MailboxIntelligenceProtectionAction != nil {
 		m["MailboxIntelligenceProtectionAction"] = p.MailboxIntelligenceProtectionAction
 	}
-	if p.MailboxIntelligenceProtectionActionRecipients != nil {
+	if p.MailboxIntelligenceProtectionActionRecipientsDelta != nil {
+		m["MailboxIntelligenceProtectionActionRecipients"] = *p.MailboxIntelligenceProtectionActionRecipientsDelta
+	} else if p.MailboxIntelligenceProtectionActionRecipients != nil {
 		m["MailboxIntelligenceProtectionActionRecipients"] = p.MailboxIntelligenceProtectionActionRecipients
 	}
 	if p.MailboxIntelligenceQuarantineTag != "" {
@@ -23320,7 +23339,9 @@ func (p SetAntiPhishPolicyParams) params() map[string]any {
 	if p.SpoofQuarantineTag != "" {
 		m["SpoofQuarantineTag"] = p.SpoofQuarantineTag
 	}
-	if p.TargetedDomainActionRecipients != nil {
+	if p.TargetedDomainActionRecipientsDelta != nil {
+		m["TargetedDomainActionRecipients"] = *p.TargetedDomainActionRecipientsDelta
+	} else if p.TargetedDomainActionRecipients != nil {
 		m["TargetedDomainActionRecipients"] = p.TargetedDomainActionRecipients
 	}
 	if p.TargetedDomainProtectionAction != nil {
@@ -23329,10 +23350,14 @@ func (p SetAntiPhishPolicyParams) params() map[string]any {
 	if p.TargetedDomainQuarantineTag != "" {
 		m["TargetedDomainQuarantineTag"] = p.TargetedDomainQuarantineTag
 	}
-	if p.TargetedDomainsToProtect != nil {
+	if p.TargetedDomainsToProtectDelta != nil {
+		m["TargetedDomainsToProtect"] = *p.TargetedDomainsToProtectDelta
+	} else if p.TargetedDomainsToProtect != nil {
 		m["TargetedDomainsToProtect"] = p.TargetedDomainsToProtect
 	}
-	if p.TargetedUserActionRecipients != nil {
+	if p.TargetedUserActionRecipientsDelta != nil {
+		m["TargetedUserActionRecipients"] = *p.TargetedUserActionRecipientsDelta
+	} else if p.TargetedUserActionRecipients != nil {
 		m["TargetedUserActionRecipients"] = p.TargetedUserActionRecipients
 	}
 	if p.TargetedUserProtectionAction != nil {
@@ -23341,7 +23366,9 @@ func (p SetAntiPhishPolicyParams) params() map[string]any {
 	if p.TargetedUserQuarantineTag != "" {
 		m["TargetedUserQuarantineTag"] = p.TargetedUserQuarantineTag
 	}
-	if p.TargetedUsersToProtect != nil {
+	if p.TargetedUsersToProtectDelta != nil {
+		m["TargetedUsersToProtect"] = *p.TargetedUsersToProtectDelta
+	} else if p.TargetedUsersToProtect != nil {
 		m["TargetedUsersToProtect"] = p.TargetedUsersToProtect
 	}
 	return m
@@ -23414,13 +23441,14 @@ func (s *Service) SetAntiPhishRule(ctx context.Context, p SetAntiPhishRuleParams
 // SetAppParams are the parameters of Set-App.
 // DefaultParameterSetName: Identity
 type SetAppParams struct {
-	DefaultStateForUser any      `ps:"DefaultStateForUser"` // DefaultStateForUser
-	Enabled             *bool    `ps:"Enabled"`
-	Identity            any      `ps:"Identity"` // AppIdParameter
-	OrganizationApp     bool     `ps:"OrganizationApp"`
-	PrivateCatalog      bool     `ps:"PrivateCatalog"`
-	ProvidedTo          any      `ps:"ProvidedTo"` // ClientExtensionProvidedTo
-	UserList            []string `ps:"UserList"`
+	DefaultStateForUser any                   `ps:"DefaultStateForUser"` // DefaultStateForUser
+	Enabled             *bool                 `ps:"Enabled"`
+	Identity            any                   `ps:"Identity"` // AppIdParameter
+	OrganizationApp     bool                  `ps:"OrganizationApp"`
+	PrivateCatalog      bool                  `ps:"PrivateCatalog"`
+	ProvidedTo          any                   `ps:"ProvidedTo"` // ClientExtensionProvidedTo
+	UserList            []string              `ps:"UserList"`
+	UserListDelta       *adminapi.StringDelta `ps:"UserList"` // adds/removes values of UserList; takes precedence over it
 }
 
 func (p SetAppParams) params() map[string]any {
@@ -23443,7 +23471,9 @@ func (p SetAppParams) params() map[string]any {
 	if p.ProvidedTo != nil {
 		m["ProvidedTo"] = p.ProvidedTo
 	}
-	if p.UserList != nil {
+	if p.UserListDelta != nil {
+		m["UserList"] = *p.UserListDelta
+	} else if p.UserList != nil {
 		m["UserList"] = p.UserList
 	}
 	return m
@@ -23598,13 +23628,16 @@ func (s *Service) SetAuthenticationPolicy(ctx context.Context, p SetAuthenticati
 
 // SetAvailabilityConfigParams are the parameters of Set-AvailabilityConfig.
 type SetAvailabilityConfigParams struct {
-	AllowedTenantIds []string `ps:"AllowedTenantIds"`
-	OrgWideAccount   any      `ps:"OrgWideAccount"` // SecurityPrincipalIdParameter
+	AllowedTenantIds      []string              `ps:"AllowedTenantIds"`
+	AllowedTenantIdsDelta *adminapi.StringDelta `ps:"AllowedTenantIds"` // adds/removes values of AllowedTenantIds; takes precedence over it
+	OrgWideAccount        any                   `ps:"OrgWideAccount"`   // SecurityPrincipalIdParameter
 }
 
 func (p SetAvailabilityConfigParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AllowedTenantIds != nil {
+	if p.AllowedTenantIdsDelta != nil {
+		m["AllowedTenantIds"] = *p.AllowedTenantIdsDelta
+	} else if p.AllowedTenantIds != nil {
 		m["AllowedTenantIds"] = p.AllowedTenantIds
 	}
 	if p.OrgWideAccount != nil {
@@ -23648,50 +23681,58 @@ func (s *Service) SetBookingMailboxPermission(ctx context.Context, p SetBookingM
 // SetCASMailboxParams are the parameters of Set-CASMailbox.
 // DefaultParameterSetName: Identity
 type SetCASMailboxParams struct {
-	ActiveSyncAllowedDeviceIDs              []string `ps:"ActiveSyncAllowedDeviceIDs"`
-	ActiveSyncBlockedDeviceIDs              []string `ps:"ActiveSyncBlockedDeviceIDs"`
-	ActiveSyncDebugLogging                  *bool    `ps:"ActiveSyncDebugLogging"`
-	ActiveSyncEnabled                       *bool    `ps:"ActiveSyncEnabled"`
-	ActiveSyncMailboxPolicy                 any      `ps:"ActiveSyncMailboxPolicy"` // MailboxPolicyIdParameter
-	ActiveSyncSuppressReadReceipt           *bool    `ps:"ActiveSyncSuppressReadReceipt"`
-	EwsAllowEntourage                       *bool    `ps:"EwsAllowEntourage"`
-	EwsAllowList                            []string `ps:"EwsAllowList"`
-	EwsAllowMacOutlook                      *bool    `ps:"EwsAllowMacOutlook"`
-	EwsAllowOutlook                         *bool    `ps:"EwsAllowOutlook"`
-	EwsApplicationAccessPolicy              any      `ps:"EwsApplicationAccessPolicy"` // EwsApplicationAccessPolicy
-	EwsBlockList                            []string `ps:"EwsBlockList"`
-	EwsEnabled                              *bool    `ps:"EwsEnabled"`
-	Identity                                any      `ps:"Identity"` // MailboxIdParameter
-	ImapEnabled                             *bool    `ps:"ImapEnabled"`
-	ImapForceICalForCalendarRetrievalOption *bool    `ps:"ImapForceICalForCalendarRetrievalOption"`
-	ImapMessagesRetrievalMimeFormat         any      `ps:"ImapMessagesRetrievalMimeFormat"` // MimeTextFormat
-	ImapSuppressReadReceipt                 *bool    `ps:"ImapSuppressReadReceipt"`
-	ImapUseProtocolDefaults                 *bool    `ps:"ImapUseProtocolDefaults"`
-	IsOptimizedForAccessibility             *bool    `ps:"IsOptimizedForAccessibility"`
-	MacOutlookEnabled                       *bool    `ps:"MacOutlookEnabled"`
-	MAPIEnabled                             *bool    `ps:"MAPIEnabled"`
-	OneWinNativeOutlookEnabled              *bool    `ps:"OneWinNativeOutlookEnabled"`
-	OutlookMobileEnabled                    *bool    `ps:"OutlookMobileEnabled"`
-	OWAEnabled                              *bool    `ps:"OWAEnabled"`
-	OWAforDevicesEnabled                    *bool    `ps:"OWAforDevicesEnabled"`
-	OwaMailboxPolicy                        any      `ps:"OwaMailboxPolicy"` // MailboxPolicyIdParameter
-	PopEnabled                              *bool    `ps:"PopEnabled"`
-	PopForceICalForCalendarRetrievalOption  *bool    `ps:"PopForceICalForCalendarRetrievalOption"`
-	PopMessagesRetrievalMimeFormat          any      `ps:"PopMessagesRetrievalMimeFormat"` // MimeTextFormat
-	PopSuppressReadReceipt                  *bool    `ps:"PopSuppressReadReceipt"`
-	PopUseProtocolDefaults                  *bool    `ps:"PopUseProtocolDefaults"`
-	PublicFolderClientAccess                *bool    `ps:"PublicFolderClientAccess"`
-	ShowGalAsDefaultView                    *bool    `ps:"ShowGalAsDefaultView"`
-	SmtpClientAuthenticationDisabled        *bool    `ps:"SmtpClientAuthenticationDisabled"`
-	UniversalOutlookEnabled                 *bool    `ps:"UniversalOutlookEnabled"`
+	ActiveSyncAllowedDeviceIDs              []string              `ps:"ActiveSyncAllowedDeviceIDs"`
+	ActiveSyncAllowedDeviceIDsDelta         *adminapi.StringDelta `ps:"ActiveSyncAllowedDeviceIDs"` // adds/removes values of ActiveSyncAllowedDeviceIDs; takes precedence over it
+	ActiveSyncBlockedDeviceIDs              []string              `ps:"ActiveSyncBlockedDeviceIDs"`
+	ActiveSyncBlockedDeviceIDsDelta         *adminapi.StringDelta `ps:"ActiveSyncBlockedDeviceIDs"` // adds/removes values of ActiveSyncBlockedDeviceIDs; takes precedence over it
+	ActiveSyncDebugLogging                  *bool                 `ps:"ActiveSyncDebugLogging"`
+	ActiveSyncEnabled                       *bool                 `ps:"ActiveSyncEnabled"`
+	ActiveSyncMailboxPolicy                 any                   `ps:"ActiveSyncMailboxPolicy"` // MailboxPolicyIdParameter
+	ActiveSyncSuppressReadReceipt           *bool                 `ps:"ActiveSyncSuppressReadReceipt"`
+	EwsAllowEntourage                       *bool                 `ps:"EwsAllowEntourage"`
+	EwsAllowList                            []string              `ps:"EwsAllowList"`
+	EwsAllowListDelta                       *adminapi.StringDelta `ps:"EwsAllowList"` // adds/removes values of EwsAllowList; takes precedence over it
+	EwsAllowMacOutlook                      *bool                 `ps:"EwsAllowMacOutlook"`
+	EwsAllowOutlook                         *bool                 `ps:"EwsAllowOutlook"`
+	EwsApplicationAccessPolicy              any                   `ps:"EwsApplicationAccessPolicy"` // EwsApplicationAccessPolicy
+	EwsBlockList                            []string              `ps:"EwsBlockList"`
+	EwsBlockListDelta                       *adminapi.StringDelta `ps:"EwsBlockList"` // adds/removes values of EwsBlockList; takes precedence over it
+	EwsEnabled                              *bool                 `ps:"EwsEnabled"`
+	Identity                                any                   `ps:"Identity"` // MailboxIdParameter
+	ImapEnabled                             *bool                 `ps:"ImapEnabled"`
+	ImapForceICalForCalendarRetrievalOption *bool                 `ps:"ImapForceICalForCalendarRetrievalOption"`
+	ImapMessagesRetrievalMimeFormat         any                   `ps:"ImapMessagesRetrievalMimeFormat"` // MimeTextFormat
+	ImapSuppressReadReceipt                 *bool                 `ps:"ImapSuppressReadReceipt"`
+	ImapUseProtocolDefaults                 *bool                 `ps:"ImapUseProtocolDefaults"`
+	IsOptimizedForAccessibility             *bool                 `ps:"IsOptimizedForAccessibility"`
+	MacOutlookEnabled                       *bool                 `ps:"MacOutlookEnabled"`
+	MAPIEnabled                             *bool                 `ps:"MAPIEnabled"`
+	OneWinNativeOutlookEnabled              *bool                 `ps:"OneWinNativeOutlookEnabled"`
+	OutlookMobileEnabled                    *bool                 `ps:"OutlookMobileEnabled"`
+	OWAEnabled                              *bool                 `ps:"OWAEnabled"`
+	OWAforDevicesEnabled                    *bool                 `ps:"OWAforDevicesEnabled"`
+	OwaMailboxPolicy                        any                   `ps:"OwaMailboxPolicy"` // MailboxPolicyIdParameter
+	PopEnabled                              *bool                 `ps:"PopEnabled"`
+	PopForceICalForCalendarRetrievalOption  *bool                 `ps:"PopForceICalForCalendarRetrievalOption"`
+	PopMessagesRetrievalMimeFormat          any                   `ps:"PopMessagesRetrievalMimeFormat"` // MimeTextFormat
+	PopSuppressReadReceipt                  *bool                 `ps:"PopSuppressReadReceipt"`
+	PopUseProtocolDefaults                  *bool                 `ps:"PopUseProtocolDefaults"`
+	PublicFolderClientAccess                *bool                 `ps:"PublicFolderClientAccess"`
+	ShowGalAsDefaultView                    *bool                 `ps:"ShowGalAsDefaultView"`
+	SmtpClientAuthenticationDisabled        *bool                 `ps:"SmtpClientAuthenticationDisabled"`
+	UniversalOutlookEnabled                 *bool                 `ps:"UniversalOutlookEnabled"`
 }
 
 func (p SetCASMailboxParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ActiveSyncAllowedDeviceIDs != nil {
+	if p.ActiveSyncAllowedDeviceIDsDelta != nil {
+		m["ActiveSyncAllowedDeviceIDs"] = *p.ActiveSyncAllowedDeviceIDsDelta
+	} else if p.ActiveSyncAllowedDeviceIDs != nil {
 		m["ActiveSyncAllowedDeviceIDs"] = p.ActiveSyncAllowedDeviceIDs
 	}
-	if p.ActiveSyncBlockedDeviceIDs != nil {
+	if p.ActiveSyncBlockedDeviceIDsDelta != nil {
+		m["ActiveSyncBlockedDeviceIDs"] = *p.ActiveSyncBlockedDeviceIDsDelta
+	} else if p.ActiveSyncBlockedDeviceIDs != nil {
 		m["ActiveSyncBlockedDeviceIDs"] = p.ActiveSyncBlockedDeviceIDs
 	}
 	if p.ActiveSyncDebugLogging != nil {
@@ -23709,7 +23750,9 @@ func (p SetCASMailboxParams) params() map[string]any {
 	if p.EwsAllowEntourage != nil {
 		m["EwsAllowEntourage"] = *p.EwsAllowEntourage
 	}
-	if p.EwsAllowList != nil {
+	if p.EwsAllowListDelta != nil {
+		m["EwsAllowList"] = *p.EwsAllowListDelta
+	} else if p.EwsAllowList != nil {
 		m["EwsAllowList"] = p.EwsAllowList
 	}
 	if p.EwsAllowMacOutlook != nil {
@@ -23721,7 +23764,9 @@ func (p SetCASMailboxParams) params() map[string]any {
 	if p.EwsApplicationAccessPolicy != nil {
 		m["EwsApplicationAccessPolicy"] = p.EwsApplicationAccessPolicy
 	}
-	if p.EwsBlockList != nil {
+	if p.EwsBlockListDelta != nil {
+		m["EwsBlockList"] = *p.EwsBlockListDelta
+	} else if p.EwsBlockList != nil {
 		m["EwsBlockList"] = p.EwsBlockList
 	}
 	if p.EwsEnabled != nil {
@@ -24023,21 +24068,29 @@ func (s *Service) SetClassificationRuleCollection(ctx context.Context, p SetClas
 // SetClientAccessRuleParams are the parameters of Set-ClientAccessRule.
 // DefaultParameterSetName: Identity
 type SetClientAccessRuleParams struct {
-	Action                               any      `ps:"Action"` // ClientAccessRulesAction
-	AnyOfAuthenticationTypes             []string `ps:"AnyOfAuthenticationTypes"`
-	AnyOfClientIPAddressesOrRanges       []string `ps:"AnyOfClientIPAddressesOrRanges"`
-	AnyOfProtocols                       []string `ps:"AnyOfProtocols"`
-	Enabled                              *bool    `ps:"Enabled"`
-	ExceptAnyOfAuthenticationTypes       []string `ps:"ExceptAnyOfAuthenticationTypes"`
-	ExceptAnyOfClientIPAddressesOrRanges []string `ps:"ExceptAnyOfClientIPAddressesOrRanges"`
-	ExceptAnyOfProtocols                 []string `ps:"ExceptAnyOfProtocols"`
-	ExceptUsernameMatchesAnyOfPatterns   []string `ps:"ExceptUsernameMatchesAnyOfPatterns"`
-	Identity                             any      `ps:"Identity"` // ClientAccessRuleIdParameter
-	Name                                 string   `ps:"Name"`
-	Priority                             *int64   `ps:"Priority"`
-	Scope                                any      `ps:"Scope"` // ClientAccessRulesScope
-	UsernameMatchesAnyOfPatterns         []string `ps:"UsernameMatchesAnyOfPatterns"`
-	UserRecipientFilter                  string   `ps:"UserRecipientFilter"`
+	Action                                    any                   `ps:"Action"` // ClientAccessRulesAction
+	AnyOfAuthenticationTypes                  []string              `ps:"AnyOfAuthenticationTypes"`
+	AnyOfAuthenticationTypesDelta             *adminapi.StringDelta `ps:"AnyOfAuthenticationTypes"` // adds/removes values of AnyOfAuthenticationTypes; takes precedence over it
+	AnyOfClientIPAddressesOrRanges            []string              `ps:"AnyOfClientIPAddressesOrRanges"`
+	AnyOfClientIPAddressesOrRangesDelta       *adminapi.StringDelta `ps:"AnyOfClientIPAddressesOrRanges"` // adds/removes values of AnyOfClientIPAddressesOrRanges; takes precedence over it
+	AnyOfProtocols                            []string              `ps:"AnyOfProtocols"`
+	AnyOfProtocolsDelta                       *adminapi.StringDelta `ps:"AnyOfProtocols"` // adds/removes values of AnyOfProtocols; takes precedence over it
+	Enabled                                   *bool                 `ps:"Enabled"`
+	ExceptAnyOfAuthenticationTypes            []string              `ps:"ExceptAnyOfAuthenticationTypes"`
+	ExceptAnyOfAuthenticationTypesDelta       *adminapi.StringDelta `ps:"ExceptAnyOfAuthenticationTypes"` // adds/removes values of ExceptAnyOfAuthenticationTypes; takes precedence over it
+	ExceptAnyOfClientIPAddressesOrRanges      []string              `ps:"ExceptAnyOfClientIPAddressesOrRanges"`
+	ExceptAnyOfClientIPAddressesOrRangesDelta *adminapi.StringDelta `ps:"ExceptAnyOfClientIPAddressesOrRanges"` // adds/removes values of ExceptAnyOfClientIPAddressesOrRanges; takes precedence over it
+	ExceptAnyOfProtocols                      []string              `ps:"ExceptAnyOfProtocols"`
+	ExceptAnyOfProtocolsDelta                 *adminapi.StringDelta `ps:"ExceptAnyOfProtocols"` // adds/removes values of ExceptAnyOfProtocols; takes precedence over it
+	ExceptUsernameMatchesAnyOfPatterns        []string              `ps:"ExceptUsernameMatchesAnyOfPatterns"`
+	ExceptUsernameMatchesAnyOfPatternsDelta   *adminapi.StringDelta `ps:"ExceptUsernameMatchesAnyOfPatterns"` // adds/removes values of ExceptUsernameMatchesAnyOfPatterns; takes precedence over it
+	Identity                                  any                   `ps:"Identity"`                           // ClientAccessRuleIdParameter
+	Name                                      string                `ps:"Name"`
+	Priority                                  *int64                `ps:"Priority"`
+	Scope                                     any                   `ps:"Scope"` // ClientAccessRulesScope
+	UsernameMatchesAnyOfPatterns              []string              `ps:"UsernameMatchesAnyOfPatterns"`
+	UsernameMatchesAnyOfPatternsDelta         *adminapi.StringDelta `ps:"UsernameMatchesAnyOfPatterns"` // adds/removes values of UsernameMatchesAnyOfPatterns; takes precedence over it
+	UserRecipientFilter                       string                `ps:"UserRecipientFilter"`
 }
 
 func (p SetClientAccessRuleParams) params() map[string]any {
@@ -24045,28 +24098,42 @@ func (p SetClientAccessRuleParams) params() map[string]any {
 	if p.Action != nil {
 		m["Action"] = p.Action
 	}
-	if p.AnyOfAuthenticationTypes != nil {
+	if p.AnyOfAuthenticationTypesDelta != nil {
+		m["AnyOfAuthenticationTypes"] = *p.AnyOfAuthenticationTypesDelta
+	} else if p.AnyOfAuthenticationTypes != nil {
 		m["AnyOfAuthenticationTypes"] = p.AnyOfAuthenticationTypes
 	}
-	if p.AnyOfClientIPAddressesOrRanges != nil {
+	if p.AnyOfClientIPAddressesOrRangesDelta != nil {
+		m["AnyOfClientIPAddressesOrRanges"] = *p.AnyOfClientIPAddressesOrRangesDelta
+	} else if p.AnyOfClientIPAddressesOrRanges != nil {
 		m["AnyOfClientIPAddressesOrRanges"] = p.AnyOfClientIPAddressesOrRanges
 	}
-	if p.AnyOfProtocols != nil {
+	if p.AnyOfProtocolsDelta != nil {
+		m["AnyOfProtocols"] = *p.AnyOfProtocolsDelta
+	} else if p.AnyOfProtocols != nil {
 		m["AnyOfProtocols"] = p.AnyOfProtocols
 	}
 	if p.Enabled != nil {
 		m["Enabled"] = *p.Enabled
 	}
-	if p.ExceptAnyOfAuthenticationTypes != nil {
+	if p.ExceptAnyOfAuthenticationTypesDelta != nil {
+		m["ExceptAnyOfAuthenticationTypes"] = *p.ExceptAnyOfAuthenticationTypesDelta
+	} else if p.ExceptAnyOfAuthenticationTypes != nil {
 		m["ExceptAnyOfAuthenticationTypes"] = p.ExceptAnyOfAuthenticationTypes
 	}
-	if p.ExceptAnyOfClientIPAddressesOrRanges != nil {
+	if p.ExceptAnyOfClientIPAddressesOrRangesDelta != nil {
+		m["ExceptAnyOfClientIPAddressesOrRanges"] = *p.ExceptAnyOfClientIPAddressesOrRangesDelta
+	} else if p.ExceptAnyOfClientIPAddressesOrRanges != nil {
 		m["ExceptAnyOfClientIPAddressesOrRanges"] = p.ExceptAnyOfClientIPAddressesOrRanges
 	}
-	if p.ExceptAnyOfProtocols != nil {
+	if p.ExceptAnyOfProtocolsDelta != nil {
+		m["ExceptAnyOfProtocols"] = *p.ExceptAnyOfProtocolsDelta
+	} else if p.ExceptAnyOfProtocols != nil {
 		m["ExceptAnyOfProtocols"] = p.ExceptAnyOfProtocols
 	}
-	if p.ExceptUsernameMatchesAnyOfPatterns != nil {
+	if p.ExceptUsernameMatchesAnyOfPatternsDelta != nil {
+		m["ExceptUsernameMatchesAnyOfPatterns"] = *p.ExceptUsernameMatchesAnyOfPatternsDelta
+	} else if p.ExceptUsernameMatchesAnyOfPatterns != nil {
 		m["ExceptUsernameMatchesAnyOfPatterns"] = p.ExceptUsernameMatchesAnyOfPatterns
 	}
 	if p.Identity != nil {
@@ -24081,7 +24148,9 @@ func (p SetClientAccessRuleParams) params() map[string]any {
 	if p.Scope != nil {
 		m["Scope"] = p.Scope
 	}
-	if p.UsernameMatchesAnyOfPatterns != nil {
+	if p.UsernameMatchesAnyOfPatternsDelta != nil {
+		m["UsernameMatchesAnyOfPatterns"] = *p.UsernameMatchesAnyOfPatternsDelta
+	} else if p.UsernameMatchesAnyOfPatterns != nil {
 		m["UsernameMatchesAnyOfPatterns"] = p.UsernameMatchesAnyOfPatterns
 	}
 	if p.UserRecipientFilter != "" {
@@ -24125,40 +24194,44 @@ func (s *Service) SetClutter(ctx context.Context, p SetClutterParams) (*adminapi
 // SetContactParams are the parameters of Set-Contact.
 // DefaultParameterSetName: Identity
 type SetContactParams struct {
-	AssistantName       string   `ps:"AssistantName"`
-	City                string   `ps:"City"`
-	Company             string   `ps:"Company"`
-	CountryOrRegion     any      `ps:"CountryOrRegion"` // CountryInfo
-	Department          string   `ps:"Department"`
-	DisplayName         string   `ps:"DisplayName"`
-	Fax                 string   `ps:"Fax"`
-	FirstName           string   `ps:"FirstName"`
-	GeoCoordinates      any      `ps:"GeoCoordinates"` // GeoCoordinates
-	HomePhone           string   `ps:"HomePhone"`
-	Identity            any      `ps:"Identity"` // ContactIdParameter
-	Initials            string   `ps:"Initials"`
-	LastName            string   `ps:"LastName"`
-	Manager             any      `ps:"Manager"` // UserContactIdParameter
-	MobilePhone         string   `ps:"MobilePhone"`
-	Name                string   `ps:"Name"`
-	Notes               string   `ps:"Notes"`
-	Office              string   `ps:"Office"`
-	OtherFax            []string `ps:"OtherFax"`
-	OtherHomePhone      []string `ps:"OtherHomePhone"`
-	OtherTelephone      []string `ps:"OtherTelephone"`
-	Pager               string   `ps:"Pager"`
-	Phone               string   `ps:"Phone"`
-	PhoneticDisplayName string   `ps:"PhoneticDisplayName"`
-	PostalCode          string   `ps:"PostalCode"`
-	PostOfficeBox       []string `ps:"PostOfficeBox"`
-	SeniorityIndex      *int64   `ps:"SeniorityIndex"`
-	SimpleDisplayName   string   `ps:"SimpleDisplayName"`
-	StateOrProvince     string   `ps:"StateOrProvince"`
-	StreetAddress       string   `ps:"StreetAddress"`
-	TelephoneAssistant  string   `ps:"TelephoneAssistant"`
-	Title               string   `ps:"Title"`
-	WebPage             string   `ps:"WebPage"`
-	WindowsEmailAddress any      `ps:"WindowsEmailAddress"` // SmtpAddress
+	AssistantName       string                `ps:"AssistantName"`
+	City                string                `ps:"City"`
+	Company             string                `ps:"Company"`
+	CountryOrRegion     any                   `ps:"CountryOrRegion"` // CountryInfo
+	Department          string                `ps:"Department"`
+	DisplayName         string                `ps:"DisplayName"`
+	Fax                 string                `ps:"Fax"`
+	FirstName           string                `ps:"FirstName"`
+	GeoCoordinates      any                   `ps:"GeoCoordinates"` // GeoCoordinates
+	HomePhone           string                `ps:"HomePhone"`
+	Identity            any                   `ps:"Identity"` // ContactIdParameter
+	Initials            string                `ps:"Initials"`
+	LastName            string                `ps:"LastName"`
+	Manager             any                   `ps:"Manager"` // UserContactIdParameter
+	MobilePhone         string                `ps:"MobilePhone"`
+	Name                string                `ps:"Name"`
+	Notes               string                `ps:"Notes"`
+	Office              string                `ps:"Office"`
+	OtherFax            []string              `ps:"OtherFax"`
+	OtherFaxDelta       *adminapi.StringDelta `ps:"OtherFax"` // adds/removes values of OtherFax; takes precedence over it
+	OtherHomePhone      []string              `ps:"OtherHomePhone"`
+	OtherHomePhoneDelta *adminapi.StringDelta `ps:"OtherHomePhone"` // adds/removes values of OtherHomePhone; takes precedence over it
+	OtherTelephone      []string              `ps:"OtherTelephone"`
+	OtherTelephoneDelta *adminapi.StringDelta `ps:"OtherTelephone"` // adds/removes values of OtherTelephone; takes precedence over it
+	Pager               string                `ps:"Pager"`
+	Phone               string                `ps:"Phone"`
+	PhoneticDisplayName string                `ps:"PhoneticDisplayName"`
+	PostalCode          string                `ps:"PostalCode"`
+	PostOfficeBox       []string              `ps:"PostOfficeBox"`
+	PostOfficeBoxDelta  *adminapi.StringDelta `ps:"PostOfficeBox"` // adds/removes values of PostOfficeBox; takes precedence over it
+	SeniorityIndex      *int64                `ps:"SeniorityIndex"`
+	SimpleDisplayName   string                `ps:"SimpleDisplayName"`
+	StateOrProvince     string                `ps:"StateOrProvince"`
+	StreetAddress       string                `ps:"StreetAddress"`
+	TelephoneAssistant  string                `ps:"TelephoneAssistant"`
+	Title               string                `ps:"Title"`
+	WebPage             string                `ps:"WebPage"`
+	WindowsEmailAddress any                   `ps:"WindowsEmailAddress"` // SmtpAddress
 }
 
 func (p SetContactParams) params() map[string]any {
@@ -24217,13 +24290,19 @@ func (p SetContactParams) params() map[string]any {
 	if p.Office != "" {
 		m["Office"] = p.Office
 	}
-	if p.OtherFax != nil {
+	if p.OtherFaxDelta != nil {
+		m["OtherFax"] = *p.OtherFaxDelta
+	} else if p.OtherFax != nil {
 		m["OtherFax"] = p.OtherFax
 	}
-	if p.OtherHomePhone != nil {
+	if p.OtherHomePhoneDelta != nil {
+		m["OtherHomePhone"] = *p.OtherHomePhoneDelta
+	} else if p.OtherHomePhone != nil {
 		m["OtherHomePhone"] = p.OtherHomePhone
 	}
-	if p.OtherTelephone != nil {
+	if p.OtherTelephoneDelta != nil {
+		m["OtherTelephone"] = *p.OtherTelephoneDelta
+	} else if p.OtherTelephone != nil {
 		m["OtherTelephone"] = p.OtherTelephone
 	}
 	if p.Pager != "" {
@@ -24238,7 +24317,9 @@ func (p SetContactParams) params() map[string]any {
 	if p.PostalCode != "" {
 		m["PostalCode"] = p.PostalCode
 	}
-	if p.PostOfficeBox != nil {
+	if p.PostOfficeBoxDelta != nil {
+		m["PostOfficeBox"] = *p.PostOfficeBoxDelta
+	} else if p.PostOfficeBox != nil {
 		m["PostOfficeBox"] = p.PostOfficeBox
 	}
 	if p.SeniorityIndex != nil {
@@ -24275,12 +24356,13 @@ func (s *Service) SetContact(ctx context.Context, p SetContactParams) (*adminapi
 
 // SetDataClassificationParams are the parameters of Set-DataClassification.
 type SetDataClassificationParams struct {
-	Description  string   `ps:"Description"`
-	Fingerprints []string `ps:"Fingerprints"`
-	Identity     any      `ps:"Identity"` // DataClassificationIdParameter
-	IsDefault    bool     `ps:"IsDefault"`
-	Locale       any      `ps:"Locale"` // CultureInfo
-	Name         string   `ps:"Name"`
+	Description       string                `ps:"Description"`
+	Fingerprints      []string              `ps:"Fingerprints"`
+	FingerprintsDelta *adminapi.StringDelta `ps:"Fingerprints"` // adds/removes values of Fingerprints; takes precedence over it
+	Identity          any                   `ps:"Identity"`     // DataClassificationIdParameter
+	IsDefault         bool                  `ps:"IsDefault"`
+	Locale            any                   `ps:"Locale"` // CultureInfo
+	Name              string                `ps:"Name"`
 }
 
 func (p SetDataClassificationParams) params() map[string]any {
@@ -24288,7 +24370,9 @@ func (p SetDataClassificationParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if p.Fingerprints != nil {
+	if p.FingerprintsDelta != nil {
+		m["Fingerprints"] = *p.FingerprintsDelta
+	} else if p.Fingerprints != nil {
 		m["Fingerprints"] = p.Fingerprints
 	}
 	if p.Identity != nil {
@@ -24314,23 +24398,26 @@ func (s *Service) SetDataClassification(ctx context.Context, p SetDataClassifica
 // SetDataEncryptionPolicyParams are the parameters of Set-DataEncryptionPolicy.
 // DefaultParameterSetName: Identity
 type SetDataEncryptionPolicyParams struct {
-	AzureKeyIDs                 []string `ps:"AzureKeyIDs"`
-	Description                 string   `ps:"Description"`
-	DomainController            any      `ps:"DomainController"` // Fqdn
-	Enabled                     *bool    `ps:"Enabled"`
-	Force                       bool     `ps:"Force"`
-	Identity                    any      `ps:"Identity"` // DataEncryptionPolicyIdParameter
-	Name                        string   `ps:"Name"`
-	PermanentDataPurgeContact   string   `ps:"PermanentDataPurgeContact"`
-	PermanentDataPurgeReason    string   `ps:"PermanentDataPurgeReason"`
-	PermanentDataPurgeRequested bool     `ps:"PermanentDataPurgeRequested"`
-	Refresh                     bool     `ps:"Refresh"`
-	Replace                     bool     `ps:"Replace"`
+	AzureKeyIDs                 []string              `ps:"AzureKeyIDs"`
+	AzureKeyIDsDelta            *adminapi.StringDelta `ps:"AzureKeyIDs"` // adds/removes values of AzureKeyIDs; takes precedence over it
+	Description                 string                `ps:"Description"`
+	DomainController            any                   `ps:"DomainController"` // Fqdn
+	Enabled                     *bool                 `ps:"Enabled"`
+	Force                       bool                  `ps:"Force"`
+	Identity                    any                   `ps:"Identity"` // DataEncryptionPolicyIdParameter
+	Name                        string                `ps:"Name"`
+	PermanentDataPurgeContact   string                `ps:"PermanentDataPurgeContact"`
+	PermanentDataPurgeReason    string                `ps:"PermanentDataPurgeReason"`
+	PermanentDataPurgeRequested bool                  `ps:"PermanentDataPurgeRequested"`
+	Refresh                     bool                  `ps:"Refresh"`
+	Replace                     bool                  `ps:"Replace"`
 }
 
 func (p SetDataEncryptionPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AzureKeyIDs != nil {
+	if p.AzureKeyIDsDelta != nil {
+		m["AzureKeyIDs"] = *p.AzureKeyIDsDelta
+	} else if p.AzureKeyIDs != nil {
 		m["AzureKeyIDs"] = p.AzureKeyIDs
 	}
 	if p.Description != "" {
@@ -24377,76 +24464,99 @@ func (s *Service) SetDataEncryptionPolicy(ctx context.Context, p SetDataEncrypti
 // SetDistributionGroupParams are the parameters of Set-DistributionGroup.
 // DefaultParameterSetName: Identity
 type SetDistributionGroupParams struct {
-	AcceptMessagesOnlyFrom                 []string `ps:"AcceptMessagesOnlyFrom"`
-	AcceptMessagesOnlyFromDLMembers        []string `ps:"AcceptMessagesOnlyFromDLMembers"`
-	AcceptMessagesOnlyFromSendersOrMembers []string `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
-	Alias                                  string   `ps:"Alias"`
-	BccBlocked                             *bool    `ps:"BccBlocked"`
-	BypassModerationFromSendersOrMembers   []string `ps:"BypassModerationFromSendersOrMembers"`
-	BypassNestedModerationEnabled          *bool    `ps:"BypassNestedModerationEnabled"`
-	BypassSecurityGroupManagerCheck        bool     `ps:"BypassSecurityGroupManagerCheck"`
-	CustomAttribute1                       string   `ps:"CustomAttribute1"`
-	CustomAttribute10                      string   `ps:"CustomAttribute10"`
-	CustomAttribute11                      string   `ps:"CustomAttribute11"`
-	CustomAttribute12                      string   `ps:"CustomAttribute12"`
-	CustomAttribute13                      string   `ps:"CustomAttribute13"`
-	CustomAttribute14                      string   `ps:"CustomAttribute14"`
-	CustomAttribute15                      string   `ps:"CustomAttribute15"`
-	CustomAttribute2                       string   `ps:"CustomAttribute2"`
-	CustomAttribute3                       string   `ps:"CustomAttribute3"`
-	CustomAttribute4                       string   `ps:"CustomAttribute4"`
-	CustomAttribute5                       string   `ps:"CustomAttribute5"`
-	CustomAttribute6                       string   `ps:"CustomAttribute6"`
-	CustomAttribute7                       string   `ps:"CustomAttribute7"`
-	CustomAttribute8                       string   `ps:"CustomAttribute8"`
-	CustomAttribute9                       string   `ps:"CustomAttribute9"`
-	Description                            []string `ps:"Description"`
-	DisplayName                            string   `ps:"DisplayName"`
-	EmailAddresses                         []string `ps:"EmailAddresses"`
-	ExtensionCustomAttribute1              []string `ps:"ExtensionCustomAttribute1"`
-	ExtensionCustomAttribute2              []string `ps:"ExtensionCustomAttribute2"`
-	ExtensionCustomAttribute3              []string `ps:"ExtensionCustomAttribute3"`
-	ExtensionCustomAttribute4              []string `ps:"ExtensionCustomAttribute4"`
-	ExtensionCustomAttribute5              []string `ps:"ExtensionCustomAttribute5"`
-	ForceUpgrade                           bool     `ps:"ForceUpgrade"`
-	GrantSendOnBehalfTo                    []string `ps:"GrantSendOnBehalfTo"`
-	HiddenFromAddressListsEnabled          *bool    `ps:"HiddenFromAddressListsEnabled"`
-	HiddenGroupMembershipEnabled           bool     `ps:"HiddenGroupMembershipEnabled"`
-	Identity                               any      `ps:"Identity"` // DistributionGroupIdParameter
-	IgnoreNamingPolicy                     bool     `ps:"IgnoreNamingPolicy"`
-	MailTip                                string   `ps:"MailTip"`
-	MailTipTranslations                    []string `ps:"MailTipTranslations"`
-	ManagedBy                              []string `ps:"ManagedBy"`
-	MemberDepartRestriction                any      `ps:"MemberDepartRestriction"` // MemberUpdateType
-	MemberJoinRestriction                  any      `ps:"MemberJoinRestriction"`   // MemberUpdateType
-	ModeratedBy                            []string `ps:"ModeratedBy"`
-	ModerationEnabled                      *bool    `ps:"ModerationEnabled"`
-	Name                                   string   `ps:"Name"`
-	PrimarySmtpAddress                     any      `ps:"PrimarySmtpAddress"` // SmtpAddress
-	RejectMessagesFrom                     []string `ps:"RejectMessagesFrom"`
-	RejectMessagesFromDLMembers            []string `ps:"RejectMessagesFromDLMembers"`
-	RejectMessagesFromSendersOrMembers     []string `ps:"RejectMessagesFromSendersOrMembers"`
-	ReportToManagerEnabled                 *bool    `ps:"ReportToManagerEnabled"`
-	ReportToOriginatorEnabled              *bool    `ps:"ReportToOriginatorEnabled"`
-	RequireSenderAuthenticationEnabled     *bool    `ps:"RequireSenderAuthenticationEnabled"`
-	ResetMigrationToUnifiedGroup           bool     `ps:"ResetMigrationToUnifiedGroup"`
-	RoomList                               bool     `ps:"RoomList"`
-	SendModerationNotifications            any      `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
-	SendOofMessageToOriginatorEnabled      *bool    `ps:"SendOofMessageToOriginatorEnabled"`
-	SimpleDisplayName                      string   `ps:"SimpleDisplayName"`
-	UpdateMemberCount                      bool     `ps:"UpdateMemberCount"`
-	WindowsEmailAddress                    any      `ps:"WindowsEmailAddress"` // SmtpAddress
+	AcceptMessagesOnlyFrom                      []string              `ps:"AcceptMessagesOnlyFrom"`
+	AcceptMessagesOnlyFromDelta                 *adminapi.StringDelta `ps:"AcceptMessagesOnlyFrom"` // adds/removes values of AcceptMessagesOnlyFrom; takes precedence over it
+	AcceptMessagesOnlyFromDLMembers             []string              `ps:"AcceptMessagesOnlyFromDLMembers"`
+	AcceptMessagesOnlyFromDLMembersDelta        *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromDLMembers"` // adds/removes values of AcceptMessagesOnlyFromDLMembers; takes precedence over it
+	AcceptMessagesOnlyFromSendersOrMembers      []string              `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
+	AcceptMessagesOnlyFromSendersOrMembersDelta *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromSendersOrMembers"` // adds/removes values of AcceptMessagesOnlyFromSendersOrMembers; takes precedence over it
+	Alias                                       string                `ps:"Alias"`
+	BccBlocked                                  *bool                 `ps:"BccBlocked"`
+	BypassModerationFromSendersOrMembers        []string              `ps:"BypassModerationFromSendersOrMembers"`
+	BypassModerationFromSendersOrMembersDelta   *adminapi.StringDelta `ps:"BypassModerationFromSendersOrMembers"` // adds/removes values of BypassModerationFromSendersOrMembers; takes precedence over it
+	BypassNestedModerationEnabled               *bool                 `ps:"BypassNestedModerationEnabled"`
+	BypassSecurityGroupManagerCheck             bool                  `ps:"BypassSecurityGroupManagerCheck"`
+	CustomAttribute1                            string                `ps:"CustomAttribute1"`
+	CustomAttribute10                           string                `ps:"CustomAttribute10"`
+	CustomAttribute11                           string                `ps:"CustomAttribute11"`
+	CustomAttribute12                           string                `ps:"CustomAttribute12"`
+	CustomAttribute13                           string                `ps:"CustomAttribute13"`
+	CustomAttribute14                           string                `ps:"CustomAttribute14"`
+	CustomAttribute15                           string                `ps:"CustomAttribute15"`
+	CustomAttribute2                            string                `ps:"CustomAttribute2"`
+	CustomAttribute3                            string                `ps:"CustomAttribute3"`
+	CustomAttribute4                            string                `ps:"CustomAttribute4"`
+	CustomAttribute5                            string                `ps:"CustomAttribute5"`
+	CustomAttribute6                            string                `ps:"CustomAttribute6"`
+	CustomAttribute7                            string                `ps:"CustomAttribute7"`
+	CustomAttribute8                            string                `ps:"CustomAttribute8"`
+	CustomAttribute9                            string                `ps:"CustomAttribute9"`
+	Description                                 []string              `ps:"Description"`
+	DescriptionDelta                            *adminapi.StringDelta `ps:"Description"` // adds/removes values of Description; takes precedence over it
+	DisplayName                                 string                `ps:"DisplayName"`
+	EmailAddresses                              []string              `ps:"EmailAddresses"`
+	ExtensionCustomAttribute1                   []string              `ps:"ExtensionCustomAttribute1"`
+	ExtensionCustomAttribute1Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute1"` // adds/removes values of ExtensionCustomAttribute1; takes precedence over it
+	ExtensionCustomAttribute2                   []string              `ps:"ExtensionCustomAttribute2"`
+	ExtensionCustomAttribute2Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute2"` // adds/removes values of ExtensionCustomAttribute2; takes precedence over it
+	ExtensionCustomAttribute3                   []string              `ps:"ExtensionCustomAttribute3"`
+	ExtensionCustomAttribute3Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute3"` // adds/removes values of ExtensionCustomAttribute3; takes precedence over it
+	ExtensionCustomAttribute4                   []string              `ps:"ExtensionCustomAttribute4"`
+	ExtensionCustomAttribute4Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute4"` // adds/removes values of ExtensionCustomAttribute4; takes precedence over it
+	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
+	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
+	ForceUpgrade                                bool                  `ps:"ForceUpgrade"`
+	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
+	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
+	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
+	HiddenGroupMembershipEnabled                bool                  `ps:"HiddenGroupMembershipEnabled"`
+	Identity                                    any                   `ps:"Identity"` // DistributionGroupIdParameter
+	IgnoreNamingPolicy                          bool                  `ps:"IgnoreNamingPolicy"`
+	MailTip                                     string                `ps:"MailTip"`
+	MailTipTranslations                         []string              `ps:"MailTipTranslations"`
+	MailTipTranslationsDelta                    *adminapi.StringDelta `ps:"MailTipTranslations"` // adds/removes values of MailTipTranslations; takes precedence over it
+	ManagedBy                                   []string              `ps:"ManagedBy"`
+	ManagedByDelta                              *adminapi.StringDelta `ps:"ManagedBy"`               // adds/removes values of ManagedBy; takes precedence over it
+	MemberDepartRestriction                     any                   `ps:"MemberDepartRestriction"` // MemberUpdateType
+	MemberJoinRestriction                       any                   `ps:"MemberJoinRestriction"`   // MemberUpdateType
+	ModeratedBy                                 []string              `ps:"ModeratedBy"`
+	ModeratedByDelta                            *adminapi.StringDelta `ps:"ModeratedBy"` // adds/removes values of ModeratedBy; takes precedence over it
+	ModerationEnabled                           *bool                 `ps:"ModerationEnabled"`
+	Name                                        string                `ps:"Name"`
+	PrimarySmtpAddress                          any                   `ps:"PrimarySmtpAddress"` // SmtpAddress
+	RejectMessagesFrom                          []string              `ps:"RejectMessagesFrom"`
+	RejectMessagesFromDelta                     *adminapi.StringDelta `ps:"RejectMessagesFrom"` // adds/removes values of RejectMessagesFrom; takes precedence over it
+	RejectMessagesFromDLMembers                 []string              `ps:"RejectMessagesFromDLMembers"`
+	RejectMessagesFromDLMembersDelta            *adminapi.StringDelta `ps:"RejectMessagesFromDLMembers"` // adds/removes values of RejectMessagesFromDLMembers; takes precedence over it
+	RejectMessagesFromSendersOrMembers          []string              `ps:"RejectMessagesFromSendersOrMembers"`
+	RejectMessagesFromSendersOrMembersDelta     *adminapi.StringDelta `ps:"RejectMessagesFromSendersOrMembers"` // adds/removes values of RejectMessagesFromSendersOrMembers; takes precedence over it
+	ReportToManagerEnabled                      *bool                 `ps:"ReportToManagerEnabled"`
+	ReportToOriginatorEnabled                   *bool                 `ps:"ReportToOriginatorEnabled"`
+	RequireSenderAuthenticationEnabled          *bool                 `ps:"RequireSenderAuthenticationEnabled"`
+	ResetMigrationToUnifiedGroup                bool                  `ps:"ResetMigrationToUnifiedGroup"`
+	RoomList                                    bool                  `ps:"RoomList"`
+	SendModerationNotifications                 any                   `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
+	SendOofMessageToOriginatorEnabled           *bool                 `ps:"SendOofMessageToOriginatorEnabled"`
+	SimpleDisplayName                           string                `ps:"SimpleDisplayName"`
+	UpdateMemberCount                           bool                  `ps:"UpdateMemberCount"`
+	WindowsEmailAddress                         any                   `ps:"WindowsEmailAddress"` // SmtpAddress
 }
 
 func (p SetDistributionGroupParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptMessagesOnlyFrom != nil {
+	if p.AcceptMessagesOnlyFromDelta != nil {
+		m["AcceptMessagesOnlyFrom"] = *p.AcceptMessagesOnlyFromDelta
+	} else if p.AcceptMessagesOnlyFrom != nil {
 		m["AcceptMessagesOnlyFrom"] = p.AcceptMessagesOnlyFrom
 	}
-	if p.AcceptMessagesOnlyFromDLMembers != nil {
+	if p.AcceptMessagesOnlyFromDLMembersDelta != nil {
+		m["AcceptMessagesOnlyFromDLMembers"] = *p.AcceptMessagesOnlyFromDLMembersDelta
+	} else if p.AcceptMessagesOnlyFromDLMembers != nil {
 		m["AcceptMessagesOnlyFromDLMembers"] = p.AcceptMessagesOnlyFromDLMembers
 	}
-	if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
+	if p.AcceptMessagesOnlyFromSendersOrMembersDelta != nil {
+		m["AcceptMessagesOnlyFromSendersOrMembers"] = *p.AcceptMessagesOnlyFromSendersOrMembersDelta
+	} else if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
 		m["AcceptMessagesOnlyFromSendersOrMembers"] = p.AcceptMessagesOnlyFromSendersOrMembers
 	}
 	if p.Alias != "" {
@@ -24455,7 +24565,9 @@ func (p SetDistributionGroupParams) params() map[string]any {
 	if p.BccBlocked != nil {
 		m["BccBlocked"] = *p.BccBlocked
 	}
-	if p.BypassModerationFromSendersOrMembers != nil {
+	if p.BypassModerationFromSendersOrMembersDelta != nil {
+		m["BypassModerationFromSendersOrMembers"] = *p.BypassModerationFromSendersOrMembersDelta
+	} else if p.BypassModerationFromSendersOrMembers != nil {
 		m["BypassModerationFromSendersOrMembers"] = p.BypassModerationFromSendersOrMembers
 	}
 	if p.BypassNestedModerationEnabled != nil {
@@ -24509,7 +24621,9 @@ func (p SetDistributionGroupParams) params() map[string]any {
 	if p.CustomAttribute9 != "" {
 		m["CustomAttribute9"] = p.CustomAttribute9
 	}
-	if p.Description != nil {
+	if p.DescriptionDelta != nil {
+		m["Description"] = *p.DescriptionDelta
+	} else if p.Description != nil {
 		m["Description"] = p.Description
 	}
 	if p.DisplayName != "" {
@@ -24518,25 +24632,37 @@ func (p SetDistributionGroupParams) params() map[string]any {
 	if p.EmailAddresses != nil {
 		m["EmailAddresses"] = p.EmailAddresses
 	}
-	if p.ExtensionCustomAttribute1 != nil {
+	if p.ExtensionCustomAttribute1Delta != nil {
+		m["ExtensionCustomAttribute1"] = *p.ExtensionCustomAttribute1Delta
+	} else if p.ExtensionCustomAttribute1 != nil {
 		m["ExtensionCustomAttribute1"] = p.ExtensionCustomAttribute1
 	}
-	if p.ExtensionCustomAttribute2 != nil {
+	if p.ExtensionCustomAttribute2Delta != nil {
+		m["ExtensionCustomAttribute2"] = *p.ExtensionCustomAttribute2Delta
+	} else if p.ExtensionCustomAttribute2 != nil {
 		m["ExtensionCustomAttribute2"] = p.ExtensionCustomAttribute2
 	}
-	if p.ExtensionCustomAttribute3 != nil {
+	if p.ExtensionCustomAttribute3Delta != nil {
+		m["ExtensionCustomAttribute3"] = *p.ExtensionCustomAttribute3Delta
+	} else if p.ExtensionCustomAttribute3 != nil {
 		m["ExtensionCustomAttribute3"] = p.ExtensionCustomAttribute3
 	}
-	if p.ExtensionCustomAttribute4 != nil {
+	if p.ExtensionCustomAttribute4Delta != nil {
+		m["ExtensionCustomAttribute4"] = *p.ExtensionCustomAttribute4Delta
+	} else if p.ExtensionCustomAttribute4 != nil {
 		m["ExtensionCustomAttribute4"] = p.ExtensionCustomAttribute4
 	}
-	if p.ExtensionCustomAttribute5 != nil {
+	if p.ExtensionCustomAttribute5Delta != nil {
+		m["ExtensionCustomAttribute5"] = *p.ExtensionCustomAttribute5Delta
+	} else if p.ExtensionCustomAttribute5 != nil {
 		m["ExtensionCustomAttribute5"] = p.ExtensionCustomAttribute5
 	}
 	if p.ForceUpgrade {
 		m["ForceUpgrade"] = true
 	}
-	if p.GrantSendOnBehalfTo != nil {
+	if p.GrantSendOnBehalfToDelta != nil {
+		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
+	} else if p.GrantSendOnBehalfTo != nil {
 		m["GrantSendOnBehalfTo"] = p.GrantSendOnBehalfTo
 	}
 	if p.HiddenFromAddressListsEnabled != nil {
@@ -24554,10 +24680,14 @@ func (p SetDistributionGroupParams) params() map[string]any {
 	if p.MailTip != "" {
 		m["MailTip"] = p.MailTip
 	}
-	if p.MailTipTranslations != nil {
+	if p.MailTipTranslationsDelta != nil {
+		m["MailTipTranslations"] = *p.MailTipTranslationsDelta
+	} else if p.MailTipTranslations != nil {
 		m["MailTipTranslations"] = p.MailTipTranslations
 	}
-	if p.ManagedBy != nil {
+	if p.ManagedByDelta != nil {
+		m["ManagedBy"] = *p.ManagedByDelta
+	} else if p.ManagedBy != nil {
 		m["ManagedBy"] = p.ManagedBy
 	}
 	if p.MemberDepartRestriction != nil {
@@ -24566,7 +24696,9 @@ func (p SetDistributionGroupParams) params() map[string]any {
 	if p.MemberJoinRestriction != nil {
 		m["MemberJoinRestriction"] = p.MemberJoinRestriction
 	}
-	if p.ModeratedBy != nil {
+	if p.ModeratedByDelta != nil {
+		m["ModeratedBy"] = *p.ModeratedByDelta
+	} else if p.ModeratedBy != nil {
 		m["ModeratedBy"] = p.ModeratedBy
 	}
 	if p.ModerationEnabled != nil {
@@ -24578,13 +24710,19 @@ func (p SetDistributionGroupParams) params() map[string]any {
 	if p.PrimarySmtpAddress != nil {
 		m["PrimarySmtpAddress"] = p.PrimarySmtpAddress
 	}
-	if p.RejectMessagesFrom != nil {
+	if p.RejectMessagesFromDelta != nil {
+		m["RejectMessagesFrom"] = *p.RejectMessagesFromDelta
+	} else if p.RejectMessagesFrom != nil {
 		m["RejectMessagesFrom"] = p.RejectMessagesFrom
 	}
-	if p.RejectMessagesFromDLMembers != nil {
+	if p.RejectMessagesFromDLMembersDelta != nil {
+		m["RejectMessagesFromDLMembers"] = *p.RejectMessagesFromDLMembersDelta
+	} else if p.RejectMessagesFromDLMembers != nil {
 		m["RejectMessagesFromDLMembers"] = p.RejectMessagesFromDLMembers
 	}
-	if p.RejectMessagesFromSendersOrMembers != nil {
+	if p.RejectMessagesFromSendersOrMembersDelta != nil {
+		m["RejectMessagesFromSendersOrMembers"] = *p.RejectMessagesFromSendersOrMembersDelta
+	} else if p.RejectMessagesFromSendersOrMembers != nil {
 		m["RejectMessagesFromSendersOrMembers"] = p.RejectMessagesFromSendersOrMembers
 	}
 	if p.ReportToManagerEnabled != nil {
@@ -24702,151 +24840,228 @@ func (s *Service) SetDlpPolicy(ctx context.Context, p SetDlpPolicyParams) (*admi
 // SetDynamicDistributionGroupParams are the parameters of Set-DynamicDistributionGroup.
 // DefaultParameterSetName: Identity
 type SetDynamicDistributionGroupParams struct {
-	AcceptMessagesOnlyFrom                 []string `ps:"AcceptMessagesOnlyFrom"`
-	AcceptMessagesOnlyFromDLMembers        []string `ps:"AcceptMessagesOnlyFromDLMembers"`
-	AcceptMessagesOnlyFromSendersOrMembers []string `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
-	Alias                                  string   `ps:"Alias"`
-	BypassModerationFromSendersOrMembers   []string `ps:"BypassModerationFromSendersOrMembers"`
-	ConditionalCompany                     []string `ps:"ConditionalCompany"`
-	ConditionalCustomAttribute1            []string `ps:"ConditionalCustomAttribute1"`
-	ConditionalCustomAttribute10           []string `ps:"ConditionalCustomAttribute10"`
-	ConditionalCustomAttribute11           []string `ps:"ConditionalCustomAttribute11"`
-	ConditionalCustomAttribute12           []string `ps:"ConditionalCustomAttribute12"`
-	ConditionalCustomAttribute13           []string `ps:"ConditionalCustomAttribute13"`
-	ConditionalCustomAttribute14           []string `ps:"ConditionalCustomAttribute14"`
-	ConditionalCustomAttribute15           []string `ps:"ConditionalCustomAttribute15"`
-	ConditionalCustomAttribute2            []string `ps:"ConditionalCustomAttribute2"`
-	ConditionalCustomAttribute3            []string `ps:"ConditionalCustomAttribute3"`
-	ConditionalCustomAttribute4            []string `ps:"ConditionalCustomAttribute4"`
-	ConditionalCustomAttribute5            []string `ps:"ConditionalCustomAttribute5"`
-	ConditionalCustomAttribute6            []string `ps:"ConditionalCustomAttribute6"`
-	ConditionalCustomAttribute7            []string `ps:"ConditionalCustomAttribute7"`
-	ConditionalCustomAttribute8            []string `ps:"ConditionalCustomAttribute8"`
-	ConditionalCustomAttribute9            []string `ps:"ConditionalCustomAttribute9"`
-	ConditionalDepartment                  []string `ps:"ConditionalDepartment"`
-	ConditionalStateOrProvince             []string `ps:"ConditionalStateOrProvince"`
-	CustomAttribute1                       string   `ps:"CustomAttribute1"`
-	CustomAttribute10                      string   `ps:"CustomAttribute10"`
-	CustomAttribute11                      string   `ps:"CustomAttribute11"`
-	CustomAttribute12                      string   `ps:"CustomAttribute12"`
-	CustomAttribute13                      string   `ps:"CustomAttribute13"`
-	CustomAttribute14                      string   `ps:"CustomAttribute14"`
-	CustomAttribute15                      string   `ps:"CustomAttribute15"`
-	CustomAttribute2                       string   `ps:"CustomAttribute2"`
-	CustomAttribute3                       string   `ps:"CustomAttribute3"`
-	CustomAttribute4                       string   `ps:"CustomAttribute4"`
-	CustomAttribute5                       string   `ps:"CustomAttribute5"`
-	CustomAttribute6                       string   `ps:"CustomAttribute6"`
-	CustomAttribute7                       string   `ps:"CustomAttribute7"`
-	CustomAttribute8                       string   `ps:"CustomAttribute8"`
-	CustomAttribute9                       string   `ps:"CustomAttribute9"`
-	DirectMembershipOnly                   *bool    `ps:"DirectMembershipOnly"`
-	DisplayName                            string   `ps:"DisplayName"`
-	EmailAddresses                         []string `ps:"EmailAddresses"`
-	ExtensionCustomAttribute1              []string `ps:"ExtensionCustomAttribute1"`
-	ExtensionCustomAttribute2              []string `ps:"ExtensionCustomAttribute2"`
-	ExtensionCustomAttribute3              []string `ps:"ExtensionCustomAttribute3"`
-	ExtensionCustomAttribute4              []string `ps:"ExtensionCustomAttribute4"`
-	ExtensionCustomAttribute5              []string `ps:"ExtensionCustomAttribute5"`
-	ForceMembershipRefresh                 bool     `ps:"ForceMembershipRefresh"`
-	ForceUpgrade                           bool     `ps:"ForceUpgrade"`
-	GrantSendOnBehalfTo                    []string `ps:"GrantSendOnBehalfTo"`
-	HiddenFromAddressListsEnabled          *bool    `ps:"HiddenFromAddressListsEnabled"`
-	Identity                               any      `ps:"Identity"`           // DynamicGroupIdParameter
-	IncludedRecipients                     any      `ps:"IncludedRecipients"` // WellKnownRecipientType
-	MailTip                                string   `ps:"MailTip"`
-	MailTipTranslations                    []string `ps:"MailTipTranslations"`
-	ManagedBy                              any      `ps:"ManagedBy"` // GeneralRecipientIdParameter
-	ModeratedBy                            []string `ps:"ModeratedBy"`
-	ModerationEnabled                      *bool    `ps:"ModerationEnabled"`
-	Name                                   string   `ps:"Name"`
-	Notes                                  string   `ps:"Notes"`
-	PhoneticDisplayName                    string   `ps:"PhoneticDisplayName"`
-	PrimarySmtpAddress                     any      `ps:"PrimarySmtpAddress"` // SmtpAddress
-	RecipientContainer                     any      `ps:"RecipientContainer"` // OrganizationalUnitIdParameter
-	RecipientFilter                        string   `ps:"RecipientFilter"`
-	RejectMessagesFrom                     []string `ps:"RejectMessagesFrom"`
-	RejectMessagesFromDLMembers            []string `ps:"RejectMessagesFromDLMembers"`
-	RejectMessagesFromSendersOrMembers     []string `ps:"RejectMessagesFromSendersOrMembers"`
-	ReportToManagerEnabled                 *bool    `ps:"ReportToManagerEnabled"`
-	ReportToOriginatorEnabled              *bool    `ps:"ReportToOriginatorEnabled"`
-	RequireSenderAuthenticationEnabled     *bool    `ps:"RequireSenderAuthenticationEnabled"`
-	SendModerationNotifications            any      `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
-	SendOofMessageToOriginatorEnabled      *bool    `ps:"SendOofMessageToOriginatorEnabled"`
-	SimpleDisplayName                      string   `ps:"SimpleDisplayName"`
-	UpdateMemberCount                      bool     `ps:"UpdateMemberCount"`
-	WindowsEmailAddress                    any      `ps:"WindowsEmailAddress"` // SmtpAddress
+	AcceptMessagesOnlyFrom                      []string              `ps:"AcceptMessagesOnlyFrom"`
+	AcceptMessagesOnlyFromDelta                 *adminapi.StringDelta `ps:"AcceptMessagesOnlyFrom"` // adds/removes values of AcceptMessagesOnlyFrom; takes precedence over it
+	AcceptMessagesOnlyFromDLMembers             []string              `ps:"AcceptMessagesOnlyFromDLMembers"`
+	AcceptMessagesOnlyFromDLMembersDelta        *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromDLMembers"` // adds/removes values of AcceptMessagesOnlyFromDLMembers; takes precedence over it
+	AcceptMessagesOnlyFromSendersOrMembers      []string              `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
+	AcceptMessagesOnlyFromSendersOrMembersDelta *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromSendersOrMembers"` // adds/removes values of AcceptMessagesOnlyFromSendersOrMembers; takes precedence over it
+	Alias                                       string                `ps:"Alias"`
+	BypassModerationFromSendersOrMembers        []string              `ps:"BypassModerationFromSendersOrMembers"`
+	BypassModerationFromSendersOrMembersDelta   *adminapi.StringDelta `ps:"BypassModerationFromSendersOrMembers"` // adds/removes values of BypassModerationFromSendersOrMembers; takes precedence over it
+	ConditionalCompany                          []string              `ps:"ConditionalCompany"`
+	ConditionalCompanyDelta                     *adminapi.StringDelta `ps:"ConditionalCompany"` // adds/removes values of ConditionalCompany; takes precedence over it
+	ConditionalCustomAttribute1                 []string              `ps:"ConditionalCustomAttribute1"`
+	ConditionalCustomAttribute1Delta            *adminapi.StringDelta `ps:"ConditionalCustomAttribute1"` // adds/removes values of ConditionalCustomAttribute1; takes precedence over it
+	ConditionalCustomAttribute10                []string              `ps:"ConditionalCustomAttribute10"`
+	ConditionalCustomAttribute10Delta           *adminapi.StringDelta `ps:"ConditionalCustomAttribute10"` // adds/removes values of ConditionalCustomAttribute10; takes precedence over it
+	ConditionalCustomAttribute11                []string              `ps:"ConditionalCustomAttribute11"`
+	ConditionalCustomAttribute11Delta           *adminapi.StringDelta `ps:"ConditionalCustomAttribute11"` // adds/removes values of ConditionalCustomAttribute11; takes precedence over it
+	ConditionalCustomAttribute12                []string              `ps:"ConditionalCustomAttribute12"`
+	ConditionalCustomAttribute12Delta           *adminapi.StringDelta `ps:"ConditionalCustomAttribute12"` // adds/removes values of ConditionalCustomAttribute12; takes precedence over it
+	ConditionalCustomAttribute13                []string              `ps:"ConditionalCustomAttribute13"`
+	ConditionalCustomAttribute13Delta           *adminapi.StringDelta `ps:"ConditionalCustomAttribute13"` // adds/removes values of ConditionalCustomAttribute13; takes precedence over it
+	ConditionalCustomAttribute14                []string              `ps:"ConditionalCustomAttribute14"`
+	ConditionalCustomAttribute14Delta           *adminapi.StringDelta `ps:"ConditionalCustomAttribute14"` // adds/removes values of ConditionalCustomAttribute14; takes precedence over it
+	ConditionalCustomAttribute15                []string              `ps:"ConditionalCustomAttribute15"`
+	ConditionalCustomAttribute15Delta           *adminapi.StringDelta `ps:"ConditionalCustomAttribute15"` // adds/removes values of ConditionalCustomAttribute15; takes precedence over it
+	ConditionalCustomAttribute2                 []string              `ps:"ConditionalCustomAttribute2"`
+	ConditionalCustomAttribute2Delta            *adminapi.StringDelta `ps:"ConditionalCustomAttribute2"` // adds/removes values of ConditionalCustomAttribute2; takes precedence over it
+	ConditionalCustomAttribute3                 []string              `ps:"ConditionalCustomAttribute3"`
+	ConditionalCustomAttribute3Delta            *adminapi.StringDelta `ps:"ConditionalCustomAttribute3"` // adds/removes values of ConditionalCustomAttribute3; takes precedence over it
+	ConditionalCustomAttribute4                 []string              `ps:"ConditionalCustomAttribute4"`
+	ConditionalCustomAttribute4Delta            *adminapi.StringDelta `ps:"ConditionalCustomAttribute4"` // adds/removes values of ConditionalCustomAttribute4; takes precedence over it
+	ConditionalCustomAttribute5                 []string              `ps:"ConditionalCustomAttribute5"`
+	ConditionalCustomAttribute5Delta            *adminapi.StringDelta `ps:"ConditionalCustomAttribute5"` // adds/removes values of ConditionalCustomAttribute5; takes precedence over it
+	ConditionalCustomAttribute6                 []string              `ps:"ConditionalCustomAttribute6"`
+	ConditionalCustomAttribute6Delta            *adminapi.StringDelta `ps:"ConditionalCustomAttribute6"` // adds/removes values of ConditionalCustomAttribute6; takes precedence over it
+	ConditionalCustomAttribute7                 []string              `ps:"ConditionalCustomAttribute7"`
+	ConditionalCustomAttribute7Delta            *adminapi.StringDelta `ps:"ConditionalCustomAttribute7"` // adds/removes values of ConditionalCustomAttribute7; takes precedence over it
+	ConditionalCustomAttribute8                 []string              `ps:"ConditionalCustomAttribute8"`
+	ConditionalCustomAttribute8Delta            *adminapi.StringDelta `ps:"ConditionalCustomAttribute8"` // adds/removes values of ConditionalCustomAttribute8; takes precedence over it
+	ConditionalCustomAttribute9                 []string              `ps:"ConditionalCustomAttribute9"`
+	ConditionalCustomAttribute9Delta            *adminapi.StringDelta `ps:"ConditionalCustomAttribute9"` // adds/removes values of ConditionalCustomAttribute9; takes precedence over it
+	ConditionalDepartment                       []string              `ps:"ConditionalDepartment"`
+	ConditionalDepartmentDelta                  *adminapi.StringDelta `ps:"ConditionalDepartment"` // adds/removes values of ConditionalDepartment; takes precedence over it
+	ConditionalStateOrProvince                  []string              `ps:"ConditionalStateOrProvince"`
+	ConditionalStateOrProvinceDelta             *adminapi.StringDelta `ps:"ConditionalStateOrProvince"` // adds/removes values of ConditionalStateOrProvince; takes precedence over it
+	CustomAttribute1                            string                `ps:"CustomAttribute1"`
+	CustomAttribute10                           string                `ps:"CustomAttribute10"`
+	CustomAttribute11                           string                `ps:"CustomAttribute11"`
+	CustomAttribute12                           string                `ps:"CustomAttribute12"`
+	CustomAttribute13                           string                `ps:"CustomAttribute13"`
+	CustomAttribute14                           string                `ps:"CustomAttribute14"`
+	CustomAttribute15                           string                `ps:"CustomAttribute15"`
+	CustomAttribute2                            string                `ps:"CustomAttribute2"`
+	CustomAttribute3                            string                `ps:"CustomAttribute3"`
+	CustomAttribute4                            string                `ps:"CustomAttribute4"`
+	CustomAttribute5                            string                `ps:"CustomAttribute5"`
+	CustomAttribute6                            string                `ps:"CustomAttribute6"`
+	CustomAttribute7                            string                `ps:"CustomAttribute7"`
+	CustomAttribute8                            string                `ps:"CustomAttribute8"`
+	CustomAttribute9                            string                `ps:"CustomAttribute9"`
+	DirectMembershipOnly                        *bool                 `ps:"DirectMembershipOnly"`
+	DisplayName                                 string                `ps:"DisplayName"`
+	EmailAddresses                              []string              `ps:"EmailAddresses"`
+	ExtensionCustomAttribute1                   []string              `ps:"ExtensionCustomAttribute1"`
+	ExtensionCustomAttribute1Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute1"` // adds/removes values of ExtensionCustomAttribute1; takes precedence over it
+	ExtensionCustomAttribute2                   []string              `ps:"ExtensionCustomAttribute2"`
+	ExtensionCustomAttribute2Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute2"` // adds/removes values of ExtensionCustomAttribute2; takes precedence over it
+	ExtensionCustomAttribute3                   []string              `ps:"ExtensionCustomAttribute3"`
+	ExtensionCustomAttribute3Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute3"` // adds/removes values of ExtensionCustomAttribute3; takes precedence over it
+	ExtensionCustomAttribute4                   []string              `ps:"ExtensionCustomAttribute4"`
+	ExtensionCustomAttribute4Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute4"` // adds/removes values of ExtensionCustomAttribute4; takes precedence over it
+	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
+	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
+	ForceMembershipRefresh                      bool                  `ps:"ForceMembershipRefresh"`
+	ForceUpgrade                                bool                  `ps:"ForceUpgrade"`
+	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
+	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
+	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
+	Identity                                    any                   `ps:"Identity"`           // DynamicGroupIdParameter
+	IncludedRecipients                          any                   `ps:"IncludedRecipients"` // WellKnownRecipientType
+	MailTip                                     string                `ps:"MailTip"`
+	MailTipTranslations                         []string              `ps:"MailTipTranslations"`
+	MailTipTranslationsDelta                    *adminapi.StringDelta `ps:"MailTipTranslations"` // adds/removes values of MailTipTranslations; takes precedence over it
+	ManagedBy                                   any                   `ps:"ManagedBy"`           // GeneralRecipientIdParameter
+	ModeratedBy                                 []string              `ps:"ModeratedBy"`
+	ModeratedByDelta                            *adminapi.StringDelta `ps:"ModeratedBy"` // adds/removes values of ModeratedBy; takes precedence over it
+	ModerationEnabled                           *bool                 `ps:"ModerationEnabled"`
+	Name                                        string                `ps:"Name"`
+	Notes                                       string                `ps:"Notes"`
+	PhoneticDisplayName                         string                `ps:"PhoneticDisplayName"`
+	PrimarySmtpAddress                          any                   `ps:"PrimarySmtpAddress"` // SmtpAddress
+	RecipientContainer                          any                   `ps:"RecipientContainer"` // OrganizationalUnitIdParameter
+	RecipientFilter                             string                `ps:"RecipientFilter"`
+	RejectMessagesFrom                          []string              `ps:"RejectMessagesFrom"`
+	RejectMessagesFromDelta                     *adminapi.StringDelta `ps:"RejectMessagesFrom"` // adds/removes values of RejectMessagesFrom; takes precedence over it
+	RejectMessagesFromDLMembers                 []string              `ps:"RejectMessagesFromDLMembers"`
+	RejectMessagesFromDLMembersDelta            *adminapi.StringDelta `ps:"RejectMessagesFromDLMembers"` // adds/removes values of RejectMessagesFromDLMembers; takes precedence over it
+	RejectMessagesFromSendersOrMembers          []string              `ps:"RejectMessagesFromSendersOrMembers"`
+	RejectMessagesFromSendersOrMembersDelta     *adminapi.StringDelta `ps:"RejectMessagesFromSendersOrMembers"` // adds/removes values of RejectMessagesFromSendersOrMembers; takes precedence over it
+	ReportToManagerEnabled                      *bool                 `ps:"ReportToManagerEnabled"`
+	ReportToOriginatorEnabled                   *bool                 `ps:"ReportToOriginatorEnabled"`
+	RequireSenderAuthenticationEnabled          *bool                 `ps:"RequireSenderAuthenticationEnabled"`
+	SendModerationNotifications                 any                   `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
+	SendOofMessageToOriginatorEnabled           *bool                 `ps:"SendOofMessageToOriginatorEnabled"`
+	SimpleDisplayName                           string                `ps:"SimpleDisplayName"`
+	UpdateMemberCount                           bool                  `ps:"UpdateMemberCount"`
+	WindowsEmailAddress                         any                   `ps:"WindowsEmailAddress"` // SmtpAddress
 }
 
 func (p SetDynamicDistributionGroupParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptMessagesOnlyFrom != nil {
+	if p.AcceptMessagesOnlyFromDelta != nil {
+		m["AcceptMessagesOnlyFrom"] = *p.AcceptMessagesOnlyFromDelta
+	} else if p.AcceptMessagesOnlyFrom != nil {
 		m["AcceptMessagesOnlyFrom"] = p.AcceptMessagesOnlyFrom
 	}
-	if p.AcceptMessagesOnlyFromDLMembers != nil {
+	if p.AcceptMessagesOnlyFromDLMembersDelta != nil {
+		m["AcceptMessagesOnlyFromDLMembers"] = *p.AcceptMessagesOnlyFromDLMembersDelta
+	} else if p.AcceptMessagesOnlyFromDLMembers != nil {
 		m["AcceptMessagesOnlyFromDLMembers"] = p.AcceptMessagesOnlyFromDLMembers
 	}
-	if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
+	if p.AcceptMessagesOnlyFromSendersOrMembersDelta != nil {
+		m["AcceptMessagesOnlyFromSendersOrMembers"] = *p.AcceptMessagesOnlyFromSendersOrMembersDelta
+	} else if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
 		m["AcceptMessagesOnlyFromSendersOrMembers"] = p.AcceptMessagesOnlyFromSendersOrMembers
 	}
 	if p.Alias != "" {
 		m["Alias"] = p.Alias
 	}
-	if p.BypassModerationFromSendersOrMembers != nil {
+	if p.BypassModerationFromSendersOrMembersDelta != nil {
+		m["BypassModerationFromSendersOrMembers"] = *p.BypassModerationFromSendersOrMembersDelta
+	} else if p.BypassModerationFromSendersOrMembers != nil {
 		m["BypassModerationFromSendersOrMembers"] = p.BypassModerationFromSendersOrMembers
 	}
-	if p.ConditionalCompany != nil {
+	if p.ConditionalCompanyDelta != nil {
+		m["ConditionalCompany"] = *p.ConditionalCompanyDelta
+	} else if p.ConditionalCompany != nil {
 		m["ConditionalCompany"] = p.ConditionalCompany
 	}
-	if p.ConditionalCustomAttribute1 != nil {
+	if p.ConditionalCustomAttribute1Delta != nil {
+		m["ConditionalCustomAttribute1"] = *p.ConditionalCustomAttribute1Delta
+	} else if p.ConditionalCustomAttribute1 != nil {
 		m["ConditionalCustomAttribute1"] = p.ConditionalCustomAttribute1
 	}
-	if p.ConditionalCustomAttribute10 != nil {
+	if p.ConditionalCustomAttribute10Delta != nil {
+		m["ConditionalCustomAttribute10"] = *p.ConditionalCustomAttribute10Delta
+	} else if p.ConditionalCustomAttribute10 != nil {
 		m["ConditionalCustomAttribute10"] = p.ConditionalCustomAttribute10
 	}
-	if p.ConditionalCustomAttribute11 != nil {
+	if p.ConditionalCustomAttribute11Delta != nil {
+		m["ConditionalCustomAttribute11"] = *p.ConditionalCustomAttribute11Delta
+	} else if p.ConditionalCustomAttribute11 != nil {
 		m["ConditionalCustomAttribute11"] = p.ConditionalCustomAttribute11
 	}
-	if p.ConditionalCustomAttribute12 != nil {
+	if p.ConditionalCustomAttribute12Delta != nil {
+		m["ConditionalCustomAttribute12"] = *p.ConditionalCustomAttribute12Delta
+	} else if p.ConditionalCustomAttribute12 != nil {
 		m["ConditionalCustomAttribute12"] = p.ConditionalCustomAttribute12
 	}
-	if p.ConditionalCustomAttribute13 != nil {
+	if p.ConditionalCustomAttribute13Delta != nil {
+		m["ConditionalCustomAttribute13"] = *p.ConditionalCustomAttribute13Delta
+	} else if p.ConditionalCustomAttribute13 != nil {
 		m["ConditionalCustomAttribute13"] = p.ConditionalCustomAttribute13
 	}
-	if p.ConditionalCustomAttribute14 != nil {
+	if p.ConditionalCustomAttribute14Delta != nil {
+		m["ConditionalCustomAttribute14"] = *p.ConditionalCustomAttribute14Delta
+	} else if p.ConditionalCustomAttribute14 != nil {
 		m["ConditionalCustomAttribute14"] = p.ConditionalCustomAttribute14
 	}
-	if p.ConditionalCustomAttribute15 != nil {
+	if p.ConditionalCustomAttribute15Delta != nil {
+		m["ConditionalCustomAttribute15"] = *p.ConditionalCustomAttribute15Delta
+	} else if p.ConditionalCustomAttribute15 != nil {
 		m["ConditionalCustomAttribute15"] = p.ConditionalCustomAttribute15
 	}
-	if p.ConditionalCustomAttribute2 != nil {
+	if p.ConditionalCustomAttribute2Delta != nil {
+		m["ConditionalCustomAttribute2"] = *p.ConditionalCustomAttribute2Delta
+	} else if p.ConditionalCustomAttribute2 != nil {
 		m["ConditionalCustomAttribute2"] = p.ConditionalCustomAttribute2
 	}
-	if p.ConditionalCustomAttribute3 != nil {
+	if p.ConditionalCustomAttribute3Delta != nil {
+		m["ConditionalCustomAttribute3"] = *p.ConditionalCustomAttribute3Delta
+	} else if p.ConditionalCustomAttribute3 != nil {
 		m["ConditionalCustomAttribute3"] = p.ConditionalCustomAttribute3
 	}
-	if p.ConditionalCustomAttribute4 != nil {
+	if p.ConditionalCustomAttribute4Delta != nil {
+		m["ConditionalCustomAttribute4"] = *p.ConditionalCustomAttribute4Delta
+	} else if p.ConditionalCustomAttribute4 != nil {
 		m["ConditionalCustomAttribute4"] = p.ConditionalCustomAttribute4
 	}
-	if p.ConditionalCustomAttribute5 != nil {
+	if p.ConditionalCustomAttribute5Delta != nil {
+		m["ConditionalCustomAttribute5"] = *p.ConditionalCustomAttribute5Delta
+	} else if p.ConditionalCustomAttribute5 != nil {
 		m["ConditionalCustomAttribute5"] = p.ConditionalCustomAttribute5
 	}
-	if p.ConditionalCustomAttribute6 != nil {
+	if p.ConditionalCustomAttribute6Delta != nil {
+		m["ConditionalCustomAttribute6"] = *p.ConditionalCustomAttribute6Delta
+	} else if p.ConditionalCustomAttribute6 != nil {
 		m["ConditionalCustomAttribute6"] = p.ConditionalCustomAttribute6
 	}
-	if p.ConditionalCustomAttribute7 != nil {
+	if p.ConditionalCustomAttribute7Delta != nil {
+		m["ConditionalCustomAttribute7"] = *p.ConditionalCustomAttribute7Delta
+	} else if p.ConditionalCustomAttribute7 != nil {
 		m["ConditionalCustomAttribute7"] = p.ConditionalCustomAttribute7
 	}
-	if p.ConditionalCustomAttribute8 != nil {
+	if p.ConditionalCustomAttribute8Delta != nil {
+		m["ConditionalCustomAttribute8"] = *p.ConditionalCustomAttribute8Delta
+	} else if p.ConditionalCustomAttribute8 != nil {
 		m["ConditionalCustomAttribute8"] = p.ConditionalCustomAttribute8
 	}
-	if p.ConditionalCustomAttribute9 != nil {
+	if p.ConditionalCustomAttribute9Delta != nil {
+		m["ConditionalCustomAttribute9"] = *p.ConditionalCustomAttribute9Delta
+	} else if p.ConditionalCustomAttribute9 != nil {
 		m["ConditionalCustomAttribute9"] = p.ConditionalCustomAttribute9
 	}
-	if p.ConditionalDepartment != nil {
+	if p.ConditionalDepartmentDelta != nil {
+		m["ConditionalDepartment"] = *p.ConditionalDepartmentDelta
+	} else if p.ConditionalDepartment != nil {
 		m["ConditionalDepartment"] = p.ConditionalDepartment
 	}
-	if p.ConditionalStateOrProvince != nil {
+	if p.ConditionalStateOrProvinceDelta != nil {
+		m["ConditionalStateOrProvince"] = *p.ConditionalStateOrProvinceDelta
+	} else if p.ConditionalStateOrProvince != nil {
 		m["ConditionalStateOrProvince"] = p.ConditionalStateOrProvince
 	}
 	if p.CustomAttribute1 != "" {
@@ -24903,19 +25118,29 @@ func (p SetDynamicDistributionGroupParams) params() map[string]any {
 	if p.EmailAddresses != nil {
 		m["EmailAddresses"] = p.EmailAddresses
 	}
-	if p.ExtensionCustomAttribute1 != nil {
+	if p.ExtensionCustomAttribute1Delta != nil {
+		m["ExtensionCustomAttribute1"] = *p.ExtensionCustomAttribute1Delta
+	} else if p.ExtensionCustomAttribute1 != nil {
 		m["ExtensionCustomAttribute1"] = p.ExtensionCustomAttribute1
 	}
-	if p.ExtensionCustomAttribute2 != nil {
+	if p.ExtensionCustomAttribute2Delta != nil {
+		m["ExtensionCustomAttribute2"] = *p.ExtensionCustomAttribute2Delta
+	} else if p.ExtensionCustomAttribute2 != nil {
 		m["ExtensionCustomAttribute2"] = p.ExtensionCustomAttribute2
 	}
-	if p.ExtensionCustomAttribute3 != nil {
+	if p.ExtensionCustomAttribute3Delta != nil {
+		m["ExtensionCustomAttribute3"] = *p.ExtensionCustomAttribute3Delta
+	} else if p.ExtensionCustomAttribute3 != nil {
 		m["ExtensionCustomAttribute3"] = p.ExtensionCustomAttribute3
 	}
-	if p.ExtensionCustomAttribute4 != nil {
+	if p.ExtensionCustomAttribute4Delta != nil {
+		m["ExtensionCustomAttribute4"] = *p.ExtensionCustomAttribute4Delta
+	} else if p.ExtensionCustomAttribute4 != nil {
 		m["ExtensionCustomAttribute4"] = p.ExtensionCustomAttribute4
 	}
-	if p.ExtensionCustomAttribute5 != nil {
+	if p.ExtensionCustomAttribute5Delta != nil {
+		m["ExtensionCustomAttribute5"] = *p.ExtensionCustomAttribute5Delta
+	} else if p.ExtensionCustomAttribute5 != nil {
 		m["ExtensionCustomAttribute5"] = p.ExtensionCustomAttribute5
 	}
 	if p.ForceMembershipRefresh {
@@ -24924,7 +25149,9 @@ func (p SetDynamicDistributionGroupParams) params() map[string]any {
 	if p.ForceUpgrade {
 		m["ForceUpgrade"] = true
 	}
-	if p.GrantSendOnBehalfTo != nil {
+	if p.GrantSendOnBehalfToDelta != nil {
+		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
+	} else if p.GrantSendOnBehalfTo != nil {
 		m["GrantSendOnBehalfTo"] = p.GrantSendOnBehalfTo
 	}
 	if p.HiddenFromAddressListsEnabled != nil {
@@ -24939,13 +25166,17 @@ func (p SetDynamicDistributionGroupParams) params() map[string]any {
 	if p.MailTip != "" {
 		m["MailTip"] = p.MailTip
 	}
-	if p.MailTipTranslations != nil {
+	if p.MailTipTranslationsDelta != nil {
+		m["MailTipTranslations"] = *p.MailTipTranslationsDelta
+	} else if p.MailTipTranslations != nil {
 		m["MailTipTranslations"] = p.MailTipTranslations
 	}
 	if p.ManagedBy != nil {
 		m["ManagedBy"] = p.ManagedBy
 	}
-	if p.ModeratedBy != nil {
+	if p.ModeratedByDelta != nil {
+		m["ModeratedBy"] = *p.ModeratedByDelta
+	} else if p.ModeratedBy != nil {
 		m["ModeratedBy"] = p.ModeratedBy
 	}
 	if p.ModerationEnabled != nil {
@@ -24969,13 +25200,19 @@ func (p SetDynamicDistributionGroupParams) params() map[string]any {
 	if p.RecipientFilter != "" {
 		m["RecipientFilter"] = p.RecipientFilter
 	}
-	if p.RejectMessagesFrom != nil {
+	if p.RejectMessagesFromDelta != nil {
+		m["RejectMessagesFrom"] = *p.RejectMessagesFromDelta
+	} else if p.RejectMessagesFrom != nil {
 		m["RejectMessagesFrom"] = p.RejectMessagesFrom
 	}
-	if p.RejectMessagesFromDLMembers != nil {
+	if p.RejectMessagesFromDLMembersDelta != nil {
+		m["RejectMessagesFromDLMembers"] = *p.RejectMessagesFromDLMembersDelta
+	} else if p.RejectMessagesFromDLMembers != nil {
 		m["RejectMessagesFromDLMembers"] = p.RejectMessagesFromDLMembers
 	}
-	if p.RejectMessagesFromSendersOrMembers != nil {
+	if p.RejectMessagesFromSendersOrMembersDelta != nil {
+		m["RejectMessagesFromSendersOrMembers"] = *p.RejectMessagesFromSendersOrMembersDelta
+	} else if p.RejectMessagesFromSendersOrMembers != nil {
 		m["RejectMessagesFromSendersOrMembers"] = p.RejectMessagesFromSendersOrMembers
 	}
 	if p.ReportToManagerEnabled != nil {
@@ -25255,21 +25492,29 @@ func (s *Service) SetEventsFromEmailConfiguration(ctx context.Context, p SetEven
 // SetExoPhishSimOverrideRuleParams are the parameters of Set-ExoPhishSimOverrideRule.
 // DefaultParameterSetName: Identity
 type SetExoPhishSimOverrideRuleParams struct {
-	AddDomains           []string `ps:"AddDomains"`
-	AddSenderIpRanges    []string `ps:"AddSenderIpRanges"`
-	Comment              string   `ps:"Comment"`
-	DomainController     any      `ps:"DomainController"` // Fqdn
-	Identity             any      `ps:"Identity"`         // ComplianceRuleIdParameter
-	RemoveDomains        []string `ps:"RemoveDomains"`
-	RemoveSenderIpRanges []string `ps:"RemoveSenderIpRanges"`
+	AddDomains                []string              `ps:"AddDomains"`
+	AddDomainsDelta           *adminapi.StringDelta `ps:"AddDomains"` // adds/removes values of AddDomains; takes precedence over it
+	AddSenderIpRanges         []string              `ps:"AddSenderIpRanges"`
+	AddSenderIpRangesDelta    *adminapi.StringDelta `ps:"AddSenderIpRanges"` // adds/removes values of AddSenderIpRanges; takes precedence over it
+	Comment                   string                `ps:"Comment"`
+	DomainController          any                   `ps:"DomainController"` // Fqdn
+	Identity                  any                   `ps:"Identity"`         // ComplianceRuleIdParameter
+	RemoveDomains             []string              `ps:"RemoveDomains"`
+	RemoveDomainsDelta        *adminapi.StringDelta `ps:"RemoveDomains"` // adds/removes values of RemoveDomains; takes precedence over it
+	RemoveSenderIpRanges      []string              `ps:"RemoveSenderIpRanges"`
+	RemoveSenderIpRangesDelta *adminapi.StringDelta `ps:"RemoveSenderIpRanges"` // adds/removes values of RemoveSenderIpRanges; takes precedence over it
 }
 
 func (p SetExoPhishSimOverrideRuleParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddDomains != nil {
+	if p.AddDomainsDelta != nil {
+		m["AddDomains"] = *p.AddDomainsDelta
+	} else if p.AddDomains != nil {
 		m["AddDomains"] = p.AddDomains
 	}
-	if p.AddSenderIpRanges != nil {
+	if p.AddSenderIpRangesDelta != nil {
+		m["AddSenderIpRanges"] = *p.AddSenderIpRangesDelta
+	} else if p.AddSenderIpRanges != nil {
 		m["AddSenderIpRanges"] = p.AddSenderIpRanges
 	}
 	if p.Comment != "" {
@@ -25281,10 +25526,14 @@ func (p SetExoPhishSimOverrideRuleParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.RemoveDomains != nil {
+	if p.RemoveDomainsDelta != nil {
+		m["RemoveDomains"] = *p.RemoveDomainsDelta
+	} else if p.RemoveDomains != nil {
 		m["RemoveDomains"] = p.RemoveDomains
 	}
-	if p.RemoveSenderIpRanges != nil {
+	if p.RemoveSenderIpRangesDelta != nil {
+		m["RemoveSenderIpRanges"] = *p.RemoveSenderIpRangesDelta
+	} else if p.RemoveSenderIpRanges != nil {
 		m["RemoveSenderIpRanges"] = p.RemoveSenderIpRanges
 	}
 	return m
@@ -25325,14 +25574,17 @@ func (s *Service) SetExoSecOpsOverrideRule(ctx context.Context, p SetExoSecOpsOv
 // SetExternalInOutlookParams are the parameters of Set-ExternalInOutlook.
 // DefaultParameterSetName: Identity
 type SetExternalInOutlookParams struct {
-	AllowList []string `ps:"AllowList"`
-	Enabled   *bool    `ps:"Enabled"`
-	Identity  any      `ps:"Identity"` // OrganizationIdParameter
+	AllowList      []string              `ps:"AllowList"`
+	AllowListDelta *adminapi.StringDelta `ps:"AllowList"` // adds/removes values of AllowList; takes precedence over it
+	Enabled        *bool                 `ps:"Enabled"`
+	Identity       any                   `ps:"Identity"` // OrganizationIdParameter
 }
 
 func (p SetExternalInOutlookParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AllowList != nil {
+	if p.AllowListDelta != nil {
+		m["AllowList"] = *p.AllowListDelta
+	} else if p.AllowList != nil {
 		m["AllowList"] = p.AllowList
 	}
 	if p.Enabled != nil {
@@ -25418,19 +25670,20 @@ func (s *Service) SetFocusedInbox(ctx context.Context, p SetFocusedInboxParams) 
 // SetGroupParams are the parameters of Set-Group.
 // DefaultParameterSetName: Identity
 type SetGroupParams struct {
-	BypassSecurityGroupManagerCheck bool     `ps:"BypassSecurityGroupManagerCheck"`
-	Description                     []string `ps:"Description"`
-	DisplayName                     string   `ps:"DisplayName"`
-	Identity                        any      `ps:"Identity"` // GroupIdParameter
-	IsHierarchicalGroup             *bool    `ps:"IsHierarchicalGroup"`
-	ManagedBy                       []string `ps:"ManagedBy"`
-	Name                            string   `ps:"Name"`
-	Notes                           string   `ps:"Notes"`
-	PhoneticDisplayName             string   `ps:"PhoneticDisplayName"`
-	SeniorityIndex                  *int64   `ps:"SeniorityIndex"`
-	SimpleDisplayName               string   `ps:"SimpleDisplayName"`
-	Universal                       bool     `ps:"Universal"`
-	WindowsEmailAddress             any      `ps:"WindowsEmailAddress"` // SmtpAddress
+	BypassSecurityGroupManagerCheck bool                  `ps:"BypassSecurityGroupManagerCheck"`
+	Description                     []string              `ps:"Description"`
+	DescriptionDelta                *adminapi.StringDelta `ps:"Description"` // adds/removes values of Description; takes precedence over it
+	DisplayName                     string                `ps:"DisplayName"`
+	Identity                        any                   `ps:"Identity"` // GroupIdParameter
+	IsHierarchicalGroup             *bool                 `ps:"IsHierarchicalGroup"`
+	ManagedBy                       []string              `ps:"ManagedBy"`
+	Name                            string                `ps:"Name"`
+	Notes                           string                `ps:"Notes"`
+	PhoneticDisplayName             string                `ps:"PhoneticDisplayName"`
+	SeniorityIndex                  *int64                `ps:"SeniorityIndex"`
+	SimpleDisplayName               string                `ps:"SimpleDisplayName"`
+	Universal                       bool                  `ps:"Universal"`
+	WindowsEmailAddress             any                   `ps:"WindowsEmailAddress"` // SmtpAddress
 }
 
 func (p SetGroupParams) params() map[string]any {
@@ -25438,7 +25691,9 @@ func (p SetGroupParams) params() map[string]any {
 	if p.BypassSecurityGroupManagerCheck {
 		m["BypassSecurityGroupManagerCheck"] = true
 	}
-	if p.Description != nil {
+	if p.DescriptionDelta != nil {
+		m["Description"] = *p.DescriptionDelta
+	} else if p.Description != nil {
 		m["Description"] = p.Description
 	}
 	if p.DisplayName != "" {
@@ -25529,13 +25784,15 @@ func (s *Service) SetHVEAccountSettings(ctx context.Context, p SetHVEAccountSett
 // SetHostedConnectionFilterPolicyParams are the parameters of Set-HostedConnectionFilterPolicy.
 // DefaultParameterSetName: Identity
 type SetHostedConnectionFilterPolicyParams struct {
-	AdminDisplayName    string   `ps:"AdminDisplayName"`
-	ConfigurationXmlRaw string   `ps:"ConfigurationXmlRaw"`
-	EnableSafeList      *bool    `ps:"EnableSafeList"`
-	Identity            any      `ps:"Identity"` // HostedConnectionFilterPolicyIdParameter
-	IPAllowList         []string `ps:"IPAllowList"`
-	IPBlockList         []string `ps:"IPBlockList"`
-	MakeDefault         bool     `ps:"MakeDefault"`
+	AdminDisplayName    string                `ps:"AdminDisplayName"`
+	ConfigurationXmlRaw string                `ps:"ConfigurationXmlRaw"`
+	EnableSafeList      *bool                 `ps:"EnableSafeList"`
+	Identity            any                   `ps:"Identity"` // HostedConnectionFilterPolicyIdParameter
+	IPAllowList         []string              `ps:"IPAllowList"`
+	IPAllowListDelta    *adminapi.StringDelta `ps:"IPAllowList"` // adds/removes values of IPAllowList; takes precedence over it
+	IPBlockList         []string              `ps:"IPBlockList"`
+	IPBlockListDelta    *adminapi.StringDelta `ps:"IPBlockList"` // adds/removes values of IPBlockList; takes precedence over it
+	MakeDefault         bool                  `ps:"MakeDefault"`
 }
 
 func (p SetHostedConnectionFilterPolicyParams) params() map[string]any {
@@ -25552,10 +25809,14 @@ func (p SetHostedConnectionFilterPolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IPAllowList != nil {
+	if p.IPAllowListDelta != nil {
+		m["IPAllowList"] = *p.IPAllowListDelta
+	} else if p.IPAllowList != nil {
 		m["IPAllowList"] = p.IPAllowList
 	}
-	if p.IPBlockList != nil {
+	if p.IPBlockListDelta != nil {
+		m["IPBlockList"] = *p.IPBlockListDelta
+	} else if p.IPBlockList != nil {
 		m["IPBlockList"] = p.IPBlockList
 	}
 	if p.MakeDefault {
@@ -25572,63 +25833,71 @@ func (s *Service) SetHostedConnectionFilterPolicy(ctx context.Context, p SetHost
 // SetHostedContentFilterPolicyParams are the parameters of Set-HostedContentFilterPolicy.
 // DefaultParameterSetName: Identity
 type SetHostedContentFilterPolicyParams struct {
-	AddXHeaderValue                          string   `ps:"AddXHeaderValue"`
-	AdminDisplayName                         string   `ps:"AdminDisplayName"`
-	AllowedSenderDomains                     []string `ps:"AllowedSenderDomains"`
-	AllowedSenders                           []string `ps:"AllowedSenders"`
-	BlockedSenderDomains                     []string `ps:"BlockedSenderDomains"`
-	BlockedSenders                           []string `ps:"BlockedSenders"`
-	BulkMovesEnabled                         any      `ps:"BulkMovesEnabled"` // BulkMovesEnabled
-	BulkQuarantineTag                        string   `ps:"BulkQuarantineTag"`
-	BulkSpamAction                           any      `ps:"BulkSpamAction"` // SpamFilteringAction
-	BulkThreshold                            *int64   `ps:"BulkThreshold"`
-	DownloadLink                             *bool    `ps:"DownloadLink"`
-	EnableEndUserSpamNotifications           *bool    `ps:"EnableEndUserSpamNotifications"`
-	EnableLanguageBlockList                  *bool    `ps:"EnableLanguageBlockList"`
-	EnableRegionBlockList                    *bool    `ps:"EnableRegionBlockList"`
-	EndUserSpamNotificationCustomFromAddress any      `ps:"EndUserSpamNotificationCustomFromAddress"` // SmtpAddress
-	EndUserSpamNotificationCustomFromName    string   `ps:"EndUserSpamNotificationCustomFromName"`
-	EndUserSpamNotificationCustomSubject     string   `ps:"EndUserSpamNotificationCustomSubject"`
-	EndUserSpamNotificationFrequency         *int64   `ps:"EndUserSpamNotificationFrequency"`
-	EndUserSpamNotificationLanguage          any      `ps:"EndUserSpamNotificationLanguage"` // EsnLanguage
-	EndUserSpamNotificationLimit             *int64   `ps:"EndUserSpamNotificationLimit"`
-	HighConfidencePhishAction                any      `ps:"HighConfidencePhishAction"` // PhishFilteringAction
-	HighConfidencePhishQuarantineTag         string   `ps:"HighConfidencePhishQuarantineTag"`
-	HighConfidenceSpamAction                 any      `ps:"HighConfidenceSpamAction"` // SpamFilteringAction
-	HighConfidenceSpamQuarantineTag          string   `ps:"HighConfidenceSpamQuarantineTag"`
-	Identity                                 any      `ps:"Identity"`                             // HostedContentFilterPolicyIdParameter
-	IncreaseScoreWithBizOrInfoUrls           any      `ps:"IncreaseScoreWithBizOrInfoUrls"`       // SpamFilteringOption
-	IncreaseScoreWithImageLinks              any      `ps:"IncreaseScoreWithImageLinks"`          // SpamFilteringOption
-	IncreaseScoreWithNumericIps              any      `ps:"IncreaseScoreWithNumericIps"`          // SpamFilteringOption
-	IncreaseScoreWithRedirectToOtherPort     any      `ps:"IncreaseScoreWithRedirectToOtherPort"` // SpamFilteringOption
-	InlineSafetyTipsEnabled                  *bool    `ps:"InlineSafetyTipsEnabled"`
-	IntraOrgFilterState                      any      `ps:"IntraOrgFilterState"` // IntraOrgFilterState
-	LanguageBlockList                        []string `ps:"LanguageBlockList"`
-	MakeDefault                              bool     `ps:"MakeDefault"`
-	MarkAsSpamBulkMail                       any      `ps:"MarkAsSpamBulkMail"`            // SpamFilteringOption
-	MarkAsSpamEmbedTagsInHtml                any      `ps:"MarkAsSpamEmbedTagsInHtml"`     // SpamFilteringOption
-	MarkAsSpamEmptyMessages                  any      `ps:"MarkAsSpamEmptyMessages"`       // SpamFilteringOption
-	MarkAsSpamFormTagsInHtml                 any      `ps:"MarkAsSpamFormTagsInHtml"`      // SpamFilteringOption
-	MarkAsSpamFramesInHtml                   any      `ps:"MarkAsSpamFramesInHtml"`        // SpamFilteringOption
-	MarkAsSpamFromAddressAuthFail            any      `ps:"MarkAsSpamFromAddressAuthFail"` // SpamFilteringOption
-	MarkAsSpamJavaScriptInHtml               any      `ps:"MarkAsSpamJavaScriptInHtml"`    // SpamFilteringOption
-	MarkAsSpamNdrBackscatter                 any      `ps:"MarkAsSpamNdrBackscatter"`      // SpamFilteringOption
-	MarkAsSpamObjectTagsInHtml               any      `ps:"MarkAsSpamObjectTagsInHtml"`    // SpamFilteringOption
-	MarkAsSpamSensitiveWordList              any      `ps:"MarkAsSpamSensitiveWordList"`   // SpamFilteringOption
-	MarkAsSpamSpfRecordHardFail              any      `ps:"MarkAsSpamSpfRecordHardFail"`   // SpamFilteringOption
-	MarkAsSpamWebBugsInHtml                  any      `ps:"MarkAsSpamWebBugsInHtml"`       // SpamFilteringOption
-	ModifySubjectValue                       string   `ps:"ModifySubjectValue"`
-	PhishQuarantineTag                       string   `ps:"PhishQuarantineTag"`
-	PhishSpamAction                          any      `ps:"PhishSpamAction"` // SpamFilteringAction
-	PhishZapEnabled                          *bool    `ps:"PhishZapEnabled"`
-	QuarantineRetentionPeriod                *int64   `ps:"QuarantineRetentionPeriod"`
-	RedirectToRecipients                     []string `ps:"RedirectToRecipients"`
-	RegionBlockList                          []string `ps:"RegionBlockList"`
-	SpamAction                               any      `ps:"SpamAction"` // SpamFilteringAction
-	SpamQuarantineTag                        string   `ps:"SpamQuarantineTag"`
-	SpamZapEnabled                           *bool    `ps:"SpamZapEnabled"`
-	TestModeAction                           any      `ps:"TestModeAction"` // SpamFilteringTestModeAction
-	TestModeBccToRecipients                  []string `ps:"TestModeBccToRecipients"`
+	AddXHeaderValue                          string                `ps:"AddXHeaderValue"`
+	AdminDisplayName                         string                `ps:"AdminDisplayName"`
+	AllowedSenderDomains                     []string              `ps:"AllowedSenderDomains"`
+	AllowedSenderDomainsDelta                *adminapi.StringDelta `ps:"AllowedSenderDomains"` // adds/removes values of AllowedSenderDomains; takes precedence over it
+	AllowedSenders                           []string              `ps:"AllowedSenders"`
+	AllowedSendersDelta                      *adminapi.StringDelta `ps:"AllowedSenders"` // adds/removes values of AllowedSenders; takes precedence over it
+	BlockedSenderDomains                     []string              `ps:"BlockedSenderDomains"`
+	BlockedSenderDomainsDelta                *adminapi.StringDelta `ps:"BlockedSenderDomains"` // adds/removes values of BlockedSenderDomains; takes precedence over it
+	BlockedSenders                           []string              `ps:"BlockedSenders"`
+	BlockedSendersDelta                      *adminapi.StringDelta `ps:"BlockedSenders"`   // adds/removes values of BlockedSenders; takes precedence over it
+	BulkMovesEnabled                         any                   `ps:"BulkMovesEnabled"` // BulkMovesEnabled
+	BulkQuarantineTag                        string                `ps:"BulkQuarantineTag"`
+	BulkSpamAction                           any                   `ps:"BulkSpamAction"` // SpamFilteringAction
+	BulkThreshold                            *int64                `ps:"BulkThreshold"`
+	DownloadLink                             *bool                 `ps:"DownloadLink"`
+	EnableEndUserSpamNotifications           *bool                 `ps:"EnableEndUserSpamNotifications"`
+	EnableLanguageBlockList                  *bool                 `ps:"EnableLanguageBlockList"`
+	EnableRegionBlockList                    *bool                 `ps:"EnableRegionBlockList"`
+	EndUserSpamNotificationCustomFromAddress any                   `ps:"EndUserSpamNotificationCustomFromAddress"` // SmtpAddress
+	EndUserSpamNotificationCustomFromName    string                `ps:"EndUserSpamNotificationCustomFromName"`
+	EndUserSpamNotificationCustomSubject     string                `ps:"EndUserSpamNotificationCustomSubject"`
+	EndUserSpamNotificationFrequency         *int64                `ps:"EndUserSpamNotificationFrequency"`
+	EndUserSpamNotificationLanguage          any                   `ps:"EndUserSpamNotificationLanguage"` // EsnLanguage
+	EndUserSpamNotificationLimit             *int64                `ps:"EndUserSpamNotificationLimit"`
+	HighConfidencePhishAction                any                   `ps:"HighConfidencePhishAction"` // PhishFilteringAction
+	HighConfidencePhishQuarantineTag         string                `ps:"HighConfidencePhishQuarantineTag"`
+	HighConfidenceSpamAction                 any                   `ps:"HighConfidenceSpamAction"` // SpamFilteringAction
+	HighConfidenceSpamQuarantineTag          string                `ps:"HighConfidenceSpamQuarantineTag"`
+	Identity                                 any                   `ps:"Identity"`                             // HostedContentFilterPolicyIdParameter
+	IncreaseScoreWithBizOrInfoUrls           any                   `ps:"IncreaseScoreWithBizOrInfoUrls"`       // SpamFilteringOption
+	IncreaseScoreWithImageLinks              any                   `ps:"IncreaseScoreWithImageLinks"`          // SpamFilteringOption
+	IncreaseScoreWithNumericIps              any                   `ps:"IncreaseScoreWithNumericIps"`          // SpamFilteringOption
+	IncreaseScoreWithRedirectToOtherPort     any                   `ps:"IncreaseScoreWithRedirectToOtherPort"` // SpamFilteringOption
+	InlineSafetyTipsEnabled                  *bool                 `ps:"InlineSafetyTipsEnabled"`
+	IntraOrgFilterState                      any                   `ps:"IntraOrgFilterState"` // IntraOrgFilterState
+	LanguageBlockList                        []string              `ps:"LanguageBlockList"`
+	LanguageBlockListDelta                   *adminapi.StringDelta `ps:"LanguageBlockList"` // adds/removes values of LanguageBlockList; takes precedence over it
+	MakeDefault                              bool                  `ps:"MakeDefault"`
+	MarkAsSpamBulkMail                       any                   `ps:"MarkAsSpamBulkMail"`            // SpamFilteringOption
+	MarkAsSpamEmbedTagsInHtml                any                   `ps:"MarkAsSpamEmbedTagsInHtml"`     // SpamFilteringOption
+	MarkAsSpamEmptyMessages                  any                   `ps:"MarkAsSpamEmptyMessages"`       // SpamFilteringOption
+	MarkAsSpamFormTagsInHtml                 any                   `ps:"MarkAsSpamFormTagsInHtml"`      // SpamFilteringOption
+	MarkAsSpamFramesInHtml                   any                   `ps:"MarkAsSpamFramesInHtml"`        // SpamFilteringOption
+	MarkAsSpamFromAddressAuthFail            any                   `ps:"MarkAsSpamFromAddressAuthFail"` // SpamFilteringOption
+	MarkAsSpamJavaScriptInHtml               any                   `ps:"MarkAsSpamJavaScriptInHtml"`    // SpamFilteringOption
+	MarkAsSpamNdrBackscatter                 any                   `ps:"MarkAsSpamNdrBackscatter"`      // SpamFilteringOption
+	MarkAsSpamObjectTagsInHtml               any                   `ps:"MarkAsSpamObjectTagsInHtml"`    // SpamFilteringOption
+	MarkAsSpamSensitiveWordList              any                   `ps:"MarkAsSpamSensitiveWordList"`   // SpamFilteringOption
+	MarkAsSpamSpfRecordHardFail              any                   `ps:"MarkAsSpamSpfRecordHardFail"`   // SpamFilteringOption
+	MarkAsSpamWebBugsInHtml                  any                   `ps:"MarkAsSpamWebBugsInHtml"`       // SpamFilteringOption
+	ModifySubjectValue                       string                `ps:"ModifySubjectValue"`
+	PhishQuarantineTag                       string                `ps:"PhishQuarantineTag"`
+	PhishSpamAction                          any                   `ps:"PhishSpamAction"` // SpamFilteringAction
+	PhishZapEnabled                          *bool                 `ps:"PhishZapEnabled"`
+	QuarantineRetentionPeriod                *int64                `ps:"QuarantineRetentionPeriod"`
+	RedirectToRecipients                     []string              `ps:"RedirectToRecipients"`
+	RedirectToRecipientsDelta                *adminapi.StringDelta `ps:"RedirectToRecipients"` // adds/removes values of RedirectToRecipients; takes precedence over it
+	RegionBlockList                          []string              `ps:"RegionBlockList"`
+	RegionBlockListDelta                     *adminapi.StringDelta `ps:"RegionBlockList"` // adds/removes values of RegionBlockList; takes precedence over it
+	SpamAction                               any                   `ps:"SpamAction"`      // SpamFilteringAction
+	SpamQuarantineTag                        string                `ps:"SpamQuarantineTag"`
+	SpamZapEnabled                           *bool                 `ps:"SpamZapEnabled"`
+	TestModeAction                           any                   `ps:"TestModeAction"` // SpamFilteringTestModeAction
+	TestModeBccToRecipients                  []string              `ps:"TestModeBccToRecipients"`
+	TestModeBccToRecipientsDelta             *adminapi.StringDelta `ps:"TestModeBccToRecipients"` // adds/removes values of TestModeBccToRecipients; takes precedence over it
 }
 
 func (p SetHostedContentFilterPolicyParams) params() map[string]any {
@@ -25639,16 +25908,24 @@ func (p SetHostedContentFilterPolicyParams) params() map[string]any {
 	if p.AdminDisplayName != "" {
 		m["AdminDisplayName"] = p.AdminDisplayName
 	}
-	if p.AllowedSenderDomains != nil {
+	if p.AllowedSenderDomainsDelta != nil {
+		m["AllowedSenderDomains"] = *p.AllowedSenderDomainsDelta
+	} else if p.AllowedSenderDomains != nil {
 		m["AllowedSenderDomains"] = p.AllowedSenderDomains
 	}
-	if p.AllowedSenders != nil {
+	if p.AllowedSendersDelta != nil {
+		m["AllowedSenders"] = *p.AllowedSendersDelta
+	} else if p.AllowedSenders != nil {
 		m["AllowedSenders"] = p.AllowedSenders
 	}
-	if p.BlockedSenderDomains != nil {
+	if p.BlockedSenderDomainsDelta != nil {
+		m["BlockedSenderDomains"] = *p.BlockedSenderDomainsDelta
+	} else if p.BlockedSenderDomains != nil {
 		m["BlockedSenderDomains"] = p.BlockedSenderDomains
 	}
-	if p.BlockedSenders != nil {
+	if p.BlockedSendersDelta != nil {
+		m["BlockedSenders"] = *p.BlockedSendersDelta
+	} else if p.BlockedSenders != nil {
 		m["BlockedSenders"] = p.BlockedSenders
 	}
 	if p.BulkMovesEnabled != nil {
@@ -25726,7 +26003,9 @@ func (p SetHostedContentFilterPolicyParams) params() map[string]any {
 	if p.IntraOrgFilterState != nil {
 		m["IntraOrgFilterState"] = p.IntraOrgFilterState
 	}
-	if p.LanguageBlockList != nil {
+	if p.LanguageBlockListDelta != nil {
+		m["LanguageBlockList"] = *p.LanguageBlockListDelta
+	} else if p.LanguageBlockList != nil {
 		m["LanguageBlockList"] = p.LanguageBlockList
 	}
 	if p.MakeDefault {
@@ -25783,10 +26062,14 @@ func (p SetHostedContentFilterPolicyParams) params() map[string]any {
 	if p.QuarantineRetentionPeriod != nil {
 		m["QuarantineRetentionPeriod"] = *p.QuarantineRetentionPeriod
 	}
-	if p.RedirectToRecipients != nil {
+	if p.RedirectToRecipientsDelta != nil {
+		m["RedirectToRecipients"] = *p.RedirectToRecipientsDelta
+	} else if p.RedirectToRecipients != nil {
 		m["RedirectToRecipients"] = p.RedirectToRecipients
 	}
-	if p.RegionBlockList != nil {
+	if p.RegionBlockListDelta != nil {
+		m["RegionBlockList"] = *p.RegionBlockListDelta
+	} else if p.RegionBlockList != nil {
 		m["RegionBlockList"] = p.RegionBlockList
 	}
 	if p.SpamAction != nil {
@@ -25801,7 +26084,9 @@ func (p SetHostedContentFilterPolicyParams) params() map[string]any {
 	if p.TestModeAction != nil {
 		m["TestModeAction"] = p.TestModeAction
 	}
-	if p.TestModeBccToRecipients != nil {
+	if p.TestModeBccToRecipientsDelta != nil {
+		m["TestModeBccToRecipients"] = *p.TestModeBccToRecipientsDelta
+	} else if p.TestModeBccToRecipients != nil {
 		m["TestModeBccToRecipients"] = p.TestModeBccToRecipients
 	}
 	return m
@@ -25874,17 +26159,19 @@ func (s *Service) SetHostedContentFilterRule(ctx context.Context, p SetHostedCon
 // SetHostedOutboundSpamFilterPolicyParams are the parameters of Set-HostedOutboundSpamFilterPolicy.
 // DefaultParameterSetName: Identity
 type SetHostedOutboundSpamFilterPolicyParams struct {
-	ActionWhenThresholdReached                any      `ps:"ActionWhenThresholdReached"` // OutboundRecipientLimitsExceededAction
-	AdminDisplayName                          string   `ps:"AdminDisplayName"`
-	AutoForwardingMode                        any      `ps:"AutoForwardingMode"` // AutoForwardingMode
-	BccSuspiciousOutboundAdditionalRecipients []string `ps:"BccSuspiciousOutboundAdditionalRecipients"`
-	BccSuspiciousOutboundMail                 *bool    `ps:"BccSuspiciousOutboundMail"`
-	Identity                                  any      `ps:"Identity"` // HostedOutboundSpamFilterPolicyIdParameter
-	NotifyOutboundSpam                        *bool    `ps:"NotifyOutboundSpam"`
-	NotifyOutboundSpamRecipients              []string `ps:"NotifyOutboundSpamRecipients"`
-	RecipientLimitExternalPerHour             *int64   `ps:"RecipientLimitExternalPerHour"`
-	RecipientLimitInternalPerHour             *int64   `ps:"RecipientLimitInternalPerHour"`
-	RecipientLimitPerDay                      *int64   `ps:"RecipientLimitPerDay"`
+	ActionWhenThresholdReached                     any                   `ps:"ActionWhenThresholdReached"` // OutboundRecipientLimitsExceededAction
+	AdminDisplayName                               string                `ps:"AdminDisplayName"`
+	AutoForwardingMode                             any                   `ps:"AutoForwardingMode"` // AutoForwardingMode
+	BccSuspiciousOutboundAdditionalRecipients      []string              `ps:"BccSuspiciousOutboundAdditionalRecipients"`
+	BccSuspiciousOutboundAdditionalRecipientsDelta *adminapi.StringDelta `ps:"BccSuspiciousOutboundAdditionalRecipients"` // adds/removes values of BccSuspiciousOutboundAdditionalRecipients; takes precedence over it
+	BccSuspiciousOutboundMail                      *bool                 `ps:"BccSuspiciousOutboundMail"`
+	Identity                                       any                   `ps:"Identity"` // HostedOutboundSpamFilterPolicyIdParameter
+	NotifyOutboundSpam                             *bool                 `ps:"NotifyOutboundSpam"`
+	NotifyOutboundSpamRecipients                   []string              `ps:"NotifyOutboundSpamRecipients"`
+	NotifyOutboundSpamRecipientsDelta              *adminapi.StringDelta `ps:"NotifyOutboundSpamRecipients"` // adds/removes values of NotifyOutboundSpamRecipients; takes precedence over it
+	RecipientLimitExternalPerHour                  *int64                `ps:"RecipientLimitExternalPerHour"`
+	RecipientLimitInternalPerHour                  *int64                `ps:"RecipientLimitInternalPerHour"`
+	RecipientLimitPerDay                           *int64                `ps:"RecipientLimitPerDay"`
 }
 
 func (p SetHostedOutboundSpamFilterPolicyParams) params() map[string]any {
@@ -25898,7 +26185,9 @@ func (p SetHostedOutboundSpamFilterPolicyParams) params() map[string]any {
 	if p.AutoForwardingMode != nil {
 		m["AutoForwardingMode"] = p.AutoForwardingMode
 	}
-	if p.BccSuspiciousOutboundAdditionalRecipients != nil {
+	if p.BccSuspiciousOutboundAdditionalRecipientsDelta != nil {
+		m["BccSuspiciousOutboundAdditionalRecipients"] = *p.BccSuspiciousOutboundAdditionalRecipientsDelta
+	} else if p.BccSuspiciousOutboundAdditionalRecipients != nil {
 		m["BccSuspiciousOutboundAdditionalRecipients"] = p.BccSuspiciousOutboundAdditionalRecipients
 	}
 	if p.BccSuspiciousOutboundMail != nil {
@@ -25910,7 +26199,9 @@ func (p SetHostedOutboundSpamFilterPolicyParams) params() map[string]any {
 	if p.NotifyOutboundSpam != nil {
 		m["NotifyOutboundSpam"] = *p.NotifyOutboundSpam
 	}
-	if p.NotifyOutboundSpamRecipients != nil {
+	if p.NotifyOutboundSpamRecipientsDelta != nil {
+		m["NotifyOutboundSpamRecipients"] = *p.NotifyOutboundSpamRecipientsDelta
+	} else if p.NotifyOutboundSpamRecipients != nil {
 		m["NotifyOutboundSpamRecipients"] = p.NotifyOutboundSpamRecipients
 	}
 	if p.RecipientLimitExternalPerHour != nil {
@@ -25992,24 +26283,25 @@ func (s *Service) SetHostedOutboundSpamFilterRule(ctx context.Context, p SetHost
 // SetIRMConfigurationParams are the parameters of Set-IRMConfiguration.
 // DefaultParameterSetName: Identity
 type SetIRMConfigurationParams struct {
-	AutomaticServiceUpdateEnabled              *bool    `ps:"AutomaticServiceUpdateEnabled"`
-	AzureRMSLicensingEnabled                   *bool    `ps:"AzureRMSLicensingEnabled"`
-	DecryptAttachmentForEncryptOnly            *bool    `ps:"DecryptAttachmentForEncryptOnly"`
-	EDiscoverySuperUserEnabled                 *bool    `ps:"EDiscoverySuperUserEnabled"`
-	EnablePdfEncryption                        *bool    `ps:"EnablePdfEncryption"`
-	EnablePortalTrackingLogs                   *bool    `ps:"EnablePortalTrackingLogs"`
-	Force                                      bool     `ps:"Force"`
-	Identity                                   any      `ps:"Identity"` // OrganizationIdParameter
-	InternalLicensingEnabled                   *bool    `ps:"InternalLicensingEnabled"`
-	JournalReportDecryptionEnabled             *bool    `ps:"JournalReportDecryptionEnabled"`
-	LicensingLocation                          []string `ps:"LicensingLocation"`
-	RejectIfRecipientHasNoRights               *bool    `ps:"RejectIfRecipientHasNoRights"`
-	RMSOnlineKeySharingLocation                any      `ps:"RMSOnlineKeySharingLocation"` // Uri
-	SearchEnabled                              *bool    `ps:"SearchEnabled"`
-	SimplifiedClientAccessDoNotForwardDisabled *bool    `ps:"SimplifiedClientAccessDoNotForwardDisabled"`
-	SimplifiedClientAccessEnabled              *bool    `ps:"SimplifiedClientAccessEnabled"`
-	SimplifiedClientAccessEncryptOnlyDisabled  *bool    `ps:"SimplifiedClientAccessEncryptOnlyDisabled"`
-	TransportDecryptionSetting                 any      `ps:"TransportDecryptionSetting"` // TransportDecryptionSetting
+	AutomaticServiceUpdateEnabled              *bool                 `ps:"AutomaticServiceUpdateEnabled"`
+	AzureRMSLicensingEnabled                   *bool                 `ps:"AzureRMSLicensingEnabled"`
+	DecryptAttachmentForEncryptOnly            *bool                 `ps:"DecryptAttachmentForEncryptOnly"`
+	EDiscoverySuperUserEnabled                 *bool                 `ps:"EDiscoverySuperUserEnabled"`
+	EnablePdfEncryption                        *bool                 `ps:"EnablePdfEncryption"`
+	EnablePortalTrackingLogs                   *bool                 `ps:"EnablePortalTrackingLogs"`
+	Force                                      bool                  `ps:"Force"`
+	Identity                                   any                   `ps:"Identity"` // OrganizationIdParameter
+	InternalLicensingEnabled                   *bool                 `ps:"InternalLicensingEnabled"`
+	JournalReportDecryptionEnabled             *bool                 `ps:"JournalReportDecryptionEnabled"`
+	LicensingLocation                          []string              `ps:"LicensingLocation"`
+	LicensingLocationDelta                     *adminapi.StringDelta `ps:"LicensingLocation"` // adds/removes values of LicensingLocation; takes precedence over it
+	RejectIfRecipientHasNoRights               *bool                 `ps:"RejectIfRecipientHasNoRights"`
+	RMSOnlineKeySharingLocation                any                   `ps:"RMSOnlineKeySharingLocation"` // Uri
+	SearchEnabled                              *bool                 `ps:"SearchEnabled"`
+	SimplifiedClientAccessDoNotForwardDisabled *bool                 `ps:"SimplifiedClientAccessDoNotForwardDisabled"`
+	SimplifiedClientAccessEnabled              *bool                 `ps:"SimplifiedClientAccessEnabled"`
+	SimplifiedClientAccessEncryptOnlyDisabled  *bool                 `ps:"SimplifiedClientAccessEncryptOnlyDisabled"`
+	TransportDecryptionSetting                 any                   `ps:"TransportDecryptionSetting"` // TransportDecryptionSetting
 }
 
 func (p SetIRMConfigurationParams) params() map[string]any {
@@ -26044,7 +26336,9 @@ func (p SetIRMConfigurationParams) params() map[string]any {
 	if p.JournalReportDecryptionEnabled != nil {
 		m["JournalReportDecryptionEnabled"] = *p.JournalReportDecryptionEnabled
 	}
-	if p.LicensingLocation != nil {
+	if p.LicensingLocationDelta != nil {
+		m["LicensingLocation"] = *p.LicensingLocationDelta
+	} else if p.LicensingLocation != nil {
 		m["LicensingLocation"] = p.LicensingLocation
 	}
 	if p.RejectIfRecipientHasNoRights != nil {
@@ -26079,33 +26373,43 @@ func (s *Service) SetIRMConfiguration(ctx context.Context, p SetIRMConfiguration
 // SetInboundConnectorParams are the parameters of Set-InboundConnector.
 // DefaultParameterSetName: Identity
 type SetInboundConnectorParams struct {
-	AssociatedAcceptedDomains    []string `ps:"AssociatedAcceptedDomains"`
-	CloudServicesMailEnabled     *bool    `ps:"CloudServicesMailEnabled"`
-	Comment                      string   `ps:"Comment"`
-	ConnectorSource              any      `ps:"ConnectorSource"` // TenantConnectorSource
-	ConnectorType                any      `ps:"ConnectorType"`   // TenantConnectorType
-	EFSkipIPs                    []string `ps:"EFSkipIPs"`
-	EFSkipLastIP                 *bool    `ps:"EFSkipLastIP"`
-	EFSkipMailGateway            []string `ps:"EFSkipMailGateway"`
-	EFTestMode                   *bool    `ps:"EFTestMode"`
-	EFUsers                      []string `ps:"EFUsers"`
-	Enabled                      *bool    `ps:"Enabled"`
-	Identity                     any      `ps:"Identity"` // InboundConnectorIdParameter
-	Name                         string   `ps:"Name"`
-	RequireTls                   *bool    `ps:"RequireTls"`
-	RestrictDomainsToCertificate *bool    `ps:"RestrictDomainsToCertificate"`
-	RestrictDomainsToIPAddresses *bool    `ps:"RestrictDomainsToIPAddresses"`
-	ScanAndDropRecipients        []string `ps:"ScanAndDropRecipients"`
-	SenderDomains                []string `ps:"SenderDomains"`
-	SenderIPAddresses            []string `ps:"SenderIPAddresses"`
-	TlsSenderCertificateName     any      `ps:"TlsSenderCertificateName"` // TlsCertificate
-	TreatMessagesAsInternal      *bool    `ps:"TreatMessagesAsInternal"`
-	TrustedOrganizations         []string `ps:"TrustedOrganizations"`
+	AssociatedAcceptedDomains      []string              `ps:"AssociatedAcceptedDomains"`
+	AssociatedAcceptedDomainsDelta *adminapi.StringDelta `ps:"AssociatedAcceptedDomains"` // adds/removes values of AssociatedAcceptedDomains; takes precedence over it
+	CloudServicesMailEnabled       *bool                 `ps:"CloudServicesMailEnabled"`
+	Comment                        string                `ps:"Comment"`
+	ConnectorSource                any                   `ps:"ConnectorSource"` // TenantConnectorSource
+	ConnectorType                  any                   `ps:"ConnectorType"`   // TenantConnectorType
+	EFSkipIPs                      []string              `ps:"EFSkipIPs"`
+	EFSkipIPsDelta                 *adminapi.StringDelta `ps:"EFSkipIPs"` // adds/removes values of EFSkipIPs; takes precedence over it
+	EFSkipLastIP                   *bool                 `ps:"EFSkipLastIP"`
+	EFSkipMailGateway              []string              `ps:"EFSkipMailGateway"`
+	EFSkipMailGatewayDelta         *adminapi.StringDelta `ps:"EFSkipMailGateway"` // adds/removes values of EFSkipMailGateway; takes precedence over it
+	EFTestMode                     *bool                 `ps:"EFTestMode"`
+	EFUsers                        []string              `ps:"EFUsers"`
+	EFUsersDelta                   *adminapi.StringDelta `ps:"EFUsers"` // adds/removes values of EFUsers; takes precedence over it
+	Enabled                        *bool                 `ps:"Enabled"`
+	Identity                       any                   `ps:"Identity"` // InboundConnectorIdParameter
+	Name                           string                `ps:"Name"`
+	RequireTls                     *bool                 `ps:"RequireTls"`
+	RestrictDomainsToCertificate   *bool                 `ps:"RestrictDomainsToCertificate"`
+	RestrictDomainsToIPAddresses   *bool                 `ps:"RestrictDomainsToIPAddresses"`
+	ScanAndDropRecipients          []string              `ps:"ScanAndDropRecipients"`
+	ScanAndDropRecipientsDelta     *adminapi.StringDelta `ps:"ScanAndDropRecipients"` // adds/removes values of ScanAndDropRecipients; takes precedence over it
+	SenderDomains                  []string              `ps:"SenderDomains"`
+	SenderDomainsDelta             *adminapi.StringDelta `ps:"SenderDomains"` // adds/removes values of SenderDomains; takes precedence over it
+	SenderIPAddresses              []string              `ps:"SenderIPAddresses"`
+	SenderIPAddressesDelta         *adminapi.StringDelta `ps:"SenderIPAddresses"`        // adds/removes values of SenderIPAddresses; takes precedence over it
+	TlsSenderCertificateName       any                   `ps:"TlsSenderCertificateName"` // TlsCertificate
+	TreatMessagesAsInternal        *bool                 `ps:"TreatMessagesAsInternal"`
+	TrustedOrganizations           []string              `ps:"TrustedOrganizations"`
+	TrustedOrganizationsDelta      *adminapi.StringDelta `ps:"TrustedOrganizations"` // adds/removes values of TrustedOrganizations; takes precedence over it
 }
 
 func (p SetInboundConnectorParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AssociatedAcceptedDomains != nil {
+	if p.AssociatedAcceptedDomainsDelta != nil {
+		m["AssociatedAcceptedDomains"] = *p.AssociatedAcceptedDomainsDelta
+	} else if p.AssociatedAcceptedDomains != nil {
 		m["AssociatedAcceptedDomains"] = p.AssociatedAcceptedDomains
 	}
 	if p.CloudServicesMailEnabled != nil {
@@ -26120,19 +26424,25 @@ func (p SetInboundConnectorParams) params() map[string]any {
 	if p.ConnectorType != nil {
 		m["ConnectorType"] = p.ConnectorType
 	}
-	if p.EFSkipIPs != nil {
+	if p.EFSkipIPsDelta != nil {
+		m["EFSkipIPs"] = *p.EFSkipIPsDelta
+	} else if p.EFSkipIPs != nil {
 		m["EFSkipIPs"] = p.EFSkipIPs
 	}
 	if p.EFSkipLastIP != nil {
 		m["EFSkipLastIP"] = *p.EFSkipLastIP
 	}
-	if p.EFSkipMailGateway != nil {
+	if p.EFSkipMailGatewayDelta != nil {
+		m["EFSkipMailGateway"] = *p.EFSkipMailGatewayDelta
+	} else if p.EFSkipMailGateway != nil {
 		m["EFSkipMailGateway"] = p.EFSkipMailGateway
 	}
 	if p.EFTestMode != nil {
 		m["EFTestMode"] = *p.EFTestMode
 	}
-	if p.EFUsers != nil {
+	if p.EFUsersDelta != nil {
+		m["EFUsers"] = *p.EFUsersDelta
+	} else if p.EFUsers != nil {
 		m["EFUsers"] = p.EFUsers
 	}
 	if p.Enabled != nil {
@@ -26153,13 +26463,19 @@ func (p SetInboundConnectorParams) params() map[string]any {
 	if p.RestrictDomainsToIPAddresses != nil {
 		m["RestrictDomainsToIPAddresses"] = *p.RestrictDomainsToIPAddresses
 	}
-	if p.ScanAndDropRecipients != nil {
+	if p.ScanAndDropRecipientsDelta != nil {
+		m["ScanAndDropRecipients"] = *p.ScanAndDropRecipientsDelta
+	} else if p.ScanAndDropRecipients != nil {
 		m["ScanAndDropRecipients"] = p.ScanAndDropRecipients
 	}
-	if p.SenderDomains != nil {
+	if p.SenderDomainsDelta != nil {
+		m["SenderDomains"] = *p.SenderDomainsDelta
+	} else if p.SenderDomains != nil {
 		m["SenderDomains"] = p.SenderDomains
 	}
-	if p.SenderIPAddresses != nil {
+	if p.SenderIPAddressesDelta != nil {
+		m["SenderIPAddresses"] = *p.SenderIPAddressesDelta
+	} else if p.SenderIPAddresses != nil {
 		m["SenderIPAddresses"] = p.SenderIPAddresses
 	}
 	if p.TlsSenderCertificateName != nil {
@@ -26168,7 +26484,9 @@ func (p SetInboundConnectorParams) params() map[string]any {
 	if p.TreatMessagesAsInternal != nil {
 		m["TreatMessagesAsInternal"] = *p.TreatMessagesAsInternal
 	}
-	if p.TrustedOrganizations != nil {
+	if p.TrustedOrganizationsDelta != nil {
+		m["TrustedOrganizations"] = *p.TrustedOrganizationsDelta
+	} else if p.TrustedOrganizations != nil {
 		m["TrustedOrganizations"] = p.TrustedOrganizations
 	}
 	return m
@@ -26182,89 +26500,104 @@ func (s *Service) SetInboundConnector(ctx context.Context, p SetInboundConnector
 // SetInboxRuleParams are the parameters of Set-InboxRule.
 // DefaultParameterSetName: Identity
 type SetInboxRuleParams struct {
-	AlwaysDeleteOutlookRulesBlob          bool     `ps:"AlwaysDeleteOutlookRulesBlob"`
-	AnyCategory                           *bool    `ps:"AnyCategory"`
-	ApplyCategory                         []string `ps:"ApplyCategory"`
-	ApplySystemCategory                   []string `ps:"ApplySystemCategory"`
-	AssignedCategories                    []string `ps:"AssignedCategories"`
-	BodyContainsWords                     []string `ps:"BodyContainsWords"`
-	BulkCategory                          string   `ps:"BulkCategory"`
-	ClearCategories                       *bool    `ps:"ClearCategories"`
-	ClearFlag                             *bool    `ps:"ClearFlag"`
-	CompleteFlag                          *bool    `ps:"CompleteFlag"`
-	CopyToFolder                          any      `ps:"CopyToFolder"` // MailboxFolderIdParameter
-	DeleteMessage                         *bool    `ps:"DeleteMessage"`
-	DeleteSystemCategory                  []string `ps:"DeleteSystemCategory"`
-	DisplayAlert                          string   `ps:"DisplayAlert"`
-	ExceptIfAnyCategory                   *bool    `ps:"ExceptIfAnyCategory"`
-	ExceptIfAssignedCategories            []string `ps:"ExceptIfAssignedCategories"`
-	ExceptIfBodyContainsWords             []string `ps:"ExceptIfBodyContainsWords"`
-	ExceptIfBulkCategory                  string   `ps:"ExceptIfBulkCategory"`
-	ExceptIfFlaggedForAction              string   `ps:"ExceptIfFlaggedForAction"`
-	ExceptIfFrom                          []string `ps:"ExceptIfFrom"`
-	ExceptIfFromAddressContainsWords      []string `ps:"ExceptIfFromAddressContainsWords"`
-	ExceptIfHasAttachment                 *bool    `ps:"ExceptIfHasAttachment"`
-	ExceptIfHasClassification             []string `ps:"ExceptIfHasClassification"`
-	ExceptIfHeaderContainsWords           []string `ps:"ExceptIfHeaderContainsWords"`
-	ExceptIfIsExternal                    *bool    `ps:"ExceptIfIsExternal"`
-	ExceptIfIsMentioned                   *bool    `ps:"ExceptIfIsMentioned"`
-	ExceptIfMessageTypeMatches            any      `ps:"ExceptIfMessageTypeMatches"` // InboxRuleMessageType
-	ExceptIfMyNameInCcBox                 *bool    `ps:"ExceptIfMyNameInCcBox"`
-	ExceptIfMyNameInToBox                 *bool    `ps:"ExceptIfMyNameInToBox"`
-	ExceptIfMyNameInToOrCcBox             *bool    `ps:"ExceptIfMyNameInToOrCcBox"`
-	ExceptIfMyNameNotInToBox              *bool    `ps:"ExceptIfMyNameNotInToBox"`
-	ExceptIfReceivedAfterDate             any      `ps:"ExceptIfReceivedAfterDate"`  // ExDateTime
-	ExceptIfReceivedBeforeDate            any      `ps:"ExceptIfReceivedBeforeDate"` // ExDateTime
-	ExceptIfRecipientAddressContainsWords []string `ps:"ExceptIfRecipientAddressContainsWords"`
-	ExceptIfSentOnlyToMe                  *bool    `ps:"ExceptIfSentOnlyToMe"`
-	ExceptIfSentTo                        []string `ps:"ExceptIfSentTo"`
-	ExceptIfSubjectContainsWords          []string `ps:"ExceptIfSubjectContainsWords"`
-	ExceptIfSubjectOrBodyContainsWords    []string `ps:"ExceptIfSubjectOrBodyContainsWords"`
-	ExceptIfWithImportance                any      `ps:"ExceptIfWithImportance"`         // Importance
-	ExceptIfWithinSizeRangeMaximum        any      `ps:"ExceptIfWithinSizeRangeMaximum"` // ByteQuantifiedSize
-	ExceptIfWithinSizeRangeMinimum        any      `ps:"ExceptIfWithinSizeRangeMinimum"` // ByteQuantifiedSize
-	ExceptIfWithSensitivity               any      `ps:"ExceptIfWithSensitivity"`        // Sensitivity
-	FlaggedForAction                      string   `ps:"FlaggedForAction"`
-	FlagMessage                           string   `ps:"FlagMessage"`
-	Force                                 bool     `ps:"Force"`
-	ForwardAsAttachmentTo                 []string `ps:"ForwardAsAttachmentTo"`
-	ForwardTo                             []string `ps:"ForwardTo"`
-	From                                  []string `ps:"From"`
-	FromAddressContainsWords              []string `ps:"FromAddressContainsWords"`
-	HasAttachment                         *bool    `ps:"HasAttachment"`
-	HasClassification                     []string `ps:"HasClassification"`
-	HeaderContainsWords                   []string `ps:"HeaderContainsWords"`
-	Identity                              any      `ps:"Identity"` // InboxRuleIdParameter
-	IsExternal                            *bool    `ps:"IsExternal"`
-	IsMentioned                           *bool    `ps:"IsMentioned"`
-	Mailbox                               any      `ps:"Mailbox"` // MailboxIdParameter
-	MarkAsRead                            *bool    `ps:"MarkAsRead"`
-	MarkImportance                        any      `ps:"MarkImportance"`     // Importance
-	MessageTypeMatches                    any      `ps:"MessageTypeMatches"` // InboxRuleMessageType
-	MoveToFolder                          any      `ps:"MoveToFolder"`       // MailboxFolderIdParameter
-	MyNameInCcBox                         *bool    `ps:"MyNameInCcBox"`
-	MyNameInToBox                         *bool    `ps:"MyNameInToBox"`
-	MyNameInToOrCcBox                     *bool    `ps:"MyNameInToOrCcBox"`
-	MyNameNotInToBox                      *bool    `ps:"MyNameNotInToBox"`
-	Name                                  string   `ps:"Name"`
-	PermanentDelete                       *bool    `ps:"PermanentDelete"`
-	PinMessage                            *bool    `ps:"PinMessage"`
-	PlaySound                             string   `ps:"PlaySound"`
-	Priority                              *int64   `ps:"Priority"`
-	ReceivedAfterDate                     any      `ps:"ReceivedAfterDate"`  // ExDateTime
-	ReceivedBeforeDate                    any      `ps:"ReceivedBeforeDate"` // ExDateTime
-	RecipientAddressContainsWords         []string `ps:"RecipientAddressContainsWords"`
-	RedirectTo                            []string `ps:"RedirectTo"`
-	SentOnlyToMe                          *bool    `ps:"SentOnlyToMe"`
-	SentTo                                []string `ps:"SentTo"`
-	SoftDeleteMessage                     *bool    `ps:"SoftDeleteMessage"`
-	StopProcessingRules                   *bool    `ps:"StopProcessingRules"`
-	SubjectContainsWords                  []string `ps:"SubjectContainsWords"`
-	SubjectOrBodyContainsWords            []string `ps:"SubjectOrBodyContainsWords"`
-	WithImportance                        any      `ps:"WithImportance"`         // Importance
-	WithinSizeRangeMaximum                any      `ps:"WithinSizeRangeMaximum"` // ByteQuantifiedSize
-	WithinSizeRangeMinimum                any      `ps:"WithinSizeRangeMinimum"` // ByteQuantifiedSize
-	WithSensitivity                       any      `ps:"WithSensitivity"`        // Sensitivity
+	AlwaysDeleteOutlookRulesBlob               bool                  `ps:"AlwaysDeleteOutlookRulesBlob"`
+	AnyCategory                                *bool                 `ps:"AnyCategory"`
+	ApplyCategory                              []string              `ps:"ApplyCategory"`
+	ApplyCategoryDelta                         *adminapi.StringDelta `ps:"ApplyCategory"` // adds/removes values of ApplyCategory; takes precedence over it
+	ApplySystemCategory                        []string              `ps:"ApplySystemCategory"`
+	ApplySystemCategoryDelta                   *adminapi.StringDelta `ps:"ApplySystemCategory"` // adds/removes values of ApplySystemCategory; takes precedence over it
+	AssignedCategories                         []string              `ps:"AssignedCategories"`
+	BodyContainsWords                          []string              `ps:"BodyContainsWords"`
+	BodyContainsWordsDelta                     *adminapi.StringDelta `ps:"BodyContainsWords"` // adds/removes values of BodyContainsWords; takes precedence over it
+	BulkCategory                               string                `ps:"BulkCategory"`
+	ClearCategories                            *bool                 `ps:"ClearCategories"`
+	ClearFlag                                  *bool                 `ps:"ClearFlag"`
+	CompleteFlag                               *bool                 `ps:"CompleteFlag"`
+	CopyToFolder                               any                   `ps:"CopyToFolder"` // MailboxFolderIdParameter
+	DeleteMessage                              *bool                 `ps:"DeleteMessage"`
+	DeleteSystemCategory                       []string              `ps:"DeleteSystemCategory"`
+	DeleteSystemCategoryDelta                  *adminapi.StringDelta `ps:"DeleteSystemCategory"` // adds/removes values of DeleteSystemCategory; takes precedence over it
+	DisplayAlert                               string                `ps:"DisplayAlert"`
+	ExceptIfAnyCategory                        *bool                 `ps:"ExceptIfAnyCategory"`
+	ExceptIfAssignedCategories                 []string              `ps:"ExceptIfAssignedCategories"`
+	ExceptIfBodyContainsWords                  []string              `ps:"ExceptIfBodyContainsWords"`
+	ExceptIfBodyContainsWordsDelta             *adminapi.StringDelta `ps:"ExceptIfBodyContainsWords"` // adds/removes values of ExceptIfBodyContainsWords; takes precedence over it
+	ExceptIfBulkCategory                       string                `ps:"ExceptIfBulkCategory"`
+	ExceptIfFlaggedForAction                   string                `ps:"ExceptIfFlaggedForAction"`
+	ExceptIfFrom                               []string              `ps:"ExceptIfFrom"`
+	ExceptIfFromAddressContainsWords           []string              `ps:"ExceptIfFromAddressContainsWords"`
+	ExceptIfFromAddressContainsWordsDelta      *adminapi.StringDelta `ps:"ExceptIfFromAddressContainsWords"` // adds/removes values of ExceptIfFromAddressContainsWords; takes precedence over it
+	ExceptIfHasAttachment                      *bool                 `ps:"ExceptIfHasAttachment"`
+	ExceptIfHasClassification                  []string              `ps:"ExceptIfHasClassification"`
+	ExceptIfHeaderContainsWords                []string              `ps:"ExceptIfHeaderContainsWords"`
+	ExceptIfHeaderContainsWordsDelta           *adminapi.StringDelta `ps:"ExceptIfHeaderContainsWords"` // adds/removes values of ExceptIfHeaderContainsWords; takes precedence over it
+	ExceptIfIsExternal                         *bool                 `ps:"ExceptIfIsExternal"`
+	ExceptIfIsMentioned                        *bool                 `ps:"ExceptIfIsMentioned"`
+	ExceptIfMessageTypeMatches                 any                   `ps:"ExceptIfMessageTypeMatches"` // InboxRuleMessageType
+	ExceptIfMyNameInCcBox                      *bool                 `ps:"ExceptIfMyNameInCcBox"`
+	ExceptIfMyNameInToBox                      *bool                 `ps:"ExceptIfMyNameInToBox"`
+	ExceptIfMyNameInToOrCcBox                  *bool                 `ps:"ExceptIfMyNameInToOrCcBox"`
+	ExceptIfMyNameNotInToBox                   *bool                 `ps:"ExceptIfMyNameNotInToBox"`
+	ExceptIfReceivedAfterDate                  any                   `ps:"ExceptIfReceivedAfterDate"`  // ExDateTime
+	ExceptIfReceivedBeforeDate                 any                   `ps:"ExceptIfReceivedBeforeDate"` // ExDateTime
+	ExceptIfRecipientAddressContainsWords      []string              `ps:"ExceptIfRecipientAddressContainsWords"`
+	ExceptIfRecipientAddressContainsWordsDelta *adminapi.StringDelta `ps:"ExceptIfRecipientAddressContainsWords"` // adds/removes values of ExceptIfRecipientAddressContainsWords; takes precedence over it
+	ExceptIfSentOnlyToMe                       *bool                 `ps:"ExceptIfSentOnlyToMe"`
+	ExceptIfSentTo                             []string              `ps:"ExceptIfSentTo"`
+	ExceptIfSubjectContainsWords               []string              `ps:"ExceptIfSubjectContainsWords"`
+	ExceptIfSubjectContainsWordsDelta          *adminapi.StringDelta `ps:"ExceptIfSubjectContainsWords"` // adds/removes values of ExceptIfSubjectContainsWords; takes precedence over it
+	ExceptIfSubjectOrBodyContainsWords         []string              `ps:"ExceptIfSubjectOrBodyContainsWords"`
+	ExceptIfSubjectOrBodyContainsWordsDelta    *adminapi.StringDelta `ps:"ExceptIfSubjectOrBodyContainsWords"` // adds/removes values of ExceptIfSubjectOrBodyContainsWords; takes precedence over it
+	ExceptIfWithImportance                     any                   `ps:"ExceptIfWithImportance"`             // Importance
+	ExceptIfWithinSizeRangeMaximum             any                   `ps:"ExceptIfWithinSizeRangeMaximum"`     // ByteQuantifiedSize
+	ExceptIfWithinSizeRangeMinimum             any                   `ps:"ExceptIfWithinSizeRangeMinimum"`     // ByteQuantifiedSize
+	ExceptIfWithSensitivity                    any                   `ps:"ExceptIfWithSensitivity"`            // Sensitivity
+	FlaggedForAction                           string                `ps:"FlaggedForAction"`
+	FlagMessage                                string                `ps:"FlagMessage"`
+	Force                                      bool                  `ps:"Force"`
+	ForwardAsAttachmentTo                      []string              `ps:"ForwardAsAttachmentTo"`
+	ForwardTo                                  []string              `ps:"ForwardTo"`
+	From                                       []string              `ps:"From"`
+	FromAddressContainsWords                   []string              `ps:"FromAddressContainsWords"`
+	FromAddressContainsWordsDelta              *adminapi.StringDelta `ps:"FromAddressContainsWords"` // adds/removes values of FromAddressContainsWords; takes precedence over it
+	HasAttachment                              *bool                 `ps:"HasAttachment"`
+	HasClassification                          []string              `ps:"HasClassification"`
+	HeaderContainsWords                        []string              `ps:"HeaderContainsWords"`
+	HeaderContainsWordsDelta                   *adminapi.StringDelta `ps:"HeaderContainsWords"` // adds/removes values of HeaderContainsWords; takes precedence over it
+	Identity                                   any                   `ps:"Identity"`            // InboxRuleIdParameter
+	IsExternal                                 *bool                 `ps:"IsExternal"`
+	IsMentioned                                *bool                 `ps:"IsMentioned"`
+	Mailbox                                    any                   `ps:"Mailbox"` // MailboxIdParameter
+	MarkAsRead                                 *bool                 `ps:"MarkAsRead"`
+	MarkImportance                             any                   `ps:"MarkImportance"`     // Importance
+	MessageTypeMatches                         any                   `ps:"MessageTypeMatches"` // InboxRuleMessageType
+	MoveToFolder                               any                   `ps:"MoveToFolder"`       // MailboxFolderIdParameter
+	MyNameInCcBox                              *bool                 `ps:"MyNameInCcBox"`
+	MyNameInToBox                              *bool                 `ps:"MyNameInToBox"`
+	MyNameInToOrCcBox                          *bool                 `ps:"MyNameInToOrCcBox"`
+	MyNameNotInToBox                           *bool                 `ps:"MyNameNotInToBox"`
+	Name                                       string                `ps:"Name"`
+	PermanentDelete                            *bool                 `ps:"PermanentDelete"`
+	PinMessage                                 *bool                 `ps:"PinMessage"`
+	PlaySound                                  string                `ps:"PlaySound"`
+	Priority                                   *int64                `ps:"Priority"`
+	ReceivedAfterDate                          any                   `ps:"ReceivedAfterDate"`  // ExDateTime
+	ReceivedBeforeDate                         any                   `ps:"ReceivedBeforeDate"` // ExDateTime
+	RecipientAddressContainsWords              []string              `ps:"RecipientAddressContainsWords"`
+	RecipientAddressContainsWordsDelta         *adminapi.StringDelta `ps:"RecipientAddressContainsWords"` // adds/removes values of RecipientAddressContainsWords; takes precedence over it
+	RedirectTo                                 []string              `ps:"RedirectTo"`
+	SentOnlyToMe                               *bool                 `ps:"SentOnlyToMe"`
+	SentTo                                     []string              `ps:"SentTo"`
+	SoftDeleteMessage                          *bool                 `ps:"SoftDeleteMessage"`
+	StopProcessingRules                        *bool                 `ps:"StopProcessingRules"`
+	SubjectContainsWords                       []string              `ps:"SubjectContainsWords"`
+	SubjectContainsWordsDelta                  *adminapi.StringDelta `ps:"SubjectContainsWords"` // adds/removes values of SubjectContainsWords; takes precedence over it
+	SubjectOrBodyContainsWords                 []string              `ps:"SubjectOrBodyContainsWords"`
+	SubjectOrBodyContainsWordsDelta            *adminapi.StringDelta `ps:"SubjectOrBodyContainsWords"` // adds/removes values of SubjectOrBodyContainsWords; takes precedence over it
+	WithImportance                             any                   `ps:"WithImportance"`             // Importance
+	WithinSizeRangeMaximum                     any                   `ps:"WithinSizeRangeMaximum"`     // ByteQuantifiedSize
+	WithinSizeRangeMinimum                     any                   `ps:"WithinSizeRangeMinimum"`     // ByteQuantifiedSize
+	WithSensitivity                            any                   `ps:"WithSensitivity"`            // Sensitivity
 }
 
 func (p SetInboxRuleParams) params() map[string]any {
@@ -26275,16 +26608,22 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.AnyCategory != nil {
 		m["AnyCategory"] = *p.AnyCategory
 	}
-	if p.ApplyCategory != nil {
+	if p.ApplyCategoryDelta != nil {
+		m["ApplyCategory"] = *p.ApplyCategoryDelta
+	} else if p.ApplyCategory != nil {
 		m["ApplyCategory"] = p.ApplyCategory
 	}
-	if p.ApplySystemCategory != nil {
+	if p.ApplySystemCategoryDelta != nil {
+		m["ApplySystemCategory"] = *p.ApplySystemCategoryDelta
+	} else if p.ApplySystemCategory != nil {
 		m["ApplySystemCategory"] = p.ApplySystemCategory
 	}
 	if p.AssignedCategories != nil {
 		m["AssignedCategories"] = p.AssignedCategories
 	}
-	if p.BodyContainsWords != nil {
+	if p.BodyContainsWordsDelta != nil {
+		m["BodyContainsWords"] = *p.BodyContainsWordsDelta
+	} else if p.BodyContainsWords != nil {
 		m["BodyContainsWords"] = p.BodyContainsWords
 	}
 	if p.BulkCategory != "" {
@@ -26305,7 +26644,9 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.DeleteMessage != nil {
 		m["DeleteMessage"] = *p.DeleteMessage
 	}
-	if p.DeleteSystemCategory != nil {
+	if p.DeleteSystemCategoryDelta != nil {
+		m["DeleteSystemCategory"] = *p.DeleteSystemCategoryDelta
+	} else if p.DeleteSystemCategory != nil {
 		m["DeleteSystemCategory"] = p.DeleteSystemCategory
 	}
 	if p.DisplayAlert != "" {
@@ -26317,7 +26658,9 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.ExceptIfAssignedCategories != nil {
 		m["ExceptIfAssignedCategories"] = p.ExceptIfAssignedCategories
 	}
-	if p.ExceptIfBodyContainsWords != nil {
+	if p.ExceptIfBodyContainsWordsDelta != nil {
+		m["ExceptIfBodyContainsWords"] = *p.ExceptIfBodyContainsWordsDelta
+	} else if p.ExceptIfBodyContainsWords != nil {
 		m["ExceptIfBodyContainsWords"] = p.ExceptIfBodyContainsWords
 	}
 	if p.ExceptIfBulkCategory != "" {
@@ -26329,7 +26672,9 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.ExceptIfFrom != nil {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
-	if p.ExceptIfFromAddressContainsWords != nil {
+	if p.ExceptIfFromAddressContainsWordsDelta != nil {
+		m["ExceptIfFromAddressContainsWords"] = *p.ExceptIfFromAddressContainsWordsDelta
+	} else if p.ExceptIfFromAddressContainsWords != nil {
 		m["ExceptIfFromAddressContainsWords"] = p.ExceptIfFromAddressContainsWords
 	}
 	if p.ExceptIfHasAttachment != nil {
@@ -26338,7 +26683,9 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.ExceptIfHasClassification != nil {
 		m["ExceptIfHasClassification"] = p.ExceptIfHasClassification
 	}
-	if p.ExceptIfHeaderContainsWords != nil {
+	if p.ExceptIfHeaderContainsWordsDelta != nil {
+		m["ExceptIfHeaderContainsWords"] = *p.ExceptIfHeaderContainsWordsDelta
+	} else if p.ExceptIfHeaderContainsWords != nil {
 		m["ExceptIfHeaderContainsWords"] = p.ExceptIfHeaderContainsWords
 	}
 	if p.ExceptIfIsExternal != nil {
@@ -26368,7 +26715,9 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.ExceptIfReceivedBeforeDate != nil {
 		m["ExceptIfReceivedBeforeDate"] = p.ExceptIfReceivedBeforeDate
 	}
-	if p.ExceptIfRecipientAddressContainsWords != nil {
+	if p.ExceptIfRecipientAddressContainsWordsDelta != nil {
+		m["ExceptIfRecipientAddressContainsWords"] = *p.ExceptIfRecipientAddressContainsWordsDelta
+	} else if p.ExceptIfRecipientAddressContainsWords != nil {
 		m["ExceptIfRecipientAddressContainsWords"] = p.ExceptIfRecipientAddressContainsWords
 	}
 	if p.ExceptIfSentOnlyToMe != nil {
@@ -26377,10 +26726,14 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.ExceptIfSentTo != nil {
 		m["ExceptIfSentTo"] = p.ExceptIfSentTo
 	}
-	if p.ExceptIfSubjectContainsWords != nil {
+	if p.ExceptIfSubjectContainsWordsDelta != nil {
+		m["ExceptIfSubjectContainsWords"] = *p.ExceptIfSubjectContainsWordsDelta
+	} else if p.ExceptIfSubjectContainsWords != nil {
 		m["ExceptIfSubjectContainsWords"] = p.ExceptIfSubjectContainsWords
 	}
-	if p.ExceptIfSubjectOrBodyContainsWords != nil {
+	if p.ExceptIfSubjectOrBodyContainsWordsDelta != nil {
+		m["ExceptIfSubjectOrBodyContainsWords"] = *p.ExceptIfSubjectOrBodyContainsWordsDelta
+	} else if p.ExceptIfSubjectOrBodyContainsWords != nil {
 		m["ExceptIfSubjectOrBodyContainsWords"] = p.ExceptIfSubjectOrBodyContainsWords
 	}
 	if p.ExceptIfWithImportance != nil {
@@ -26413,7 +26766,9 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.From != nil {
 		m["From"] = p.From
 	}
-	if p.FromAddressContainsWords != nil {
+	if p.FromAddressContainsWordsDelta != nil {
+		m["FromAddressContainsWords"] = *p.FromAddressContainsWordsDelta
+	} else if p.FromAddressContainsWords != nil {
 		m["FromAddressContainsWords"] = p.FromAddressContainsWords
 	}
 	if p.HasAttachment != nil {
@@ -26422,7 +26777,9 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.HasClassification != nil {
 		m["HasClassification"] = p.HasClassification
 	}
-	if p.HeaderContainsWords != nil {
+	if p.HeaderContainsWordsDelta != nil {
+		m["HeaderContainsWords"] = *p.HeaderContainsWordsDelta
+	} else if p.HeaderContainsWords != nil {
 		m["HeaderContainsWords"] = p.HeaderContainsWords
 	}
 	if p.Identity != nil {
@@ -26482,7 +26839,9 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.ReceivedBeforeDate != nil {
 		m["ReceivedBeforeDate"] = p.ReceivedBeforeDate
 	}
-	if p.RecipientAddressContainsWords != nil {
+	if p.RecipientAddressContainsWordsDelta != nil {
+		m["RecipientAddressContainsWords"] = *p.RecipientAddressContainsWordsDelta
+	} else if p.RecipientAddressContainsWords != nil {
 		m["RecipientAddressContainsWords"] = p.RecipientAddressContainsWords
 	}
 	if p.RedirectTo != nil {
@@ -26500,10 +26859,14 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.StopProcessingRules != nil {
 		m["StopProcessingRules"] = *p.StopProcessingRules
 	}
-	if p.SubjectContainsWords != nil {
+	if p.SubjectContainsWordsDelta != nil {
+		m["SubjectContainsWords"] = *p.SubjectContainsWordsDelta
+	} else if p.SubjectContainsWords != nil {
 		m["SubjectContainsWords"] = p.SubjectContainsWords
 	}
-	if p.SubjectOrBodyContainsWords != nil {
+	if p.SubjectOrBodyContainsWordsDelta != nil {
+		m["SubjectOrBodyContainsWords"] = *p.SubjectOrBodyContainsWordsDelta
+	} else if p.SubjectOrBodyContainsWords != nil {
 		m["SubjectOrBodyContainsWords"] = p.SubjectOrBodyContainsWords
 	}
 	if p.WithImportance != nil {
@@ -26529,11 +26892,12 @@ func (s *Service) SetInboxRule(ctx context.Context, p SetInboxRuleParams) (*admi
 // SetIntraOrganizationConnectorParams are the parameters of Set-IntraOrganizationConnector.
 // DefaultParameterSetName: Identity
 type SetIntraOrganizationConnectorParams struct {
-	DiscoveryEndpoint    any      `ps:"DiscoveryEndpoint"` // Uri
-	Enabled              *bool    `ps:"Enabled"`
-	Identity             any      `ps:"Identity"` // IntraOrganizationConnectorIdParameter
-	TargetAddressDomains []string `ps:"TargetAddressDomains"`
-	TargetSharingEpr     any      `ps:"TargetSharingEpr"` // Uri
+	DiscoveryEndpoint         any                   `ps:"DiscoveryEndpoint"` // Uri
+	Enabled                   *bool                 `ps:"Enabled"`
+	Identity                  any                   `ps:"Identity"` // IntraOrganizationConnectorIdParameter
+	TargetAddressDomains      []string              `ps:"TargetAddressDomains"`
+	TargetAddressDomainsDelta *adminapi.StringDelta `ps:"TargetAddressDomains"` // adds/removes values of TargetAddressDomains; takes precedence over it
+	TargetSharingEpr          any                   `ps:"TargetSharingEpr"`     // Uri
 }
 
 func (p SetIntraOrganizationConnectorParams) params() map[string]any {
@@ -26547,7 +26911,9 @@ func (p SetIntraOrganizationConnectorParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.TargetAddressDomains != nil {
+	if p.TargetAddressDomainsDelta != nil {
+		m["TargetAddressDomains"] = *p.TargetAddressDomainsDelta
+	} else if p.TargetAddressDomains != nil {
 		m["TargetAddressDomains"] = p.TargetAddressDomains
 	}
 	if p.TargetSharingEpr != nil {
@@ -26681,13 +27047,16 @@ func (s *Service) SetLdapDirectory(ctx context.Context, p SetLdapDirectoryParams
 // SetLinkedUserParams are the parameters of Set-LinkedUser.
 // DefaultParameterSetName: Identity
 type SetLinkedUserParams struct {
-	CertificateSubject []string `ps:"CertificateSubject"`
-	Identity           any      `ps:"Identity"` // UserIdParameter
+	CertificateSubject      []string              `ps:"CertificateSubject"`
+	CertificateSubjectDelta *adminapi.StringDelta `ps:"CertificateSubject"` // adds/removes values of CertificateSubject; takes precedence over it
+	Identity                any                   `ps:"Identity"`           // UserIdParameter
 }
 
 func (p SetLinkedUserParams) params() map[string]any {
 	m := map[string]any{}
-	if p.CertificateSubject != nil {
+	if p.CertificateSubjectDelta != nil {
+		m["CertificateSubject"] = *p.CertificateSubjectDelta
+	} else if p.CertificateSubject != nil {
 		m["CertificateSubject"] = p.CertificateSubject
 	}
 	if p.Identity != nil {
@@ -26726,20 +27095,23 @@ func (s *Service) SetM365CrossTenantAccessPolicy(ctx context.Context, p SetM365C
 // SetM365DataAtRestEncryptionPolicyParams are the parameters of Set-M365DataAtRestEncryptionPolicy.
 // DefaultParameterSetName: Identity
 type SetM365DataAtRestEncryptionPolicyParams struct {
-	AzureKeyIDs      []string `ps:"AzureKeyIDs"`
-	Description      string   `ps:"Description"`
-	DomainController any      `ps:"DomainController"` // Fqdn
-	Enabled          *bool    `ps:"Enabled"`
-	Force            bool     `ps:"Force"`
-	Identity         any      `ps:"Identity"` // DataEncryptionPolicyIdParameter
-	Name             string   `ps:"Name"`
-	Refresh          bool     `ps:"Refresh"`
-	Replace          bool     `ps:"Replace"`
+	AzureKeyIDs      []string              `ps:"AzureKeyIDs"`
+	AzureKeyIDsDelta *adminapi.StringDelta `ps:"AzureKeyIDs"` // adds/removes values of AzureKeyIDs; takes precedence over it
+	Description      string                `ps:"Description"`
+	DomainController any                   `ps:"DomainController"` // Fqdn
+	Enabled          *bool                 `ps:"Enabled"`
+	Force            bool                  `ps:"Force"`
+	Identity         any                   `ps:"Identity"` // DataEncryptionPolicyIdParameter
+	Name             string                `ps:"Name"`
+	Refresh          bool                  `ps:"Refresh"`
+	Replace          bool                  `ps:"Replace"`
 }
 
 func (p SetM365DataAtRestEncryptionPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AzureKeyIDs != nil {
+	if p.AzureKeyIDsDelta != nil {
+		m["AzureKeyIDs"] = *p.AzureKeyIDsDelta
+	} else if p.AzureKeyIDs != nil {
 		m["AzureKeyIDs"] = p.AzureKeyIDs
 	}
 	if p.Description != "" {
@@ -26795,74 +27167,99 @@ func (s *Service) SetM365DataAtRestEncryptionPolicyAssignment(ctx context.Contex
 // SetMailContactParams are the parameters of Set-MailContact.
 // DefaultParameterSetName: Identity
 type SetMailContactParams struct {
-	AcceptMessagesOnlyFrom                 []string `ps:"AcceptMessagesOnlyFrom"`
-	AcceptMessagesOnlyFromDLMembers        []string `ps:"AcceptMessagesOnlyFromDLMembers"`
-	AcceptMessagesOnlyFromSendersOrMembers []string `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
-	Alias                                  string   `ps:"Alias"`
-	BypassModerationFromSendersOrMembers   []string `ps:"BypassModerationFromSendersOrMembers"`
-	CustomAttribute1                       string   `ps:"CustomAttribute1"`
-	CustomAttribute10                      string   `ps:"CustomAttribute10"`
-	CustomAttribute11                      string   `ps:"CustomAttribute11"`
-	CustomAttribute12                      string   `ps:"CustomAttribute12"`
-	CustomAttribute13                      string   `ps:"CustomAttribute13"`
-	CustomAttribute14                      string   `ps:"CustomAttribute14"`
-	CustomAttribute15                      string   `ps:"CustomAttribute15"`
-	CustomAttribute2                       string   `ps:"CustomAttribute2"`
-	CustomAttribute3                       string   `ps:"CustomAttribute3"`
-	CustomAttribute4                       string   `ps:"CustomAttribute4"`
-	CustomAttribute5                       string   `ps:"CustomAttribute5"`
-	CustomAttribute6                       string   `ps:"CustomAttribute6"`
-	CustomAttribute7                       string   `ps:"CustomAttribute7"`
-	CustomAttribute8                       string   `ps:"CustomAttribute8"`
-	CustomAttribute9                       string   `ps:"CustomAttribute9"`
-	DisplayName                            string   `ps:"DisplayName"`
-	EmailAddresses                         []string `ps:"EmailAddresses"`
-	ExtensionCustomAttribute1              []string `ps:"ExtensionCustomAttribute1"`
-	ExtensionCustomAttribute2              []string `ps:"ExtensionCustomAttribute2"`
-	ExtensionCustomAttribute3              []string `ps:"ExtensionCustomAttribute3"`
-	ExtensionCustomAttribute4              []string `ps:"ExtensionCustomAttribute4"`
-	ExtensionCustomAttribute5              []string `ps:"ExtensionCustomAttribute5"`
-	ExternalEmailAddress                   any      `ps:"ExternalEmailAddress"` // ProxyAddress
-	ForceUpgrade                           bool     `ps:"ForceUpgrade"`
-	GrantSendOnBehalfTo                    []string `ps:"GrantSendOnBehalfTo"`
-	HiddenFromAddressListsEnabled          *bool    `ps:"HiddenFromAddressListsEnabled"`
-	Identity                               any      `ps:"Identity"`            // MailContactIdParameter
-	MacAttachmentFormat                    any      `ps:"MacAttachmentFormat"` // MacAttachmentFormat
-	MailTip                                string   `ps:"MailTip"`
-	MailTipTranslations                    []string `ps:"MailTipTranslations"`
-	MessageBodyFormat                      any      `ps:"MessageBodyFormat"` // MessageBodyFormat
-	MessageFormat                          any      `ps:"MessageFormat"`     // MessageFormat
-	ModeratedBy                            []string `ps:"ModeratedBy"`
-	ModerationEnabled                      *bool    `ps:"ModerationEnabled"`
-	Name                                   string   `ps:"Name"`
-	RejectMessagesFrom                     []string `ps:"RejectMessagesFrom"`
-	RejectMessagesFromDLMembers            []string `ps:"RejectMessagesFromDLMembers"`
-	RejectMessagesFromSendersOrMembers     []string `ps:"RejectMessagesFromSendersOrMembers"`
-	RequireSenderAuthenticationEnabled     *bool    `ps:"RequireSenderAuthenticationEnabled"`
-	SendModerationNotifications            any      `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
-	SimpleDisplayName                      string   `ps:"SimpleDisplayName"`
-	UseMapiRichTextFormat                  any      `ps:"UseMapiRichTextFormat"` // UseMapiRichTextFormat
-	UsePreferMessageFormat                 *bool    `ps:"UsePreferMessageFormat"`
-	UserCertificate                        []string `ps:"UserCertificate"`
-	UserSMimeCertificate                   []string `ps:"UserSMimeCertificate"`
-	WindowsEmailAddress                    any      `ps:"WindowsEmailAddress"` // SmtpAddress
+	AcceptMessagesOnlyFrom                      []string              `ps:"AcceptMessagesOnlyFrom"`
+	AcceptMessagesOnlyFromDelta                 *adminapi.StringDelta `ps:"AcceptMessagesOnlyFrom"` // adds/removes values of AcceptMessagesOnlyFrom; takes precedence over it
+	AcceptMessagesOnlyFromDLMembers             []string              `ps:"AcceptMessagesOnlyFromDLMembers"`
+	AcceptMessagesOnlyFromDLMembersDelta        *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromDLMembers"` // adds/removes values of AcceptMessagesOnlyFromDLMembers; takes precedence over it
+	AcceptMessagesOnlyFromSendersOrMembers      []string              `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
+	AcceptMessagesOnlyFromSendersOrMembersDelta *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromSendersOrMembers"` // adds/removes values of AcceptMessagesOnlyFromSendersOrMembers; takes precedence over it
+	Alias                                       string                `ps:"Alias"`
+	BypassModerationFromSendersOrMembers        []string              `ps:"BypassModerationFromSendersOrMembers"`
+	BypassModerationFromSendersOrMembersDelta   *adminapi.StringDelta `ps:"BypassModerationFromSendersOrMembers"` // adds/removes values of BypassModerationFromSendersOrMembers; takes precedence over it
+	CustomAttribute1                            string                `ps:"CustomAttribute1"`
+	CustomAttribute10                           string                `ps:"CustomAttribute10"`
+	CustomAttribute11                           string                `ps:"CustomAttribute11"`
+	CustomAttribute12                           string                `ps:"CustomAttribute12"`
+	CustomAttribute13                           string                `ps:"CustomAttribute13"`
+	CustomAttribute14                           string                `ps:"CustomAttribute14"`
+	CustomAttribute15                           string                `ps:"CustomAttribute15"`
+	CustomAttribute2                            string                `ps:"CustomAttribute2"`
+	CustomAttribute3                            string                `ps:"CustomAttribute3"`
+	CustomAttribute4                            string                `ps:"CustomAttribute4"`
+	CustomAttribute5                            string                `ps:"CustomAttribute5"`
+	CustomAttribute6                            string                `ps:"CustomAttribute6"`
+	CustomAttribute7                            string                `ps:"CustomAttribute7"`
+	CustomAttribute8                            string                `ps:"CustomAttribute8"`
+	CustomAttribute9                            string                `ps:"CustomAttribute9"`
+	DisplayName                                 string                `ps:"DisplayName"`
+	EmailAddresses                              []string              `ps:"EmailAddresses"`
+	ExtensionCustomAttribute1                   []string              `ps:"ExtensionCustomAttribute1"`
+	ExtensionCustomAttribute1Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute1"` // adds/removes values of ExtensionCustomAttribute1; takes precedence over it
+	ExtensionCustomAttribute2                   []string              `ps:"ExtensionCustomAttribute2"`
+	ExtensionCustomAttribute2Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute2"` // adds/removes values of ExtensionCustomAttribute2; takes precedence over it
+	ExtensionCustomAttribute3                   []string              `ps:"ExtensionCustomAttribute3"`
+	ExtensionCustomAttribute3Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute3"` // adds/removes values of ExtensionCustomAttribute3; takes precedence over it
+	ExtensionCustomAttribute4                   []string              `ps:"ExtensionCustomAttribute4"`
+	ExtensionCustomAttribute4Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute4"` // adds/removes values of ExtensionCustomAttribute4; takes precedence over it
+	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
+	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
+	ExternalEmailAddress                        any                   `ps:"ExternalEmailAddress"`      // ProxyAddress
+	ForceUpgrade                                bool                  `ps:"ForceUpgrade"`
+	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
+	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
+	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
+	Identity                                    any                   `ps:"Identity"`            // MailContactIdParameter
+	MacAttachmentFormat                         any                   `ps:"MacAttachmentFormat"` // MacAttachmentFormat
+	MailTip                                     string                `ps:"MailTip"`
+	MailTipTranslations                         []string              `ps:"MailTipTranslations"`
+	MailTipTranslationsDelta                    *adminapi.StringDelta `ps:"MailTipTranslations"` // adds/removes values of MailTipTranslations; takes precedence over it
+	MessageBodyFormat                           any                   `ps:"MessageBodyFormat"`   // MessageBodyFormat
+	MessageFormat                               any                   `ps:"MessageFormat"`       // MessageFormat
+	ModeratedBy                                 []string              `ps:"ModeratedBy"`
+	ModeratedByDelta                            *adminapi.StringDelta `ps:"ModeratedBy"` // adds/removes values of ModeratedBy; takes precedence over it
+	ModerationEnabled                           *bool                 `ps:"ModerationEnabled"`
+	Name                                        string                `ps:"Name"`
+	RejectMessagesFrom                          []string              `ps:"RejectMessagesFrom"`
+	RejectMessagesFromDelta                     *adminapi.StringDelta `ps:"RejectMessagesFrom"` // adds/removes values of RejectMessagesFrom; takes precedence over it
+	RejectMessagesFromDLMembers                 []string              `ps:"RejectMessagesFromDLMembers"`
+	RejectMessagesFromDLMembersDelta            *adminapi.StringDelta `ps:"RejectMessagesFromDLMembers"` // adds/removes values of RejectMessagesFromDLMembers; takes precedence over it
+	RejectMessagesFromSendersOrMembers          []string              `ps:"RejectMessagesFromSendersOrMembers"`
+	RejectMessagesFromSendersOrMembersDelta     *adminapi.StringDelta `ps:"RejectMessagesFromSendersOrMembers"` // adds/removes values of RejectMessagesFromSendersOrMembers; takes precedence over it
+	RequireSenderAuthenticationEnabled          *bool                 `ps:"RequireSenderAuthenticationEnabled"`
+	SendModerationNotifications                 any                   `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
+	SimpleDisplayName                           string                `ps:"SimpleDisplayName"`
+	UseMapiRichTextFormat                       any                   `ps:"UseMapiRichTextFormat"` // UseMapiRichTextFormat
+	UsePreferMessageFormat                      *bool                 `ps:"UsePreferMessageFormat"`
+	UserCertificate                             []string              `ps:"UserCertificate"`
+	UserCertificateDelta                        *adminapi.StringDelta `ps:"UserCertificate"` // adds/removes values of UserCertificate; takes precedence over it
+	UserSMimeCertificate                        []string              `ps:"UserSMimeCertificate"`
+	UserSMimeCertificateDelta                   *adminapi.StringDelta `ps:"UserSMimeCertificate"` // adds/removes values of UserSMimeCertificate; takes precedence over it
+	WindowsEmailAddress                         any                   `ps:"WindowsEmailAddress"`  // SmtpAddress
 }
 
 func (p SetMailContactParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptMessagesOnlyFrom != nil {
+	if p.AcceptMessagesOnlyFromDelta != nil {
+		m["AcceptMessagesOnlyFrom"] = *p.AcceptMessagesOnlyFromDelta
+	} else if p.AcceptMessagesOnlyFrom != nil {
 		m["AcceptMessagesOnlyFrom"] = p.AcceptMessagesOnlyFrom
 	}
-	if p.AcceptMessagesOnlyFromDLMembers != nil {
+	if p.AcceptMessagesOnlyFromDLMembersDelta != nil {
+		m["AcceptMessagesOnlyFromDLMembers"] = *p.AcceptMessagesOnlyFromDLMembersDelta
+	} else if p.AcceptMessagesOnlyFromDLMembers != nil {
 		m["AcceptMessagesOnlyFromDLMembers"] = p.AcceptMessagesOnlyFromDLMembers
 	}
-	if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
+	if p.AcceptMessagesOnlyFromSendersOrMembersDelta != nil {
+		m["AcceptMessagesOnlyFromSendersOrMembers"] = *p.AcceptMessagesOnlyFromSendersOrMembersDelta
+	} else if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
 		m["AcceptMessagesOnlyFromSendersOrMembers"] = p.AcceptMessagesOnlyFromSendersOrMembers
 	}
 	if p.Alias != "" {
 		m["Alias"] = p.Alias
 	}
-	if p.BypassModerationFromSendersOrMembers != nil {
+	if p.BypassModerationFromSendersOrMembersDelta != nil {
+		m["BypassModerationFromSendersOrMembers"] = *p.BypassModerationFromSendersOrMembersDelta
+	} else if p.BypassModerationFromSendersOrMembers != nil {
 		m["BypassModerationFromSendersOrMembers"] = p.BypassModerationFromSendersOrMembers
 	}
 	if p.CustomAttribute1 != "" {
@@ -26916,19 +27313,29 @@ func (p SetMailContactParams) params() map[string]any {
 	if p.EmailAddresses != nil {
 		m["EmailAddresses"] = p.EmailAddresses
 	}
-	if p.ExtensionCustomAttribute1 != nil {
+	if p.ExtensionCustomAttribute1Delta != nil {
+		m["ExtensionCustomAttribute1"] = *p.ExtensionCustomAttribute1Delta
+	} else if p.ExtensionCustomAttribute1 != nil {
 		m["ExtensionCustomAttribute1"] = p.ExtensionCustomAttribute1
 	}
-	if p.ExtensionCustomAttribute2 != nil {
+	if p.ExtensionCustomAttribute2Delta != nil {
+		m["ExtensionCustomAttribute2"] = *p.ExtensionCustomAttribute2Delta
+	} else if p.ExtensionCustomAttribute2 != nil {
 		m["ExtensionCustomAttribute2"] = p.ExtensionCustomAttribute2
 	}
-	if p.ExtensionCustomAttribute3 != nil {
+	if p.ExtensionCustomAttribute3Delta != nil {
+		m["ExtensionCustomAttribute3"] = *p.ExtensionCustomAttribute3Delta
+	} else if p.ExtensionCustomAttribute3 != nil {
 		m["ExtensionCustomAttribute3"] = p.ExtensionCustomAttribute3
 	}
-	if p.ExtensionCustomAttribute4 != nil {
+	if p.ExtensionCustomAttribute4Delta != nil {
+		m["ExtensionCustomAttribute4"] = *p.ExtensionCustomAttribute4Delta
+	} else if p.ExtensionCustomAttribute4 != nil {
 		m["ExtensionCustomAttribute4"] = p.ExtensionCustomAttribute4
 	}
-	if p.ExtensionCustomAttribute5 != nil {
+	if p.ExtensionCustomAttribute5Delta != nil {
+		m["ExtensionCustomAttribute5"] = *p.ExtensionCustomAttribute5Delta
+	} else if p.ExtensionCustomAttribute5 != nil {
 		m["ExtensionCustomAttribute5"] = p.ExtensionCustomAttribute5
 	}
 	if p.ExternalEmailAddress != nil {
@@ -26937,7 +27344,9 @@ func (p SetMailContactParams) params() map[string]any {
 	if p.ForceUpgrade {
 		m["ForceUpgrade"] = true
 	}
-	if p.GrantSendOnBehalfTo != nil {
+	if p.GrantSendOnBehalfToDelta != nil {
+		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
+	} else if p.GrantSendOnBehalfTo != nil {
 		m["GrantSendOnBehalfTo"] = p.GrantSendOnBehalfTo
 	}
 	if p.HiddenFromAddressListsEnabled != nil {
@@ -26952,7 +27361,9 @@ func (p SetMailContactParams) params() map[string]any {
 	if p.MailTip != "" {
 		m["MailTip"] = p.MailTip
 	}
-	if p.MailTipTranslations != nil {
+	if p.MailTipTranslationsDelta != nil {
+		m["MailTipTranslations"] = *p.MailTipTranslationsDelta
+	} else if p.MailTipTranslations != nil {
 		m["MailTipTranslations"] = p.MailTipTranslations
 	}
 	if p.MessageBodyFormat != nil {
@@ -26961,7 +27372,9 @@ func (p SetMailContactParams) params() map[string]any {
 	if p.MessageFormat != nil {
 		m["MessageFormat"] = p.MessageFormat
 	}
-	if p.ModeratedBy != nil {
+	if p.ModeratedByDelta != nil {
+		m["ModeratedBy"] = *p.ModeratedByDelta
+	} else if p.ModeratedBy != nil {
 		m["ModeratedBy"] = p.ModeratedBy
 	}
 	if p.ModerationEnabled != nil {
@@ -26970,13 +27383,19 @@ func (p SetMailContactParams) params() map[string]any {
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if p.RejectMessagesFrom != nil {
+	if p.RejectMessagesFromDelta != nil {
+		m["RejectMessagesFrom"] = *p.RejectMessagesFromDelta
+	} else if p.RejectMessagesFrom != nil {
 		m["RejectMessagesFrom"] = p.RejectMessagesFrom
 	}
-	if p.RejectMessagesFromDLMembers != nil {
+	if p.RejectMessagesFromDLMembersDelta != nil {
+		m["RejectMessagesFromDLMembers"] = *p.RejectMessagesFromDLMembersDelta
+	} else if p.RejectMessagesFromDLMembers != nil {
 		m["RejectMessagesFromDLMembers"] = p.RejectMessagesFromDLMembers
 	}
-	if p.RejectMessagesFromSendersOrMembers != nil {
+	if p.RejectMessagesFromSendersOrMembersDelta != nil {
+		m["RejectMessagesFromSendersOrMembers"] = *p.RejectMessagesFromSendersOrMembersDelta
+	} else if p.RejectMessagesFromSendersOrMembers != nil {
 		m["RejectMessagesFromSendersOrMembers"] = p.RejectMessagesFromSendersOrMembers
 	}
 	if p.RequireSenderAuthenticationEnabled != nil {
@@ -26994,10 +27413,14 @@ func (p SetMailContactParams) params() map[string]any {
 	if p.UsePreferMessageFormat != nil {
 		m["UsePreferMessageFormat"] = *p.UsePreferMessageFormat
 	}
-	if p.UserCertificate != nil {
+	if p.UserCertificateDelta != nil {
+		m["UserCertificate"] = *p.UserCertificateDelta
+	} else if p.UserCertificate != nil {
 		m["UserCertificate"] = p.UserCertificate
 	}
-	if p.UserSMimeCertificate != nil {
+	if p.UserSMimeCertificateDelta != nil {
+		m["UserSMimeCertificate"] = *p.UserSMimeCertificateDelta
+	} else if p.UserSMimeCertificate != nil {
 		m["UserSMimeCertificate"] = p.UserSMimeCertificate
 	}
 	if p.WindowsEmailAddress != nil {
@@ -27014,78 +27437,101 @@ func (s *Service) SetMailContact(ctx context.Context, p SetMailContactParams) (*
 // SetMailPublicFolderParams are the parameters of Set-MailPublicFolder.
 // DefaultParameterSetName: Identity
 type SetMailPublicFolderParams struct {
-	AcceptMessagesOnlyFrom                 []string `ps:"AcceptMessagesOnlyFrom"`
-	AcceptMessagesOnlyFromDLMembers        []string `ps:"AcceptMessagesOnlyFromDLMembers"`
-	AcceptMessagesOnlyFromSendersOrMembers []string `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
-	Alias                                  string   `ps:"Alias"`
-	BypassModerationFromSendersOrMembers   []string `ps:"BypassModerationFromSendersOrMembers"`
-	Contacts                               []string `ps:"Contacts"`
-	CustomAttribute1                       string   `ps:"CustomAttribute1"`
-	CustomAttribute10                      string   `ps:"CustomAttribute10"`
-	CustomAttribute11                      string   `ps:"CustomAttribute11"`
-	CustomAttribute12                      string   `ps:"CustomAttribute12"`
-	CustomAttribute13                      string   `ps:"CustomAttribute13"`
-	CustomAttribute14                      string   `ps:"CustomAttribute14"`
-	CustomAttribute15                      string   `ps:"CustomAttribute15"`
-	CustomAttribute2                       string   `ps:"CustomAttribute2"`
-	CustomAttribute3                       string   `ps:"CustomAttribute3"`
-	CustomAttribute4                       string   `ps:"CustomAttribute4"`
-	CustomAttribute5                       string   `ps:"CustomAttribute5"`
-	CustomAttribute6                       string   `ps:"CustomAttribute6"`
-	CustomAttribute7                       string   `ps:"CustomAttribute7"`
-	CustomAttribute8                       string   `ps:"CustomAttribute8"`
-	CustomAttribute9                       string   `ps:"CustomAttribute9"`
-	DeliverToMailboxAndForward             *bool    `ps:"DeliverToMailboxAndForward"`
-	DisplayName                            string   `ps:"DisplayName"`
-	EmailAddresses                         []string `ps:"EmailAddresses"`
-	EmailAddressPolicyEnabled              *bool    `ps:"EmailAddressPolicyEnabled"`
-	EntryId                                string   `ps:"EntryId"`
-	ExtensionCustomAttribute1              []string `ps:"ExtensionCustomAttribute1"`
-	ExtensionCustomAttribute2              []string `ps:"ExtensionCustomAttribute2"`
-	ExtensionCustomAttribute3              []string `ps:"ExtensionCustomAttribute3"`
-	ExtensionCustomAttribute4              []string `ps:"ExtensionCustomAttribute4"`
-	ExtensionCustomAttribute5              []string `ps:"ExtensionCustomAttribute5"`
-	ExternalEmailAddress                   any      `ps:"ExternalEmailAddress"` // ProxyAddress
-	ForwardingAddress                      any      `ps:"ForwardingAddress"`    // RecipientIdParameter
-	GrantSendOnBehalfTo                    []string `ps:"GrantSendOnBehalfTo"`
-	HiddenFromAddressListsEnabled          *bool    `ps:"HiddenFromAddressListsEnabled"`
-	Identity                               any      `ps:"Identity"` // MailPublicFolderIdParameter
-	IgnoreDefaultScope                     bool     `ps:"IgnoreDefaultScope"`
-	IgnoreMissingFolderLink                *bool    `ps:"IgnoreMissingFolderLink"`
-	MailTip                                string   `ps:"MailTip"`
-	MailTipTranslations                    []string `ps:"MailTipTranslations"`
-	MaxReceiveSize                         any      `ps:"MaxReceiveSize"` // Unlimited
-	MaxSendSize                            any      `ps:"MaxSendSize"`    // Unlimited
-	ModeratedBy                            []string `ps:"ModeratedBy"`
-	ModerationEnabled                      *bool    `ps:"ModerationEnabled"`
-	Name                                   string   `ps:"Name"`
-	OnPremisesObjectId                     string   `ps:"OnPremisesObjectId"`
-	PhoneticDisplayName                    string   `ps:"PhoneticDisplayName"`
-	PrimarySmtpAddress                     any      `ps:"PrimarySmtpAddress"` // SmtpAddress
-	RejectMessagesFrom                     []string `ps:"RejectMessagesFrom"`
-	RejectMessagesFromDLMembers            []string `ps:"RejectMessagesFromDLMembers"`
-	RejectMessagesFromSendersOrMembers     []string `ps:"RejectMessagesFromSendersOrMembers"`
-	RequireSenderAuthenticationEnabled     *bool    `ps:"RequireSenderAuthenticationEnabled"`
-	SendModerationNotifications            any      `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
-	SimpleDisplayName                      string   `ps:"SimpleDisplayName"`
-	WindowsEmailAddress                    any      `ps:"WindowsEmailAddress"` // SmtpAddress
+	AcceptMessagesOnlyFrom                      []string              `ps:"AcceptMessagesOnlyFrom"`
+	AcceptMessagesOnlyFromDelta                 *adminapi.StringDelta `ps:"AcceptMessagesOnlyFrom"` // adds/removes values of AcceptMessagesOnlyFrom; takes precedence over it
+	AcceptMessagesOnlyFromDLMembers             []string              `ps:"AcceptMessagesOnlyFromDLMembers"`
+	AcceptMessagesOnlyFromDLMembersDelta        *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromDLMembers"` // adds/removes values of AcceptMessagesOnlyFromDLMembers; takes precedence over it
+	AcceptMessagesOnlyFromSendersOrMembers      []string              `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
+	AcceptMessagesOnlyFromSendersOrMembersDelta *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromSendersOrMembers"` // adds/removes values of AcceptMessagesOnlyFromSendersOrMembers; takes precedence over it
+	Alias                                       string                `ps:"Alias"`
+	BypassModerationFromSendersOrMembers        []string              `ps:"BypassModerationFromSendersOrMembers"`
+	BypassModerationFromSendersOrMembersDelta   *adminapi.StringDelta `ps:"BypassModerationFromSendersOrMembers"` // adds/removes values of BypassModerationFromSendersOrMembers; takes precedence over it
+	Contacts                                    []string              `ps:"Contacts"`
+	CustomAttribute1                            string                `ps:"CustomAttribute1"`
+	CustomAttribute10                           string                `ps:"CustomAttribute10"`
+	CustomAttribute11                           string                `ps:"CustomAttribute11"`
+	CustomAttribute12                           string                `ps:"CustomAttribute12"`
+	CustomAttribute13                           string                `ps:"CustomAttribute13"`
+	CustomAttribute14                           string                `ps:"CustomAttribute14"`
+	CustomAttribute15                           string                `ps:"CustomAttribute15"`
+	CustomAttribute2                            string                `ps:"CustomAttribute2"`
+	CustomAttribute3                            string                `ps:"CustomAttribute3"`
+	CustomAttribute4                            string                `ps:"CustomAttribute4"`
+	CustomAttribute5                            string                `ps:"CustomAttribute5"`
+	CustomAttribute6                            string                `ps:"CustomAttribute6"`
+	CustomAttribute7                            string                `ps:"CustomAttribute7"`
+	CustomAttribute8                            string                `ps:"CustomAttribute8"`
+	CustomAttribute9                            string                `ps:"CustomAttribute9"`
+	DeliverToMailboxAndForward                  *bool                 `ps:"DeliverToMailboxAndForward"`
+	DisplayName                                 string                `ps:"DisplayName"`
+	EmailAddresses                              []string              `ps:"EmailAddresses"`
+	EmailAddressPolicyEnabled                   *bool                 `ps:"EmailAddressPolicyEnabled"`
+	EntryId                                     string                `ps:"EntryId"`
+	ExtensionCustomAttribute1                   []string              `ps:"ExtensionCustomAttribute1"`
+	ExtensionCustomAttribute1Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute1"` // adds/removes values of ExtensionCustomAttribute1; takes precedence over it
+	ExtensionCustomAttribute2                   []string              `ps:"ExtensionCustomAttribute2"`
+	ExtensionCustomAttribute2Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute2"` // adds/removes values of ExtensionCustomAttribute2; takes precedence over it
+	ExtensionCustomAttribute3                   []string              `ps:"ExtensionCustomAttribute3"`
+	ExtensionCustomAttribute3Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute3"` // adds/removes values of ExtensionCustomAttribute3; takes precedence over it
+	ExtensionCustomAttribute4                   []string              `ps:"ExtensionCustomAttribute4"`
+	ExtensionCustomAttribute4Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute4"` // adds/removes values of ExtensionCustomAttribute4; takes precedence over it
+	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
+	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
+	ExternalEmailAddress                        any                   `ps:"ExternalEmailAddress"`      // ProxyAddress
+	ForwardingAddress                           any                   `ps:"ForwardingAddress"`         // RecipientIdParameter
+	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
+	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
+	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
+	Identity                                    any                   `ps:"Identity"` // MailPublicFolderIdParameter
+	IgnoreDefaultScope                          bool                  `ps:"IgnoreDefaultScope"`
+	IgnoreMissingFolderLink                     *bool                 `ps:"IgnoreMissingFolderLink"`
+	MailTip                                     string                `ps:"MailTip"`
+	MailTipTranslations                         []string              `ps:"MailTipTranslations"`
+	MailTipTranslationsDelta                    *adminapi.StringDelta `ps:"MailTipTranslations"` // adds/removes values of MailTipTranslations; takes precedence over it
+	MaxReceiveSize                              any                   `ps:"MaxReceiveSize"`      // Unlimited
+	MaxSendSize                                 any                   `ps:"MaxSendSize"`         // Unlimited
+	ModeratedBy                                 []string              `ps:"ModeratedBy"`
+	ModeratedByDelta                            *adminapi.StringDelta `ps:"ModeratedBy"` // adds/removes values of ModeratedBy; takes precedence over it
+	ModerationEnabled                           *bool                 `ps:"ModerationEnabled"`
+	Name                                        string                `ps:"Name"`
+	OnPremisesObjectId                          string                `ps:"OnPremisesObjectId"`
+	PhoneticDisplayName                         string                `ps:"PhoneticDisplayName"`
+	PrimarySmtpAddress                          any                   `ps:"PrimarySmtpAddress"` // SmtpAddress
+	RejectMessagesFrom                          []string              `ps:"RejectMessagesFrom"`
+	RejectMessagesFromDelta                     *adminapi.StringDelta `ps:"RejectMessagesFrom"` // adds/removes values of RejectMessagesFrom; takes precedence over it
+	RejectMessagesFromDLMembers                 []string              `ps:"RejectMessagesFromDLMembers"`
+	RejectMessagesFromDLMembersDelta            *adminapi.StringDelta `ps:"RejectMessagesFromDLMembers"` // adds/removes values of RejectMessagesFromDLMembers; takes precedence over it
+	RejectMessagesFromSendersOrMembers          []string              `ps:"RejectMessagesFromSendersOrMembers"`
+	RejectMessagesFromSendersOrMembersDelta     *adminapi.StringDelta `ps:"RejectMessagesFromSendersOrMembers"` // adds/removes values of RejectMessagesFromSendersOrMembers; takes precedence over it
+	RequireSenderAuthenticationEnabled          *bool                 `ps:"RequireSenderAuthenticationEnabled"`
+	SendModerationNotifications                 any                   `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
+	SimpleDisplayName                           string                `ps:"SimpleDisplayName"`
+	WindowsEmailAddress                         any                   `ps:"WindowsEmailAddress"` // SmtpAddress
 }
 
 func (p SetMailPublicFolderParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptMessagesOnlyFrom != nil {
+	if p.AcceptMessagesOnlyFromDelta != nil {
+		m["AcceptMessagesOnlyFrom"] = *p.AcceptMessagesOnlyFromDelta
+	} else if p.AcceptMessagesOnlyFrom != nil {
 		m["AcceptMessagesOnlyFrom"] = p.AcceptMessagesOnlyFrom
 	}
-	if p.AcceptMessagesOnlyFromDLMembers != nil {
+	if p.AcceptMessagesOnlyFromDLMembersDelta != nil {
+		m["AcceptMessagesOnlyFromDLMembers"] = *p.AcceptMessagesOnlyFromDLMembersDelta
+	} else if p.AcceptMessagesOnlyFromDLMembers != nil {
 		m["AcceptMessagesOnlyFromDLMembers"] = p.AcceptMessagesOnlyFromDLMembers
 	}
-	if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
+	if p.AcceptMessagesOnlyFromSendersOrMembersDelta != nil {
+		m["AcceptMessagesOnlyFromSendersOrMembers"] = *p.AcceptMessagesOnlyFromSendersOrMembersDelta
+	} else if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
 		m["AcceptMessagesOnlyFromSendersOrMembers"] = p.AcceptMessagesOnlyFromSendersOrMembers
 	}
 	if p.Alias != "" {
 		m["Alias"] = p.Alias
 	}
-	if p.BypassModerationFromSendersOrMembers != nil {
+	if p.BypassModerationFromSendersOrMembersDelta != nil {
+		m["BypassModerationFromSendersOrMembers"] = *p.BypassModerationFromSendersOrMembersDelta
+	} else if p.BypassModerationFromSendersOrMembers != nil {
 		m["BypassModerationFromSendersOrMembers"] = p.BypassModerationFromSendersOrMembers
 	}
 	if p.Contacts != nil {
@@ -27151,19 +27597,29 @@ func (p SetMailPublicFolderParams) params() map[string]any {
 	if p.EntryId != "" {
 		m["EntryId"] = p.EntryId
 	}
-	if p.ExtensionCustomAttribute1 != nil {
+	if p.ExtensionCustomAttribute1Delta != nil {
+		m["ExtensionCustomAttribute1"] = *p.ExtensionCustomAttribute1Delta
+	} else if p.ExtensionCustomAttribute1 != nil {
 		m["ExtensionCustomAttribute1"] = p.ExtensionCustomAttribute1
 	}
-	if p.ExtensionCustomAttribute2 != nil {
+	if p.ExtensionCustomAttribute2Delta != nil {
+		m["ExtensionCustomAttribute2"] = *p.ExtensionCustomAttribute2Delta
+	} else if p.ExtensionCustomAttribute2 != nil {
 		m["ExtensionCustomAttribute2"] = p.ExtensionCustomAttribute2
 	}
-	if p.ExtensionCustomAttribute3 != nil {
+	if p.ExtensionCustomAttribute3Delta != nil {
+		m["ExtensionCustomAttribute3"] = *p.ExtensionCustomAttribute3Delta
+	} else if p.ExtensionCustomAttribute3 != nil {
 		m["ExtensionCustomAttribute3"] = p.ExtensionCustomAttribute3
 	}
-	if p.ExtensionCustomAttribute4 != nil {
+	if p.ExtensionCustomAttribute4Delta != nil {
+		m["ExtensionCustomAttribute4"] = *p.ExtensionCustomAttribute4Delta
+	} else if p.ExtensionCustomAttribute4 != nil {
 		m["ExtensionCustomAttribute4"] = p.ExtensionCustomAttribute4
 	}
-	if p.ExtensionCustomAttribute5 != nil {
+	if p.ExtensionCustomAttribute5Delta != nil {
+		m["ExtensionCustomAttribute5"] = *p.ExtensionCustomAttribute5Delta
+	} else if p.ExtensionCustomAttribute5 != nil {
 		m["ExtensionCustomAttribute5"] = p.ExtensionCustomAttribute5
 	}
 	if p.ExternalEmailAddress != nil {
@@ -27172,7 +27628,9 @@ func (p SetMailPublicFolderParams) params() map[string]any {
 	if p.ForwardingAddress != nil {
 		m["ForwardingAddress"] = p.ForwardingAddress
 	}
-	if p.GrantSendOnBehalfTo != nil {
+	if p.GrantSendOnBehalfToDelta != nil {
+		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
+	} else if p.GrantSendOnBehalfTo != nil {
 		m["GrantSendOnBehalfTo"] = p.GrantSendOnBehalfTo
 	}
 	if p.HiddenFromAddressListsEnabled != nil {
@@ -27190,7 +27648,9 @@ func (p SetMailPublicFolderParams) params() map[string]any {
 	if p.MailTip != "" {
 		m["MailTip"] = p.MailTip
 	}
-	if p.MailTipTranslations != nil {
+	if p.MailTipTranslationsDelta != nil {
+		m["MailTipTranslations"] = *p.MailTipTranslationsDelta
+	} else if p.MailTipTranslations != nil {
 		m["MailTipTranslations"] = p.MailTipTranslations
 	}
 	if p.MaxReceiveSize != nil {
@@ -27199,7 +27659,9 @@ func (p SetMailPublicFolderParams) params() map[string]any {
 	if p.MaxSendSize != nil {
 		m["MaxSendSize"] = p.MaxSendSize
 	}
-	if p.ModeratedBy != nil {
+	if p.ModeratedByDelta != nil {
+		m["ModeratedBy"] = *p.ModeratedByDelta
+	} else if p.ModeratedBy != nil {
 		m["ModeratedBy"] = p.ModeratedBy
 	}
 	if p.ModerationEnabled != nil {
@@ -27217,13 +27679,19 @@ func (p SetMailPublicFolderParams) params() map[string]any {
 	if p.PrimarySmtpAddress != nil {
 		m["PrimarySmtpAddress"] = p.PrimarySmtpAddress
 	}
-	if p.RejectMessagesFrom != nil {
+	if p.RejectMessagesFromDelta != nil {
+		m["RejectMessagesFrom"] = *p.RejectMessagesFromDelta
+	} else if p.RejectMessagesFrom != nil {
 		m["RejectMessagesFrom"] = p.RejectMessagesFrom
 	}
-	if p.RejectMessagesFromDLMembers != nil {
+	if p.RejectMessagesFromDLMembersDelta != nil {
+		m["RejectMessagesFromDLMembers"] = *p.RejectMessagesFromDLMembersDelta
+	} else if p.RejectMessagesFromDLMembers != nil {
 		m["RejectMessagesFromDLMembers"] = p.RejectMessagesFromDLMembers
 	}
-	if p.RejectMessagesFromSendersOrMembers != nil {
+	if p.RejectMessagesFromSendersOrMembersDelta != nil {
+		m["RejectMessagesFromSendersOrMembers"] = *p.RejectMessagesFromSendersOrMembersDelta
+	} else if p.RejectMessagesFromSendersOrMembers != nil {
 		m["RejectMessagesFromSendersOrMembers"] = p.RejectMessagesFromSendersOrMembers
 	}
 	if p.RequireSenderAuthenticationEnabled != nil {
@@ -27249,94 +27717,117 @@ func (s *Service) SetMailPublicFolder(ctx context.Context, p SetMailPublicFolder
 // SetMailUserParams are the parameters of Set-MailUser.
 // DefaultParameterSetName: Identity
 type SetMailUserParams struct {
-	AcceptMessagesOnlyFrom                     []string `ps:"AcceptMessagesOnlyFrom"`
-	AcceptMessagesOnlyFromDLMembers            []string `ps:"AcceptMessagesOnlyFromDLMembers"`
-	AcceptMessagesOnlyFromSendersOrMembers     []string `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
-	Alias                                      string   `ps:"Alias"`
-	ArchiveGuid                                string   `ps:"ArchiveGuid"`
-	BypassModerationFromSendersOrMembers       []string `ps:"BypassModerationFromSendersOrMembers"`
-	CustomAttribute1                           string   `ps:"CustomAttribute1"`
-	CustomAttribute10                          string   `ps:"CustomAttribute10"`
-	CustomAttribute11                          string   `ps:"CustomAttribute11"`
-	CustomAttribute12                          string   `ps:"CustomAttribute12"`
-	CustomAttribute13                          string   `ps:"CustomAttribute13"`
-	CustomAttribute14                          string   `ps:"CustomAttribute14"`
-	CustomAttribute15                          string   `ps:"CustomAttribute15"`
-	CustomAttribute2                           string   `ps:"CustomAttribute2"`
-	CustomAttribute3                           string   `ps:"CustomAttribute3"`
-	CustomAttribute4                           string   `ps:"CustomAttribute4"`
-	CustomAttribute5                           string   `ps:"CustomAttribute5"`
-	CustomAttribute6                           string   `ps:"CustomAttribute6"`
-	CustomAttribute7                           string   `ps:"CustomAttribute7"`
-	CustomAttribute8                           string   `ps:"CustomAttribute8"`
-	CustomAttribute9                           string   `ps:"CustomAttribute9"`
-	DataEncryptionPolicy                       any      `ps:"DataEncryptionPolicy"` // DataEncryptionPolicyIdParameter
-	DisplayName                                string   `ps:"DisplayName"`
-	EmailAddresses                             []string `ps:"EmailAddresses"`
-	EnableLitigationHoldForMigration           bool     `ps:"EnableLitigationHoldForMigration"`
-	ExchangeGuid                               string   `ps:"ExchangeGuid"`
-	ExcludeFromAllHolds                        bool     `ps:"ExcludeFromAllHolds"`
-	ExcludeFromAllOrgHolds                     bool     `ps:"ExcludeFromAllOrgHolds"`
-	ExcludeFromOrgHolds                        []string `ps:"ExcludeFromOrgHolds"`
-	ExtensionCustomAttribute1                  []string `ps:"ExtensionCustomAttribute1"`
-	ExtensionCustomAttribute2                  []string `ps:"ExtensionCustomAttribute2"`
-	ExtensionCustomAttribute3                  []string `ps:"ExtensionCustomAttribute3"`
-	ExtensionCustomAttribute4                  []string `ps:"ExtensionCustomAttribute4"`
-	ExtensionCustomAttribute5                  []string `ps:"ExtensionCustomAttribute5"`
-	ExternalEmailAddress                       any      `ps:"ExternalEmailAddress"` // ProxyAddress
-	FederatedIdentity                          string   `ps:"FederatedIdentity"`
-	ForceUpgrade                               bool     `ps:"ForceUpgrade"`
-	GrantSendOnBehalfTo                        []string `ps:"GrantSendOnBehalfTo"`
-	HiddenFromAddressListsEnabled              *bool    `ps:"HiddenFromAddressListsEnabled"`
-	HVEAccount                                 bool     `ps:"HVEAccount"`
-	Identity                                   any      `ps:"Identity"` // MailUserIdParameter
-	ImmutableId                                string   `ps:"ImmutableId"`
-	JournalArchiveAddress                      any      `ps:"JournalArchiveAddress"` // SmtpAddress
-	MacAttachmentFormat                        any      `ps:"MacAttachmentFormat"`   // MacAttachmentFormat
-	MailboxRegion                              string   `ps:"MailboxRegion"`
-	MailTip                                    string   `ps:"MailTip"`
-	MailTipTranslations                        []string `ps:"MailTipTranslations"`
-	MaxReceiveSize                             any      `ps:"MaxReceiveSize"`            // Unlimited
-	MaxSendSize                                any      `ps:"MaxSendSize"`               // Unlimited
-	MessageBodyFormat                          any      `ps:"MessageBodyFormat"`         // MessageBodyFormat
-	MessageFormat                              any      `ps:"MessageFormat"`             // MessageFormat
-	MicrosoftOnlineServicesID                  any      `ps:"MicrosoftOnlineServicesID"` // SmtpAddress
-	ModeratedBy                                []string `ps:"ModeratedBy"`
-	ModerationEnabled                          *bool    `ps:"ModerationEnabled"`
-	Name                                       string   `ps:"Name"`
-	PrimarySmtpAddress                         any      `ps:"PrimarySmtpAddress"` // SmtpAddress
-	RecalculateInactiveMailUser                bool     `ps:"RecalculateInactiveMailUser"`
-	RecipientLimits                            any      `ps:"RecipientLimits"` // Unlimited
-	RejectMessagesFrom                         []string `ps:"RejectMessagesFrom"`
-	RejectMessagesFromDLMembers                []string `ps:"RejectMessagesFromDLMembers"`
-	RejectMessagesFromSendersOrMembers         []string `ps:"RejectMessagesFromSendersOrMembers"`
-	RemoveComplianceTagHoldApplied             bool     `ps:"RemoveComplianceTagHoldApplied"`
-	RemoveDelayHoldApplied                     bool     `ps:"RemoveDelayHoldApplied"`
-	RemoveDelayReleaseHoldApplied              bool     `ps:"RemoveDelayReleaseHoldApplied"`
-	RemoveDisabledArchive                      bool     `ps:"RemoveDisabledArchive"`
-	RemoveLitigationHoldEnabled                bool     `ps:"RemoveLitigationHoldEnabled"`
-	RemoveMailboxProvisioningConstraint        bool     `ps:"RemoveMailboxProvisioningConstraint"`
-	RemoveOrphanedHolds                        []string `ps:"RemoveOrphanedHolds"`
-	RequireSenderAuthenticationEnabled         *bool    `ps:"RequireSenderAuthenticationEnabled"`
-	SendModerationNotifications                any      `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
-	SimpleDisplayName                          string   `ps:"SimpleDisplayName"`
-	UnblockForwardSyncPostCrossTenantMigration bool     `ps:"UnblockForwardSyncPostCrossTenantMigration"`
-	UseMapiRichTextFormat                      any      `ps:"UseMapiRichTextFormat"` // UseMapiRichTextFormat
-	UsePreferMessageFormat                     *bool    `ps:"UsePreferMessageFormat"`
-	UserCertificate                            []string `ps:"UserCertificate"`
-	UserSMimeCertificate                       []string `ps:"UserSMimeCertificate"`
-	WindowsEmailAddress                        any      `ps:"WindowsEmailAddress"` // SmtpAddress
+	AcceptMessagesOnlyFrom                      []string              `ps:"AcceptMessagesOnlyFrom"`
+	AcceptMessagesOnlyFromDelta                 *adminapi.StringDelta `ps:"AcceptMessagesOnlyFrom"` // adds/removes values of AcceptMessagesOnlyFrom; takes precedence over it
+	AcceptMessagesOnlyFromDLMembers             []string              `ps:"AcceptMessagesOnlyFromDLMembers"`
+	AcceptMessagesOnlyFromDLMembersDelta        *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromDLMembers"` // adds/removes values of AcceptMessagesOnlyFromDLMembers; takes precedence over it
+	AcceptMessagesOnlyFromSendersOrMembers      []string              `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
+	AcceptMessagesOnlyFromSendersOrMembersDelta *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromSendersOrMembers"` // adds/removes values of AcceptMessagesOnlyFromSendersOrMembers; takes precedence over it
+	Alias                                       string                `ps:"Alias"`
+	ArchiveGuid                                 string                `ps:"ArchiveGuid"`
+	BypassModerationFromSendersOrMembers        []string              `ps:"BypassModerationFromSendersOrMembers"`
+	BypassModerationFromSendersOrMembersDelta   *adminapi.StringDelta `ps:"BypassModerationFromSendersOrMembers"` // adds/removes values of BypassModerationFromSendersOrMembers; takes precedence over it
+	CustomAttribute1                            string                `ps:"CustomAttribute1"`
+	CustomAttribute10                           string                `ps:"CustomAttribute10"`
+	CustomAttribute11                           string                `ps:"CustomAttribute11"`
+	CustomAttribute12                           string                `ps:"CustomAttribute12"`
+	CustomAttribute13                           string                `ps:"CustomAttribute13"`
+	CustomAttribute14                           string                `ps:"CustomAttribute14"`
+	CustomAttribute15                           string                `ps:"CustomAttribute15"`
+	CustomAttribute2                            string                `ps:"CustomAttribute2"`
+	CustomAttribute3                            string                `ps:"CustomAttribute3"`
+	CustomAttribute4                            string                `ps:"CustomAttribute4"`
+	CustomAttribute5                            string                `ps:"CustomAttribute5"`
+	CustomAttribute6                            string                `ps:"CustomAttribute6"`
+	CustomAttribute7                            string                `ps:"CustomAttribute7"`
+	CustomAttribute8                            string                `ps:"CustomAttribute8"`
+	CustomAttribute9                            string                `ps:"CustomAttribute9"`
+	DataEncryptionPolicy                        any                   `ps:"DataEncryptionPolicy"` // DataEncryptionPolicyIdParameter
+	DisplayName                                 string                `ps:"DisplayName"`
+	EmailAddresses                              []string              `ps:"EmailAddresses"`
+	EnableLitigationHoldForMigration            bool                  `ps:"EnableLitigationHoldForMigration"`
+	ExchangeGuid                                string                `ps:"ExchangeGuid"`
+	ExcludeFromAllHolds                         bool                  `ps:"ExcludeFromAllHolds"`
+	ExcludeFromAllOrgHolds                      bool                  `ps:"ExcludeFromAllOrgHolds"`
+	ExcludeFromOrgHolds                         []string              `ps:"ExcludeFromOrgHolds"`
+	ExtensionCustomAttribute1                   []string              `ps:"ExtensionCustomAttribute1"`
+	ExtensionCustomAttribute1Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute1"` // adds/removes values of ExtensionCustomAttribute1; takes precedence over it
+	ExtensionCustomAttribute2                   []string              `ps:"ExtensionCustomAttribute2"`
+	ExtensionCustomAttribute2Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute2"` // adds/removes values of ExtensionCustomAttribute2; takes precedence over it
+	ExtensionCustomAttribute3                   []string              `ps:"ExtensionCustomAttribute3"`
+	ExtensionCustomAttribute3Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute3"` // adds/removes values of ExtensionCustomAttribute3; takes precedence over it
+	ExtensionCustomAttribute4                   []string              `ps:"ExtensionCustomAttribute4"`
+	ExtensionCustomAttribute4Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute4"` // adds/removes values of ExtensionCustomAttribute4; takes precedence over it
+	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
+	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
+	ExternalEmailAddress                        any                   `ps:"ExternalEmailAddress"`      // ProxyAddress
+	FederatedIdentity                           string                `ps:"FederatedIdentity"`
+	ForceUpgrade                                bool                  `ps:"ForceUpgrade"`
+	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
+	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
+	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
+	HVEAccount                                  bool                  `ps:"HVEAccount"`
+	Identity                                    any                   `ps:"Identity"` // MailUserIdParameter
+	ImmutableId                                 string                `ps:"ImmutableId"`
+	JournalArchiveAddress                       any                   `ps:"JournalArchiveAddress"` // SmtpAddress
+	MacAttachmentFormat                         any                   `ps:"MacAttachmentFormat"`   // MacAttachmentFormat
+	MailboxRegion                               string                `ps:"MailboxRegion"`
+	MailTip                                     string                `ps:"MailTip"`
+	MailTipTranslations                         []string              `ps:"MailTipTranslations"`
+	MailTipTranslationsDelta                    *adminapi.StringDelta `ps:"MailTipTranslations"`       // adds/removes values of MailTipTranslations; takes precedence over it
+	MaxReceiveSize                              any                   `ps:"MaxReceiveSize"`            // Unlimited
+	MaxSendSize                                 any                   `ps:"MaxSendSize"`               // Unlimited
+	MessageBodyFormat                           any                   `ps:"MessageBodyFormat"`         // MessageBodyFormat
+	MessageFormat                               any                   `ps:"MessageFormat"`             // MessageFormat
+	MicrosoftOnlineServicesID                   any                   `ps:"MicrosoftOnlineServicesID"` // SmtpAddress
+	ModeratedBy                                 []string              `ps:"ModeratedBy"`
+	ModeratedByDelta                            *adminapi.StringDelta `ps:"ModeratedBy"` // adds/removes values of ModeratedBy; takes precedence over it
+	ModerationEnabled                           *bool                 `ps:"ModerationEnabled"`
+	Name                                        string                `ps:"Name"`
+	PrimarySmtpAddress                          any                   `ps:"PrimarySmtpAddress"` // SmtpAddress
+	RecalculateInactiveMailUser                 bool                  `ps:"RecalculateInactiveMailUser"`
+	RecipientLimits                             any                   `ps:"RecipientLimits"` // Unlimited
+	RejectMessagesFrom                          []string              `ps:"RejectMessagesFrom"`
+	RejectMessagesFromDelta                     *adminapi.StringDelta `ps:"RejectMessagesFrom"` // adds/removes values of RejectMessagesFrom; takes precedence over it
+	RejectMessagesFromDLMembers                 []string              `ps:"RejectMessagesFromDLMembers"`
+	RejectMessagesFromDLMembersDelta            *adminapi.StringDelta `ps:"RejectMessagesFromDLMembers"` // adds/removes values of RejectMessagesFromDLMembers; takes precedence over it
+	RejectMessagesFromSendersOrMembers          []string              `ps:"RejectMessagesFromSendersOrMembers"`
+	RejectMessagesFromSendersOrMembersDelta     *adminapi.StringDelta `ps:"RejectMessagesFromSendersOrMembers"` // adds/removes values of RejectMessagesFromSendersOrMembers; takes precedence over it
+	RemoveComplianceTagHoldApplied              bool                  `ps:"RemoveComplianceTagHoldApplied"`
+	RemoveDelayHoldApplied                      bool                  `ps:"RemoveDelayHoldApplied"`
+	RemoveDelayReleaseHoldApplied               bool                  `ps:"RemoveDelayReleaseHoldApplied"`
+	RemoveDisabledArchive                       bool                  `ps:"RemoveDisabledArchive"`
+	RemoveLitigationHoldEnabled                 bool                  `ps:"RemoveLitigationHoldEnabled"`
+	RemoveMailboxProvisioningConstraint         bool                  `ps:"RemoveMailboxProvisioningConstraint"`
+	RemoveOrphanedHolds                         []string              `ps:"RemoveOrphanedHolds"`
+	RequireSenderAuthenticationEnabled          *bool                 `ps:"RequireSenderAuthenticationEnabled"`
+	SendModerationNotifications                 any                   `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
+	SimpleDisplayName                           string                `ps:"SimpleDisplayName"`
+	UnblockForwardSyncPostCrossTenantMigration  bool                  `ps:"UnblockForwardSyncPostCrossTenantMigration"`
+	UseMapiRichTextFormat                       any                   `ps:"UseMapiRichTextFormat"` // UseMapiRichTextFormat
+	UsePreferMessageFormat                      *bool                 `ps:"UsePreferMessageFormat"`
+	UserCertificate                             []string              `ps:"UserCertificate"`
+	UserCertificateDelta                        *adminapi.StringDelta `ps:"UserCertificate"` // adds/removes values of UserCertificate; takes precedence over it
+	UserSMimeCertificate                        []string              `ps:"UserSMimeCertificate"`
+	UserSMimeCertificateDelta                   *adminapi.StringDelta `ps:"UserSMimeCertificate"` // adds/removes values of UserSMimeCertificate; takes precedence over it
+	WindowsEmailAddress                         any                   `ps:"WindowsEmailAddress"`  // SmtpAddress
 }
 
 func (p SetMailUserParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptMessagesOnlyFrom != nil {
+	if p.AcceptMessagesOnlyFromDelta != nil {
+		m["AcceptMessagesOnlyFrom"] = *p.AcceptMessagesOnlyFromDelta
+	} else if p.AcceptMessagesOnlyFrom != nil {
 		m["AcceptMessagesOnlyFrom"] = p.AcceptMessagesOnlyFrom
 	}
-	if p.AcceptMessagesOnlyFromDLMembers != nil {
+	if p.AcceptMessagesOnlyFromDLMembersDelta != nil {
+		m["AcceptMessagesOnlyFromDLMembers"] = *p.AcceptMessagesOnlyFromDLMembersDelta
+	} else if p.AcceptMessagesOnlyFromDLMembers != nil {
 		m["AcceptMessagesOnlyFromDLMembers"] = p.AcceptMessagesOnlyFromDLMembers
 	}
-	if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
+	if p.AcceptMessagesOnlyFromSendersOrMembersDelta != nil {
+		m["AcceptMessagesOnlyFromSendersOrMembers"] = *p.AcceptMessagesOnlyFromSendersOrMembersDelta
+	} else if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
 		m["AcceptMessagesOnlyFromSendersOrMembers"] = p.AcceptMessagesOnlyFromSendersOrMembers
 	}
 	if p.Alias != "" {
@@ -27345,7 +27836,9 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.ArchiveGuid != "" {
 		m["ArchiveGuid"] = p.ArchiveGuid
 	}
-	if p.BypassModerationFromSendersOrMembers != nil {
+	if p.BypassModerationFromSendersOrMembersDelta != nil {
+		m["BypassModerationFromSendersOrMembers"] = *p.BypassModerationFromSendersOrMembersDelta
+	} else if p.BypassModerationFromSendersOrMembers != nil {
 		m["BypassModerationFromSendersOrMembers"] = p.BypassModerationFromSendersOrMembers
 	}
 	if p.CustomAttribute1 != "" {
@@ -27417,19 +27910,29 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.ExcludeFromOrgHolds != nil {
 		m["ExcludeFromOrgHolds"] = p.ExcludeFromOrgHolds
 	}
-	if p.ExtensionCustomAttribute1 != nil {
+	if p.ExtensionCustomAttribute1Delta != nil {
+		m["ExtensionCustomAttribute1"] = *p.ExtensionCustomAttribute1Delta
+	} else if p.ExtensionCustomAttribute1 != nil {
 		m["ExtensionCustomAttribute1"] = p.ExtensionCustomAttribute1
 	}
-	if p.ExtensionCustomAttribute2 != nil {
+	if p.ExtensionCustomAttribute2Delta != nil {
+		m["ExtensionCustomAttribute2"] = *p.ExtensionCustomAttribute2Delta
+	} else if p.ExtensionCustomAttribute2 != nil {
 		m["ExtensionCustomAttribute2"] = p.ExtensionCustomAttribute2
 	}
-	if p.ExtensionCustomAttribute3 != nil {
+	if p.ExtensionCustomAttribute3Delta != nil {
+		m["ExtensionCustomAttribute3"] = *p.ExtensionCustomAttribute3Delta
+	} else if p.ExtensionCustomAttribute3 != nil {
 		m["ExtensionCustomAttribute3"] = p.ExtensionCustomAttribute3
 	}
-	if p.ExtensionCustomAttribute4 != nil {
+	if p.ExtensionCustomAttribute4Delta != nil {
+		m["ExtensionCustomAttribute4"] = *p.ExtensionCustomAttribute4Delta
+	} else if p.ExtensionCustomAttribute4 != nil {
 		m["ExtensionCustomAttribute4"] = p.ExtensionCustomAttribute4
 	}
-	if p.ExtensionCustomAttribute5 != nil {
+	if p.ExtensionCustomAttribute5Delta != nil {
+		m["ExtensionCustomAttribute5"] = *p.ExtensionCustomAttribute5Delta
+	} else if p.ExtensionCustomAttribute5 != nil {
 		m["ExtensionCustomAttribute5"] = p.ExtensionCustomAttribute5
 	}
 	if p.ExternalEmailAddress != nil {
@@ -27441,7 +27944,9 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.ForceUpgrade {
 		m["ForceUpgrade"] = true
 	}
-	if p.GrantSendOnBehalfTo != nil {
+	if p.GrantSendOnBehalfToDelta != nil {
+		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
+	} else if p.GrantSendOnBehalfTo != nil {
 		m["GrantSendOnBehalfTo"] = p.GrantSendOnBehalfTo
 	}
 	if p.HiddenFromAddressListsEnabled != nil {
@@ -27468,7 +27973,9 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.MailTip != "" {
 		m["MailTip"] = p.MailTip
 	}
-	if p.MailTipTranslations != nil {
+	if p.MailTipTranslationsDelta != nil {
+		m["MailTipTranslations"] = *p.MailTipTranslationsDelta
+	} else if p.MailTipTranslations != nil {
 		m["MailTipTranslations"] = p.MailTipTranslations
 	}
 	if p.MaxReceiveSize != nil {
@@ -27486,7 +27993,9 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.MicrosoftOnlineServicesID != nil {
 		m["MicrosoftOnlineServicesID"] = p.MicrosoftOnlineServicesID
 	}
-	if p.ModeratedBy != nil {
+	if p.ModeratedByDelta != nil {
+		m["ModeratedBy"] = *p.ModeratedByDelta
+	} else if p.ModeratedBy != nil {
 		m["ModeratedBy"] = p.ModeratedBy
 	}
 	if p.ModerationEnabled != nil {
@@ -27504,13 +28013,19 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.RecipientLimits != nil {
 		m["RecipientLimits"] = p.RecipientLimits
 	}
-	if p.RejectMessagesFrom != nil {
+	if p.RejectMessagesFromDelta != nil {
+		m["RejectMessagesFrom"] = *p.RejectMessagesFromDelta
+	} else if p.RejectMessagesFrom != nil {
 		m["RejectMessagesFrom"] = p.RejectMessagesFrom
 	}
-	if p.RejectMessagesFromDLMembers != nil {
+	if p.RejectMessagesFromDLMembersDelta != nil {
+		m["RejectMessagesFromDLMembers"] = *p.RejectMessagesFromDLMembersDelta
+	} else if p.RejectMessagesFromDLMembers != nil {
 		m["RejectMessagesFromDLMembers"] = p.RejectMessagesFromDLMembers
 	}
-	if p.RejectMessagesFromSendersOrMembers != nil {
+	if p.RejectMessagesFromSendersOrMembersDelta != nil {
+		m["RejectMessagesFromSendersOrMembers"] = *p.RejectMessagesFromSendersOrMembersDelta
+	} else if p.RejectMessagesFromSendersOrMembers != nil {
 		m["RejectMessagesFromSendersOrMembers"] = p.RejectMessagesFromSendersOrMembers
 	}
 	if p.RemoveComplianceTagHoldApplied {
@@ -27552,10 +28067,14 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.UsePreferMessageFormat != nil {
 		m["UsePreferMessageFormat"] = *p.UsePreferMessageFormat
 	}
-	if p.UserCertificate != nil {
+	if p.UserCertificateDelta != nil {
+		m["UserCertificate"] = *p.UserCertificateDelta
+	} else if p.UserCertificate != nil {
 		m["UserCertificate"] = p.UserCertificate
 	}
-	if p.UserSMimeCertificate != nil {
+	if p.UserSMimeCertificateDelta != nil {
+		m["UserSMimeCertificate"] = *p.UserSMimeCertificateDelta
+	} else if p.UserSMimeCertificate != nil {
 		m["UserSMimeCertificate"] = p.UserSMimeCertificate
 	}
 	if p.WindowsEmailAddress != nil {
@@ -27572,146 +28091,178 @@ func (s *Service) SetMailUser(ctx context.Context, p SetMailUserParams) (*admina
 // SetMailboxParams are the parameters of Set-Mailbox.
 // DefaultParameterSetName: Identity
 type SetMailboxParams struct {
-	AcceptMessagesOnlyFrom                    []string `ps:"AcceptMessagesOnlyFrom"`
-	AcceptMessagesOnlyFromDLMembers           []string `ps:"AcceptMessagesOnlyFromDLMembers"`
-	AcceptMessagesOnlyFromSendersOrMembers    []string `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
-	AccountDisabled                           *bool    `ps:"AccountDisabled"`
-	AddressBookPolicy                         any      `ps:"AddressBookPolicy"` // AddressBookMailboxPolicyIdParameter
-	Alias                                     string   `ps:"Alias"`
-	ApplyMandatoryProperties                  bool     `ps:"ApplyMandatoryProperties"`
-	ArchiveName                               []string `ps:"ArchiveName"`
-	AuditAdmin                                []string `ps:"AuditAdmin"`
-	AuditDelegate                             []string `ps:"AuditDelegate"`
-	AuditEnabled                              *bool    `ps:"AuditEnabled"`
-	AuditLogAgeLimit                          any      `ps:"AuditLogAgeLimit"` // EnhancedTimeSpan
-	AuditOwner                                []string `ps:"AuditOwner"`
-	AutoArchivingEnabled                      *bool    `ps:"AutoArchivingEnabled"`
-	BypassModerationFromSendersOrMembers      []string `ps:"BypassModerationFromSendersOrMembers"`
-	CalendarRepairDisabled                    *bool    `ps:"CalendarRepairDisabled"`
-	CalendarVersionStoreDisabled              *bool    `ps:"CalendarVersionStoreDisabled"`
-	ClearThrottlingPolicyAssignment           bool     `ps:"ClearThrottlingPolicyAssignment"`
-	CustomAttribute1                          string   `ps:"CustomAttribute1"`
-	CustomAttribute10                         string   `ps:"CustomAttribute10"`
-	CustomAttribute11                         string   `ps:"CustomAttribute11"`
-	CustomAttribute12                         string   `ps:"CustomAttribute12"`
-	CustomAttribute13                         string   `ps:"CustomAttribute13"`
-	CustomAttribute14                         string   `ps:"CustomAttribute14"`
-	CustomAttribute15                         string   `ps:"CustomAttribute15"`
-	CustomAttribute2                          string   `ps:"CustomAttribute2"`
-	CustomAttribute3                          string   `ps:"CustomAttribute3"`
-	CustomAttribute4                          string   `ps:"CustomAttribute4"`
-	CustomAttribute5                          string   `ps:"CustomAttribute5"`
-	CustomAttribute6                          string   `ps:"CustomAttribute6"`
-	CustomAttribute7                          string   `ps:"CustomAttribute7"`
-	CustomAttribute8                          string   `ps:"CustomAttribute8"`
-	CustomAttribute9                          string   `ps:"CustomAttribute9"`
-	DataEncryptionPolicy                      any      `ps:"DataEncryptionPolicy"` // DataEncryptionPolicyIdParameter
-	DefaultAuditSet                           []string `ps:"DefaultAuditSet"`
-	DefaultPublicFolderMailbox                any      `ps:"DefaultPublicFolderMailbox"` // RecipientIdParameter
-	DeliverToMailboxAndForward                *bool    `ps:"DeliverToMailboxAndForward"`
-	DisplayName                               string   `ps:"DisplayName"`
-	ElcProcessingDisabled                     *bool    `ps:"ElcProcessingDisabled"`
-	EmailAddressDisplayNames                  []string `ps:"EmailAddressDisplayNames"`
-	EmailAddresses                            []string `ps:"EmailAddresses"`
-	EnableRoomMailboxAccount                  *bool    `ps:"EnableRoomMailboxAccount"`
-	EndDateForRetentionHold                   any      `ps:"EndDateForRetentionHold"` // DateTime
-	EnforcedTimestamps                        string   `ps:"EnforcedTimestamps"`
-	ExcludeFromAllHolds                       bool     `ps:"ExcludeFromAllHolds"`
-	ExcludeFromAllOrgHolds                    bool     `ps:"ExcludeFromAllOrgHolds"`
-	ExcludeFromOrgHolds                       []string `ps:"ExcludeFromOrgHolds"`
-	ExtensionCustomAttribute1                 []string `ps:"ExtensionCustomAttribute1"`
-	ExtensionCustomAttribute2                 []string `ps:"ExtensionCustomAttribute2"`
-	ExtensionCustomAttribute3                 []string `ps:"ExtensionCustomAttribute3"`
-	ExtensionCustomAttribute4                 []string `ps:"ExtensionCustomAttribute4"`
-	ExtensionCustomAttribute5                 []string `ps:"ExtensionCustomAttribute5"`
-	ExternalOofOptions                        any      `ps:"ExternalOofOptions"` // ExternalOofOptions
-	Force                                     bool     `ps:"Force"`
-	ForwardingAddress                         any      `ps:"ForwardingAddress"`     // RecipientIdParameter
-	ForwardingSmtpAddress                     any      `ps:"ForwardingSmtpAddress"` // ProxyAddress
-	GrantSendOnBehalfTo                       []string `ps:"GrantSendOnBehalfTo"`
-	GroupMailbox                              bool     `ps:"GroupMailbox"`
-	HiddenFromAddressListsEnabled             *bool    `ps:"HiddenFromAddressListsEnabled"`
-	Identity                                  any      `ps:"Identity"` // MailboxIdParameter
-	ImmutableId                               string   `ps:"ImmutableId"`
-	InactiveMailbox                           bool     `ps:"InactiveMailbox"`
-	IsExchangeCloudManaged                    *bool    `ps:"IsExchangeCloudManaged"`
-	IsExcludedFromServingHierarchy            *bool    `ps:"IsExcludedFromServingHierarchy"`
-	IssueWarningQuota                         any      `ps:"IssueWarningQuota"`     // Unlimited
-	JournalArchiveAddress                     any      `ps:"JournalArchiveAddress"` // SmtpAddress
-	Languages                                 []string `ps:"Languages"`
-	LitigationHoldDate                        any      `ps:"LitigationHoldDate"`     // DateTime
-	LitigationHoldDuration                    any      `ps:"LitigationHoldDuration"` // Unlimited
-	LitigationHoldEnabled                     *bool    `ps:"LitigationHoldEnabled"`
-	LitigationHoldOwner                       string   `ps:"LitigationHoldOwner"`
-	MailboxRegion                             string   `ps:"MailboxRegion"`
-	MailTip                                   string   `ps:"MailTip"`
-	MailTipTranslations                       []string `ps:"MailTipTranslations"`
-	MaxReceiveSize                            any      `ps:"MaxReceiveSize"` // Unlimited
-	MaxSendSize                               any      `ps:"MaxSendSize"`    // Unlimited
-	MessageCopyForSendOnBehalfEnabled         *bool    `ps:"MessageCopyForSendOnBehalfEnabled"`
-	MessageCopyForSentAsEnabled               *bool    `ps:"MessageCopyForSentAsEnabled"`
-	MessageCopyForSMTPClientSubmissionEnabled *bool    `ps:"MessageCopyForSMTPClientSubmissionEnabled"`
-	MessageTrackingReadStatusEnabled          *bool    `ps:"MessageTrackingReadStatusEnabled"`
-	MicrosoftOnlineServicesID                 any      `ps:"MicrosoftOnlineServicesID"` // SmtpAddress
-	ModeratedBy                               []string `ps:"ModeratedBy"`
-	ModerationEnabled                         *bool    `ps:"ModerationEnabled"`
-	Name                                      string   `ps:"Name"`
-	NonCompliantDevices                       []string `ps:"NonCompliantDevices"`
-	Office                                    string   `ps:"Office"`
-	ProhibitSendQuota                         any      `ps:"ProhibitSendQuota"`        // Unlimited
-	ProhibitSendReceiveQuota                  any      `ps:"ProhibitSendReceiveQuota"` // Unlimited
-	ProvideConsent                            bool     `ps:"ProvideConsent"`
-	ProvisionedForOfficeGraph                 bool     `ps:"ProvisionedForOfficeGraph"`
-	PublicFolder                              bool     `ps:"PublicFolder"`
-	RecalculateInactiveMailbox                bool     `ps:"RecalculateInactiveMailbox"`
-	RecipientLimits                           any      `ps:"RecipientLimits"` // Unlimited
-	RejectMessagesFrom                        []string `ps:"RejectMessagesFrom"`
-	RejectMessagesFromDLMembers               []string `ps:"RejectMessagesFromDLMembers"`
-	RejectMessagesFromSendersOrMembers        []string `ps:"RejectMessagesFromSendersOrMembers"`
-	RemoveComplianceTagHoldApplied            bool     `ps:"RemoveComplianceTagHoldApplied"`
-	RemoveDelayHoldApplied                    bool     `ps:"RemoveDelayHoldApplied"`
-	RemoveDelayReleaseHoldApplied             bool     `ps:"RemoveDelayReleaseHoldApplied"`
-	RemoveDisabledArchive                     bool     `ps:"RemoveDisabledArchive"`
-	RemoveMailboxProvisioningConstraint       bool     `ps:"RemoveMailboxProvisioningConstraint"`
-	RemoveOrphanedHolds                       []string `ps:"RemoveOrphanedHolds"`
-	RequireSenderAuthenticationEnabled        *bool    `ps:"RequireSenderAuthenticationEnabled"`
-	ResourceCapacity                          *int64   `ps:"ResourceCapacity"`
-	ResourceCustom                            []string `ps:"ResourceCustom"`
-	RetainDeletedItemsFor                     any      `ps:"RetainDeletedItemsFor"` // EnhancedTimeSpan
-	RetentionComment                          string   `ps:"RetentionComment"`
-	RetentionHoldEnabled                      *bool    `ps:"RetentionHoldEnabled"`
-	RetentionPolicy                           any      `ps:"RetentionPolicy"` // MailboxPolicyIdParameter
-	RetentionUrl                              string   `ps:"RetentionUrl"`
-	RoleAssignmentPolicy                      any      `ps:"RoleAssignmentPolicy"` // MailboxPolicyIdParameter
-	RoomMailboxPassword                       any      `ps:"RoomMailboxPassword"`  // SecureString
-	RulesQuota                                any      `ps:"RulesQuota"`           // ByteQuantifiedSize
-	SchedulerAssistant                        *bool    `ps:"SchedulerAssistant"`
-	SendModerationNotifications               any      `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
-	SharingPolicy                             any      `ps:"SharingPolicy"`               // SharingPolicyIdParameter
-	SimpleDisplayName                         string   `ps:"SimpleDisplayName"`
-	SingleItemRecoveryEnabled                 *bool    `ps:"SingleItemRecoveryEnabled"`
-	StartDateForRetentionHold                 any      `ps:"StartDateForRetentionHold"`       // DateTime
-	StsRefreshTokensValidFrom                 any      `ps:"StsRefreshTokensValidFrom"`       // DateTime
-	Type                                      any      `ps:"Type"`                            // ConvertibleMailboxSubType
-	UniqueRecipientsCountLimitLevel           any      `ps:"UniqueRecipientsCountLimitLevel"` // UniqueRecipientsCountLimitLevelType
-	UniqueUnrestrictedGroupsLimitEnabled      *bool    `ps:"UniqueUnrestrictedGroupsLimitEnabled"`
-	UpdateEnforcedTimestamp                   bool     `ps:"UpdateEnforcedTimestamp"`
-	UseDatabaseQuotaDefaults                  *bool    `ps:"UseDatabaseQuotaDefaults"`
-	UseDatabaseRetentionDefaults              *bool    `ps:"UseDatabaseRetentionDefaults"`
-	UserCertificate                           []string `ps:"UserCertificate"`
-	UserSMimeCertificate                      []string `ps:"UserSMimeCertificate"`
-	WindowsEmailAddress                       any      `ps:"WindowsEmailAddress"` // SmtpAddress
+	AcceptMessagesOnlyFrom                      []string              `ps:"AcceptMessagesOnlyFrom"`
+	AcceptMessagesOnlyFromDelta                 *adminapi.StringDelta `ps:"AcceptMessagesOnlyFrom"` // adds/removes values of AcceptMessagesOnlyFrom; takes precedence over it
+	AcceptMessagesOnlyFromDLMembers             []string              `ps:"AcceptMessagesOnlyFromDLMembers"`
+	AcceptMessagesOnlyFromDLMembersDelta        *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromDLMembers"` // adds/removes values of AcceptMessagesOnlyFromDLMembers; takes precedence over it
+	AcceptMessagesOnlyFromSendersOrMembers      []string              `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
+	AcceptMessagesOnlyFromSendersOrMembersDelta *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromSendersOrMembers"` // adds/removes values of AcceptMessagesOnlyFromSendersOrMembers; takes precedence over it
+	AccountDisabled                             *bool                 `ps:"AccountDisabled"`
+	AddressBookPolicy                           any                   `ps:"AddressBookPolicy"` // AddressBookMailboxPolicyIdParameter
+	Alias                                       string                `ps:"Alias"`
+	ApplyMandatoryProperties                    bool                  `ps:"ApplyMandatoryProperties"`
+	ArchiveName                                 []string              `ps:"ArchiveName"`
+	ArchiveNameDelta                            *adminapi.StringDelta `ps:"ArchiveName"` // adds/removes values of ArchiveName; takes precedence over it
+	AuditAdmin                                  []string              `ps:"AuditAdmin"`
+	AuditAdminDelta                             *adminapi.StringDelta `ps:"AuditAdmin"` // adds/removes values of AuditAdmin; takes precedence over it
+	AuditDelegate                               []string              `ps:"AuditDelegate"`
+	AuditDelegateDelta                          *adminapi.StringDelta `ps:"AuditDelegate"` // adds/removes values of AuditDelegate; takes precedence over it
+	AuditEnabled                                *bool                 `ps:"AuditEnabled"`
+	AuditLogAgeLimit                            any                   `ps:"AuditLogAgeLimit"` // EnhancedTimeSpan
+	AuditOwner                                  []string              `ps:"AuditOwner"`
+	AuditOwnerDelta                             *adminapi.StringDelta `ps:"AuditOwner"` // adds/removes values of AuditOwner; takes precedence over it
+	AutoArchivingEnabled                        *bool                 `ps:"AutoArchivingEnabled"`
+	BypassModerationFromSendersOrMembers        []string              `ps:"BypassModerationFromSendersOrMembers"`
+	BypassModerationFromSendersOrMembersDelta   *adminapi.StringDelta `ps:"BypassModerationFromSendersOrMembers"` // adds/removes values of BypassModerationFromSendersOrMembers; takes precedence over it
+	CalendarRepairDisabled                      *bool                 `ps:"CalendarRepairDisabled"`
+	CalendarVersionStoreDisabled                *bool                 `ps:"CalendarVersionStoreDisabled"`
+	ClearThrottlingPolicyAssignment             bool                  `ps:"ClearThrottlingPolicyAssignment"`
+	CustomAttribute1                            string                `ps:"CustomAttribute1"`
+	CustomAttribute10                           string                `ps:"CustomAttribute10"`
+	CustomAttribute11                           string                `ps:"CustomAttribute11"`
+	CustomAttribute12                           string                `ps:"CustomAttribute12"`
+	CustomAttribute13                           string                `ps:"CustomAttribute13"`
+	CustomAttribute14                           string                `ps:"CustomAttribute14"`
+	CustomAttribute15                           string                `ps:"CustomAttribute15"`
+	CustomAttribute2                            string                `ps:"CustomAttribute2"`
+	CustomAttribute3                            string                `ps:"CustomAttribute3"`
+	CustomAttribute4                            string                `ps:"CustomAttribute4"`
+	CustomAttribute5                            string                `ps:"CustomAttribute5"`
+	CustomAttribute6                            string                `ps:"CustomAttribute6"`
+	CustomAttribute7                            string                `ps:"CustomAttribute7"`
+	CustomAttribute8                            string                `ps:"CustomAttribute8"`
+	CustomAttribute9                            string                `ps:"CustomAttribute9"`
+	DataEncryptionPolicy                        any                   `ps:"DataEncryptionPolicy"` // DataEncryptionPolicyIdParameter
+	DefaultAuditSet                             []string              `ps:"DefaultAuditSet"`
+	DefaultAuditSetDelta                        *adminapi.StringDelta `ps:"DefaultAuditSet"`            // adds/removes values of DefaultAuditSet; takes precedence over it
+	DefaultPublicFolderMailbox                  any                   `ps:"DefaultPublicFolderMailbox"` // RecipientIdParameter
+	DeliverToMailboxAndForward                  *bool                 `ps:"DeliverToMailboxAndForward"`
+	DisplayName                                 string                `ps:"DisplayName"`
+	ElcProcessingDisabled                       *bool                 `ps:"ElcProcessingDisabled"`
+	EmailAddressDisplayNames                    []string              `ps:"EmailAddressDisplayNames"`
+	EmailAddressDisplayNamesDelta               *adminapi.StringDelta `ps:"EmailAddressDisplayNames"` // adds/removes values of EmailAddressDisplayNames; takes precedence over it
+	EmailAddresses                              []string              `ps:"EmailAddresses"`
+	EnableRoomMailboxAccount                    *bool                 `ps:"EnableRoomMailboxAccount"`
+	EndDateForRetentionHold                     any                   `ps:"EndDateForRetentionHold"` // DateTime
+	EnforcedTimestamps                          string                `ps:"EnforcedTimestamps"`
+	ExcludeFromAllHolds                         bool                  `ps:"ExcludeFromAllHolds"`
+	ExcludeFromAllOrgHolds                      bool                  `ps:"ExcludeFromAllOrgHolds"`
+	ExcludeFromOrgHolds                         []string              `ps:"ExcludeFromOrgHolds"`
+	ExtensionCustomAttribute1                   []string              `ps:"ExtensionCustomAttribute1"`
+	ExtensionCustomAttribute1Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute1"` // adds/removes values of ExtensionCustomAttribute1; takes precedence over it
+	ExtensionCustomAttribute2                   []string              `ps:"ExtensionCustomAttribute2"`
+	ExtensionCustomAttribute2Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute2"` // adds/removes values of ExtensionCustomAttribute2; takes precedence over it
+	ExtensionCustomAttribute3                   []string              `ps:"ExtensionCustomAttribute3"`
+	ExtensionCustomAttribute3Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute3"` // adds/removes values of ExtensionCustomAttribute3; takes precedence over it
+	ExtensionCustomAttribute4                   []string              `ps:"ExtensionCustomAttribute4"`
+	ExtensionCustomAttribute4Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute4"` // adds/removes values of ExtensionCustomAttribute4; takes precedence over it
+	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
+	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
+	ExternalOofOptions                          any                   `ps:"ExternalOofOptions"`        // ExternalOofOptions
+	Force                                       bool                  `ps:"Force"`
+	ForwardingAddress                           any                   `ps:"ForwardingAddress"`     // RecipientIdParameter
+	ForwardingSmtpAddress                       any                   `ps:"ForwardingSmtpAddress"` // ProxyAddress
+	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
+	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
+	GroupMailbox                                bool                  `ps:"GroupMailbox"`
+	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
+	Identity                                    any                   `ps:"Identity"` // MailboxIdParameter
+	ImmutableId                                 string                `ps:"ImmutableId"`
+	InactiveMailbox                             bool                  `ps:"InactiveMailbox"`
+	IsExchangeCloudManaged                      *bool                 `ps:"IsExchangeCloudManaged"`
+	IsExcludedFromServingHierarchy              *bool                 `ps:"IsExcludedFromServingHierarchy"`
+	IssueWarningQuota                           any                   `ps:"IssueWarningQuota"`     // Unlimited
+	JournalArchiveAddress                       any                   `ps:"JournalArchiveAddress"` // SmtpAddress
+	Languages                                   []string              `ps:"Languages"`
+	LanguagesDelta                              *adminapi.StringDelta `ps:"Languages"`              // adds/removes values of Languages; takes precedence over it
+	LitigationHoldDate                          any                   `ps:"LitigationHoldDate"`     // DateTime
+	LitigationHoldDuration                      any                   `ps:"LitigationHoldDuration"` // Unlimited
+	LitigationHoldEnabled                       *bool                 `ps:"LitigationHoldEnabled"`
+	LitigationHoldOwner                         string                `ps:"LitigationHoldOwner"`
+	MailboxRegion                               string                `ps:"MailboxRegion"`
+	MailTip                                     string                `ps:"MailTip"`
+	MailTipTranslations                         []string              `ps:"MailTipTranslations"`
+	MailTipTranslationsDelta                    *adminapi.StringDelta `ps:"MailTipTranslations"` // adds/removes values of MailTipTranslations; takes precedence over it
+	MaxReceiveSize                              any                   `ps:"MaxReceiveSize"`      // Unlimited
+	MaxSendSize                                 any                   `ps:"MaxSendSize"`         // Unlimited
+	MessageCopyForSendOnBehalfEnabled           *bool                 `ps:"MessageCopyForSendOnBehalfEnabled"`
+	MessageCopyForSentAsEnabled                 *bool                 `ps:"MessageCopyForSentAsEnabled"`
+	MessageCopyForSMTPClientSubmissionEnabled   *bool                 `ps:"MessageCopyForSMTPClientSubmissionEnabled"`
+	MessageTrackingReadStatusEnabled            *bool                 `ps:"MessageTrackingReadStatusEnabled"`
+	MicrosoftOnlineServicesID                   any                   `ps:"MicrosoftOnlineServicesID"` // SmtpAddress
+	ModeratedBy                                 []string              `ps:"ModeratedBy"`
+	ModeratedByDelta                            *adminapi.StringDelta `ps:"ModeratedBy"` // adds/removes values of ModeratedBy; takes precedence over it
+	ModerationEnabled                           *bool                 `ps:"ModerationEnabled"`
+	Name                                        string                `ps:"Name"`
+	NonCompliantDevices                         []string              `ps:"NonCompliantDevices"`
+	NonCompliantDevicesDelta                    *adminapi.StringDelta `ps:"NonCompliantDevices"` // adds/removes values of NonCompliantDevices; takes precedence over it
+	Office                                      string                `ps:"Office"`
+	ProhibitSendQuota                           any                   `ps:"ProhibitSendQuota"`        // Unlimited
+	ProhibitSendReceiveQuota                    any                   `ps:"ProhibitSendReceiveQuota"` // Unlimited
+	ProvideConsent                              bool                  `ps:"ProvideConsent"`
+	ProvisionedForOfficeGraph                   bool                  `ps:"ProvisionedForOfficeGraph"`
+	PublicFolder                                bool                  `ps:"PublicFolder"`
+	RecalculateInactiveMailbox                  bool                  `ps:"RecalculateInactiveMailbox"`
+	RecipientLimits                             any                   `ps:"RecipientLimits"` // Unlimited
+	RejectMessagesFrom                          []string              `ps:"RejectMessagesFrom"`
+	RejectMessagesFromDelta                     *adminapi.StringDelta `ps:"RejectMessagesFrom"` // adds/removes values of RejectMessagesFrom; takes precedence over it
+	RejectMessagesFromDLMembers                 []string              `ps:"RejectMessagesFromDLMembers"`
+	RejectMessagesFromDLMembersDelta            *adminapi.StringDelta `ps:"RejectMessagesFromDLMembers"` // adds/removes values of RejectMessagesFromDLMembers; takes precedence over it
+	RejectMessagesFromSendersOrMembers          []string              `ps:"RejectMessagesFromSendersOrMembers"`
+	RejectMessagesFromSendersOrMembersDelta     *adminapi.StringDelta `ps:"RejectMessagesFromSendersOrMembers"` // adds/removes values of RejectMessagesFromSendersOrMembers; takes precedence over it
+	RemoveComplianceTagHoldApplied              bool                  `ps:"RemoveComplianceTagHoldApplied"`
+	RemoveDelayHoldApplied                      bool                  `ps:"RemoveDelayHoldApplied"`
+	RemoveDelayReleaseHoldApplied               bool                  `ps:"RemoveDelayReleaseHoldApplied"`
+	RemoveDisabledArchive                       bool                  `ps:"RemoveDisabledArchive"`
+	RemoveMailboxProvisioningConstraint         bool                  `ps:"RemoveMailboxProvisioningConstraint"`
+	RemoveOrphanedHolds                         []string              `ps:"RemoveOrphanedHolds"`
+	RequireSenderAuthenticationEnabled          *bool                 `ps:"RequireSenderAuthenticationEnabled"`
+	ResourceCapacity                            *int64                `ps:"ResourceCapacity"`
+	ResourceCustom                              []string              `ps:"ResourceCustom"`
+	ResourceCustomDelta                         *adminapi.StringDelta `ps:"ResourceCustom"`        // adds/removes values of ResourceCustom; takes precedence over it
+	RetainDeletedItemsFor                       any                   `ps:"RetainDeletedItemsFor"` // EnhancedTimeSpan
+	RetentionComment                            string                `ps:"RetentionComment"`
+	RetentionHoldEnabled                        *bool                 `ps:"RetentionHoldEnabled"`
+	RetentionPolicy                             any                   `ps:"RetentionPolicy"` // MailboxPolicyIdParameter
+	RetentionUrl                                string                `ps:"RetentionUrl"`
+	RoleAssignmentPolicy                        any                   `ps:"RoleAssignmentPolicy"` // MailboxPolicyIdParameter
+	RoomMailboxPassword                         any                   `ps:"RoomMailboxPassword"`  // SecureString
+	RulesQuota                                  any                   `ps:"RulesQuota"`           // ByteQuantifiedSize
+	SchedulerAssistant                          *bool                 `ps:"SchedulerAssistant"`
+	SendModerationNotifications                 any                   `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
+	SharingPolicy                               any                   `ps:"SharingPolicy"`               // SharingPolicyIdParameter
+	SimpleDisplayName                           string                `ps:"SimpleDisplayName"`
+	SingleItemRecoveryEnabled                   *bool                 `ps:"SingleItemRecoveryEnabled"`
+	StartDateForRetentionHold                   any                   `ps:"StartDateForRetentionHold"`       // DateTime
+	StsRefreshTokensValidFrom                   any                   `ps:"StsRefreshTokensValidFrom"`       // DateTime
+	Type                                        any                   `ps:"Type"`                            // ConvertibleMailboxSubType
+	UniqueRecipientsCountLimitLevel             any                   `ps:"UniqueRecipientsCountLimitLevel"` // UniqueRecipientsCountLimitLevelType
+	UniqueUnrestrictedGroupsLimitEnabled        *bool                 `ps:"UniqueUnrestrictedGroupsLimitEnabled"`
+	UpdateEnforcedTimestamp                     bool                  `ps:"UpdateEnforcedTimestamp"`
+	UseDatabaseQuotaDefaults                    *bool                 `ps:"UseDatabaseQuotaDefaults"`
+	UseDatabaseRetentionDefaults                *bool                 `ps:"UseDatabaseRetentionDefaults"`
+	UserCertificate                             []string              `ps:"UserCertificate"`
+	UserCertificateDelta                        *adminapi.StringDelta `ps:"UserCertificate"` // adds/removes values of UserCertificate; takes precedence over it
+	UserSMimeCertificate                        []string              `ps:"UserSMimeCertificate"`
+	UserSMimeCertificateDelta                   *adminapi.StringDelta `ps:"UserSMimeCertificate"` // adds/removes values of UserSMimeCertificate; takes precedence over it
+	WindowsEmailAddress                         any                   `ps:"WindowsEmailAddress"`  // SmtpAddress
 }
 
 func (p SetMailboxParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptMessagesOnlyFrom != nil {
+	if p.AcceptMessagesOnlyFromDelta != nil {
+		m["AcceptMessagesOnlyFrom"] = *p.AcceptMessagesOnlyFromDelta
+	} else if p.AcceptMessagesOnlyFrom != nil {
 		m["AcceptMessagesOnlyFrom"] = p.AcceptMessagesOnlyFrom
 	}
-	if p.AcceptMessagesOnlyFromDLMembers != nil {
+	if p.AcceptMessagesOnlyFromDLMembersDelta != nil {
+		m["AcceptMessagesOnlyFromDLMembers"] = *p.AcceptMessagesOnlyFromDLMembersDelta
+	} else if p.AcceptMessagesOnlyFromDLMembers != nil {
 		m["AcceptMessagesOnlyFromDLMembers"] = p.AcceptMessagesOnlyFromDLMembers
 	}
-	if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
+	if p.AcceptMessagesOnlyFromSendersOrMembersDelta != nil {
+		m["AcceptMessagesOnlyFromSendersOrMembers"] = *p.AcceptMessagesOnlyFromSendersOrMembersDelta
+	} else if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
 		m["AcceptMessagesOnlyFromSendersOrMembers"] = p.AcceptMessagesOnlyFromSendersOrMembers
 	}
 	if p.AccountDisabled != nil {
@@ -27726,13 +28277,19 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.ApplyMandatoryProperties {
 		m["ApplyMandatoryProperties"] = true
 	}
-	if p.ArchiveName != nil {
+	if p.ArchiveNameDelta != nil {
+		m["ArchiveName"] = *p.ArchiveNameDelta
+	} else if p.ArchiveName != nil {
 		m["ArchiveName"] = p.ArchiveName
 	}
-	if p.AuditAdmin != nil {
+	if p.AuditAdminDelta != nil {
+		m["AuditAdmin"] = *p.AuditAdminDelta
+	} else if p.AuditAdmin != nil {
 		m["AuditAdmin"] = p.AuditAdmin
 	}
-	if p.AuditDelegate != nil {
+	if p.AuditDelegateDelta != nil {
+		m["AuditDelegate"] = *p.AuditDelegateDelta
+	} else if p.AuditDelegate != nil {
 		m["AuditDelegate"] = p.AuditDelegate
 	}
 	if p.AuditEnabled != nil {
@@ -27741,13 +28298,17 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.AuditLogAgeLimit != nil {
 		m["AuditLogAgeLimit"] = p.AuditLogAgeLimit
 	}
-	if p.AuditOwner != nil {
+	if p.AuditOwnerDelta != nil {
+		m["AuditOwner"] = *p.AuditOwnerDelta
+	} else if p.AuditOwner != nil {
 		m["AuditOwner"] = p.AuditOwner
 	}
 	if p.AutoArchivingEnabled != nil {
 		m["AutoArchivingEnabled"] = *p.AutoArchivingEnabled
 	}
-	if p.BypassModerationFromSendersOrMembers != nil {
+	if p.BypassModerationFromSendersOrMembersDelta != nil {
+		m["BypassModerationFromSendersOrMembers"] = *p.BypassModerationFromSendersOrMembersDelta
+	} else if p.BypassModerationFromSendersOrMembers != nil {
 		m["BypassModerationFromSendersOrMembers"] = p.BypassModerationFromSendersOrMembers
 	}
 	if p.CalendarRepairDisabled != nil {
@@ -27807,7 +28368,9 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.DataEncryptionPolicy != nil {
 		m["DataEncryptionPolicy"] = p.DataEncryptionPolicy
 	}
-	if p.DefaultAuditSet != nil {
+	if p.DefaultAuditSetDelta != nil {
+		m["DefaultAuditSet"] = *p.DefaultAuditSetDelta
+	} else if p.DefaultAuditSet != nil {
 		m["DefaultAuditSet"] = p.DefaultAuditSet
 	}
 	if p.DefaultPublicFolderMailbox != nil {
@@ -27822,7 +28385,9 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.ElcProcessingDisabled != nil {
 		m["ElcProcessingDisabled"] = *p.ElcProcessingDisabled
 	}
-	if p.EmailAddressDisplayNames != nil {
+	if p.EmailAddressDisplayNamesDelta != nil {
+		m["EmailAddressDisplayNames"] = *p.EmailAddressDisplayNamesDelta
+	} else if p.EmailAddressDisplayNames != nil {
 		m["EmailAddressDisplayNames"] = p.EmailAddressDisplayNames
 	}
 	if p.EmailAddresses != nil {
@@ -27846,19 +28411,29 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.ExcludeFromOrgHolds != nil {
 		m["ExcludeFromOrgHolds"] = p.ExcludeFromOrgHolds
 	}
-	if p.ExtensionCustomAttribute1 != nil {
+	if p.ExtensionCustomAttribute1Delta != nil {
+		m["ExtensionCustomAttribute1"] = *p.ExtensionCustomAttribute1Delta
+	} else if p.ExtensionCustomAttribute1 != nil {
 		m["ExtensionCustomAttribute1"] = p.ExtensionCustomAttribute1
 	}
-	if p.ExtensionCustomAttribute2 != nil {
+	if p.ExtensionCustomAttribute2Delta != nil {
+		m["ExtensionCustomAttribute2"] = *p.ExtensionCustomAttribute2Delta
+	} else if p.ExtensionCustomAttribute2 != nil {
 		m["ExtensionCustomAttribute2"] = p.ExtensionCustomAttribute2
 	}
-	if p.ExtensionCustomAttribute3 != nil {
+	if p.ExtensionCustomAttribute3Delta != nil {
+		m["ExtensionCustomAttribute3"] = *p.ExtensionCustomAttribute3Delta
+	} else if p.ExtensionCustomAttribute3 != nil {
 		m["ExtensionCustomAttribute3"] = p.ExtensionCustomAttribute3
 	}
-	if p.ExtensionCustomAttribute4 != nil {
+	if p.ExtensionCustomAttribute4Delta != nil {
+		m["ExtensionCustomAttribute4"] = *p.ExtensionCustomAttribute4Delta
+	} else if p.ExtensionCustomAttribute4 != nil {
 		m["ExtensionCustomAttribute4"] = p.ExtensionCustomAttribute4
 	}
-	if p.ExtensionCustomAttribute5 != nil {
+	if p.ExtensionCustomAttribute5Delta != nil {
+		m["ExtensionCustomAttribute5"] = *p.ExtensionCustomAttribute5Delta
+	} else if p.ExtensionCustomAttribute5 != nil {
 		m["ExtensionCustomAttribute5"] = p.ExtensionCustomAttribute5
 	}
 	if p.ExternalOofOptions != nil {
@@ -27873,7 +28448,9 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.ForwardingSmtpAddress != nil {
 		m["ForwardingSmtpAddress"] = p.ForwardingSmtpAddress
 	}
-	if p.GrantSendOnBehalfTo != nil {
+	if p.GrantSendOnBehalfToDelta != nil {
+		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
+	} else if p.GrantSendOnBehalfTo != nil {
 		m["GrantSendOnBehalfTo"] = p.GrantSendOnBehalfTo
 	}
 	if p.GroupMailbox {
@@ -27903,7 +28480,9 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.JournalArchiveAddress != nil {
 		m["JournalArchiveAddress"] = p.JournalArchiveAddress
 	}
-	if p.Languages != nil {
+	if p.LanguagesDelta != nil {
+		m["Languages"] = *p.LanguagesDelta
+	} else if p.Languages != nil {
 		m["Languages"] = p.Languages
 	}
 	if p.LitigationHoldDate != nil {
@@ -27924,7 +28503,9 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.MailTip != "" {
 		m["MailTip"] = p.MailTip
 	}
-	if p.MailTipTranslations != nil {
+	if p.MailTipTranslationsDelta != nil {
+		m["MailTipTranslations"] = *p.MailTipTranslationsDelta
+	} else if p.MailTipTranslations != nil {
 		m["MailTipTranslations"] = p.MailTipTranslations
 	}
 	if p.MaxReceiveSize != nil {
@@ -27948,7 +28529,9 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.MicrosoftOnlineServicesID != nil {
 		m["MicrosoftOnlineServicesID"] = p.MicrosoftOnlineServicesID
 	}
-	if p.ModeratedBy != nil {
+	if p.ModeratedByDelta != nil {
+		m["ModeratedBy"] = *p.ModeratedByDelta
+	} else if p.ModeratedBy != nil {
 		m["ModeratedBy"] = p.ModeratedBy
 	}
 	if p.ModerationEnabled != nil {
@@ -27957,7 +28540,9 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if p.NonCompliantDevices != nil {
+	if p.NonCompliantDevicesDelta != nil {
+		m["NonCompliantDevices"] = *p.NonCompliantDevicesDelta
+	} else if p.NonCompliantDevices != nil {
 		m["NonCompliantDevices"] = p.NonCompliantDevices
 	}
 	if p.Office != "" {
@@ -27984,13 +28569,19 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.RecipientLimits != nil {
 		m["RecipientLimits"] = p.RecipientLimits
 	}
-	if p.RejectMessagesFrom != nil {
+	if p.RejectMessagesFromDelta != nil {
+		m["RejectMessagesFrom"] = *p.RejectMessagesFromDelta
+	} else if p.RejectMessagesFrom != nil {
 		m["RejectMessagesFrom"] = p.RejectMessagesFrom
 	}
-	if p.RejectMessagesFromDLMembers != nil {
+	if p.RejectMessagesFromDLMembersDelta != nil {
+		m["RejectMessagesFromDLMembers"] = *p.RejectMessagesFromDLMembersDelta
+	} else if p.RejectMessagesFromDLMembers != nil {
 		m["RejectMessagesFromDLMembers"] = p.RejectMessagesFromDLMembers
 	}
-	if p.RejectMessagesFromSendersOrMembers != nil {
+	if p.RejectMessagesFromSendersOrMembersDelta != nil {
+		m["RejectMessagesFromSendersOrMembers"] = *p.RejectMessagesFromSendersOrMembersDelta
+	} else if p.RejectMessagesFromSendersOrMembers != nil {
 		m["RejectMessagesFromSendersOrMembers"] = p.RejectMessagesFromSendersOrMembers
 	}
 	if p.RemoveComplianceTagHoldApplied {
@@ -28017,7 +28608,9 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.ResourceCapacity != nil {
 		m["ResourceCapacity"] = *p.ResourceCapacity
 	}
-	if p.ResourceCustom != nil {
+	if p.ResourceCustomDelta != nil {
+		m["ResourceCustom"] = *p.ResourceCustomDelta
+	} else if p.ResourceCustom != nil {
 		m["ResourceCustom"] = p.ResourceCustom
 	}
 	if p.RetainDeletedItemsFor != nil {
@@ -28083,10 +28676,14 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.UseDatabaseRetentionDefaults != nil {
 		m["UseDatabaseRetentionDefaults"] = *p.UseDatabaseRetentionDefaults
 	}
-	if p.UserCertificate != nil {
+	if p.UserCertificateDelta != nil {
+		m["UserCertificate"] = *p.UserCertificateDelta
+	} else if p.UserCertificate != nil {
 		m["UserCertificate"] = p.UserCertificate
 	}
-	if p.UserSMimeCertificate != nil {
+	if p.UserSMimeCertificateDelta != nil {
+		m["UserSMimeCertificate"] = *p.UserSMimeCertificateDelta
+	} else if p.UserSMimeCertificate != nil {
 		m["UserSMimeCertificate"] = p.UserSMimeCertificate
 	}
 	if p.WindowsEmailAddress != nil {
@@ -28201,54 +28798,55 @@ func (s *Service) SetMailboxAutoReplyConfiguration(ctx context.Context, p SetMai
 // SetMailboxCalendarConfigurationParams are the parameters of Set-MailboxCalendarConfiguration.
 // DefaultParameterSetName: Identity
 type SetMailboxCalendarConfigurationParams struct {
-	AgendaMailEnabled                        *bool    `ps:"AgendaMailEnabled"`
-	AgendaMailIntroductionEnabled            *bool    `ps:"AgendaMailIntroductionEnabled"`
-	AgendaPaneEnabled                        *bool    `ps:"AgendaPaneEnabled"`
-	AutoDeclineWhenBusy                      *bool    `ps:"AutoDeclineWhenBusy"`
-	CalendarFeedsPreferredLanguage           string   `ps:"CalendarFeedsPreferredLanguage"`
-	CalendarFeedsPreferredRegion             string   `ps:"CalendarFeedsPreferredRegion"`
-	CalendarFeedsRootPageId                  string   `ps:"CalendarFeedsRootPageId"`
-	ConversationalSchedulingEnabled          *bool    `ps:"ConversationalSchedulingEnabled"`
-	CreateEventsFromEmailAsPrivate           *bool    `ps:"CreateEventsFromEmailAsPrivate"`
-	DailyAgendaMailSchedule                  any      `ps:"DailyAgendaMailSchedule"` // AgendaMailSchedule
-	DefaultMeetingDuration                   *int64   `ps:"DefaultMeetingDuration"`
-	DefaultMinutesToReduceLongEventsBy       *int64   `ps:"DefaultMinutesToReduceLongEventsBy"`
-	DefaultMinutesToReduceShortEventsBy      *int64   `ps:"DefaultMinutesToReduceShortEventsBy"`
-	DefaultOnlineMeetingProvider             any      `ps:"DefaultOnlineMeetingProvider"` // OnlineMeetingProviderType
-	DefaultReminderTime                      any      `ps:"DefaultReminderTime"`          // TimeSpan
-	DeleteMeetingRequestOnRespond            *bool    `ps:"DeleteMeetingRequestOnRespond"`
-	DiningEventsFromEmailEnabled             *bool    `ps:"DiningEventsFromEmailEnabled"`
-	EntertainmentEventsFromEmailEnabled      *bool    `ps:"EntertainmentEventsFromEmailEnabled"`
-	EventsFromEmailEnabled                   *bool    `ps:"EventsFromEmailEnabled"`
-	FirstWeekOfYear                          any      `ps:"FirstWeekOfYear"` // FirstWeekRules
-	FlightEventsFromEmailEnabled             *bool    `ps:"FlightEventsFromEmailEnabled"`
-	HotelEventsFromEmailEnabled              *bool    `ps:"HotelEventsFromEmailEnabled"`
-	Identity                                 any      `ps:"Identity"` // MailboxIdParameter
-	InvoiceEventsFromEmailEnabled            *bool    `ps:"InvoiceEventsFromEmailEnabled"`
-	LocationDetailsInFreeBusy                any      `ps:"LocationDetailsInFreeBusy"` // LocationDetailsPermissionInFreeBusy
-	MailboxLocation                          any      `ps:"MailboxLocation"`           // MailboxLocationIdParameter
-	OnlineMeetingsByDefaultEnabled           *bool    `ps:"OnlineMeetingsByDefaultEnabled"`
-	PackageDeliveryEventsFromEmailEnabled    *bool    `ps:"PackageDeliveryEventsFromEmailEnabled"`
-	PreserveDeclinedMeetings                 *bool    `ps:"PreserveDeclinedMeetings"`
-	RemindersEnabled                         *bool    `ps:"RemindersEnabled"`
-	ReminderSoundEnabled                     *bool    `ps:"ReminderSoundEnabled"`
-	RentalCarEventsFromEmailEnabled          *bool    `ps:"RentalCarEventsFromEmailEnabled"`
-	ServiceAppointmentEventsFromEmailEnabled *bool    `ps:"ServiceAppointmentEventsFromEmailEnabled"`
-	ShortenEventScopeDefault                 any      `ps:"ShortenEventScopeDefault"` // ShortenEventScopeOption
-	ShowWeekNumbers                          *bool    `ps:"ShowWeekNumbers"`
-	SkipAgendaMailOnFreeDays                 *bool    `ps:"SkipAgendaMailOnFreeDays"`
-	TimeIncrement                            any      `ps:"TimeIncrement"` // HourIncrement
-	UseBrightCalendarColorThemeInOwa         *bool    `ps:"UseBrightCalendarColorThemeInOwa"`
-	WeatherEnabled                           *bool    `ps:"WeatherEnabled"`
-	WeatherLocationBookmark                  *int64   `ps:"WeatherLocationBookmark"`
-	WeatherLocations                         []string `ps:"WeatherLocations"`
-	WeatherUnit                              any      `ps:"WeatherUnit"`           // WeatherTemperatureUnit
-	WeekStartDay                             any      `ps:"WeekStartDay"`          // DayOfWeek
-	WorkDays                                 any      `ps:"WorkDays"`              // DaysOfWeek
-	WorkingHoursEndTime                      any      `ps:"WorkingHoursEndTime"`   // TimeSpan
-	WorkingHoursStartTime                    any      `ps:"WorkingHoursStartTime"` // TimeSpan
-	WorkingHoursTimeZone                     any      `ps:"WorkingHoursTimeZone"`  // ExTimeZoneValue
-	WorkspaceUserEnabled                     *bool    `ps:"WorkspaceUserEnabled"`
+	AgendaMailEnabled                        *bool                 `ps:"AgendaMailEnabled"`
+	AgendaMailIntroductionEnabled            *bool                 `ps:"AgendaMailIntroductionEnabled"`
+	AgendaPaneEnabled                        *bool                 `ps:"AgendaPaneEnabled"`
+	AutoDeclineWhenBusy                      *bool                 `ps:"AutoDeclineWhenBusy"`
+	CalendarFeedsPreferredLanguage           string                `ps:"CalendarFeedsPreferredLanguage"`
+	CalendarFeedsPreferredRegion             string                `ps:"CalendarFeedsPreferredRegion"`
+	CalendarFeedsRootPageId                  string                `ps:"CalendarFeedsRootPageId"`
+	ConversationalSchedulingEnabled          *bool                 `ps:"ConversationalSchedulingEnabled"`
+	CreateEventsFromEmailAsPrivate           *bool                 `ps:"CreateEventsFromEmailAsPrivate"`
+	DailyAgendaMailSchedule                  any                   `ps:"DailyAgendaMailSchedule"` // AgendaMailSchedule
+	DefaultMeetingDuration                   *int64                `ps:"DefaultMeetingDuration"`
+	DefaultMinutesToReduceLongEventsBy       *int64                `ps:"DefaultMinutesToReduceLongEventsBy"`
+	DefaultMinutesToReduceShortEventsBy      *int64                `ps:"DefaultMinutesToReduceShortEventsBy"`
+	DefaultOnlineMeetingProvider             any                   `ps:"DefaultOnlineMeetingProvider"` // OnlineMeetingProviderType
+	DefaultReminderTime                      any                   `ps:"DefaultReminderTime"`          // TimeSpan
+	DeleteMeetingRequestOnRespond            *bool                 `ps:"DeleteMeetingRequestOnRespond"`
+	DiningEventsFromEmailEnabled             *bool                 `ps:"DiningEventsFromEmailEnabled"`
+	EntertainmentEventsFromEmailEnabled      *bool                 `ps:"EntertainmentEventsFromEmailEnabled"`
+	EventsFromEmailEnabled                   *bool                 `ps:"EventsFromEmailEnabled"`
+	FirstWeekOfYear                          any                   `ps:"FirstWeekOfYear"` // FirstWeekRules
+	FlightEventsFromEmailEnabled             *bool                 `ps:"FlightEventsFromEmailEnabled"`
+	HotelEventsFromEmailEnabled              *bool                 `ps:"HotelEventsFromEmailEnabled"`
+	Identity                                 any                   `ps:"Identity"` // MailboxIdParameter
+	InvoiceEventsFromEmailEnabled            *bool                 `ps:"InvoiceEventsFromEmailEnabled"`
+	LocationDetailsInFreeBusy                any                   `ps:"LocationDetailsInFreeBusy"` // LocationDetailsPermissionInFreeBusy
+	MailboxLocation                          any                   `ps:"MailboxLocation"`           // MailboxLocationIdParameter
+	OnlineMeetingsByDefaultEnabled           *bool                 `ps:"OnlineMeetingsByDefaultEnabled"`
+	PackageDeliveryEventsFromEmailEnabled    *bool                 `ps:"PackageDeliveryEventsFromEmailEnabled"`
+	PreserveDeclinedMeetings                 *bool                 `ps:"PreserveDeclinedMeetings"`
+	RemindersEnabled                         *bool                 `ps:"RemindersEnabled"`
+	ReminderSoundEnabled                     *bool                 `ps:"ReminderSoundEnabled"`
+	RentalCarEventsFromEmailEnabled          *bool                 `ps:"RentalCarEventsFromEmailEnabled"`
+	ServiceAppointmentEventsFromEmailEnabled *bool                 `ps:"ServiceAppointmentEventsFromEmailEnabled"`
+	ShortenEventScopeDefault                 any                   `ps:"ShortenEventScopeDefault"` // ShortenEventScopeOption
+	ShowWeekNumbers                          *bool                 `ps:"ShowWeekNumbers"`
+	SkipAgendaMailOnFreeDays                 *bool                 `ps:"SkipAgendaMailOnFreeDays"`
+	TimeIncrement                            any                   `ps:"TimeIncrement"` // HourIncrement
+	UseBrightCalendarColorThemeInOwa         *bool                 `ps:"UseBrightCalendarColorThemeInOwa"`
+	WeatherEnabled                           *bool                 `ps:"WeatherEnabled"`
+	WeatherLocationBookmark                  *int64                `ps:"WeatherLocationBookmark"`
+	WeatherLocations                         []string              `ps:"WeatherLocations"`
+	WeatherLocationsDelta                    *adminapi.StringDelta `ps:"WeatherLocations"`      // adds/removes values of WeatherLocations; takes precedence over it
+	WeatherUnit                              any                   `ps:"WeatherUnit"`           // WeatherTemperatureUnit
+	WeekStartDay                             any                   `ps:"WeekStartDay"`          // DayOfWeek
+	WorkDays                                 any                   `ps:"WorkDays"`              // DaysOfWeek
+	WorkingHoursEndTime                      any                   `ps:"WorkingHoursEndTime"`   // TimeSpan
+	WorkingHoursStartTime                    any                   `ps:"WorkingHoursStartTime"` // TimeSpan
+	WorkingHoursTimeZone                     any                   `ps:"WorkingHoursTimeZone"`  // ExTimeZoneValue
+	WorkspaceUserEnabled                     *bool                 `ps:"WorkspaceUserEnabled"`
 }
 
 func (p SetMailboxCalendarConfigurationParams) params() map[string]any {
@@ -28373,7 +28971,9 @@ func (p SetMailboxCalendarConfigurationParams) params() map[string]any {
 	if p.WeatherLocationBookmark != nil {
 		m["WeatherLocationBookmark"] = *p.WeatherLocationBookmark
 	}
-	if p.WeatherLocations != nil {
+	if p.WeatherLocationsDelta != nil {
+		m["WeatherLocations"] = *p.WeatherLocationsDelta
+	} else if p.WeatherLocations != nil {
 		m["WeatherLocations"] = p.WeatherLocations
 	}
 	if p.WeatherUnit != nil {
@@ -28567,21 +29167,26 @@ func (s *Service) SetMailboxIRMAccess(ctx context.Context, p SetMailboxIRMAccess
 // SetMailboxJunkEmailConfigurationParams are the parameters of Set-MailboxJunkEmailConfiguration.
 // DefaultParameterSetName: Identity
 type SetMailboxJunkEmailConfigurationParams struct {
-	BlockedSendersAndDomains    []string `ps:"BlockedSendersAndDomains"`
-	ContactsTrusted             *bool    `ps:"ContactsTrusted"`
-	Enabled                     *bool    `ps:"Enabled"`
-	FailOnError                 *bool    `ps:"FailOnError"`
-	Identity                    any      `ps:"Identity"` // MailboxIdParameter
-	IgnoreDefaultScope          bool     `ps:"IgnoreDefaultScope"`
-	SenderScreeningEnabled      *bool    `ps:"SenderScreeningEnabled"`
-	TrustedListsOnly            *bool    `ps:"TrustedListsOnly"`
-	TrustedRecipientsAndDomains []string `ps:"TrustedRecipientsAndDomains"`
-	TrustedSendersAndDomains    []string `ps:"TrustedSendersAndDomains"`
+	BlockedSendersAndDomains         []string              `ps:"BlockedSendersAndDomains"`
+	BlockedSendersAndDomainsDelta    *adminapi.StringDelta `ps:"BlockedSendersAndDomains"` // adds/removes values of BlockedSendersAndDomains; takes precedence over it
+	ContactsTrusted                  *bool                 `ps:"ContactsTrusted"`
+	Enabled                          *bool                 `ps:"Enabled"`
+	FailOnError                      *bool                 `ps:"FailOnError"`
+	Identity                         any                   `ps:"Identity"` // MailboxIdParameter
+	IgnoreDefaultScope               bool                  `ps:"IgnoreDefaultScope"`
+	SenderScreeningEnabled           *bool                 `ps:"SenderScreeningEnabled"`
+	TrustedListsOnly                 *bool                 `ps:"TrustedListsOnly"`
+	TrustedRecipientsAndDomains      []string              `ps:"TrustedRecipientsAndDomains"`
+	TrustedRecipientsAndDomainsDelta *adminapi.StringDelta `ps:"TrustedRecipientsAndDomains"` // adds/removes values of TrustedRecipientsAndDomains; takes precedence over it
+	TrustedSendersAndDomains         []string              `ps:"TrustedSendersAndDomains"`
+	TrustedSendersAndDomainsDelta    *adminapi.StringDelta `ps:"TrustedSendersAndDomains"` // adds/removes values of TrustedSendersAndDomains; takes precedence over it
 }
 
 func (p SetMailboxJunkEmailConfigurationParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BlockedSendersAndDomains != nil {
+	if p.BlockedSendersAndDomainsDelta != nil {
+		m["BlockedSendersAndDomains"] = *p.BlockedSendersAndDomainsDelta
+	} else if p.BlockedSendersAndDomains != nil {
 		m["BlockedSendersAndDomains"] = p.BlockedSendersAndDomains
 	}
 	if p.ContactsTrusted != nil {
@@ -28605,10 +29210,14 @@ func (p SetMailboxJunkEmailConfigurationParams) params() map[string]any {
 	if p.TrustedListsOnly != nil {
 		m["TrustedListsOnly"] = *p.TrustedListsOnly
 	}
-	if p.TrustedRecipientsAndDomains != nil {
+	if p.TrustedRecipientsAndDomainsDelta != nil {
+		m["TrustedRecipientsAndDomains"] = *p.TrustedRecipientsAndDomainsDelta
+	} else if p.TrustedRecipientsAndDomains != nil {
 		m["TrustedRecipientsAndDomains"] = p.TrustedRecipientsAndDomains
 	}
-	if p.TrustedSendersAndDomains != nil {
+	if p.TrustedSendersAndDomainsDelta != nil {
+		m["TrustedSendersAndDomains"] = *p.TrustedSendersAndDomainsDelta
+	} else if p.TrustedSendersAndDomains != nil {
 		m["TrustedSendersAndDomains"] = p.TrustedSendersAndDomains
 	}
 	return m
@@ -29519,22 +30128,26 @@ func (s *Service) SetMessageClassification(ctx context.Context, p SetMessageClas
 // SetMigrationBatchParams are the parameters of Set-MigrationBatch.
 // DefaultParameterSetName: Identity
 type SetMigrationBatchParams struct {
-	AddUsers                 bool     `ps:"AddUsers"`
-	AllowUnknownColumnsInCSV *bool    `ps:"AllowUnknownColumnsInCSV"`
-	ApproveSkippedItems      bool     `ps:"ApproveSkippedItems"`
-	CompleteAfter            any      `ps:"CompleteAfter"` // DateTime
-	CSVData                  []string `ps:"CSVData"`
-	Identity                 any      `ps:"Identity"` // MigrationBatchIdParameter
-	MoveOptions              []string `ps:"MoveOptions"`
-	NotificationEmails       []string `ps:"NotificationEmails"`
-	Partition                any      `ps:"Partition"`      // MailboxIdParameter
-	ReportInterval           any      `ps:"ReportInterval"` // TimeSpan
-	SkipMerging              []string `ps:"SkipMerging"`
-	SkipMoving               []string `ps:"SkipMoving"`
-	SkipReports              *bool    `ps:"SkipReports"`
-	StartAfter               any      `ps:"StartAfter"` // DateTime
-	SyncNow                  bool     `ps:"SyncNow"`
-	Update                   bool     `ps:"Update"`
+	AddUsers                 bool                  `ps:"AddUsers"`
+	AllowUnknownColumnsInCSV *bool                 `ps:"AllowUnknownColumnsInCSV"`
+	ApproveSkippedItems      bool                  `ps:"ApproveSkippedItems"`
+	CompleteAfter            any                   `ps:"CompleteAfter"` // DateTime
+	CSVData                  []string              `ps:"CSVData"`
+	Identity                 any                   `ps:"Identity"` // MigrationBatchIdParameter
+	MoveOptions              []string              `ps:"MoveOptions"`
+	MoveOptionsDelta         *adminapi.StringDelta `ps:"MoveOptions"` // adds/removes values of MoveOptions; takes precedence over it
+	NotificationEmails       []string              `ps:"NotificationEmails"`
+	NotificationEmailsDelta  *adminapi.StringDelta `ps:"NotificationEmails"` // adds/removes values of NotificationEmails; takes precedence over it
+	Partition                any                   `ps:"Partition"`          // MailboxIdParameter
+	ReportInterval           any                   `ps:"ReportInterval"`     // TimeSpan
+	SkipMerging              []string              `ps:"SkipMerging"`
+	SkipMergingDelta         *adminapi.StringDelta `ps:"SkipMerging"` // adds/removes values of SkipMerging; takes precedence over it
+	SkipMoving               []string              `ps:"SkipMoving"`
+	SkipMovingDelta          *adminapi.StringDelta `ps:"SkipMoving"` // adds/removes values of SkipMoving; takes precedence over it
+	SkipReports              *bool                 `ps:"SkipReports"`
+	StartAfter               any                   `ps:"StartAfter"` // DateTime
+	SyncNow                  bool                  `ps:"SyncNow"`
+	Update                   bool                  `ps:"Update"`
 }
 
 func (p SetMigrationBatchParams) params() map[string]any {
@@ -29557,10 +30170,14 @@ func (p SetMigrationBatchParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.MoveOptions != nil {
+	if p.MoveOptionsDelta != nil {
+		m["MoveOptions"] = *p.MoveOptionsDelta
+	} else if p.MoveOptions != nil {
 		m["MoveOptions"] = p.MoveOptions
 	}
-	if p.NotificationEmails != nil {
+	if p.NotificationEmailsDelta != nil {
+		m["NotificationEmails"] = *p.NotificationEmailsDelta
+	} else if p.NotificationEmails != nil {
 		m["NotificationEmails"] = p.NotificationEmails
 	}
 	if p.Partition != nil {
@@ -29569,10 +30186,14 @@ func (p SetMigrationBatchParams) params() map[string]any {
 	if p.ReportInterval != nil {
 		m["ReportInterval"] = p.ReportInterval
 	}
-	if p.SkipMerging != nil {
+	if p.SkipMergingDelta != nil {
+		m["SkipMerging"] = *p.SkipMergingDelta
+	} else if p.SkipMerging != nil {
 		m["SkipMerging"] = p.SkipMerging
 	}
-	if p.SkipMoving != nil {
+	if p.SkipMovingDelta != nil {
+		m["SkipMoving"] = *p.SkipMovingDelta
+	} else if p.SkipMoving != nil {
 		m["SkipMoving"] = p.SkipMoving
 	}
 	if p.SkipReports != nil {
@@ -29755,62 +30376,63 @@ func (s *Service) SetMigrationUser(ctx context.Context, p SetMigrationUserParams
 // SetMobileDeviceMailboxPolicyParams are the parameters of Set-MobileDeviceMailboxPolicy.
 // DefaultParameterSetName: Identity
 type SetMobileDeviceMailboxPolicyParams struct {
-	AllowApplePushNotifications              *bool    `ps:"AllowApplePushNotifications"`
-	AllowBluetooth                           any      `ps:"AllowBluetooth"` // BluetoothType
-	AllowBrowser                             *bool    `ps:"AllowBrowser"`
-	AllowCamera                              *bool    `ps:"AllowCamera"`
-	AllowConsumerEmail                       *bool    `ps:"AllowConsumerEmail"`
-	AllowDesktopSync                         *bool    `ps:"AllowDesktopSync"`
-	AllowExternalDeviceManagement            *bool    `ps:"AllowExternalDeviceManagement"`
-	AllowGooglePushNotifications             *bool    `ps:"AllowGooglePushNotifications"`
-	AllowHTMLEmail                           *bool    `ps:"AllowHTMLEmail"`
-	AllowInternetSharing                     *bool    `ps:"AllowInternetSharing"`
-	AllowIrDA                                *bool    `ps:"AllowIrDA"`
-	AllowMicrosoftPushNotifications          *bool    `ps:"AllowMicrosoftPushNotifications"`
-	AllowMobileOTAUpdate                     *bool    `ps:"AllowMobileOTAUpdate"`
-	AllowNonProvisionableDevices             *bool    `ps:"AllowNonProvisionableDevices"`
-	AllowPOPIMAPEmail                        *bool    `ps:"AllowPOPIMAPEmail"`
-	AllowRemoteDesktop                       *bool    `ps:"AllowRemoteDesktop"`
-	AllowSimplePassword                      *bool    `ps:"AllowSimplePassword"`
-	AllowSMIMEEncryptionAlgorithmNegotiation any      `ps:"AllowSMIMEEncryptionAlgorithmNegotiation"` // SMIMEEncryptionAlgorithmNegotiationType
-	AllowSMIMESoftCerts                      *bool    `ps:"AllowSMIMESoftCerts"`
-	AllowStorageCard                         *bool    `ps:"AllowStorageCard"`
-	AllowTextMessaging                       *bool    `ps:"AllowTextMessaging"`
-	AllowUnsignedApplications                *bool    `ps:"AllowUnsignedApplications"`
-	AllowUnsignedInstallationPackages        *bool    `ps:"AllowUnsignedInstallationPackages"`
-	AllowWiFi                                *bool    `ps:"AllowWiFi"`
-	AlphanumericPasswordRequired             *bool    `ps:"AlphanumericPasswordRequired"`
-	ApprovedApplicationList                  []string `ps:"ApprovedApplicationList"`
-	AttachmentsEnabled                       *bool    `ps:"AttachmentsEnabled"`
-	DeviceEncryptionEnabled                  *bool    `ps:"DeviceEncryptionEnabled"`
-	DevicePolicyRefreshInterval              any      `ps:"DevicePolicyRefreshInterval"` // Unlimited
-	Identity                                 any      `ps:"Identity"`                    // MailboxPolicyIdParameter
-	IrmEnabled                               *bool    `ps:"IrmEnabled"`
-	IsDefault                                *bool    `ps:"IsDefault"`
-	MaxAttachmentSize                        any      `ps:"MaxAttachmentSize"`              // Unlimited
-	MaxCalendarAgeFilter                     any      `ps:"MaxCalendarAgeFilter"`           // CalendarAgeFilterType
-	MaxEmailAgeFilter                        any      `ps:"MaxEmailAgeFilter"`              // EmailAgeFilterType
-	MaxEmailBodyTruncationSize               any      `ps:"MaxEmailBodyTruncationSize"`     // Unlimited
-	MaxEmailHTMLBodyTruncationSize           any      `ps:"MaxEmailHTMLBodyTruncationSize"` // Unlimited
-	MaxInactivityTimeLock                    any      `ps:"MaxInactivityTimeLock"`          // Unlimited
-	MaxPasswordFailedAttempts                any      `ps:"MaxPasswordFailedAttempts"`      // Unlimited
-	MinPasswordComplexCharacters             *int64   `ps:"MinPasswordComplexCharacters"`
-	MinPasswordLength                        *int64   `ps:"MinPasswordLength"`
-	Name                                     string   `ps:"Name"`
-	PasswordEnabled                          *bool    `ps:"PasswordEnabled"`
-	PasswordExpiration                       any      `ps:"PasswordExpiration"` // Unlimited
-	PasswordHistory                          *int64   `ps:"PasswordHistory"`
-	PasswordRecoveryEnabled                  *bool    `ps:"PasswordRecoveryEnabled"`
-	RequireDeviceEncryption                  *bool    `ps:"RequireDeviceEncryption"`
-	RequireEncryptedSMIMEMessages            *bool    `ps:"RequireEncryptedSMIMEMessages"`
-	RequireEncryptionSMIMEAlgorithm          any      `ps:"RequireEncryptionSMIMEAlgorithm"` // EncryptionSMIMEAlgorithmType
-	RequireManualSyncWhenRoaming             *bool    `ps:"RequireManualSyncWhenRoaming"`
-	RequireSignedSMIMEAlgorithm              any      `ps:"RequireSignedSMIMEAlgorithm"` // SignedSMIMEAlgorithmType
-	RequireSignedSMIMEMessages               *bool    `ps:"RequireSignedSMIMEMessages"`
-	RequireStorageCardEncryption             *bool    `ps:"RequireStorageCardEncryption"`
-	UnapprovedInROMApplicationList           []string `ps:"UnapprovedInROMApplicationList"`
-	UNCAccessEnabled                         *bool    `ps:"UNCAccessEnabled"`
-	WSSAccessEnabled                         *bool    `ps:"WSSAccessEnabled"`
+	AllowApplePushNotifications              *bool                 `ps:"AllowApplePushNotifications"`
+	AllowBluetooth                           any                   `ps:"AllowBluetooth"` // BluetoothType
+	AllowBrowser                             *bool                 `ps:"AllowBrowser"`
+	AllowCamera                              *bool                 `ps:"AllowCamera"`
+	AllowConsumerEmail                       *bool                 `ps:"AllowConsumerEmail"`
+	AllowDesktopSync                         *bool                 `ps:"AllowDesktopSync"`
+	AllowExternalDeviceManagement            *bool                 `ps:"AllowExternalDeviceManagement"`
+	AllowGooglePushNotifications             *bool                 `ps:"AllowGooglePushNotifications"`
+	AllowHTMLEmail                           *bool                 `ps:"AllowHTMLEmail"`
+	AllowInternetSharing                     *bool                 `ps:"AllowInternetSharing"`
+	AllowIrDA                                *bool                 `ps:"AllowIrDA"`
+	AllowMicrosoftPushNotifications          *bool                 `ps:"AllowMicrosoftPushNotifications"`
+	AllowMobileOTAUpdate                     *bool                 `ps:"AllowMobileOTAUpdate"`
+	AllowNonProvisionableDevices             *bool                 `ps:"AllowNonProvisionableDevices"`
+	AllowPOPIMAPEmail                        *bool                 `ps:"AllowPOPIMAPEmail"`
+	AllowRemoteDesktop                       *bool                 `ps:"AllowRemoteDesktop"`
+	AllowSimplePassword                      *bool                 `ps:"AllowSimplePassword"`
+	AllowSMIMEEncryptionAlgorithmNegotiation any                   `ps:"AllowSMIMEEncryptionAlgorithmNegotiation"` // SMIMEEncryptionAlgorithmNegotiationType
+	AllowSMIMESoftCerts                      *bool                 `ps:"AllowSMIMESoftCerts"`
+	AllowStorageCard                         *bool                 `ps:"AllowStorageCard"`
+	AllowTextMessaging                       *bool                 `ps:"AllowTextMessaging"`
+	AllowUnsignedApplications                *bool                 `ps:"AllowUnsignedApplications"`
+	AllowUnsignedInstallationPackages        *bool                 `ps:"AllowUnsignedInstallationPackages"`
+	AllowWiFi                                *bool                 `ps:"AllowWiFi"`
+	AlphanumericPasswordRequired             *bool                 `ps:"AlphanumericPasswordRequired"`
+	ApprovedApplicationList                  []string              `ps:"ApprovedApplicationList"`
+	AttachmentsEnabled                       *bool                 `ps:"AttachmentsEnabled"`
+	DeviceEncryptionEnabled                  *bool                 `ps:"DeviceEncryptionEnabled"`
+	DevicePolicyRefreshInterval              any                   `ps:"DevicePolicyRefreshInterval"` // Unlimited
+	Identity                                 any                   `ps:"Identity"`                    // MailboxPolicyIdParameter
+	IrmEnabled                               *bool                 `ps:"IrmEnabled"`
+	IsDefault                                *bool                 `ps:"IsDefault"`
+	MaxAttachmentSize                        any                   `ps:"MaxAttachmentSize"`              // Unlimited
+	MaxCalendarAgeFilter                     any                   `ps:"MaxCalendarAgeFilter"`           // CalendarAgeFilterType
+	MaxEmailAgeFilter                        any                   `ps:"MaxEmailAgeFilter"`              // EmailAgeFilterType
+	MaxEmailBodyTruncationSize               any                   `ps:"MaxEmailBodyTruncationSize"`     // Unlimited
+	MaxEmailHTMLBodyTruncationSize           any                   `ps:"MaxEmailHTMLBodyTruncationSize"` // Unlimited
+	MaxInactivityTimeLock                    any                   `ps:"MaxInactivityTimeLock"`          // Unlimited
+	MaxPasswordFailedAttempts                any                   `ps:"MaxPasswordFailedAttempts"`      // Unlimited
+	MinPasswordComplexCharacters             *int64                `ps:"MinPasswordComplexCharacters"`
+	MinPasswordLength                        *int64                `ps:"MinPasswordLength"`
+	Name                                     string                `ps:"Name"`
+	PasswordEnabled                          *bool                 `ps:"PasswordEnabled"`
+	PasswordExpiration                       any                   `ps:"PasswordExpiration"` // Unlimited
+	PasswordHistory                          *int64                `ps:"PasswordHistory"`
+	PasswordRecoveryEnabled                  *bool                 `ps:"PasswordRecoveryEnabled"`
+	RequireDeviceEncryption                  *bool                 `ps:"RequireDeviceEncryption"`
+	RequireEncryptedSMIMEMessages            *bool                 `ps:"RequireEncryptedSMIMEMessages"`
+	RequireEncryptionSMIMEAlgorithm          any                   `ps:"RequireEncryptionSMIMEAlgorithm"` // EncryptionSMIMEAlgorithmType
+	RequireManualSyncWhenRoaming             *bool                 `ps:"RequireManualSyncWhenRoaming"`
+	RequireSignedSMIMEAlgorithm              any                   `ps:"RequireSignedSMIMEAlgorithm"` // SignedSMIMEAlgorithmType
+	RequireSignedSMIMEMessages               *bool                 `ps:"RequireSignedSMIMEMessages"`
+	RequireStorageCardEncryption             *bool                 `ps:"RequireStorageCardEncryption"`
+	UnapprovedInROMApplicationList           []string              `ps:"UnapprovedInROMApplicationList"`
+	UnapprovedInROMApplicationListDelta      *adminapi.StringDelta `ps:"UnapprovedInROMApplicationList"` // adds/removes values of UnapprovedInROMApplicationList; takes precedence over it
+	UNCAccessEnabled                         *bool                 `ps:"UNCAccessEnabled"`
+	WSSAccessEnabled                         *bool                 `ps:"WSSAccessEnabled"`
 }
 
 func (p SetMobileDeviceMailboxPolicyParams) params() map[string]any {
@@ -29974,7 +30596,9 @@ func (p SetMobileDeviceMailboxPolicyParams) params() map[string]any {
 	if p.RequireStorageCardEncryption != nil {
 		m["RequireStorageCardEncryption"] = *p.RequireStorageCardEncryption
 	}
-	if p.UnapprovedInROMApplicationList != nil {
+	if p.UnapprovedInROMApplicationListDelta != nil {
+		m["UnapprovedInROMApplicationList"] = *p.UnapprovedInROMApplicationListDelta
+	} else if p.UnapprovedInROMApplicationList != nil {
 		m["UnapprovedInROMApplicationList"] = p.UnapprovedInROMApplicationList
 	}
 	if p.UNCAccessEnabled != nil {
@@ -29994,24 +30618,25 @@ func (s *Service) SetMobileDeviceMailboxPolicy(ctx context.Context, p SetMobileD
 // SetMoveRequestParams are the parameters of Set-MoveRequest.
 // DefaultParameterSetName: Identity
 type SetMoveRequestParams struct {
-	AcceptLargeDataLoss        bool     `ps:"AcceptLargeDataLoss"`
-	BatchName                  string   `ps:"BatchName"`
-	CompleteAfter              any      `ps:"CompleteAfter"`            // DateTime
-	CompletedRequestAgeLimit   any      `ps:"CompletedRequestAgeLimit"` // Unlimited
-	Identity                   any      `ps:"Identity"`                 // MoveRequestIdParameter
-	IncrementalSyncInterval    any      `ps:"IncrementalSyncInterval"`  // TimeSpan
-	MoveOptions                []string `ps:"MoveOptions"`
-	PreventCompletion          *bool    `ps:"PreventCompletion"`
-	ProxyToMailbox             any      `ps:"ProxyToMailbox"`        // MailboxIdParameter
-	RemoteCredential           any      `ps:"RemoteCredential"`      // PSCredential
-	RemoteGlobalCatalog        any      `ps:"RemoteGlobalCatalog"`   // Fqdn
-	RemoteHostName             any      `ps:"RemoteHostName"`        // Fqdn
-	RequestExpiryInterval      any      `ps:"RequestExpiryInterval"` // Unlimited
-	SkipMoving                 []string `ps:"SkipMoving"`
-	SkippedItemApprovalTime    any      `ps:"SkippedItemApprovalTime"` // DateTime
-	SourceEndpoint             any      `ps:"SourceEndpoint"`          // MigrationEndpointIdParameter
-	StartAfter                 any      `ps:"StartAfter"`              // DateTime
-	SuspendWhenReadyToComplete *bool    `ps:"SuspendWhenReadyToComplete"`
+	AcceptLargeDataLoss        bool                  `ps:"AcceptLargeDataLoss"`
+	BatchName                  string                `ps:"BatchName"`
+	CompleteAfter              any                   `ps:"CompleteAfter"`            // DateTime
+	CompletedRequestAgeLimit   any                   `ps:"CompletedRequestAgeLimit"` // Unlimited
+	Identity                   any                   `ps:"Identity"`                 // MoveRequestIdParameter
+	IncrementalSyncInterval    any                   `ps:"IncrementalSyncInterval"`  // TimeSpan
+	MoveOptions                []string              `ps:"MoveOptions"`
+	MoveOptionsDelta           *adminapi.StringDelta `ps:"MoveOptions"` // adds/removes values of MoveOptions; takes precedence over it
+	PreventCompletion          *bool                 `ps:"PreventCompletion"`
+	ProxyToMailbox             any                   `ps:"ProxyToMailbox"`        // MailboxIdParameter
+	RemoteCredential           any                   `ps:"RemoteCredential"`      // PSCredential
+	RemoteGlobalCatalog        any                   `ps:"RemoteGlobalCatalog"`   // Fqdn
+	RemoteHostName             any                   `ps:"RemoteHostName"`        // Fqdn
+	RequestExpiryInterval      any                   `ps:"RequestExpiryInterval"` // Unlimited
+	SkipMoving                 []string              `ps:"SkipMoving"`
+	SkippedItemApprovalTime    any                   `ps:"SkippedItemApprovalTime"` // DateTime
+	SourceEndpoint             any                   `ps:"SourceEndpoint"`          // MigrationEndpointIdParameter
+	StartAfter                 any                   `ps:"StartAfter"`              // DateTime
+	SuspendWhenReadyToComplete *bool                 `ps:"SuspendWhenReadyToComplete"`
 }
 
 func (p SetMoveRequestParams) params() map[string]any {
@@ -30034,7 +30659,9 @@ func (p SetMoveRequestParams) params() map[string]any {
 	if p.IncrementalSyncInterval != nil {
 		m["IncrementalSyncInterval"] = p.IncrementalSyncInterval
 	}
-	if p.MoveOptions != nil {
+	if p.MoveOptionsDelta != nil {
+		m["MoveOptions"] = *p.MoveOptionsDelta
+	} else if p.MoveOptions != nil {
 		m["MoveOptions"] = p.MoveOptions
 	}
 	if p.PreventCompletion != nil {
@@ -30166,13 +30793,14 @@ func (s *Service) SetOMEMessageRevocation(ctx context.Context, p SetOMEMessageRe
 // SetOnPremisesOrganizationParams are the parameters of Set-OnPremisesOrganization.
 // DefaultParameterSetName: Identity
 type SetOnPremisesOrganizationParams struct {
-	Comment                  string   `ps:"Comment"`
-	HybridDomains            []string `ps:"HybridDomains"`
-	Identity                 any      `ps:"Identity"`         // OnPremisesOrganizationIdParameter
-	InboundConnector         any      `ps:"InboundConnector"` // InboundConnectorIdParameter
-	OrganizationName         string   `ps:"OrganizationName"`
-	OrganizationRelationship any      `ps:"OrganizationRelationship"` // OrganizationRelationshipIdParameter
-	OutboundConnector        any      `ps:"OutboundConnector"`        // OutboundConnectorIdParameter
+	Comment                  string                `ps:"Comment"`
+	HybridDomains            []string              `ps:"HybridDomains"`
+	HybridDomainsDelta       *adminapi.StringDelta `ps:"HybridDomains"`    // adds/removes values of HybridDomains; takes precedence over it
+	Identity                 any                   `ps:"Identity"`         // OnPremisesOrganizationIdParameter
+	InboundConnector         any                   `ps:"InboundConnector"` // InboundConnectorIdParameter
+	OrganizationName         string                `ps:"OrganizationName"`
+	OrganizationRelationship any                   `ps:"OrganizationRelationship"` // OrganizationRelationshipIdParameter
+	OutboundConnector        any                   `ps:"OutboundConnector"`        // OutboundConnectorIdParameter
 }
 
 func (p SetOnPremisesOrganizationParams) params() map[string]any {
@@ -30180,7 +30808,9 @@ func (p SetOnPremisesOrganizationParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.HybridDomains != nil {
+	if p.HybridDomainsDelta != nil {
+		m["HybridDomains"] = *p.HybridDomainsDelta
+	} else if p.HybridDomains != nil {
 		m["HybridDomains"] = p.HybridDomains
 	}
 	if p.Identity != nil {
@@ -30232,147 +30862,153 @@ func (s *Service) SetOrganization(ctx context.Context, p SetOrganizationParams) 
 // SetOrganizationConfigParams are the parameters of Set-OrganizationConfig.
 // DefaultParameterSetName: Identity
 type SetOrganizationConfigParams struct {
-	ActionableMessagesExtenalAccessTokenEnabled               *bool    `ps:"ActionableMessagesExtenalAccessTokenEnabled"`
-	ActivityBasedAuthenticationTimeoutEnabled                 *bool    `ps:"ActivityBasedAuthenticationTimeoutEnabled"`
-	ActivityBasedAuthenticationTimeoutInterval                any      `ps:"ActivityBasedAuthenticationTimeoutInterval"` // EnhancedTimeSpan
-	ActivityBasedAuthenticationTimeoutWithSingleSignOnEnabled *bool    `ps:"ActivityBasedAuthenticationTimeoutWithSingleSignOnEnabled"`
-	AppsForOfficeEnabled                                      *bool    `ps:"AppsForOfficeEnabled"`
-	AsyncSendEnabled                                          *bool    `ps:"AsyncSendEnabled"`
-	AuditDisabled                                             *bool    `ps:"AuditDisabled"`
-	AutoArchivingThresholdPercentage                          *int64   `ps:"AutoArchivingThresholdPercentage"`
-	AutodiscoverPartialDirSync                                *bool    `ps:"AutodiscoverPartialDirSync"`
-	AutoEnableArchiveMailbox                                  *bool    `ps:"AutoEnableArchiveMailbox"`
-	AutoExpandingArchive                                      bool     `ps:"AutoExpandingArchive"`
-	AutomaticForcedReadReceiptEnabled                         *bool    `ps:"AutomaticForcedReadReceiptEnabled"`
-	BlockMoveMessagesForGroupFolders                          *bool    `ps:"BlockMoveMessagesForGroupFolders"`
-	BookingsAddressEntryRestricted                            *bool    `ps:"BookingsAddressEntryRestricted"`
-	BookingsAuthEnabled                                       *bool    `ps:"BookingsAuthEnabled"`
-	BookingsBlockedWordsEnabled                               *bool    `ps:"BookingsBlockedWordsEnabled"`
-	BookingsCreationOfCustomQuestionsRestricted               *bool    `ps:"BookingsCreationOfCustomQuestionsRestricted"`
-	BookingsEnabled                                           *bool    `ps:"BookingsEnabled"`
-	BookingsExposureOfStaffDetailsRestricted                  *bool    `ps:"BookingsExposureOfStaffDetailsRestricted"`
-	BookingsMembershipApprovalRequired                        *bool    `ps:"BookingsMembershipApprovalRequired"`
-	BookingsNamingPolicyEnabled                               *bool    `ps:"BookingsNamingPolicyEnabled"`
-	BookingsNamingPolicyPrefix                                string   `ps:"BookingsNamingPolicyPrefix"`
-	BookingsNamingPolicyPrefixEnabled                         *bool    `ps:"BookingsNamingPolicyPrefixEnabled"`
-	BookingsNamingPolicySuffix                                string   `ps:"BookingsNamingPolicySuffix"`
-	BookingsNamingPolicySuffixEnabled                         *bool    `ps:"BookingsNamingPolicySuffixEnabled"`
-	BookingsNotesEntryRestricted                              *bool    `ps:"BookingsNotesEntryRestricted"`
-	BookingsPaymentsEnabled                                   *bool    `ps:"BookingsPaymentsEnabled"`
-	BookingsPhoneNumberEntryRestricted                        *bool    `ps:"BookingsPhoneNumberEntryRestricted"`
-	BookingsSearchEngineIndexDisabled                         *bool    `ps:"BookingsSearchEngineIndexDisabled"`
-	BookingsSmsMicrosoftEnabled                               *bool    `ps:"BookingsSmsMicrosoftEnabled"`
-	BookingsSocialSharingRestricted                           *bool    `ps:"BookingsSocialSharingRestricted"`
-	ByteEncoderTypeFor7BitCharsets                            *int64   `ps:"ByteEncoderTypeFor7BitCharsets"`
-	CalendarVersionStoreEnabled                               *bool    `ps:"CalendarVersionStoreEnabled"`
-	ComplianceMLBgdCrawlEnabled                               *bool    `ps:"ComplianceMLBgdCrawlEnabled"`
-	ConnectorsActionableMessagesEnabled                       *bool    `ps:"ConnectorsActionableMessagesEnabled"`
-	ConnectorsEnabled                                         *bool    `ps:"ConnectorsEnabled"`
-	ConnectorsEnabledForOutlook                               *bool    `ps:"ConnectorsEnabledForOutlook"`
-	ConnectorsEnabledForSharepoint                            *bool    `ps:"ConnectorsEnabledForSharepoint"`
-	ConnectorsEnabledForTeams                                 *bool    `ps:"ConnectorsEnabledForTeams"`
-	ConnectorsEnabledForYammer                                *bool    `ps:"ConnectorsEnabledForYammer"`
-	CustomerLockboxEnabled                                    *bool    `ps:"CustomerLockboxEnabled"`
-	DefaultAuthenticationPolicy                               any      `ps:"DefaultAuthenticationPolicy"` // AuthPolicyIdParameter
-	DefaultFolderPermissionRestricted                         *bool    `ps:"DefaultFolderPermissionRestricted"`
-	DefaultGroupAccessType                                    any      `ps:"DefaultGroupAccessType"` // ModernGroupObjectType
-	DefaultMinutesToReduceLongEventsBy                        *int64   `ps:"DefaultMinutesToReduceLongEventsBy"`
-	DefaultMinutesToReduceShortEventsBy                       *int64   `ps:"DefaultMinutesToReduceShortEventsBy"`
-	DefaultPublicFolderAgeLimit                               any      `ps:"DefaultPublicFolderAgeLimit"`             // EnhancedTimeSpan
-	DefaultPublicFolderDeletedItemRetention                   any      `ps:"DefaultPublicFolderDeletedItemRetention"` // EnhancedTimeSpan
-	DefaultPublicFolderIssueWarningQuota                      any      `ps:"DefaultPublicFolderIssueWarningQuota"`    // Unlimited
-	DefaultPublicFolderMaxItemSize                            any      `ps:"DefaultPublicFolderMaxItemSize"`          // Unlimited
-	DefaultPublicFolderMovedItemRetention                     any      `ps:"DefaultPublicFolderMovedItemRetention"`   // EnhancedTimeSpan
-	DefaultPublicFolderProhibitPostQuota                      any      `ps:"DefaultPublicFolderProhibitPostQuota"`    // Unlimited
-	DelayedDelicensingEnabled                                 *bool    `ps:"DelayedDelicensingEnabled"`
-	DirectReportsGroupAutoCreationEnabled                     *bool    `ps:"DirectReportsGroupAutoCreationEnabled"`
-	DisablePlusAddressInRecipients                            *bool    `ps:"DisablePlusAddressInRecipients"`
-	DistributionGroupDefaultOU                                any      `ps:"DistributionGroupDefaultOU"` // OrganizationalUnitIdParameter
-	DistributionGroupNameBlockedWordsList                     []string `ps:"DistributionGroupNameBlockedWordsList"`
-	DistributionGroupNamingPolicy                             any      `ps:"DistributionGroupNamingPolicy"` // DistributionGroupNamingPolicy
-	DLPViaDcsEnabled                                          *bool    `ps:"DLPViaDcsEnabled"`
-	DLPWaitOnSendEnabled                                      *bool    `ps:"DLPWaitOnSendEnabled"`
-	DLPWaitOnSendTimeout                                      *int64   `ps:"DLPWaitOnSendTimeout"`
-	ElcProcessingDisabled                                     *bool    `ps:"ElcProcessingDisabled"`
-	EnableForwardingAddressSyncForMailboxes                   *bool    `ps:"EnableForwardingAddressSyncForMailboxes"`
-	EnableOutlookEvents                                       *bool    `ps:"EnableOutlookEvents"`
-	EndUserDLUpgradeFlowsDisabled                             *bool    `ps:"EndUserDLUpgradeFlowsDisabled"`
-	EndUserMailNotificationForDelayedDelicensingEnabled       *bool    `ps:"EndUserMailNotificationForDelayedDelicensingEnabled"`
-	EnforceExoAppRbacPermissions                              *bool    `ps:"EnforceExoAppRbacPermissions"`
-	EnforceShortenEventSetting                                bool     `ps:"EnforceShortenEventSetting"`
-	EwsAllowedAppIDs                                          string   `ps:"EwsAllowedAppIDs"`
-	EwsAllowEntourage                                         *bool    `ps:"EwsAllowEntourage"`
-	EwsAllowList                                              []string `ps:"EwsAllowList"`
-	EwsAllowMacOutlook                                        *bool    `ps:"EwsAllowMacOutlook"`
-	EwsAllowOutlook                                           *bool    `ps:"EwsAllowOutlook"`
-	EwsApplicationAccessPolicy                                any      `ps:"EwsApplicationAccessPolicy"` // EwsApplicationAccessPolicy
-	EwsBlockList                                              []string `ps:"EwsBlockList"`
-	EwsEnabled                                                *bool    `ps:"EwsEnabled"`
-	ExchangeAttributesCloudManagedByDefault                   bool     `ps:"ExchangeAttributesCloudManagedByDefault"`
-	ExchangeAttributesServerManagedByDefault                  bool     `ps:"ExchangeAttributesServerManagedByDefault"`
-	ExchangeNotificationEnabled                               *bool    `ps:"ExchangeNotificationEnabled"`
-	ExchangeNotificationRecipients                            []string `ps:"ExchangeNotificationRecipients"`
-	FindTimeAttendeeAuthenticationEnabled                     *bool    `ps:"FindTimeAttendeeAuthenticationEnabled"`
-	FindTimeAutoScheduleDisabled                              *bool    `ps:"FindTimeAutoScheduleDisabled"`
-	FindTimeLockPollForAttendeesEnabled                       *bool    `ps:"FindTimeLockPollForAttendeesEnabled"`
-	FindTimeOnlineMeetingOptionDisabled                       *bool    `ps:"FindTimeOnlineMeetingOptionDisabled"`
-	FocusedInboxOn                                            *bool    `ps:"FocusedInboxOn"`
-	HierarchicalAddressBookRoot                               any      `ps:"HierarchicalAddressBookRoot"` // UserContactGroupIdParameter
-	HybridRSVPEnabled                                         *bool    `ps:"HybridRSVPEnabled"`
-	InRegionRoutingEnabled                                    *bool    `ps:"InRegionRoutingEnabled"`
-	IPListBlocked                                             []string `ps:"IPListBlocked"`
-	IsAgendaMailEnabled                                       *bool    `ps:"IsAgendaMailEnabled"`
-	IsGroupFoldersAndRulesEnabled                             *bool    `ps:"IsGroupFoldersAndRulesEnabled"`
-	IsGroupMemberAllowedToEditContent                         *bool    `ps:"IsGroupMemberAllowedToEditContent"`
-	LeanPopoutEnabled                                         *bool    `ps:"LeanPopoutEnabled"`
-	LinkPreviewEnabled                                        *bool    `ps:"LinkPreviewEnabled"`
-	MailTipsAllTipsEnabled                                    *bool    `ps:"MailTipsAllTipsEnabled"`
-	MailTipsExternalRecipientsTipsEnabled                     *bool    `ps:"MailTipsExternalRecipientsTipsEnabled"`
-	MailTipsGroupMetricsEnabled                               *bool    `ps:"MailTipsGroupMetricsEnabled"`
-	MailTipsLargeAudienceThreshold                            *int64   `ps:"MailTipsLargeAudienceThreshold"`
-	MailTipsMailboxSourcedTipsEnabled                         *bool    `ps:"MailTipsMailboxSourcedTipsEnabled"`
-	MaskClientIpInReceivedHeadersEnabled                      *bool    `ps:"MaskClientIpInReceivedHeadersEnabled"`
-	MatchSenderOrganizerProperties                            *bool    `ps:"MatchSenderOrganizerProperties"`
-	MessageHighlightsEnabled                                  *bool    `ps:"MessageHighlightsEnabled"`
-	MessageRecallAlertRecipientsEnabled                       *bool    `ps:"MessageRecallAlertRecipientsEnabled"`
-	MessageRecallAlertRecipientsReadMessagesOnlyEnabled       *bool    `ps:"MessageRecallAlertRecipientsReadMessagesOnlyEnabled"`
-	MessageRecallEnabled                                      *bool    `ps:"MessageRecallEnabled"`
-	MessageRecallMaxRecallableAge                             any      `ps:"MessageRecallMaxRecallableAge"` // Microsoft.Exchange.Data.EnhancedTimeSpan
-	MessageRemindersEnabled                                   *bool    `ps:"MessageRemindersEnabled"`
-	MobileAppEducationEnabled                                 *bool    `ps:"MobileAppEducationEnabled"`
-	OAuth2ClientProfileEnabled                                *bool    `ps:"OAuth2ClientProfileEnabled"`
-	OnlineMeetingsByDefaultEnabled                            *bool    `ps:"OnlineMeetingsByDefaultEnabled"`
-	OutlookGifPickerDisabled                                  *bool    `ps:"OutlookGifPickerDisabled"`
-	OutlookMobileGCCRestrictionsEnabled                       *bool    `ps:"OutlookMobileGCCRestrictionsEnabled"`
-	OutlookMobileHelpShiftEnabled                             *bool    `ps:"OutlookMobileHelpShiftEnabled"`
-	OutlookMobileSingleAccountEnabled                         *bool    `ps:"OutlookMobileSingleAccountEnabled"`
-	OutlookPayEnabled                                         *bool    `ps:"OutlookPayEnabled"`
-	OutlookTextPredictionDisabled                             *bool    `ps:"OutlookTextPredictionDisabled"`
-	PerTenantSwitchToESTSEnabled                              *bool    `ps:"PerTenantSwitchToESTSEnabled"`
-	PostponeRoamingSignaturesUntilLater                       *bool    `ps:"PostponeRoamingSignaturesUntilLater"`
-	PreferredInternetCodePageForShiftJis                      *int64   `ps:"PreferredInternetCodePageForShiftJis"`
-	PublicComputersDetectionEnabled                           *bool    `ps:"PublicComputersDetectionEnabled"`
-	PublicFoldersEnabled                                      any      `ps:"PublicFoldersEnabled"` // PublicFoldersDeployment
-	PublicFolderShowClientControl                             *bool    `ps:"PublicFolderShowClientControl"`
-	ReadTrackingEnabled                                       *bool    `ps:"ReadTrackingEnabled"`
-	RecallReadMessagesEnabled                                 *bool    `ps:"RecallReadMessagesEnabled"`
-	RecipientDelimiters                                       *bool    `ps:"RecipientDelimiters"`
-	RefreshSessionEnabled                                     *bool    `ps:"RefreshSessionEnabled"`
-	RejectDirectSend                                          *bool    `ps:"RejectDirectSend"`
-	RemotePublicFolderMailboxes                               []string `ps:"RemotePublicFolderMailboxes"`
-	RequiredCharsetCoverage                                   *int64   `ps:"RequiredCharsetCoverage"`
-	SendFromAliasEnabled                                      *bool    `ps:"SendFromAliasEnabled"`
-	SharedDomainEmailAddressFlowEnabled                       *bool    `ps:"SharedDomainEmailAddressFlowEnabled"`
-	ShortenEventScopeDefault                                  any      `ps:"ShortenEventScopeDefault"` // ShortenEventScopeMode
-	SiteMailboxCreationURL                                    any      `ps:"SiteMailboxCreationURL"`   // Uri
-	SmtpActionableMessagesEnabled                             *bool    `ps:"SmtpActionableMessagesEnabled"`
-	TenantAdminNotificationForDelayedDelicensingEnabled       *bool    `ps:"TenantAdminNotificationForDelayedDelicensingEnabled"`
-	TwoClickMailPreviewEnabled                                *bool    `ps:"TwoClickMailPreviewEnabled"`
-	UnblockUnsafeSenderPromptEnabled                          *bool    `ps:"UnblockUnsafeSenderPromptEnabled"`
-	VisibleMeetingUpdateProperties                            string   `ps:"VisibleMeetingUpdateProperties"`
-	WebPushNotificationsDisabled                              *bool    `ps:"WebPushNotificationsDisabled"`
-	WebSuggestedRepliesDisabled                               *bool    `ps:"WebSuggestedRepliesDisabled"`
-	WorkspaceTenantEnabled                                    *bool    `ps:"WorkspaceTenantEnabled"`
+	ActionableMessagesExtenalAccessTokenEnabled               *bool                 `ps:"ActionableMessagesExtenalAccessTokenEnabled"`
+	ActivityBasedAuthenticationTimeoutEnabled                 *bool                 `ps:"ActivityBasedAuthenticationTimeoutEnabled"`
+	ActivityBasedAuthenticationTimeoutInterval                any                   `ps:"ActivityBasedAuthenticationTimeoutInterval"` // EnhancedTimeSpan
+	ActivityBasedAuthenticationTimeoutWithSingleSignOnEnabled *bool                 `ps:"ActivityBasedAuthenticationTimeoutWithSingleSignOnEnabled"`
+	AppsForOfficeEnabled                                      *bool                 `ps:"AppsForOfficeEnabled"`
+	AsyncSendEnabled                                          *bool                 `ps:"AsyncSendEnabled"`
+	AuditDisabled                                             *bool                 `ps:"AuditDisabled"`
+	AutoArchivingThresholdPercentage                          *int64                `ps:"AutoArchivingThresholdPercentage"`
+	AutodiscoverPartialDirSync                                *bool                 `ps:"AutodiscoverPartialDirSync"`
+	AutoEnableArchiveMailbox                                  *bool                 `ps:"AutoEnableArchiveMailbox"`
+	AutoExpandingArchive                                      bool                  `ps:"AutoExpandingArchive"`
+	AutomaticForcedReadReceiptEnabled                         *bool                 `ps:"AutomaticForcedReadReceiptEnabled"`
+	BlockMoveMessagesForGroupFolders                          *bool                 `ps:"BlockMoveMessagesForGroupFolders"`
+	BookingsAddressEntryRestricted                            *bool                 `ps:"BookingsAddressEntryRestricted"`
+	BookingsAuthEnabled                                       *bool                 `ps:"BookingsAuthEnabled"`
+	BookingsBlockedWordsEnabled                               *bool                 `ps:"BookingsBlockedWordsEnabled"`
+	BookingsCreationOfCustomQuestionsRestricted               *bool                 `ps:"BookingsCreationOfCustomQuestionsRestricted"`
+	BookingsEnabled                                           *bool                 `ps:"BookingsEnabled"`
+	BookingsExposureOfStaffDetailsRestricted                  *bool                 `ps:"BookingsExposureOfStaffDetailsRestricted"`
+	BookingsMembershipApprovalRequired                        *bool                 `ps:"BookingsMembershipApprovalRequired"`
+	BookingsNamingPolicyEnabled                               *bool                 `ps:"BookingsNamingPolicyEnabled"`
+	BookingsNamingPolicyPrefix                                string                `ps:"BookingsNamingPolicyPrefix"`
+	BookingsNamingPolicyPrefixEnabled                         *bool                 `ps:"BookingsNamingPolicyPrefixEnabled"`
+	BookingsNamingPolicySuffix                                string                `ps:"BookingsNamingPolicySuffix"`
+	BookingsNamingPolicySuffixEnabled                         *bool                 `ps:"BookingsNamingPolicySuffixEnabled"`
+	BookingsNotesEntryRestricted                              *bool                 `ps:"BookingsNotesEntryRestricted"`
+	BookingsPaymentsEnabled                                   *bool                 `ps:"BookingsPaymentsEnabled"`
+	BookingsPhoneNumberEntryRestricted                        *bool                 `ps:"BookingsPhoneNumberEntryRestricted"`
+	BookingsSearchEngineIndexDisabled                         *bool                 `ps:"BookingsSearchEngineIndexDisabled"`
+	BookingsSmsMicrosoftEnabled                               *bool                 `ps:"BookingsSmsMicrosoftEnabled"`
+	BookingsSocialSharingRestricted                           *bool                 `ps:"BookingsSocialSharingRestricted"`
+	ByteEncoderTypeFor7BitCharsets                            *int64                `ps:"ByteEncoderTypeFor7BitCharsets"`
+	CalendarVersionStoreEnabled                               *bool                 `ps:"CalendarVersionStoreEnabled"`
+	ComplianceMLBgdCrawlEnabled                               *bool                 `ps:"ComplianceMLBgdCrawlEnabled"`
+	ConnectorsActionableMessagesEnabled                       *bool                 `ps:"ConnectorsActionableMessagesEnabled"`
+	ConnectorsEnabled                                         *bool                 `ps:"ConnectorsEnabled"`
+	ConnectorsEnabledForOutlook                               *bool                 `ps:"ConnectorsEnabledForOutlook"`
+	ConnectorsEnabledForSharepoint                            *bool                 `ps:"ConnectorsEnabledForSharepoint"`
+	ConnectorsEnabledForTeams                                 *bool                 `ps:"ConnectorsEnabledForTeams"`
+	ConnectorsEnabledForYammer                                *bool                 `ps:"ConnectorsEnabledForYammer"`
+	CustomerLockboxEnabled                                    *bool                 `ps:"CustomerLockboxEnabled"`
+	DefaultAuthenticationPolicy                               any                   `ps:"DefaultAuthenticationPolicy"` // AuthPolicyIdParameter
+	DefaultFolderPermissionRestricted                         *bool                 `ps:"DefaultFolderPermissionRestricted"`
+	DefaultGroupAccessType                                    any                   `ps:"DefaultGroupAccessType"` // ModernGroupObjectType
+	DefaultMinutesToReduceLongEventsBy                        *int64                `ps:"DefaultMinutesToReduceLongEventsBy"`
+	DefaultMinutesToReduceShortEventsBy                       *int64                `ps:"DefaultMinutesToReduceShortEventsBy"`
+	DefaultPublicFolderAgeLimit                               any                   `ps:"DefaultPublicFolderAgeLimit"`             // EnhancedTimeSpan
+	DefaultPublicFolderDeletedItemRetention                   any                   `ps:"DefaultPublicFolderDeletedItemRetention"` // EnhancedTimeSpan
+	DefaultPublicFolderIssueWarningQuota                      any                   `ps:"DefaultPublicFolderIssueWarningQuota"`    // Unlimited
+	DefaultPublicFolderMaxItemSize                            any                   `ps:"DefaultPublicFolderMaxItemSize"`          // Unlimited
+	DefaultPublicFolderMovedItemRetention                     any                   `ps:"DefaultPublicFolderMovedItemRetention"`   // EnhancedTimeSpan
+	DefaultPublicFolderProhibitPostQuota                      any                   `ps:"DefaultPublicFolderProhibitPostQuota"`    // Unlimited
+	DelayedDelicensingEnabled                                 *bool                 `ps:"DelayedDelicensingEnabled"`
+	DirectReportsGroupAutoCreationEnabled                     *bool                 `ps:"DirectReportsGroupAutoCreationEnabled"`
+	DisablePlusAddressInRecipients                            *bool                 `ps:"DisablePlusAddressInRecipients"`
+	DistributionGroupDefaultOU                                any                   `ps:"DistributionGroupDefaultOU"` // OrganizationalUnitIdParameter
+	DistributionGroupNameBlockedWordsList                     []string              `ps:"DistributionGroupNameBlockedWordsList"`
+	DistributionGroupNameBlockedWordsListDelta                *adminapi.StringDelta `ps:"DistributionGroupNameBlockedWordsList"` // adds/removes values of DistributionGroupNameBlockedWordsList; takes precedence over it
+	DistributionGroupNamingPolicy                             any                   `ps:"DistributionGroupNamingPolicy"`         // DistributionGroupNamingPolicy
+	DLPViaDcsEnabled                                          *bool                 `ps:"DLPViaDcsEnabled"`
+	DLPWaitOnSendEnabled                                      *bool                 `ps:"DLPWaitOnSendEnabled"`
+	DLPWaitOnSendTimeout                                      *int64                `ps:"DLPWaitOnSendTimeout"`
+	ElcProcessingDisabled                                     *bool                 `ps:"ElcProcessingDisabled"`
+	EnableForwardingAddressSyncForMailboxes                   *bool                 `ps:"EnableForwardingAddressSyncForMailboxes"`
+	EnableOutlookEvents                                       *bool                 `ps:"EnableOutlookEvents"`
+	EndUserDLUpgradeFlowsDisabled                             *bool                 `ps:"EndUserDLUpgradeFlowsDisabled"`
+	EndUserMailNotificationForDelayedDelicensingEnabled       *bool                 `ps:"EndUserMailNotificationForDelayedDelicensingEnabled"`
+	EnforceExoAppRbacPermissions                              *bool                 `ps:"EnforceExoAppRbacPermissions"`
+	EnforceShortenEventSetting                                bool                  `ps:"EnforceShortenEventSetting"`
+	EwsAllowedAppIDs                                          string                `ps:"EwsAllowedAppIDs"`
+	EwsAllowEntourage                                         *bool                 `ps:"EwsAllowEntourage"`
+	EwsAllowList                                              []string              `ps:"EwsAllowList"`
+	EwsAllowListDelta                                         *adminapi.StringDelta `ps:"EwsAllowList"` // adds/removes values of EwsAllowList; takes precedence over it
+	EwsAllowMacOutlook                                        *bool                 `ps:"EwsAllowMacOutlook"`
+	EwsAllowOutlook                                           *bool                 `ps:"EwsAllowOutlook"`
+	EwsApplicationAccessPolicy                                any                   `ps:"EwsApplicationAccessPolicy"` // EwsApplicationAccessPolicy
+	EwsBlockList                                              []string              `ps:"EwsBlockList"`
+	EwsBlockListDelta                                         *adminapi.StringDelta `ps:"EwsBlockList"` // adds/removes values of EwsBlockList; takes precedence over it
+	EwsEnabled                                                *bool                 `ps:"EwsEnabled"`
+	ExchangeAttributesCloudManagedByDefault                   bool                  `ps:"ExchangeAttributesCloudManagedByDefault"`
+	ExchangeAttributesServerManagedByDefault                  bool                  `ps:"ExchangeAttributesServerManagedByDefault"`
+	ExchangeNotificationEnabled                               *bool                 `ps:"ExchangeNotificationEnabled"`
+	ExchangeNotificationRecipients                            []string              `ps:"ExchangeNotificationRecipients"`
+	ExchangeNotificationRecipientsDelta                       *adminapi.StringDelta `ps:"ExchangeNotificationRecipients"` // adds/removes values of ExchangeNotificationRecipients; takes precedence over it
+	FindTimeAttendeeAuthenticationEnabled                     *bool                 `ps:"FindTimeAttendeeAuthenticationEnabled"`
+	FindTimeAutoScheduleDisabled                              *bool                 `ps:"FindTimeAutoScheduleDisabled"`
+	FindTimeLockPollForAttendeesEnabled                       *bool                 `ps:"FindTimeLockPollForAttendeesEnabled"`
+	FindTimeOnlineMeetingOptionDisabled                       *bool                 `ps:"FindTimeOnlineMeetingOptionDisabled"`
+	FocusedInboxOn                                            *bool                 `ps:"FocusedInboxOn"`
+	HierarchicalAddressBookRoot                               any                   `ps:"HierarchicalAddressBookRoot"` // UserContactGroupIdParameter
+	HybridRSVPEnabled                                         *bool                 `ps:"HybridRSVPEnabled"`
+	InRegionRoutingEnabled                                    *bool                 `ps:"InRegionRoutingEnabled"`
+	IPListBlocked                                             []string              `ps:"IPListBlocked"`
+	IPListBlockedDelta                                        *adminapi.StringDelta `ps:"IPListBlocked"` // adds/removes values of IPListBlocked; takes precedence over it
+	IsAgendaMailEnabled                                       *bool                 `ps:"IsAgendaMailEnabled"`
+	IsGroupFoldersAndRulesEnabled                             *bool                 `ps:"IsGroupFoldersAndRulesEnabled"`
+	IsGroupMemberAllowedToEditContent                         *bool                 `ps:"IsGroupMemberAllowedToEditContent"`
+	LeanPopoutEnabled                                         *bool                 `ps:"LeanPopoutEnabled"`
+	LinkPreviewEnabled                                        *bool                 `ps:"LinkPreviewEnabled"`
+	MailTipsAllTipsEnabled                                    *bool                 `ps:"MailTipsAllTipsEnabled"`
+	MailTipsExternalRecipientsTipsEnabled                     *bool                 `ps:"MailTipsExternalRecipientsTipsEnabled"`
+	MailTipsGroupMetricsEnabled                               *bool                 `ps:"MailTipsGroupMetricsEnabled"`
+	MailTipsLargeAudienceThreshold                            *int64                `ps:"MailTipsLargeAudienceThreshold"`
+	MailTipsMailboxSourcedTipsEnabled                         *bool                 `ps:"MailTipsMailboxSourcedTipsEnabled"`
+	MaskClientIpInReceivedHeadersEnabled                      *bool                 `ps:"MaskClientIpInReceivedHeadersEnabled"`
+	MatchSenderOrganizerProperties                            *bool                 `ps:"MatchSenderOrganizerProperties"`
+	MessageHighlightsEnabled                                  *bool                 `ps:"MessageHighlightsEnabled"`
+	MessageRecallAlertRecipientsEnabled                       *bool                 `ps:"MessageRecallAlertRecipientsEnabled"`
+	MessageRecallAlertRecipientsReadMessagesOnlyEnabled       *bool                 `ps:"MessageRecallAlertRecipientsReadMessagesOnlyEnabled"`
+	MessageRecallEnabled                                      *bool                 `ps:"MessageRecallEnabled"`
+	MessageRecallMaxRecallableAge                             any                   `ps:"MessageRecallMaxRecallableAge"` // Microsoft.Exchange.Data.EnhancedTimeSpan
+	MessageRemindersEnabled                                   *bool                 `ps:"MessageRemindersEnabled"`
+	MobileAppEducationEnabled                                 *bool                 `ps:"MobileAppEducationEnabled"`
+	OAuth2ClientProfileEnabled                                *bool                 `ps:"OAuth2ClientProfileEnabled"`
+	OnlineMeetingsByDefaultEnabled                            *bool                 `ps:"OnlineMeetingsByDefaultEnabled"`
+	OutlookGifPickerDisabled                                  *bool                 `ps:"OutlookGifPickerDisabled"`
+	OutlookMobileGCCRestrictionsEnabled                       *bool                 `ps:"OutlookMobileGCCRestrictionsEnabled"`
+	OutlookMobileHelpShiftEnabled                             *bool                 `ps:"OutlookMobileHelpShiftEnabled"`
+	OutlookMobileSingleAccountEnabled                         *bool                 `ps:"OutlookMobileSingleAccountEnabled"`
+	OutlookPayEnabled                                         *bool                 `ps:"OutlookPayEnabled"`
+	OutlookTextPredictionDisabled                             *bool                 `ps:"OutlookTextPredictionDisabled"`
+	PerTenantSwitchToESTSEnabled                              *bool                 `ps:"PerTenantSwitchToESTSEnabled"`
+	PostponeRoamingSignaturesUntilLater                       *bool                 `ps:"PostponeRoamingSignaturesUntilLater"`
+	PreferredInternetCodePageForShiftJis                      *int64                `ps:"PreferredInternetCodePageForShiftJis"`
+	PublicComputersDetectionEnabled                           *bool                 `ps:"PublicComputersDetectionEnabled"`
+	PublicFoldersEnabled                                      any                   `ps:"PublicFoldersEnabled"` // PublicFoldersDeployment
+	PublicFolderShowClientControl                             *bool                 `ps:"PublicFolderShowClientControl"`
+	ReadTrackingEnabled                                       *bool                 `ps:"ReadTrackingEnabled"`
+	RecallReadMessagesEnabled                                 *bool                 `ps:"RecallReadMessagesEnabled"`
+	RecipientDelimiters                                       *bool                 `ps:"RecipientDelimiters"`
+	RefreshSessionEnabled                                     *bool                 `ps:"RefreshSessionEnabled"`
+	RejectDirectSend                                          *bool                 `ps:"RejectDirectSend"`
+	RemotePublicFolderMailboxes                               []string              `ps:"RemotePublicFolderMailboxes"`
+	RemotePublicFolderMailboxesDelta                          *adminapi.StringDelta `ps:"RemotePublicFolderMailboxes"` // adds/removes values of RemotePublicFolderMailboxes; takes precedence over it
+	RequiredCharsetCoverage                                   *int64                `ps:"RequiredCharsetCoverage"`
+	SendFromAliasEnabled                                      *bool                 `ps:"SendFromAliasEnabled"`
+	SharedDomainEmailAddressFlowEnabled                       *bool                 `ps:"SharedDomainEmailAddressFlowEnabled"`
+	ShortenEventScopeDefault                                  any                   `ps:"ShortenEventScopeDefault"` // ShortenEventScopeMode
+	SiteMailboxCreationURL                                    any                   `ps:"SiteMailboxCreationURL"`   // Uri
+	SmtpActionableMessagesEnabled                             *bool                 `ps:"SmtpActionableMessagesEnabled"`
+	TenantAdminNotificationForDelayedDelicensingEnabled       *bool                 `ps:"TenantAdminNotificationForDelayedDelicensingEnabled"`
+	TwoClickMailPreviewEnabled                                *bool                 `ps:"TwoClickMailPreviewEnabled"`
+	UnblockUnsafeSenderPromptEnabled                          *bool                 `ps:"UnblockUnsafeSenderPromptEnabled"`
+	VisibleMeetingUpdateProperties                            string                `ps:"VisibleMeetingUpdateProperties"`
+	WebPushNotificationsDisabled                              *bool                 `ps:"WebPushNotificationsDisabled"`
+	WebSuggestedRepliesDisabled                               *bool                 `ps:"WebSuggestedRepliesDisabled"`
+	WorkspaceTenantEnabled                                    *bool                 `ps:"WorkspaceTenantEnabled"`
 }
 
 func (p SetOrganizationConfigParams) params() map[string]any {
@@ -30545,7 +31181,9 @@ func (p SetOrganizationConfigParams) params() map[string]any {
 	if p.DistributionGroupDefaultOU != nil {
 		m["DistributionGroupDefaultOU"] = p.DistributionGroupDefaultOU
 	}
-	if p.DistributionGroupNameBlockedWordsList != nil {
+	if p.DistributionGroupNameBlockedWordsListDelta != nil {
+		m["DistributionGroupNameBlockedWordsList"] = *p.DistributionGroupNameBlockedWordsListDelta
+	} else if p.DistributionGroupNameBlockedWordsList != nil {
 		m["DistributionGroupNameBlockedWordsList"] = p.DistributionGroupNameBlockedWordsList
 	}
 	if p.DistributionGroupNamingPolicy != nil {
@@ -30587,7 +31225,9 @@ func (p SetOrganizationConfigParams) params() map[string]any {
 	if p.EwsAllowEntourage != nil {
 		m["EwsAllowEntourage"] = *p.EwsAllowEntourage
 	}
-	if p.EwsAllowList != nil {
+	if p.EwsAllowListDelta != nil {
+		m["EwsAllowList"] = *p.EwsAllowListDelta
+	} else if p.EwsAllowList != nil {
 		m["EwsAllowList"] = p.EwsAllowList
 	}
 	if p.EwsAllowMacOutlook != nil {
@@ -30599,7 +31239,9 @@ func (p SetOrganizationConfigParams) params() map[string]any {
 	if p.EwsApplicationAccessPolicy != nil {
 		m["EwsApplicationAccessPolicy"] = p.EwsApplicationAccessPolicy
 	}
-	if p.EwsBlockList != nil {
+	if p.EwsBlockListDelta != nil {
+		m["EwsBlockList"] = *p.EwsBlockListDelta
+	} else if p.EwsBlockList != nil {
 		m["EwsBlockList"] = p.EwsBlockList
 	}
 	if p.EwsEnabled != nil {
@@ -30614,7 +31256,9 @@ func (p SetOrganizationConfigParams) params() map[string]any {
 	if p.ExchangeNotificationEnabled != nil {
 		m["ExchangeNotificationEnabled"] = *p.ExchangeNotificationEnabled
 	}
-	if p.ExchangeNotificationRecipients != nil {
+	if p.ExchangeNotificationRecipientsDelta != nil {
+		m["ExchangeNotificationRecipients"] = *p.ExchangeNotificationRecipientsDelta
+	} else if p.ExchangeNotificationRecipients != nil {
 		m["ExchangeNotificationRecipients"] = p.ExchangeNotificationRecipients
 	}
 	if p.FindTimeAttendeeAuthenticationEnabled != nil {
@@ -30641,7 +31285,9 @@ func (p SetOrganizationConfigParams) params() map[string]any {
 	if p.InRegionRoutingEnabled != nil {
 		m["InRegionRoutingEnabled"] = *p.InRegionRoutingEnabled
 	}
-	if p.IPListBlocked != nil {
+	if p.IPListBlockedDelta != nil {
+		m["IPListBlocked"] = *p.IPListBlockedDelta
+	} else if p.IPListBlocked != nil {
 		m["IPListBlocked"] = p.IPListBlocked
 	}
 	if p.IsAgendaMailEnabled != nil {
@@ -30758,7 +31404,9 @@ func (p SetOrganizationConfigParams) params() map[string]any {
 	if p.RejectDirectSend != nil {
 		m["RejectDirectSend"] = *p.RejectDirectSend
 	}
-	if p.RemotePublicFolderMailboxes != nil {
+	if p.RemotePublicFolderMailboxesDelta != nil {
+		m["RemotePublicFolderMailboxes"] = *p.RemotePublicFolderMailboxesDelta
+	} else if p.RemotePublicFolderMailboxes != nil {
 		m["RemotePublicFolderMailboxes"] = p.RemotePublicFolderMailboxes
 	}
 	if p.RequiredCharsetCoverage != nil {
@@ -30811,29 +31459,31 @@ func (s *Service) SetOrganizationConfig(ctx context.Context, p SetOrganizationCo
 // SetOrganizationRelationshipParams are the parameters of Set-OrganizationRelationship.
 // DefaultParameterSetName: Identity
 type SetOrganizationRelationshipParams struct {
-	ArchiveAccessEnabled       *bool    `ps:"ArchiveAccessEnabled"`
-	DeliveryReportEnabled      *bool    `ps:"DeliveryReportEnabled"`
-	DomainNames                []string `ps:"DomainNames"`
-	Enabled                    *bool    `ps:"Enabled"`
-	Force                      bool     `ps:"Force"`
-	FreeBusyAccessEnabled      *bool    `ps:"FreeBusyAccessEnabled"`
-	FreeBusyAccessLevel        any      `ps:"FreeBusyAccessLevel"`   // FreeBusyAccessLevel
-	FreeBusyAccessScope        any      `ps:"FreeBusyAccessScope"`   // GroupIdParameter
-	Identity                   any      `ps:"Identity"`              // OrganizationRelationshipIdParameter
-	MailboxMoveCapability      any      `ps:"MailboxMoveCapability"` // MailboxMoveCapability
-	MailboxMoveEnabled         *bool    `ps:"MailboxMoveEnabled"`
-	MailboxMovePublishedScopes []string `ps:"MailboxMovePublishedScopes"`
-	MailTipsAccessEnabled      *bool    `ps:"MailTipsAccessEnabled"`
-	MailTipsAccessLevel        any      `ps:"MailTipsAccessLevel"` // MailTipsAccessLevel
-	MailTipsAccessScope        any      `ps:"MailTipsAccessScope"` // GroupIdParameter
-	Name                       string   `ps:"Name"`
-	OAuthApplicationId         string   `ps:"OAuthApplicationId"`
-	OrganizationContact        any      `ps:"OrganizationContact"` // SmtpAddress
-	PhotosEnabled              *bool    `ps:"PhotosEnabled"`
-	TargetApplicationUri       any      `ps:"TargetApplicationUri"`  // Uri
-	TargetAutodiscoverEpr      any      `ps:"TargetAutodiscoverEpr"` // Uri
-	TargetOwaURL               any      `ps:"TargetOwaURL"`          // Uri
-	TargetSharingEpr           any      `ps:"TargetSharingEpr"`      // Uri
+	ArchiveAccessEnabled            *bool                 `ps:"ArchiveAccessEnabled"`
+	DeliveryReportEnabled           *bool                 `ps:"DeliveryReportEnabled"`
+	DomainNames                     []string              `ps:"DomainNames"`
+	DomainNamesDelta                *adminapi.StringDelta `ps:"DomainNames"` // adds/removes values of DomainNames; takes precedence over it
+	Enabled                         *bool                 `ps:"Enabled"`
+	Force                           bool                  `ps:"Force"`
+	FreeBusyAccessEnabled           *bool                 `ps:"FreeBusyAccessEnabled"`
+	FreeBusyAccessLevel             any                   `ps:"FreeBusyAccessLevel"`   // FreeBusyAccessLevel
+	FreeBusyAccessScope             any                   `ps:"FreeBusyAccessScope"`   // GroupIdParameter
+	Identity                        any                   `ps:"Identity"`              // OrganizationRelationshipIdParameter
+	MailboxMoveCapability           any                   `ps:"MailboxMoveCapability"` // MailboxMoveCapability
+	MailboxMoveEnabled              *bool                 `ps:"MailboxMoveEnabled"`
+	MailboxMovePublishedScopes      []string              `ps:"MailboxMovePublishedScopes"`
+	MailboxMovePublishedScopesDelta *adminapi.StringDelta `ps:"MailboxMovePublishedScopes"` // adds/removes values of MailboxMovePublishedScopes; takes precedence over it
+	MailTipsAccessEnabled           *bool                 `ps:"MailTipsAccessEnabled"`
+	MailTipsAccessLevel             any                   `ps:"MailTipsAccessLevel"` // MailTipsAccessLevel
+	MailTipsAccessScope             any                   `ps:"MailTipsAccessScope"` // GroupIdParameter
+	Name                            string                `ps:"Name"`
+	OAuthApplicationId              string                `ps:"OAuthApplicationId"`
+	OrganizationContact             any                   `ps:"OrganizationContact"` // SmtpAddress
+	PhotosEnabled                   *bool                 `ps:"PhotosEnabled"`
+	TargetApplicationUri            any                   `ps:"TargetApplicationUri"`  // Uri
+	TargetAutodiscoverEpr           any                   `ps:"TargetAutodiscoverEpr"` // Uri
+	TargetOwaURL                    any                   `ps:"TargetOwaURL"`          // Uri
+	TargetSharingEpr                any                   `ps:"TargetSharingEpr"`      // Uri
 }
 
 func (p SetOrganizationRelationshipParams) params() map[string]any {
@@ -30844,7 +31494,9 @@ func (p SetOrganizationRelationshipParams) params() map[string]any {
 	if p.DeliveryReportEnabled != nil {
 		m["DeliveryReportEnabled"] = *p.DeliveryReportEnabled
 	}
-	if p.DomainNames != nil {
+	if p.DomainNamesDelta != nil {
+		m["DomainNames"] = *p.DomainNamesDelta
+	} else if p.DomainNames != nil {
 		m["DomainNames"] = p.DomainNames
 	}
 	if p.Enabled != nil {
@@ -30871,7 +31523,9 @@ func (p SetOrganizationRelationshipParams) params() map[string]any {
 	if p.MailboxMoveEnabled != nil {
 		m["MailboxMoveEnabled"] = *p.MailboxMoveEnabled
 	}
-	if p.MailboxMovePublishedScopes != nil {
+	if p.MailboxMovePublishedScopesDelta != nil {
+		m["MailboxMovePublishedScopes"] = *p.MailboxMovePublishedScopesDelta
+	} else if p.MailboxMovePublishedScopes != nil {
 		m["MailboxMovePublishedScopes"] = p.MailboxMovePublishedScopes
 	}
 	if p.MailTipsAccessEnabled != nil {
@@ -30918,28 +31572,30 @@ func (s *Service) SetOrganizationRelationship(ctx context.Context, p SetOrganiza
 // SetOutboundConnectorParams are the parameters of Set-OutboundConnector.
 // DefaultParameterSetName: Identity
 type SetOutboundConnectorParams struct {
-	AllAcceptedDomains            *bool    `ps:"AllAcceptedDomains"`
-	CloudServicesMailEnabled      *bool    `ps:"CloudServicesMailEnabled"`
-	Comment                       string   `ps:"Comment"`
-	ConnectorSource               any      `ps:"ConnectorSource"` // TenantConnectorSource
-	ConnectorType                 any      `ps:"ConnectorType"`   // TenantConnectorType
-	Enabled                       *bool    `ps:"Enabled"`
-	Identity                      any      `ps:"Identity"` // OutboundConnectorIdParameter
-	IsTransportRuleScoped         *bool    `ps:"IsTransportRuleScoped"`
-	IsValidated                   *bool    `ps:"IsValidated"`
-	LastValidationTimestamp       any      `ps:"LastValidationTimestamp"` // DateTime
-	MtaStsMode                    any      `ps:"MtaStsMode"`              // MtaStsMode
-	Name                          string   `ps:"Name"`
-	RecipientDomains              []string `ps:"RecipientDomains"`
-	RouteAllMessagesViaOnPremises *bool    `ps:"RouteAllMessagesViaOnPremises"`
-	SenderRewritingEnabled        *bool    `ps:"SenderRewritingEnabled"`
-	SmartHosts                    []string `ps:"SmartHosts"`
-	SmtpDaneMode                  any      `ps:"SmtpDaneMode"` // SmtpDaneMode
-	TestMode                      *bool    `ps:"TestMode"`
-	TlsDomain                     any      `ps:"TlsDomain"`   // SmtpDomainWithSubdomains
-	TlsSettings                   any      `ps:"TlsSettings"` // TlsAuthLevel
-	UseMXRecord                   *bool    `ps:"UseMXRecord"`
-	ValidationRecipients          []string `ps:"ValidationRecipients"`
+	AllAcceptedDomains            *bool                 `ps:"AllAcceptedDomains"`
+	CloudServicesMailEnabled      *bool                 `ps:"CloudServicesMailEnabled"`
+	Comment                       string                `ps:"Comment"`
+	ConnectorSource               any                   `ps:"ConnectorSource"` // TenantConnectorSource
+	ConnectorType                 any                   `ps:"ConnectorType"`   // TenantConnectorType
+	Enabled                       *bool                 `ps:"Enabled"`
+	Identity                      any                   `ps:"Identity"` // OutboundConnectorIdParameter
+	IsTransportRuleScoped         *bool                 `ps:"IsTransportRuleScoped"`
+	IsValidated                   *bool                 `ps:"IsValidated"`
+	LastValidationTimestamp       any                   `ps:"LastValidationTimestamp"` // DateTime
+	MtaStsMode                    any                   `ps:"MtaStsMode"`              // MtaStsMode
+	Name                          string                `ps:"Name"`
+	RecipientDomains              []string              `ps:"RecipientDomains"`
+	RecipientDomainsDelta         *adminapi.StringDelta `ps:"RecipientDomains"` // adds/removes values of RecipientDomains; takes precedence over it
+	RouteAllMessagesViaOnPremises *bool                 `ps:"RouteAllMessagesViaOnPremises"`
+	SenderRewritingEnabled        *bool                 `ps:"SenderRewritingEnabled"`
+	SmartHosts                    []string              `ps:"SmartHosts"`
+	SmartHostsDelta               *adminapi.StringDelta `ps:"SmartHosts"`   // adds/removes values of SmartHosts; takes precedence over it
+	SmtpDaneMode                  any                   `ps:"SmtpDaneMode"` // SmtpDaneMode
+	TestMode                      *bool                 `ps:"TestMode"`
+	TlsDomain                     any                   `ps:"TlsDomain"`   // SmtpDomainWithSubdomains
+	TlsSettings                   any                   `ps:"TlsSettings"` // TlsAuthLevel
+	UseMXRecord                   *bool                 `ps:"UseMXRecord"`
+	ValidationRecipients          []string              `ps:"ValidationRecipients"`
 }
 
 func (p SetOutboundConnectorParams) params() map[string]any {
@@ -30980,7 +31636,9 @@ func (p SetOutboundConnectorParams) params() map[string]any {
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if p.RecipientDomains != nil {
+	if p.RecipientDomainsDelta != nil {
+		m["RecipientDomains"] = *p.RecipientDomainsDelta
+	} else if p.RecipientDomains != nil {
 		m["RecipientDomains"] = p.RecipientDomains
 	}
 	if p.RouteAllMessagesViaOnPremises != nil {
@@ -30989,7 +31647,9 @@ func (p SetOutboundConnectorParams) params() map[string]any {
 	if p.SenderRewritingEnabled != nil {
 		m["SenderRewritingEnabled"] = *p.SenderRewritingEnabled
 	}
-	if p.SmartHosts != nil {
+	if p.SmartHostsDelta != nil {
+		m["SmartHosts"] = *p.SmartHostsDelta
+	} else if p.SmartHosts != nil {
 		m["SmartHosts"] = p.SmartHosts
 	}
 	if p.SmtpDaneMode != nil {
@@ -31021,15 +31681,16 @@ func (s *Service) SetOutboundConnector(ctx context.Context, p SetOutboundConnect
 // SetOutlookProtectionRuleParams are the parameters of Set-OutlookProtectionRule.
 // DefaultParameterSetName: Identity
 type SetOutlookProtectionRuleParams struct {
-	ApplyRightsProtectionTemplate any      `ps:"ApplyRightsProtectionTemplate"` // RmsTemplateIdParameter
-	Force                         bool     `ps:"Force"`
-	FromDepartment                []string `ps:"FromDepartment"`
-	Identity                      any      `ps:"Identity"` // RuleIdParameter
-	Name                          string   `ps:"Name"`
-	Priority                      *int64   `ps:"Priority"`
-	SentTo                        []string `ps:"SentTo"`
-	SentToScope                   any      `ps:"SentToScope"` // ToUserScope
-	UserCanOverride               *bool    `ps:"UserCanOverride"`
+	ApplyRightsProtectionTemplate any                   `ps:"ApplyRightsProtectionTemplate"` // RmsTemplateIdParameter
+	Force                         bool                  `ps:"Force"`
+	FromDepartment                []string              `ps:"FromDepartment"`
+	Identity                      any                   `ps:"Identity"` // RuleIdParameter
+	Name                          string                `ps:"Name"`
+	Priority                      *int64                `ps:"Priority"`
+	SentTo                        []string              `ps:"SentTo"`
+	SentToDelta                   *adminapi.StringDelta `ps:"SentTo"`      // adds/removes values of SentTo; takes precedence over it
+	SentToScope                   any                   `ps:"SentToScope"` // ToUserScope
+	UserCanOverride               *bool                 `ps:"UserCanOverride"`
 }
 
 func (p SetOutlookProtectionRuleParams) params() map[string]any {
@@ -31052,7 +31713,9 @@ func (p SetOutlookProtectionRuleParams) params() map[string]any {
 	if p.Priority != nil {
 		m["Priority"] = *p.Priority
 	}
-	if p.SentTo != nil {
+	if p.SentToDelta != nil {
+		m["SentTo"] = *p.SentToDelta
+	} else if p.SentTo != nil {
 		m["SentTo"] = p.SentTo
 	}
 	if p.SentToScope != nil {
@@ -31072,126 +31735,132 @@ func (s *Service) SetOutlookProtectionRule(ctx context.Context, p SetOutlookProt
 // SetOwaMailboxPolicyParams are the parameters of Set-OwaMailboxPolicy.
 // DefaultParameterSetName: Identity
 type SetOwaMailboxPolicyParams struct {
-	AccountTransferEnabled                               *bool    `ps:"AccountTransferEnabled"`
-	ActionForUnknownFileAndMIMETypes                     any      `ps:"ActionForUnknownFileAndMIMETypes"` // AttachmentBlockingActions
-	ActiveSyncIntegrationEnabled                         *bool    `ps:"ActiveSyncIntegrationEnabled"`
-	AdditionalAccountsEnabled                            *bool    `ps:"AdditionalAccountsEnabled"`
-	AdditionalStorageProvidersAvailable                  *bool    `ps:"AdditionalStorageProvidersAvailable"`
-	AllAddressListsEnabled                               *bool    `ps:"AllAddressListsEnabled"`
-	AllowCopyContactsToDeviceAddressBook                 *bool    `ps:"AllowCopyContactsToDeviceAddressBook"`
-	AllowedFileTypes                                     []string `ps:"AllowedFileTypes"`
-	AllowedMimeTypes                                     []string `ps:"AllowedMimeTypes"`
-	AllowedOrganizationAccountDomains                    []string `ps:"AllowedOrganizationAccountDomains"`
-	AllowOfflineOn                                       any      `ps:"AllowOfflineOn"` // AllowOfflineOnEnum
-	AttachmentsOfflineEnabledWin                         *bool    `ps:"AttachmentsOfflineEnabledWin"`
-	BizBarEnabled                                        *bool    `ps:"BizBarEnabled"`
-	BlockedFileTypes                                     []string `ps:"BlockedFileTypes"`
-	BlockedMimeTypes                                     []string `ps:"BlockedMimeTypes"`
-	BookingsMailboxCreationEnabled                       *bool    `ps:"BookingsMailboxCreationEnabled"`
-	BookingsMailboxDomain                                string   `ps:"BookingsMailboxDomain"`
-	BulkImportEMLEnabled                                 any      `ps:"BulkImportEMLEnabled"` // BulkImportEMLEnabledProperty
-	CalendarEnabled                                      *bool    `ps:"CalendarEnabled"`
-	ChangePasswordEnabled                                *bool    `ps:"ChangePasswordEnabled"`
-	ChangeSettingsAccountEnabled                         *bool    `ps:"ChangeSettingsAccountEnabled"`
-	ClassicAttachmentsEnabled                            *bool    `ps:"ClassicAttachmentsEnabled"`
-	ConditionalAccessPolicy                              any      `ps:"ConditionalAccessPolicy"` // PolicyEnum
-	ContactsEnabled                                      *bool    `ps:"ContactsEnabled"`
-	DefaultClientLanguage                                *int64   `ps:"DefaultClientLanguage"`
-	DefaultTheme                                         string   `ps:"DefaultTheme"`
-	DelegateAccessEnabled                                *bool    `ps:"DelegateAccessEnabled"`
-	DirectFileAccessOnPrivateComputersEnabled            *bool    `ps:"DirectFileAccessOnPrivateComputersEnabled"`
-	DirectFileAccessOnPublicComputersEnabled             *bool    `ps:"DirectFileAccessOnPublicComputersEnabled"`
-	DisableFacebook                                      bool     `ps:"DisableFacebook"`
-	DisplayPhotosEnabled                                 *bool    `ps:"DisplayPhotosEnabled"`
-	EmptyStateEnabled                                    *bool    `ps:"EmptyStateEnabled"`
-	ExplicitLogonEnabled                                 *bool    `ps:"ExplicitLogonEnabled"`
-	ExternalContentSettingsAllowed                       []string `ps:"ExternalContentSettingsAllowed"`
-	ExternalImageProxyEnabled                            *bool    `ps:"ExternalImageProxyEnabled"`
-	ExternalSPMySiteHostURL                              string   `ps:"ExternalSPMySiteHostURL"`
-	FeedbackEnabled                                      *bool    `ps:"FeedbackEnabled"`
-	ForceSaveAttachmentFilteringEnabled                  *bool    `ps:"ForceSaveAttachmentFilteringEnabled"`
-	ForceSaveFileTypes                                   []string `ps:"ForceSaveFileTypes"`
-	ForceSaveMimeTypes                                   []string `ps:"ForceSaveMimeTypes"`
-	ForceWacViewingFirstOnPrivateComputers               *bool    `ps:"ForceWacViewingFirstOnPrivateComputers"`
-	ForceWacViewingFirstOnPublicComputers                *bool    `ps:"ForceWacViewingFirstOnPublicComputers"`
-	FreCardsEnabled                                      *bool    `ps:"FreCardsEnabled"`
-	GlobalAddressListEnabled                             *bool    `ps:"GlobalAddressListEnabled"`
-	GroupCreationEnabled                                 *bool    `ps:"GroupCreationEnabled"`
-	HideClassicOutlookToggleOut                          *bool    `ps:"HideClassicOutlookToggleOut"`
-	Identity                                             any      `ps:"Identity"` // MailboxPolicyIdParameter
-	InstantMessagingEnabled                              *bool    `ps:"InstantMessagingEnabled"`
-	InstantMessagingType                                 any      `ps:"InstantMessagingType"` // InstantMessagingTypeOptions
-	InterestingCalendarsEnabled                          *bool    `ps:"InterestingCalendarsEnabled"`
-	InternalSPMySiteHostURL                              string   `ps:"InternalSPMySiteHostURL"`
-	IRMEnabled                                           *bool    `ps:"IRMEnabled"`
-	IsDefault                                            bool     `ps:"IsDefault"`
-	ItemsToOtherAccountsEnabled                          *bool    `ps:"ItemsToOtherAccountsEnabled"`
-	JournalEnabled                                       *bool    `ps:"JournalEnabled"`
-	LinkedInEnabled                                      *bool    `ps:"LinkedInEnabled"`
-	LocalEventsEnabled                                   *bool    `ps:"LocalEventsEnabled"`
-	LogonAndErrorLanguage                                *int64   `ps:"LogonAndErrorLanguage"`
-	MessagePreviewsDisabled                              *bool    `ps:"MessagePreviewsDisabled"`
-	MonthlyUpdatesEnabled                                *bool    `ps:"MonthlyUpdatesEnabled"`
-	Name                                                 string   `ps:"Name"`
-	NotesEnabled                                         *bool    `ps:"NotesEnabled"`
-	NpsSurveysEnabled                                    *bool    `ps:"NpsSurveysEnabled"`
-	OfflineDaysOfEmailToSave                             *int64   `ps:"OfflineDaysOfEmailToSave"`
-	OfflineDaysOfEmailToSaveSelectionEnabled             *bool    `ps:"OfflineDaysOfEmailToSaveSelectionEnabled"`
-	OfflineEnabledWeb                                    *bool    `ps:"OfflineEnabledWeb"`
-	OfflineEnabledWin                                    *bool    `ps:"OfflineEnabledWin"`
-	OneDriveAttachmentsEnabled                           *bool    `ps:"OneDriveAttachmentsEnabled"`
-	OneWinNativeOutlookEnabled                           *bool    `ps:"OneWinNativeOutlookEnabled"`
-	OnSendAddinsEnabled                                  *bool    `ps:"OnSendAddinsEnabled"`
-	OrganizationEnabled                                  *bool    `ps:"OrganizationEnabled"`
-	OutboundCharset                                      any      `ps:"OutboundCharset"` // OutboundCharsetOptions
-	OutlookBetaToggleEnabled                             *bool    `ps:"OutlookBetaToggleEnabled"`
-	OutlookDataFile                                      any      `ps:"OutlookDataFile"`               // OutlookDataFileFeatureState
-	OutlookNewslettersAccessLevel                        any      `ps:"OutlookNewslettersAccessLevel"` // OutlookNewslettersAccessLevel
-	OutlookNewslettersReactions                          any      `ps:"OutlookNewslettersReactions"`   // OutlookNewslettersFeatureState
-	OutlookNewslettersShowMore                           any      `ps:"OutlookNewslettersShowMore"`    // OutlookNewslettersFeatureState
-	OWALightEnabled                                      *bool    `ps:"OWALightEnabled"`
-	PersonalAccountCalendarsEnabled                      *bool    `ps:"PersonalAccountCalendarsEnabled"`
-	PersonalAccountsEnabled                              *bool    `ps:"PersonalAccountsEnabled"`
-	PersonalBookingsDisabled                             *bool    `ps:"PersonalBookingsDisabled"`
-	PhoneticSupportEnabled                               *bool    `ps:"PhoneticSupportEnabled"`
-	PlacesEnabled                                        *bool    `ps:"PlacesEnabled"`
-	PremiumClientEnabled                                 *bool    `ps:"PremiumClientEnabled"`
-	PrintWithoutDownloadEnabled                          *bool    `ps:"PrintWithoutDownloadEnabled"`
-	ProjectMocaEnabled                                   *bool    `ps:"ProjectMocaEnabled"`
-	PublicFoldersEnabled                                 *bool    `ps:"PublicFoldersEnabled"`
-	RecoverDeletedItemsEnabled                           *bool    `ps:"RecoverDeletedItemsEnabled"`
-	ReferenceAttachmentsEnabled                          *bool    `ps:"ReferenceAttachmentsEnabled"`
-	RemindersAndNotificationsEnabled                     *bool    `ps:"RemindersAndNotificationsEnabled"`
-	ReportJunkEmailEnabled                               *bool    `ps:"ReportJunkEmailEnabled"`
-	RulesEnabled                                         *bool    `ps:"RulesEnabled"`
-	SatisfactionEnabled                                  *bool    `ps:"SatisfactionEnabled"`
-	SaveAttachmentsToCloudEnabled                        *bool    `ps:"SaveAttachmentsToCloudEnabled"`
-	SearchFoldersEnabled                                 *bool    `ps:"SearchFoldersEnabled"`
-	SetPhotoEnabled                                      *bool    `ps:"SetPhotoEnabled"`
-	SetPhotoURL                                          string   `ps:"SetPhotoURL"`
-	ShowOnlineArchiveEnabled                             *bool    `ps:"ShowOnlineArchiveEnabled"`
-	SignaturesEnabled                                    *bool    `ps:"SignaturesEnabled"`
-	SilverlightEnabled                                   *bool    `ps:"SilverlightEnabled"`
-	SkipCreateUnifiedGroupCustomSharepointClassification *bool    `ps:"SkipCreateUnifiedGroupCustomSharepointClassification"`
-	SMimeSuppressNameChecksEnabled                       *bool    `ps:"SMimeSuppressNameChecksEnabled"`
-	SpellCheckerEnabled                                  *bool    `ps:"SpellCheckerEnabled"`
-	TasksEnabled                                         *bool    `ps:"TasksEnabled"`
-	TeamsnapCalendarsEnabled                             *bool    `ps:"TeamsnapCalendarsEnabled"`
-	TextMessagingEnabled                                 *bool    `ps:"TextMessagingEnabled"`
-	ThemeSelectionEnabled                                *bool    `ps:"ThemeSelectionEnabled"`
-	UMIntegrationEnabled                                 *bool    `ps:"UMIntegrationEnabled"`
-	UseGB18030                                           *bool    `ps:"UseGB18030"`
-	UseISO885915                                         *bool    `ps:"UseISO885915"`
-	UserVoiceEnabled                                     *bool    `ps:"UserVoiceEnabled"`
-	WacEditingEnabled                                    *bool    `ps:"WacEditingEnabled"`
-	WacExternalServicesEnabled                           *bool    `ps:"WacExternalServicesEnabled"`
-	WacOMEXEnabled                                       *bool    `ps:"WacOMEXEnabled"`
-	WacViewingOnPrivateComputersEnabled                  *bool    `ps:"WacViewingOnPrivateComputersEnabled"`
-	WacViewingOnPublicComputersEnabled                   *bool    `ps:"WacViewingOnPublicComputersEnabled"`
-	WeatherEnabled                                       *bool    `ps:"WeatherEnabled"`
-	WebPartsFrameOptionsType                             any      `ps:"WebPartsFrameOptionsType"` // WebPartsFrameOptions
-	WSSAccessOnPrivateComputersEnabled                   *bool    `ps:"WSSAccessOnPrivateComputersEnabled"`
-	WSSAccessOnPublicComputersEnabled                    *bool    `ps:"WSSAccessOnPublicComputersEnabled"`
+	AccountTransferEnabled                               *bool                 `ps:"AccountTransferEnabled"`
+	ActionForUnknownFileAndMIMETypes                     any                   `ps:"ActionForUnknownFileAndMIMETypes"` // AttachmentBlockingActions
+	ActiveSyncIntegrationEnabled                         *bool                 `ps:"ActiveSyncIntegrationEnabled"`
+	AdditionalAccountsEnabled                            *bool                 `ps:"AdditionalAccountsEnabled"`
+	AdditionalStorageProvidersAvailable                  *bool                 `ps:"AdditionalStorageProvidersAvailable"`
+	AllAddressListsEnabled                               *bool                 `ps:"AllAddressListsEnabled"`
+	AllowCopyContactsToDeviceAddressBook                 *bool                 `ps:"AllowCopyContactsToDeviceAddressBook"`
+	AllowedFileTypes                                     []string              `ps:"AllowedFileTypes"`
+	AllowedFileTypesDelta                                *adminapi.StringDelta `ps:"AllowedFileTypes"` // adds/removes values of AllowedFileTypes; takes precedence over it
+	AllowedMimeTypes                                     []string              `ps:"AllowedMimeTypes"`
+	AllowedMimeTypesDelta                                *adminapi.StringDelta `ps:"AllowedMimeTypes"` // adds/removes values of AllowedMimeTypes; takes precedence over it
+	AllowedOrganizationAccountDomains                    []string              `ps:"AllowedOrganizationAccountDomains"`
+	AllowOfflineOn                                       any                   `ps:"AllowOfflineOn"` // AllowOfflineOnEnum
+	AttachmentsOfflineEnabledWin                         *bool                 `ps:"AttachmentsOfflineEnabledWin"`
+	BizBarEnabled                                        *bool                 `ps:"BizBarEnabled"`
+	BlockedFileTypes                                     []string              `ps:"BlockedFileTypes"`
+	BlockedFileTypesDelta                                *adminapi.StringDelta `ps:"BlockedFileTypes"` // adds/removes values of BlockedFileTypes; takes precedence over it
+	BlockedMimeTypes                                     []string              `ps:"BlockedMimeTypes"`
+	BlockedMimeTypesDelta                                *adminapi.StringDelta `ps:"BlockedMimeTypes"` // adds/removes values of BlockedMimeTypes; takes precedence over it
+	BookingsMailboxCreationEnabled                       *bool                 `ps:"BookingsMailboxCreationEnabled"`
+	BookingsMailboxDomain                                string                `ps:"BookingsMailboxDomain"`
+	BulkImportEMLEnabled                                 any                   `ps:"BulkImportEMLEnabled"` // BulkImportEMLEnabledProperty
+	CalendarEnabled                                      *bool                 `ps:"CalendarEnabled"`
+	ChangePasswordEnabled                                *bool                 `ps:"ChangePasswordEnabled"`
+	ChangeSettingsAccountEnabled                         *bool                 `ps:"ChangeSettingsAccountEnabled"`
+	ClassicAttachmentsEnabled                            *bool                 `ps:"ClassicAttachmentsEnabled"`
+	ConditionalAccessPolicy                              any                   `ps:"ConditionalAccessPolicy"` // PolicyEnum
+	ContactsEnabled                                      *bool                 `ps:"ContactsEnabled"`
+	DefaultClientLanguage                                *int64                `ps:"DefaultClientLanguage"`
+	DefaultTheme                                         string                `ps:"DefaultTheme"`
+	DelegateAccessEnabled                                *bool                 `ps:"DelegateAccessEnabled"`
+	DirectFileAccessOnPrivateComputersEnabled            *bool                 `ps:"DirectFileAccessOnPrivateComputersEnabled"`
+	DirectFileAccessOnPublicComputersEnabled             *bool                 `ps:"DirectFileAccessOnPublicComputersEnabled"`
+	DisableFacebook                                      bool                  `ps:"DisableFacebook"`
+	DisplayPhotosEnabled                                 *bool                 `ps:"DisplayPhotosEnabled"`
+	EmptyStateEnabled                                    *bool                 `ps:"EmptyStateEnabled"`
+	ExplicitLogonEnabled                                 *bool                 `ps:"ExplicitLogonEnabled"`
+	ExternalContentSettingsAllowed                       []string              `ps:"ExternalContentSettingsAllowed"`
+	ExternalImageProxyEnabled                            *bool                 `ps:"ExternalImageProxyEnabled"`
+	ExternalSPMySiteHostURL                              string                `ps:"ExternalSPMySiteHostURL"`
+	FeedbackEnabled                                      *bool                 `ps:"FeedbackEnabled"`
+	ForceSaveAttachmentFilteringEnabled                  *bool                 `ps:"ForceSaveAttachmentFilteringEnabled"`
+	ForceSaveFileTypes                                   []string              `ps:"ForceSaveFileTypes"`
+	ForceSaveFileTypesDelta                              *adminapi.StringDelta `ps:"ForceSaveFileTypes"` // adds/removes values of ForceSaveFileTypes; takes precedence over it
+	ForceSaveMimeTypes                                   []string              `ps:"ForceSaveMimeTypes"`
+	ForceSaveMimeTypesDelta                              *adminapi.StringDelta `ps:"ForceSaveMimeTypes"` // adds/removes values of ForceSaveMimeTypes; takes precedence over it
+	ForceWacViewingFirstOnPrivateComputers               *bool                 `ps:"ForceWacViewingFirstOnPrivateComputers"`
+	ForceWacViewingFirstOnPublicComputers                *bool                 `ps:"ForceWacViewingFirstOnPublicComputers"`
+	FreCardsEnabled                                      *bool                 `ps:"FreCardsEnabled"`
+	GlobalAddressListEnabled                             *bool                 `ps:"GlobalAddressListEnabled"`
+	GroupCreationEnabled                                 *bool                 `ps:"GroupCreationEnabled"`
+	HideClassicOutlookToggleOut                          *bool                 `ps:"HideClassicOutlookToggleOut"`
+	Identity                                             any                   `ps:"Identity"` // MailboxPolicyIdParameter
+	InstantMessagingEnabled                              *bool                 `ps:"InstantMessagingEnabled"`
+	InstantMessagingType                                 any                   `ps:"InstantMessagingType"` // InstantMessagingTypeOptions
+	InterestingCalendarsEnabled                          *bool                 `ps:"InterestingCalendarsEnabled"`
+	InternalSPMySiteHostURL                              string                `ps:"InternalSPMySiteHostURL"`
+	IRMEnabled                                           *bool                 `ps:"IRMEnabled"`
+	IsDefault                                            bool                  `ps:"IsDefault"`
+	ItemsToOtherAccountsEnabled                          *bool                 `ps:"ItemsToOtherAccountsEnabled"`
+	JournalEnabled                                       *bool                 `ps:"JournalEnabled"`
+	LinkedInEnabled                                      *bool                 `ps:"LinkedInEnabled"`
+	LocalEventsEnabled                                   *bool                 `ps:"LocalEventsEnabled"`
+	LogonAndErrorLanguage                                *int64                `ps:"LogonAndErrorLanguage"`
+	MessagePreviewsDisabled                              *bool                 `ps:"MessagePreviewsDisabled"`
+	MonthlyUpdatesEnabled                                *bool                 `ps:"MonthlyUpdatesEnabled"`
+	Name                                                 string                `ps:"Name"`
+	NotesEnabled                                         *bool                 `ps:"NotesEnabled"`
+	NpsSurveysEnabled                                    *bool                 `ps:"NpsSurveysEnabled"`
+	OfflineDaysOfEmailToSave                             *int64                `ps:"OfflineDaysOfEmailToSave"`
+	OfflineDaysOfEmailToSaveSelectionEnabled             *bool                 `ps:"OfflineDaysOfEmailToSaveSelectionEnabled"`
+	OfflineEnabledWeb                                    *bool                 `ps:"OfflineEnabledWeb"`
+	OfflineEnabledWin                                    *bool                 `ps:"OfflineEnabledWin"`
+	OneDriveAttachmentsEnabled                           *bool                 `ps:"OneDriveAttachmentsEnabled"`
+	OneWinNativeOutlookEnabled                           *bool                 `ps:"OneWinNativeOutlookEnabled"`
+	OnSendAddinsEnabled                                  *bool                 `ps:"OnSendAddinsEnabled"`
+	OrganizationEnabled                                  *bool                 `ps:"OrganizationEnabled"`
+	OutboundCharset                                      any                   `ps:"OutboundCharset"` // OutboundCharsetOptions
+	OutlookBetaToggleEnabled                             *bool                 `ps:"OutlookBetaToggleEnabled"`
+	OutlookDataFile                                      any                   `ps:"OutlookDataFile"`               // OutlookDataFileFeatureState
+	OutlookNewslettersAccessLevel                        any                   `ps:"OutlookNewslettersAccessLevel"` // OutlookNewslettersAccessLevel
+	OutlookNewslettersReactions                          any                   `ps:"OutlookNewslettersReactions"`   // OutlookNewslettersFeatureState
+	OutlookNewslettersShowMore                           any                   `ps:"OutlookNewslettersShowMore"`    // OutlookNewslettersFeatureState
+	OWALightEnabled                                      *bool                 `ps:"OWALightEnabled"`
+	PersonalAccountCalendarsEnabled                      *bool                 `ps:"PersonalAccountCalendarsEnabled"`
+	PersonalAccountsEnabled                              *bool                 `ps:"PersonalAccountsEnabled"`
+	PersonalBookingsDisabled                             *bool                 `ps:"PersonalBookingsDisabled"`
+	PhoneticSupportEnabled                               *bool                 `ps:"PhoneticSupportEnabled"`
+	PlacesEnabled                                        *bool                 `ps:"PlacesEnabled"`
+	PremiumClientEnabled                                 *bool                 `ps:"PremiumClientEnabled"`
+	PrintWithoutDownloadEnabled                          *bool                 `ps:"PrintWithoutDownloadEnabled"`
+	ProjectMocaEnabled                                   *bool                 `ps:"ProjectMocaEnabled"`
+	PublicFoldersEnabled                                 *bool                 `ps:"PublicFoldersEnabled"`
+	RecoverDeletedItemsEnabled                           *bool                 `ps:"RecoverDeletedItemsEnabled"`
+	ReferenceAttachmentsEnabled                          *bool                 `ps:"ReferenceAttachmentsEnabled"`
+	RemindersAndNotificationsEnabled                     *bool                 `ps:"RemindersAndNotificationsEnabled"`
+	ReportJunkEmailEnabled                               *bool                 `ps:"ReportJunkEmailEnabled"`
+	RulesEnabled                                         *bool                 `ps:"RulesEnabled"`
+	SatisfactionEnabled                                  *bool                 `ps:"SatisfactionEnabled"`
+	SaveAttachmentsToCloudEnabled                        *bool                 `ps:"SaveAttachmentsToCloudEnabled"`
+	SearchFoldersEnabled                                 *bool                 `ps:"SearchFoldersEnabled"`
+	SetPhotoEnabled                                      *bool                 `ps:"SetPhotoEnabled"`
+	SetPhotoURL                                          string                `ps:"SetPhotoURL"`
+	ShowOnlineArchiveEnabled                             *bool                 `ps:"ShowOnlineArchiveEnabled"`
+	SignaturesEnabled                                    *bool                 `ps:"SignaturesEnabled"`
+	SilverlightEnabled                                   *bool                 `ps:"SilverlightEnabled"`
+	SkipCreateUnifiedGroupCustomSharepointClassification *bool                 `ps:"SkipCreateUnifiedGroupCustomSharepointClassification"`
+	SMimeSuppressNameChecksEnabled                       *bool                 `ps:"SMimeSuppressNameChecksEnabled"`
+	SpellCheckerEnabled                                  *bool                 `ps:"SpellCheckerEnabled"`
+	TasksEnabled                                         *bool                 `ps:"TasksEnabled"`
+	TeamsnapCalendarsEnabled                             *bool                 `ps:"TeamsnapCalendarsEnabled"`
+	TextMessagingEnabled                                 *bool                 `ps:"TextMessagingEnabled"`
+	ThemeSelectionEnabled                                *bool                 `ps:"ThemeSelectionEnabled"`
+	UMIntegrationEnabled                                 *bool                 `ps:"UMIntegrationEnabled"`
+	UseGB18030                                           *bool                 `ps:"UseGB18030"`
+	UseISO885915                                         *bool                 `ps:"UseISO885915"`
+	UserVoiceEnabled                                     *bool                 `ps:"UserVoiceEnabled"`
+	WacEditingEnabled                                    *bool                 `ps:"WacEditingEnabled"`
+	WacExternalServicesEnabled                           *bool                 `ps:"WacExternalServicesEnabled"`
+	WacOMEXEnabled                                       *bool                 `ps:"WacOMEXEnabled"`
+	WacViewingOnPrivateComputersEnabled                  *bool                 `ps:"WacViewingOnPrivateComputersEnabled"`
+	WacViewingOnPublicComputersEnabled                   *bool                 `ps:"WacViewingOnPublicComputersEnabled"`
+	WeatherEnabled                                       *bool                 `ps:"WeatherEnabled"`
+	WebPartsFrameOptionsType                             any                   `ps:"WebPartsFrameOptionsType"` // WebPartsFrameOptions
+	WSSAccessOnPrivateComputersEnabled                   *bool                 `ps:"WSSAccessOnPrivateComputersEnabled"`
+	WSSAccessOnPublicComputersEnabled                    *bool                 `ps:"WSSAccessOnPublicComputersEnabled"`
 }
 
 func (p SetOwaMailboxPolicyParams) params() map[string]any {
@@ -31217,10 +31886,14 @@ func (p SetOwaMailboxPolicyParams) params() map[string]any {
 	if p.AllowCopyContactsToDeviceAddressBook != nil {
 		m["AllowCopyContactsToDeviceAddressBook"] = *p.AllowCopyContactsToDeviceAddressBook
 	}
-	if p.AllowedFileTypes != nil {
+	if p.AllowedFileTypesDelta != nil {
+		m["AllowedFileTypes"] = *p.AllowedFileTypesDelta
+	} else if p.AllowedFileTypes != nil {
 		m["AllowedFileTypes"] = p.AllowedFileTypes
 	}
-	if p.AllowedMimeTypes != nil {
+	if p.AllowedMimeTypesDelta != nil {
+		m["AllowedMimeTypes"] = *p.AllowedMimeTypesDelta
+	} else if p.AllowedMimeTypes != nil {
 		m["AllowedMimeTypes"] = p.AllowedMimeTypes
 	}
 	if p.AllowedOrganizationAccountDomains != nil {
@@ -31235,10 +31908,14 @@ func (p SetOwaMailboxPolicyParams) params() map[string]any {
 	if p.BizBarEnabled != nil {
 		m["BizBarEnabled"] = *p.BizBarEnabled
 	}
-	if p.BlockedFileTypes != nil {
+	if p.BlockedFileTypesDelta != nil {
+		m["BlockedFileTypes"] = *p.BlockedFileTypesDelta
+	} else if p.BlockedFileTypes != nil {
 		m["BlockedFileTypes"] = p.BlockedFileTypes
 	}
-	if p.BlockedMimeTypes != nil {
+	if p.BlockedMimeTypesDelta != nil {
+		m["BlockedMimeTypes"] = *p.BlockedMimeTypesDelta
+	} else if p.BlockedMimeTypes != nil {
 		m["BlockedMimeTypes"] = p.BlockedMimeTypes
 	}
 	if p.BookingsMailboxCreationEnabled != nil {
@@ -31310,10 +31987,14 @@ func (p SetOwaMailboxPolicyParams) params() map[string]any {
 	if p.ForceSaveAttachmentFilteringEnabled != nil {
 		m["ForceSaveAttachmentFilteringEnabled"] = *p.ForceSaveAttachmentFilteringEnabled
 	}
-	if p.ForceSaveFileTypes != nil {
+	if p.ForceSaveFileTypesDelta != nil {
+		m["ForceSaveFileTypes"] = *p.ForceSaveFileTypesDelta
+	} else if p.ForceSaveFileTypes != nil {
 		m["ForceSaveFileTypes"] = p.ForceSaveFileTypes
 	}
-	if p.ForceSaveMimeTypes != nil {
+	if p.ForceSaveMimeTypesDelta != nil {
+		m["ForceSaveMimeTypes"] = *p.ForceSaveMimeTypesDelta
+	} else if p.ForceSaveMimeTypes != nil {
 		m["ForceSaveMimeTypes"] = p.ForceSaveMimeTypes
 	}
 	if p.ForceWacViewingFirstOnPrivateComputers != nil {
@@ -31613,13 +32294,16 @@ func (s *Service) SetPartnerApplication(ctx context.Context, p SetPartnerApplica
 
 // SetPerimeterConfigParams are the parameters of Set-PerimeterConfig.
 type SetPerimeterConfigParams struct {
-	GatewayIPAddresses []string `ps:"GatewayIPAddresses"`
-	Identity           any      `ps:"Identity"` // OrganizationIdParameter
+	GatewayIPAddresses      []string              `ps:"GatewayIPAddresses"`
+	GatewayIPAddressesDelta *adminapi.StringDelta `ps:"GatewayIPAddresses"` // adds/removes values of GatewayIPAddresses; takes precedence over it
+	Identity                any                   `ps:"Identity"`           // OrganizationIdParameter
 }
 
 func (p SetPerimeterConfigParams) params() map[string]any {
 	m := map[string]any{}
-	if p.GatewayIPAddresses != nil {
+	if p.GatewayIPAddressesDelta != nil {
+		m["GatewayIPAddresses"] = *p.GatewayIPAddressesDelta
+	} else if p.GatewayIPAddresses != nil {
 		m["GatewayIPAddresses"] = p.GatewayIPAddresses
 	}
 	if p.Identity != nil {
@@ -32019,28 +32703,33 @@ func (s *Service) SetQuarantinePermissions(ctx context.Context, p SetQuarantineP
 // SetQuarantinePolicyParams are the parameters of Set-QuarantinePolicy.
 // DefaultParameterSetName: Identity
 type SetQuarantinePolicyParams struct {
-	AdminNotificationFrequencyInDays         *int64   `ps:"AdminNotificationFrequencyInDays"`
-	AdminNotificationLanguage                any      `ps:"AdminNotificationLanguage"` // EsnLanguage
-	AdminNotificationsEnabled                *bool    `ps:"AdminNotificationsEnabled"`
-	AdminQuarantinePermissionsList           []string `ps:"AdminQuarantinePermissionsList"`
-	CustomDisclaimer                         string   `ps:"CustomDisclaimer"`
-	DomainController                         any      `ps:"DomainController"`             // Fqdn
-	EndUserQuarantinePermissions             any      `ps:"EndUserQuarantinePermissions"` // QuarantinePermissions
-	EndUserQuarantinePermissionsValue        *int64   `ps:"EndUserQuarantinePermissionsValue"`
-	EndUserSpamNotificationCustomFromAddress string   `ps:"EndUserSpamNotificationCustomFromAddress"`
-	EndUserSpamNotificationFrequency         any      `ps:"EndUserSpamNotificationFrequency"` // TimeSpan
-	EndUserSpamNotificationFrequencyInDays   *int64   `ps:"EndUserSpamNotificationFrequencyInDays"`
-	EndUserSpamNotificationLanguage          any      `ps:"EndUserSpamNotificationLanguage"` // EsnLanguage
-	EsnCustomSubject                         []string `ps:"EsnCustomSubject"`
-	ESNEnabled                               *bool    `ps:"ESNEnabled"`
-	Identity                                 any      `ps:"Identity"` // QuarantineTagIdParameter
-	IgnoreDehydratedFlag                     bool     `ps:"IgnoreDehydratedFlag"`
-	IncludeMessagesFromBlockedSenderAddress  *bool    `ps:"IncludeMessagesFromBlockedSenderAddress"`
-	MultiLanguageCustomDisclaimer            []string `ps:"MultiLanguageCustomDisclaimer"`
-	MultiLanguageSenderName                  []string `ps:"MultiLanguageSenderName"`
-	MultiLanguageSetting                     []string `ps:"MultiLanguageSetting"`
-	OrganizationBrandingEnabled              *bool    `ps:"OrganizationBrandingEnabled"`
-	QuarantineRetentionDays                  *int64   `ps:"QuarantineRetentionDays"`
+	AdminNotificationFrequencyInDays         *int64                `ps:"AdminNotificationFrequencyInDays"`
+	AdminNotificationLanguage                any                   `ps:"AdminNotificationLanguage"` // EsnLanguage
+	AdminNotificationsEnabled                *bool                 `ps:"AdminNotificationsEnabled"`
+	AdminQuarantinePermissionsList           []string              `ps:"AdminQuarantinePermissionsList"`
+	AdminQuarantinePermissionsListDelta      *adminapi.StringDelta `ps:"AdminQuarantinePermissionsList"` // adds/removes values of AdminQuarantinePermissionsList; takes precedence over it
+	CustomDisclaimer                         string                `ps:"CustomDisclaimer"`
+	DomainController                         any                   `ps:"DomainController"`             // Fqdn
+	EndUserQuarantinePermissions             any                   `ps:"EndUserQuarantinePermissions"` // QuarantinePermissions
+	EndUserQuarantinePermissionsValue        *int64                `ps:"EndUserQuarantinePermissionsValue"`
+	EndUserSpamNotificationCustomFromAddress string                `ps:"EndUserSpamNotificationCustomFromAddress"`
+	EndUserSpamNotificationFrequency         any                   `ps:"EndUserSpamNotificationFrequency"` // TimeSpan
+	EndUserSpamNotificationFrequencyInDays   *int64                `ps:"EndUserSpamNotificationFrequencyInDays"`
+	EndUserSpamNotificationLanguage          any                   `ps:"EndUserSpamNotificationLanguage"` // EsnLanguage
+	EsnCustomSubject                         []string              `ps:"EsnCustomSubject"`
+	EsnCustomSubjectDelta                    *adminapi.StringDelta `ps:"EsnCustomSubject"` // adds/removes values of EsnCustomSubject; takes precedence over it
+	ESNEnabled                               *bool                 `ps:"ESNEnabled"`
+	Identity                                 any                   `ps:"Identity"` // QuarantineTagIdParameter
+	IgnoreDehydratedFlag                     bool                  `ps:"IgnoreDehydratedFlag"`
+	IncludeMessagesFromBlockedSenderAddress  *bool                 `ps:"IncludeMessagesFromBlockedSenderAddress"`
+	MultiLanguageCustomDisclaimer            []string              `ps:"MultiLanguageCustomDisclaimer"`
+	MultiLanguageCustomDisclaimerDelta       *adminapi.StringDelta `ps:"MultiLanguageCustomDisclaimer"` // adds/removes values of MultiLanguageCustomDisclaimer; takes precedence over it
+	MultiLanguageSenderName                  []string              `ps:"MultiLanguageSenderName"`
+	MultiLanguageSenderNameDelta             *adminapi.StringDelta `ps:"MultiLanguageSenderName"` // adds/removes values of MultiLanguageSenderName; takes precedence over it
+	MultiLanguageSetting                     []string              `ps:"MultiLanguageSetting"`
+	MultiLanguageSettingDelta                *adminapi.StringDelta `ps:"MultiLanguageSetting"` // adds/removes values of MultiLanguageSetting; takes precedence over it
+	OrganizationBrandingEnabled              *bool                 `ps:"OrganizationBrandingEnabled"`
+	QuarantineRetentionDays                  *int64                `ps:"QuarantineRetentionDays"`
 }
 
 func (p SetQuarantinePolicyParams) params() map[string]any {
@@ -32054,7 +32743,9 @@ func (p SetQuarantinePolicyParams) params() map[string]any {
 	if p.AdminNotificationsEnabled != nil {
 		m["AdminNotificationsEnabled"] = *p.AdminNotificationsEnabled
 	}
-	if p.AdminQuarantinePermissionsList != nil {
+	if p.AdminQuarantinePermissionsListDelta != nil {
+		m["AdminQuarantinePermissionsList"] = *p.AdminQuarantinePermissionsListDelta
+	} else if p.AdminQuarantinePermissionsList != nil {
 		m["AdminQuarantinePermissionsList"] = p.AdminQuarantinePermissionsList
 	}
 	if p.CustomDisclaimer != "" {
@@ -32081,7 +32772,9 @@ func (p SetQuarantinePolicyParams) params() map[string]any {
 	if p.EndUserSpamNotificationLanguage != nil {
 		m["EndUserSpamNotificationLanguage"] = p.EndUserSpamNotificationLanguage
 	}
-	if p.EsnCustomSubject != nil {
+	if p.EsnCustomSubjectDelta != nil {
+		m["EsnCustomSubject"] = *p.EsnCustomSubjectDelta
+	} else if p.EsnCustomSubject != nil {
 		m["EsnCustomSubject"] = p.EsnCustomSubject
 	}
 	if p.ESNEnabled != nil {
@@ -32096,13 +32789,19 @@ func (p SetQuarantinePolicyParams) params() map[string]any {
 	if p.IncludeMessagesFromBlockedSenderAddress != nil {
 		m["IncludeMessagesFromBlockedSenderAddress"] = *p.IncludeMessagesFromBlockedSenderAddress
 	}
-	if p.MultiLanguageCustomDisclaimer != nil {
+	if p.MultiLanguageCustomDisclaimerDelta != nil {
+		m["MultiLanguageCustomDisclaimer"] = *p.MultiLanguageCustomDisclaimerDelta
+	} else if p.MultiLanguageCustomDisclaimer != nil {
 		m["MultiLanguageCustomDisclaimer"] = p.MultiLanguageCustomDisclaimer
 	}
-	if p.MultiLanguageSenderName != nil {
+	if p.MultiLanguageSenderNameDelta != nil {
+		m["MultiLanguageSenderName"] = *p.MultiLanguageSenderNameDelta
+	} else if p.MultiLanguageSenderName != nil {
 		m["MultiLanguageSenderName"] = p.MultiLanguageSenderName
 	}
-	if p.MultiLanguageSetting != nil {
+	if p.MultiLanguageSettingDelta != nil {
+		m["MultiLanguageSetting"] = *p.MultiLanguageSettingDelta
+	} else if p.MultiLanguageSetting != nil {
 		m["MultiLanguageSetting"] = p.MultiLanguageSetting
 	}
 	if p.OrganizationBrandingEnabled != nil {
@@ -32344,75 +33043,81 @@ func (s *Service) SetReportSchedule(ctx context.Context, p SetReportSchedulePara
 // SetReportSubmissionPolicyParams are the parameters of Set-ReportSubmissionPolicy.
 // DefaultParameterSetName: Identity
 type SetReportSubmissionPolicyParams struct {
-	DisableQuarantineReportingOption                               *bool    `ps:"DisableQuarantineReportingOption"`
-	DisableUserSubmissionOptions                                   *bool    `ps:"DisableUserSubmissionOptions"`
-	EnableCustomizedMsg                                            *bool    `ps:"EnableCustomizedMsg"`
-	EnableCustomNotificationSender                                 *bool    `ps:"EnableCustomNotificationSender"`
-	EnableOrganizationBranding                                     *bool    `ps:"EnableOrganizationBranding"`
-	EnableReportToMicrosoft                                        *bool    `ps:"EnableReportToMicrosoft"`
-	EnableThirdPartyAddress                                        *bool    `ps:"EnableThirdPartyAddress"`
-	EnableUserEmailNotification                                    *bool    `ps:"EnableUserEmailNotification"`
-	Identity                                                       any      `ps:"Identity"` // ReportSubmissionPolicyIdParameter
-	JunkReviewResultMessage                                        string   `ps:"JunkReviewResultMessage"`
-	MultiLanguagePostSubmitMessageButtonLinkForJunk                []string `ps:"MultiLanguagePostSubmitMessageButtonLinkForJunk"`
-	MultiLanguagePostSubmitMessageButtonLinkForPhishing            []string `ps:"MultiLanguagePostSubmitMessageButtonLinkForPhishing"`
-	MultiLanguagePostSubmitMessageButtonTextForJunk                []string `ps:"MultiLanguagePostSubmitMessageButtonTextForJunk"`
-	MultiLanguagePostSubmitMessageButtonTextForPhishing            []string `ps:"MultiLanguagePostSubmitMessageButtonTextForPhishing"`
-	MultiLanguagePostSubmitMessageForJunk                          []string `ps:"MultiLanguagePostSubmitMessageForJunk"`
-	MultiLanguagePostSubmitMessageForPhishing                      []string `ps:"MultiLanguagePostSubmitMessageForPhishing"`
-	MultiLanguagePostSubmitMessageTitleForJunk                     []string `ps:"MultiLanguagePostSubmitMessageTitleForJunk"`
-	MultiLanguagePostSubmitMessageTitleForPhishing                 []string `ps:"MultiLanguagePostSubmitMessageTitleForPhishing"`
-	MultiLanguagePreSubmitMessageButtonLinkForJunk                 []string `ps:"MultiLanguagePreSubmitMessageButtonLinkForJunk"`
-	MultiLanguagePreSubmitMessageButtonLinkForNotJunk              []string `ps:"MultiLanguagePreSubmitMessageButtonLinkForNotJunk"`
-	MultiLanguagePreSubmitMessageButtonLinkForPhishing             []string `ps:"MultiLanguagePreSubmitMessageButtonLinkForPhishing"`
-	MultiLanguagePreSubmitMessageButtonTextForJunk                 []string `ps:"MultiLanguagePreSubmitMessageButtonTextForJunk"`
-	MultiLanguagePreSubmitMessageButtonTextForNotJunk              []string `ps:"MultiLanguagePreSubmitMessageButtonTextForNotJunk"`
-	MultiLanguagePreSubmitMessageButtonTextForPhishing             []string `ps:"MultiLanguagePreSubmitMessageButtonTextForPhishing"`
-	MultiLanguagePreSubmitMessageForJunk                           []string `ps:"MultiLanguagePreSubmitMessageForJunk"`
-	MultiLanguagePreSubmitMessageForNotJunk                        []string `ps:"MultiLanguagePreSubmitMessageForNotJunk"`
-	MultiLanguagePreSubmitMessageForPhishing                       []string `ps:"MultiLanguagePreSubmitMessageForPhishing"`
-	MultiLanguagePreSubmitMessageTitleForJunk                      []string `ps:"MultiLanguagePreSubmitMessageTitleForJunk"`
-	MultiLanguagePreSubmitMessageTitleForNotJunk                   []string `ps:"MultiLanguagePreSubmitMessageTitleForNotJunk"`
-	MultiLanguagePreSubmitMessageTitleForPhishing                  []string `ps:"MultiLanguagePreSubmitMessageTitleForPhishing"`
-	MultiLanguageSetting                                           []string `ps:"MultiLanguageSetting"`
-	NotificationFooterMessage                                      string   `ps:"NotificationFooterMessage"`
-	NotificationSenderAddress                                      []string `ps:"NotificationSenderAddress"`
-	NotificationsForCleanSubmissionAirInvestigationsEnabled        *bool    `ps:"NotificationsForCleanSubmissionAirInvestigationsEnabled"`
-	NotificationsForPhishMalwareSubmissionAirInvestigationsEnabled *bool    `ps:"NotificationsForPhishMalwareSubmissionAirInvestigationsEnabled"`
-	NotificationsForSpamSubmissionAirInvestigationsEnabled         *bool    `ps:"NotificationsForSpamSubmissionAirInvestigationsEnabled"`
-	NotificationsForSubmissionAirInvestigationsEnabled             *bool    `ps:"NotificationsForSubmissionAirInvestigationsEnabled"`
-	NotJunkReviewResultMessage                                     string   `ps:"NotJunkReviewResultMessage"`
-	OnlyShowPhishingDisclaimer                                     *bool    `ps:"OnlyShowPhishingDisclaimer"`
-	PhishingReviewResultMessage                                    string   `ps:"PhishingReviewResultMessage"`
-	PostSubmitMessage                                              string   `ps:"PostSubmitMessage"`
-	PostSubmitMessageEnabled                                       *bool    `ps:"PostSubmitMessageEnabled"`
-	PostSubmitMessageForJunk                                       string   `ps:"PostSubmitMessageForJunk"`
-	PostSubmitMessageForNotJunk                                    string   `ps:"PostSubmitMessageForNotJunk"`
-	PostSubmitMessageForPhishing                                   string   `ps:"PostSubmitMessageForPhishing"`
-	PostSubmitMessageTitle                                         string   `ps:"PostSubmitMessageTitle"`
-	PostSubmitMessageTitleForJunk                                  string   `ps:"PostSubmitMessageTitleForJunk"`
-	PostSubmitMessageTitleForNotJunk                               string   `ps:"PostSubmitMessageTitleForNotJunk"`
-	PostSubmitMessageTitleForPhishing                              string   `ps:"PostSubmitMessageTitleForPhishing"`
-	PreSubmitMessage                                               string   `ps:"PreSubmitMessage"`
-	PreSubmitMessageEnabled                                        *bool    `ps:"PreSubmitMessageEnabled"`
-	PreSubmitMessageForJunk                                        string   `ps:"PreSubmitMessageForJunk"`
-	PreSubmitMessageForNotJunk                                     string   `ps:"PreSubmitMessageForNotJunk"`
-	PreSubmitMessageForPhishing                                    string   `ps:"PreSubmitMessageForPhishing"`
-	PreSubmitMessageTitle                                          string   `ps:"PreSubmitMessageTitle"`
-	PreSubmitMessageTitleForJunk                                   string   `ps:"PreSubmitMessageTitleForJunk"`
-	PreSubmitMessageTitleForNotJunk                                string   `ps:"PreSubmitMessageTitleForNotJunk"`
-	PreSubmitMessageTitleForPhishing                               string   `ps:"PreSubmitMessageTitleForPhishing"`
-	ReportChatMessageEnabled                                       *bool    `ps:"ReportChatMessageEnabled"`
-	ReportChatMessageToCustomizedAddressEnabled                    *bool    `ps:"ReportChatMessageToCustomizedAddressEnabled"`
-	ReportJunkAddresses                                            []string `ps:"ReportJunkAddresses"`
-	ReportJunkToCustomizedAddress                                  *bool    `ps:"ReportJunkToCustomizedAddress"`
-	ReportNotJunkAddresses                                         []string `ps:"ReportNotJunkAddresses"`
-	ReportNotJunkToCustomizedAddress                               *bool    `ps:"ReportNotJunkToCustomizedAddress"`
-	ReportPhishAddresses                                           []string `ps:"ReportPhishAddresses"`
-	ReportPhishToCustomizedAddress                                 *bool    `ps:"ReportPhishToCustomizedAddress"`
-	ThirdPartyReportAddresses                                      []string `ps:"ThirdPartyReportAddresses"`
-	UserSubmissionOptions                                          *int64   `ps:"UserSubmissionOptions"`
-	UserSubmissionOptionsMessage                                   string   `ps:"UserSubmissionOptionsMessage"`
+	DisableQuarantineReportingOption                               *bool                 `ps:"DisableQuarantineReportingOption"`
+	DisableUserSubmissionOptions                                   *bool                 `ps:"DisableUserSubmissionOptions"`
+	EnableCustomizedMsg                                            *bool                 `ps:"EnableCustomizedMsg"`
+	EnableCustomNotificationSender                                 *bool                 `ps:"EnableCustomNotificationSender"`
+	EnableOrganizationBranding                                     *bool                 `ps:"EnableOrganizationBranding"`
+	EnableReportToMicrosoft                                        *bool                 `ps:"EnableReportToMicrosoft"`
+	EnableThirdPartyAddress                                        *bool                 `ps:"EnableThirdPartyAddress"`
+	EnableUserEmailNotification                                    *bool                 `ps:"EnableUserEmailNotification"`
+	Identity                                                       any                   `ps:"Identity"` // ReportSubmissionPolicyIdParameter
+	JunkReviewResultMessage                                        string                `ps:"JunkReviewResultMessage"`
+	MultiLanguagePostSubmitMessageButtonLinkForJunk                []string              `ps:"MultiLanguagePostSubmitMessageButtonLinkForJunk"`
+	MultiLanguagePostSubmitMessageButtonLinkForPhishing            []string              `ps:"MultiLanguagePostSubmitMessageButtonLinkForPhishing"`
+	MultiLanguagePostSubmitMessageButtonTextForJunk                []string              `ps:"MultiLanguagePostSubmitMessageButtonTextForJunk"`
+	MultiLanguagePostSubmitMessageButtonTextForPhishing            []string              `ps:"MultiLanguagePostSubmitMessageButtonTextForPhishing"`
+	MultiLanguagePostSubmitMessageForJunk                          []string              `ps:"MultiLanguagePostSubmitMessageForJunk"`
+	MultiLanguagePostSubmitMessageForPhishing                      []string              `ps:"MultiLanguagePostSubmitMessageForPhishing"`
+	MultiLanguagePostSubmitMessageTitleForJunk                     []string              `ps:"MultiLanguagePostSubmitMessageTitleForJunk"`
+	MultiLanguagePostSubmitMessageTitleForPhishing                 []string              `ps:"MultiLanguagePostSubmitMessageTitleForPhishing"`
+	MultiLanguagePreSubmitMessageButtonLinkForJunk                 []string              `ps:"MultiLanguagePreSubmitMessageButtonLinkForJunk"`
+	MultiLanguagePreSubmitMessageButtonLinkForNotJunk              []string              `ps:"MultiLanguagePreSubmitMessageButtonLinkForNotJunk"`
+	MultiLanguagePreSubmitMessageButtonLinkForPhishing             []string              `ps:"MultiLanguagePreSubmitMessageButtonLinkForPhishing"`
+	MultiLanguagePreSubmitMessageButtonTextForJunk                 []string              `ps:"MultiLanguagePreSubmitMessageButtonTextForJunk"`
+	MultiLanguagePreSubmitMessageButtonTextForNotJunk              []string              `ps:"MultiLanguagePreSubmitMessageButtonTextForNotJunk"`
+	MultiLanguagePreSubmitMessageButtonTextForPhishing             []string              `ps:"MultiLanguagePreSubmitMessageButtonTextForPhishing"`
+	MultiLanguagePreSubmitMessageForJunk                           []string              `ps:"MultiLanguagePreSubmitMessageForJunk"`
+	MultiLanguagePreSubmitMessageForNotJunk                        []string              `ps:"MultiLanguagePreSubmitMessageForNotJunk"`
+	MultiLanguagePreSubmitMessageForPhishing                       []string              `ps:"MultiLanguagePreSubmitMessageForPhishing"`
+	MultiLanguagePreSubmitMessageTitleForJunk                      []string              `ps:"MultiLanguagePreSubmitMessageTitleForJunk"`
+	MultiLanguagePreSubmitMessageTitleForNotJunk                   []string              `ps:"MultiLanguagePreSubmitMessageTitleForNotJunk"`
+	MultiLanguagePreSubmitMessageTitleForPhishing                  []string              `ps:"MultiLanguagePreSubmitMessageTitleForPhishing"`
+	MultiLanguageSetting                                           []string              `ps:"MultiLanguageSetting"`
+	MultiLanguageSettingDelta                                      *adminapi.StringDelta `ps:"MultiLanguageSetting"` // adds/removes values of MultiLanguageSetting; takes precedence over it
+	NotificationFooterMessage                                      string                `ps:"NotificationFooterMessage"`
+	NotificationSenderAddress                                      []string              `ps:"NotificationSenderAddress"`
+	NotificationSenderAddressDelta                                 *adminapi.StringDelta `ps:"NotificationSenderAddress"` // adds/removes values of NotificationSenderAddress; takes precedence over it
+	NotificationsForCleanSubmissionAirInvestigationsEnabled        *bool                 `ps:"NotificationsForCleanSubmissionAirInvestigationsEnabled"`
+	NotificationsForPhishMalwareSubmissionAirInvestigationsEnabled *bool                 `ps:"NotificationsForPhishMalwareSubmissionAirInvestigationsEnabled"`
+	NotificationsForSpamSubmissionAirInvestigationsEnabled         *bool                 `ps:"NotificationsForSpamSubmissionAirInvestigationsEnabled"`
+	NotificationsForSubmissionAirInvestigationsEnabled             *bool                 `ps:"NotificationsForSubmissionAirInvestigationsEnabled"`
+	NotJunkReviewResultMessage                                     string                `ps:"NotJunkReviewResultMessage"`
+	OnlyShowPhishingDisclaimer                                     *bool                 `ps:"OnlyShowPhishingDisclaimer"`
+	PhishingReviewResultMessage                                    string                `ps:"PhishingReviewResultMessage"`
+	PostSubmitMessage                                              string                `ps:"PostSubmitMessage"`
+	PostSubmitMessageEnabled                                       *bool                 `ps:"PostSubmitMessageEnabled"`
+	PostSubmitMessageForJunk                                       string                `ps:"PostSubmitMessageForJunk"`
+	PostSubmitMessageForNotJunk                                    string                `ps:"PostSubmitMessageForNotJunk"`
+	PostSubmitMessageForPhishing                                   string                `ps:"PostSubmitMessageForPhishing"`
+	PostSubmitMessageTitle                                         string                `ps:"PostSubmitMessageTitle"`
+	PostSubmitMessageTitleForJunk                                  string                `ps:"PostSubmitMessageTitleForJunk"`
+	PostSubmitMessageTitleForNotJunk                               string                `ps:"PostSubmitMessageTitleForNotJunk"`
+	PostSubmitMessageTitleForPhishing                              string                `ps:"PostSubmitMessageTitleForPhishing"`
+	PreSubmitMessage                                               string                `ps:"PreSubmitMessage"`
+	PreSubmitMessageEnabled                                        *bool                 `ps:"PreSubmitMessageEnabled"`
+	PreSubmitMessageForJunk                                        string                `ps:"PreSubmitMessageForJunk"`
+	PreSubmitMessageForNotJunk                                     string                `ps:"PreSubmitMessageForNotJunk"`
+	PreSubmitMessageForPhishing                                    string                `ps:"PreSubmitMessageForPhishing"`
+	PreSubmitMessageTitle                                          string                `ps:"PreSubmitMessageTitle"`
+	PreSubmitMessageTitleForJunk                                   string                `ps:"PreSubmitMessageTitleForJunk"`
+	PreSubmitMessageTitleForNotJunk                                string                `ps:"PreSubmitMessageTitleForNotJunk"`
+	PreSubmitMessageTitleForPhishing                               string                `ps:"PreSubmitMessageTitleForPhishing"`
+	ReportChatMessageEnabled                                       *bool                 `ps:"ReportChatMessageEnabled"`
+	ReportChatMessageToCustomizedAddressEnabled                    *bool                 `ps:"ReportChatMessageToCustomizedAddressEnabled"`
+	ReportJunkAddresses                                            []string              `ps:"ReportJunkAddresses"`
+	ReportJunkAddressesDelta                                       *adminapi.StringDelta `ps:"ReportJunkAddresses"` // adds/removes values of ReportJunkAddresses; takes precedence over it
+	ReportJunkToCustomizedAddress                                  *bool                 `ps:"ReportJunkToCustomizedAddress"`
+	ReportNotJunkAddresses                                         []string              `ps:"ReportNotJunkAddresses"`
+	ReportNotJunkAddressesDelta                                    *adminapi.StringDelta `ps:"ReportNotJunkAddresses"` // adds/removes values of ReportNotJunkAddresses; takes precedence over it
+	ReportNotJunkToCustomizedAddress                               *bool                 `ps:"ReportNotJunkToCustomizedAddress"`
+	ReportPhishAddresses                                           []string              `ps:"ReportPhishAddresses"`
+	ReportPhishAddressesDelta                                      *adminapi.StringDelta `ps:"ReportPhishAddresses"` // adds/removes values of ReportPhishAddresses; takes precedence over it
+	ReportPhishToCustomizedAddress                                 *bool                 `ps:"ReportPhishToCustomizedAddress"`
+	ThirdPartyReportAddresses                                      []string              `ps:"ThirdPartyReportAddresses"`
+	ThirdPartyReportAddressesDelta                                 *adminapi.StringDelta `ps:"ThirdPartyReportAddresses"` // adds/removes values of ThirdPartyReportAddresses; takes precedence over it
+	UserSubmissionOptions                                          *int64                `ps:"UserSubmissionOptions"`
+	UserSubmissionOptionsMessage                                   string                `ps:"UserSubmissionOptionsMessage"`
 }
 
 func (p SetReportSubmissionPolicyParams) params() map[string]any {
@@ -32507,13 +33212,17 @@ func (p SetReportSubmissionPolicyParams) params() map[string]any {
 	if p.MultiLanguagePreSubmitMessageTitleForPhishing != nil {
 		m["MultiLanguagePreSubmitMessageTitleForPhishing"] = p.MultiLanguagePreSubmitMessageTitleForPhishing
 	}
-	if p.MultiLanguageSetting != nil {
+	if p.MultiLanguageSettingDelta != nil {
+		m["MultiLanguageSetting"] = *p.MultiLanguageSettingDelta
+	} else if p.MultiLanguageSetting != nil {
 		m["MultiLanguageSetting"] = p.MultiLanguageSetting
 	}
 	if p.NotificationFooterMessage != "" {
 		m["NotificationFooterMessage"] = p.NotificationFooterMessage
 	}
-	if p.NotificationSenderAddress != nil {
+	if p.NotificationSenderAddressDelta != nil {
+		m["NotificationSenderAddress"] = *p.NotificationSenderAddressDelta
+	} else if p.NotificationSenderAddress != nil {
 		m["NotificationSenderAddress"] = p.NotificationSenderAddress
 	}
 	if p.NotificationsForCleanSubmissionAirInvestigationsEnabled != nil {
@@ -32597,25 +33306,33 @@ func (p SetReportSubmissionPolicyParams) params() map[string]any {
 	if p.ReportChatMessageToCustomizedAddressEnabled != nil {
 		m["ReportChatMessageToCustomizedAddressEnabled"] = *p.ReportChatMessageToCustomizedAddressEnabled
 	}
-	if p.ReportJunkAddresses != nil {
+	if p.ReportJunkAddressesDelta != nil {
+		m["ReportJunkAddresses"] = *p.ReportJunkAddressesDelta
+	} else if p.ReportJunkAddresses != nil {
 		m["ReportJunkAddresses"] = p.ReportJunkAddresses
 	}
 	if p.ReportJunkToCustomizedAddress != nil {
 		m["ReportJunkToCustomizedAddress"] = *p.ReportJunkToCustomizedAddress
 	}
-	if p.ReportNotJunkAddresses != nil {
+	if p.ReportNotJunkAddressesDelta != nil {
+		m["ReportNotJunkAddresses"] = *p.ReportNotJunkAddressesDelta
+	} else if p.ReportNotJunkAddresses != nil {
 		m["ReportNotJunkAddresses"] = p.ReportNotJunkAddresses
 	}
 	if p.ReportNotJunkToCustomizedAddress != nil {
 		m["ReportNotJunkToCustomizedAddress"] = *p.ReportNotJunkToCustomizedAddress
 	}
-	if p.ReportPhishAddresses != nil {
+	if p.ReportPhishAddressesDelta != nil {
+		m["ReportPhishAddresses"] = *p.ReportPhishAddressesDelta
+	} else if p.ReportPhishAddresses != nil {
 		m["ReportPhishAddresses"] = p.ReportPhishAddresses
 	}
 	if p.ReportPhishToCustomizedAddress != nil {
 		m["ReportPhishToCustomizedAddress"] = *p.ReportPhishToCustomizedAddress
 	}
-	if p.ThirdPartyReportAddresses != nil {
+	if p.ThirdPartyReportAddressesDelta != nil {
+		m["ThirdPartyReportAddresses"] = *p.ThirdPartyReportAddressesDelta
+	} else if p.ThirdPartyReportAddresses != nil {
 		m["ThirdPartyReportAddresses"] = p.ThirdPartyReportAddresses
 	}
 	if p.UserSubmissionOptions != nil {
@@ -32670,12 +33387,15 @@ func (s *Service) SetReportSubmissionRule(ctx context.Context, p SetReportSubmis
 // SetResourceConfigParams are the parameters of Set-ResourceConfig.
 // DefaultParameterSetName: Identity
 type SetResourceConfigParams struct {
-	ResourcePropertySchema []string `ps:"ResourcePropertySchema"`
+	ResourcePropertySchema      []string              `ps:"ResourcePropertySchema"`
+	ResourcePropertySchemaDelta *adminapi.StringDelta `ps:"ResourcePropertySchema"` // adds/removes values of ResourcePropertySchema; takes precedence over it
 }
 
 func (p SetResourceConfigParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ResourcePropertySchema != nil {
+	if p.ResourcePropertySchemaDelta != nil {
+		m["ResourcePropertySchema"] = *p.ResourcePropertySchemaDelta
+	} else if p.ResourcePropertySchema != nil {
 		m["ResourcePropertySchema"] = p.ResourcePropertySchema
 	}
 	return m
@@ -32732,22 +33452,24 @@ func (s *Service) SetRetentionPolicy(ctx context.Context, p SetRetentionPolicyPa
 // SetRetentionPolicyTagParams are the parameters of Set-RetentionPolicyTag.
 // DefaultParameterSetName: Identity
 type SetRetentionPolicyTagParams struct {
-	AgeLimitForRetention            any      `ps:"AgeLimitForRetention"` // EnhancedTimeSpan
-	Comment                         string   `ps:"Comment"`
-	Force                           bool     `ps:"Force"`
-	Identity                        any      `ps:"Identity"`            // RetentionPolicyTagIdParameter
-	LegacyManagedFolder             any      `ps:"LegacyManagedFolder"` // ELCFolderIdParameter
-	LocalizedComment                []string `ps:"LocalizedComment"`
-	LocalizedRetentionPolicyTagName []string `ps:"LocalizedRetentionPolicyTagName"`
-	Mailbox                         any      `ps:"Mailbox"` // MailboxIdParameter
-	MessageClass                    string   `ps:"MessageClass"`
-	MustDisplayCommentEnabled       *bool    `ps:"MustDisplayCommentEnabled"`
-	Name                            string   `ps:"Name"`
-	OptionalInMailbox               []string `ps:"OptionalInMailbox"`
-	RetentionAction                 any      `ps:"RetentionAction"` // RetentionAction
-	RetentionEnabled                *bool    `ps:"RetentionEnabled"`
-	RetentionId                     string   `ps:"RetentionId"`
-	SystemTag                       *bool    `ps:"SystemTag"`
+	AgeLimitForRetention                 any                   `ps:"AgeLimitForRetention"` // EnhancedTimeSpan
+	Comment                              string                `ps:"Comment"`
+	Force                                bool                  `ps:"Force"`
+	Identity                             any                   `ps:"Identity"`            // RetentionPolicyTagIdParameter
+	LegacyManagedFolder                  any                   `ps:"LegacyManagedFolder"` // ELCFolderIdParameter
+	LocalizedComment                     []string              `ps:"LocalizedComment"`
+	LocalizedCommentDelta                *adminapi.StringDelta `ps:"LocalizedComment"` // adds/removes values of LocalizedComment; takes precedence over it
+	LocalizedRetentionPolicyTagName      []string              `ps:"LocalizedRetentionPolicyTagName"`
+	LocalizedRetentionPolicyTagNameDelta *adminapi.StringDelta `ps:"LocalizedRetentionPolicyTagName"` // adds/removes values of LocalizedRetentionPolicyTagName; takes precedence over it
+	Mailbox                              any                   `ps:"Mailbox"`                         // MailboxIdParameter
+	MessageClass                         string                `ps:"MessageClass"`
+	MustDisplayCommentEnabled            *bool                 `ps:"MustDisplayCommentEnabled"`
+	Name                                 string                `ps:"Name"`
+	OptionalInMailbox                    []string              `ps:"OptionalInMailbox"`
+	RetentionAction                      any                   `ps:"RetentionAction"` // RetentionAction
+	RetentionEnabled                     *bool                 `ps:"RetentionEnabled"`
+	RetentionId                          string                `ps:"RetentionId"`
+	SystemTag                            *bool                 `ps:"SystemTag"`
 }
 
 func (p SetRetentionPolicyTagParams) params() map[string]any {
@@ -32767,10 +33489,14 @@ func (p SetRetentionPolicyTagParams) params() map[string]any {
 	if p.LegacyManagedFolder != nil {
 		m["LegacyManagedFolder"] = p.LegacyManagedFolder
 	}
-	if p.LocalizedComment != nil {
+	if p.LocalizedCommentDelta != nil {
+		m["LocalizedComment"] = *p.LocalizedCommentDelta
+	} else if p.LocalizedComment != nil {
 		m["LocalizedComment"] = p.LocalizedComment
 	}
-	if p.LocalizedRetentionPolicyTagName != nil {
+	if p.LocalizedRetentionPolicyTagNameDelta != nil {
+		m["LocalizedRetentionPolicyTagName"] = *p.LocalizedRetentionPolicyTagNameDelta
+	} else if p.LocalizedRetentionPolicyTagName != nil {
 		m["LocalizedRetentionPolicyTagName"] = p.LocalizedRetentionPolicyTagName
 	}
 	if p.Mailbox != nil {
@@ -32841,14 +33567,15 @@ func (s *Service) SetRoleAssignmentPolicy(ctx context.Context, p SetRoleAssignme
 // SetRoleGroupParams are the parameters of Set-RoleGroup.
 // DefaultParameterSetName: Identity
 type SetRoleGroupParams struct {
-	BypassSecurityGroupManagerCheck bool     `ps:"BypassSecurityGroupManagerCheck"`
-	Description                     string   `ps:"Description"`
-	DisplayName                     string   `ps:"DisplayName"`
-	Force                           bool     `ps:"Force"`
-	Identity                        any      `ps:"Identity"` // RoleGroupIdParameter
-	ManagedBy                       []string `ps:"ManagedBy"`
-	Name                            string   `ps:"Name"`
-	WellKnownObject                 string   `ps:"WellKnownObject"`
+	BypassSecurityGroupManagerCheck bool                  `ps:"BypassSecurityGroupManagerCheck"`
+	Description                     string                `ps:"Description"`
+	DisplayName                     string                `ps:"DisplayName"`
+	Force                           bool                  `ps:"Force"`
+	Identity                        any                   `ps:"Identity"` // RoleGroupIdParameter
+	ManagedBy                       []string              `ps:"ManagedBy"`
+	ManagedByDelta                  *adminapi.StringDelta `ps:"ManagedBy"` // adds/removes values of ManagedBy; takes precedence over it
+	Name                            string                `ps:"Name"`
+	WellKnownObject                 string                `ps:"WellKnownObject"`
 }
 
 func (p SetRoleGroupParams) params() map[string]any {
@@ -32868,7 +33595,9 @@ func (p SetRoleGroupParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ManagedBy != nil {
+	if p.ManagedByDelta != nil {
+		m["ManagedBy"] = *p.ManagedByDelta
+	} else if p.ManagedBy != nil {
 		m["ManagedBy"] = p.ManagedBy
 	}
 	if p.Name != "" {
@@ -32990,24 +33719,25 @@ func (s *Service) SetSafeAttachmentRule(ctx context.Context, p SetSafeAttachment
 // SetSafeLinksPolicyParams are the parameters of Set-SafeLinksPolicy.
 // DefaultParameterSetName: Identity
 type SetSafeLinksPolicyParams struct {
-	AdminDisplayName              string   `ps:"AdminDisplayName"`
-	AllowClickThrough             *bool    `ps:"AllowClickThrough"`
-	CustomNotificationText        string   `ps:"CustomNotificationText"`
-	CustomUrlList                 any      `ps:"CustomUrlList"`
-	DeliverMessageAfterScan       *bool    `ps:"DeliverMessageAfterScan"`
-	DisableUrlRewrite             *bool    `ps:"DisableUrlRewrite"`
-	DoNotRewriteUrls              []string `ps:"DoNotRewriteUrls"`
-	EnableForInternalSenders      *bool    `ps:"EnableForInternalSenders"`
-	EnableOrganizationBranding    *bool    `ps:"EnableOrganizationBranding"`
-	EnableSafeLinksForEmail       *bool    `ps:"EnableSafeLinksForEmail"`
-	EnableSafeLinksForOffice      *bool    `ps:"EnableSafeLinksForOffice"`
-	EnableSafeLinksForTeams       *bool    `ps:"EnableSafeLinksForTeams"`
-	Identity                      any      `ps:"Identity"`                      // SafeLinksPolicyIdParameter
-	LocalizedNotificationTextList any      `ps:"LocalizedNotificationTextList"` // Hashtable
-	ScanUrls                      *bool    `ps:"ScanUrls"`
-	TrackClicks                   *bool    `ps:"TrackClicks"`
-	UseTranslatedNotificationText *bool    `ps:"UseTranslatedNotificationText"`
-	UseTranslatedUrlText          *bool    `ps:"UseTranslatedUrlText"`
+	AdminDisplayName              string                `ps:"AdminDisplayName"`
+	AllowClickThrough             *bool                 `ps:"AllowClickThrough"`
+	CustomNotificationText        string                `ps:"CustomNotificationText"`
+	CustomUrlList                 any                   `ps:"CustomUrlList"`
+	DeliverMessageAfterScan       *bool                 `ps:"DeliverMessageAfterScan"`
+	DisableUrlRewrite             *bool                 `ps:"DisableUrlRewrite"`
+	DoNotRewriteUrls              []string              `ps:"DoNotRewriteUrls"`
+	DoNotRewriteUrlsDelta         *adminapi.StringDelta `ps:"DoNotRewriteUrls"` // adds/removes values of DoNotRewriteUrls; takes precedence over it
+	EnableForInternalSenders      *bool                 `ps:"EnableForInternalSenders"`
+	EnableOrganizationBranding    *bool                 `ps:"EnableOrganizationBranding"`
+	EnableSafeLinksForEmail       *bool                 `ps:"EnableSafeLinksForEmail"`
+	EnableSafeLinksForOffice      *bool                 `ps:"EnableSafeLinksForOffice"`
+	EnableSafeLinksForTeams       *bool                 `ps:"EnableSafeLinksForTeams"`
+	Identity                      any                   `ps:"Identity"`                      // SafeLinksPolicyIdParameter
+	LocalizedNotificationTextList any                   `ps:"LocalizedNotificationTextList"` // Hashtable
+	ScanUrls                      *bool                 `ps:"ScanUrls"`
+	TrackClicks                   *bool                 `ps:"TrackClicks"`
+	UseTranslatedNotificationText *bool                 `ps:"UseTranslatedNotificationText"`
+	UseTranslatedUrlText          *bool                 `ps:"UseTranslatedUrlText"`
 }
 
 func (p SetSafeLinksPolicyParams) params() map[string]any {
@@ -33030,7 +33760,9 @@ func (p SetSafeLinksPolicyParams) params() map[string]any {
 	if p.DisableUrlRewrite != nil {
 		m["DisableUrlRewrite"] = *p.DisableUrlRewrite
 	}
-	if p.DoNotRewriteUrls != nil {
+	if p.DoNotRewriteUrlsDelta != nil {
+		m["DoNotRewriteUrls"] = *p.DoNotRewriteUrlsDelta
+	} else if p.DoNotRewriteUrls != nil {
 		m["DoNotRewriteUrls"] = p.DoNotRewriteUrls
 	}
 	if p.EnableForInternalSenders != nil {
@@ -33136,18 +33868,22 @@ func (s *Service) SetSafeLinksRule(ctx context.Context, p SetSafeLinksRuleParams
 // SetSecOpsOverridePolicyParams are the parameters of Set-SecOpsOverridePolicy.
 // DefaultParameterSetName: Identity
 type SetSecOpsOverridePolicyParams struct {
-	AddSentTo        []string `ps:"AddSentTo"`
-	Comment          string   `ps:"Comment"`
-	DomainController any      `ps:"DomainController"` // Fqdn
-	Enabled          *bool    `ps:"Enabled"`
-	Force            bool     `ps:"Force"`
-	Identity         any      `ps:"Identity"` // PolicyIdParameter
-	RemoveSentTo     []string `ps:"RemoveSentTo"`
+	AddSentTo         []string              `ps:"AddSentTo"`
+	AddSentToDelta    *adminapi.StringDelta `ps:"AddSentTo"` // adds/removes values of AddSentTo; takes precedence over it
+	Comment           string                `ps:"Comment"`
+	DomainController  any                   `ps:"DomainController"` // Fqdn
+	Enabled           *bool                 `ps:"Enabled"`
+	Force             bool                  `ps:"Force"`
+	Identity          any                   `ps:"Identity"` // PolicyIdParameter
+	RemoveSentTo      []string              `ps:"RemoveSentTo"`
+	RemoveSentToDelta *adminapi.StringDelta `ps:"RemoveSentTo"` // adds/removes values of RemoveSentTo; takes precedence over it
 }
 
 func (p SetSecOpsOverridePolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddSentTo != nil {
+	if p.AddSentToDelta != nil {
+		m["AddSentTo"] = *p.AddSentToDelta
+	} else if p.AddSentTo != nil {
 		m["AddSentTo"] = p.AddSentTo
 	}
 	if p.Comment != "" {
@@ -33165,7 +33901,9 @@ func (p SetSecOpsOverridePolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.RemoveSentTo != nil {
+	if p.RemoveSentToDelta != nil {
+		m["RemoveSentTo"] = *p.RemoveSentToDelta
+	} else if p.RemoveSentTo != nil {
 		m["RemoveSentTo"] = p.RemoveSentTo
 	}
 	return m
@@ -33206,11 +33944,12 @@ func (s *Service) SetServicePrincipal(ctx context.Context, p SetServicePrincipal
 // SetSharingPolicyParams are the parameters of Set-SharingPolicy.
 // DefaultParameterSetName: Identity
 type SetSharingPolicyParams struct {
-	Default  bool     `ps:"Default"`
-	Domains  []string `ps:"Domains"`
-	Enabled  *bool    `ps:"Enabled"`
-	Identity any      `ps:"Identity"` // SharingPolicyIdParameter
-	Name     string   `ps:"Name"`
+	Default      bool                  `ps:"Default"`
+	Domains      []string              `ps:"Domains"`
+	DomainsDelta *adminapi.StringDelta `ps:"Domains"` // adds/removes values of Domains; takes precedence over it
+	Enabled      *bool                 `ps:"Enabled"`
+	Identity     any                   `ps:"Identity"` // SharingPolicyIdParameter
+	Name         string                `ps:"Name"`
 }
 
 func (p SetSharingPolicyParams) params() map[string]any {
@@ -33218,7 +33957,9 @@ func (p SetSharingPolicyParams) params() map[string]any {
 	if p.Default {
 		m["Default"] = true
 	}
-	if p.Domains != nil {
+	if p.DomainsDelta != nil {
+		m["Domains"] = *p.DomainsDelta
+	} else if p.Domains != nil {
 		m["Domains"] = p.Domains
 	}
 	if p.Enabled != nil {
@@ -33754,178 +34495,180 @@ func (s *Service) SetTransportConfig(ctx context.Context, p SetTransportConfigPa
 // SetTransportRuleParams are the parameters of Set-TransportRule.
 // DefaultParameterSetName: Identity
 type SetTransportRuleParams struct {
-	ActivationDate                               any      `ps:"ActivationDate"`            // DateTime
-	AdComparisonAttribute                        any      `ps:"AdComparisonAttribute"`     // ADAttribute
-	AdComparisonOperator                         any      `ps:"AdComparisonOperator"`      // Evaluation
-	AddManagerAsRecipientType                    any      `ps:"AddManagerAsRecipientType"` // AddedRecipientType
-	AddToRecipients                              []string `ps:"AddToRecipients"`
-	AnyOfCcHeader                                []string `ps:"AnyOfCcHeader"`
-	AnyOfCcHeaderMemberOf                        []string `ps:"AnyOfCcHeaderMemberOf"`
-	AnyOfRecipientAddressContainsWords           []string `ps:"AnyOfRecipientAddressContainsWords"`
-	AnyOfRecipientAddressMatchesPatterns         []string `ps:"AnyOfRecipientAddressMatchesPatterns"`
-	AnyOfToCcHeader                              []string `ps:"AnyOfToCcHeader"`
-	AnyOfToCcHeaderMemberOf                      []string `ps:"AnyOfToCcHeaderMemberOf"`
-	AnyOfToHeader                                []string `ps:"AnyOfToHeader"`
-	AnyOfToHeaderMemberOf                        []string `ps:"AnyOfToHeaderMemberOf"`
-	ApplyClassification                          string   `ps:"ApplyClassification"`
-	ApplyHtmlDisclaimerFallbackAction            any      `ps:"ApplyHtmlDisclaimerFallbackAction"` // DisclaimerFallbackAction
-	ApplyHtmlDisclaimerLocation                  any      `ps:"ApplyHtmlDisclaimerLocation"`       // DisclaimerLocation
-	ApplyHtmlDisclaimerText                      any      `ps:"ApplyHtmlDisclaimerText"`           // DisclaimerText
-	ApplyOME                                     *bool    `ps:"ApplyOME"`
-	ApplyRightsProtectionCustomizationTemplate   any      `ps:"ApplyRightsProtectionCustomizationTemplate"` // OMEConfigurationIdParameter
-	ApplyRightsProtectionTemplate                any      `ps:"ApplyRightsProtectionTemplate"`              // RmsTemplateIdParameter
-	AttachmentContainsWords                      []string `ps:"AttachmentContainsWords"`
-	AttachmentExtensionMatchesWords              []string `ps:"AttachmentExtensionMatchesWords"`
-	AttachmentHasExecutableContent               *bool    `ps:"AttachmentHasExecutableContent"`
-	AttachmentIsPasswordProtected                *bool    `ps:"AttachmentIsPasswordProtected"`
-	AttachmentIsUnsupported                      *bool    `ps:"AttachmentIsUnsupported"`
-	AttachmentMatchesPatterns                    []string `ps:"AttachmentMatchesPatterns"`
-	AttachmentNameMatchesPatterns                []string `ps:"AttachmentNameMatchesPatterns"`
-	AttachmentProcessingLimitExceeded            *bool    `ps:"AttachmentProcessingLimitExceeded"`
-	AttachmentPropertyContainsWords              []string `ps:"AttachmentPropertyContainsWords"`
-	AttachmentSizeOver                           any      `ps:"AttachmentSizeOver"` // ByteQuantifiedSize
-	BetweenMemberOf1                             []string `ps:"BetweenMemberOf1"`
-	BetweenMemberOf2                             []string `ps:"BetweenMemberOf2"`
-	BlindCopyTo                                  []string `ps:"BlindCopyTo"`
-	Comments                                     string   `ps:"Comments"`
-	ContentCharacterSetContainsWords             []string `ps:"ContentCharacterSetContainsWords"`
-	CopyTo                                       []string `ps:"CopyTo"`
-	DeleteMessage                                *bool    `ps:"DeleteMessage"`
-	Disconnect                                   *bool    `ps:"Disconnect"`
-	DlpPolicy                                    string   `ps:"DlpPolicy"`
-	ExceptIfAdComparisonAttribute                any      `ps:"ExceptIfAdComparisonAttribute"` // ADAttribute
-	ExceptIfAdComparisonOperator                 any      `ps:"ExceptIfAdComparisonOperator"`  // Evaluation
-	ExceptIfAnyOfCcHeader                        []string `ps:"ExceptIfAnyOfCcHeader"`
-	ExceptIfAnyOfCcHeaderMemberOf                []string `ps:"ExceptIfAnyOfCcHeaderMemberOf"`
-	ExceptIfAnyOfRecipientAddressContainsWords   []string `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
-	ExceptIfAnyOfRecipientAddressMatchesPatterns []string `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
-	ExceptIfAnyOfToCcHeader                      []string `ps:"ExceptIfAnyOfToCcHeader"`
-	ExceptIfAnyOfToCcHeaderMemberOf              []string `ps:"ExceptIfAnyOfToCcHeaderMemberOf"`
-	ExceptIfAnyOfToHeader                        []string `ps:"ExceptIfAnyOfToHeader"`
-	ExceptIfAnyOfToHeaderMemberOf                []string `ps:"ExceptIfAnyOfToHeaderMemberOf"`
-	ExceptIfAttachmentContainsWords              []string `ps:"ExceptIfAttachmentContainsWords"`
-	ExceptIfAttachmentExtensionMatchesWords      []string `ps:"ExceptIfAttachmentExtensionMatchesWords"`
-	ExceptIfAttachmentHasExecutableContent       *bool    `ps:"ExceptIfAttachmentHasExecutableContent"`
-	ExceptIfAttachmentIsPasswordProtected        *bool    `ps:"ExceptIfAttachmentIsPasswordProtected"`
-	ExceptIfAttachmentIsUnsupported              *bool    `ps:"ExceptIfAttachmentIsUnsupported"`
-	ExceptIfAttachmentMatchesPatterns            []string `ps:"ExceptIfAttachmentMatchesPatterns"`
-	ExceptIfAttachmentNameMatchesPatterns        []string `ps:"ExceptIfAttachmentNameMatchesPatterns"`
-	ExceptIfAttachmentProcessingLimitExceeded    *bool    `ps:"ExceptIfAttachmentProcessingLimitExceeded"`
-	ExceptIfAttachmentPropertyContainsWords      []string `ps:"ExceptIfAttachmentPropertyContainsWords"`
-	ExceptIfAttachmentSizeOver                   any      `ps:"ExceptIfAttachmentSizeOver"` // ByteQuantifiedSize
-	ExceptIfBetweenMemberOf1                     []string `ps:"ExceptIfBetweenMemberOf1"`
-	ExceptIfBetweenMemberOf2                     []string `ps:"ExceptIfBetweenMemberOf2"`
-	ExceptIfContentCharacterSetContainsWords     []string `ps:"ExceptIfContentCharacterSetContainsWords"`
-	ExceptIfFrom                                 []string `ps:"ExceptIfFrom"`
-	ExceptIfFromAddressContainsWords             []string `ps:"ExceptIfFromAddressContainsWords"`
-	ExceptIfFromAddressMatchesPatterns           []string `ps:"ExceptIfFromAddressMatchesPatterns"`
-	ExceptIfFromMemberOf                         []string `ps:"ExceptIfFromMemberOf"`
-	ExceptIfFromScope                            any      `ps:"ExceptIfFromScope"` // FromUserScope
-	ExceptIfHasClassification                    string   `ps:"ExceptIfHasClassification"`
-	ExceptIfHasNoClassification                  *bool    `ps:"ExceptIfHasNoClassification"`
-	ExceptIfHasSenderOverride                    *bool    `ps:"ExceptIfHasSenderOverride"`
-	ExceptIfHeaderContainsMessageHeader          any      `ps:"ExceptIfHeaderContainsMessageHeader"` // HeaderName
-	ExceptIfHeaderContainsWords                  []string `ps:"ExceptIfHeaderContainsWords"`
-	ExceptIfHeaderMatchesMessageHeader           any      `ps:"ExceptIfHeaderMatchesMessageHeader"` // HeaderName
-	ExceptIfHeaderMatchesPatterns                []string `ps:"ExceptIfHeaderMatchesPatterns"`
-	ExceptIfManagerAddresses                     []string `ps:"ExceptIfManagerAddresses"`
-	ExceptIfManagerForEvaluatedUser              any      `ps:"ExceptIfManagerForEvaluatedUser"` // EvaluatedUser
-	ExceptIfMessageContainsDataClassifications   []string `ps:"ExceptIfMessageContainsDataClassifications"`
-	ExceptIfMessageSizeOver                      any      `ps:"ExceptIfMessageSizeOver"`    // ByteQuantifiedSize
-	ExceptIfMessageTypeMatches                   any      `ps:"ExceptIfMessageTypeMatches"` // MessageType
-	ExceptIfRecipientADAttributeContainsWords    []string `ps:"ExceptIfRecipientADAttributeContainsWords"`
-	ExceptIfRecipientADAttributeMatchesPatterns  []string `ps:"ExceptIfRecipientADAttributeMatchesPatterns"`
-	ExceptIfRecipientAddressContainsWords        []string `ps:"ExceptIfRecipientAddressContainsWords"`
-	ExceptIfRecipientAddressMatchesPatterns      []string `ps:"ExceptIfRecipientAddressMatchesPatterns"`
-	ExceptIfRecipientDomainIs                    []string `ps:"ExceptIfRecipientDomainIs"`
-	ExceptIfRecipientInSenderList                []string `ps:"ExceptIfRecipientInSenderList"`
-	ExceptIfSCLOver                              any      `ps:"ExceptIfSCLOver"` // SclValue
-	ExceptIfSenderADAttributeContainsWords       []string `ps:"ExceptIfSenderADAttributeContainsWords"`
-	ExceptIfSenderADAttributeMatchesPatterns     []string `ps:"ExceptIfSenderADAttributeMatchesPatterns"`
-	ExceptIfSenderDomainIs                       []string `ps:"ExceptIfSenderDomainIs"`
-	ExceptIfSenderInRecipientList                []string `ps:"ExceptIfSenderInRecipientList"`
-	ExceptIfSenderIpRanges                       []string `ps:"ExceptIfSenderIpRanges"`
-	ExceptIfSenderManagementRelationship         any      `ps:"ExceptIfSenderManagementRelationship"` // ManagementRelationship
-	ExceptIfSentTo                               []string `ps:"ExceptIfSentTo"`
-	ExceptIfSentToMemberOf                       []string `ps:"ExceptIfSentToMemberOf"`
-	ExceptIfSentToScope                          any      `ps:"ExceptIfSentToScope"` // ToUserScope
-	ExceptIfSubjectContainsWords                 []string `ps:"ExceptIfSubjectContainsWords"`
-	ExceptIfSubjectMatchesPatterns               []string `ps:"ExceptIfSubjectMatchesPatterns"`
-	ExceptIfSubjectOrBodyContainsWords           []string `ps:"ExceptIfSubjectOrBodyContainsWords"`
-	ExceptIfSubjectOrBodyMatchesPatterns         []string `ps:"ExceptIfSubjectOrBodyMatchesPatterns"`
-	ExceptIfWithImportance                       any      `ps:"ExceptIfWithImportance"` // Importance
-	ExpiryDate                                   any      `ps:"ExpiryDate"`             // DateTime
-	From                                         []string `ps:"From"`
-	FromAddressContainsWords                     []string `ps:"FromAddressContainsWords"`
-	FromAddressMatchesPatterns                   []string `ps:"FromAddressMatchesPatterns"`
-	FromMemberOf                                 []string `ps:"FromMemberOf"`
-	FromScope                                    any      `ps:"FromScope"`              // FromUserScope
-	GenerateIncidentReport                       any      `ps:"GenerateIncidentReport"` // RecipientIdParameter
-	GenerateNotification                         any      `ps:"GenerateNotification"`   // DisclaimerText
-	HasClassification                            string   `ps:"HasClassification"`
-	HasNoClassification                          *bool    `ps:"HasNoClassification"`
-	HasSenderOverride                            *bool    `ps:"HasSenderOverride"`
-	HeaderContainsMessageHeader                  any      `ps:"HeaderContainsMessageHeader"` // HeaderName
-	HeaderContainsWords                          []string `ps:"HeaderContainsWords"`
-	HeaderMatchesMessageHeader                   any      `ps:"HeaderMatchesMessageHeader"` // HeaderName
-	HeaderMatchesPatterns                        []string `ps:"HeaderMatchesPatterns"`
-	Identity                                     any      `ps:"Identity"` // RuleIdParameter
-	IncidentReportContent                        []string `ps:"IncidentReportContent"`
-	LogEventText                                 any      `ps:"LogEventText"` // EventLogText
-	ManagerAddresses                             []string `ps:"ManagerAddresses"`
-	ManagerForEvaluatedUser                      any      `ps:"ManagerForEvaluatedUser"` // EvaluatedUser
-	MessageContainsDataClassifications           []string `ps:"MessageContainsDataClassifications"`
-	MessageSizeOver                              any      `ps:"MessageSizeOver"`    // ByteQuantifiedSize
-	MessageTypeMatches                           any      `ps:"MessageTypeMatches"` // MessageType
-	Mode                                         any      `ps:"Mode"`               // RuleMode
-	ModerateMessageByManager                     *bool    `ps:"ModerateMessageByManager"`
-	ModerateMessageByUser                        []string `ps:"ModerateMessageByUser"`
-	Name                                         string   `ps:"Name"`
-	NotifySender                                 any      `ps:"NotifySender"`   // NotifySenderType
-	PrependSubject                               any      `ps:"PrependSubject"` // SubjectPrefix
-	Priority                                     *int64   `ps:"Priority"`
-	Quarantine                                   *bool    `ps:"Quarantine"`
-	RecipientADAttributeContainsWords            []string `ps:"RecipientADAttributeContainsWords"`
-	RecipientADAttributeMatchesPatterns          []string `ps:"RecipientADAttributeMatchesPatterns"`
-	RecipientAddressContainsWords                []string `ps:"RecipientAddressContainsWords"`
-	RecipientAddressMatchesPatterns              []string `ps:"RecipientAddressMatchesPatterns"`
-	RecipientAddressType                         any      `ps:"RecipientAddressType"` // RecipientAddressType
-	RecipientDomainIs                            []string `ps:"RecipientDomainIs"`
-	RecipientInSenderList                        []string `ps:"RecipientInSenderList"`
-	RedirectMessageTo                            []string `ps:"RedirectMessageTo"`
-	RejectMessageEnhancedStatusCode              any      `ps:"RejectMessageEnhancedStatusCode"` // RejectEnhancedStatus
-	RejectMessageReasonText                      any      `ps:"RejectMessageReasonText"`         // RejectText
-	RemoveHeader                                 any      `ps:"RemoveHeader"`                    // HeaderName
-	RemoveOME                                    *bool    `ps:"RemoveOME"`
-	RemoveOMEv2                                  *bool    `ps:"RemoveOMEv2"`
-	RemoveRMSAttachmentEncryption                *bool    `ps:"RemoveRMSAttachmentEncryption"`
-	RouteMessageOutboundConnector                any      `ps:"RouteMessageOutboundConnector"` // OutboundConnectorIdParameter
-	RouteMessageOutboundRequireTls               *bool    `ps:"RouteMessageOutboundRequireTls"`
-	RuleErrorAction                              any      `ps:"RuleErrorAction"` // RuleErrorAction
-	RuleSubType                                  any      `ps:"RuleSubType"`     // RuleSubType
-	SCLOver                                      any      `ps:"SCLOver"`         // SclValue
-	SenderADAttributeContainsWords               []string `ps:"SenderADAttributeContainsWords"`
-	SenderADAttributeMatchesPatterns             []string `ps:"SenderADAttributeMatchesPatterns"`
-	SenderAddressLocation                        any      `ps:"SenderAddressLocation"` // SenderAddressLocation
-	SenderDomainIs                               []string `ps:"SenderDomainIs"`
-	SenderInRecipientList                        []string `ps:"SenderInRecipientList"`
-	SenderIpRanges                               []string `ps:"SenderIpRanges"`
-	SenderManagementRelationship                 any      `ps:"SenderManagementRelationship"` // ManagementRelationship
-	SentTo                                       []string `ps:"SentTo"`
-	SentToMemberOf                               []string `ps:"SentToMemberOf"`
-	SentToScope                                  any      `ps:"SentToScope"` // ToUserScope
-	SetAuditSeverity                             string   `ps:"SetAuditSeverity"`
-	SetHeaderName                                any      `ps:"SetHeaderName"`                     // HeaderName
-	SetHeaderValue                               any      `ps:"SetHeaderValue"`                    // HeaderValue
-	SetSCL                                       any      `ps:"SetSCL"`                            // SclValue
-	SmtpRejectMessageRejectStatusCode            any      `ps:"SmtpRejectMessageRejectStatusCode"` // RejectStatusCode
-	SmtpRejectMessageRejectText                  any      `ps:"SmtpRejectMessageRejectText"`       // RejectText
-	StopRuleProcessing                           *bool    `ps:"StopRuleProcessing"`
-	SubjectContainsWords                         []string `ps:"SubjectContainsWords"`
-	SubjectMatchesPatterns                       []string `ps:"SubjectMatchesPatterns"`
-	SubjectOrBodyContainsWords                   []string `ps:"SubjectOrBodyContainsWords"`
-	SubjectOrBodyMatchesPatterns                 []string `ps:"SubjectOrBodyMatchesPatterns"`
-	WithImportance                               any      `ps:"WithImportance"` // Importance
+	ActivationDate                               any                   `ps:"ActivationDate"`            // DateTime
+	AdComparisonAttribute                        any                   `ps:"AdComparisonAttribute"`     // ADAttribute
+	AdComparisonOperator                         any                   `ps:"AdComparisonOperator"`      // Evaluation
+	AddManagerAsRecipientType                    any                   `ps:"AddManagerAsRecipientType"` // AddedRecipientType
+	AddToRecipients                              []string              `ps:"AddToRecipients"`
+	AnyOfCcHeader                                []string              `ps:"AnyOfCcHeader"`
+	AnyOfCcHeaderMemberOf                        []string              `ps:"AnyOfCcHeaderMemberOf"`
+	AnyOfRecipientAddressContainsWords           []string              `ps:"AnyOfRecipientAddressContainsWords"`
+	AnyOfRecipientAddressMatchesPatterns         []string              `ps:"AnyOfRecipientAddressMatchesPatterns"`
+	AnyOfToCcHeader                              []string              `ps:"AnyOfToCcHeader"`
+	AnyOfToCcHeaderMemberOf                      []string              `ps:"AnyOfToCcHeaderMemberOf"`
+	AnyOfToHeader                                []string              `ps:"AnyOfToHeader"`
+	AnyOfToHeaderMemberOf                        []string              `ps:"AnyOfToHeaderMemberOf"`
+	ApplyClassification                          string                `ps:"ApplyClassification"`
+	ApplyHtmlDisclaimerFallbackAction            any                   `ps:"ApplyHtmlDisclaimerFallbackAction"` // DisclaimerFallbackAction
+	ApplyHtmlDisclaimerLocation                  any                   `ps:"ApplyHtmlDisclaimerLocation"`       // DisclaimerLocation
+	ApplyHtmlDisclaimerText                      any                   `ps:"ApplyHtmlDisclaimerText"`           // DisclaimerText
+	ApplyOME                                     *bool                 `ps:"ApplyOME"`
+	ApplyRightsProtectionCustomizationTemplate   any                   `ps:"ApplyRightsProtectionCustomizationTemplate"` // OMEConfigurationIdParameter
+	ApplyRightsProtectionTemplate                any                   `ps:"ApplyRightsProtectionTemplate"`              // RmsTemplateIdParameter
+	AttachmentContainsWords                      []string              `ps:"AttachmentContainsWords"`
+	AttachmentExtensionMatchesWords              []string              `ps:"AttachmentExtensionMatchesWords"`
+	AttachmentHasExecutableContent               *bool                 `ps:"AttachmentHasExecutableContent"`
+	AttachmentIsPasswordProtected                *bool                 `ps:"AttachmentIsPasswordProtected"`
+	AttachmentIsUnsupported                      *bool                 `ps:"AttachmentIsUnsupported"`
+	AttachmentMatchesPatterns                    []string              `ps:"AttachmentMatchesPatterns"`
+	AttachmentNameMatchesPatterns                []string              `ps:"AttachmentNameMatchesPatterns"`
+	AttachmentProcessingLimitExceeded            *bool                 `ps:"AttachmentProcessingLimitExceeded"`
+	AttachmentPropertyContainsWords              []string              `ps:"AttachmentPropertyContainsWords"`
+	AttachmentSizeOver                           any                   `ps:"AttachmentSizeOver"` // ByteQuantifiedSize
+	BetweenMemberOf1                             []string              `ps:"BetweenMemberOf1"`
+	BetweenMemberOf2                             []string              `ps:"BetweenMemberOf2"`
+	BlindCopyTo                                  []string              `ps:"BlindCopyTo"`
+	Comments                                     string                `ps:"Comments"`
+	ContentCharacterSetContainsWords             []string              `ps:"ContentCharacterSetContainsWords"`
+	CopyTo                                       []string              `ps:"CopyTo"`
+	DeleteMessage                                *bool                 `ps:"DeleteMessage"`
+	Disconnect                                   *bool                 `ps:"Disconnect"`
+	DlpPolicy                                    string                `ps:"DlpPolicy"`
+	ExceptIfAdComparisonAttribute                any                   `ps:"ExceptIfAdComparisonAttribute"` // ADAttribute
+	ExceptIfAdComparisonOperator                 any                   `ps:"ExceptIfAdComparisonOperator"`  // Evaluation
+	ExceptIfAnyOfCcHeader                        []string              `ps:"ExceptIfAnyOfCcHeader"`
+	ExceptIfAnyOfCcHeaderMemberOf                []string              `ps:"ExceptIfAnyOfCcHeaderMemberOf"`
+	ExceptIfAnyOfRecipientAddressContainsWords   []string              `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
+	ExceptIfAnyOfRecipientAddressMatchesPatterns []string              `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
+	ExceptIfAnyOfToCcHeader                      []string              `ps:"ExceptIfAnyOfToCcHeader"`
+	ExceptIfAnyOfToCcHeaderMemberOf              []string              `ps:"ExceptIfAnyOfToCcHeaderMemberOf"`
+	ExceptIfAnyOfToHeader                        []string              `ps:"ExceptIfAnyOfToHeader"`
+	ExceptIfAnyOfToHeaderMemberOf                []string              `ps:"ExceptIfAnyOfToHeaderMemberOf"`
+	ExceptIfAttachmentContainsWords              []string              `ps:"ExceptIfAttachmentContainsWords"`
+	ExceptIfAttachmentExtensionMatchesWords      []string              `ps:"ExceptIfAttachmentExtensionMatchesWords"`
+	ExceptIfAttachmentHasExecutableContent       *bool                 `ps:"ExceptIfAttachmentHasExecutableContent"`
+	ExceptIfAttachmentIsPasswordProtected        *bool                 `ps:"ExceptIfAttachmentIsPasswordProtected"`
+	ExceptIfAttachmentIsUnsupported              *bool                 `ps:"ExceptIfAttachmentIsUnsupported"`
+	ExceptIfAttachmentMatchesPatterns            []string              `ps:"ExceptIfAttachmentMatchesPatterns"`
+	ExceptIfAttachmentNameMatchesPatterns        []string              `ps:"ExceptIfAttachmentNameMatchesPatterns"`
+	ExceptIfAttachmentProcessingLimitExceeded    *bool                 `ps:"ExceptIfAttachmentProcessingLimitExceeded"`
+	ExceptIfAttachmentPropertyContainsWords      []string              `ps:"ExceptIfAttachmentPropertyContainsWords"`
+	ExceptIfAttachmentSizeOver                   any                   `ps:"ExceptIfAttachmentSizeOver"` // ByteQuantifiedSize
+	ExceptIfBetweenMemberOf1                     []string              `ps:"ExceptIfBetweenMemberOf1"`
+	ExceptIfBetweenMemberOf2                     []string              `ps:"ExceptIfBetweenMemberOf2"`
+	ExceptIfContentCharacterSetContainsWords     []string              `ps:"ExceptIfContentCharacterSetContainsWords"`
+	ExceptIfFrom                                 []string              `ps:"ExceptIfFrom"`
+	ExceptIfFromAddressContainsWords             []string              `ps:"ExceptIfFromAddressContainsWords"`
+	ExceptIfFromAddressMatchesPatterns           []string              `ps:"ExceptIfFromAddressMatchesPatterns"`
+	ExceptIfFromMemberOf                         []string              `ps:"ExceptIfFromMemberOf"`
+	ExceptIfFromScope                            any                   `ps:"ExceptIfFromScope"` // FromUserScope
+	ExceptIfHasClassification                    string                `ps:"ExceptIfHasClassification"`
+	ExceptIfHasNoClassification                  *bool                 `ps:"ExceptIfHasNoClassification"`
+	ExceptIfHasSenderOverride                    *bool                 `ps:"ExceptIfHasSenderOverride"`
+	ExceptIfHeaderContainsMessageHeader          any                   `ps:"ExceptIfHeaderContainsMessageHeader"` // HeaderName
+	ExceptIfHeaderContainsWords                  []string              `ps:"ExceptIfHeaderContainsWords"`
+	ExceptIfHeaderMatchesMessageHeader           any                   `ps:"ExceptIfHeaderMatchesMessageHeader"` // HeaderName
+	ExceptIfHeaderMatchesPatterns                []string              `ps:"ExceptIfHeaderMatchesPatterns"`
+	ExceptIfManagerAddresses                     []string              `ps:"ExceptIfManagerAddresses"`
+	ExceptIfManagerForEvaluatedUser              any                   `ps:"ExceptIfManagerForEvaluatedUser"` // EvaluatedUser
+	ExceptIfMessageContainsDataClassifications   []string              `ps:"ExceptIfMessageContainsDataClassifications"`
+	ExceptIfMessageSizeOver                      any                   `ps:"ExceptIfMessageSizeOver"`    // ByteQuantifiedSize
+	ExceptIfMessageTypeMatches                   any                   `ps:"ExceptIfMessageTypeMatches"` // MessageType
+	ExceptIfRecipientADAttributeContainsWords    []string              `ps:"ExceptIfRecipientADAttributeContainsWords"`
+	ExceptIfRecipientADAttributeMatchesPatterns  []string              `ps:"ExceptIfRecipientADAttributeMatchesPatterns"`
+	ExceptIfRecipientAddressContainsWords        []string              `ps:"ExceptIfRecipientAddressContainsWords"`
+	ExceptIfRecipientAddressMatchesPatterns      []string              `ps:"ExceptIfRecipientAddressMatchesPatterns"`
+	ExceptIfRecipientDomainIs                    []string              `ps:"ExceptIfRecipientDomainIs"`
+	ExceptIfRecipientInSenderList                []string              `ps:"ExceptIfRecipientInSenderList"`
+	ExceptIfSCLOver                              any                   `ps:"ExceptIfSCLOver"` // SclValue
+	ExceptIfSenderADAttributeContainsWords       []string              `ps:"ExceptIfSenderADAttributeContainsWords"`
+	ExceptIfSenderADAttributeMatchesPatterns     []string              `ps:"ExceptIfSenderADAttributeMatchesPatterns"`
+	ExceptIfSenderDomainIs                       []string              `ps:"ExceptIfSenderDomainIs"`
+	ExceptIfSenderInRecipientList                []string              `ps:"ExceptIfSenderInRecipientList"`
+	ExceptIfSenderIpRanges                       []string              `ps:"ExceptIfSenderIpRanges"`
+	ExceptIfSenderIpRangesDelta                  *adminapi.StringDelta `ps:"ExceptIfSenderIpRanges"`               // adds/removes values of ExceptIfSenderIpRanges; takes precedence over it
+	ExceptIfSenderManagementRelationship         any                   `ps:"ExceptIfSenderManagementRelationship"` // ManagementRelationship
+	ExceptIfSentTo                               []string              `ps:"ExceptIfSentTo"`
+	ExceptIfSentToMemberOf                       []string              `ps:"ExceptIfSentToMemberOf"`
+	ExceptIfSentToScope                          any                   `ps:"ExceptIfSentToScope"` // ToUserScope
+	ExceptIfSubjectContainsWords                 []string              `ps:"ExceptIfSubjectContainsWords"`
+	ExceptIfSubjectMatchesPatterns               []string              `ps:"ExceptIfSubjectMatchesPatterns"`
+	ExceptIfSubjectOrBodyContainsWords           []string              `ps:"ExceptIfSubjectOrBodyContainsWords"`
+	ExceptIfSubjectOrBodyMatchesPatterns         []string              `ps:"ExceptIfSubjectOrBodyMatchesPatterns"`
+	ExceptIfWithImportance                       any                   `ps:"ExceptIfWithImportance"` // Importance
+	ExpiryDate                                   any                   `ps:"ExpiryDate"`             // DateTime
+	From                                         []string              `ps:"From"`
+	FromAddressContainsWords                     []string              `ps:"FromAddressContainsWords"`
+	FromAddressMatchesPatterns                   []string              `ps:"FromAddressMatchesPatterns"`
+	FromMemberOf                                 []string              `ps:"FromMemberOf"`
+	FromScope                                    any                   `ps:"FromScope"`              // FromUserScope
+	GenerateIncidentReport                       any                   `ps:"GenerateIncidentReport"` // RecipientIdParameter
+	GenerateNotification                         any                   `ps:"GenerateNotification"`   // DisclaimerText
+	HasClassification                            string                `ps:"HasClassification"`
+	HasNoClassification                          *bool                 `ps:"HasNoClassification"`
+	HasSenderOverride                            *bool                 `ps:"HasSenderOverride"`
+	HeaderContainsMessageHeader                  any                   `ps:"HeaderContainsMessageHeader"` // HeaderName
+	HeaderContainsWords                          []string              `ps:"HeaderContainsWords"`
+	HeaderMatchesMessageHeader                   any                   `ps:"HeaderMatchesMessageHeader"` // HeaderName
+	HeaderMatchesPatterns                        []string              `ps:"HeaderMatchesPatterns"`
+	Identity                                     any                   `ps:"Identity"` // RuleIdParameter
+	IncidentReportContent                        []string              `ps:"IncidentReportContent"`
+	LogEventText                                 any                   `ps:"LogEventText"` // EventLogText
+	ManagerAddresses                             []string              `ps:"ManagerAddresses"`
+	ManagerForEvaluatedUser                      any                   `ps:"ManagerForEvaluatedUser"` // EvaluatedUser
+	MessageContainsDataClassifications           []string              `ps:"MessageContainsDataClassifications"`
+	MessageSizeOver                              any                   `ps:"MessageSizeOver"`    // ByteQuantifiedSize
+	MessageTypeMatches                           any                   `ps:"MessageTypeMatches"` // MessageType
+	Mode                                         any                   `ps:"Mode"`               // RuleMode
+	ModerateMessageByManager                     *bool                 `ps:"ModerateMessageByManager"`
+	ModerateMessageByUser                        []string              `ps:"ModerateMessageByUser"`
+	Name                                         string                `ps:"Name"`
+	NotifySender                                 any                   `ps:"NotifySender"`   // NotifySenderType
+	PrependSubject                               any                   `ps:"PrependSubject"` // SubjectPrefix
+	Priority                                     *int64                `ps:"Priority"`
+	Quarantine                                   *bool                 `ps:"Quarantine"`
+	RecipientADAttributeContainsWords            []string              `ps:"RecipientADAttributeContainsWords"`
+	RecipientADAttributeMatchesPatterns          []string              `ps:"RecipientADAttributeMatchesPatterns"`
+	RecipientAddressContainsWords                []string              `ps:"RecipientAddressContainsWords"`
+	RecipientAddressMatchesPatterns              []string              `ps:"RecipientAddressMatchesPatterns"`
+	RecipientAddressType                         any                   `ps:"RecipientAddressType"` // RecipientAddressType
+	RecipientDomainIs                            []string              `ps:"RecipientDomainIs"`
+	RecipientInSenderList                        []string              `ps:"RecipientInSenderList"`
+	RedirectMessageTo                            []string              `ps:"RedirectMessageTo"`
+	RejectMessageEnhancedStatusCode              any                   `ps:"RejectMessageEnhancedStatusCode"` // RejectEnhancedStatus
+	RejectMessageReasonText                      any                   `ps:"RejectMessageReasonText"`         // RejectText
+	RemoveHeader                                 any                   `ps:"RemoveHeader"`                    // HeaderName
+	RemoveOME                                    *bool                 `ps:"RemoveOME"`
+	RemoveOMEv2                                  *bool                 `ps:"RemoveOMEv2"`
+	RemoveRMSAttachmentEncryption                *bool                 `ps:"RemoveRMSAttachmentEncryption"`
+	RouteMessageOutboundConnector                any                   `ps:"RouteMessageOutboundConnector"` // OutboundConnectorIdParameter
+	RouteMessageOutboundRequireTls               *bool                 `ps:"RouteMessageOutboundRequireTls"`
+	RuleErrorAction                              any                   `ps:"RuleErrorAction"` // RuleErrorAction
+	RuleSubType                                  any                   `ps:"RuleSubType"`     // RuleSubType
+	SCLOver                                      any                   `ps:"SCLOver"`         // SclValue
+	SenderADAttributeContainsWords               []string              `ps:"SenderADAttributeContainsWords"`
+	SenderADAttributeMatchesPatterns             []string              `ps:"SenderADAttributeMatchesPatterns"`
+	SenderAddressLocation                        any                   `ps:"SenderAddressLocation"` // SenderAddressLocation
+	SenderDomainIs                               []string              `ps:"SenderDomainIs"`
+	SenderInRecipientList                        []string              `ps:"SenderInRecipientList"`
+	SenderIpRanges                               []string              `ps:"SenderIpRanges"`
+	SenderIpRangesDelta                          *adminapi.StringDelta `ps:"SenderIpRanges"`               // adds/removes values of SenderIpRanges; takes precedence over it
+	SenderManagementRelationship                 any                   `ps:"SenderManagementRelationship"` // ManagementRelationship
+	SentTo                                       []string              `ps:"SentTo"`
+	SentToMemberOf                               []string              `ps:"SentToMemberOf"`
+	SentToScope                                  any                   `ps:"SentToScope"` // ToUserScope
+	SetAuditSeverity                             string                `ps:"SetAuditSeverity"`
+	SetHeaderName                                any                   `ps:"SetHeaderName"`                     // HeaderName
+	SetHeaderValue                               any                   `ps:"SetHeaderValue"`                    // HeaderValue
+	SetSCL                                       any                   `ps:"SetSCL"`                            // SclValue
+	SmtpRejectMessageRejectStatusCode            any                   `ps:"SmtpRejectMessageRejectStatusCode"` // RejectStatusCode
+	SmtpRejectMessageRejectText                  any                   `ps:"SmtpRejectMessageRejectText"`       // RejectText
+	StopRuleProcessing                           *bool                 `ps:"StopRuleProcessing"`
+	SubjectContainsWords                         []string              `ps:"SubjectContainsWords"`
+	SubjectMatchesPatterns                       []string              `ps:"SubjectMatchesPatterns"`
+	SubjectOrBodyContainsWords                   []string              `ps:"SubjectOrBodyContainsWords"`
+	SubjectOrBodyMatchesPatterns                 []string              `ps:"SubjectOrBodyMatchesPatterns"`
+	WithImportance                               any                   `ps:"WithImportance"` // Importance
 }
 
 func (p SetTransportRuleParams) params() map[string]any {
@@ -34200,7 +34943,9 @@ func (p SetTransportRuleParams) params() map[string]any {
 	if p.ExceptIfSenderInRecipientList != nil {
 		m["ExceptIfSenderInRecipientList"] = p.ExceptIfSenderInRecipientList
 	}
-	if p.ExceptIfSenderIpRanges != nil {
+	if p.ExceptIfSenderIpRangesDelta != nil {
+		m["ExceptIfSenderIpRanges"] = *p.ExceptIfSenderIpRangesDelta
+	} else if p.ExceptIfSenderIpRanges != nil {
 		m["ExceptIfSenderIpRanges"] = p.ExceptIfSenderIpRanges
 	}
 	if p.ExceptIfSenderManagementRelationship != nil {
@@ -34395,7 +35140,9 @@ func (p SetTransportRuleParams) params() map[string]any {
 	if p.SenderInRecipientList != nil {
 		m["SenderInRecipientList"] = p.SenderInRecipientList
 	}
-	if p.SenderIpRanges != nil {
+	if p.SenderIpRangesDelta != nil {
+		m["SenderIpRanges"] = *p.SenderIpRangesDelta
+	} else if p.SenderIpRanges != nil {
 		m["SenderIpRanges"] = p.SenderIpRanges
 	}
 	if p.SenderManagementRelationship != nil {
@@ -34476,65 +35223,77 @@ func (s *Service) SetUnifiedAuditSetting(ctx context.Context, p SetUnifiedAuditS
 // SetUnifiedGroupParams are the parameters of Set-UnifiedGroup.
 // DefaultParameterSetName: Identity
 type SetUnifiedGroupParams struct {
-	AcceptMessagesOnlyFromSendersOrMembers []string `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
-	AccessType                             any      `ps:"AccessType"` // ModernGroupTypeInfo
-	Alias                                  string   `ps:"Alias"`
-	AlwaysSubscribeMembersToCalendarEvents bool     `ps:"AlwaysSubscribeMembersToCalendarEvents"`
-	AuditLogAgeLimit                       any      `ps:"AuditLogAgeLimit"` // EnhancedTimeSpan
-	AutoSubscribeNewMembers                bool     `ps:"AutoSubscribeNewMembers"`
-	CalendarMemberReadOnly                 bool     `ps:"CalendarMemberReadOnly"`
-	Classification                         string   `ps:"Classification"`
-	ConnectorsEnabled                      bool     `ps:"ConnectorsEnabled"`
-	CustomAttribute1                       string   `ps:"CustomAttribute1"`
-	CustomAttribute10                      string   `ps:"CustomAttribute10"`
-	CustomAttribute11                      string   `ps:"CustomAttribute11"`
-	CustomAttribute12                      string   `ps:"CustomAttribute12"`
-	CustomAttribute13                      string   `ps:"CustomAttribute13"`
-	CustomAttribute14                      string   `ps:"CustomAttribute14"`
-	CustomAttribute15                      string   `ps:"CustomAttribute15"`
-	CustomAttribute2                       string   `ps:"CustomAttribute2"`
-	CustomAttribute3                       string   `ps:"CustomAttribute3"`
-	CustomAttribute4                       string   `ps:"CustomAttribute4"`
-	CustomAttribute5                       string   `ps:"CustomAttribute5"`
-	CustomAttribute6                       string   `ps:"CustomAttribute6"`
-	CustomAttribute7                       string   `ps:"CustomAttribute7"`
-	CustomAttribute8                       string   `ps:"CustomAttribute8"`
-	CustomAttribute9                       string   `ps:"CustomAttribute9"`
-	DataEncryptionPolicy                   any      `ps:"DataEncryptionPolicy"` // DataEncryptionPolicyIdParameter
-	DisplayName                            string   `ps:"DisplayName"`
-	EmailAddresses                         []string `ps:"EmailAddresses"`
-	ExtensionCustomAttribute1              []string `ps:"ExtensionCustomAttribute1"`
-	ExtensionCustomAttribute2              []string `ps:"ExtensionCustomAttribute2"`
-	ExtensionCustomAttribute3              []string `ps:"ExtensionCustomAttribute3"`
-	ExtensionCustomAttribute4              []string `ps:"ExtensionCustomAttribute4"`
-	ExtensionCustomAttribute5              []string `ps:"ExtensionCustomAttribute5"`
-	ForceUpgrade                           bool     `ps:"ForceUpgrade"`
-	GrantSendOnBehalfTo                    []string `ps:"GrantSendOnBehalfTo"`
-	HiddenFromAddressListsEnabled          *bool    `ps:"HiddenFromAddressListsEnabled"`
-	HiddenFromExchangeClientsEnabled       bool     `ps:"HiddenFromExchangeClientsEnabled"`
-	Identity                               any      `ps:"Identity"`               // UnifiedGroupIdParameter
-	InformationBarrierMode                 any      `ps:"InformationBarrierMode"` // GroupInformationBarrierMode
-	IsMemberAllowedToEditContent           *bool    `ps:"IsMemberAllowedToEditContent"`
-	Language                               any      `ps:"Language"` // CultureInfo
-	MailboxRegion                          string   `ps:"MailboxRegion"`
-	MailTip                                string   `ps:"MailTip"`
-	MailTipTranslations                    []string `ps:"MailTipTranslations"`
-	MaxReceiveSize                         any      `ps:"MaxReceiveSize"` // Unlimited
-	MaxSendSize                            any      `ps:"MaxSendSize"`    // Unlimited
-	ModeratedBy                            []string `ps:"ModeratedBy"`
-	ModerationEnabled                      *bool    `ps:"ModerationEnabled"`
-	Notes                                  string   `ps:"Notes"`
-	PrimarySmtpAddress                     any      `ps:"PrimarySmtpAddress"` // SmtpAddress
-	RejectMessagesFromSendersOrMembers     []string `ps:"RejectMessagesFromSendersOrMembers"`
-	RequireSenderAuthenticationEnabled     *bool    `ps:"RequireSenderAuthenticationEnabled"`
-	SensitivityLabelId                     any      `ps:"SensitivityLabelId"` // System.Guid
-	SubscriptionEnabled                    bool     `ps:"SubscriptionEnabled"`
-	UnifiedGroupWelcomeMessageEnabled      bool     `ps:"UnifiedGroupWelcomeMessageEnabled"`
+	AcceptMessagesOnlyFromSendersOrMembers      []string              `ps:"AcceptMessagesOnlyFromSendersOrMembers"`
+	AcceptMessagesOnlyFromSendersOrMembersDelta *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromSendersOrMembers"` // adds/removes values of AcceptMessagesOnlyFromSendersOrMembers; takes precedence over it
+	AccessType                                  any                   `ps:"AccessType"`                             // ModernGroupTypeInfo
+	Alias                                       string                `ps:"Alias"`
+	AlwaysSubscribeMembersToCalendarEvents      bool                  `ps:"AlwaysSubscribeMembersToCalendarEvents"`
+	AuditLogAgeLimit                            any                   `ps:"AuditLogAgeLimit"` // EnhancedTimeSpan
+	AutoSubscribeNewMembers                     bool                  `ps:"AutoSubscribeNewMembers"`
+	CalendarMemberReadOnly                      bool                  `ps:"CalendarMemberReadOnly"`
+	Classification                              string                `ps:"Classification"`
+	ConnectorsEnabled                           bool                  `ps:"ConnectorsEnabled"`
+	CustomAttribute1                            string                `ps:"CustomAttribute1"`
+	CustomAttribute10                           string                `ps:"CustomAttribute10"`
+	CustomAttribute11                           string                `ps:"CustomAttribute11"`
+	CustomAttribute12                           string                `ps:"CustomAttribute12"`
+	CustomAttribute13                           string                `ps:"CustomAttribute13"`
+	CustomAttribute14                           string                `ps:"CustomAttribute14"`
+	CustomAttribute15                           string                `ps:"CustomAttribute15"`
+	CustomAttribute2                            string                `ps:"CustomAttribute2"`
+	CustomAttribute3                            string                `ps:"CustomAttribute3"`
+	CustomAttribute4                            string                `ps:"CustomAttribute4"`
+	CustomAttribute5                            string                `ps:"CustomAttribute5"`
+	CustomAttribute6                            string                `ps:"CustomAttribute6"`
+	CustomAttribute7                            string                `ps:"CustomAttribute7"`
+	CustomAttribute8                            string                `ps:"CustomAttribute8"`
+	CustomAttribute9                            string                `ps:"CustomAttribute9"`
+	DataEncryptionPolicy                        any                   `ps:"DataEncryptionPolicy"` // DataEncryptionPolicyIdParameter
+	DisplayName                                 string                `ps:"DisplayName"`
+	EmailAddresses                              []string              `ps:"EmailAddresses"`
+	ExtensionCustomAttribute1                   []string              `ps:"ExtensionCustomAttribute1"`
+	ExtensionCustomAttribute1Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute1"` // adds/removes values of ExtensionCustomAttribute1; takes precedence over it
+	ExtensionCustomAttribute2                   []string              `ps:"ExtensionCustomAttribute2"`
+	ExtensionCustomAttribute2Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute2"` // adds/removes values of ExtensionCustomAttribute2; takes precedence over it
+	ExtensionCustomAttribute3                   []string              `ps:"ExtensionCustomAttribute3"`
+	ExtensionCustomAttribute3Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute3"` // adds/removes values of ExtensionCustomAttribute3; takes precedence over it
+	ExtensionCustomAttribute4                   []string              `ps:"ExtensionCustomAttribute4"`
+	ExtensionCustomAttribute4Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute4"` // adds/removes values of ExtensionCustomAttribute4; takes precedence over it
+	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
+	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
+	ForceUpgrade                                bool                  `ps:"ForceUpgrade"`
+	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
+	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
+	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
+	HiddenFromExchangeClientsEnabled            bool                  `ps:"HiddenFromExchangeClientsEnabled"`
+	Identity                                    any                   `ps:"Identity"`               // UnifiedGroupIdParameter
+	InformationBarrierMode                      any                   `ps:"InformationBarrierMode"` // GroupInformationBarrierMode
+	IsMemberAllowedToEditContent                *bool                 `ps:"IsMemberAllowedToEditContent"`
+	Language                                    any                   `ps:"Language"` // CultureInfo
+	MailboxRegion                               string                `ps:"MailboxRegion"`
+	MailTip                                     string                `ps:"MailTip"`
+	MailTipTranslations                         []string              `ps:"MailTipTranslations"`
+	MailTipTranslationsDelta                    *adminapi.StringDelta `ps:"MailTipTranslations"` // adds/removes values of MailTipTranslations; takes precedence over it
+	MaxReceiveSize                              any                   `ps:"MaxReceiveSize"`      // Unlimited
+	MaxSendSize                                 any                   `ps:"MaxSendSize"`         // Unlimited
+	ModeratedBy                                 []string              `ps:"ModeratedBy"`
+	ModeratedByDelta                            *adminapi.StringDelta `ps:"ModeratedBy"` // adds/removes values of ModeratedBy; takes precedence over it
+	ModerationEnabled                           *bool                 `ps:"ModerationEnabled"`
+	Notes                                       string                `ps:"Notes"`
+	PrimarySmtpAddress                          any                   `ps:"PrimarySmtpAddress"` // SmtpAddress
+	RejectMessagesFromSendersOrMembers          []string              `ps:"RejectMessagesFromSendersOrMembers"`
+	RejectMessagesFromSendersOrMembersDelta     *adminapi.StringDelta `ps:"RejectMessagesFromSendersOrMembers"` // adds/removes values of RejectMessagesFromSendersOrMembers; takes precedence over it
+	RequireSenderAuthenticationEnabled          *bool                 `ps:"RequireSenderAuthenticationEnabled"`
+	SensitivityLabelId                          any                   `ps:"SensitivityLabelId"` // System.Guid
+	SubscriptionEnabled                         bool                  `ps:"SubscriptionEnabled"`
+	UnifiedGroupWelcomeMessageEnabled           bool                  `ps:"UnifiedGroupWelcomeMessageEnabled"`
 }
 
 func (p SetUnifiedGroupParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
+	if p.AcceptMessagesOnlyFromSendersOrMembersDelta != nil {
+		m["AcceptMessagesOnlyFromSendersOrMembers"] = *p.AcceptMessagesOnlyFromSendersOrMembersDelta
+	} else if p.AcceptMessagesOnlyFromSendersOrMembers != nil {
 		m["AcceptMessagesOnlyFromSendersOrMembers"] = p.AcceptMessagesOnlyFromSendersOrMembers
 	}
 	if p.AccessType != nil {
@@ -34615,25 +35374,37 @@ func (p SetUnifiedGroupParams) params() map[string]any {
 	if p.EmailAddresses != nil {
 		m["EmailAddresses"] = p.EmailAddresses
 	}
-	if p.ExtensionCustomAttribute1 != nil {
+	if p.ExtensionCustomAttribute1Delta != nil {
+		m["ExtensionCustomAttribute1"] = *p.ExtensionCustomAttribute1Delta
+	} else if p.ExtensionCustomAttribute1 != nil {
 		m["ExtensionCustomAttribute1"] = p.ExtensionCustomAttribute1
 	}
-	if p.ExtensionCustomAttribute2 != nil {
+	if p.ExtensionCustomAttribute2Delta != nil {
+		m["ExtensionCustomAttribute2"] = *p.ExtensionCustomAttribute2Delta
+	} else if p.ExtensionCustomAttribute2 != nil {
 		m["ExtensionCustomAttribute2"] = p.ExtensionCustomAttribute2
 	}
-	if p.ExtensionCustomAttribute3 != nil {
+	if p.ExtensionCustomAttribute3Delta != nil {
+		m["ExtensionCustomAttribute3"] = *p.ExtensionCustomAttribute3Delta
+	} else if p.ExtensionCustomAttribute3 != nil {
 		m["ExtensionCustomAttribute3"] = p.ExtensionCustomAttribute3
 	}
-	if p.ExtensionCustomAttribute4 != nil {
+	if p.ExtensionCustomAttribute4Delta != nil {
+		m["ExtensionCustomAttribute4"] = *p.ExtensionCustomAttribute4Delta
+	} else if p.ExtensionCustomAttribute4 != nil {
 		m["ExtensionCustomAttribute4"] = p.ExtensionCustomAttribute4
 	}
-	if p.ExtensionCustomAttribute5 != nil {
+	if p.ExtensionCustomAttribute5Delta != nil {
+		m["ExtensionCustomAttribute5"] = *p.ExtensionCustomAttribute5Delta
+	} else if p.ExtensionCustomAttribute5 != nil {
 		m["ExtensionCustomAttribute5"] = p.ExtensionCustomAttribute5
 	}
 	if p.ForceUpgrade {
 		m["ForceUpgrade"] = true
 	}
-	if p.GrantSendOnBehalfTo != nil {
+	if p.GrantSendOnBehalfToDelta != nil {
+		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
+	} else if p.GrantSendOnBehalfTo != nil {
 		m["GrantSendOnBehalfTo"] = p.GrantSendOnBehalfTo
 	}
 	if p.HiddenFromAddressListsEnabled != nil {
@@ -34660,7 +35431,9 @@ func (p SetUnifiedGroupParams) params() map[string]any {
 	if p.MailTip != "" {
 		m["MailTip"] = p.MailTip
 	}
-	if p.MailTipTranslations != nil {
+	if p.MailTipTranslationsDelta != nil {
+		m["MailTipTranslations"] = *p.MailTipTranslationsDelta
+	} else if p.MailTipTranslations != nil {
 		m["MailTipTranslations"] = p.MailTipTranslations
 	}
 	if p.MaxReceiveSize != nil {
@@ -34669,7 +35442,9 @@ func (p SetUnifiedGroupParams) params() map[string]any {
 	if p.MaxSendSize != nil {
 		m["MaxSendSize"] = p.MaxSendSize
 	}
-	if p.ModeratedBy != nil {
+	if p.ModeratedByDelta != nil {
+		m["ModeratedBy"] = *p.ModeratedByDelta
+	} else if p.ModeratedBy != nil {
 		m["ModeratedBy"] = p.ModeratedBy
 	}
 	if p.ModerationEnabled != nil {
@@ -34681,7 +35456,9 @@ func (p SetUnifiedGroupParams) params() map[string]any {
 	if p.PrimarySmtpAddress != nil {
 		m["PrimarySmtpAddress"] = p.PrimarySmtpAddress
 	}
-	if p.RejectMessagesFromSendersOrMembers != nil {
+	if p.RejectMessagesFromSendersOrMembersDelta != nil {
+		m["RejectMessagesFromSendersOrMembers"] = *p.RejectMessagesFromSendersOrMembersDelta
+	} else if p.RejectMessagesFromSendersOrMembers != nil {
 		m["RejectMessagesFromSendersOrMembers"] = p.RejectMessagesFromSendersOrMembers
 	}
 	if p.RequireSenderAuthenticationEnabled != nil {
@@ -34707,57 +35484,61 @@ func (s *Service) SetUnifiedGroup(ctx context.Context, p SetUnifiedGroupParams) 
 // SetUserParams are the parameters of Set-User.
 // DefaultParameterSetName: Identity
 type SetUserParams struct {
-	AssistantName                       string   `ps:"AssistantName"`
-	AuthenticationPolicy                any      `ps:"AuthenticationPolicy"` // String
-	BlockCloudCache                     *bool    `ps:"BlockCloudCache"`
-	CanHaveCloudCache                   *bool    `ps:"CanHaveCloudCache"`
-	City                                string   `ps:"City"`
-	ClearDataEncryptionPolicy           bool     `ps:"ClearDataEncryptionPolicy"`
-	Company                             string   `ps:"Company"`
-	CountryOrRegion                     any      `ps:"CountryOrRegion"` // CountryInfo
-	Department                          string   `ps:"Department"`
-	DesiredWorkloads                    any      `ps:"DesiredWorkloads"` // Microsoft.Exchange.Data.MailboxWorkloadFlags
-	DisplayName                         string   `ps:"DisplayName"`
-	EXOModuleEnabled                    *bool    `ps:"EXOModuleEnabled"`
-	Fax                                 string   `ps:"Fax"`
-	FirstName                           string   `ps:"FirstName"`
-	Force                               bool     `ps:"Force"`
-	GeoCoordinates                      any      `ps:"GeoCoordinates"` // GeoCoordinates
-	HomePhone                           string   `ps:"HomePhone"`
-	Identity                            any      `ps:"Identity"` // UserIdParameter
-	Initials                            string   `ps:"Initials"`
-	IsShadowMailbox                     *bool    `ps:"IsShadowMailbox"`
-	LastName                            string   `ps:"LastName"`
-	MailboxRegion                       string   `ps:"MailboxRegion"`
-	MailboxRegionSuffix                 any      `ps:"MailboxRegionSuffix"`   // MailboxRegionSuffixValue
-	ManagedOnboardingType               any      `ps:"ManagedOnboardingType"` // ManagedOnboardingType
-	Manager                             any      `ps:"Manager"`               // UserContactIdParameter
-	MobilePhone                         string   `ps:"MobilePhone"`
-	Name                                string   `ps:"Name"`
-	Notes                               string   `ps:"Notes"`
-	Office                              string   `ps:"Office"`
-	OtherFax                            []string `ps:"OtherFax"`
-	OtherHomePhone                      []string `ps:"OtherHomePhone"`
-	OtherTelephone                      []string `ps:"OtherTelephone"`
-	Pager                               string   `ps:"Pager"`
-	PermanentlyClearPreviousMailboxInfo bool     `ps:"PermanentlyClearPreviousMailboxInfo"`
-	Phone                               string   `ps:"Phone"`
-	PhoneticDisplayName                 string   `ps:"PhoneticDisplayName"`
-	PostalCode                          string   `ps:"PostalCode"`
-	PostOfficeBox                       []string `ps:"PostOfficeBox"`
-	PublicFolder                        bool     `ps:"PublicFolder"`
-	RemotePowerShellEnabled             *bool    `ps:"RemotePowerShellEnabled"`
-	RemoveMailboxProvisioningConstraint bool     `ps:"RemoveMailboxProvisioningConstraint"`
-	ResetPasswordOnNextLogon            *bool    `ps:"ResetPasswordOnNextLogon"`
-	SeniorityIndex                      *int64   `ps:"SeniorityIndex"`
-	SimpleDisplayName                   string   `ps:"SimpleDisplayName"`
-	StateOrProvince                     string   `ps:"StateOrProvince"`
-	StreetAddress                       string   `ps:"StreetAddress"`
-	StsRefreshTokensValidFrom           any      `ps:"StsRefreshTokensValidFrom"` // DateTime
-	Title                               string   `ps:"Title"`
-	VIP                                 *bool    `ps:"VIP"`
-	WebPage                             string   `ps:"WebPage"`
-	WindowsEmailAddress                 any      `ps:"WindowsEmailAddress"` // SmtpAddress
+	AssistantName                       string                `ps:"AssistantName"`
+	AuthenticationPolicy                any                   `ps:"AuthenticationPolicy"` // String
+	BlockCloudCache                     *bool                 `ps:"BlockCloudCache"`
+	CanHaveCloudCache                   *bool                 `ps:"CanHaveCloudCache"`
+	City                                string                `ps:"City"`
+	ClearDataEncryptionPolicy           bool                  `ps:"ClearDataEncryptionPolicy"`
+	Company                             string                `ps:"Company"`
+	CountryOrRegion                     any                   `ps:"CountryOrRegion"` // CountryInfo
+	Department                          string                `ps:"Department"`
+	DesiredWorkloads                    any                   `ps:"DesiredWorkloads"` // Microsoft.Exchange.Data.MailboxWorkloadFlags
+	DisplayName                         string                `ps:"DisplayName"`
+	EXOModuleEnabled                    *bool                 `ps:"EXOModuleEnabled"`
+	Fax                                 string                `ps:"Fax"`
+	FirstName                           string                `ps:"FirstName"`
+	Force                               bool                  `ps:"Force"`
+	GeoCoordinates                      any                   `ps:"GeoCoordinates"` // GeoCoordinates
+	HomePhone                           string                `ps:"HomePhone"`
+	Identity                            any                   `ps:"Identity"` // UserIdParameter
+	Initials                            string                `ps:"Initials"`
+	IsShadowMailbox                     *bool                 `ps:"IsShadowMailbox"`
+	LastName                            string                `ps:"LastName"`
+	MailboxRegion                       string                `ps:"MailboxRegion"`
+	MailboxRegionSuffix                 any                   `ps:"MailboxRegionSuffix"`   // MailboxRegionSuffixValue
+	ManagedOnboardingType               any                   `ps:"ManagedOnboardingType"` // ManagedOnboardingType
+	Manager                             any                   `ps:"Manager"`               // UserContactIdParameter
+	MobilePhone                         string                `ps:"MobilePhone"`
+	Name                                string                `ps:"Name"`
+	Notes                               string                `ps:"Notes"`
+	Office                              string                `ps:"Office"`
+	OtherFax                            []string              `ps:"OtherFax"`
+	OtherFaxDelta                       *adminapi.StringDelta `ps:"OtherFax"` // adds/removes values of OtherFax; takes precedence over it
+	OtherHomePhone                      []string              `ps:"OtherHomePhone"`
+	OtherHomePhoneDelta                 *adminapi.StringDelta `ps:"OtherHomePhone"` // adds/removes values of OtherHomePhone; takes precedence over it
+	OtherTelephone                      []string              `ps:"OtherTelephone"`
+	OtherTelephoneDelta                 *adminapi.StringDelta `ps:"OtherTelephone"` // adds/removes values of OtherTelephone; takes precedence over it
+	Pager                               string                `ps:"Pager"`
+	PermanentlyClearPreviousMailboxInfo bool                  `ps:"PermanentlyClearPreviousMailboxInfo"`
+	Phone                               string                `ps:"Phone"`
+	PhoneticDisplayName                 string                `ps:"PhoneticDisplayName"`
+	PostalCode                          string                `ps:"PostalCode"`
+	PostOfficeBox                       []string              `ps:"PostOfficeBox"`
+	PostOfficeBoxDelta                  *adminapi.StringDelta `ps:"PostOfficeBox"` // adds/removes values of PostOfficeBox; takes precedence over it
+	PublicFolder                        bool                  `ps:"PublicFolder"`
+	RemotePowerShellEnabled             *bool                 `ps:"RemotePowerShellEnabled"`
+	RemoveMailboxProvisioningConstraint bool                  `ps:"RemoveMailboxProvisioningConstraint"`
+	ResetPasswordOnNextLogon            *bool                 `ps:"ResetPasswordOnNextLogon"`
+	SeniorityIndex                      *int64                `ps:"SeniorityIndex"`
+	SimpleDisplayName                   string                `ps:"SimpleDisplayName"`
+	StateOrProvince                     string                `ps:"StateOrProvince"`
+	StreetAddress                       string                `ps:"StreetAddress"`
+	StsRefreshTokensValidFrom           any                   `ps:"StsRefreshTokensValidFrom"` // DateTime
+	Title                               string                `ps:"Title"`
+	VIP                                 *bool                 `ps:"VIP"`
+	WebPage                             string                `ps:"WebPage"`
+	WindowsEmailAddress                 any                   `ps:"WindowsEmailAddress"` // SmtpAddress
 }
 
 func (p SetUserParams) params() map[string]any {
@@ -34849,13 +35630,19 @@ func (p SetUserParams) params() map[string]any {
 	if p.Office != "" {
 		m["Office"] = p.Office
 	}
-	if p.OtherFax != nil {
+	if p.OtherFaxDelta != nil {
+		m["OtherFax"] = *p.OtherFaxDelta
+	} else if p.OtherFax != nil {
 		m["OtherFax"] = p.OtherFax
 	}
-	if p.OtherHomePhone != nil {
+	if p.OtherHomePhoneDelta != nil {
+		m["OtherHomePhone"] = *p.OtherHomePhoneDelta
+	} else if p.OtherHomePhone != nil {
 		m["OtherHomePhone"] = p.OtherHomePhone
 	}
-	if p.OtherTelephone != nil {
+	if p.OtherTelephoneDelta != nil {
+		m["OtherTelephone"] = *p.OtherTelephoneDelta
+	} else if p.OtherTelephone != nil {
 		m["OtherTelephone"] = p.OtherTelephone
 	}
 	if p.Pager != "" {
@@ -34873,7 +35660,9 @@ func (p SetUserParams) params() map[string]any {
 	if p.PostalCode != "" {
 		m["PostalCode"] = p.PostalCode
 	}
-	if p.PostOfficeBox != nil {
+	if p.PostOfficeBoxDelta != nil {
+		m["PostOfficeBox"] = *p.PostOfficeBoxDelta
+	} else if p.PostOfficeBox != nil {
 		m["PostOfficeBox"] = p.PostOfficeBox
 	}
 	if p.PublicFolder {

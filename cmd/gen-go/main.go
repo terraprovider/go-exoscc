@@ -86,6 +86,9 @@ func emitCmdlet(b *bytes.Buffer, cm spec.Cmdlet, _ map[string]bool) {
 		}
 		used[field] = true
 		fmt.Fprintf(b, "\t%s %s `ps:%q`%s\n", field, goType(p), p.Name, fieldComment(p))
+		if hasDelta(cm, p) {
+			fmt.Fprintf(b, "\t%sDelta *adminapi.StringDelta `ps:%q` // adds/removes values of %s; takes precedence over it\n", field, p.Name, field)
+		}
 	}
 	fmt.Fprintf(b, "}\n\n")
 
@@ -98,6 +101,10 @@ func emitCmdlet(b *bytes.Buffer, cm spec.Cmdlet, _ map[string]bool) {
 			continue
 		}
 		used[field] = true
+		if hasDelta(cm, p) {
+			fmt.Fprintf(b, "\t%s\n", deltaBoundCheck(field, p.Name))
+			continue
+		}
 		fmt.Fprintf(b, "\t%s\n", boundCheck(field, p.Name, goType(p)))
 	}
 	fmt.Fprintf(b, "\treturn m\n}\n\n")
@@ -138,6 +145,19 @@ func boundCheck(field, psName, gotype string) string {
 	default: // []string, any
 		return fmt.Sprintf("if p.%s != nil { m[%q] = p.%s }", field, psName, field)
 	}
+}
+
+// hasDelta reports whether a parameter gets a <Field>Delta companion: a
+// delta-capable MultiValuedProperty on a Set-* cmdlet (where clearing or
+// shrinking a list needs Remove; New-* always sends the full list).
+func hasDelta(cm spec.Cmdlet, p spec.Param) bool {
+	return strings.EqualFold(cm.Verb, "Set") && p.DeltaCapable()
+}
+
+// deltaBoundCheck binds the delta when set, else the full list.
+func deltaBoundCheck(field, psName string) string {
+	return fmt.Sprintf("if p.%sDelta != nil { m[%q] = *p.%sDelta } else if p.%s != nil { m[%q] = p.%s }",
+		field, psName, field, field, psName, field)
 }
 
 // goType maps a parameter's spec.Kind to its Go field type.

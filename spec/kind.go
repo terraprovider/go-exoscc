@@ -44,15 +44,12 @@ func (p Param) Kind() Kind {
 // "RecipientIdParameter[]") onto a Kind. Unmapped types (Unlimited,
 // ByteQuantifiedSize, EnhancedTimeSpan, enums, *IdParameter, …) stay KindAny.
 func declaredKind(declared string) Kind {
-	d := strings.TrimSuffix(strings.TrimSpace(declared), "?")
+	d := normalizeDeclared(declared)
 	if d == "" {
 		return KindAny
 	}
 	if strings.HasSuffix(d, "[]") {
 		return KindList
-	}
-	if i := strings.LastIndex(d, "."); i >= 0 {
-		d = d[i+1:]
 	}
 	switch {
 	case d == "Boolean":
@@ -64,6 +61,27 @@ func declaredKind(declared string) Kind {
 	default:
 		return KindAny
 	}
+}
+
+// normalizeDeclared strips docs noise from a declared type: surrounding
+// whitespace and angle brackets ("<MultiValuedProperty>"), a nullable "?", and
+// the namespace ("System.Boolean" -> "Boolean").
+func normalizeDeclared(declared string) string {
+	d := strings.Trim(strings.TrimSpace(declared), "<>")
+	d = strings.TrimSuffix(d, "?")
+	if i := strings.LastIndex(d, "."); i >= 0 && !strings.HasSuffix(d, "[]") {
+		d = d[i+1:]
+	}
+	return d
+}
+
+// DeltaCapable reports whether the parameter is a MultiValuedProperty that the
+// psm1 passes through untyped (System.Object), so it can carry an Add/Remove
+// delta (adminapi.StringDelta) as well as a full list. cmd/gen-go adds a
+// <Field>Delta companion for these on Set-* cmdlets.
+func (p Param) DeltaCapable() bool {
+	return !p.IsSwitch && strings.EqualFold(p.Type, "System.Object") &&
+		normalizeDeclared(p.DeclaredType) == "MultiValuedProperty"
 }
 
 func isIntType(t string) bool {
