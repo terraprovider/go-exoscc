@@ -368,9 +368,10 @@ func (s *Service) AddRoleGroupMember(ctx context.Context, p AddRoleGroupMemberPa
 // AddUnifiedGroupLinksParams are the parameters of Add-UnifiedGroupLinks.
 // DefaultParameterSetName: Identity
 type AddUnifiedGroupLinksParams struct {
-	Identity any      `ps:"Identity"` // UnifiedGroupIdParameter
-	Links    []string `ps:"Links"`
-	LinkType any      `ps:"LinkType"` // LinkType
+	Identity         any      `ps:"Identity"` // UnifiedGroupIdParameter
+	Links            []string `ps:"Links"`
+	LinkType         any      `ps:"LinkType"` // LinkType
+	SubscriptionType any      `ps:"SubscriptionType"`
 }
 
 func (p AddUnifiedGroupLinksParams) params() map[string]any {
@@ -383,6 +384,9 @@ func (p AddUnifiedGroupLinksParams) params() map[string]any {
 	}
 	if p.LinkType != nil {
 		m["LinkType"] = p.LinkType
+	}
+	if p.SubscriptionType != nil {
+		m["SubscriptionType"] = p.SubscriptionType
 	}
 	return m
 }
@@ -2260,6 +2264,7 @@ type GetAdaptiveScopeMembersParams struct {
 	PageResultSize        any    `ps:"PageResultSize"` // UnlimitedInt
 	StartDateTime         any    `ps:"StartDateTime"`  // DateTimeOffset
 	State                 any    `ps:"State"`          // LocationState
+	UseAltSource          bool   `ps:"UseAltSource"`
 }
 
 func (p GetAdaptiveScopeMembersParams) params() map[string]any {
@@ -2287,6 +2292,9 @@ func (p GetAdaptiveScopeMembersParams) params() map[string]any {
 	}
 	if p.State != nil {
 		m["State"] = p.State
+	}
+	if p.UseAltSource {
+		m["UseAltSource"] = true
 	}
 	return m
 }
@@ -2526,41 +2534,6 @@ func (p GetAuditConfigParams) params() map[string]any {
 // GetAuditConfig runs the Get-AuditConfig cmdlet.
 func (s *Service) GetAuditConfig(ctx context.Context, p GetAuditConfigParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Get-AuditConfig", p.params())
-}
-
-// GetAuditLogSearchParams are the parameters of Get-AuditLogSearch.
-// DefaultParameterSetName: Identity
-type GetAuditLogSearchParams struct {
-	CreatedAfter  any    `ps:"CreatedAfter"`  // ExDateTime
-	CreatedBefore any    `ps:"CreatedBefore"` // ExDateTime
-	Identity      any    `ps:"Identity"`      // AuditLogSearchIdParameter
-	ResultSize    *int64 `ps:"ResultSize"`
-	Type          string `ps:"Type"`
-}
-
-func (p GetAuditLogSearchParams) params() map[string]any {
-	m := map[string]any{}
-	if p.CreatedAfter != nil {
-		m["CreatedAfter"] = p.CreatedAfter
-	}
-	if p.CreatedBefore != nil {
-		m["CreatedBefore"] = p.CreatedBefore
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	if p.ResultSize != nil {
-		m["ResultSize"] = *p.ResultSize
-	}
-	if p.Type != "" {
-		m["Type"] = p.Type
-	}
-	return m
-}
-
-// GetAuditLogSearch runs the Get-AuditLogSearch cmdlet.
-func (s *Service) GetAuditLogSearch(ctx context.Context, p GetAuditLogSearchParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Get-AuditLogSearch", p.params())
 }
 
 // GetAuthServerParams are the parameters of Get-AuthServer.
@@ -3543,6 +3516,20 @@ func (p GetCrossTenantAccessPolicyParams) params() map[string]any {
 // GetCrossTenantAccessPolicy runs the Get-CrossTenantAccessPolicy cmdlet.
 func (s *Service) GetCrossTenantAccessPolicy(ctx context.Context, p GetCrossTenantAccessPolicyParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Get-CrossTenantAccessPolicy", p.params())
+}
+
+// GetCrossTenantRecallConfigurationParams are the parameters of Get-CrossTenantRecallConfiguration.
+type GetCrossTenantRecallConfigurationParams struct {
+}
+
+func (p GetCrossTenantRecallConfigurationParams) params() map[string]any {
+	m := map[string]any{}
+	return m
+}
+
+// GetCrossTenantRecallConfiguration runs the Get-CrossTenantRecallConfiguration cmdlet.
+func (s *Service) GetCrossTenantRecallConfiguration(ctx context.Context, p GetCrossTenantRecallConfigurationParams) (*adminapi.Result, error) {
+	return s.C.Invoke(ctx, "Get-CrossTenantRecallConfiguration", p.params())
 }
 
 // GetCustomDlpEmailTemplatesParams are the parameters of Get-CustomDlpEmailTemplates.
@@ -8805,24 +8792,6 @@ func (s *Service) GetOMEConfiguration(ctx context.Context, p GetOMEConfiguration
 	return s.C.Invoke(ctx, "Get-OMEConfiguration", p.params())
 }
 
-// GetOMEMessageStatusParams are the parameters of Get-OMEMessageStatus.
-type GetOMEMessageStatusParams struct {
-	MessageId string `ps:"MessageId"`
-}
-
-func (p GetOMEMessageStatusParams) params() map[string]any {
-	m := map[string]any{}
-	if p.MessageId != "" {
-		m["MessageId"] = p.MessageId
-	}
-	return m
-}
-
-// GetOMEMessageStatus runs the Get-OMEMessageStatus cmdlet.
-func (s *Service) GetOMEMessageStatus(ctx context.Context, p GetOMEMessageStatusParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Get-OMEMessageStatus", p.params())
-}
-
 // GetOnPremServerExemptionQuotaParams are the parameters of Get-OnPremServerExemptionQuota.
 type GetOnPremServerExemptionQuotaParams struct {
 	IncludeHistory *bool `ps:"IncludeHistory"`
@@ -11099,6 +11068,7 @@ func (s *Service) GetSyncRequestStatistics(ctx context.Context, p GetSyncRequest
 }
 
 // GetTDPReportParams are the parameters of Get-TDPReport.
+// DefaultParameterSetName: Default
 type GetTDPReportParams struct {
 	DataType          string `ps:"DataType"`
 	Direction         string `ps:"Direction"`
@@ -11484,6 +11454,28 @@ func (s *Service) GetToolInformation(ctx context.Context, p GetToolInformationPa
 	return s.C.Invoke(ctx, "Get-ToolInformation", p.params())
 }
 
+// GetTransportAsyncReportParams are the parameters of Get-TransportAsyncReport.
+type GetTransportAsyncReportParams struct {
+	IncludeHistory *bool `ps:"IncludeHistory"`
+	ReportId       any   `ps:"ReportId"`
+}
+
+func (p GetTransportAsyncReportParams) params() map[string]any {
+	m := map[string]any{}
+	if p.IncludeHistory != nil {
+		m["IncludeHistory"] = *p.IncludeHistory
+	}
+	if p.ReportId != nil {
+		m["ReportId"] = p.ReportId
+	}
+	return m
+}
+
+// GetTransportAsyncReport runs the Get-TransportAsyncReport cmdlet.
+func (s *Service) GetTransportAsyncReport(ctx context.Context, p GetTransportAsyncReportParams) (*adminapi.Result, error) {
+	return s.C.Invoke(ctx, "Get-TransportAsyncReport", p.params())
+}
+
 // GetTransportConfigParams are the parameters of Get-TransportConfig.
 type GetTransportConfigParams struct {
 }
@@ -11657,9 +11649,10 @@ func (s *Service) GetUnifiedGroup(ctx context.Context, p GetUnifiedGroupParams) 
 // GetUnifiedGroupLinksParams are the parameters of Get-UnifiedGroupLinks.
 // DefaultParameterSetName: Identity
 type GetUnifiedGroupLinksParams struct {
-	Identity   any `ps:"Identity"`   // UnifiedGroupIdParameter
-	LinkType   any `ps:"LinkType"`   // LinkType
-	ResultSize any `ps:"ResultSize"` // Unlimited
+	Identity     any    `ps:"Identity"`   // UnifiedGroupIdParameter
+	LinkType     any    `ps:"LinkType"`   // LinkType
+	ResultSize   any    `ps:"ResultSize"` // Unlimited
+	SearchString string `ps:"SearchString"`
 }
 
 func (p GetUnifiedGroupLinksParams) params() map[string]any {
@@ -11672,6 +11665,9 @@ func (p GetUnifiedGroupLinksParams) params() map[string]any {
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
+	}
+	if p.SearchString != "" {
+		m["SearchString"] = p.SearchString
 	}
 	return m
 }
@@ -11813,12 +11809,60 @@ func (s *Service) InvokeBirthdayCalendarSync(ctx context.Context, p InvokeBirthd
 	return s.C.Invoke(ctx, "Invoke-BirthdayCalendarSync", p.params())
 }
 
+// InvokeCalendarEventMigrationParams are the parameters of Invoke-CalendarEventMigration.
+// DefaultParameterSetName: TimeZoneMigration
+type InvokeCalendarEventMigrationParams struct {
+	Force                 bool   `ps:"Force"`
+	FromWindowsTimeZoneId string `ps:"FromWindowsTimeZoneId"`
+	Identity              any    `ps:"Identity"`
+	PreviewOnly           bool   `ps:"PreviewOnly"`
+	QueryStartDate        any    `ps:"QueryStartDate"`
+	QueryWindowInDays     *int64 `ps:"QueryWindowInDays"`
+	ToWindowsTimeZoneId   string `ps:"ToWindowsTimeZoneId"`
+	UseCustomRouting      bool   `ps:"UseCustomRouting"`
+}
+
+func (p InvokeCalendarEventMigrationParams) params() map[string]any {
+	m := map[string]any{}
+	if p.Force {
+		m["Force"] = true
+	}
+	if p.FromWindowsTimeZoneId != "" {
+		m["FromWindowsTimeZoneId"] = p.FromWindowsTimeZoneId
+	}
+	if p.Identity != nil {
+		m["Identity"] = p.Identity
+	}
+	if p.PreviewOnly {
+		m["PreviewOnly"] = true
+	}
+	if p.QueryStartDate != nil {
+		m["QueryStartDate"] = p.QueryStartDate
+	}
+	if p.QueryWindowInDays != nil {
+		m["QueryWindowInDays"] = *p.QueryWindowInDays
+	}
+	if p.ToWindowsTimeZoneId != "" {
+		m["ToWindowsTimeZoneId"] = p.ToWindowsTimeZoneId
+	}
+	if p.UseCustomRouting {
+		m["UseCustomRouting"] = true
+	}
+	return m
+}
+
+// InvokeCalendarEventMigration runs the Invoke-CalendarEventMigration cmdlet.
+func (s *Service) InvokeCalendarEventMigration(ctx context.Context, p InvokeCalendarEventMigrationParams) (*adminapi.Result, error) {
+	return s.C.Invoke(ctx, "Invoke-CalendarEventMigration", p.params())
+}
+
 // InvokeChangeMeetingOrganizerParams are the parameters of Invoke-ChangeMeetingOrganizer.
-// DefaultParameterSetName: ByEventId
+// DefaultParameterSetName: ByMeetingId
 type InvokeChangeMeetingOrganizerParams struct {
 	EventId                 string `ps:"EventId"`
 	Identity                any    `ps:"Identity"` // MailboxIdParameter
-	NewOrganizer            string `ps:"NewOrganizer"`
+	MeetingId               string `ps:"MeetingId"`
+	NewOrganizer            any    `ps:"NewOrganizer"` // String
 	Subject                 string `ps:"Subject"`
 	TransferSeriesStartDate any    `ps:"TransferSeriesStartDate"` // DateTime
 }
@@ -11831,7 +11875,10 @@ func (p InvokeChangeMeetingOrganizerParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.NewOrganizer != "" {
+	if p.MeetingId != "" {
+		m["MeetingId"] = p.MeetingId
+	}
+	if p.NewOrganizer != nil {
 		m["NewOrganizer"] = p.NewOrganizer
 	}
 	if p.Subject != "" {
@@ -14213,10 +14260,10 @@ func (s *Service) NewInboundConnector(ctx context.Context, p NewInboundConnector
 // DefaultParameterSetName: Identity
 type NewInboxRuleParams struct {
 	AlwaysDeleteOutlookRulesBlob          bool     `ps:"AlwaysDeleteOutlookRulesBlob"`
-	AnyCategory                           *bool    `ps:"AnyCategory"`
 	ApplyCategory                         []string `ps:"ApplyCategory"`
 	ApplySystemCategory                   []string `ps:"ApplySystemCategory"`
 	AssignedCategories                    []string `ps:"AssignedCategories"`
+	AutoReplyWithTemplate                 any      `ps:"AutoReplyWithTemplate"`
 	BodyContainsWords                     []string `ps:"BodyContainsWords"`
 	BulkCategory                          string   `ps:"BulkCategory"`
 	ClearCategories                       *bool    `ps:"ClearCategories"`
@@ -14226,7 +14273,6 @@ type NewInboxRuleParams struct {
 	DeleteMessage                         *bool    `ps:"DeleteMessage"`
 	DeleteSystemCategory                  []string `ps:"DeleteSystemCategory"`
 	DisplayAlert                          string   `ps:"DisplayAlert"`
-	ExceptIfAnyCategory                   *bool    `ps:"ExceptIfAnyCategory"`
 	ExceptIfAssignedCategories            []string `ps:"ExceptIfAssignedCategories"`
 	ExceptIfBodyContainsWords             []string `ps:"ExceptIfBodyContainsWords"`
 	ExceptIfBulkCategory                  string   `ps:"ExceptIfBulkCategory"`
@@ -14303,9 +14349,6 @@ func (p NewInboxRuleParams) params() map[string]any {
 	if p.AlwaysDeleteOutlookRulesBlob {
 		m["AlwaysDeleteOutlookRulesBlob"] = true
 	}
-	if p.AnyCategory != nil {
-		m["AnyCategory"] = *p.AnyCategory
-	}
 	if p.ApplyCategory != nil {
 		m["ApplyCategory"] = p.ApplyCategory
 	}
@@ -14314,6 +14357,9 @@ func (p NewInboxRuleParams) params() map[string]any {
 	}
 	if p.AssignedCategories != nil {
 		m["AssignedCategories"] = p.AssignedCategories
+	}
+	if p.AutoReplyWithTemplate != nil {
+		m["AutoReplyWithTemplate"] = p.AutoReplyWithTemplate
 	}
 	if p.BodyContainsWords != nil {
 		m["BodyContainsWords"] = p.BodyContainsWords
@@ -14341,9 +14387,6 @@ func (p NewInboxRuleParams) params() map[string]any {
 	}
 	if p.DisplayAlert != "" {
 		m["DisplayAlert"] = p.DisplayAlert
-	}
-	if p.ExceptIfAnyCategory != nil {
-		m["ExceptIfAnyCategory"] = *p.ExceptIfAnyCategory
 	}
 	if p.ExceptIfAssignedCategories != nil {
 		m["ExceptIfAssignedCategories"] = p.ExceptIfAssignedCategories
@@ -15045,65 +15088,6 @@ func (s *Service) NewMailbox(ctx context.Context, p NewMailboxParams) (*adminapi
 	return s.C.Invoke(ctx, "New-Mailbox", p.params())
 }
 
-// NewMailboxAuditLogSearchParams are the parameters of New-MailboxAuditLogSearch.
-// DefaultParameterSetName: Identity
-type NewMailboxAuditLogSearchParams struct {
-	EndDate              any      `ps:"EndDate"` // ExDateTime
-	ExternalAccess       *bool    `ps:"ExternalAccess"`
-	GroupMailbox         bool     `ps:"GroupMailbox"`
-	HasAttachments       *bool    `ps:"HasAttachments"`
-	LogonTypes           []string `ps:"LogonTypes"`
-	Mailboxes            []string `ps:"Mailboxes"`
-	Name                 string   `ps:"Name"`
-	Operations           []string `ps:"Operations"`
-	ShowDetails          bool     `ps:"ShowDetails"`
-	StartDate            any      `ps:"StartDate"` // ExDateTime
-	StatusMailRecipients []string `ps:"StatusMailRecipients"`
-}
-
-func (p NewMailboxAuditLogSearchParams) params() map[string]any {
-	m := map[string]any{}
-	if p.EndDate != nil {
-		m["EndDate"] = p.EndDate
-	}
-	if p.ExternalAccess != nil {
-		m["ExternalAccess"] = *p.ExternalAccess
-	}
-	if p.GroupMailbox {
-		m["GroupMailbox"] = true
-	}
-	if p.HasAttachments != nil {
-		m["HasAttachments"] = *p.HasAttachments
-	}
-	if p.LogonTypes != nil {
-		m["LogonTypes"] = p.LogonTypes
-	}
-	if p.Mailboxes != nil {
-		m["Mailboxes"] = p.Mailboxes
-	}
-	if p.Name != "" {
-		m["Name"] = p.Name
-	}
-	if p.Operations != nil {
-		m["Operations"] = p.Operations
-	}
-	if p.ShowDetails {
-		m["ShowDetails"] = true
-	}
-	if p.StartDate != nil {
-		m["StartDate"] = p.StartDate
-	}
-	if p.StatusMailRecipients != nil {
-		m["StatusMailRecipients"] = p.StatusMailRecipients
-	}
-	return m
-}
-
-// NewMailboxAuditLogSearch runs the New-MailboxAuditLogSearch cmdlet.
-func (s *Service) NewMailboxAuditLogSearch(ctx context.Context, p NewMailboxAuditLogSearchParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "New-MailboxAuditLogSearch", p.params())
-}
-
 // NewMailboxExtendedPropertyCleanupRequestParams are the parameters of New-MailboxExtendedPropertyCleanupRequest.
 // DefaultParameterSetName: Identity
 type NewMailboxExtendedPropertyCleanupRequestParams struct {
@@ -15750,7 +15734,8 @@ type NewMigrationBatchParams struct {
 	TargetDatabases            []string `ps:"TargetDatabases"`
 	TargetDeliveryDomain       any      `ps:"TargetDeliveryDomain"` // String
 	TargetEndpoint             any      `ps:"TargetEndpoint"`       // MigrationEndpointIdParameter
-	TimeZone                   any      `ps:"TimeZone"`             // ExTimeZoneValue
+	TenantScan                 bool     `ps:"TenantScan"`
+	TimeZone                   any      `ps:"TimeZone"` // ExTimeZoneValue
 	UserIds                    []string `ps:"UserIds"`
 	Users                      []string `ps:"Users"`
 	WorkflowControlFlags       any      `ps:"WorkflowControlFlags"` // MigrationWorkflowControlFlags
@@ -15937,6 +15922,9 @@ func (p NewMigrationBatchParams) params() map[string]any {
 	if p.TargetEndpoint != nil {
 		m["TargetEndpoint"] = p.TargetEndpoint
 	}
+	if p.TenantScan {
+		m["TenantScan"] = true
+	}
 	if p.TimeZone != nil {
 		m["TimeZone"] = p.TimeZone
 	}
@@ -15971,6 +15959,7 @@ type NewMigrationEndpointParams struct {
 	AppSecretKeyVaultUrl               string `ps:"AppSecretKeyVaultUrl"`
 	Authentication                     any    `ps:"Authentication"` // AuthenticationMethod
 	Autodiscover                       bool   `ps:"Autodiscover"`
+	AzureStorageContainerPath          string `ps:"AzureStorageContainerPath"`
 	Compliance                         bool   `ps:"Compliance"`
 	Credentials                        any    `ps:"Credentials"`  // PSCredential
 	EmailAddress                       any    `ps:"EmailAddress"` // SmtpAddress
@@ -15987,6 +15976,7 @@ type NewMigrationEndpointParams struct {
 	OAuthCode                          any    `ps:"OAuthCode"` // SecureString
 	Partition                          any    `ps:"Partition"` // MailboxIdParameter
 	Port                               *int64 `ps:"Port"`
+	PSTImport                          bool   `ps:"PSTImport"`
 	PublicFolder                       bool   `ps:"PublicFolder"`
 	PublicFolderDatabaseServerLegacyDN string `ps:"PublicFolderDatabaseServerLegacyDN"`
 	PublicFolderToUnifiedGroup         bool   `ps:"PublicFolderToUnifiedGroup"`
@@ -15999,6 +15989,7 @@ type NewMigrationEndpointParams struct {
 	SkipVerification                   bool   `ps:"SkipVerification"`
 	SourceMailboxLegacyDN              string `ps:"SourceMailboxLegacyDN"`
 	TestMailbox                        any    `ps:"TestMailbox"` // MailboxIdParameter
+	UseOAuth                           bool   `ps:"UseOAuth"`
 }
 
 func (p NewMigrationEndpointParams) params() map[string]any {
@@ -16017,6 +16008,9 @@ func (p NewMigrationEndpointParams) params() map[string]any {
 	}
 	if p.Autodiscover {
 		m["Autodiscover"] = true
+	}
+	if p.AzureStorageContainerPath != "" {
+		m["AzureStorageContainerPath"] = p.AzureStorageContainerPath
 	}
 	if p.Compliance {
 		m["Compliance"] = true
@@ -16066,6 +16060,9 @@ func (p NewMigrationEndpointParams) params() map[string]any {
 	if p.Port != nil {
 		m["Port"] = *p.Port
 	}
+	if p.PSTImport {
+		m["PSTImport"] = true
+	}
 	if p.PublicFolder {
 		m["PublicFolder"] = true
 	}
@@ -16101,6 +16098,9 @@ func (p NewMigrationEndpointParams) params() map[string]any {
 	}
 	if p.TestMailbox != nil {
 		m["TestMailbox"] = p.TestMailbox
+	}
+	if p.UseOAuth {
+		m["UseOAuth"] = true
 	}
 	return m
 }
@@ -16469,69 +16469,6 @@ func (p NewMoveRequestParams) params() map[string]any {
 // NewMoveRequest runs the New-MoveRequest cmdlet.
 func (s *Service) NewMoveRequest(ctx context.Context, p NewMoveRequestParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "New-MoveRequest", p.params())
-}
-
-// NewOMEConfigurationParams are the parameters of New-OMEConfiguration.
-// DefaultParameterSetName: Identity
-type NewOMEConfigurationParams struct {
-	BackgroundColor          string `ps:"BackgroundColor"`
-	DisclaimerText           string `ps:"DisclaimerText"`
-	EmailText                string `ps:"EmailText"`
-	ExternalMailExpiryInDays any    `ps:"ExternalMailExpiryInDays"` // String
-	Identity                 any    `ps:"Identity"`                 // OrganizationIdParameter
-	Image                    any    `ps:"Image"`                    // Byte[]
-	IntroductionText         string `ps:"IntroductionText"`
-	OTPEnabled               *bool  `ps:"OTPEnabled"`
-	PortalText               string `ps:"PortalText"`
-	PrivacyStatementUrl      string `ps:"PrivacyStatementUrl"`
-	ReadButtonText           string `ps:"ReadButtonText"`
-	SocialIdSignIn           *bool  `ps:"SocialIdSignIn"`
-}
-
-func (p NewOMEConfigurationParams) params() map[string]any {
-	m := map[string]any{}
-	if p.BackgroundColor != "" {
-		m["BackgroundColor"] = p.BackgroundColor
-	}
-	if p.DisclaimerText != "" {
-		m["DisclaimerText"] = p.DisclaimerText
-	}
-	if p.EmailText != "" {
-		m["EmailText"] = p.EmailText
-	}
-	if p.ExternalMailExpiryInDays != nil {
-		m["ExternalMailExpiryInDays"] = p.ExternalMailExpiryInDays
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	if p.Image != nil {
-		m["Image"] = p.Image
-	}
-	if p.IntroductionText != "" {
-		m["IntroductionText"] = p.IntroductionText
-	}
-	if p.OTPEnabled != nil {
-		m["OTPEnabled"] = *p.OTPEnabled
-	}
-	if p.PortalText != "" {
-		m["PortalText"] = p.PortalText
-	}
-	if p.PrivacyStatementUrl != "" {
-		m["PrivacyStatementUrl"] = p.PrivacyStatementUrl
-	}
-	if p.ReadButtonText != "" {
-		m["ReadButtonText"] = p.ReadButtonText
-	}
-	if p.SocialIdSignIn != nil {
-		m["SocialIdSignIn"] = *p.SocialIdSignIn
-	}
-	return m
-}
-
-// NewOMEConfiguration runs the New-OMEConfiguration cmdlet.
-func (s *Service) NewOMEConfiguration(ctx context.Context, p NewOMEConfigurationParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "New-OMEConfiguration", p.params())
 }
 
 // NewOnPremisesOrganizationParams are the parameters of New-OnPremisesOrganization.
@@ -17443,8 +17380,11 @@ func (s *Service) NewReportSchedule(ctx context.Context, p NewReportSchedulePara
 
 // NewReportSubmissionPolicyParams are the parameters of New-ReportSubmissionPolicy.
 type NewReportSubmissionPolicyParams struct {
+	ChatMessageNotificationSenderAddress                           any      `ps:"ChatMessageNotificationSenderAddress"`
 	DisableQuarantineReportingOption                               *bool    `ps:"DisableQuarantineReportingOption"`
 	DisableUserSubmissionOptions                                   *bool    `ps:"DisableUserSubmissionOptions"`
+	EnableChatMessageCustomNotificationSender                      *bool    `ps:"EnableChatMessageCustomNotificationSender"`
+	EnableChatMessageOrganizationBranding                          *bool    `ps:"EnableChatMessageOrganizationBranding"`
 	EnableCustomizedMsg                                            *bool    `ps:"EnableCustomizedMsg"`
 	EnableCustomNotificationSender                                 *bool    `ps:"EnableCustomNotificationSender"`
 	EnableOrganizationBranding                                     *bool    `ps:"EnableOrganizationBranding"`
@@ -17500,6 +17440,7 @@ type NewReportSubmissionPolicyParams struct {
 	PreSubmitMessageTitleForJunk                                   string   `ps:"PreSubmitMessageTitleForJunk"`
 	PreSubmitMessageTitleForNotJunk                                string   `ps:"PreSubmitMessageTitleForNotJunk"`
 	PreSubmitMessageTitleForPhishing                               string   `ps:"PreSubmitMessageTitleForPhishing"`
+	ReportChatMessageAddresses                                     []string `ps:"ReportChatMessageAddresses"`
 	ReportChatMessageEnabled                                       *bool    `ps:"ReportChatMessageEnabled"`
 	ReportChatMessageToCustomizedAddressEnabled                    *bool    `ps:"ReportChatMessageToCustomizedAddressEnabled"`
 	ReportJunkAddresses                                            []string `ps:"ReportJunkAddresses"`
@@ -17515,11 +17456,20 @@ type NewReportSubmissionPolicyParams struct {
 
 func (p NewReportSubmissionPolicyParams) params() map[string]any {
 	m := map[string]any{}
+	if p.ChatMessageNotificationSenderAddress != nil {
+		m["ChatMessageNotificationSenderAddress"] = p.ChatMessageNotificationSenderAddress
+	}
 	if p.DisableQuarantineReportingOption != nil {
 		m["DisableQuarantineReportingOption"] = *p.DisableQuarantineReportingOption
 	}
 	if p.DisableUserSubmissionOptions != nil {
 		m["DisableUserSubmissionOptions"] = *p.DisableUserSubmissionOptions
+	}
+	if p.EnableChatMessageCustomNotificationSender != nil {
+		m["EnableChatMessageCustomNotificationSender"] = *p.EnableChatMessageCustomNotificationSender
+	}
+	if p.EnableChatMessageOrganizationBranding != nil {
+		m["EnableChatMessageOrganizationBranding"] = *p.EnableChatMessageOrganizationBranding
 	}
 	if p.EnableCustomizedMsg != nil {
 		m["EnableCustomizedMsg"] = *p.EnableCustomizedMsg
@@ -17685,6 +17635,9 @@ func (p NewReportSubmissionPolicyParams) params() map[string]any {
 	}
 	if p.PreSubmitMessageTitleForPhishing != "" {
 		m["PreSubmitMessageTitleForPhishing"] = p.PreSubmitMessageTitleForPhishing
+	}
+	if p.ReportChatMessageAddresses != nil {
+		m["ReportChatMessageAddresses"] = p.ReportChatMessageAddresses
 	}
 	if p.ReportChatMessageEnabled != nil {
 		m["ReportChatMessageEnabled"] = *p.ReportChatMessageEnabled
@@ -17949,15 +17902,18 @@ func (s *Service) NewRoleGroup(ctx context.Context, p NewRoleGroupParams) (*admi
 
 // NewSafeAttachmentPolicyParams are the parameters of New-SafeAttachmentPolicy.
 type NewSafeAttachmentPolicyParams struct {
-	Action                any    `ps:"Action"` // SafeAttachmentAction
-	AdminDisplayName      string `ps:"AdminDisplayName"`
-	Enable                *bool  `ps:"Enable"`
-	MakeBuiltInProtection bool   `ps:"MakeBuiltInProtection"`
-	Name                  string `ps:"Name"`
-	QuarantineTag         string `ps:"QuarantineTag"`
-	RecommendedPolicyType any    `ps:"RecommendedPolicyType"` // RecommendedPolicyType
-	Redirect              *bool  `ps:"Redirect"`
-	RedirectAddress       any    `ps:"RedirectAddress"` // SmtpAddress
+	Action                                        any    `ps:"Action"` // SafeAttachmentAction
+	AdminDisplayName                              string `ps:"AdminDisplayName"`
+	Enable                                        *bool  `ps:"Enable"`
+	EnableBlockingEncryptedAttachments            *bool  `ps:"EnableBlockingEncryptedAttachments"`
+	ExcludedTypesFromBlockingEncryptedAttachments any    `ps:"ExcludedTypesFromBlockingEncryptedAttachments"`
+	MakeBuiltInProtection                         bool   `ps:"MakeBuiltInProtection"`
+	Name                                          string `ps:"Name"`
+	QuarantineTag                                 string `ps:"QuarantineTag"`
+	QuarantineTagForBlockingEncryptedAttachments  string `ps:"QuarantineTagForBlockingEncryptedAttachments"`
+	RecommendedPolicyType                         any    `ps:"RecommendedPolicyType"` // RecommendedPolicyType
+	Redirect                                      *bool  `ps:"Redirect"`
+	RedirectAddress                               any    `ps:"RedirectAddress"` // SmtpAddress
 }
 
 func (p NewSafeAttachmentPolicyParams) params() map[string]any {
@@ -17971,6 +17927,12 @@ func (p NewSafeAttachmentPolicyParams) params() map[string]any {
 	if p.Enable != nil {
 		m["Enable"] = *p.Enable
 	}
+	if p.EnableBlockingEncryptedAttachments != nil {
+		m["EnableBlockingEncryptedAttachments"] = *p.EnableBlockingEncryptedAttachments
+	}
+	if p.ExcludedTypesFromBlockingEncryptedAttachments != nil {
+		m["ExcludedTypesFromBlockingEncryptedAttachments"] = p.ExcludedTypesFromBlockingEncryptedAttachments
+	}
 	if p.MakeBuiltInProtection {
 		m["MakeBuiltInProtection"] = true
 	}
@@ -17979,6 +17941,9 @@ func (p NewSafeAttachmentPolicyParams) params() map[string]any {
 	}
 	if p.QuarantineTag != "" {
 		m["QuarantineTag"] = p.QuarantineTag
+	}
+	if p.QuarantineTagForBlockingEncryptedAttachments != "" {
+		m["QuarantineTagForBlockingEncryptedAttachments"] = p.QuarantineTagForBlockingEncryptedAttachments
 	}
 	if p.RecommendedPolicyType != nil {
 		m["RecommendedPolicyType"] = p.RecommendedPolicyType
@@ -21273,6 +21238,25 @@ func (s *Service) RemoveMigrationEndpoint(ctx context.Context, p RemoveMigration
 	return s.C.Invoke(ctx, "Remove-MigrationEndpoint", p.params())
 }
 
+// RemoveMigrationPartitionParams are the parameters of Remove-MigrationPartition.
+// DefaultParameterSetName: Identity
+type RemoveMigrationPartitionParams struct {
+	Identity any `ps:"Identity"`
+}
+
+func (p RemoveMigrationPartitionParams) params() map[string]any {
+	m := map[string]any{}
+	if p.Identity != nil {
+		m["Identity"] = p.Identity
+	}
+	return m
+}
+
+// RemoveMigrationPartition runs the Remove-MigrationPartition cmdlet.
+func (s *Service) RemoveMigrationPartition(ctx context.Context, p RemoveMigrationPartitionParams) (*adminapi.Result, error) {
+	return s.C.Invoke(ctx, "Remove-MigrationPartition", p.params())
+}
+
 // RemoveMigrationUserParams are the parameters of Remove-MigrationUser.
 type RemoveMigrationUserParams struct {
 	Identity  any `ps:"Identity"`  // MigrationUserIdParameter
@@ -21360,25 +21344,6 @@ func (p RemoveMoveRequestParams) params() map[string]any {
 // RemoveMoveRequest runs the Remove-MoveRequest cmdlet.
 func (s *Service) RemoveMoveRequest(ctx context.Context, p RemoveMoveRequestParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Remove-MoveRequest", p.params())
-}
-
-// RemoveOMEConfigurationParams are the parameters of Remove-OMEConfiguration.
-// DefaultParameterSetName: Identity
-type RemoveOMEConfigurationParams struct {
-	Identity any `ps:"Identity"` // OMEConfigurationIdParameter
-}
-
-func (p RemoveOMEConfigurationParams) params() map[string]any {
-	m := map[string]any{}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	return m
-}
-
-// RemoveOMEConfiguration runs the Remove-OMEConfiguration cmdlet.
-func (s *Service) RemoveOMEConfiguration(ctx context.Context, p RemoveOMEConfigurationParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Remove-OMEConfiguration", p.params())
 }
 
 // RemoveOnPremisesOrganizationParams are the parameters of Remove-OnPremisesOrganization.
@@ -24354,6 +24319,28 @@ func (s *Service) SetContact(ctx context.Context, p SetContactParams) (*adminapi
 	return s.C.Invoke(ctx, "Set-Contact", p.params())
 }
 
+// SetCrossTenantRecallConfigurationParams are the parameters of Set-CrossTenantRecallConfiguration.
+type SetCrossTenantRecallConfigurationParams struct {
+	AllowedSenderTenantIds   any `ps:"AllowedSenderTenantIds"`
+	CrossTenantRecallEnabled any `ps:"CrossTenantRecallEnabled"`
+}
+
+func (p SetCrossTenantRecallConfigurationParams) params() map[string]any {
+	m := map[string]any{}
+	if p.AllowedSenderTenantIds != nil {
+		m["AllowedSenderTenantIds"] = p.AllowedSenderTenantIds
+	}
+	if p.CrossTenantRecallEnabled != nil {
+		m["CrossTenantRecallEnabled"] = p.CrossTenantRecallEnabled
+	}
+	return m
+}
+
+// SetCrossTenantRecallConfiguration runs the Set-CrossTenantRecallConfiguration cmdlet.
+func (s *Service) SetCrossTenantRecallConfiguration(ctx context.Context, p SetCrossTenantRecallConfigurationParams) (*adminapi.Result, error) {
+	return s.C.Invoke(ctx, "Set-CrossTenantRecallConfiguration", p.params())
+}
+
 // SetDataClassificationParams are the parameters of Set-DataClassification.
 type SetDataClassificationParams struct {
 	Description       string                `ps:"Description"`
@@ -26288,7 +26275,6 @@ type SetIRMConfigurationParams struct {
 	DecryptAttachmentForEncryptOnly            *bool                 `ps:"DecryptAttachmentForEncryptOnly"`
 	EDiscoverySuperUserEnabled                 *bool                 `ps:"EDiscoverySuperUserEnabled"`
 	EnablePdfEncryption                        *bool                 `ps:"EnablePdfEncryption"`
-	EnablePortalTrackingLogs                   *bool                 `ps:"EnablePortalTrackingLogs"`
 	Force                                      bool                  `ps:"Force"`
 	Identity                                   any                   `ps:"Identity"` // OrganizationIdParameter
 	InternalLicensingEnabled                   *bool                 `ps:"InternalLicensingEnabled"`
@@ -26320,9 +26306,6 @@ func (p SetIRMConfigurationParams) params() map[string]any {
 	}
 	if p.EnablePdfEncryption != nil {
 		m["EnablePdfEncryption"] = *p.EnablePdfEncryption
-	}
-	if p.EnablePortalTrackingLogs != nil {
-		m["EnablePortalTrackingLogs"] = *p.EnablePortalTrackingLogs
 	}
 	if p.Force {
 		m["Force"] = true
@@ -26501,12 +26484,12 @@ func (s *Service) SetInboundConnector(ctx context.Context, p SetInboundConnector
 // DefaultParameterSetName: Identity
 type SetInboxRuleParams struct {
 	AlwaysDeleteOutlookRulesBlob               bool                  `ps:"AlwaysDeleteOutlookRulesBlob"`
-	AnyCategory                                *bool                 `ps:"AnyCategory"`
 	ApplyCategory                              []string              `ps:"ApplyCategory"`
 	ApplyCategoryDelta                         *adminapi.StringDelta `ps:"ApplyCategory"` // adds/removes values of ApplyCategory; takes precedence over it
 	ApplySystemCategory                        []string              `ps:"ApplySystemCategory"`
 	ApplySystemCategoryDelta                   *adminapi.StringDelta `ps:"ApplySystemCategory"` // adds/removes values of ApplySystemCategory; takes precedence over it
 	AssignedCategories                         []string              `ps:"AssignedCategories"`
+	AutoReplyWithTemplate                      any                   `ps:"AutoReplyWithTemplate"`
 	BodyContainsWords                          []string              `ps:"BodyContainsWords"`
 	BodyContainsWordsDelta                     *adminapi.StringDelta `ps:"BodyContainsWords"` // adds/removes values of BodyContainsWords; takes precedence over it
 	BulkCategory                               string                `ps:"BulkCategory"`
@@ -26518,7 +26501,6 @@ type SetInboxRuleParams struct {
 	DeleteSystemCategory                       []string              `ps:"DeleteSystemCategory"`
 	DeleteSystemCategoryDelta                  *adminapi.StringDelta `ps:"DeleteSystemCategory"` // adds/removes values of DeleteSystemCategory; takes precedence over it
 	DisplayAlert                               string                `ps:"DisplayAlert"`
-	ExceptIfAnyCategory                        *bool                 `ps:"ExceptIfAnyCategory"`
 	ExceptIfAssignedCategories                 []string              `ps:"ExceptIfAssignedCategories"`
 	ExceptIfBodyContainsWords                  []string              `ps:"ExceptIfBodyContainsWords"`
 	ExceptIfBodyContainsWordsDelta             *adminapi.StringDelta `ps:"ExceptIfBodyContainsWords"` // adds/removes values of ExceptIfBodyContainsWords; takes precedence over it
@@ -26605,9 +26587,6 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.AlwaysDeleteOutlookRulesBlob {
 		m["AlwaysDeleteOutlookRulesBlob"] = true
 	}
-	if p.AnyCategory != nil {
-		m["AnyCategory"] = *p.AnyCategory
-	}
 	if p.ApplyCategoryDelta != nil {
 		m["ApplyCategory"] = *p.ApplyCategoryDelta
 	} else if p.ApplyCategory != nil {
@@ -26620,6 +26599,9 @@ func (p SetInboxRuleParams) params() map[string]any {
 	}
 	if p.AssignedCategories != nil {
 		m["AssignedCategories"] = p.AssignedCategories
+	}
+	if p.AutoReplyWithTemplate != nil {
+		m["AutoReplyWithTemplate"] = p.AutoReplyWithTemplate
 	}
 	if p.BodyContainsWordsDelta != nil {
 		m["BodyContainsWords"] = *p.BodyContainsWordsDelta
@@ -26651,9 +26633,6 @@ func (p SetInboxRuleParams) params() map[string]any {
 	}
 	if p.DisplayAlert != "" {
 		m["DisplayAlert"] = p.DisplayAlert
-	}
-	if p.ExceptIfAnyCategory != nil {
-		m["ExceptIfAnyCategory"] = *p.ExceptIfAnyCategory
 	}
 	if p.ExceptIfAssignedCategories != nil {
 		m["ExceptIfAssignedCategories"] = p.ExceptIfAssignedCategories
@@ -28116,6 +28095,7 @@ type SetMailboxParams struct {
 	BypassModerationFromSendersOrMembersDelta   *adminapi.StringDelta `ps:"BypassModerationFromSendersOrMembers"` // adds/removes values of BypassModerationFromSendersOrMembers; takes precedence over it
 	CalendarRepairDisabled                      *bool                 `ps:"CalendarRepairDisabled"`
 	CalendarVersionStoreDisabled                *bool                 `ps:"CalendarVersionStoreDisabled"`
+	ClearDisabledPrimary                        bool                  `ps:"ClearDisabledPrimary"`
 	ClearThrottlingPolicyAssignment             bool                  `ps:"ClearThrottlingPolicyAssignment"`
 	CustomAttribute1                            string                `ps:"CustomAttribute1"`
 	CustomAttribute10                           string                `ps:"CustomAttribute10"`
@@ -28202,6 +28182,7 @@ type SetMailboxParams struct {
 	ProvideConsent                              bool                  `ps:"ProvideConsent"`
 	ProvisionedForOfficeGraph                   bool                  `ps:"ProvisionedForOfficeGraph"`
 	PublicFolder                                bool                  `ps:"PublicFolder"`
+	RapidRestrict                               bool                  `ps:"RapidRestrict"`
 	RecalculateInactiveMailbox                  bool                  `ps:"RecalculateInactiveMailbox"`
 	RecipientLimits                             any                   `ps:"RecipientLimits"` // Unlimited
 	RejectMessagesFrom                          []string              `ps:"RejectMessagesFrom"`
@@ -28233,11 +28214,11 @@ type SetMailboxParams struct {
 	SharingPolicy                               any                   `ps:"SharingPolicy"`               // SharingPolicyIdParameter
 	SimpleDisplayName                           string                `ps:"SimpleDisplayName"`
 	SingleItemRecoveryEnabled                   *bool                 `ps:"SingleItemRecoveryEnabled"`
-	StartDateForRetentionHold                   any                   `ps:"StartDateForRetentionHold"`       // DateTime
-	StsRefreshTokensValidFrom                   any                   `ps:"StsRefreshTokensValidFrom"`       // DateTime
-	Type                                        any                   `ps:"Type"`                            // ConvertibleMailboxSubType
+	StartDateForRetentionHold                   any                   `ps:"StartDateForRetentionHold"` // DateTime
+	StsRefreshTokensValidFrom                   any                   `ps:"StsRefreshTokensValidFrom"` // DateTime
+	Type                                        any                   `ps:"Type"`                      // ConvertibleMailboxSubType
+	UndoRapidRestrict                           bool                  `ps:"UndoRapidRestrict"`
 	UniqueRecipientsCountLimitLevel             any                   `ps:"UniqueRecipientsCountLimitLevel"` // UniqueRecipientsCountLimitLevelType
-	UniqueUnrestrictedGroupsLimitEnabled        *bool                 `ps:"UniqueUnrestrictedGroupsLimitEnabled"`
 	UpdateEnforcedTimestamp                     bool                  `ps:"UpdateEnforcedTimestamp"`
 	UseDatabaseQuotaDefaults                    *bool                 `ps:"UseDatabaseQuotaDefaults"`
 	UseDatabaseRetentionDefaults                *bool                 `ps:"UseDatabaseRetentionDefaults"`
@@ -28316,6 +28297,9 @@ func (p SetMailboxParams) params() map[string]any {
 	}
 	if p.CalendarVersionStoreDisabled != nil {
 		m["CalendarVersionStoreDisabled"] = *p.CalendarVersionStoreDisabled
+	}
+	if p.ClearDisabledPrimary {
+		m["ClearDisabledPrimary"] = true
 	}
 	if p.ClearThrottlingPolicyAssignment {
 		m["ClearThrottlingPolicyAssignment"] = true
@@ -28563,6 +28547,9 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.PublicFolder {
 		m["PublicFolder"] = true
 	}
+	if p.RapidRestrict {
+		m["RapidRestrict"] = true
+	}
 	if p.RecalculateInactiveMailbox {
 		m["RecalculateInactiveMailbox"] = true
 	}
@@ -28661,11 +28648,11 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.Type != nil {
 		m["Type"] = p.Type
 	}
+	if p.UndoRapidRestrict {
+		m["UndoRapidRestrict"] = true
+	}
 	if p.UniqueRecipientsCountLimitLevel != nil {
 		m["UniqueRecipientsCountLimitLevel"] = p.UniqueRecipientsCountLimitLevel
-	}
-	if p.UniqueUnrestrictedGroupsLimitEnabled != nil {
-		m["UniqueUnrestrictedGroupsLimitEnabled"] = *p.UniqueUnrestrictedGroupsLimitEnabled
 	}
 	if p.UpdateEnforcedTimestamp {
 		m["UpdateEnforcedTimestamp"] = true
@@ -30242,7 +30229,8 @@ type SetMigrationEndpointParams struct {
 	ApplicationId                      string `ps:"ApplicationId"`
 	AppSecretKeyVaultUrl               string `ps:"AppSecretKeyVaultUrl"`
 	Authentication                     any    `ps:"Authentication"` // AuthenticationMethod
-	Credentials                        any    `ps:"Credentials"`    // PSCredential
+	AzureStorageContainerPath          string `ps:"AzureStorageContainerPath"`
+	Credentials                        any    `ps:"Credentials"` // PSCredential
 	ExchangeServer                     string `ps:"ExchangeServer"`
 	Identity                           any    `ps:"Identity"`                      // MigrationEndpointIdParameter
 	MailboxPermission                  any    `ps:"MailboxPermission"`             // MigrationMailboxPermission
@@ -30274,6 +30262,9 @@ func (p SetMigrationEndpointParams) params() map[string]any {
 	}
 	if p.Authentication != nil {
 		m["Authentication"] = p.Authentication
+	}
+	if p.AzureStorageContainerPath != "" {
+		m["AzureStorageContainerPath"] = p.AzureStorageContainerPath
 	}
 	if p.Credentials != nil {
 		m["Credentials"] = p.Credentials
@@ -30708,18 +30699,17 @@ func (s *Service) SetMoveRequest(ctx context.Context, p SetMoveRequestParams) (*
 // SetOMEConfigurationParams are the parameters of Set-OMEConfiguration.
 // DefaultParameterSetName: Identity
 type SetOMEConfigurationParams struct {
-	BackgroundColor          string `ps:"BackgroundColor"`
-	DisclaimerText           string `ps:"DisclaimerText"`
-	EmailText                string `ps:"EmailText"`
-	ExternalMailExpiryInDays any    `ps:"ExternalMailExpiryInDays"` // String
-	Identity                 any    `ps:"Identity"`                 // OMEConfigurationIdParameter
-	Image                    any    `ps:"Image"`                    // Byte[]
-	IntroductionText         string `ps:"IntroductionText"`
-	OTPEnabled               *bool  `ps:"OTPEnabled"`
-	PortalText               string `ps:"PortalText"`
-	PrivacyStatementUrl      string `ps:"PrivacyStatementUrl"`
-	ReadButtonText           string `ps:"ReadButtonText"`
-	SocialIdSignIn           *bool  `ps:"SocialIdSignIn"`
+	BackgroundColor     string `ps:"BackgroundColor"`
+	DisclaimerText      string `ps:"DisclaimerText"`
+	EmailText           string `ps:"EmailText"`
+	Identity            any    `ps:"Identity"` // OMEConfigurationIdParameter
+	Image               any    `ps:"Image"`    // Byte[]
+	IntroductionText    string `ps:"IntroductionText"`
+	OTPEnabled          *bool  `ps:"OTPEnabled"`
+	PortalText          string `ps:"PortalText"`
+	PrivacyStatementUrl string `ps:"PrivacyStatementUrl"`
+	ReadButtonText      string `ps:"ReadButtonText"`
+	SocialIdSignIn      *bool  `ps:"SocialIdSignIn"`
 }
 
 func (p SetOMEConfigurationParams) params() map[string]any {
@@ -30732,9 +30722,6 @@ func (p SetOMEConfigurationParams) params() map[string]any {
 	}
 	if p.EmailText != "" {
 		m["EmailText"] = p.EmailText
-	}
-	if p.ExternalMailExpiryInDays != nil {
-		m["ExternalMailExpiryInDays"] = p.ExternalMailExpiryInDays
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -30766,28 +30753,6 @@ func (p SetOMEConfigurationParams) params() map[string]any {
 // SetOMEConfiguration runs the Set-OMEConfiguration cmdlet.
 func (s *Service) SetOMEConfiguration(ctx context.Context, p SetOMEConfigurationParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Set-OMEConfiguration", p.params())
-}
-
-// SetOMEMessageRevocationParams are the parameters of Set-OMEMessageRevocation.
-type SetOMEMessageRevocationParams struct {
-	MessageId string `ps:"MessageId"`
-	Revoke    *bool  `ps:"Revoke"`
-}
-
-func (p SetOMEMessageRevocationParams) params() map[string]any {
-	m := map[string]any{}
-	if p.MessageId != "" {
-		m["MessageId"] = p.MessageId
-	}
-	if p.Revoke != nil {
-		m["Revoke"] = *p.Revoke
-	}
-	return m
-}
-
-// SetOMEMessageRevocation runs the Set-OMEMessageRevocation cmdlet.
-func (s *Service) SetOMEMessageRevocation(ctx context.Context, p SetOMEMessageRevocationParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Set-OMEMessageRevocation", p.params())
 }
 
 // SetOnPremisesOrganizationParams are the parameters of Set-OnPremisesOrganization.
@@ -30946,6 +30911,7 @@ type SetOrganizationConfigParams struct {
 	ExchangeNotificationEnabled                               *bool                 `ps:"ExchangeNotificationEnabled"`
 	ExchangeNotificationRecipients                            []string              `ps:"ExchangeNotificationRecipients"`
 	ExchangeNotificationRecipientsDelta                       *adminapi.StringDelta `ps:"ExchangeNotificationRecipients"` // adds/removes values of ExchangeNotificationRecipients; takes precedence over it
+	ExchangePriorityCleanupPurgeLimit                         *int64                `ps:"ExchangePriorityCleanupPurgeLimit"`
 	FindTimeAttendeeAuthenticationEnabled                     *bool                 `ps:"FindTimeAttendeeAuthenticationEnabled"`
 	FindTimeAutoScheduleDisabled                              *bool                 `ps:"FindTimeAutoScheduleDisabled"`
 	FindTimeLockPollForAttendeesEnabled                       *bool                 `ps:"FindTimeLockPollForAttendeesEnabled"`
@@ -31260,6 +31226,9 @@ func (p SetOrganizationConfigParams) params() map[string]any {
 		m["ExchangeNotificationRecipients"] = *p.ExchangeNotificationRecipientsDelta
 	} else if p.ExchangeNotificationRecipients != nil {
 		m["ExchangeNotificationRecipients"] = p.ExchangeNotificationRecipients
+	}
+	if p.ExchangePriorityCleanupPurgeLimit != nil {
+		m["ExchangePriorityCleanupPurgeLimit"] = *p.ExchangePriorityCleanupPurgeLimit
 	}
 	if p.FindTimeAttendeeAuthenticationEnabled != nil {
 		m["FindTimeAttendeeAuthenticationEnabled"] = *p.FindTimeAttendeeAuthenticationEnabled
@@ -33043,8 +33012,11 @@ func (s *Service) SetReportSchedule(ctx context.Context, p SetReportSchedulePara
 // SetReportSubmissionPolicyParams are the parameters of Set-ReportSubmissionPolicy.
 // DefaultParameterSetName: Identity
 type SetReportSubmissionPolicyParams struct {
+	ChatMessageNotificationSenderAddress                           any                   `ps:"ChatMessageNotificationSenderAddress"`
 	DisableQuarantineReportingOption                               *bool                 `ps:"DisableQuarantineReportingOption"`
 	DisableUserSubmissionOptions                                   *bool                 `ps:"DisableUserSubmissionOptions"`
+	EnableChatMessageCustomNotificationSender                      *bool                 `ps:"EnableChatMessageCustomNotificationSender"`
+	EnableChatMessageOrganizationBranding                          *bool                 `ps:"EnableChatMessageOrganizationBranding"`
 	EnableCustomizedMsg                                            *bool                 `ps:"EnableCustomizedMsg"`
 	EnableCustomNotificationSender                                 *bool                 `ps:"EnableCustomNotificationSender"`
 	EnableOrganizationBranding                                     *bool                 `ps:"EnableOrganizationBranding"`
@@ -33103,6 +33075,8 @@ type SetReportSubmissionPolicyParams struct {
 	PreSubmitMessageTitleForJunk                                   string                `ps:"PreSubmitMessageTitleForJunk"`
 	PreSubmitMessageTitleForNotJunk                                string                `ps:"PreSubmitMessageTitleForNotJunk"`
 	PreSubmitMessageTitleForPhishing                               string                `ps:"PreSubmitMessageTitleForPhishing"`
+	ReportChatMessageAddresses                                     []string              `ps:"ReportChatMessageAddresses"`
+	ReportChatMessageAddressesDelta                                *adminapi.StringDelta `ps:"ReportChatMessageAddresses"` // adds/removes values of ReportChatMessageAddresses; takes precedence over it
 	ReportChatMessageEnabled                                       *bool                 `ps:"ReportChatMessageEnabled"`
 	ReportChatMessageToCustomizedAddressEnabled                    *bool                 `ps:"ReportChatMessageToCustomizedAddressEnabled"`
 	ReportJunkAddresses                                            []string              `ps:"ReportJunkAddresses"`
@@ -33122,11 +33096,20 @@ type SetReportSubmissionPolicyParams struct {
 
 func (p SetReportSubmissionPolicyParams) params() map[string]any {
 	m := map[string]any{}
+	if p.ChatMessageNotificationSenderAddress != nil {
+		m["ChatMessageNotificationSenderAddress"] = p.ChatMessageNotificationSenderAddress
+	}
 	if p.DisableQuarantineReportingOption != nil {
 		m["DisableQuarantineReportingOption"] = *p.DisableQuarantineReportingOption
 	}
 	if p.DisableUserSubmissionOptions != nil {
 		m["DisableUserSubmissionOptions"] = *p.DisableUserSubmissionOptions
+	}
+	if p.EnableChatMessageCustomNotificationSender != nil {
+		m["EnableChatMessageCustomNotificationSender"] = *p.EnableChatMessageCustomNotificationSender
+	}
+	if p.EnableChatMessageOrganizationBranding != nil {
+		m["EnableChatMessageOrganizationBranding"] = *p.EnableChatMessageOrganizationBranding
 	}
 	if p.EnableCustomizedMsg != nil {
 		m["EnableCustomizedMsg"] = *p.EnableCustomizedMsg
@@ -33299,6 +33282,11 @@ func (p SetReportSubmissionPolicyParams) params() map[string]any {
 	}
 	if p.PreSubmitMessageTitleForPhishing != "" {
 		m["PreSubmitMessageTitleForPhishing"] = p.PreSubmitMessageTitleForPhishing
+	}
+	if p.ReportChatMessageAddressesDelta != nil {
+		m["ReportChatMessageAddresses"] = *p.ReportChatMessageAddressesDelta
+	} else if p.ReportChatMessageAddresses != nil {
+		m["ReportChatMessageAddresses"] = p.ReportChatMessageAddresses
 	}
 	if p.ReportChatMessageEnabled != nil {
 		m["ReportChatMessageEnabled"] = *p.ReportChatMessageEnabled
@@ -33617,13 +33605,16 @@ func (s *Service) SetRoleGroup(ctx context.Context, p SetRoleGroupParams) (*admi
 // SetSafeAttachmentPolicyParams are the parameters of Set-SafeAttachmentPolicy.
 // DefaultParameterSetName: Identity
 type SetSafeAttachmentPolicyParams struct {
-	Action           any    `ps:"Action"` // SafeAttachmentAction
-	AdminDisplayName string `ps:"AdminDisplayName"`
-	Enable           *bool  `ps:"Enable"`
-	Identity         any    `ps:"Identity"` // SafeAttachmentPolicyIdParameter
-	QuarantineTag    string `ps:"QuarantineTag"`
-	Redirect         *bool  `ps:"Redirect"`
-	RedirectAddress  any    `ps:"RedirectAddress"` // SmtpAddress
+	Action                                        any    `ps:"Action"` // SafeAttachmentAction
+	AdminDisplayName                              string `ps:"AdminDisplayName"`
+	Enable                                        *bool  `ps:"Enable"`
+	EnableBlockingEncryptedAttachments            *bool  `ps:"EnableBlockingEncryptedAttachments"`
+	ExcludedTypesFromBlockingEncryptedAttachments any    `ps:"ExcludedTypesFromBlockingEncryptedAttachments"`
+	Identity                                      any    `ps:"Identity"` // SafeAttachmentPolicyIdParameter
+	QuarantineTag                                 string `ps:"QuarantineTag"`
+	QuarantineTagForBlockingEncryptedAttachments  string `ps:"QuarantineTagForBlockingEncryptedAttachments"`
+	Redirect                                      *bool  `ps:"Redirect"`
+	RedirectAddress                               any    `ps:"RedirectAddress"` // SmtpAddress
 }
 
 func (p SetSafeAttachmentPolicyParams) params() map[string]any {
@@ -33637,11 +33628,20 @@ func (p SetSafeAttachmentPolicyParams) params() map[string]any {
 	if p.Enable != nil {
 		m["Enable"] = *p.Enable
 	}
+	if p.EnableBlockingEncryptedAttachments != nil {
+		m["EnableBlockingEncryptedAttachments"] = *p.EnableBlockingEncryptedAttachments
+	}
+	if p.ExcludedTypesFromBlockingEncryptedAttachments != nil {
+		m["ExcludedTypesFromBlockingEncryptedAttachments"] = p.ExcludedTypesFromBlockingEncryptedAttachments
+	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
 	if p.QuarantineTag != "" {
 		m["QuarantineTag"] = p.QuarantineTag
+	}
+	if p.QuarantineTagForBlockingEncryptedAttachments != "" {
+		m["QuarantineTagForBlockingEncryptedAttachments"] = p.QuarantineTagForBlockingEncryptedAttachments
 	}
 	if p.Redirect != nil {
 		m["Redirect"] = *p.Redirect
@@ -35251,6 +35251,7 @@ type SetUnifiedGroupParams struct {
 	DataEncryptionPolicy                        any                   `ps:"DataEncryptionPolicy"` // DataEncryptionPolicyIdParameter
 	DisplayName                                 string                `ps:"DisplayName"`
 	EmailAddresses                              []string              `ps:"EmailAddresses"`
+	ExchangeGuid                                string                `ps:"ExchangeGuid"`
 	ExtensionCustomAttribute1                   []string              `ps:"ExtensionCustomAttribute1"`
 	ExtensionCustomAttribute1Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute1"` // adds/removes values of ExtensionCustomAttribute1; takes precedence over it
 	ExtensionCustomAttribute2                   []string              `ps:"ExtensionCustomAttribute2"`
@@ -35261,6 +35262,7 @@ type SetUnifiedGroupParams struct {
 	ExtensionCustomAttribute4Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute4"` // adds/removes values of ExtensionCustomAttribute4; takes precedence over it
 	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
 	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
+	ExternalEmailAddress                        any                   `ps:"ExternalEmailAddress"`
 	ForceUpgrade                                bool                  `ps:"ForceUpgrade"`
 	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
 	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
@@ -35374,6 +35376,9 @@ func (p SetUnifiedGroupParams) params() map[string]any {
 	if p.EmailAddresses != nil {
 		m["EmailAddresses"] = p.EmailAddresses
 	}
+	if p.ExchangeGuid != "" {
+		m["ExchangeGuid"] = p.ExchangeGuid
+	}
 	if p.ExtensionCustomAttribute1Delta != nil {
 		m["ExtensionCustomAttribute1"] = *p.ExtensionCustomAttribute1Delta
 	} else if p.ExtensionCustomAttribute1 != nil {
@@ -35398,6 +35403,9 @@ func (p SetUnifiedGroupParams) params() map[string]any {
 		m["ExtensionCustomAttribute5"] = *p.ExtensionCustomAttribute5Delta
 	} else if p.ExtensionCustomAttribute5 != nil {
 		m["ExtensionCustomAttribute5"] = p.ExtensionCustomAttribute5
+	}
+	if p.ExternalEmailAddress != nil {
+		m["ExternalEmailAddress"] = p.ExternalEmailAddress
 	}
 	if p.ForceUpgrade {
 		m["ForceUpgrade"] = true
@@ -35495,6 +35503,7 @@ type SetUserParams struct {
 	Department                          string                `ps:"Department"`
 	DesiredWorkloads                    any                   `ps:"DesiredWorkloads"` // Microsoft.Exchange.Data.MailboxWorkloadFlags
 	DisplayName                         string                `ps:"DisplayName"`
+	ExchangeAttributesServerManaged     bool                  `ps:"ExchangeAttributesServerManaged"`
 	EXOModuleEnabled                    *bool                 `ps:"EXOModuleEnabled"`
 	Fax                                 string                `ps:"Fax"`
 	FirstName                           string                `ps:"FirstName"`
@@ -35575,6 +35584,9 @@ func (p SetUserParams) params() map[string]any {
 	}
 	if p.DisplayName != "" {
 		m["DisplayName"] = p.DisplayName
+	}
+	if p.ExchangeAttributesServerManaged {
+		m["ExchangeAttributesServerManaged"] = true
 	}
 	if p.EXOModuleEnabled != nil {
 		m["EXOModuleEnabled"] = *p.EXOModuleEnabled
@@ -35939,6 +35951,84 @@ func (p StartMigrationUserParams) params() map[string]any {
 // StartMigrationUser runs the Start-MigrationUser cmdlet.
 func (s *Service) StartMigrationUser(ctx context.Context, p StartMigrationUserParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Start-MigrationUser", p.params())
+}
+
+// StartTransportAsyncReportParams are the parameters of Start-TransportAsyncReport.
+type StartTransportAsyncReportParams struct {
+	CompressFile       *bool  `ps:"CompressFile"`
+	DeliveryStatus     string `ps:"DeliveryStatus"`
+	Direction          string `ps:"Direction"`
+	EndDate            any    `ps:"EndDate"`
+	MessageId          string `ps:"MessageId"`
+	NetworkMessageIds  any    `ps:"NetworkMessageIds"`
+	NotifyAddress      string `ps:"NotifyAddress"`
+	OriginalClientIP   string `ps:"OriginalClientIP"`
+	RecipientAddresses any    `ps:"RecipientAddresses"`
+	ReportTitle        string `ps:"ReportTitle"`
+	ReportType         string `ps:"ReportType"`
+	SenderAddresses    any    `ps:"SenderAddresses"`
+	StartDate          any    `ps:"StartDate"`
+	SubjectContains    string `ps:"SubjectContains"`
+	SubjectEndsWith    string `ps:"SubjectEndsWith"`
+	SubjectStartsWith  string `ps:"SubjectStartsWith"`
+}
+
+func (p StartTransportAsyncReportParams) params() map[string]any {
+	m := map[string]any{}
+	if p.CompressFile != nil {
+		m["CompressFile"] = *p.CompressFile
+	}
+	if p.DeliveryStatus != "" {
+		m["DeliveryStatus"] = p.DeliveryStatus
+	}
+	if p.Direction != "" {
+		m["Direction"] = p.Direction
+	}
+	if p.EndDate != nil {
+		m["EndDate"] = p.EndDate
+	}
+	if p.MessageId != "" {
+		m["MessageId"] = p.MessageId
+	}
+	if p.NetworkMessageIds != nil {
+		m["NetworkMessageIds"] = p.NetworkMessageIds
+	}
+	if p.NotifyAddress != "" {
+		m["NotifyAddress"] = p.NotifyAddress
+	}
+	if p.OriginalClientIP != "" {
+		m["OriginalClientIP"] = p.OriginalClientIP
+	}
+	if p.RecipientAddresses != nil {
+		m["RecipientAddresses"] = p.RecipientAddresses
+	}
+	if p.ReportTitle != "" {
+		m["ReportTitle"] = p.ReportTitle
+	}
+	if p.ReportType != "" {
+		m["ReportType"] = p.ReportType
+	}
+	if p.SenderAddresses != nil {
+		m["SenderAddresses"] = p.SenderAddresses
+	}
+	if p.StartDate != nil {
+		m["StartDate"] = p.StartDate
+	}
+	if p.SubjectContains != "" {
+		m["SubjectContains"] = p.SubjectContains
+	}
+	if p.SubjectEndsWith != "" {
+		m["SubjectEndsWith"] = p.SubjectEndsWith
+	}
+	if p.SubjectStartsWith != "" {
+		m["SubjectStartsWith"] = p.SubjectStartsWith
+	}
+	return m
+}
+
+// StartTransportAsyncReport runs the Start-TransportAsyncReport cmdlet.
+func (s *Service) StartTransportAsyncReport(ctx context.Context, p StartTransportAsyncReportParams) (*adminapi.Result, error) {
+	return s.C.Invoke(ctx, "Start-TransportAsyncReport", p.params())
 }
 
 // StopHistoricalSearchParams are the parameters of Stop-HistoricalSearch.
@@ -36414,6 +36504,7 @@ func (s *Service) TestMAPIConnectivity(ctx context.Context, p TestMAPIConnectivi
 type TestMailboxAssistantParams struct {
 	AssistantName      string `ps:"AssistantName"`
 	DomainController   any    `ps:"DomainController"`
+	FilterGroupIndex   *int64 `ps:"FilterGroupIndex"`
 	IncludeWlmStatus   bool   `ps:"IncludeWlmStatus"`
 	Process            string `ps:"Process"` // one of: MSExchangeMailboxAssistants, MSExchangeMailboxAssistantsOrchestrator
 	SoftDeletedMailbox bool   `ps:"SoftDeletedMailbox"`
@@ -36426,6 +36517,9 @@ func (p TestMailboxAssistantParams) params() map[string]any {
 	}
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
+	}
+	if p.FilterGroupIndex != nil {
+		m["FilterGroupIndex"] = *p.FilterGroupIndex
 	}
 	if p.IncludeWlmStatus {
 		m["IncludeWlmStatus"] = true
@@ -36502,9 +36596,11 @@ type TestMigrationServerAvailabilityParams struct {
 	FilePath                           string `ps:"FilePath"`
 	Gmail                              bool   `ps:"Gmail"`
 	Imap                               bool   `ps:"Imap"`
+	M365RcaTest                        bool   `ps:"M365RcaTest"`
 	MailboxPermission                  any    `ps:"MailboxPermission"` // MigrationMailboxPermission
 	Partition                          any    `ps:"Partition"`         // MailboxIdParameter
 	Port                               *int64 `ps:"Port"`
+	PSTImport                          bool   `ps:"PSTImport"`
 	PublicFolder                       bool   `ps:"PublicFolder"`
 	PublicFolderDatabaseServerLegacyDN string `ps:"PublicFolderDatabaseServerLegacyDN"`
 	PublicFolderToUnifiedGroup         bool   `ps:"PublicFolderToUnifiedGroup"`
@@ -36514,6 +36610,7 @@ type TestMigrationServerAvailabilityParams struct {
 	ServiceAccountKeyFileData          any    `ps:"ServiceAccountKeyFileData"` // Byte[]
 	SourceMailboxLegacyDN              string `ps:"SourceMailboxLegacyDN"`
 	TestMailbox                        any    `ps:"TestMailbox"` // MailboxIdParameter
+	TokenStore                         string `ps:"TokenStore"`
 }
 
 func (p TestMigrationServerAvailabilityParams) params() map[string]any {
@@ -36557,6 +36654,9 @@ func (p TestMigrationServerAvailabilityParams) params() map[string]any {
 	if p.Imap {
 		m["Imap"] = true
 	}
+	if p.M365RcaTest {
+		m["M365RcaTest"] = true
+	}
 	if p.MailboxPermission != nil {
 		m["MailboxPermission"] = p.MailboxPermission
 	}
@@ -36565,6 +36665,9 @@ func (p TestMigrationServerAvailabilityParams) params() map[string]any {
 	}
 	if p.Port != nil {
 		m["Port"] = *p.Port
+	}
+	if p.PSTImport {
+		m["PSTImport"] = true
 	}
 	if p.PublicFolder {
 		m["PublicFolder"] = true
@@ -36592,6 +36695,9 @@ func (p TestMigrationServerAvailabilityParams) params() map[string]any {
 	}
 	if p.TestMailbox != nil {
 		m["TestMailbox"] = p.TestMailbox
+	}
+	if p.TokenStore != "" {
+		m["TokenStore"] = p.TokenStore
 	}
 	return m
 }

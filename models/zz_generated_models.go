@@ -556,6 +556,11 @@ type Divergence struct {
 	CmdletParameters                string   `json:"CmdletParameters,omitempty"`
 	ExternalDirectoryOrganizationId string   `json:"ExternalDirectoryOrganizationId,omitempty"`
 	ExternalDirectoryObjectId       string   `json:"ExternalDirectoryObjectId,omitempty"`
+	IsQueuedForProcessing           bool     `json:"IsQueuedForProcessing,omitempty"`
+	WhenQueuedForProcessingUTC      string   `json:"WhenQueuedForProcessingUTC,omitempty"`
+	FallbackToLegacyOFS             bool     `json:"FallbackToLegacyOFS,omitempty"`
+	FallbackToLegacyOFSUpdatedUTC   string   `json:"FallbackToLegacyOFSUpdatedUTC,omitempty"`
+	ConsecutiveReplayFailureCount   int32    `json:"ConsecutiveReplayFailureCount,omitempty"`
 }
 
 // DynamicDistributionGroup (OData ComplexType).
@@ -2101,16 +2106,20 @@ type StringFieldDeltaUpdateData struct {
 type TestMigrationServerAvailability struct {
 	Id                 string `json:"Id,omitempty"`
 	Imap               bool   `json:"Imap,omitempty"`
+	Pop                bool   `json:"Pop,omitempty"`
+	Eas                bool   `json:"Eas,omitempty"`
 	RemoteServer       string `json:"RemoteServer,omitempty"`
 	Port               int32  `json:"Port,omitempty"`
 	Security           string `json:"Security,omitempty"`
 	Authentication     string `json:"Authentication,omitempty"`
 	M365RcaTest        bool   `json:"M365RcaTest,omitempty"`
+	Autodiscover       bool   `json:"Autodiscover,omitempty"`
 	TokenStore         string `json:"TokenStore,omitempty"`
 	EmailAddress       string `json:"EmailAddress,omitempty"`
 	Organization       string `json:"Organization,omitempty"`
 	CredentialUsername string `json:"CredentialUsername,omitempty"`
 	CredentialPassword string `json:"CredentialPassword,omitempty"`
+	StructuredResult   string `json:"StructuredResult,omitempty"`
 	Result             string `json:"Result,omitempty"`
 	Message            string `json:"Message,omitempty"`
 	ErrorDetail        string `json:"ErrorDetail,omitempty"`

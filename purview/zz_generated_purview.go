@@ -8,7 +8,7 @@ import (
 	"github.com/terraprovider/go-exoscc/adminapi"
 )
 
-// Service exposes the 418 cmdlets of Purview-ExchangeOnline.psm1 as typed methods.
+// Service exposes the 411 cmdlets of Purview-ExchangeOnline.psm1 as typed methods.
 type Service struct{ C *adminapi.Client }
 
 // New wraps an *adminapi.Client.
@@ -671,6 +671,7 @@ type GetAdaptiveScopeMembersParams struct {
 	PageResultSize        any    `ps:"PageResultSize"` // UnlimitedInt
 	StartDateTime         any    `ps:"StartDateTime"`  // DateTimeOffset
 	State                 any    `ps:"State"`          // LocationState
+	UseAltSource          bool   `ps:"UseAltSource"`
 }
 
 func (p GetAdaptiveScopeMembersParams) params() map[string]any {
@@ -698,6 +699,9 @@ func (p GetAdaptiveScopeMembersParams) params() map[string]any {
 	}
 	if p.State != nil {
 		m["State"] = p.State
+	}
+	if p.UseAltSource {
+		m["UseAltSource"] = true
 	}
 	return m
 }
@@ -2250,7 +2254,7 @@ func (s *Service) GetDspmPolicy(ctx context.Context, p GetDspmPolicyParams) (*ad
 
 // GetFeatureConfigurationParams are the parameters of Get-FeatureConfiguration.
 type GetFeatureConfigurationParams struct {
-	FeatureScenario any `ps:"FeatureScenario"` // one of: KnowYourData, TrustContainer, ProtectExcludedFolders, UnsavedDocument, JustInTimeAudit; PolicyScenario
+	FeatureScenario any `ps:"FeatureScenario"` // one of: KnowYourData, TrustContainer, ProtectExcludedFolders, UnsavedDocument, JustInTimeAudit, SecureByDefault; PolicyScenario
 	Identity        any `ps:"Identity"`        // PolicyIdParameter
 }
 
@@ -2504,75 +2508,6 @@ func (p GetHoldComplianceRuleParams) params() map[string]any {
 // GetHoldComplianceRule runs the Get-HoldComplianceRule cmdlet.
 func (s *Service) GetHoldComplianceRule(ctx context.Context, p GetHoldComplianceRuleParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Get-HoldComplianceRule", p.params())
-}
-
-// GetInformationBarrierPoliciesApplicationStatusParams are the parameters of Get-InformationBarrierPoliciesApplicationStatus.
-// DefaultParameterSetName: Default
-type GetInformationBarrierPoliciesApplicationStatusParams struct {
-	All      bool `ps:"All"`
-	Identity any  `ps:"Identity"` // PolicyIdParameter
-}
-
-func (p GetInformationBarrierPoliciesApplicationStatusParams) params() map[string]any {
-	m := map[string]any{}
-	if p.All {
-		m["All"] = true
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	return m
-}
-
-// GetInformationBarrierPoliciesApplicationStatus runs the Get-InformationBarrierPoliciesApplicationStatus cmdlet.
-func (s *Service) GetInformationBarrierPoliciesApplicationStatus(ctx context.Context, p GetInformationBarrierPoliciesApplicationStatusParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Get-InformationBarrierPoliciesApplicationStatus", p.params())
-}
-
-// GetInformationBarrierPolicyParams are the parameters of Get-InformationBarrierPolicy.
-// DefaultParameterSetName: InformationBarrierDefault
-type GetInformationBarrierPolicyParams struct {
-	ExoPolicyId string `ps:"ExoPolicyId"`
-	Identity    any    `ps:"Identity"` // PolicyIdParameter
-}
-
-func (p GetInformationBarrierPolicyParams) params() map[string]any {
-	m := map[string]any{}
-	if p.ExoPolicyId != "" {
-		m["ExoPolicyId"] = p.ExoPolicyId
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	return m
-}
-
-// GetInformationBarrierPolicy runs the Get-InformationBarrierPolicy cmdlet.
-func (s *Service) GetInformationBarrierPolicy(ctx context.Context, p GetInformationBarrierPolicyParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Get-InformationBarrierPolicy", p.params())
-}
-
-// GetInformationBarrierRecipientStatusParams are the parameters of Get-InformationBarrierRecipientStatus.
-// DefaultParameterSetName: Identity
-type GetInformationBarrierRecipientStatusParams struct {
-	Identity  any `ps:"Identity"`  // RecipientIdParameter
-	Identity2 any `ps:"Identity2"` // RecipientIdParameter
-}
-
-func (p GetInformationBarrierRecipientStatusParams) params() map[string]any {
-	m := map[string]any{}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	if p.Identity2 != nil {
-		m["Identity2"] = p.Identity2
-	}
-	return m
-}
-
-// GetInformationBarrierRecipientStatus runs the Get-InformationBarrierRecipientStatus cmdlet.
-func (s *Service) GetInformationBarrierRecipientStatus(ctx context.Context, p GetInformationBarrierRecipientStatusParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Get-InformationBarrierRecipientStatus", p.params())
 }
 
 // GetInsiderRiskEntityListParams are the parameters of Get-InsiderRiskEntityList.
@@ -3707,6 +3642,32 @@ func (s *Service) GetSCInsights(ctx context.Context, p GetSCInsightsParams) (*ad
 	return s.C.Invoke(ctx, "Get-SCInsights", p.params())
 }
 
+// GetSPORestoreRequestStatusParams are the parameters of Get-SPORestoreRequestStatus.
+type GetSPORestoreRequestStatusParams struct {
+	Page                 *int64 `ps:"Page"`
+	RestorationRequestId string `ps:"RestorationRequestId"`
+	SiteIds              string `ps:"SiteIds"`
+}
+
+func (p GetSPORestoreRequestStatusParams) params() map[string]any {
+	m := map[string]any{}
+	if p.Page != nil {
+		m["Page"] = *p.Page
+	}
+	if p.RestorationRequestId != "" {
+		m["RestorationRequestId"] = p.RestorationRequestId
+	}
+	if p.SiteIds != "" {
+		m["SiteIds"] = p.SiteIds
+	}
+	return m
+}
+
+// GetSPORestoreRequestStatus runs the Get-SPORestoreRequestStatus cmdlet.
+func (s *Service) GetSPORestoreRequestStatus(ctx context.Context, p GetSPORestoreRequestStatusParams) (*adminapi.Result, error) {
+	return s.C.Invoke(ctx, "Get-SPORestoreRequestStatus", p.params())
+}
+
 // GetScopeAdminsParams are the parameters of Get-ScopeAdmins.
 // DefaultParameterSetName: Identity
 type GetScopeAdminsParams struct {
@@ -4395,6 +4356,7 @@ type InvokeHoldRemovalActionParams struct {
 	Force              bool   `ps:"Force"`
 	HoldId             string `ps:"HoldId"`
 	SharePointLocation string `ps:"SharePointLocation"`
+	TenantScope        bool   `ps:"TenantScope"`
 }
 
 func (p InvokeHoldRemovalActionParams) params() map[string]any {
@@ -4413,6 +4375,9 @@ func (p InvokeHoldRemovalActionParams) params() map[string]any {
 	}
 	if p.SharePointLocation != "" {
 		m["SharePointLocation"] = p.SharePointLocation
+	}
+	if p.TenantScope {
+		m["TenantScope"] = true
 	}
 	return m
 }
@@ -4875,6 +4840,7 @@ type NewAutoSensitivityLabelPolicyParams struct {
 	SharePointAdaptiveScopesException       []string `ps:"SharePointAdaptiveScopesException"`
 	SharePointLocation                      []string `ps:"SharePointLocation"`
 	SharePointLocationException             []string `ps:"SharePointLocationException"`
+	SpoDocLibraryDefaultLabelSnapshot       any      `ps:"SpoDocLibraryDefaultLabelSnapshot"`
 	UnifiedAuditLogEnabled                  *bool    `ps:"UnifiedAuditLogEnabled"`
 }
 
@@ -4991,6 +4957,9 @@ func (p NewAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.SharePointLocationException != nil {
 		m["SharePointLocationException"] = p.SharePointLocationException
 	}
+	if p.SpoDocLibraryDefaultLabelSnapshot != nil {
+		m["SpoDocLibraryDefaultLabelSnapshot"] = p.SpoDocLibraryDefaultLabelSnapshot
+	}
 	if p.UnifiedAuditLogEnabled != nil {
 		m["UnifiedAuditLogEnabled"] = *p.UnifiedAuditLogEnabled
 	}
@@ -5020,7 +4989,8 @@ type NewAutoSensitivityLabelRuleParams struct {
 	DocumentIsPasswordProtected                  *bool    `ps:"DocumentIsPasswordProtected"`
 	DocumentIsUnsupported                        *bool    `ps:"DocumentIsUnsupported"`
 	DocumentNameMatchesWords                     []string `ps:"DocumentNameMatchesWords"`
-	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`    // Microsoft.Exchange.Data.ByteQuantifiedSize
+	DocumentSizeOver                             any      `ps:"DocumentSizeOver"` // Microsoft.Exchange.Data.ByteQuantifiedSize
+	EffectiveParentFolder                        []string `ps:"EffectiveParentFolder"`
 	ExceptIfAccessScope                          any      `ps:"ExceptIfAccessScope"` // AccessScope
 	ExceptIfAnyOfRecipientAddressContainsWords   []string `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
 	ExceptIfAnyOfRecipientAddressMatchesPatterns []string `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
@@ -5032,11 +5002,13 @@ type NewAutoSensitivityLabelRuleParams struct {
 	ExceptIfDocumentIsUnsupported                *bool    `ps:"ExceptIfDocumentIsUnsupported"`
 	ExceptIfDocumentNameMatchesWords             []string `ps:"ExceptIfDocumentNameMatchesWords"`
 	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"` // Microsoft.Exchange.Data.ByteQuantifiedSize
+	ExceptIfEffectiveParentFolder                []string `ps:"ExceptIfEffectiveParentFolder"`
 	ExceptIfFrom                                 []string `ps:"ExceptIfFrom"`
 	ExceptIfFromAddressContainsWords             []string `ps:"ExceptIfFromAddressContainsWords"`
 	ExceptIfFromAddressMatchesPatterns           []string `ps:"ExceptIfFromAddressMatchesPatterns"`
 	ExceptIfFromMemberOf                         []string `ps:"ExceptIfFromMemberOf"`
 	ExceptIfHeaderMatchesPatterns                any      `ps:"ExceptIfHeaderMatchesPatterns"` // PswsHashtable
+	ExceptIfParentFolder                         []string `ps:"ExceptIfParentFolder"`
 	ExceptIfProcessingLimitExceeded              *bool    `ps:"ExceptIfProcessingLimitExceeded"`
 	ExceptIfRecipientDomainIs                    []string `ps:"ExceptIfRecipientDomainIs"`
 	ExceptIfSenderDomainIs                       []string `ps:"ExceptIfSenderDomainIs"`
@@ -5053,6 +5025,7 @@ type NewAutoSensitivityLabelRuleParams struct {
 	HeaderMatchesPatterns                        any      `ps:"HeaderMatchesPatterns"` // PswsHashtable
 	ImmutableId                                  any      `ps:"ImmutableId"`           // System.Guid
 	Name                                         string   `ps:"Name"`
+	ParentFolder                                 []string `ps:"ParentFolder"`
 	Policy                                       any      `ps:"Policy"` // PolicyIdParameter
 	Priority                                     *int64   `ps:"Priority"`
 	ProcessingLimitExceeded                      *bool    `ps:"ProcessingLimitExceeded"`
@@ -5122,6 +5095,9 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.DocumentSizeOver != nil {
 		m["DocumentSizeOver"] = p.DocumentSizeOver
 	}
+	if p.EffectiveParentFolder != nil {
+		m["EffectiveParentFolder"] = p.EffectiveParentFolder
+	}
 	if p.ExceptIfAccessScope != nil {
 		m["ExceptIfAccessScope"] = p.ExceptIfAccessScope
 	}
@@ -5155,6 +5131,9 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
+	if p.ExceptIfEffectiveParentFolder != nil {
+		m["ExceptIfEffectiveParentFolder"] = p.ExceptIfEffectiveParentFolder
+	}
 	if p.ExceptIfFrom != nil {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
@@ -5169,6 +5148,9 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	}
 	if p.ExceptIfHeaderMatchesPatterns != nil {
 		m["ExceptIfHeaderMatchesPatterns"] = p.ExceptIfHeaderMatchesPatterns
+	}
+	if p.ExceptIfParentFolder != nil {
+		m["ExceptIfParentFolder"] = p.ExceptIfParentFolder
 	}
 	if p.ExceptIfProcessingLimitExceeded != nil {
 		m["ExceptIfProcessingLimitExceeded"] = *p.ExceptIfProcessingLimitExceeded
@@ -5217,6 +5199,9 @@ func (p NewAutoSensitivityLabelRuleParams) params() map[string]any {
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
+	}
+	if p.ParentFolder != nil {
+		m["ParentFolder"] = p.ParentFolder
 	}
 	if p.Policy != nil {
 		m["Policy"] = p.Policy
@@ -5842,6 +5827,7 @@ type NewComplianceTagParams struct {
 	RetentionDuration         any      `ps:"RetentionDuration"` // Unlimited
 	RetentionType             string   `ps:"RetentionType"`
 	ReviewerEmail             []string `ps:"ReviewerEmail"`
+	VersionCleanup            bool     `ps:"VersionCleanup"`
 	WebHookUrl                string   `ps:"WebHookUrl"`
 }
 
@@ -5906,6 +5892,9 @@ func (p NewComplianceTagParams) params() map[string]any {
 	}
 	if p.ReviewerEmail != nil {
 		m["ReviewerEmail"] = p.ReviewerEmail
+	}
+	if p.VersionCleanup {
+		m["VersionCleanup"] = true
 	}
 	if p.WebHookUrl != "" {
 		m["WebHookUrl"] = p.WebHookUrl
@@ -6584,9 +6573,6 @@ type NewDlpCompliancePolicyParams struct {
 	DisplayName                           string   `ps:"DisplayName"`
 	EndpointDlpAdaptiveScopes             []string `ps:"EndpointDlpAdaptiveScopes"`
 	EndpointDlpAdaptiveScopesException    []string `ps:"EndpointDlpAdaptiveScopesException"`
-	EndpointDlpExtendedLocations          string   `ps:"EndpointDlpExtendedLocations"`
-	EndpointDlpLocation                   []string `ps:"EndpointDlpLocation"`
-	EndpointDlpLocationException          []string `ps:"EndpointDlpLocationException"`
 	EnforcementPlanes                     []string `ps:"EnforcementPlanes"`
 	ExceptIfOneDriveSharedBy              []string `ps:"ExceptIfOneDriveSharedBy"`
 	ExceptIfOneDriveSharedByMemberOf      []string `ps:"ExceptIfOneDriveSharedByMemberOf"`
@@ -6644,15 +6630,6 @@ func (p NewDlpCompliancePolicyParams) params() map[string]any {
 	}
 	if p.EndpointDlpAdaptiveScopesException != nil {
 		m["EndpointDlpAdaptiveScopesException"] = p.EndpointDlpAdaptiveScopesException
-	}
-	if p.EndpointDlpExtendedLocations != "" {
-		m["EndpointDlpExtendedLocations"] = p.EndpointDlpExtendedLocations
-	}
-	if p.EndpointDlpLocation != nil {
-		m["EndpointDlpLocation"] = p.EndpointDlpLocation
-	}
-	if p.EndpointDlpLocationException != nil {
-		m["EndpointDlpLocationException"] = p.EndpointDlpLocationException
 	}
 	if p.EnforcementPlanes != nil {
 		m["EnforcementPlanes"] = p.EnforcementPlanes
@@ -6827,10 +6804,9 @@ type NewDlpComplianceRuleParams struct {
 	DocumentMatchesPatterns                      []string `ps:"DocumentMatchesPatterns"`
 	DocumentNameMatchesPatterns                  []string `ps:"DocumentNameMatchesPatterns"`
 	DocumentNameMatchesWords                     []string `ps:"DocumentNameMatchesWords"`
-	DocumentSizeOver                             any      `ps:"DocumentSizeOver"`   // Microsoft.Exchange.Data.ByteQuantifiedSize
+	DocumentSizeOver                             any      `ps:"DocumentSizeOver"` // Microsoft.Exchange.Data.ByteQuantifiedSize
+	EffectiveParentFolder                        []string `ps:"EffectiveParentFolder"`
 	EncryptRMSTemplate                           any      `ps:"EncryptRMSTemplate"` // RmsTemplateIdParameter
-	EndpointDlpBrowserRestrictions               []string `ps:"EndpointDlpBrowserRestrictions"`
-	EndpointDlpRestrictions                      any      `ps:"EndpointDlpRestrictions"` // PswsHashtable[]
 	EnforcePortalAccess                          *bool    `ps:"EnforcePortalAccess"`
 	EvaluateRulePerComponent                     *bool    `ps:"EvaluateRulePerComponent"`
 	ExceptIfAccessedBy                           []string `ps:"ExceptIfAccessedBy"`
@@ -6855,6 +6831,7 @@ type NewDlpComplianceRuleParams struct {
 	ExceptIfDocumentNameMatchesPatterns          []string `ps:"ExceptIfDocumentNameMatchesPatterns"`
 	ExceptIfDocumentNameMatchesWords             []string `ps:"ExceptIfDocumentNameMatchesWords"`
 	ExceptIfDocumentSizeOver                     any      `ps:"ExceptIfDocumentSizeOver"` // Microsoft.Exchange.Data.ByteQuantifiedSize
+	ExceptIfEffectiveParentFolder                []string `ps:"ExceptIfEffectiveParentFolder"`
 	ExceptIfFrom                                 []string `ps:"ExceptIfFrom"`
 	ExceptIfFromAddressContainsWords             []string `ps:"ExceptIfFromAddressContainsWords"`
 	ExceptIfFromAddressMatchesPatterns           []string `ps:"ExceptIfFromAddressMatchesPatterns"`
@@ -6867,6 +6844,7 @@ type NewDlpComplianceRuleParams struct {
 	ExceptIfMessageLabelChangeDetected           any      `ps:"ExceptIfMessageLabelChangeDetected"`
 	ExceptIfMessageSizeOver                      any      `ps:"ExceptIfMessageSizeOver"`    // Microsoft.Exchange.Data.ByteQuantifiedSize
 	ExceptIfMessageTypeMatches                   any      `ps:"ExceptIfMessageTypeMatches"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.MessageTypes
+	ExceptIfParentFolder                         []string `ps:"ExceptIfParentFolder"`
 	ExceptIfProcessingLimitExceeded              *bool    `ps:"ExceptIfProcessingLimitExceeded"`
 	ExceptIfRecipientADAttributeContainsWords    any      `ps:"ExceptIfRecipientADAttributeContainsWords"`   // PswsHashtable
 	ExceptIfRecipientADAttributeMatchesPatterns  any      `ps:"ExceptIfRecipientADAttributeMatchesPatterns"` // PswsHashtable
@@ -6919,7 +6897,6 @@ type NewDlpComplianceRuleParams struct {
 	NotifyEmailCustomText                        string   `ps:"NotifyEmailCustomText"`
 	NotifyEmailExchangeIncludeAttachment         *bool    `ps:"NotifyEmailExchangeIncludeAttachment"`
 	NotifyEmailOnedriveRemediationActions        any      `ps:"NotifyEmailOnedriveRemediationActions"` // NotifyEmailRemediationActions
-	NotifyEndpointUser                           any      `ps:"NotifyEndpointUser"`
 	NotifyJustificationCustomText                string   `ps:"NotifyJustificationCustomText"`
 	NotifyJustificationCustomTextTranslations    any      `ps:"NotifyJustificationCustomTextTranslations"`
 	NotifyOverrideRequirements                   any      `ps:"NotifyOverrideRequirements"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyOverrideRequirements
@@ -6931,7 +6908,8 @@ type NewDlpComplianceRuleParams struct {
 	NotifyUser                                   []string `ps:"NotifyUser"`
 	NotifyUserType                               any      `ps:"NotifyUserType"`                   // Microsoft.Office.CompliancePolicy.PolicyEvaluation.NotifyUserType
 	OnPremisesScannerDlpRestrictions             any      `ps:"OnPremisesScannerDlpRestrictions"` // PswsHashtable[]
-	Policy                                       any      `ps:"Policy"`                           // PolicyIdParameter
+	ParentFolder                                 []string `ps:"ParentFolder"`
+	Policy                                       any      `ps:"Policy"` // PolicyIdParameter
 	PowerBIDlpRestrictions                       []string `ps:"PowerBIDlpRestrictions"`
 	PrependSubject                               string   `ps:"PrependSubject"`
 	Priority                                     *int64   `ps:"Priority"`
@@ -6946,7 +6924,6 @@ type NewDlpComplianceRuleParams struct {
 	RemoveRMSTemplate                            *bool    `ps:"RemoveRMSTemplate"`
 	ReportSeverityLevel                          any      `ps:"ReportSeverityLevel"` // RuleSeverity
 	RestrictAccess                               any      `ps:"RestrictAccess"`      // System.Collections.Hashtable[]
-	RestrictBrowserAccess                        *bool    `ps:"RestrictBrowserAccess"`
 	RestrictWebGrounding                         *bool    `ps:"RestrictWebGrounding"`
 	RuleErrorAction                              any      `ps:"RuleErrorAction"`                  // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyRuleErrorAction
 	SenderADAttributeContainsWords               any      `ps:"SenderADAttributeContainsWords"`   // PswsHashtable
@@ -7097,14 +7074,11 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.DocumentSizeOver != nil {
 		m["DocumentSizeOver"] = p.DocumentSizeOver
 	}
+	if p.EffectiveParentFolder != nil {
+		m["EffectiveParentFolder"] = p.EffectiveParentFolder
+	}
 	if p.EncryptRMSTemplate != nil {
 		m["EncryptRMSTemplate"] = p.EncryptRMSTemplate
-	}
-	if p.EndpointDlpBrowserRestrictions != nil {
-		m["EndpointDlpBrowserRestrictions"] = p.EndpointDlpBrowserRestrictions
-	}
-	if p.EndpointDlpRestrictions != nil {
-		m["EndpointDlpRestrictions"] = p.EndpointDlpRestrictions
 	}
 	if p.EnforcePortalAccess != nil {
 		m["EnforcePortalAccess"] = *p.EnforcePortalAccess
@@ -7178,6 +7152,9 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
+	if p.ExceptIfEffectiveParentFolder != nil {
+		m["ExceptIfEffectiveParentFolder"] = p.ExceptIfEffectiveParentFolder
+	}
 	if p.ExceptIfFrom != nil {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
@@ -7213,6 +7190,9 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	}
 	if p.ExceptIfMessageTypeMatches != nil {
 		m["ExceptIfMessageTypeMatches"] = p.ExceptIfMessageTypeMatches
+	}
+	if p.ExceptIfParentFolder != nil {
+		m["ExceptIfParentFolder"] = p.ExceptIfParentFolder
 	}
 	if p.ExceptIfProcessingLimitExceeded != nil {
 		m["ExceptIfProcessingLimitExceeded"] = *p.ExceptIfProcessingLimitExceeded
@@ -7370,9 +7350,6 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	if p.NotifyEmailOnedriveRemediationActions != nil {
 		m["NotifyEmailOnedriveRemediationActions"] = p.NotifyEmailOnedriveRemediationActions
 	}
-	if p.NotifyEndpointUser != nil {
-		m["NotifyEndpointUser"] = p.NotifyEndpointUser
-	}
 	if p.NotifyJustificationCustomText != "" {
 		m["NotifyJustificationCustomText"] = p.NotifyJustificationCustomText
 	}
@@ -7405,6 +7382,9 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	}
 	if p.OnPremisesScannerDlpRestrictions != nil {
 		m["OnPremisesScannerDlpRestrictions"] = p.OnPremisesScannerDlpRestrictions
+	}
+	if p.ParentFolder != nil {
+		m["ParentFolder"] = p.ParentFolder
 	}
 	if p.Policy != nil {
 		m["Policy"] = p.Policy
@@ -7450,9 +7430,6 @@ func (p NewDlpComplianceRuleParams) params() map[string]any {
 	}
 	if p.RestrictAccess != nil {
 		m["RestrictAccess"] = p.RestrictAccess
-	}
-	if p.RestrictBrowserAccess != nil {
-		m["RestrictBrowserAccess"] = *p.RestrictBrowserAccess
 	}
 	if p.RestrictWebGrounding != nil {
 		m["RestrictWebGrounding"] = *p.RestrictWebGrounding
@@ -8034,57 +8011,6 @@ func (p NewHoldComplianceRuleParams) params() map[string]any {
 // NewHoldComplianceRule runs the New-HoldComplianceRule cmdlet.
 func (s *Service) NewHoldComplianceRule(ctx context.Context, p NewHoldComplianceRuleParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "New-HoldComplianceRule", p.params())
-}
-
-// NewInformationBarrierPolicyParams are the parameters of New-InformationBarrierPolicy.
-// DefaultParameterSetName: InformationBarrierDefault
-type NewInformationBarrierPolicyParams struct {
-	AssignedSegment      string   `ps:"AssignedSegment"`
-	Comment              string   `ps:"Comment"`
-	Force                bool     `ps:"Force"`
-	ModerationAllowed    *bool    `ps:"ModerationAllowed"`
-	Name                 string   `ps:"Name"`
-	SegmentAllowedFilter string   `ps:"SegmentAllowedFilter"`
-	SegmentsAllowed      []string `ps:"SegmentsAllowed"`
-	SegmentsBlocked      []string `ps:"SegmentsBlocked"`
-	State                any      `ps:"State"` // EopInformationBarrierPolicyState
-}
-
-func (p NewInformationBarrierPolicyParams) params() map[string]any {
-	m := map[string]any{}
-	if p.AssignedSegment != "" {
-		m["AssignedSegment"] = p.AssignedSegment
-	}
-	if p.Comment != "" {
-		m["Comment"] = p.Comment
-	}
-	if p.Force {
-		m["Force"] = true
-	}
-	if p.ModerationAllowed != nil {
-		m["ModerationAllowed"] = *p.ModerationAllowed
-	}
-	if p.Name != "" {
-		m["Name"] = p.Name
-	}
-	if p.SegmentAllowedFilter != "" {
-		m["SegmentAllowedFilter"] = p.SegmentAllowedFilter
-	}
-	if p.SegmentsAllowed != nil {
-		m["SegmentsAllowed"] = p.SegmentsAllowed
-	}
-	if p.SegmentsBlocked != nil {
-		m["SegmentsBlocked"] = p.SegmentsBlocked
-	}
-	if p.State != nil {
-		m["State"] = p.State
-	}
-	return m
-}
-
-// NewInformationBarrierPolicy runs the New-InformationBarrierPolicy cmdlet.
-func (s *Service) NewInformationBarrierPolicy(ctx context.Context, p NewInformationBarrierPolicyParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "New-InformationBarrierPolicy", p.params())
 }
 
 // NewInsiderRiskEntityListParams are the parameters of New-InsiderRiskEntityList.
@@ -9526,6 +9452,7 @@ type NewRetentionCompliancePolicyParams struct {
 	TeamsChannelLocationException []string `ps:"TeamsChannelLocationException"`
 	TeamsChatLocation             []string `ps:"TeamsChatLocation"`
 	TeamsChatLocationException    []string `ps:"TeamsChatLocationException"`
+	VersionCleanup                bool     `ps:"VersionCleanup"`
 }
 
 func (p NewRetentionCompliancePolicyParams) params() map[string]any {
@@ -9613,6 +9540,9 @@ func (p NewRetentionCompliancePolicyParams) params() map[string]any {
 	}
 	if p.TeamsChatLocationException != nil {
 		m["TeamsChatLocationException"] = p.TeamsChatLocationException
+	}
+	if p.VersionCleanup {
+		m["VersionCleanup"] = true
 	}
 	return m
 }
@@ -9732,6 +9662,7 @@ type NewSensitiveInformationScanParams struct {
 	SharePointAdaptiveScopesException any      `ps:"SharePointAdaptiveScopesException"`
 	SharePointLocation                []string `ps:"SharePointLocation"`
 	SharePointLocationException       []string `ps:"SharePointLocationException"`
+	SkipAlreadyClassifiedItems        any      `ps:"SkipAlreadyClassifiedItems"`
 	TeamsAdaptiveScopes               any      `ps:"TeamsAdaptiveScopes"`
 	TeamsAdaptiveScopesException      any      `ps:"TeamsAdaptiveScopesException"`
 	TeamsLocation                     []string `ps:"TeamsLocation"`
@@ -9817,6 +9748,9 @@ func (p NewSensitiveInformationScanParams) params() map[string]any {
 	}
 	if p.SharePointLocationException != nil {
 		m["SharePointLocationException"] = p.SharePointLocationException
+	}
+	if p.SkipAlreadyClassifiedItems != nil {
+		m["SkipAlreadyClassifiedItems"] = p.SkipAlreadyClassifiedItems
 	}
 	if p.TeamsAdaptiveScopes != nil {
 		m["TeamsAdaptiveScopes"] = p.TeamsAdaptiveScopes
@@ -11564,16 +11498,12 @@ func (s *Service) RemoveHoldComplianceRule(ctx context.Context, p RemoveHoldComp
 // RemoveInformationBarrierPolicyParams are the parameters of Remove-InformationBarrierPolicy.
 type RemoveInformationBarrierPolicyParams struct {
 	ForceDeletion bool `ps:"ForceDeletion"`
-	Identity      any  `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveInformationBarrierPolicyParams) params() map[string]any {
 	m := map[string]any{}
 	if p.ForceDeletion {
 		m["ForceDeletion"] = true
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
 	}
 	return m
 }
@@ -12236,8 +12166,6 @@ func (s *Service) RemoveUnifiedAuditLogRetentionPolicy(ctx context.Context, p Re
 // RestoreItemsDeletedByRetentionSystemParams are the parameters of Restore-ItemsDeletedByRetentionSystem.
 type RestoreItemsDeletedByRetentionSystemParams struct {
 	PolicyIdOrRuleIdOrTagTd string `ps:"PolicyIdOrRuleIdOrTagTd"`
-	RestoreFrom             any    `ps:"RestoreFrom"`
-	RestoreTo               any    `ps:"RestoreTo"`
 	SiteIds                 string `ps:"SiteIds"`
 }
 
@@ -12245,12 +12173,6 @@ func (p RestoreItemsDeletedByRetentionSystemParams) params() map[string]any {
 	m := map[string]any{}
 	if p.PolicyIdOrRuleIdOrTagTd != "" {
 		m["PolicyIdOrRuleIdOrTagTd"] = p.PolicyIdOrRuleIdOrTagTd
-	}
-	if p.RestoreFrom != nil {
-		m["RestoreFrom"] = p.RestoreFrom
-	}
-	if p.RestoreTo != nil {
-		m["RestoreTo"] = p.RestoreTo
 	}
 	if p.SiteIds != "" {
 		m["SiteIds"] = p.SiteIds
@@ -12749,6 +12671,7 @@ type SetAutoSensitivityLabelPolicyParams struct {
 	SharePointAdaptiveScopesException       []string              `ps:"SharePointAdaptiveScopesException"`
 	SharePointAdaptiveScopesExceptionDelta  *adminapi.StringDelta `ps:"SharePointAdaptiveScopesException"` // adds/removes values of SharePointAdaptiveScopesException; takes precedence over it
 	SpoAipIntegrationEnabled                *bool                 `ps:"SpoAipIntegrationEnabled"`
+	SpoDocLibraryDefaultLabelSnapshot       any                   `ps:"SpoDocLibraryDefaultLabelSnapshot"`
 	StartSimulation                         *bool                 `ps:"StartSimulation"`
 }
 
@@ -12926,6 +12849,9 @@ func (p SetAutoSensitivityLabelPolicyParams) params() map[string]any {
 	if p.SpoAipIntegrationEnabled != nil {
 		m["SpoAipIntegrationEnabled"] = *p.SpoAipIntegrationEnabled
 	}
+	if p.SpoDocLibraryDefaultLabelSnapshot != nil {
+		m["SpoDocLibraryDefaultLabelSnapshot"] = p.SpoDocLibraryDefaultLabelSnapshot
+	}
 	if p.StartSimulation != nil {
 		m["StartSimulation"] = *p.StartSimulation
 	}
@@ -12962,7 +12888,8 @@ type SetAutoSensitivityLabelRuleParams struct {
 	DocumentNameMatchesWords                          []string              `ps:"DocumentNameMatchesWords"`
 	DocumentNameMatchesWordsDelta                     *adminapi.StringDelta `ps:"DocumentNameMatchesWords"` // adds/removes values of DocumentNameMatchesWords; takes precedence over it
 	DocumentSizeOver                                  any                   `ps:"DocumentSizeOver"`         // Microsoft.Exchange.Data.ByteQuantifiedSize
-	ExceptIfAccessScope                               any                   `ps:"ExceptIfAccessScope"`      // AccessScope
+	EffectiveParentFolder                             []string              `ps:"EffectiveParentFolder"`
+	ExceptIfAccessScope                               any                   `ps:"ExceptIfAccessScope"` // AccessScope
 	ExceptIfAnyOfRecipientAddressContainsWords        []string              `ps:"ExceptIfAnyOfRecipientAddressContainsWords"`
 	ExceptIfAnyOfRecipientAddressContainsWordsDelta   *adminapi.StringDelta `ps:"ExceptIfAnyOfRecipientAddressContainsWords"` // adds/removes values of ExceptIfAnyOfRecipientAddressContainsWords; takes precedence over it
 	ExceptIfAnyOfRecipientAddressMatchesPatterns      []string              `ps:"ExceptIfAnyOfRecipientAddressMatchesPatterns"`
@@ -12979,6 +12906,7 @@ type SetAutoSensitivityLabelRuleParams struct {
 	ExceptIfDocumentNameMatchesWords                  []string              `ps:"ExceptIfDocumentNameMatchesWords"`
 	ExceptIfDocumentNameMatchesWordsDelta             *adminapi.StringDelta `ps:"ExceptIfDocumentNameMatchesWords"` // adds/removes values of ExceptIfDocumentNameMatchesWords; takes precedence over it
 	ExceptIfDocumentSizeOver                          any                   `ps:"ExceptIfDocumentSizeOver"`         // Microsoft.Exchange.Data.ByteQuantifiedSize
+	ExceptIfEffectiveParentFolder                     []string              `ps:"ExceptIfEffectiveParentFolder"`
 	ExceptIfFrom                                      []string              `ps:"ExceptIfFrom"`
 	ExceptIfFromAddressContainsWords                  []string              `ps:"ExceptIfFromAddressContainsWords"`
 	ExceptIfFromAddressContainsWordsDelta             *adminapi.StringDelta `ps:"ExceptIfFromAddressContainsWords"` // adds/removes values of ExceptIfFromAddressContainsWords; takes precedence over it
@@ -12986,6 +12914,7 @@ type SetAutoSensitivityLabelRuleParams struct {
 	ExceptIfFromAddressMatchesPatternsDelta           *adminapi.StringDelta `ps:"ExceptIfFromAddressMatchesPatterns"` // adds/removes values of ExceptIfFromAddressMatchesPatterns; takes precedence over it
 	ExceptIfFromMemberOf                              []string              `ps:"ExceptIfFromMemberOf"`
 	ExceptIfHeaderMatchesPatterns                     any                   `ps:"ExceptIfHeaderMatchesPatterns"` // PswsHashtable
+	ExceptIfParentFolder                              []string              `ps:"ExceptIfParentFolder"`
 	ExceptIfProcessingLimitExceeded                   *bool                 `ps:"ExceptIfProcessingLimitExceeded"`
 	ExceptIfRecipientDomainIs                         []string              `ps:"ExceptIfRecipientDomainIs"`
 	ExceptIfRecipientDomainIsDelta                    *adminapi.StringDelta `ps:"ExceptIfRecipientDomainIs"` // adds/removes values of ExceptIfRecipientDomainIs; takes precedence over it
@@ -13008,6 +12937,7 @@ type SetAutoSensitivityLabelRuleParams struct {
 	FromMemberOf                                      []string              `ps:"FromMemberOf"`
 	HeaderMatchesPatterns                             any                   `ps:"HeaderMatchesPatterns"` // PswsHashtable
 	Identity                                          any                   `ps:"Identity"`              // ComplianceRuleIdParameter
+	ParentFolder                                      []string              `ps:"ParentFolder"`
 	Priority                                          *int64                `ps:"Priority"`
 	ProcessingLimitExceeded                           *bool                 `ps:"ProcessingLimitExceeded"`
 	RecipientDomainIs                                 []string              `ps:"RecipientDomainIs"`
@@ -13093,6 +13023,9 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.DocumentSizeOver != nil {
 		m["DocumentSizeOver"] = p.DocumentSizeOver
 	}
+	if p.EffectiveParentFolder != nil {
+		m["EffectiveParentFolder"] = p.EffectiveParentFolder
+	}
 	if p.ExceptIfAccessScope != nil {
 		m["ExceptIfAccessScope"] = p.ExceptIfAccessScope
 	}
@@ -13138,6 +13071,9 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
+	if p.ExceptIfEffectiveParentFolder != nil {
+		m["ExceptIfEffectiveParentFolder"] = p.ExceptIfEffectiveParentFolder
+	}
 	if p.ExceptIfFrom != nil {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
@@ -13156,6 +13092,9 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	}
 	if p.ExceptIfHeaderMatchesPatterns != nil {
 		m["ExceptIfHeaderMatchesPatterns"] = p.ExceptIfHeaderMatchesPatterns
+	}
+	if p.ExceptIfParentFolder != nil {
+		m["ExceptIfParentFolder"] = p.ExceptIfParentFolder
 	}
 	if p.ExceptIfProcessingLimitExceeded != nil {
 		m["ExceptIfProcessingLimitExceeded"] = *p.ExceptIfProcessingLimitExceeded
@@ -13215,6 +13154,9 @@ func (p SetAutoSensitivityLabelRuleParams) params() map[string]any {
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
+	}
+	if p.ParentFolder != nil {
+		m["ParentFolder"] = p.ParentFolder
 	}
 	if p.Priority != nil {
 		m["Priority"] = *p.Priority
@@ -13914,6 +13856,7 @@ type SetComplianceTagParams struct {
 	Notes                     string   `ps:"Notes"`
 	RetentionDuration         any      `ps:"RetentionDuration"` // Unlimited
 	ReviewerEmail             []string `ps:"ReviewerEmail"`
+	VersionCleanup            string   `ps:"VersionCleanup"`
 	WebHookUrl                string   `ps:"WebHookUrl"`
 }
 
@@ -13963,6 +13906,9 @@ func (p SetComplianceTagParams) params() map[string]any {
 	}
 	if p.ReviewerEmail != nil {
 		m["ReviewerEmail"] = p.ReviewerEmail
+	}
+	if p.VersionCleanup != "" {
+		m["VersionCleanup"] = p.VersionCleanup
 	}
 	if p.WebHookUrl != "" {
 		m["WebHookUrl"] = p.WebHookUrl
@@ -14651,10 +14597,6 @@ func (s *Service) SetDlpAlertTuningRule(ctx context.Context, p SetDlpAlertTuning
 // SetDlpCompliancePolicyParams are the parameters of Set-DlpCompliancePolicy.
 // DefaultParameterSetName: Identity
 type SetDlpCompliancePolicyParams struct {
-	AddEndpointDlpLocation                           []string              `ps:"AddEndpointDlpLocation"`
-	AddEndpointDlpLocationDelta                      *adminapi.StringDelta `ps:"AddEndpointDlpLocation"` // adds/removes values of AddEndpointDlpLocation; takes precedence over it
-	AddEndpointDlpLocationException                  []string              `ps:"AddEndpointDlpLocationException"`
-	AddEndpointDlpLocationExceptionDelta             *adminapi.StringDelta `ps:"AddEndpointDlpLocationException"` // adds/removes values of AddEndpointDlpLocationException; takes precedence over it
 	AddExchangeLocation                              []string              `ps:"AddExchangeLocation"`
 	AddExchangeLocationDelta                         *adminapi.StringDelta `ps:"AddExchangeLocation"` // adds/removes values of AddExchangeLocation; takes precedence over it
 	AddOneDriveLocation                              []string              `ps:"AddOneDriveLocation"`
@@ -14688,7 +14630,6 @@ type SetDlpCompliancePolicyParams struct {
 	EndpointDlpAdaptiveScopesDelta                   *adminapi.StringDelta `ps:"EndpointDlpAdaptiveScopes"` // adds/removes values of EndpointDlpAdaptiveScopes; takes precedence over it
 	EndpointDlpAdaptiveScopesException               []string              `ps:"EndpointDlpAdaptiveScopesException"`
 	EndpointDlpAdaptiveScopesExceptionDelta          *adminapi.StringDelta `ps:"EndpointDlpAdaptiveScopesException"` // adds/removes values of EndpointDlpAdaptiveScopesException; takes precedence over it
-	EndpointDlpExtendedLocations                     string                `ps:"EndpointDlpExtendedLocations"`
 	EnforcementPlanes                                []string              `ps:"EnforcementPlanes"`
 	EnforcementPlanesDelta                           *adminapi.StringDelta `ps:"EnforcementPlanes"` // adds/removes values of EnforcementPlanes; takes precedence over it
 	ExceptIfOneDriveSharedBy                         []string              `ps:"ExceptIfOneDriveSharedBy"`
@@ -14717,10 +14658,6 @@ type SetDlpCompliancePolicyParams struct {
 	PolicyRBACScopesDelta                            *adminapi.StringDelta `ps:"PolicyRBACScopes"`   // adds/removes values of PolicyRBACScopes; takes precedence over it
 	PolicyTemplateInfo                               any                   `ps:"PolicyTemplateInfo"` // PswsHashtable
 	Priority                                         *int64                `ps:"Priority"`
-	RemoveEndpointDlpLocation                        []string              `ps:"RemoveEndpointDlpLocation"`
-	RemoveEndpointDlpLocationDelta                   *adminapi.StringDelta `ps:"RemoveEndpointDlpLocation"` // adds/removes values of RemoveEndpointDlpLocation; takes precedence over it
-	RemoveEndpointDlpLocationException               []string              `ps:"RemoveEndpointDlpLocationException"`
-	RemoveEndpointDlpLocationExceptionDelta          *adminapi.StringDelta `ps:"RemoveEndpointDlpLocationException"` // adds/removes values of RemoveEndpointDlpLocationException; takes precedence over it
 	RemoveExchangeLocation                           []string              `ps:"RemoveExchangeLocation"`
 	RemoveExchangeLocationDelta                      *adminapi.StringDelta `ps:"RemoveExchangeLocation"` // adds/removes values of RemoveExchangeLocation; takes precedence over it
 	RemoveOneDriveLocation                           []string              `ps:"RemoveOneDriveLocation"`
@@ -14761,16 +14698,6 @@ type SetDlpCompliancePolicyParams struct {
 
 func (p SetDlpCompliancePolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddEndpointDlpLocationDelta != nil {
-		m["AddEndpointDlpLocation"] = *p.AddEndpointDlpLocationDelta
-	} else if p.AddEndpointDlpLocation != nil {
-		m["AddEndpointDlpLocation"] = p.AddEndpointDlpLocation
-	}
-	if p.AddEndpointDlpLocationExceptionDelta != nil {
-		m["AddEndpointDlpLocationException"] = *p.AddEndpointDlpLocationExceptionDelta
-	} else if p.AddEndpointDlpLocationException != nil {
-		m["AddEndpointDlpLocationException"] = p.AddEndpointDlpLocationException
-	}
 	if p.AddExchangeLocationDelta != nil {
 		m["AddExchangeLocation"] = *p.AddExchangeLocationDelta
 	} else if p.AddExchangeLocation != nil {
@@ -14855,9 +14782,6 @@ func (p SetDlpCompliancePolicyParams) params() map[string]any {
 	} else if p.EndpointDlpAdaptiveScopesException != nil {
 		m["EndpointDlpAdaptiveScopesException"] = p.EndpointDlpAdaptiveScopesException
 	}
-	if p.EndpointDlpExtendedLocations != "" {
-		m["EndpointDlpExtendedLocations"] = p.EndpointDlpExtendedLocations
-	}
 	if p.EnforcementPlanesDelta != nil {
 		m["EnforcementPlanes"] = *p.EnforcementPlanesDelta
 	} else if p.EnforcementPlanes != nil {
@@ -14935,16 +14859,6 @@ func (p SetDlpCompliancePolicyParams) params() map[string]any {
 	}
 	if p.Priority != nil {
 		m["Priority"] = *p.Priority
-	}
-	if p.RemoveEndpointDlpLocationDelta != nil {
-		m["RemoveEndpointDlpLocation"] = *p.RemoveEndpointDlpLocationDelta
-	} else if p.RemoveEndpointDlpLocation != nil {
-		m["RemoveEndpointDlpLocation"] = p.RemoveEndpointDlpLocation
-	}
-	if p.RemoveEndpointDlpLocationExceptionDelta != nil {
-		m["RemoveEndpointDlpLocationException"] = *p.RemoveEndpointDlpLocationExceptionDelta
-	} else if p.RemoveEndpointDlpLocationException != nil {
-		m["RemoveEndpointDlpLocationException"] = p.RemoveEndpointDlpLocationException
 	}
 	if p.RemoveExchangeLocationDelta != nil {
 		m["RemoveExchangeLocation"] = *p.RemoveExchangeLocationDelta
@@ -15097,9 +15011,8 @@ type SetDlpComplianceRuleParams struct {
 	DocumentNameMatchesWords                          []string              `ps:"DocumentNameMatchesWords"`
 	DocumentNameMatchesWordsDelta                     *adminapi.StringDelta `ps:"DocumentNameMatchesWords"` // adds/removes values of DocumentNameMatchesWords; takes precedence over it
 	DocumentSizeOver                                  any                   `ps:"DocumentSizeOver"`         // Microsoft.Exchange.Data.ByteQuantifiedSize
-	EncryptRMSTemplate                                any                   `ps:"EncryptRMSTemplate"`       // RmsTemplateIdParameter
-	EndpointDlpBrowserRestrictions                    []string              `ps:"EndpointDlpBrowserRestrictions"`
-	EndpointDlpRestrictions                           any                   `ps:"EndpointDlpRestrictions"` // PswsHashtable[]
+	EffectiveParentFolder                             []string              `ps:"EffectiveParentFolder"`
+	EncryptRMSTemplate                                any                   `ps:"EncryptRMSTemplate"` // RmsTemplateIdParameter
 	EnforcePortalAccess                               *bool                 `ps:"EnforcePortalAccess"`
 	EvaluateRulePerComponent                          *bool                 `ps:"EvaluateRulePerComponent"`
 	ExceptIfAccessedBy                                []string              `ps:"ExceptIfAccessedBy"`
@@ -15135,6 +15048,7 @@ type SetDlpComplianceRuleParams struct {
 	ExceptIfDocumentNameMatchesWords                  []string              `ps:"ExceptIfDocumentNameMatchesWords"`
 	ExceptIfDocumentNameMatchesWordsDelta             *adminapi.StringDelta `ps:"ExceptIfDocumentNameMatchesWords"` // adds/removes values of ExceptIfDocumentNameMatchesWords; takes precedence over it
 	ExceptIfDocumentSizeOver                          any                   `ps:"ExceptIfDocumentSizeOver"`         // Microsoft.Exchange.Data.ByteQuantifiedSize
+	ExceptIfEffectiveParentFolder                     []string              `ps:"ExceptIfEffectiveParentFolder"`
 	ExceptIfFrom                                      []string              `ps:"ExceptIfFrom"`
 	ExceptIfFromAddressContainsWords                  []string              `ps:"ExceptIfFromAddressContainsWords"`
 	ExceptIfFromAddressContainsWordsDelta             *adminapi.StringDelta `ps:"ExceptIfFromAddressContainsWords"` // adds/removes values of ExceptIfFromAddressContainsWords; takes precedence over it
@@ -15149,6 +15063,7 @@ type SetDlpComplianceRuleParams struct {
 	ExceptIfMessageLabelChangeDetected                any                   `ps:"ExceptIfMessageLabelChangeDetected"`
 	ExceptIfMessageSizeOver                           any                   `ps:"ExceptIfMessageSizeOver"`    // Microsoft.Exchange.Data.ByteQuantifiedSize
 	ExceptIfMessageTypeMatches                        any                   `ps:"ExceptIfMessageTypeMatches"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.MessageTypes
+	ExceptIfParentFolder                              []string              `ps:"ExceptIfParentFolder"`
 	ExceptIfProcessingLimitExceeded                   *bool                 `ps:"ExceptIfProcessingLimitExceeded"`
 	ExceptIfRecipientADAttributeContainsWords         any                   `ps:"ExceptIfRecipientADAttributeContainsWords"`   // PswsHashtable
 	ExceptIfRecipientADAttributeMatchesPatterns       any                   `ps:"ExceptIfRecipientADAttributeMatchesPatterns"` // PswsHashtable
@@ -15212,7 +15127,6 @@ type SetDlpComplianceRuleParams struct {
 	NotifyEmailCustomText                             string                `ps:"NotifyEmailCustomText"`
 	NotifyEmailExchangeIncludeAttachment              *bool                 `ps:"NotifyEmailExchangeIncludeAttachment"`
 	NotifyEmailOnedriveRemediationActions             any                   `ps:"NotifyEmailOnedriveRemediationActions"` // NotifyEmailRemediationActions
-	NotifyEndpointUser                                any                   `ps:"NotifyEndpointUser"`
 	NotifyJustificationCustomText                     string                `ps:"NotifyJustificationCustomText"`
 	NotifyJustificationCustomTextTranslations         any                   `ps:"NotifyJustificationCustomTextTranslations"`
 	NotifyOverrideRequirements                        any                   `ps:"NotifyOverrideRequirements"` // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyOverrideRequirements
@@ -15226,6 +15140,7 @@ type SetDlpComplianceRuleParams struct {
 	NotifyUserDelta                                   *adminapi.StringDelta `ps:"NotifyUser"`                       // adds/removes values of NotifyUser; takes precedence over it
 	NotifyUserType                                    any                   `ps:"NotifyUserType"`                   // Microsoft.Office.CompliancePolicy.PolicyEvaluation.NotifyUserType
 	OnPremisesScannerDlpRestrictions                  any                   `ps:"OnPremisesScannerDlpRestrictions"` // PswsHashtable[]
+	ParentFolder                                      []string              `ps:"ParentFolder"`
 	PowerBIDlpRestrictions                            []string              `ps:"PowerBIDlpRestrictions"`
 	PrependSubject                                    string                `ps:"PrependSubject"`
 	Priority                                          *int64                `ps:"Priority"`
@@ -15242,7 +15157,6 @@ type SetDlpComplianceRuleParams struct {
 	RemoveRMSTemplate                                 *bool                 `ps:"RemoveRMSTemplate"`
 	ReportSeverityLevel                               any                   `ps:"ReportSeverityLevel"` // RuleSeverity
 	RestrictAccess                                    any                   `ps:"RestrictAccess"`      // System.Collections.Hashtable[]
-	RestrictBrowserAccess                             *bool                 `ps:"RestrictBrowserAccess"`
 	RestrictWebGrounding                              *bool                 `ps:"RestrictWebGrounding"`
 	RuleErrorAction                                   any                   `ps:"RuleErrorAction"`                  // Microsoft.Office.CompliancePolicy.PolicyEvaluation.PolicyRuleErrorAction
 	SenderADAttributeContainsWords                    any                   `ps:"SenderADAttributeContainsWords"`   // PswsHashtable
@@ -15422,14 +15336,11 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.DocumentSizeOver != nil {
 		m["DocumentSizeOver"] = p.DocumentSizeOver
 	}
+	if p.EffectiveParentFolder != nil {
+		m["EffectiveParentFolder"] = p.EffectiveParentFolder
+	}
 	if p.EncryptRMSTemplate != nil {
 		m["EncryptRMSTemplate"] = p.EncryptRMSTemplate
-	}
-	if p.EndpointDlpBrowserRestrictions != nil {
-		m["EndpointDlpBrowserRestrictions"] = p.EndpointDlpBrowserRestrictions
-	}
-	if p.EndpointDlpRestrictions != nil {
-		m["EndpointDlpRestrictions"] = p.EndpointDlpRestrictions
 	}
 	if p.EnforcePortalAccess != nil {
 		m["EnforcePortalAccess"] = *p.EnforcePortalAccess
@@ -15525,6 +15436,9 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.ExceptIfDocumentSizeOver != nil {
 		m["ExceptIfDocumentSizeOver"] = p.ExceptIfDocumentSizeOver
 	}
+	if p.ExceptIfEffectiveParentFolder != nil {
+		m["ExceptIfEffectiveParentFolder"] = p.ExceptIfEffectiveParentFolder
+	}
 	if p.ExceptIfFrom != nil {
 		m["ExceptIfFrom"] = p.ExceptIfFrom
 	}
@@ -15564,6 +15478,9 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	}
 	if p.ExceptIfMessageTypeMatches != nil {
 		m["ExceptIfMessageTypeMatches"] = p.ExceptIfMessageTypeMatches
+	}
+	if p.ExceptIfParentFolder != nil {
+		m["ExceptIfParentFolder"] = p.ExceptIfParentFolder
 	}
 	if p.ExceptIfProcessingLimitExceeded != nil {
 		m["ExceptIfProcessingLimitExceeded"] = *p.ExceptIfProcessingLimitExceeded
@@ -15741,9 +15658,6 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	if p.NotifyEmailOnedriveRemediationActions != nil {
 		m["NotifyEmailOnedriveRemediationActions"] = p.NotifyEmailOnedriveRemediationActions
 	}
-	if p.NotifyEndpointUser != nil {
-		m["NotifyEndpointUser"] = p.NotifyEndpointUser
-	}
 	if p.NotifyJustificationCustomText != "" {
 		m["NotifyJustificationCustomText"] = p.NotifyJustificationCustomText
 	}
@@ -15780,6 +15694,9 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	}
 	if p.OnPremisesScannerDlpRestrictions != nil {
 		m["OnPremisesScannerDlpRestrictions"] = p.OnPremisesScannerDlpRestrictions
+	}
+	if p.ParentFolder != nil {
+		m["ParentFolder"] = p.ParentFolder
 	}
 	if p.PowerBIDlpRestrictions != nil {
 		m["PowerBIDlpRestrictions"] = p.PowerBIDlpRestrictions
@@ -15826,9 +15743,6 @@ func (p SetDlpComplianceRuleParams) params() map[string]any {
 	}
 	if p.RestrictAccess != nil {
 		m["RestrictAccess"] = p.RestrictAccess
-	}
-	if p.RestrictBrowserAccess != nil {
-		m["RestrictBrowserAccess"] = *p.RestrictBrowserAccess
 	}
 	if p.RestrictWebGrounding != nil {
 		m["RestrictWebGrounding"] = *p.RestrictWebGrounding
@@ -16464,59 +16378,6 @@ func (p SetHoldComplianceRuleParams) params() map[string]any {
 // SetHoldComplianceRule runs the Set-HoldComplianceRule cmdlet.
 func (s *Service) SetHoldComplianceRule(ctx context.Context, p SetHoldComplianceRuleParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Set-HoldComplianceRule", p.params())
-}
-
-// SetInformationBarrierPolicyParams are the parameters of Set-InformationBarrierPolicy.
-// DefaultParameterSetName: InformationBarrierDefault
-type SetInformationBarrierPolicyParams struct {
-	Comment              string                `ps:"Comment"`
-	Force                bool                  `ps:"Force"`
-	Identity             any                   `ps:"Identity"` // PolicyIdParameter
-	ModerationAllowed    *bool                 `ps:"ModerationAllowed"`
-	SegmentAllowedFilter string                `ps:"SegmentAllowedFilter"`
-	SegmentsAllowed      []string              `ps:"SegmentsAllowed"`
-	SegmentsAllowedDelta *adminapi.StringDelta `ps:"SegmentsAllowed"` // adds/removes values of SegmentsAllowed; takes precedence over it
-	SegmentsBlocked      []string              `ps:"SegmentsBlocked"`
-	SegmentsBlockedDelta *adminapi.StringDelta `ps:"SegmentsBlocked"` // adds/removes values of SegmentsBlocked; takes precedence over it
-	State                any                   `ps:"State"`           // EopInformationBarrierPolicyState
-}
-
-func (p SetInformationBarrierPolicyParams) params() map[string]any {
-	m := map[string]any{}
-	if p.Comment != "" {
-		m["Comment"] = p.Comment
-	}
-	if p.Force {
-		m["Force"] = true
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	if p.ModerationAllowed != nil {
-		m["ModerationAllowed"] = *p.ModerationAllowed
-	}
-	if p.SegmentAllowedFilter != "" {
-		m["SegmentAllowedFilter"] = p.SegmentAllowedFilter
-	}
-	if p.SegmentsAllowedDelta != nil {
-		m["SegmentsAllowed"] = *p.SegmentsAllowedDelta
-	} else if p.SegmentsAllowed != nil {
-		m["SegmentsAllowed"] = p.SegmentsAllowed
-	}
-	if p.SegmentsBlockedDelta != nil {
-		m["SegmentsBlocked"] = *p.SegmentsBlockedDelta
-	} else if p.SegmentsBlocked != nil {
-		m["SegmentsBlocked"] = p.SegmentsBlocked
-	}
-	if p.State != nil {
-		m["State"] = p.State
-	}
-	return m
-}
-
-// SetInformationBarrierPolicy runs the Set-InformationBarrierPolicy cmdlet.
-func (s *Service) SetInformationBarrierPolicy(ctx context.Context, p SetInformationBarrierPolicyParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Set-InformationBarrierPolicy", p.params())
 }
 
 // SetInsiderRiskEntityListParams are the parameters of Set-InsiderRiskEntityList.
@@ -17841,8 +17702,10 @@ func (s *Service) SetOrganizationSegment(ctx context.Context, p SetOrganizationS
 type SetPolicyConfigParams struct {
 	AggregationTimeWindowForDlpAlerts          *int64   `ps:"AggregationTimeWindowForDlpAlerts"`
 	CaseHoldPolicyLimit                        *int64   `ps:"CaseHoldPolicyLimit"`
+	ClassificationMode                         any      `ps:"ClassificationMode"`
 	ClassificationScheme                       any      `ps:"ClassificationScheme"` // ClassificationScheme
 	ComplianceUrl                              string   `ps:"ComplianceUrl"`
+	ConcurrencyToken                           any      `ps:"ConcurrencyToken"`
 	DlpAlertFoldingConfiguration               any      `ps:"DlpAlertFoldingConfiguration"`
 	DlpAlertSlaConfig                          string   `ps:"DlpAlertSlaConfig"`
 	DlpAppGroups                               any      `ps:"DlpAppGroups"`     // PswsHashtable[]
@@ -17894,11 +17757,17 @@ func (p SetPolicyConfigParams) params() map[string]any {
 	if p.CaseHoldPolicyLimit != nil {
 		m["CaseHoldPolicyLimit"] = *p.CaseHoldPolicyLimit
 	}
+	if p.ClassificationMode != nil {
+		m["ClassificationMode"] = p.ClassificationMode
+	}
 	if p.ClassificationScheme != nil {
 		m["ClassificationScheme"] = p.ClassificationScheme
 	}
 	if p.ComplianceUrl != "" {
 		m["ComplianceUrl"] = p.ComplianceUrl
+	}
+	if p.ConcurrencyToken != nil {
+		m["ConcurrencyToken"] = p.ConcurrencyToken
 	}
 	if p.DlpAlertFoldingConfiguration != nil {
 		m["DlpAlertFoldingConfiguration"] = p.DlpAlertFoldingConfiguration
@@ -18511,6 +18380,7 @@ type SetRetentionCompliancePolicyParams struct {
 	RestrictiveRetention                     *bool                 `ps:"RestrictiveRetention"`
 	RetryDistribution                        bool                  `ps:"RetryDistribution"`
 	StartSimulation                          *bool                 `ps:"StartSimulation"`
+	VersionCleanup                           string                `ps:"VersionCleanup"`
 }
 
 func (p SetRetentionCompliancePolicyParams) params() map[string]any {
@@ -18727,6 +18597,9 @@ func (p SetRetentionCompliancePolicyParams) params() map[string]any {
 	if p.StartSimulation != nil {
 		m["StartSimulation"] = *p.StartSimulation
 	}
+	if p.VersionCleanup != "" {
+		m["VersionCleanup"] = p.VersionCleanup
+	}
 	return m
 }
 
@@ -18837,7 +18710,6 @@ type SetSensitiveInformationScanParams struct {
 	AddTeamsLocationDelta                      *adminapi.StringDelta `ps:"AddTeamsLocation"` // adds/removes values of AddTeamsLocation; takes precedence over it
 	AddTeamsLocationException                  []string              `ps:"AddTeamsLocationException"`
 	AddTeamsLocationExceptionDelta             *adminapi.StringDelta `ps:"AddTeamsLocationException"` // adds/removes values of AddTeamsLocationException; takes precedence over it
-	CancelImpactAssessment                     *bool                 `ps:"CancelImpactAssessment"`
 	CancelScan                                 *bool                 `ps:"CancelScan"`
 	Comment                                    string                `ps:"Comment"`
 	ExceptIfOneDriveSharedBy                   []string              `ps:"ExceptIfOneDriveSharedBy"`
@@ -18878,6 +18750,7 @@ type SetSensitiveInformationScanParams struct {
 	ScanType                                   string                `ps:"ScanType"`
 	SharePointAdaptiveScopes                   any                   `ps:"SharePointAdaptiveScopes"`
 	SharePointAdaptiveScopesException          any                   `ps:"SharePointAdaptiveScopesException"`
+	SkipAlreadyClassifiedItems                 any                   `ps:"SkipAlreadyClassifiedItems"`
 	StartImpactAssessment                      *bool                 `ps:"StartImpactAssessment"`
 	StopImpactAssessmentAndStartClassification *bool                 `ps:"StopImpactAssessmentAndStartClassification"`
 	TeamsAdaptiveScopes                        any                   `ps:"TeamsAdaptiveScopes"`
@@ -18930,9 +18803,6 @@ func (p SetSensitiveInformationScanParams) params() map[string]any {
 		m["AddTeamsLocationException"] = *p.AddTeamsLocationExceptionDelta
 	} else if p.AddTeamsLocationException != nil {
 		m["AddTeamsLocationException"] = p.AddTeamsLocationException
-	}
-	if p.CancelImpactAssessment != nil {
-		m["CancelImpactAssessment"] = *p.CancelImpactAssessment
 	}
 	if p.CancelScan != nil {
 		m["CancelScan"] = *p.CancelScan
@@ -19043,6 +18913,9 @@ func (p SetSensitiveInformationScanParams) params() map[string]any {
 	}
 	if p.SharePointAdaptiveScopesException != nil {
 		m["SharePointAdaptiveScopesException"] = p.SharePointAdaptiveScopesException
+	}
+	if p.SkipAlreadyClassifiedItems != nil {
+		m["SkipAlreadyClassifiedItems"] = p.SkipAlreadyClassifiedItems
 	}
 	if p.StartImpactAssessment != nil {
 		m["StartImpactAssessment"] = *p.StartImpactAssessment
@@ -19737,37 +19610,6 @@ func (s *Service) StartDlpSensitiveInformationScan(ctx context.Context, p StartD
 	return s.C.Invoke(ctx, "Start-DlpSensitiveInformationScan", p.params())
 }
 
-// StartInformationBarrierPoliciesApplicationParams are the parameters of Start-InformationBarrierPoliciesApplication.
-// DefaultParameterSetName: Identity
-type StartInformationBarrierPoliciesApplicationParams struct {
-	CleanupGroupSegmentLink bool `ps:"CleanupGroupSegmentLink"`
-	Identity                any  `ps:"Identity"` // PolicyIdParameter
-	Rollback                bool `ps:"Rollback"`
-	Upgrade                 bool `ps:"Upgrade"`
-}
-
-func (p StartInformationBarrierPoliciesApplicationParams) params() map[string]any {
-	m := map[string]any{}
-	if p.CleanupGroupSegmentLink {
-		m["CleanupGroupSegmentLink"] = true
-	}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	if p.Rollback {
-		m["Rollback"] = true
-	}
-	if p.Upgrade {
-		m["Upgrade"] = true
-	}
-	return m
-}
-
-// StartInformationBarrierPoliciesApplication runs the Start-InformationBarrierPoliciesApplication cmdlet.
-func (s *Service) StartInformationBarrierPoliciesApplication(ctx context.Context, p StartInformationBarrierPoliciesApplicationParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Start-InformationBarrierPoliciesApplication", p.params())
-}
-
 // StopComplianceSearchParams are the parameters of Stop-ComplianceSearch.
 // DefaultParameterSetName: Identity
 type StopComplianceSearchParams struct {
@@ -19785,25 +19627,6 @@ func (p StopComplianceSearchParams) params() map[string]any {
 // StopComplianceSearch runs the Stop-ComplianceSearch cmdlet.
 func (s *Service) StopComplianceSearch(ctx context.Context, p StopComplianceSearchParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Stop-ComplianceSearch", p.params())
-}
-
-// StopInformationBarrierPoliciesApplicationParams are the parameters of Stop-InformationBarrierPoliciesApplication.
-// DefaultParameterSetName: Identity
-type StopInformationBarrierPoliciesApplicationParams struct {
-	Identity any `ps:"Identity"` // PolicyIdParameter
-}
-
-func (p StopInformationBarrierPoliciesApplicationParams) params() map[string]any {
-	m := map[string]any{}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	return m
-}
-
-// StopInformationBarrierPoliciesApplication runs the Stop-InformationBarrierPoliciesApplication cmdlet.
-func (s *Service) StopInformationBarrierPoliciesApplication(ctx context.Context, p StopInformationBarrierPoliciesApplicationParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Stop-InformationBarrierPoliciesApplication", p.params())
 }
 
 // SyncLabelParams are the parameters of Sync-Label.
@@ -19869,25 +19692,6 @@ func (p TestDataClassificationParams) params() map[string]any {
 // TestDataClassification runs the Test-DataClassification cmdlet.
 func (s *Service) TestDataClassification(ctx context.Context, p TestDataClassificationParams) (*adminapi.Result, error) {
 	return s.C.Invoke(ctx, "Test-DataClassification", p.params())
-}
-
-// TestInformationBarrierPolicyParams are the parameters of Test-InformationBarrierPolicy.
-// DefaultParameterSetName: Identity
-type TestInformationBarrierPolicyParams struct {
-	Identity any `ps:"Identity"`
-}
-
-func (p TestInformationBarrierPolicyParams) params() map[string]any {
-	m := map[string]any{}
-	if p.Identity != nil {
-		m["Identity"] = p.Identity
-	}
-	return m
-}
-
-// TestInformationBarrierPolicy runs the Test-InformationBarrierPolicy cmdlet.
-func (s *Service) TestInformationBarrierPolicy(ctx context.Context, p TestInformationBarrierPolicyParams) (*adminapi.Result, error) {
-	return s.C.Invoke(ctx, "Test-InformationBarrierPolicy", p.params())
 }
 
 // TestLabelConfigParams are the parameters of Test-LabelConfig.
