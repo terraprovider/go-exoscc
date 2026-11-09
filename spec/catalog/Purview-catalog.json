@@ -1,6 +1,6 @@
 {
   "source": "Purview-ExchangeOnline.psm1",
-  "cmdletCount": 418,
+  "cmdletCount": 411,
   "generatedFrom": "extract-catalog.ps1 (AST)",
   "docsSource": "MicrosoftDocs/office-docs-powershell@f7562153d67fbd6a5cfc5c5caa1aa9e68eb83b67",
   "cmdlets": [
@@ -1762,6 +1762,22 @@
           "parameterSets": [
             {
               "name": "Default",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "UseAltSource",
+          "type": "switch",
+          "isSwitch": true,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
               "mandatory": false,
               "position": null,
               "valueFromPipeline": false,
@@ -5151,7 +5167,8 @@
             "TrustContainer",
             "ProtectExcludedFolders",
             "UnsavedDocument",
-            "JustInTimeAudit"
+            "JustInTimeAudit",
+            "SecureByDefault"
           ],
           "aliases": []
         },
@@ -5558,132 +5575,6 @@
               "position": null,
               "valueFromPipeline": false,
               "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        }
-      ]
-    },
-    {
-      "cmdlet": "Get-InformationBarrierPoliciesApplicationStatus",
-      "verb": "Get",
-      "noun": "InformationBarrierPoliciesApplicationStatus",
-      "defaultParameterSet": "Default",
-      "parameters": [
-        {
-          "name": "All",
-          "type": "switch",
-          "declaredType": "SwitchParameter",
-          "isSwitch": true,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "Identity",
-          "type": "System.Object",
-          "declaredType": "PolicyIdParameter",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": 0,
-              "valueFromPipeline": true,
-              "valueFromPipelineByPropertyName": true
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        }
-      ]
-    },
-    {
-      "cmdlet": "Get-InformationBarrierPolicy",
-      "verb": "Get",
-      "noun": "InformationBarrierPolicy",
-      "defaultParameterSet": "InformationBarrierDefault",
-      "parameters": [
-        {
-          "name": "ExoPolicyId",
-          "type": "guid",
-          "declaredType": "Guid",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "Identity",
-          "type": "System.Object",
-          "declaredType": "PolicyIdParameter",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": 0,
-              "valueFromPipeline": true,
-              "valueFromPipelineByPropertyName": true
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        }
-      ]
-    },
-    {
-      "cmdlet": "Get-InformationBarrierRecipientStatus",
-      "verb": "Get",
-      "noun": "InformationBarrierRecipientStatus",
-      "defaultParameterSet": "Identity",
-      "parameters": [
-        {
-          "name": "Identity",
-          "type": "System.Object",
-          "declaredType": "RecipientIdParameter",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": true,
-              "position": 0,
-              "valueFromPipeline": true,
-              "valueFromPipelineByPropertyName": true
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "Identity2",
-          "type": "System.Object",
-          "declaredType": "RecipientIdParameter",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": 1,
-              "valueFromPipeline": true,
-              "valueFromPipelineByPropertyName": true
             }
           ],
           "validateSet": [],
@@ -8824,6 +8715,62 @@
       ]
     },
     {
+      "cmdlet": "Get-SPORestoreRequestStatus",
+      "verb": "Get",
+      "noun": "SPORestoreRequestStatus",
+      "defaultParameterSet": null,
+      "parameters": [
+        {
+          "name": "Page",
+          "type": "int",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "RestorationRequestId",
+          "type": "guid",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": true,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "SiteIds",
+          "type": "string",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        }
+      ]
+    },
+    {
       "cmdlet": "Get-SupervisoryReviewActivity",
       "verb": "Get",
       "noun": "SupervisoryReviewActivity",
@@ -10109,6 +10056,22 @@
           "type": "string",
           "declaredType": "String",
           "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "TenantScope",
+          "type": "switch",
+          "isSwitch": true,
           "parameterSets": [
             {
               "name": "__AllParameterSets",
@@ -12090,6 +12053,22 @@
           "aliases": []
         },
         {
+          "name": "SpoDocLibraryDefaultLabelSnapshot",
+          "type": "System.Object",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Default",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
           "name": "UnifiedAuditLogEnabled",
           "type": "bool",
           "declaredType": "Boolean",
@@ -12402,6 +12381,22 @@
           "aliases": []
         },
         {
+          "name": "EffectiveParentFolder",
+          "type": "System.Object[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Default",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
           "name": "ExceptIfAccessScope",
           "type": "System.Object",
           "declaredType": "AccessScope",
@@ -12589,6 +12584,22 @@
           "aliases": []
         },
         {
+          "name": "ExceptIfEffectiveParentFolder",
+          "type": "System.Object[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Default",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
           "name": "ExceptIfFrom",
           "type": "System.Object[]",
           "declaredType": "RecipientIdParameter[]",
@@ -12660,6 +12671,22 @@
           "name": "ExceptIfHeaderMatchesPatterns",
           "type": "System.Object",
           "declaredType": "PswsHashtable",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Default",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "ExceptIfParentFolder",
+          "type": "System.Object[]",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -12937,6 +12964,22 @@
               "name": "Default",
               "mandatory": true,
               "position": 0,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "ParentFolder",
+          "type": "System.Object[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Default",
+              "mandatory": false,
+              "position": null,
               "valueFromPipeline": false,
               "valueFromPipelineByPropertyName": false
             }
@@ -15041,6 +15084,13 @@
               "position": null,
               "valueFromPipeline": false,
               "valueFromPipelineByPropertyName": false
+            },
+            {
+              "name": "VersionCleanup",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
             }
           ],
           "validateSet": [],
@@ -15259,6 +15309,13 @@
               "position": null,
               "valueFromPipeline": false,
               "valueFromPipelineByPropertyName": false
+            },
+            {
+              "name": "VersionCleanup",
+              "mandatory": true,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
             }
           ],
           "validateSet": [],
@@ -15279,6 +15336,13 @@
             },
             {
               "name": "PriorityCleanup",
+              "mandatory": true,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            },
+            {
+              "name": "VersionCleanup",
               "mandatory": true,
               "position": null,
               "valueFromPipeline": false,
@@ -15307,6 +15371,13 @@
               "position": null,
               "valueFromPipeline": false,
               "valueFromPipelineByPropertyName": false
+            },
+            {
+              "name": "VersionCleanup",
+              "mandatory": true,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
             }
           ],
           "validateSet": [],
@@ -15320,6 +15391,22 @@
           "parameterSets": [
             {
               "name": "Default",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "VersionCleanup",
+          "type": "switch",
+          "isSwitch": true,
+          "parameterSets": [
+            {
+              "name": "VersionCleanup",
               "mandatory": false,
               "position": null,
               "valueFromPipeline": false,
@@ -17780,56 +17867,6 @@
           "aliases": []
         },
         {
-          "name": "EndpointDlpExtendedLocations",
-          "type": "string",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Default",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "EndpointDlpLocation",
-          "type": "System.Object",
-          "declaredType": "MultiValuedProperty",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Default",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "EndpointDlpLocationException",
-          "type": "System.Object",
-          "declaredType": "MultiValuedProperty",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Default",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
           "name": "EnforcementPlanes",
           "type": "System.Object",
           "declaredType": "MultiValuedProperty",
@@ -19189,42 +19226,25 @@
           "aliases": []
         },
         {
+          "name": "EffectiveParentFolder",
+          "type": "System.Object[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Default",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
           "name": "EncryptRMSTemplate",
           "type": "System.Object",
           "declaredType": "RmsTemplateIdParameter",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Default",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "EndpointDlpBrowserRestrictions",
-          "type": "System.Object[]",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Default",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "EndpointDlpRestrictions",
-          "type": "System.Object[]",
-          "declaredType": "PswsHashtable[]",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -19646,6 +19666,22 @@
           "aliases": []
         },
         {
+          "name": "ExceptIfEffectiveParentFolder",
+          "type": "System.Object[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Default",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
           "name": "ExceptIfFrom",
           "type": "System.Object[]",
           "declaredType": "RecipientIdParameter[]",
@@ -19834,6 +19870,22 @@
           "name": "ExceptIfMessageTypeMatches",
           "type": "System.Object",
           "declaredType": "Microsoft.Office.CompliancePolicy.PolicyEvaluation.MessageTypes",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Default",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "ExceptIfParentFolder",
+          "type": "System.Object[]",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -20724,22 +20776,6 @@
           "aliases": []
         },
         {
-          "name": "NotifyEndpointUser",
-          "type": "System.Object",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Default",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
           "name": "NotifyJustificationCustomText",
           "type": "string",
           "isSwitch": false,
@@ -20911,6 +20947,22 @@
           "name": "OnPremisesScannerDlpRestrictions",
           "type": "System.Object[]",
           "declaredType": "PswsHashtable[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Default",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "ParentFolder",
+          "type": "System.Object[]",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -21185,22 +21237,6 @@
           "name": "RestrictAccess",
           "type": "System.Object[]",
           "declaredType": "System.Collections.Hashtable[]",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Default",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "RestrictBrowserAccess",
-          "type": "bool",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -22301,7 +22337,7 @@
           "parameterSets": [
             {
               "name": "__AllParameterSets",
-              "mandatory": true,
+              "mandatory": false,
               "position": null,
               "valueFromPipeline": false,
               "valueFromPipelineByPropertyName": false
@@ -22318,7 +22354,7 @@
           "parameterSets": [
             {
               "name": "__AllParameterSets",
-              "mandatory": true,
+              "mandatory": false,
               "position": 0,
               "valueFromPipeline": false,
               "valueFromPipelineByPropertyName": false
@@ -22950,230 +22986,6 @@
             {
               "name": "PublishComplianceTag",
               "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        }
-      ]
-    },
-    {
-      "cmdlet": "New-InformationBarrierPolicy",
-      "verb": "New",
-      "noun": "InformationBarrierPolicy",
-      "defaultParameterSet": "InformationBarrierDefault",
-      "parameters": [
-        {
-          "name": "AssignedSegment",
-          "type": "string",
-          "declaredType": "String",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "InformationBarrierDefault",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsAllowed",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsBlocked",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentAllowedFilter",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "Comment",
-          "type": "string",
-          "declaredType": "String",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "Force",
-          "type": "switch",
-          "declaredType": "SwitchParameter",
-          "isSwitch": true,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "ModerationAllowed",
-          "type": "bool",
-          "declaredType": "Boolean",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "Name",
-          "type": "string",
-          "declaredType": "String",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "InformationBarrierDefault",
-              "mandatory": true,
-              "position": 0,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsAllowed",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsBlocked",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentAllowedFilter",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "SegmentAllowedFilter",
-          "type": "string",
-          "declaredType": "String",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "OrganizationSegmentAllowedFilter",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "SegmentsAllowed",
-          "type": "System.Object",
-          "declaredType": "MultiValuedProperty",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "OrganizationSegmentsAllowed",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "SegmentsBlocked",
-          "type": "System.Object",
-          "declaredType": "MultiValuedProperty",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "OrganizationSegmentsBlocked",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "State",
-          "type": "System.Object",
-          "declaredType": "EopInformationBarrierPolicyState",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "InformationBarrierDefault",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsAllowed",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsBlocked",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentAllowedFilter",
-              "mandatory": false,
               "position": null,
               "valueFromPipeline": false,
               "valueFromPipelineByPropertyName": false
@@ -26857,6 +26669,13 @@
               "position": null,
               "valueFromPipeline": false,
               "valueFromPipelineByPropertyName": false
+            },
+            {
+              "name": "VersionCleanup",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
             }
           ],
           "validateSet": [],
@@ -28701,6 +28520,22 @@
           ],
           "validateSet": [],
           "aliases": []
+        },
+        {
+          "name": "VersionCleanup",
+          "type": "switch",
+          "isSwitch": true,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
         }
       ]
     },
@@ -29453,6 +29288,22 @@
           "name": "SharePointLocationException",
           "type": "System.Object",
           "declaredType": "MultiValuedProperty",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Default",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "SkipAlreadyClassifiedItems",
+          "type": "System.Object",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -33699,23 +33550,6 @@
           ],
           "validateSet": [],
           "aliases": []
-        },
-        {
-          "name": "Identity",
-          "type": "System.Object",
-          "declaredType": "PolicyIdParameter",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": true,
-              "position": 0,
-              "valueFromPipeline": true,
-              "valueFromPipelineByPropertyName": true
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
         }
       ]
     },
@@ -34844,39 +34678,7 @@
           "parameterSets": [
             {
               "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "RestoreFrom",
-          "type": "System.Object",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "RestoreTo",
-          "type": "System.Object",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
+              "mandatory": true,
               "position": null,
               "valueFromPipeline": false,
               "valueFromPipelineByPropertyName": false
@@ -37130,6 +36932,22 @@
           "aliases": []
         },
         {
+          "name": "SpoDocLibraryDefaultLabelSnapshot",
+          "type": "System.Object",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Identity",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
           "name": "StartSimulation",
           "type": "bool",
           "declaredType": "Boolean",
@@ -37443,6 +37261,22 @@
           "aliases": []
         },
         {
+          "name": "EffectiveParentFolder",
+          "type": "System.Object[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
           "name": "ExceptIfAccessScope",
           "type": "System.Object",
           "declaredType": "AccessScope",
@@ -37630,6 +37464,22 @@
           "aliases": []
         },
         {
+          "name": "ExceptIfEffectiveParentFolder",
+          "type": "System.Object[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
           "name": "ExceptIfFrom",
           "type": "System.Object[]",
           "declaredType": "RecipientIdParameter[]",
@@ -37701,6 +37551,22 @@
           "name": "ExceptIfHeaderMatchesPatterns",
           "type": "System.Object",
           "declaredType": "PswsHashtable",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "ExceptIfParentFolder",
+          "type": "System.Object[]",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -37963,6 +37829,22 @@
               "position": 0,
               "valueFromPipeline": true,
               "valueFromPipelineByPropertyName": true
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "ParentFolder",
+          "type": "System.Object[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
             }
           ],
           "validateSet": [],
@@ -40446,6 +40328,13 @@
               "position": 0,
               "valueFromPipeline": true,
               "valueFromPipelineByPropertyName": true
+            },
+            {
+              "name": "VersionCleanup",
+              "mandatory": true,
+              "position": 0,
+              "valueFromPipeline": true,
+              "valueFromPipelineByPropertyName": true
             }
           ],
           "validateSet": [],
@@ -40510,6 +40399,22 @@
           "parameterSets": [
             {
               "name": "Identity",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "VersionCleanup",
+          "type": "string",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "VersionCleanup",
               "mandatory": false,
               "position": null,
               "valueFromPipeline": false,
@@ -43220,40 +43125,6 @@
       "defaultParameterSet": "Identity",
       "parameters": [
         {
-          "name": "AddEndpointDlpLocation",
-          "type": "System.Object",
-          "declaredType": "MultiValuedProperty",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "AddEndpointDlpLocationException",
-          "type": "System.Object",
-          "declaredType": "MultiValuedProperty",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
           "name": "AddExchangeLocation",
           "type": "System.Object",
           "declaredType": "MultiValuedProperty",
@@ -43559,22 +43430,6 @@
           "name": "EndpointDlpAdaptiveScopesException",
           "type": "System.Object",
           "declaredType": "MultiValuedProperty",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "EndpointDlpExtendedLocations",
-          "type": "string",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -44037,40 +43892,6 @@
           "name": "Priority",
           "type": "System.Object",
           "declaredType": "Int32",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "RemoveEndpointDlpLocation",
-          "type": "System.Object",
-          "declaredType": "MultiValuedProperty",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "RemoveEndpointDlpLocationException",
-          "type": "System.Object",
-          "declaredType": "MultiValuedProperty",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -45055,42 +44876,25 @@
           "aliases": []
         },
         {
+          "name": "EffectiveParentFolder",
+          "type": "System.Object[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
           "name": "EncryptRMSTemplate",
           "type": "System.Object",
           "declaredType": "RmsTemplateIdParameter",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "EndpointDlpBrowserRestrictions",
-          "type": "System.Object[]",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "EndpointDlpRestrictions",
-          "type": "System.Object[]",
-          "declaredType": "PswsHashtable[]",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -45512,6 +45316,22 @@
           "aliases": []
         },
         {
+          "name": "ExceptIfEffectiveParentFolder",
+          "type": "System.Object[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
           "name": "ExceptIfFrom",
           "type": "System.Object[]",
           "declaredType": "RecipientIdParameter[]",
@@ -45700,6 +45520,22 @@
           "name": "ExceptIfMessageTypeMatches",
           "type": "System.Object",
           "declaredType": "Microsoft.Office.CompliancePolicy.PolicyEvaluation.MessageTypes",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "ExceptIfParentFolder",
+          "type": "System.Object[]",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -46557,22 +46393,6 @@
           "aliases": []
         },
         {
-          "name": "NotifyEndpointUser",
-          "type": "System.Object",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
           "name": "NotifyJustificationCustomText",
           "type": "string",
           "isSwitch": false,
@@ -46744,6 +46564,22 @@
           "name": "OnPremisesScannerDlpRestrictions",
           "type": "System.Object[]",
           "declaredType": "PswsHashtable[]",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "ParentFolder",
+          "type": "System.Object[]",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -46980,22 +46816,6 @@
           "name": "RestrictAccess",
           "type": "System.Object[]",
           "declaredType": "System.Collections.Hashtable[]",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "RestrictBrowserAccess",
-          "type": "bool",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -48977,262 +48797,6 @@
               "position": 0,
               "valueFromPipeline": true,
               "valueFromPipelineByPropertyName": true
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        }
-      ]
-    },
-    {
-      "cmdlet": "Set-InformationBarrierPolicy",
-      "verb": "Set",
-      "noun": "InformationBarrierPolicy",
-      "defaultParameterSet": "InformationBarrierDefault",
-      "parameters": [
-        {
-          "name": "Comment",
-          "type": "string",
-          "declaredType": "String",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "InformationBarrierDefault",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsAllowed",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsBlocked",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentAllowedFilter",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "Force",
-          "type": "switch",
-          "declaredType": "SwitchParameter",
-          "isSwitch": true,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "TeamLocation",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "AdaptiveScopeLocation",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "InformationBarrierDefault",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsAllowed",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsBlocked",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentAllowedFilter",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "RetryDistributionParameterSet",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "Identity",
-          "type": "System.Object",
-          "declaredType": "PolicyIdParameter",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "InformationBarrierDefault",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsAllowed",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsBlocked",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentAllowedFilter",
-              "mandatory": true,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "ModerationAllowed",
-          "type": "bool",
-          "declaredType": "Boolean",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "SegmentAllowedFilter",
-          "type": "string",
-          "declaredType": "String",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "OrganizationSegmentAllowedFilter",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "SegmentsAllowed",
-          "type": "System.Object",
-          "declaredType": "MultiValuedProperty",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "OrganizationSegmentsAllowed",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "SegmentsBlocked",
-          "type": "System.Object",
-          "declaredType": "MultiValuedProperty",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "OrganizationSegmentsBlocked",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "State",
-          "type": "System.Object",
-          "declaredType": "EopInformationBarrierPolicyState",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "InformationBarrierDefault",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsAllowed",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentsBlocked",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            },
-            {
-              "name": "OrganizationSegmentAllowedFilter",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
             }
           ],
           "validateSet": [],
@@ -54115,6 +53679,22 @@
           "aliases": []
         },
         {
+          "name": "ClassificationMode",
+          "type": "System.Object",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
           "name": "ClassificationScheme",
           "type": "System.Object",
           "declaredType": "ClassificationScheme",
@@ -54135,6 +53715,22 @@
           "name": "ComplianceUrl",
           "type": "string",
           "declaredType": "String",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "ConcurrencyToken",
+          "type": "System.Object",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -54887,6 +54483,13 @@
             },
             {
               "name": "PriorityCleanup",
+              "mandatory": true,
+              "position": 0,
+              "valueFromPipeline": true,
+              "valueFromPipelineByPropertyName": true
+            },
+            {
+              "name": "VersionCleanup",
               "mandatory": true,
               "position": 0,
               "valueFromPipeline": true,
@@ -57044,6 +56647,22 @@
           ],
           "validateSet": [],
           "aliases": []
+        },
+        {
+          "name": "VersionCleanup",
+          "type": "string",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "__AllParameterSets",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
         }
       ]
     },
@@ -57470,22 +57089,6 @@
           "name": "AddTeamsLocationException",
           "type": "System.Object",
           "declaredType": "MultiValuedProperty",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "CancelImpactAssessment",
-          "type": "bool",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -58043,6 +57646,22 @@
         },
         {
           "name": "SharePointAdaptiveScopesException",
+          "type": "System.Object",
+          "isSwitch": false,
+          "parameterSets": [
+            {
+              "name": "Identity",
+              "mandatory": false,
+              "position": null,
+              "valueFromPipeline": false,
+              "valueFromPipelineByPropertyName": false
+            }
+          ],
+          "validateSet": [],
+          "aliases": []
+        },
+        {
+          "name": "SkipAlreadyClassifiedItems",
           "type": "System.Object",
           "isSwitch": false,
           "parameterSets": [
@@ -60438,80 +60057,6 @@
       ]
     },
     {
-      "cmdlet": "Start-InformationBarrierPoliciesApplication",
-      "verb": "Start",
-      "noun": "InformationBarrierPoliciesApplication",
-      "defaultParameterSet": "Identity",
-      "parameters": [
-        {
-          "name": "CleanupGroupSegmentLink",
-          "type": "switch",
-          "declaredType": "SwitchParameter",
-          "isSwitch": true,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "Identity",
-          "type": "System.Object",
-          "declaredType": "PolicyIdParameter",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": 0,
-              "valueFromPipeline": true,
-              "valueFromPipelineByPropertyName": true
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "Rollback",
-          "type": "switch",
-          "isSwitch": true,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        },
-        {
-          "name": "Upgrade",
-          "type": "switch",
-          "isSwitch": true,
-          "parameterSets": [
-            {
-              "name": "__AllParameterSets",
-              "mandatory": false,
-              "position": null,
-              "valueFromPipeline": false,
-              "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        }
-      ]
-    },
-    {
       "cmdlet": "Stop-ComplianceSearch",
       "verb": "Stop",
       "noun": "ComplianceSearch",
@@ -60521,31 +60066,6 @@
           "name": "Identity",
           "type": "System.Object",
           "declaredType": "ComplianceSearchIdParameter",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": true,
-              "position": 0,
-              "valueFromPipeline": true,
-              "valueFromPipelineByPropertyName": true
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        }
-      ]
-    },
-    {
-      "cmdlet": "Stop-InformationBarrierPoliciesApplication",
-      "verb": "Stop",
-      "noun": "InformationBarrierPoliciesApplication",
-      "defaultParameterSet": "Identity",
-      "parameters": [
-        {
-          "name": "Identity",
-          "type": "System.Object",
-          "declaredType": "PolicyIdParameter",
           "isSwitch": false,
           "parameterSets": [
             {
@@ -60721,30 +60241,6 @@
               "position": null,
               "valueFromPipeline": false,
               "valueFromPipelineByPropertyName": false
-            }
-          ],
-          "validateSet": [],
-          "aliases": []
-        }
-      ]
-    },
-    {
-      "cmdlet": "Test-InformationBarrierPolicy",
-      "verb": "Test",
-      "noun": "InformationBarrierPolicy",
-      "defaultParameterSet": "Identity",
-      "parameters": [
-        {
-          "name": "Identity",
-          "type": "System.Object",
-          "isSwitch": false,
-          "parameterSets": [
-            {
-              "name": "Identity",
-              "mandatory": false,
-              "position": 0,
-              "valueFromPipeline": true,
-              "valueFromPipelineByPropertyName": true
             }
           ],
           "validateSet": [],
