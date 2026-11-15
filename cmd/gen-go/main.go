@@ -133,12 +133,13 @@ func fieldComment(p spec.Param) string {
 
 // boundCheck emits the params() line that binds a field only when the caller set
 // it. Pointers and slices are bound whenever non-nil, so false and 0 can be
-// sent. An empty list is sent too, but Exchange ignores it; clearing a
-// multi-valued property needs the <Field>Delta (see deltaBoundCheck).
+// sent. That includes switches: a switch set to false goes out as
+// -Switch:$false, which is how a state switch such as Set-AuthenticationPolicy
+// -AllowBasicAuthSmtp is turned off. An empty list is sent too, but Exchange
+// ignores it; clearing a multi-valued property needs the <Field>Delta (see
+// deltaBoundCheck).
 func boundCheck(field, psName, gotype string) string {
 	switch gotype {
-	case "bool": // switch
-		return fmt.Sprintf("if p.%s { m[%q] = true }", field, psName)
 	case "string":
 		return fmt.Sprintf("if p.%s != \"\" { m[%q] = p.%s }", field, psName, field)
 	case "*bool", "*int64":
@@ -164,9 +165,7 @@ func deltaBoundCheck(field, psName string) string {
 // goType maps a parameter's spec.Kind to its Go field type.
 func goType(p spec.Param) string {
 	switch p.Kind() {
-	case spec.KindSwitch:
-		return "bool"
-	case spec.KindBool:
+	case spec.KindSwitch, spec.KindBool:
 		return "*bool"
 	case spec.KindInt64:
 		return "*int64"

@@ -8,7 +8,7 @@ import "strings"
 type Kind string
 
 const (
-	KindSwitch Kind = "switch" // bool; sent only when true
+	KindSwitch Kind = "switch" // *bool; sent when non-nil (false goes out as -Switch:$false)
 	KindBool   Kind = "bool"   // *bool; sent when non-nil (false is sendable)
 	KindInt64  Kind = "int64"  // *int64; sent when non-nil (0 is sendable)
 	KindString Kind = "string" // string; sent when non-empty
