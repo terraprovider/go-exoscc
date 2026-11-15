@@ -103,7 +103,7 @@ MicrosoftDocs/office-docs-powershell  --cmd/annotate-docs-->  spec/catalog/*.jso
 
   | Kind | Go field | Sent when |
   |------|----------|-----------|
-  | switch | `bool` | `true` |
+  | switch | `*bool` | non-nil (`false` is sent as `-Switch:$false`) |
   | Boolean | `*bool` | non-nil (so `false` can be sent) |
   | Int16/32/64, UInt32/64 | `*int64` | non-nil (so `0` can be sent) |
   | `X[]`, MultiValuedProperty, `*Collection` | `[]string` | non-nil (full replace) |

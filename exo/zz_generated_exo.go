@@ -54,15 +54,15 @@ func (s *Service) AddAvailabilityAddressSpace(ctx context.Context, p AddAvailabi
 
 // AddDistributionGroupMemberParams are the parameters of Add-DistributionGroupMember.
 type AddDistributionGroupMemberParams struct {
-	BypassSecurityGroupManagerCheck bool `ps:"BypassSecurityGroupManagerCheck"`
-	Identity                        any  `ps:"Identity"` // DistributionGroupIdParameter
-	Member                          any  `ps:"Member"`   // RecipientWithAdUserGroupIdParameter
+	BypassSecurityGroupManagerCheck *bool `ps:"BypassSecurityGroupManagerCheck"`
+	Identity                        any   `ps:"Identity"` // DistributionGroupIdParameter
+	Member                          any   `ps:"Member"`   // RecipientWithAdUserGroupIdParameter
 }
 
 func (p AddDistributionGroupMemberParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassSecurityGroupManagerCheck {
-		m["BypassSecurityGroupManagerCheck"] = true
+	if p.BypassSecurityGroupManagerCheck != nil {
+		m["BypassSecurityGroupManagerCheck"] = *p.BypassSecurityGroupManagerCheck
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -108,7 +108,7 @@ type AddLdapDirectoryParams struct {
 	Organization any    `ps:"Organization"` // OrganizationIdParameter
 	Port         *int64 `ps:"Port"`
 	TimeoutSec   *int64 `ps:"TimeoutSec"`
-	UseSsl       bool   `ps:"UseSsl"`
+	UseSsl       *bool  `ps:"UseSsl"`
 }
 
 func (p AddLdapDirectoryParams) params() map[string]any {
@@ -131,8 +131,8 @@ func (p AddLdapDirectoryParams) params() map[string]any {
 	if p.TimeoutSec != nil {
 		m["TimeoutSec"] = *p.TimeoutSec
 	}
-	if p.UseSsl {
-		m["UseSsl"] = true
+	if p.UseSsl != nil {
+		m["UseSsl"] = *p.UseSsl
 	}
 	return m
 }
@@ -197,10 +197,10 @@ func (s *Service) AddMailboxLocation(ctx context.Context, p AddMailboxLocationPa
 type AddMailboxPermissionParams struct {
 	AccessRights       []string `ps:"AccessRights"`
 	AutoMapping        *bool    `ps:"AutoMapping"`
-	Deny               bool     `ps:"Deny"`
-	GroupMailbox       bool     `ps:"GroupMailbox"`
+	Deny               *bool    `ps:"Deny"`
+	GroupMailbox       *bool    `ps:"GroupMailbox"`
 	Identity           any      `ps:"Identity"` // MailboxIdParameter
-	IgnoreDefaultScope bool     `ps:"IgnoreDefaultScope"`
+	IgnoreDefaultScope *bool    `ps:"IgnoreDefaultScope"`
 	InheritanceType    any      `ps:"InheritanceType"` // ActiveDirectorySecurityInheritance
 	Owner              any      `ps:"Owner"`           // SecurityPrincipalIdParameter
 	User               any      `ps:"User"`            // SecurityPrincipalIdParameter
@@ -214,17 +214,17 @@ func (p AddMailboxPermissionParams) params() map[string]any {
 	if p.AutoMapping != nil {
 		m["AutoMapping"] = *p.AutoMapping
 	}
-	if p.Deny {
-		m["Deny"] = true
+	if p.Deny != nil {
+		m["Deny"] = *p.Deny
 	}
-	if p.GroupMailbox {
-		m["GroupMailbox"] = true
+	if p.GroupMailbox != nil {
+		m["GroupMailbox"] = *p.GroupMailbox
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDefaultScope {
-		m["IgnoreDefaultScope"] = true
+	if p.IgnoreDefaultScope != nil {
+		m["IgnoreDefaultScope"] = *p.IgnoreDefaultScope
 	}
 	if p.InheritanceType != nil {
 		m["InheritanceType"] = p.InheritanceType
@@ -246,9 +246,9 @@ func (s *Service) AddMailboxPermission(ctx context.Context, p AddMailboxPermissi
 // AddManagementRoleEntryParams are the parameters of Add-ManagementRoleEntry.
 // DefaultParameterSetName: Identity
 type AddManagementRoleEntryParams struct {
-	Force           bool     `ps:"Force"`
+	Force           *bool    `ps:"Force"`
 	Identity        any      `ps:"Identity"` // RoleEntryIdParameter
-	Overwrite       bool     `ps:"Overwrite"`
+	Overwrite       *bool    `ps:"Overwrite"`
 	Parameters      []string `ps:"Parameters"`
 	ParentRoleEntry any      `ps:"ParentRoleEntry"` // RoleEntryIdParameter
 	Role            any      `ps:"Role"`            // RoleIdParameter
@@ -257,14 +257,14 @@ type AddManagementRoleEntryParams struct {
 
 func (p AddManagementRoleEntryParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.Overwrite {
-		m["Overwrite"] = true
+	if p.Overwrite != nil {
+		m["Overwrite"] = *p.Overwrite
 	}
 	if p.Parameters != nil {
 		m["Parameters"] = p.Parameters
@@ -341,15 +341,15 @@ func (s *Service) AddRecipientPermission(ctx context.Context, p AddRecipientPerm
 
 // AddRoleGroupMemberParams are the parameters of Add-RoleGroupMember.
 type AddRoleGroupMemberParams struct {
-	BypassSecurityGroupManagerCheck bool `ps:"BypassSecurityGroupManagerCheck"`
-	Identity                        any  `ps:"Identity"` // RoleGroupIdParameter
-	Member                          any  `ps:"Member"`   // SecurityPrincipalIdParameter
+	BypassSecurityGroupManagerCheck *bool `ps:"BypassSecurityGroupManagerCheck"`
+	Identity                        any   `ps:"Identity"` // RoleGroupIdParameter
+	Member                          any   `ps:"Member"`   // SecurityPrincipalIdParameter
 }
 
 func (p AddRoleGroupMemberParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassSecurityGroupManagerCheck {
-		m["BypassSecurityGroupManagerCheck"] = true
+	if p.BypassSecurityGroupManagerCheck != nil {
+		m["BypassSecurityGroupManagerCheck"] = *p.BypassSecurityGroupManagerCheck
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -439,15 +439,15 @@ func (s *Service) CheckExoInformationBarrierSymmetry(ctx context.Context, p Chec
 
 // ClearActiveSyncDeviceParams are the parameters of Clear-ActiveSyncDevice.
 type ClearActiveSyncDeviceParams struct {
-	Cancel                     bool     `ps:"Cancel"`
+	Cancel                     *bool    `ps:"Cancel"`
 	Identity                   any      `ps:"Identity"` // ActiveSyncDeviceIdParameter
 	NotificationEmailAddresses []string `ps:"NotificationEmailAddresses"`
 }
 
 func (p ClearActiveSyncDeviceParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Cancel {
-		m["Cancel"] = true
+	if p.Cancel != nil {
+		m["Cancel"] = *p.Cancel
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -465,19 +465,19 @@ func (s *Service) ClearActiveSyncDevice(ctx context.Context, p ClearActiveSyncDe
 
 // ClearMobileDeviceParams are the parameters of Clear-MobileDevice.
 type ClearMobileDeviceParams struct {
-	AccountOnly                bool     `ps:"AccountOnly"`
-	Cancel                     bool     `ps:"Cancel"`
+	AccountOnly                *bool    `ps:"AccountOnly"`
+	Cancel                     *bool    `ps:"Cancel"`
 	Identity                   any      `ps:"Identity"` // MobileDeviceIdParameter
 	NotificationEmailAddresses []string `ps:"NotificationEmailAddresses"`
 }
 
 func (p ClearMobileDeviceParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AccountOnly {
-		m["AccountOnly"] = true
+	if p.AccountOnly != nil {
+		m["AccountOnly"] = *p.AccountOnly
 	}
-	if p.Cancel {
-		m["Cancel"] = true
+	if p.Cancel != nil {
+		m["Cancel"] = *p.Cancel
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -495,16 +495,16 @@ func (s *Service) ClearMobileDevice(ctx context.Context, p ClearMobileDevicePara
 
 // CompleteMigrationBatchParams are the parameters of Complete-MigrationBatch.
 type CompleteMigrationBatchParams struct {
-	CompletePublicFolderMigrationWithDataLoss bool `ps:"CompletePublicFolderMigrationWithDataLoss"`
-	Identity                                  any  `ps:"Identity"`  // MigrationBatchIdParameter
-	Partition                                 any  `ps:"Partition"` // MailboxIdParameter
-	SyncAndComplete                           bool `ps:"SyncAndComplete"`
+	CompletePublicFolderMigrationWithDataLoss *bool `ps:"CompletePublicFolderMigrationWithDataLoss"`
+	Identity                                  any   `ps:"Identity"`  // MigrationBatchIdParameter
+	Partition                                 any   `ps:"Partition"` // MailboxIdParameter
+	SyncAndComplete                           *bool `ps:"SyncAndComplete"`
 }
 
 func (p CompleteMigrationBatchParams) params() map[string]any {
 	m := map[string]any{}
-	if p.CompletePublicFolderMigrationWithDataLoss {
-		m["CompletePublicFolderMigrationWithDataLoss"] = true
+	if p.CompletePublicFolderMigrationWithDataLoss != nil {
+		m["CompletePublicFolderMigrationWithDataLoss"] = *p.CompletePublicFolderMigrationWithDataLoss
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -512,8 +512,8 @@ func (p CompleteMigrationBatchParams) params() map[string]any {
 	if p.Partition != nil {
 		m["Partition"] = p.Partition
 	}
-	if p.SyncAndComplete {
-		m["SyncAndComplete"] = true
+	if p.SyncAndComplete != nil {
+		m["SyncAndComplete"] = *p.SyncAndComplete
 	}
 	return m
 }
@@ -540,7 +540,7 @@ func (s *Service) DebugAdditionalCapacityProtection(ctx context.Context, p Debug
 // DeleteQuarantineMessageParams are the parameters of Delete-QuarantineMessage.
 type DeleteQuarantineMessageParams struct {
 	EntityType       any      `ps:"EntityType"` // Microsoft.Exchange.Management.FfoQuarantine.EntityType
-	HardDelete       bool     `ps:"HardDelete"`
+	HardDelete       *bool    `ps:"HardDelete"`
 	Identities       []string `ps:"Identities"`
 	Identity         any      `ps:"Identity"` // QuarantineMessageIdentity
 	RecipientAddress []string `ps:"RecipientAddress"`
@@ -551,8 +551,8 @@ func (p DeleteQuarantineMessageParams) params() map[string]any {
 	if p.EntityType != nil {
 		m["EntityType"] = p.EntityType
 	}
-	if p.HardDelete {
-		m["HardDelete"] = true
+	if p.HardDelete != nil {
+		m["HardDelete"] = *p.HardDelete
 	}
 	if p.Identities != nil {
 		m["Identities"] = p.Identities
@@ -798,19 +798,19 @@ func (s *Service) DisableIPv6ForAcceptedDomain(ctx context.Context, p DisableIPv
 // DisableInboxRuleParams are the parameters of Disable-InboxRule.
 // DefaultParameterSetName: Identity
 type DisableInboxRuleParams struct {
-	AlwaysDeleteOutlookRulesBlob bool `ps:"AlwaysDeleteOutlookRulesBlob"`
-	Force                        bool `ps:"Force"`
-	Identity                     any  `ps:"Identity"` // InboxRuleIdParameter
-	Mailbox                      any  `ps:"Mailbox"`  // MailboxIdParameter
+	AlwaysDeleteOutlookRulesBlob *bool `ps:"AlwaysDeleteOutlookRulesBlob"`
+	Force                        *bool `ps:"Force"`
+	Identity                     any   `ps:"Identity"` // InboxRuleIdParameter
+	Mailbox                      any   `ps:"Mailbox"`  // MailboxIdParameter
 }
 
 func (p DisableInboxRuleParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AlwaysDeleteOutlookRulesBlob {
-		m["AlwaysDeleteOutlookRulesBlob"] = true
+	if p.AlwaysDeleteOutlookRulesBlob != nil {
+		m["AlwaysDeleteOutlookRulesBlob"] = *p.AlwaysDeleteOutlookRulesBlob
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -829,8 +829,8 @@ func (s *Service) DisableInboxRule(ctx context.Context, p DisableInboxRuleParams
 // DisableJournalArchivingParams are the parameters of Disable-JournalArchiving.
 // DefaultParameterSetName: Identity
 type DisableJournalArchivingParams struct {
-	Identity         any  `ps:"Identity"` // MailboxIdParameter
-	PreserveMailUser bool `ps:"PreserveMailUser"`
+	Identity         any   `ps:"Identity"` // MailboxIdParameter
+	PreserveMailUser *bool `ps:"PreserveMailUser"`
 }
 
 func (p DisableJournalArchivingParams) params() map[string]any {
@@ -838,8 +838,8 @@ func (p DisableJournalArchivingParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.PreserveMailUser {
-		m["PreserveMailUser"] = true
+	if p.PreserveMailUser != nil {
+		m["PreserveMailUser"] = *p.PreserveMailUser
 	}
 	return m
 }
@@ -889,21 +889,21 @@ func (s *Service) DisableMailPublicFolder(ctx context.Context, p DisableMailPubl
 // DisableMailboxParams are the parameters of Disable-Mailbox.
 // DefaultParameterSetName: Identity
 type DisableMailboxParams struct {
-	Archive            bool `ps:"Archive"`
-	Identity           any  `ps:"Identity"` // MailboxIdParameter
-	PermanentlyDisable bool `ps:"PermanentlyDisable"`
+	Archive            *bool `ps:"Archive"`
+	Identity           any   `ps:"Identity"` // MailboxIdParameter
+	PermanentlyDisable *bool `ps:"PermanentlyDisable"`
 }
 
 func (p DisableMailboxParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Archive {
-		m["Archive"] = true
+	if p.Archive != nil {
+		m["Archive"] = *p.Archive
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.PermanentlyDisable {
-		m["PermanentlyDisable"] = true
+	if p.PermanentlyDisable != nil {
+		m["PermanentlyDisable"] = *p.PermanentlyDisable
 	}
 	return m
 }
@@ -1298,19 +1298,19 @@ func (s *Service) EnableIPv6ForAcceptedDomain(ctx context.Context, p EnableIPv6F
 // EnableInboxRuleParams are the parameters of Enable-InboxRule.
 // DefaultParameterSetName: Identity
 type EnableInboxRuleParams struct {
-	AlwaysDeleteOutlookRulesBlob bool `ps:"AlwaysDeleteOutlookRulesBlob"`
-	Force                        bool `ps:"Force"`
-	Identity                     any  `ps:"Identity"` // InboxRuleIdParameter
-	Mailbox                      any  `ps:"Mailbox"`  // MailboxIdParameter
+	AlwaysDeleteOutlookRulesBlob *bool `ps:"AlwaysDeleteOutlookRulesBlob"`
+	Force                        *bool `ps:"Force"`
+	Identity                     any   `ps:"Identity"` // InboxRuleIdParameter
+	Mailbox                      any   `ps:"Mailbox"`  // MailboxIdParameter
 }
 
 func (p EnableInboxRuleParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AlwaysDeleteOutlookRulesBlob {
-		m["AlwaysDeleteOutlookRulesBlob"] = true
+	if p.AlwaysDeleteOutlookRulesBlob != nil {
+		m["AlwaysDeleteOutlookRulesBlob"] = *p.AlwaysDeleteOutlookRulesBlob
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -1349,7 +1349,7 @@ func (s *Service) EnableJournalRule(ctx context.Context, p EnableJournalRulePara
 type EnableMailPublicFolderParams struct {
 	HiddenFromAddressListsEnabled *bool `ps:"HiddenFromAddressListsEnabled"`
 	Identity                      any   `ps:"Identity"` // PublicFolderIdParameter
-	OverrideRecipientQuotas       bool  `ps:"OverrideRecipientQuotas"`
+	OverrideRecipientQuotas       *bool `ps:"OverrideRecipientQuotas"`
 }
 
 func (p EnableMailPublicFolderParams) params() map[string]any {
@@ -1360,8 +1360,8 @@ func (p EnableMailPublicFolderParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.OverrideRecipientQuotas {
-		m["OverrideRecipientQuotas"] = true
+	if p.OverrideRecipientQuotas != nil {
+		m["OverrideRecipientQuotas"] = *p.OverrideRecipientQuotas
 	}
 	return m
 }
@@ -1374,27 +1374,27 @@ func (s *Service) EnableMailPublicFolder(ctx context.Context, p EnableMailPublic
 // EnableMailboxParams are the parameters of Enable-Mailbox.
 // DefaultParameterSetName: User
 type EnableMailboxParams struct {
-	Archive              bool     `ps:"Archive"`
+	Archive              *bool    `ps:"Archive"`
 	ArchiveName          []string `ps:"ArchiveName"`
-	AutoExpandingArchive bool     `ps:"AutoExpandingArchive"`
-	Force                bool     `ps:"Force"`
+	AutoExpandingArchive *bool    `ps:"AutoExpandingArchive"`
+	Force                *bool    `ps:"Force"`
 	Identity             any      `ps:"Identity"`             // UserIdParameter
 	RoleAssignmentPolicy any      `ps:"RoleAssignmentPolicy"` // MailboxPolicyIdParameter
 }
 
 func (p EnableMailboxParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Archive {
-		m["Archive"] = true
+	if p.Archive != nil {
+		m["Archive"] = *p.Archive
 	}
 	if p.ArchiveName != nil {
 		m["ArchiveName"] = p.ArchiveName
 	}
-	if p.AutoExpandingArchive {
-		m["AutoExpandingArchive"] = true
+	if p.AutoExpandingArchive != nil {
+		m["AutoExpandingArchive"] = *p.AutoExpandingArchive
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -1621,9 +1621,9 @@ func (s *Service) ExportDlpPolicyCollection(ctx context.Context, p ExportDlpPoli
 // DefaultParameterSetName: MailboxLogParameterSet
 type ExportMailboxDiagnosticLogsParams struct {
 	ComponentName            string `ps:"ComponentName"`
-	ExtendedProperties       bool   `ps:"ExtendedProperties"`
+	ExtendedProperties       *bool  `ps:"ExtendedProperties"`
 	Identity                 any    `ps:"Identity"` // GeneralMailboxIdParameter
-	IncludeInactiveMailboxes bool   `ps:"IncludeInactiveMailboxes"`
+	IncludeInactiveMailboxes *bool  `ps:"IncludeInactiveMailboxes"`
 	ResultSize               any    `ps:"ResultSize"` // Unlimited
 }
 
@@ -1632,14 +1632,14 @@ func (p ExportMailboxDiagnosticLogsParams) params() map[string]any {
 	if p.ComponentName != "" {
 		m["ComponentName"] = p.ComponentName
 	}
-	if p.ExtendedProperties {
-		m["ExtendedProperties"] = true
+	if p.ExtendedProperties != nil {
+		m["ExtendedProperties"] = *p.ExtendedProperties
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeInactiveMailboxes {
-		m["IncludeInactiveMailboxes"] = true
+	if p.IncludeInactiveMailboxes != nil {
+		m["IncludeInactiveMailboxes"] = *p.IncludeInactiveMailboxes
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -1689,9 +1689,9 @@ func (s *Service) ExportMigrationReport(ctx context.Context, p ExportMigrationRe
 
 // ExportQuarantineMessageParams are the parameters of Export-QuarantineMessage.
 type ExportQuarantineMessageParams struct {
-	CompressOutput        bool     `ps:"CompressOutput"`
+	CompressOutput        *bool    `ps:"CompressOutput"`
 	EntityType            any      `ps:"EntityType"` // Microsoft.Exchange.Management.FfoQuarantine.EntityType
-	ForceConversionToMime bool     `ps:"ForceConversionToMime"`
+	ForceConversionToMime *bool    `ps:"ForceConversionToMime"`
 	Identities            []string `ps:"Identities"`
 	Identity              any      `ps:"Identity"` // QuarantineMessageIdentity
 	Password              any      `ps:"Password"` // SecureString
@@ -1702,14 +1702,14 @@ type ExportQuarantineMessageParams struct {
 
 func (p ExportQuarantineMessageParams) params() map[string]any {
 	m := map[string]any{}
-	if p.CompressOutput {
-		m["CompressOutput"] = true
+	if p.CompressOutput != nil {
+		m["CompressOutput"] = *p.CompressOutput
 	}
 	if p.EntityType != nil {
 		m["EntityType"] = p.EntityType
 	}
-	if p.ForceConversionToMime {
-		m["ForceConversionToMime"] = true
+	if p.ForceConversionToMime != nil {
+		m["ForceConversionToMime"] = *p.ForceConversionToMime
 	}
 	if p.Identities != nil {
 		m["Identities"] = p.Identities
@@ -1739,9 +1739,9 @@ func (s *Service) ExportQuarantineMessage(ctx context.Context, p ExportQuarantin
 
 // ExportQuarantineMessageV1Params are the parameters of Export-QuarantineMessageV1.
 type ExportQuarantineMessageV1Params struct {
-	CompressOutput        bool     `ps:"CompressOutput"`
+	CompressOutput        *bool    `ps:"CompressOutput"`
 	EntityType            any      `ps:"EntityType"`
-	ForceConversionToMime bool     `ps:"ForceConversionToMime"`
+	ForceConversionToMime *bool    `ps:"ForceConversionToMime"`
 	Identities            []string `ps:"Identities"`
 	Identity              any      `ps:"Identity"`
 	Password              any      `ps:"Password"`
@@ -1752,14 +1752,14 @@ type ExportQuarantineMessageV1Params struct {
 
 func (p ExportQuarantineMessageV1Params) params() map[string]any {
 	m := map[string]any{}
-	if p.CompressOutput {
-		m["CompressOutput"] = true
+	if p.CompressOutput != nil {
+		m["CompressOutput"] = *p.CompressOutput
 	}
 	if p.EntityType != nil {
 		m["EntityType"] = p.EntityType
 	}
-	if p.ForceConversionToMime {
-		m["ForceConversionToMime"] = true
+	if p.ForceConversionToMime != nil {
+		m["ForceConversionToMime"] = *p.ForceConversionToMime
 	}
 	if p.Identities != nil {
 		m["Identities"] = p.Identities
@@ -1789,14 +1789,14 @@ func (s *Service) ExportQuarantineMessageV1(ctx context.Context, p ExportQuarant
 
 // ExportTransportAzureResourceGroupsParams are the parameters of Export-TransportAzureResourceGroups.
 type ExportTransportAzureResourceGroupsParams struct {
-	GetOnly   bool   `ps:"GetOnly"`
+	GetOnly   *bool  `ps:"GetOnly"`
 	TableName string `ps:"TableName"`
 }
 
 func (p ExportTransportAzureResourceGroupsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.GetOnly {
-		m["GetOnly"] = true
+	if p.GetOnly != nil {
+		m["GetOnly"] = *p.GetOnly
 	}
 	if p.TableName != "" {
 		m["TableName"] = p.TableName
@@ -2116,17 +2116,17 @@ func (s *Service) GetActiveSyncDeviceClass(ctx context.Context, p GetActiveSyncD
 // GetActiveSyncDeviceStatisticsParams are the parameters of Get-ActiveSyncDeviceStatistics.
 // DefaultParameterSetName: Identity
 type GetActiveSyncDeviceStatisticsParams struct {
-	GetMailboxLog              bool     `ps:"GetMailboxLog"`
+	GetMailboxLog              *bool    `ps:"GetMailboxLog"`
 	Identity                   any      `ps:"Identity"` // ActiveSyncDeviceIdParameter
 	Mailbox                    any      `ps:"Mailbox"`  // MailboxIdParameter
 	NotificationEmailAddresses []string `ps:"NotificationEmailAddresses"`
-	ShowRecoveryPassword       bool     `ps:"ShowRecoveryPassword"`
+	ShowRecoveryPassword       *bool    `ps:"ShowRecoveryPassword"`
 }
 
 func (p GetActiveSyncDeviceStatisticsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.GetMailboxLog {
-		m["GetMailboxLog"] = true
+	if p.GetMailboxLog != nil {
+		m["GetMailboxLog"] = *p.GetMailboxLog
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -2137,8 +2137,8 @@ func (p GetActiveSyncDeviceStatisticsParams) params() map[string]any {
 	if p.NotificationEmailAddresses != nil {
 		m["NotificationEmailAddresses"] = p.NotificationEmailAddresses
 	}
-	if p.ShowRecoveryPassword {
-		m["ShowRecoveryPassword"] = true
+	if p.ShowRecoveryPassword != nil {
+		m["ShowRecoveryPassword"] = *p.ShowRecoveryPassword
 	}
 	return m
 }
@@ -2380,25 +2380,25 @@ func (s *Service) GetAggregateZapReport(ctx context.Context, p GetAggregateZapRe
 // GetAntiPhishPolicyParams are the parameters of Get-AntiPhishPolicy.
 // DefaultParameterSetName: Identity
 type GetAntiPhishPolicyParams struct {
-	Advanced      bool `ps:"Advanced"`
-	Identity      any  `ps:"Identity"` // AntiPhishPolicyIdParameter
-	Impersonation bool `ps:"Impersonation"`
-	Spoof         bool `ps:"Spoof"`
+	Advanced      *bool `ps:"Advanced"`
+	Identity      any   `ps:"Identity"` // AntiPhishPolicyIdParameter
+	Impersonation *bool `ps:"Impersonation"`
+	Spoof         *bool `ps:"Spoof"`
 }
 
 func (p GetAntiPhishPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Advanced {
-		m["Advanced"] = true
+	if p.Advanced != nil {
+		m["Advanced"] = *p.Advanced
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.Impersonation {
-		m["Impersonation"] = true
+	if p.Impersonation != nil {
+		m["Impersonation"] = *p.Impersonation
 	}
-	if p.Spoof {
-		m["Spoof"] = true
+	if p.Spoof != nil {
+		m["Spoof"] = *p.Spoof
 	}
 	return m
 }
@@ -2434,10 +2434,10 @@ func (s *Service) GetAntiPhishRule(ctx context.Context, p GetAntiPhishRuleParams
 // GetAppParams are the parameters of Get-App.
 // DefaultParameterSetName: Identity
 type GetAppParams struct {
-	Identity        any  `ps:"Identity"` // AppIdParameter
-	Mailbox         any  `ps:"Mailbox"`  // MailboxIdParameter
-	OrganizationApp bool `ps:"OrganizationApp"`
-	PrivateCatalog  bool `ps:"PrivateCatalog"`
+	Identity        any   `ps:"Identity"` // AppIdParameter
+	Mailbox         any   `ps:"Mailbox"`  // MailboxIdParameter
+	OrganizationApp *bool `ps:"OrganizationApp"`
+	PrivateCatalog  *bool `ps:"PrivateCatalog"`
 }
 
 func (p GetAppParams) params() map[string]any {
@@ -2448,11 +2448,11 @@ func (p GetAppParams) params() map[string]any {
 	if p.Mailbox != nil {
 		m["Mailbox"] = p.Mailbox
 	}
-	if p.OrganizationApp {
-		m["OrganizationApp"] = true
+	if p.OrganizationApp != nil {
+		m["OrganizationApp"] = *p.OrganizationApp
 	}
-	if p.PrivateCatalog {
-		m["PrivateCatalog"] = true
+	if p.PrivateCatalog != nil {
+		m["PrivateCatalog"] = *p.PrivateCatalog
 	}
 	return m
 }
@@ -2721,17 +2721,17 @@ func (s *Service) GetBookingMailbox(ctx context.Context, p GetBookingMailboxPara
 // GetCASMailboxParams are the parameters of Get-CASMailbox.
 // DefaultParameterSetName: Identity
 type GetCASMailboxParams struct {
-	ActiveSyncDebugLogging                    bool     `ps:"ActiveSyncDebugLogging"`
-	ActiveSyncSuppressReadReceipt             bool     `ps:"ActiveSyncSuppressReadReceipt"`
+	ActiveSyncDebugLogging                    *bool    `ps:"ActiveSyncDebugLogging"`
+	ActiveSyncSuppressReadReceipt             *bool    `ps:"ActiveSyncSuppressReadReceipt"`
 	Anr                                       string   `ps:"Anr"`
 	Credential                                any      `ps:"Credential"` // PSCredential
 	Filter                                    string   `ps:"Filter"`
 	Identity                                  any      `ps:"Identity"` // MailboxIdParameter
-	IgnoreDefaultScope                        bool     `ps:"IgnoreDefaultScope"`
+	IgnoreDefaultScope                        *bool    `ps:"IgnoreDefaultScope"`
 	OrganizationalUnit                        any      `ps:"OrganizationalUnit"` // OrganizationalUnitIdParameter
-	ProtocolSettings                          bool     `ps:"ProtocolSettings"`
-	ReadIsOptimizedForAccessibility           bool     `ps:"ReadIsOptimizedForAccessibility"`
-	RecalculateHasActiveSyncDevicePartnership bool     `ps:"RecalculateHasActiveSyncDevicePartnership"`
+	ProtocolSettings                          *bool    `ps:"ProtocolSettings"`
+	ReadIsOptimizedForAccessibility           *bool    `ps:"ReadIsOptimizedForAccessibility"`
+	RecalculateHasActiveSyncDevicePartnership *bool    `ps:"RecalculateHasActiveSyncDevicePartnership"`
 	RecipientTypeDetails                      []string `ps:"RecipientTypeDetails"`
 	ResultSize                                any      `ps:"ResultSize"` // Unlimited
 	SortBy                                    string   `ps:"SortBy"`
@@ -2739,11 +2739,11 @@ type GetCASMailboxParams struct {
 
 func (p GetCASMailboxParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ActiveSyncDebugLogging {
-		m["ActiveSyncDebugLogging"] = true
+	if p.ActiveSyncDebugLogging != nil {
+		m["ActiveSyncDebugLogging"] = *p.ActiveSyncDebugLogging
 	}
-	if p.ActiveSyncSuppressReadReceipt {
-		m["ActiveSyncSuppressReadReceipt"] = true
+	if p.ActiveSyncSuppressReadReceipt != nil {
+		m["ActiveSyncSuppressReadReceipt"] = *p.ActiveSyncSuppressReadReceipt
 	}
 	if p.Anr != "" {
 		m["Anr"] = p.Anr
@@ -2757,20 +2757,20 @@ func (p GetCASMailboxParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDefaultScope {
-		m["IgnoreDefaultScope"] = true
+	if p.IgnoreDefaultScope != nil {
+		m["IgnoreDefaultScope"] = *p.IgnoreDefaultScope
 	}
 	if p.OrganizationalUnit != nil {
 		m["OrganizationalUnit"] = p.OrganizationalUnit
 	}
-	if p.ProtocolSettings {
-		m["ProtocolSettings"] = true
+	if p.ProtocolSettings != nil {
+		m["ProtocolSettings"] = *p.ProtocolSettings
 	}
-	if p.ReadIsOptimizedForAccessibility {
-		m["ReadIsOptimizedForAccessibility"] = true
+	if p.ReadIsOptimizedForAccessibility != nil {
+		m["ReadIsOptimizedForAccessibility"] = *p.ReadIsOptimizedForAccessibility
 	}
-	if p.RecalculateHasActiveSyncDevicePartnership {
-		m["RecalculateHasActiveSyncDevicePartnership"] = true
+	if p.RecalculateHasActiveSyncDevicePartnership != nil {
+		m["RecalculateHasActiveSyncDevicePartnership"] = *p.RecalculateHasActiveSyncDevicePartnership
 	}
 	if p.RecipientTypeDetails != nil {
 		m["RecipientTypeDetails"] = p.RecipientTypeDetails
@@ -2795,7 +2795,7 @@ type GetCASMailboxPlanParams struct {
 	Credential         any    `ps:"Credential"` // PSCredential
 	Filter             string `ps:"Filter"`
 	Identity           any    `ps:"Identity"` // MailboxPlanIdParameter
-	IgnoreDefaultScope bool   `ps:"IgnoreDefaultScope"`
+	IgnoreDefaultScope *bool  `ps:"IgnoreDefaultScope"`
 	ResultSize         any    `ps:"ResultSize"` // Unlimited
 	SortBy             string `ps:"SortBy"`
 }
@@ -2811,8 +2811,8 @@ func (p GetCASMailboxPlanParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDefaultScope {
-		m["IgnoreDefaultScope"] = true
+	if p.IgnoreDefaultScope != nil {
+		m["IgnoreDefaultScope"] = *p.IgnoreDefaultScope
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -2872,7 +2872,7 @@ type GetCalendarDiagnosticLogParams struct {
 	Identity    any      `ps:"Identity"` // MailboxIdParameter
 	ItemClass   []string `ps:"ItemClass"`
 	ItemIds     []string `ps:"ItemIds"`
-	Latest      bool     `ps:"Latest"`
+	Latest      *bool    `ps:"Latest"`
 	LogLocation string   `ps:"LogLocation"`
 	MeetingId   string   `ps:"MeetingId"`
 	ResultSize  any      `ps:"ResultSize"` // Unlimited
@@ -2900,8 +2900,8 @@ func (p GetCalendarDiagnosticLogParams) params() map[string]any {
 	if p.ItemIds != nil {
 		m["ItemIds"] = p.ItemIds
 	}
-	if p.Latest {
-		m["Latest"] = true
+	if p.Latest != nil {
+		m["Latest"] = *p.Latest
 	}
 	if p.LogLocation != "" {
 		m["LogLocation"] = p.LogLocation
@@ -3072,11 +3072,11 @@ func (s *Service) GetCalendarSettings(ctx context.Context, p GetCalendarSettings
 // GetCalendarViewDiagnosticsParams are the parameters of Get-CalendarViewDiagnostics.
 // DefaultParameterSetName: Identity
 type GetCalendarViewDiagnosticsParams struct {
-	BindToResults       bool   `ps:"BindToResults"`
+	BindToResults       *bool  `ps:"BindToResults"`
 	CalendarId          string `ps:"CalendarId"`
 	Identity            any    `ps:"Identity"`
-	IgnoreCorruptItems  bool   `ps:"IgnoreCorruptItems"`
-	ReturnSeriesMasters bool   `ps:"ReturnSeriesMasters"`
+	IgnoreCorruptItems  *bool  `ps:"IgnoreCorruptItems"`
+	ReturnSeriesMasters *bool  `ps:"ReturnSeriesMasters"`
 	TimeZonePreference  string `ps:"TimeZonePreference"`
 	WindowEndUtc        any    `ps:"WindowEndUtc"`
 	WindowStartUtc      any    `ps:"WindowStartUtc"`
@@ -3084,8 +3084,8 @@ type GetCalendarViewDiagnosticsParams struct {
 
 func (p GetCalendarViewDiagnosticsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BindToResults {
-		m["BindToResults"] = true
+	if p.BindToResults != nil {
+		m["BindToResults"] = *p.BindToResults
 	}
 	if p.CalendarId != "" {
 		m["CalendarId"] = p.CalendarId
@@ -3093,11 +3093,11 @@ func (p GetCalendarViewDiagnosticsParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreCorruptItems {
-		m["IgnoreCorruptItems"] = true
+	if p.IgnoreCorruptItems != nil {
+		m["IgnoreCorruptItems"] = *p.IgnoreCorruptItems
 	}
-	if p.ReturnSeriesMasters {
-		m["ReturnSeriesMasters"] = true
+	if p.ReturnSeriesMasters != nil {
+		m["ReturnSeriesMasters"] = *p.ReturnSeriesMasters
 	}
 	if p.TimeZonePreference != "" {
 		m["TimeZonePreference"] = p.TimeZonePreference
@@ -3161,8 +3161,8 @@ func (s *Service) GetClientAccessRule(ctx context.Context, p GetClientAccessRule
 // GetClutterParams are the parameters of Get-Clutter.
 // DefaultParameterSetName: Identity
 type GetClutterParams struct {
-	Identity         any  `ps:"Identity"` // MailboxIdParameter
-	UseCustomRouting bool `ps:"UseCustomRouting"`
+	Identity         any   `ps:"Identity"` // MailboxIdParameter
+	UseCustomRouting *bool `ps:"UseCustomRouting"`
 }
 
 func (p GetClutterParams) params() map[string]any {
@@ -3170,8 +3170,8 @@ func (p GetClutterParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -3224,8 +3224,8 @@ func (s *Service) GetCompliancePolicySyncNotification(ctx context.Context, p Get
 // GetComplianceTagParams are the parameters of Get-ComplianceTag.
 // DefaultParameterSetName: Identity
 type GetComplianceTagParams struct {
-	Identity            any  `ps:"Identity"` // ComplianceRuleIdParameter
-	IncludingLabelState bool `ps:"IncludingLabelState"`
+	Identity            any   `ps:"Identity"` // ComplianceRuleIdParameter
+	IncludingLabelState *bool `ps:"IncludingLabelState"`
 }
 
 func (p GetComplianceTagParams) params() map[string]any {
@@ -3233,8 +3233,8 @@ func (p GetComplianceTagParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludingLabelState {
-		m["IncludingLabelState"] = true
+	if p.IncludingLabelState != nil {
+		m["IncludingLabelState"] = *p.IncludingLabelState
 	}
 	return m
 }
@@ -3334,9 +3334,9 @@ func (s *Service) GetCompromisedUserDetailReport(ctx context.Context, p GetCompr
 // GetConfigAnalyzerPolicyRecommendationParams are the parameters of Get-ConfigAnalyzerPolicyRecommendation.
 // DefaultParameterSetName: Identity
 type GetConfigAnalyzerPolicyRecommendationParams struct {
-	Identity              any  `ps:"Identity"` // ConfigAnalyzerPolicyRecommendationIdParameter
-	IsAppliedToDisabled   bool `ps:"IsAppliedToDisabled"`
-	RecommendedPolicyType any  `ps:"RecommendedPolicyType"` // RecommendedPolicyType
+	Identity              any   `ps:"Identity"` // ConfigAnalyzerPolicyRecommendationIdParameter
+	IsAppliedToDisabled   *bool `ps:"IsAppliedToDisabled"`
+	RecommendedPolicyType any   `ps:"RecommendedPolicyType"` // RecommendedPolicyType
 }
 
 func (p GetConfigAnalyzerPolicyRecommendationParams) params() map[string]any {
@@ -3344,8 +3344,8 @@ func (p GetConfigAnalyzerPolicyRecommendationParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IsAppliedToDisabled {
-		m["IsAppliedToDisabled"] = true
+	if p.IsAppliedToDisabled != nil {
+		m["IsAppliedToDisabled"] = *p.IsAppliedToDisabled
 	}
 	if p.RecommendedPolicyType != nil {
 		m["RecommendedPolicyType"] = p.RecommendedPolicyType
@@ -3501,7 +3501,7 @@ type GetCrawlStateParams struct {
 	AssistantName      string `ps:"AssistantName"`
 	DomainController   any    `ps:"DomainController"`
 	Process            string `ps:"Process"` // one of: MSExchangeMailboxAssistantsOrchestrator, MSExchangeMailboxAssistants
-	SoftDeletedMailbox bool   `ps:"SoftDeletedMailbox"`
+	SoftDeletedMailbox *bool  `ps:"SoftDeletedMailbox"`
 }
 
 func (p GetCrawlStateParams) params() map[string]any {
@@ -3515,8 +3515,8 @@ func (p GetCrawlStateParams) params() map[string]any {
 	if p.Process != "" {
 		m["Process"] = p.Process
 	}
-	if p.SoftDeletedMailbox {
-		m["SoftDeletedMailbox"] = true
+	if p.SoftDeletedMailbox != nil {
+		m["SoftDeletedMailbox"] = *p.SoftDeletedMailbox
 	}
 	return m
 }
@@ -4016,13 +4016,13 @@ type GetDistributionGroupParams struct {
 	Credential                                                    any      `ps:"Credential"` // PSCredential
 	Filter                                                        string   `ps:"Filter"`
 	Identity                                                      any      `ps:"Identity"` // DistributionGroupIdParameter
-	IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames        bool     `ps:"IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"`
-	IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames bool     `ps:"IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"`
-	IncludeAcceptMessagesOnlyFromWithDisplayNames                 bool     `ps:"IncludeAcceptMessagesOnlyFromWithDisplayNames"`
-	IncludeBypassModerationFromSendersOrMembersWithDisplayNames   bool     `ps:"IncludeBypassModerationFromSendersOrMembersWithDisplayNames"`
-	IncludeGrantSendOnBehalfToWithDisplayNames                    bool     `ps:"IncludeGrantSendOnBehalfToWithDisplayNames"`
-	IncludeManagedByWithDisplayNames                              bool     `ps:"IncludeManagedByWithDisplayNames"`
-	IncludeModeratedByWithDisplayNames                            bool     `ps:"IncludeModeratedByWithDisplayNames"`
+	IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames        *bool    `ps:"IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"`
+	IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames *bool    `ps:"IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"`
+	IncludeAcceptMessagesOnlyFromWithDisplayNames                 *bool    `ps:"IncludeAcceptMessagesOnlyFromWithDisplayNames"`
+	IncludeBypassModerationFromSendersOrMembersWithDisplayNames   *bool    `ps:"IncludeBypassModerationFromSendersOrMembersWithDisplayNames"`
+	IncludeGrantSendOnBehalfToWithDisplayNames                    *bool    `ps:"IncludeGrantSendOnBehalfToWithDisplayNames"`
+	IncludeManagedByWithDisplayNames                              *bool    `ps:"IncludeManagedByWithDisplayNames"`
+	IncludeModeratedByWithDisplayNames                            *bool    `ps:"IncludeModeratedByWithDisplayNames"`
 	ManagedBy                                                     any      `ps:"ManagedBy"`          // GeneralRecipientIdParameter
 	OrganizationalUnit                                            any      `ps:"OrganizationalUnit"` // OrganizationalUnitIdParameter
 	RecipientTypeDetails                                          []string `ps:"RecipientTypeDetails"`
@@ -4044,26 +4044,26 @@ func (p GetDistributionGroupParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames {
-		m["IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"] = true
+	if p.IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames != nil {
+		m["IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"] = *p.IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames
 	}
-	if p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames {
-		m["IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"] = true
+	if p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames != nil {
+		m["IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"] = *p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames
 	}
-	if p.IncludeAcceptMessagesOnlyFromWithDisplayNames {
-		m["IncludeAcceptMessagesOnlyFromWithDisplayNames"] = true
+	if p.IncludeAcceptMessagesOnlyFromWithDisplayNames != nil {
+		m["IncludeAcceptMessagesOnlyFromWithDisplayNames"] = *p.IncludeAcceptMessagesOnlyFromWithDisplayNames
 	}
-	if p.IncludeBypassModerationFromSendersOrMembersWithDisplayNames {
-		m["IncludeBypassModerationFromSendersOrMembersWithDisplayNames"] = true
+	if p.IncludeBypassModerationFromSendersOrMembersWithDisplayNames != nil {
+		m["IncludeBypassModerationFromSendersOrMembersWithDisplayNames"] = *p.IncludeBypassModerationFromSendersOrMembersWithDisplayNames
 	}
-	if p.IncludeGrantSendOnBehalfToWithDisplayNames {
-		m["IncludeGrantSendOnBehalfToWithDisplayNames"] = true
+	if p.IncludeGrantSendOnBehalfToWithDisplayNames != nil {
+		m["IncludeGrantSendOnBehalfToWithDisplayNames"] = *p.IncludeGrantSendOnBehalfToWithDisplayNames
 	}
-	if p.IncludeManagedByWithDisplayNames {
-		m["IncludeManagedByWithDisplayNames"] = true
+	if p.IncludeManagedByWithDisplayNames != nil {
+		m["IncludeManagedByWithDisplayNames"] = *p.IncludeManagedByWithDisplayNames
 	}
-	if p.IncludeModeratedByWithDisplayNames {
-		m["IncludeModeratedByWithDisplayNames"] = true
+	if p.IncludeModeratedByWithDisplayNames != nil {
+		m["IncludeModeratedByWithDisplayNames"] = *p.IncludeModeratedByWithDisplayNames
 	}
 	if p.ManagedBy != nil {
 		m["ManagedBy"] = p.ManagedBy
@@ -4090,10 +4090,10 @@ func (s *Service) GetDistributionGroup(ctx context.Context, p GetDistributionGro
 
 // GetDistributionGroupMemberParams are the parameters of Get-DistributionGroupMember.
 type GetDistributionGroupMemberParams struct {
-	Credential                any  `ps:"Credential"` // PSCredential
-	Identity                  any  `ps:"Identity"`   // DistributionGroupMemberIdParameter
-	IncludeSoftDeletedObjects bool `ps:"IncludeSoftDeletedObjects"`
-	ResultSize                any  `ps:"ResultSize"` // Unlimited
+	Credential                any   `ps:"Credential"` // PSCredential
+	Identity                  any   `ps:"Identity"`   // DistributionGroupMemberIdParameter
+	IncludeSoftDeletedObjects *bool `ps:"IncludeSoftDeletedObjects"`
+	ResultSize                any   `ps:"ResultSize"` // Unlimited
 }
 
 func (p GetDistributionGroupMemberParams) params() map[string]any {
@@ -4104,8 +4104,8 @@ func (p GetDistributionGroupMemberParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeSoftDeletedObjects {
-		m["IncludeSoftDeletedObjects"] = true
+	if p.IncludeSoftDeletedObjects != nil {
+		m["IncludeSoftDeletedObjects"] = *p.IncludeSoftDeletedObjects
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -4425,9 +4425,9 @@ func (s *Service) GetDlpSiDetectionsReport(ctx context.Context, p GetDlpSiDetect
 // GetDnssecStatusForVerifiedDomainParams are the parameters of Get-DnssecStatusForVerifiedDomain.
 type GetDnssecStatusForVerifiedDomainParams struct {
 	DomainName           string `ps:"DomainName"`
-	SkipDnsValidation    bool   `ps:"SkipDnsValidation"`
-	SkipMtaStsValidation bool   `ps:"SkipMtaStsValidation"`
-	SkipMxValidation     bool   `ps:"SkipMxValidation"`
+	SkipDnsValidation    *bool  `ps:"SkipDnsValidation"`
+	SkipMtaStsValidation *bool  `ps:"SkipMtaStsValidation"`
+	SkipMxValidation     *bool  `ps:"SkipMxValidation"`
 }
 
 func (p GetDnssecStatusForVerifiedDomainParams) params() map[string]any {
@@ -4435,14 +4435,14 @@ func (p GetDnssecStatusForVerifiedDomainParams) params() map[string]any {
 	if p.DomainName != "" {
 		m["DomainName"] = p.DomainName
 	}
-	if p.SkipDnsValidation {
-		m["SkipDnsValidation"] = true
+	if p.SkipDnsValidation != nil {
+		m["SkipDnsValidation"] = *p.SkipDnsValidation
 	}
-	if p.SkipMtaStsValidation {
-		m["SkipMtaStsValidation"] = true
+	if p.SkipMtaStsValidation != nil {
+		m["SkipMtaStsValidation"] = *p.SkipMtaStsValidation
 	}
-	if p.SkipMxValidation {
-		m["SkipMxValidation"] = true
+	if p.SkipMxValidation != nil {
+		m["SkipMxValidation"] = *p.SkipMxValidation
 	}
 	return m
 }
@@ -4459,13 +4459,13 @@ type GetDynamicDistributionGroupParams struct {
 	Credential                                                    any    `ps:"Credential"` // PSCredential
 	Filter                                                        string `ps:"Filter"`
 	Identity                                                      any    `ps:"Identity"` // DynamicGroupIdParameter
-	IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames        bool   `ps:"IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"`
-	IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames bool   `ps:"IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"`
-	IncludeAcceptMessagesOnlyFromWithDisplayNames                 bool   `ps:"IncludeAcceptMessagesOnlyFromWithDisplayNames"`
-	IncludeBypassModerationFromSendersOrMembersWithDisplayNames   bool   `ps:"IncludeBypassModerationFromSendersOrMembersWithDisplayNames"`
-	IncludeGrantSendOnBehalfToWithDisplayNames                    bool   `ps:"IncludeGrantSendOnBehalfToWithDisplayNames"`
-	IncludeManagedByWithDisplayNames                              bool   `ps:"IncludeManagedByWithDisplayNames"`
-	IncludeModeratedByWithDisplayNames                            bool   `ps:"IncludeModeratedByWithDisplayNames"`
+	IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames        *bool  `ps:"IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"`
+	IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames *bool  `ps:"IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"`
+	IncludeAcceptMessagesOnlyFromWithDisplayNames                 *bool  `ps:"IncludeAcceptMessagesOnlyFromWithDisplayNames"`
+	IncludeBypassModerationFromSendersOrMembersWithDisplayNames   *bool  `ps:"IncludeBypassModerationFromSendersOrMembersWithDisplayNames"`
+	IncludeGrantSendOnBehalfToWithDisplayNames                    *bool  `ps:"IncludeGrantSendOnBehalfToWithDisplayNames"`
+	IncludeManagedByWithDisplayNames                              *bool  `ps:"IncludeManagedByWithDisplayNames"`
+	IncludeModeratedByWithDisplayNames                            *bool  `ps:"IncludeModeratedByWithDisplayNames"`
 	ManagedBy                                                     any    `ps:"ManagedBy"`          // GeneralRecipientIdParameter
 	OrganizationalUnit                                            any    `ps:"OrganizationalUnit"` // OrganizationalUnitIdParameter
 	ResultSize                                                    any    `ps:"ResultSize"`         // Unlimited
@@ -4486,26 +4486,26 @@ func (p GetDynamicDistributionGroupParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames {
-		m["IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"] = true
+	if p.IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames != nil {
+		m["IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"] = *p.IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames
 	}
-	if p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames {
-		m["IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"] = true
+	if p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames != nil {
+		m["IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"] = *p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames
 	}
-	if p.IncludeAcceptMessagesOnlyFromWithDisplayNames {
-		m["IncludeAcceptMessagesOnlyFromWithDisplayNames"] = true
+	if p.IncludeAcceptMessagesOnlyFromWithDisplayNames != nil {
+		m["IncludeAcceptMessagesOnlyFromWithDisplayNames"] = *p.IncludeAcceptMessagesOnlyFromWithDisplayNames
 	}
-	if p.IncludeBypassModerationFromSendersOrMembersWithDisplayNames {
-		m["IncludeBypassModerationFromSendersOrMembersWithDisplayNames"] = true
+	if p.IncludeBypassModerationFromSendersOrMembersWithDisplayNames != nil {
+		m["IncludeBypassModerationFromSendersOrMembersWithDisplayNames"] = *p.IncludeBypassModerationFromSendersOrMembersWithDisplayNames
 	}
-	if p.IncludeGrantSendOnBehalfToWithDisplayNames {
-		m["IncludeGrantSendOnBehalfToWithDisplayNames"] = true
+	if p.IncludeGrantSendOnBehalfToWithDisplayNames != nil {
+		m["IncludeGrantSendOnBehalfToWithDisplayNames"] = *p.IncludeGrantSendOnBehalfToWithDisplayNames
 	}
-	if p.IncludeManagedByWithDisplayNames {
-		m["IncludeManagedByWithDisplayNames"] = true
+	if p.IncludeManagedByWithDisplayNames != nil {
+		m["IncludeManagedByWithDisplayNames"] = *p.IncludeManagedByWithDisplayNames
 	}
-	if p.IncludeModeratedByWithDisplayNames {
-		m["IncludeModeratedByWithDisplayNames"] = true
+	if p.IncludeModeratedByWithDisplayNames != nil {
+		m["IncludeModeratedByWithDisplayNames"] = *p.IncludeModeratedByWithDisplayNames
 	}
 	if p.ManagedBy != nil {
 		m["ManagedBy"] = p.ManagedBy
@@ -4529,10 +4529,10 @@ func (s *Service) GetDynamicDistributionGroup(ctx context.Context, p GetDynamicD
 
 // GetDynamicDistributionGroupMemberParams are the parameters of Get-DynamicDistributionGroupMember.
 type GetDynamicDistributionGroupMemberParams struct {
-	Credential                any  `ps:"Credential"` // PSCredential
-	Identity                  any  `ps:"Identity"`   // DynamicDistributionGroupMemberIdParameter
-	IncludeSoftDeletedObjects bool `ps:"IncludeSoftDeletedObjects"`
-	ResultSize                any  `ps:"ResultSize"` // Unlimited
+	Credential                any   `ps:"Credential"` // PSCredential
+	Identity                  any   `ps:"Identity"`   // DynamicDistributionGroupMemberIdParameter
+	IncludeSoftDeletedObjects *bool `ps:"IncludeSoftDeletedObjects"`
+	ResultSize                any   `ps:"ResultSize"` // Unlimited
 }
 
 func (p GetDynamicDistributionGroupMemberParams) params() map[string]any {
@@ -4543,8 +4543,8 @@ func (p GetDynamicDistributionGroupMemberParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeSoftDeletedObjects {
-		m["IncludeSoftDeletedObjects"] = true
+	if p.IncludeSoftDeletedObjects != nil {
+		m["IncludeSoftDeletedObjects"] = *p.IncludeSoftDeletedObjects
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -4886,22 +4886,22 @@ func (s *Service) GetEventsFromEmailConfiguration(ctx context.Context, p GetEven
 // GetExoConnectivityTableSnapshotParams are the parameters of Get-ExoConnectivityTableSnapshot.
 // DefaultParameterSetName: ReadAll
 type GetExoConnectivityTableSnapshotParams struct {
-	All                bool   `ps:"All"`
+	All                *bool  `ps:"All"`
 	Organization       any    `ps:"Organization"`
-	ShowTimestampsOnly bool   `ps:"ShowTimestampsOnly"`
+	ShowTimestampsOnly *bool  `ps:"ShowTimestampsOnly"`
 	Timestamp          string `ps:"Timestamp"`
 }
 
 func (p GetExoConnectivityTableSnapshotParams) params() map[string]any {
 	m := map[string]any{}
-	if p.All {
-		m["All"] = true
+	if p.All != nil {
+		m["All"] = *p.All
 	}
 	if p.Organization != nil {
 		m["Organization"] = p.Organization
 	}
-	if p.ShowTimestampsOnly {
-		m["ShowTimestampsOnly"] = true
+	if p.ShowTimestampsOnly != nil {
+		m["ShowTimestampsOnly"] = *p.ShowTimestampsOnly
 	}
 	if p.Timestamp != "" {
 		m["Timestamp"] = p.Timestamp
@@ -4917,8 +4917,8 @@ func (s *Service) GetExoConnectivityTableSnapshot(ctx context.Context, p GetExoC
 // GetExoInformationBarrierPolicyParams are the parameters of Get-ExoInformationBarrierPolicy.
 // DefaultParameterSetName: Identity
 type GetExoInformationBarrierPolicyParams struct {
-	Identity           any  `ps:"Identity"` // MailboxPolicyIdParameter
-	ShowFriendlyValues bool `ps:"ShowFriendlyValues"`
+	Identity           any   `ps:"Identity"` // MailboxPolicyIdParameter
+	ShowFriendlyValues *bool `ps:"ShowFriendlyValues"`
 }
 
 func (p GetExoInformationBarrierPolicyParams) params() map[string]any {
@@ -4926,8 +4926,8 @@ func (p GetExoInformationBarrierPolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ShowFriendlyValues {
-		m["ShowFriendlyValues"] = true
+	if p.ShowFriendlyValues != nil {
+		m["ShowFriendlyValues"] = *p.ShowFriendlyValues
 	}
 	return m
 }
@@ -4961,18 +4961,18 @@ func (s *Service) GetExoInformationBarrierRelationship(ctx context.Context, p Ge
 
 // GetExoInformationBarrierRelationshipTableParams are the parameters of Get-ExoInformationBarrierRelationshipTable.
 type GetExoInformationBarrierRelationshipTableParams struct {
-	Horizontal                      bool `ps:"Horizontal"`
-	NoRelationshipTableVisualResult bool `ps:"NoRelationshipTableVisualResult"`
-	Organization                    any  `ps:"Organization"`
+	Horizontal                      *bool `ps:"Horizontal"`
+	NoRelationshipTableVisualResult *bool `ps:"NoRelationshipTableVisualResult"`
+	Organization                    any   `ps:"Organization"`
 }
 
 func (p GetExoInformationBarrierRelationshipTableParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Horizontal {
-		m["Horizontal"] = true
+	if p.Horizontal != nil {
+		m["Horizontal"] = *p.Horizontal
 	}
-	if p.NoRelationshipTableVisualResult {
-		m["NoRelationshipTableVisualResult"] = true
+	if p.NoRelationshipTableVisualResult != nil {
+		m["NoRelationshipTableVisualResult"] = *p.NoRelationshipTableVisualResult
 	}
 	if p.Organization != nil {
 		m["Organization"] = p.Organization
@@ -4988,8 +4988,8 @@ func (s *Service) GetExoInformationBarrierRelationshipTable(ctx context.Context,
 // GetExoInformationBarrierSegmentParams are the parameters of Get-ExoInformationBarrierSegment.
 // DefaultParameterSetName: Identity
 type GetExoInformationBarrierSegmentParams struct {
-	Identity           any  `ps:"Identity"` // InformationBarrierSegmentIdParameter
-	ShowFriendlyValues bool `ps:"ShowFriendlyValues"`
+	Identity           any   `ps:"Identity"` // InformationBarrierSegmentIdParameter
+	ShowFriendlyValues *bool `ps:"ShowFriendlyValues"`
 }
 
 func (p GetExoInformationBarrierSegmentParams) params() map[string]any {
@@ -4997,8 +4997,8 @@ func (p GetExoInformationBarrierSegmentParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ShowFriendlyValues {
-		m["ShowFriendlyValues"] = true
+	if p.ShowFriendlyValues != nil {
+		m["ShowFriendlyValues"] = *p.ShowFriendlyValues
 	}
 	return m
 }
@@ -5106,22 +5106,22 @@ func (s *Service) GetExoSecOpsOverrideRule(ctx context.Context, p GetExoSecOpsOv
 // GetExoSegmentsSnapshotParams are the parameters of Get-ExoSegmentsSnapshot.
 // DefaultParameterSetName: ReadAll
 type GetExoSegmentsSnapshotParams struct {
-	All                bool   `ps:"All"`
+	All                *bool  `ps:"All"`
 	Organization       any    `ps:"Organization"`
-	ShowTimestampsOnly bool   `ps:"ShowTimestampsOnly"`
+	ShowTimestampsOnly *bool  `ps:"ShowTimestampsOnly"`
 	Timestamp          string `ps:"Timestamp"`
 }
 
 func (p GetExoSegmentsSnapshotParams) params() map[string]any {
 	m := map[string]any{}
-	if p.All {
-		m["All"] = true
+	if p.All != nil {
+		m["All"] = *p.All
 	}
 	if p.Organization != nil {
 		m["Organization"] = p.Organization
 	}
-	if p.ShowTimestampsOnly {
-		m["ShowTimestampsOnly"] = true
+	if p.ShowTimestampsOnly != nil {
+		m["ShowTimestampsOnly"] = *p.ShowTimestampsOnly
 	}
 	if p.Timestamp != "" {
 		m["Timestamp"] = p.Timestamp
@@ -5201,8 +5201,8 @@ func (s *Service) GetExternalInOutlook(ctx context.Context, p GetExternalInOutlo
 // GetFederatedOrganizationIdentifierParams are the parameters of Get-FederatedOrganizationIdentifier.
 // DefaultParameterSetName: Identity
 type GetFederatedOrganizationIdentifierParams struct {
-	Identity                  any  `ps:"Identity"` // OrganizationIdParameter
-	IncludeExtendedDomainInfo bool `ps:"IncludeExtendedDomainInfo"`
+	Identity                  any   `ps:"Identity"` // OrganizationIdParameter
+	IncludeExtendedDomainInfo *bool `ps:"IncludeExtendedDomainInfo"`
 }
 
 func (p GetFederatedOrganizationIdentifierParams) params() map[string]any {
@@ -5210,8 +5210,8 @@ func (p GetFederatedOrganizationIdentifierParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeExtendedDomainInfo {
-		m["IncludeExtendedDomainInfo"] = true
+	if p.IncludeExtendedDomainInfo != nil {
+		m["IncludeExtendedDomainInfo"] = *p.IncludeExtendedDomainInfo
 	}
 	return m
 }
@@ -5223,22 +5223,22 @@ func (s *Service) GetFederatedOrganizationIdentifier(ctx context.Context, p GetF
 
 // GetFederationInformationParams are the parameters of Get-FederationInformation.
 type GetFederationInformationParams struct {
-	BypassAdditionalDomainValidation bool     `ps:"BypassAdditionalDomainValidation"`
+	BypassAdditionalDomainValidation *bool    `ps:"BypassAdditionalDomainValidation"`
 	DomainName                       any      `ps:"DomainName"` // SmtpDomain
-	Force                            bool     `ps:"Force"`
+	Force                            *bool    `ps:"Force"`
 	TrustedHostnames                 []string `ps:"TrustedHostnames"`
 }
 
 func (p GetFederationInformationParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassAdditionalDomainValidation {
-		m["BypassAdditionalDomainValidation"] = true
+	if p.BypassAdditionalDomainValidation != nil {
+		m["BypassAdditionalDomainValidation"] = *p.BypassAdditionalDomainValidation
 	}
 	if p.DomainName != nil {
 		m["DomainName"] = p.DomainName
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.TrustedHostnames != nil {
 		m["TrustedHostnames"] = p.TrustedHostnames
@@ -5299,8 +5299,8 @@ func (s *Service) GetFfoMigrationReport(ctx context.Context, p GetFfoMigrationRe
 // GetFocusedInboxParams are the parameters of Get-FocusedInbox.
 // DefaultParameterSetName: Identity
 type GetFocusedInboxParams struct {
-	Identity         any  `ps:"Identity"` // MailboxIdParameter
-	UseCustomRouting bool `ps:"UseCustomRouting"`
+	Identity         any   `ps:"Identity"` // MailboxIdParameter
+	UseCustomRouting *bool `ps:"UseCustomRouting"`
 }
 
 func (p GetFocusedInboxParams) params() map[string]any {
@@ -5308,8 +5308,8 @@ func (p GetFocusedInboxParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -5577,21 +5577,21 @@ func (s *Service) GetInboundConnector(ctx context.Context, p GetInboundConnector
 // GetInboxRuleParams are the parameters of Get-InboxRule.
 // DefaultParameterSetName: Identity
 type GetInboxRuleParams struct {
-	BypassScopeCheck      bool   `ps:"BypassScopeCheck"`
+	BypassScopeCheck      *bool  `ps:"BypassScopeCheck"`
 	DescriptionTimeFormat string `ps:"DescriptionTimeFormat"`
 	DescriptionTimeZone   any    `ps:"DescriptionTimeZone"` // ExTimeZoneValue
 	Identity              any    `ps:"Identity"`            // InboxRuleIdParameter
-	IncludeHidden         bool   `ps:"IncludeHidden"`
+	IncludeHidden         *bool  `ps:"IncludeHidden"`
 	Mailbox               any    `ps:"Mailbox"`    // MailboxIdParameter
 	ResultSize            any    `ps:"ResultSize"` // Unlimited
 	SkipCount             *int64 `ps:"SkipCount"`
-	UseCustomRouting      bool   `ps:"UseCustomRouting"`
+	UseCustomRouting      *bool  `ps:"UseCustomRouting"`
 }
 
 func (p GetInboxRuleParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassScopeCheck {
-		m["BypassScopeCheck"] = true
+	if p.BypassScopeCheck != nil {
+		m["BypassScopeCheck"] = *p.BypassScopeCheck
 	}
 	if p.DescriptionTimeFormat != "" {
 		m["DescriptionTimeFormat"] = p.DescriptionTimeFormat
@@ -5602,8 +5602,8 @@ func (p GetInboxRuleParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeHidden {
-		m["IncludeHidden"] = true
+	if p.IncludeHidden != nil {
+		m["IncludeHidden"] = *p.IncludeHidden
 	}
 	if p.Mailbox != nil {
 		m["Mailbox"] = p.Mailbox
@@ -5614,8 +5614,8 @@ func (p GetInboxRuleParams) params() map[string]any {
 	if p.SkipCount != nil {
 		m["SkipCount"] = *p.SkipCount
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -6417,8 +6417,8 @@ type GetMailPublicFolderParams struct {
 	Credential                                 any    `ps:"Credential"` // PSCredential
 	Filter                                     string `ps:"Filter"`
 	Identity                                   any    `ps:"Identity"` // MailPublicFolderIdParameter
-	IgnoreDefaultScope                         bool   `ps:"IgnoreDefaultScope"`
-	IncludeGrantSendOnBehalfToWithDisplayNames bool   `ps:"IncludeGrantSendOnBehalfToWithDisplayNames"`
+	IgnoreDefaultScope                         *bool  `ps:"IgnoreDefaultScope"`
+	IncludeGrantSendOnBehalfToWithDisplayNames *bool  `ps:"IncludeGrantSendOnBehalfToWithDisplayNames"`
 	ResultSize                                 any    `ps:"ResultSize"` // Unlimited
 	SortBy                                     string `ps:"SortBy"`
 }
@@ -6437,11 +6437,11 @@ func (p GetMailPublicFolderParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDefaultScope {
-		m["IgnoreDefaultScope"] = true
+	if p.IgnoreDefaultScope != nil {
+		m["IgnoreDefaultScope"] = *p.IgnoreDefaultScope
 	}
-	if p.IncludeGrantSendOnBehalfToWithDisplayNames {
-		m["IncludeGrantSendOnBehalfToWithDisplayNames"] = true
+	if p.IncludeGrantSendOnBehalfToWithDisplayNames != nil {
+		m["IncludeGrantSendOnBehalfToWithDisplayNames"] = *p.IncludeGrantSendOnBehalfToWithDisplayNames
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -6706,12 +6706,12 @@ func (s *Service) GetMailTrafficSummaryReport(ctx context.Context, p GetMailTraf
 type GetMailUserParams struct {
 	Anr                 string `ps:"Anr"`
 	Filter              string `ps:"Filter"`
-	HVEAccount          bool   `ps:"HVEAccount"`
+	HVEAccount          *bool  `ps:"HVEAccount"`
 	Identity            any    `ps:"Identity"`           // MailUserIdParameter
 	OrganizationalUnit  any    `ps:"OrganizationalUnit"` // OrganizationalUnitIdParameter
 	ResultSize          any    `ps:"ResultSize"`         // Unlimited
-	SharedWithMailUser  bool   `ps:"SharedWithMailUser"`
-	SoftDeletedMailUser bool   `ps:"SoftDeletedMailUser"`
+	SharedWithMailUser  *bool  `ps:"SharedWithMailUser"`
+	SoftDeletedMailUser *bool  `ps:"SoftDeletedMailUser"`
 	SortBy              string `ps:"SortBy"`
 }
 
@@ -6723,8 +6723,8 @@ func (p GetMailUserParams) params() map[string]any {
 	if p.Filter != "" {
 		m["Filter"] = p.Filter
 	}
-	if p.HVEAccount {
-		m["HVEAccount"] = true
+	if p.HVEAccount != nil {
+		m["HVEAccount"] = *p.HVEAccount
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -6735,11 +6735,11 @@ func (p GetMailUserParams) params() map[string]any {
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
 	}
-	if p.SharedWithMailUser {
-		m["SharedWithMailUser"] = true
+	if p.SharedWithMailUser != nil {
+		m["SharedWithMailUser"] = *p.SharedWithMailUser
 	}
-	if p.SoftDeletedMailUser {
-		m["SoftDeletedMailUser"] = true
+	if p.SoftDeletedMailUser != nil {
+		m["SoftDeletedMailUser"] = *p.SoftDeletedMailUser
 	}
 	if p.SortBy != "" {
 		m["SortBy"] = p.SortBy
@@ -6756,25 +6756,25 @@ func (s *Service) GetMailUser(ctx context.Context, p GetMailUserParams) (*admina
 // DefaultParameterSetName: Identity
 type GetMailboxParams struct {
 	Anr                                                           string   `ps:"Anr"`
-	Archive                                                       bool     `ps:"Archive"`
+	Archive                                                       *bool    `ps:"Archive"`
 	Filter                                                        string   `ps:"Filter"`
-	GroupMailbox                                                  bool     `ps:"GroupMailbox"`
+	GroupMailbox                                                  *bool    `ps:"GroupMailbox"`
 	Identity                                                      any      `ps:"Identity"` // MailboxIdParameter
-	InactiveMailboxOnly                                           bool     `ps:"InactiveMailboxOnly"`
-	IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames        bool     `ps:"IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"`
-	IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames bool     `ps:"IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"`
-	IncludeAcceptMessagesOnlyFromWithDisplayNames                 bool     `ps:"IncludeAcceptMessagesOnlyFromWithDisplayNames"`
-	IncludeEmailAddressDisplayNames                               bool     `ps:"IncludeEmailAddressDisplayNames"`
-	IncludeForwardingAddressWithDisplayNames                      bool     `ps:"IncludeForwardingAddressWithDisplayNames"`
-	IncludeGrantSendOnBehalfToWithDisplayNames                    bool     `ps:"IncludeGrantSendOnBehalfToWithDisplayNames"`
-	IncludeInactiveMailbox                                        bool     `ps:"IncludeInactiveMailbox"`
+	InactiveMailboxOnly                                           *bool    `ps:"InactiveMailboxOnly"`
+	IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames        *bool    `ps:"IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"`
+	IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames *bool    `ps:"IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"`
+	IncludeAcceptMessagesOnlyFromWithDisplayNames                 *bool    `ps:"IncludeAcceptMessagesOnlyFromWithDisplayNames"`
+	IncludeEmailAddressDisplayNames                               *bool    `ps:"IncludeEmailAddressDisplayNames"`
+	IncludeForwardingAddressWithDisplayNames                      *bool    `ps:"IncludeForwardingAddressWithDisplayNames"`
+	IncludeGrantSendOnBehalfToWithDisplayNames                    *bool    `ps:"IncludeGrantSendOnBehalfToWithDisplayNames"`
+	IncludeInactiveMailbox                                        *bool    `ps:"IncludeInactiveMailbox"`
 	MailboxPlan                                                   any      `ps:"MailboxPlan"` // MailboxPlanIdParameter
-	Migration                                                     bool     `ps:"Migration"`
+	Migration                                                     *bool    `ps:"Migration"`
 	OrganizationalUnit                                            any      `ps:"OrganizationalUnit"` // OrganizationalUnitIdParameter
-	PublicFolder                                                  bool     `ps:"PublicFolder"`
+	PublicFolder                                                  *bool    `ps:"PublicFolder"`
 	RecipientTypeDetails                                          []string `ps:"RecipientTypeDetails"`
 	ResultSize                                                    any      `ps:"ResultSize"` // Unlimited
-	SoftDeletedMailbox                                            bool     `ps:"SoftDeletedMailbox"`
+	SoftDeletedMailbox                                            *bool    `ps:"SoftDeletedMailbox"`
 	SortBy                                                        string   `ps:"SortBy"`
 }
 
@@ -6783,53 +6783,53 @@ func (p GetMailboxParams) params() map[string]any {
 	if p.Anr != "" {
 		m["Anr"] = p.Anr
 	}
-	if p.Archive {
-		m["Archive"] = true
+	if p.Archive != nil {
+		m["Archive"] = *p.Archive
 	}
 	if p.Filter != "" {
 		m["Filter"] = p.Filter
 	}
-	if p.GroupMailbox {
-		m["GroupMailbox"] = true
+	if p.GroupMailbox != nil {
+		m["GroupMailbox"] = *p.GroupMailbox
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.InactiveMailboxOnly {
-		m["InactiveMailboxOnly"] = true
+	if p.InactiveMailboxOnly != nil {
+		m["InactiveMailboxOnly"] = *p.InactiveMailboxOnly
 	}
-	if p.IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames {
-		m["IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"] = true
+	if p.IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames != nil {
+		m["IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames"] = *p.IncludeAcceptMessagesOnlyFromDLMembersWithDisplayNames
 	}
-	if p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames {
-		m["IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"] = true
+	if p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames != nil {
+		m["IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"] = *p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames
 	}
-	if p.IncludeAcceptMessagesOnlyFromWithDisplayNames {
-		m["IncludeAcceptMessagesOnlyFromWithDisplayNames"] = true
+	if p.IncludeAcceptMessagesOnlyFromWithDisplayNames != nil {
+		m["IncludeAcceptMessagesOnlyFromWithDisplayNames"] = *p.IncludeAcceptMessagesOnlyFromWithDisplayNames
 	}
-	if p.IncludeEmailAddressDisplayNames {
-		m["IncludeEmailAddressDisplayNames"] = true
+	if p.IncludeEmailAddressDisplayNames != nil {
+		m["IncludeEmailAddressDisplayNames"] = *p.IncludeEmailAddressDisplayNames
 	}
-	if p.IncludeForwardingAddressWithDisplayNames {
-		m["IncludeForwardingAddressWithDisplayNames"] = true
+	if p.IncludeForwardingAddressWithDisplayNames != nil {
+		m["IncludeForwardingAddressWithDisplayNames"] = *p.IncludeForwardingAddressWithDisplayNames
 	}
-	if p.IncludeGrantSendOnBehalfToWithDisplayNames {
-		m["IncludeGrantSendOnBehalfToWithDisplayNames"] = true
+	if p.IncludeGrantSendOnBehalfToWithDisplayNames != nil {
+		m["IncludeGrantSendOnBehalfToWithDisplayNames"] = *p.IncludeGrantSendOnBehalfToWithDisplayNames
 	}
-	if p.IncludeInactiveMailbox {
-		m["IncludeInactiveMailbox"] = true
+	if p.IncludeInactiveMailbox != nil {
+		m["IncludeInactiveMailbox"] = *p.IncludeInactiveMailbox
 	}
 	if p.MailboxPlan != nil {
 		m["MailboxPlan"] = p.MailboxPlan
 	}
-	if p.Migration {
-		m["Migration"] = true
+	if p.Migration != nil {
+		m["Migration"] = *p.Migration
 	}
 	if p.OrganizationalUnit != nil {
 		m["OrganizationalUnit"] = p.OrganizationalUnit
 	}
-	if p.PublicFolder {
-		m["PublicFolder"] = true
+	if p.PublicFolder != nil {
+		m["PublicFolder"] = *p.PublicFolder
 	}
 	if p.RecipientTypeDetails != nil {
 		m["RecipientTypeDetails"] = p.RecipientTypeDetails
@@ -6837,8 +6837,8 @@ func (p GetMailboxParams) params() map[string]any {
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
 	}
-	if p.SoftDeletedMailbox {
-		m["SoftDeletedMailbox"] = true
+	if p.SoftDeletedMailbox != nil {
+		m["SoftDeletedMailbox"] = *p.SoftDeletedMailbox
 	}
 	if p.SortBy != "" {
 		m["SortBy"] = p.SortBy
@@ -6885,28 +6885,28 @@ func (s *Service) GetMailboxAnalysisRequest(ctx context.Context, p GetMailboxAna
 // GetMailboxAnalysisRequestStatisticsParams are the parameters of Get-MailboxAnalysisRequestStatistics.
 // DefaultParameterSetName: Identity
 type GetMailboxAnalysisRequestStatisticsParams struct {
-	ArchiveRecoverableItemsOnly bool   `ps:"ArchiveRecoverableItemsOnly"`
-	Auto                        bool   `ps:"Auto"`
+	ArchiveRecoverableItemsOnly *bool  `ps:"ArchiveRecoverableItemsOnly"`
+	Auto                        *bool  `ps:"Auto"`
 	CSVData                     any    `ps:"CSVData"`
 	DiagnosticInfo              string `ps:"DiagnosticInfo"`
 	FolderScope                 any    `ps:"FolderScope"`
 	Identity                    any    `ps:"Identity"`
-	IncludeAnalysisResult       bool   `ps:"IncludeAnalysisResult"`
-	IncludeFolderDetails        bool   `ps:"IncludeFolderDetails"`
-	IncludeMappingResult        bool   `ps:"IncludeMappingResult"`
-	IncludeReport               bool   `ps:"IncludeReport"`
+	IncludeAnalysisResult       *bool  `ps:"IncludeAnalysisResult"`
+	IncludeFolderDetails        *bool  `ps:"IncludeFolderDetails"`
+	IncludeMappingResult        *bool  `ps:"IncludeMappingResult"`
+	IncludeReport               *bool  `ps:"IncludeReport"`
 	ItemsEndTime                string `ps:"ItemsEndTime"`
 	ItemsStartTime              string `ps:"ItemsStartTime"`
-	ReportOnly                  bool   `ps:"ReportOnly"`
+	ReportOnly                  *bool  `ps:"ReportOnly"`
 }
 
 func (p GetMailboxAnalysisRequestStatisticsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ArchiveRecoverableItemsOnly {
-		m["ArchiveRecoverableItemsOnly"] = true
+	if p.ArchiveRecoverableItemsOnly != nil {
+		m["ArchiveRecoverableItemsOnly"] = *p.ArchiveRecoverableItemsOnly
 	}
-	if p.Auto {
-		m["Auto"] = true
+	if p.Auto != nil {
+		m["Auto"] = *p.Auto
 	}
 	if p.CSVData != nil {
 		m["CSVData"] = p.CSVData
@@ -6920,17 +6920,17 @@ func (p GetMailboxAnalysisRequestStatisticsParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeAnalysisResult {
-		m["IncludeAnalysisResult"] = true
+	if p.IncludeAnalysisResult != nil {
+		m["IncludeAnalysisResult"] = *p.IncludeAnalysisResult
 	}
-	if p.IncludeFolderDetails {
-		m["IncludeFolderDetails"] = true
+	if p.IncludeFolderDetails != nil {
+		m["IncludeFolderDetails"] = *p.IncludeFolderDetails
 	}
-	if p.IncludeMappingResult {
-		m["IncludeMappingResult"] = true
+	if p.IncludeMappingResult != nil {
+		m["IncludeMappingResult"] = *p.IncludeMappingResult
 	}
-	if p.IncludeReport {
-		m["IncludeReport"] = true
+	if p.IncludeReport != nil {
+		m["IncludeReport"] = *p.IncludeReport
 	}
 	if p.ItemsEndTime != "" {
 		m["ItemsEndTime"] = p.ItemsEndTime
@@ -6938,8 +6938,8 @@ func (p GetMailboxAnalysisRequestStatisticsParams) params() map[string]any {
 	if p.ItemsStartTime != "" {
 		m["ItemsStartTime"] = p.ItemsStartTime
 	}
-	if p.ReportOnly {
-		m["ReportOnly"] = true
+	if p.ReportOnly != nil {
+		m["ReportOnly"] = *p.ReportOnly
 	}
 	return m
 }
@@ -6974,11 +6974,11 @@ func (s *Service) GetMailboxAuditBypassAssociation(ctx context.Context, p GetMai
 
 // GetMailboxAutoReplyConfigurationParams are the parameters of Get-MailboxAutoReplyConfiguration.
 type GetMailboxAutoReplyConfigurationParams struct {
-	Credential               any  `ps:"Credential"` // PSCredential
-	Identity                 any  `ps:"Identity"`   // MailboxIdParameter
-	ReadFromDomainController bool `ps:"ReadFromDomainController"`
-	ResultSize               any  `ps:"ResultSize"` // Unlimited
-	UseCustomRouting         bool `ps:"UseCustomRouting"`
+	Credential               any   `ps:"Credential"` // PSCredential
+	Identity                 any   `ps:"Identity"`   // MailboxIdParameter
+	ReadFromDomainController *bool `ps:"ReadFromDomainController"`
+	ResultSize               any   `ps:"ResultSize"` // Unlimited
+	UseCustomRouting         *bool `ps:"UseCustomRouting"`
 }
 
 func (p GetMailboxAutoReplyConfigurationParams) params() map[string]any {
@@ -6989,14 +6989,14 @@ func (p GetMailboxAutoReplyConfigurationParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ReadFromDomainController {
-		m["ReadFromDomainController"] = true
+	if p.ReadFromDomainController != nil {
+		m["ReadFromDomainController"] = *p.ReadFromDomainController
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -7031,8 +7031,8 @@ func (s *Service) GetMailboxCalendarConfiguration(ctx context.Context, p GetMail
 // GetMailboxCalendarFolderParams are the parameters of Get-MailboxCalendarFolder.
 // DefaultParameterSetName: Identity
 type GetMailboxCalendarFolderParams struct {
-	Identity         any  `ps:"Identity"` // MailboxFolderIdParameter
-	UseCustomRouting bool `ps:"UseCustomRouting"`
+	Identity         any   `ps:"Identity"` // MailboxFolderIdParameter
+	UseCustomRouting *bool `ps:"UseCustomRouting"`
 }
 
 func (p GetMailboxCalendarFolderParams) params() map[string]any {
@@ -7040,8 +7040,8 @@ func (p GetMailboxCalendarFolderParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -7091,26 +7091,26 @@ func (s *Service) GetMailboxExtendedPropertyCleanupRequest(ctx context.Context, 
 // GetMailboxFolderParams are the parameters of Get-MailboxFolder.
 // DefaultParameterSetName: Identity
 type GetMailboxFolderParams struct {
-	GetChildren    bool `ps:"GetChildren"`
-	Identity       any  `ps:"Identity"` // MailboxFolderIdParameter
-	MailFolderOnly bool `ps:"MailFolderOnly"`
-	Recurse        bool `ps:"Recurse"`
-	ResultSize     any  `ps:"ResultSize"` // Unlimited
+	GetChildren    *bool `ps:"GetChildren"`
+	Identity       any   `ps:"Identity"` // MailboxFolderIdParameter
+	MailFolderOnly *bool `ps:"MailFolderOnly"`
+	Recurse        *bool `ps:"Recurse"`
+	ResultSize     any   `ps:"ResultSize"` // Unlimited
 }
 
 func (p GetMailboxFolderParams) params() map[string]any {
 	m := map[string]any{}
-	if p.GetChildren {
-		m["GetChildren"] = true
+	if p.GetChildren != nil {
+		m["GetChildren"] = *p.GetChildren
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.MailFolderOnly {
-		m["MailFolderOnly"] = true
+	if p.MailFolderOnly != nil {
+		m["MailFolderOnly"] = *p.MailFolderOnly
 	}
-	if p.Recurse {
-		m["Recurse"] = true
+	if p.Recurse != nil {
+		m["Recurse"] = *p.Recurse
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -7126,18 +7126,18 @@ func (s *Service) GetMailboxFolder(ctx context.Context, p GetMailboxFolderParams
 // GetMailboxFolderPermissionParams are the parameters of Get-MailboxFolderPermission.
 // DefaultParameterSetName: Identity
 type GetMailboxFolderPermissionParams struct {
-	GroupMailbox     bool   `ps:"GroupMailbox"`
+	GroupMailbox     *bool  `ps:"GroupMailbox"`
 	Identity         any    `ps:"Identity"`   // MailboxFolderIdParameter
 	ResultSize       any    `ps:"ResultSize"` // Unlimited
 	SkipCount        *int64 `ps:"SkipCount"`
 	User             any    `ps:"User"` // MailboxFolderUserIdParameter
-	UseCustomRouting bool   `ps:"UseCustomRouting"`
+	UseCustomRouting *bool  `ps:"UseCustomRouting"`
 }
 
 func (p GetMailboxFolderPermissionParams) params() map[string]any {
 	m := map[string]any{}
-	if p.GroupMailbox {
-		m["GroupMailbox"] = true
+	if p.GroupMailbox != nil {
+		m["GroupMailbox"] = *p.GroupMailbox
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -7151,8 +7151,8 @@ func (p GetMailboxFolderPermissionParams) params() map[string]any {
 	if p.User != nil {
 		m["User"] = p.User
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -7165,24 +7165,24 @@ func (s *Service) GetMailboxFolderPermission(ctx context.Context, p GetMailboxFo
 // GetMailboxFolderStatisticsParams are the parameters of Get-MailboxFolderStatistics.
 // DefaultParameterSetName: Identity
 type GetMailboxFolderStatisticsParams struct {
-	Archive                      bool   `ps:"Archive"`
+	Archive                      *bool  `ps:"Archive"`
 	Database                     any    `ps:"Database"` // DatabaseIdParameter
 	DiagnosticInfo               string `ps:"DiagnosticInfo"`
 	FolderScope                  any    `ps:"FolderScope"` // ElcFolderType
 	Identity                     any    `ps:"Identity"`    // GeneralMailboxOrMailUserIdParameter
-	IncludeAnalysis              bool   `ps:"IncludeAnalysis"`
-	IncludeOldestAndNewestItems  bool   `ps:"IncludeOldestAndNewestItems"`
-	IncludeSoftDeletedRecipients bool   `ps:"IncludeSoftDeletedRecipients"`
+	IncludeAnalysis              *bool  `ps:"IncludeAnalysis"`
+	IncludeOldestAndNewestItems  *bool  `ps:"IncludeOldestAndNewestItems"`
+	IncludeSoftDeletedRecipients *bool  `ps:"IncludeSoftDeletedRecipients"`
 	ResultSize                   any    `ps:"ResultSize"` // Unlimited
 	SkipCount                    *int64 `ps:"SkipCount"`
 	StoreMailboxIdentity         any    `ps:"StoreMailboxIdentity"` // StoreMailboxIdParameter
-	UseCustomRouting             bool   `ps:"UseCustomRouting"`
+	UseCustomRouting             *bool  `ps:"UseCustomRouting"`
 }
 
 func (p GetMailboxFolderStatisticsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Archive {
-		m["Archive"] = true
+	if p.Archive != nil {
+		m["Archive"] = *p.Archive
 	}
 	if p.Database != nil {
 		m["Database"] = p.Database
@@ -7196,14 +7196,14 @@ func (p GetMailboxFolderStatisticsParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeAnalysis {
-		m["IncludeAnalysis"] = true
+	if p.IncludeAnalysis != nil {
+		m["IncludeAnalysis"] = *p.IncludeAnalysis
 	}
-	if p.IncludeOldestAndNewestItems {
-		m["IncludeOldestAndNewestItems"] = true
+	if p.IncludeOldestAndNewestItems != nil {
+		m["IncludeOldestAndNewestItems"] = *p.IncludeOldestAndNewestItems
 	}
-	if p.IncludeSoftDeletedRecipients {
-		m["IncludeSoftDeletedRecipients"] = true
+	if p.IncludeSoftDeletedRecipients != nil {
+		m["IncludeSoftDeletedRecipients"] = *p.IncludeSoftDeletedRecipients
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -7214,8 +7214,8 @@ func (p GetMailboxFolderStatisticsParams) params() map[string]any {
 	if p.StoreMailboxIdentity != nil {
 		m["StoreMailboxIdentity"] = p.StoreMailboxIdentity
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -7249,10 +7249,10 @@ func (s *Service) GetMailboxIRMAccess(ctx context.Context, p GetMailboxIRMAccess
 
 // GetMailboxJunkEmailConfigurationParams are the parameters of Get-MailboxJunkEmailConfiguration.
 type GetMailboxJunkEmailConfigurationParams struct {
-	Credential               any  `ps:"Credential"` // PSCredential
-	Identity                 any  `ps:"Identity"`   // MailboxIdParameter
-	ReadFromDomainController bool `ps:"ReadFromDomainController"`
-	ResultSize               any  `ps:"ResultSize"` // Unlimited
+	Credential               any   `ps:"Credential"` // PSCredential
+	Identity                 any   `ps:"Identity"`   // MailboxIdParameter
+	ReadFromDomainController *bool `ps:"ReadFromDomainController"`
+	ResultSize               any   `ps:"ResultSize"` // Unlimited
 }
 
 func (p GetMailboxJunkEmailConfigurationParams) params() map[string]any {
@@ -7263,8 +7263,8 @@ func (p GetMailboxJunkEmailConfigurationParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ReadFromDomainController {
-		m["ReadFromDomainController"] = true
+	if p.ReadFromDomainController != nil {
+		m["ReadFromDomainController"] = *p.ReadFromDomainController
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -7280,11 +7280,11 @@ func (s *Service) GetMailboxJunkEmailConfiguration(ctx context.Context, p GetMai
 // GetMailboxLocationParams are the parameters of Get-MailboxLocation.
 // DefaultParameterSetName: Identity
 type GetMailboxLocationParams struct {
-	Identity               any  `ps:"Identity"` // MailboxLocationIdParameter
-	IncludePreviousPrimary bool `ps:"IncludePreviousPrimary"`
-	MailboxLocationType    any  `ps:"MailboxLocationType"` // MailboxLocationType
-	ResultSize             any  `ps:"ResultSize"`          // Unlimited
-	User                   any  `ps:"User"`                // UserIdParameter
+	Identity               any   `ps:"Identity"` // MailboxLocationIdParameter
+	IncludePreviousPrimary *bool `ps:"IncludePreviousPrimary"`
+	MailboxLocationType    any   `ps:"MailboxLocationType"` // MailboxLocationType
+	ResultSize             any   `ps:"ResultSize"`          // Unlimited
+	User                   any   `ps:"User"`                // UserIdParameter
 }
 
 func (p GetMailboxLocationParams) params() map[string]any {
@@ -7292,8 +7292,8 @@ func (p GetMailboxLocationParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludePreviousPrimary {
-		m["IncludePreviousPrimary"] = true
+	if p.IncludePreviousPrimary != nil {
+		m["IncludePreviousPrimary"] = *p.IncludePreviousPrimary
 	}
 	if p.MailboxLocationType != nil {
 		m["MailboxLocationType"] = p.MailboxLocationType
@@ -7316,10 +7316,10 @@ func (s *Service) GetMailboxLocation(ctx context.Context, p GetMailboxLocationPa
 type GetMailboxMessageConfigurationParams struct {
 	Credential               any    `ps:"Credential"` // PSCredential
 	Identity                 any    `ps:"Identity"`   // MailboxIdParameter
-	ReadFromDomainController bool   `ps:"ReadFromDomainController"`
+	ReadFromDomainController *bool  `ps:"ReadFromDomainController"`
 	ResultSize               any    `ps:"ResultSize"` // Unlimited
 	SignatureName            string `ps:"SignatureName"`
-	UseCustomRouting         bool   `ps:"UseCustomRouting"`
+	UseCustomRouting         *bool  `ps:"UseCustomRouting"`
 }
 
 func (p GetMailboxMessageConfigurationParams) params() map[string]any {
@@ -7330,8 +7330,8 @@ func (p GetMailboxMessageConfigurationParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ReadFromDomainController {
-		m["ReadFromDomainController"] = true
+	if p.ReadFromDomainController != nil {
+		m["ReadFromDomainController"] = *p.ReadFromDomainController
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -7339,8 +7339,8 @@ func (p GetMailboxMessageConfigurationParams) params() map[string]any {
 	if p.SignatureName != "" {
 		m["SignatureName"] = p.SignatureName
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -7371,18 +7371,18 @@ func (s *Service) GetMailboxOverrideConfiguration(ctx context.Context, p GetMail
 // GetMailboxPermissionParams are the parameters of Get-MailboxPermission.
 // DefaultParameterSetName: AccessRights
 type GetMailboxPermissionParams struct {
-	Credential                        any  `ps:"Credential"` // PSCredential
-	GroupMailbox                      bool `ps:"GroupMailbox"`
-	Identity                          any  `ps:"Identity"` // MailboxIdParameter
-	IncludeSoftDeletedUserPermissions bool `ps:"IncludeSoftDeletedUserPermissions"`
-	IncludeUnresolvedPermissions      bool `ps:"IncludeUnresolvedPermissions"`
-	IncludeUserWithDisplayName        bool `ps:"IncludeUserWithDisplayName"`
-	Owner                             bool `ps:"Owner"`
-	ReadFromDomainController          bool `ps:"ReadFromDomainController"`
-	ResultSize                        any  `ps:"ResultSize"` // Unlimited
-	SoftDeletedMailbox                bool `ps:"SoftDeletedMailbox"`
-	User                              any  `ps:"User"` // SecurityPrincipalIdParameter
-	UseCustomRouting                  bool `ps:"UseCustomRouting"`
+	Credential                        any   `ps:"Credential"` // PSCredential
+	GroupMailbox                      *bool `ps:"GroupMailbox"`
+	Identity                          any   `ps:"Identity"` // MailboxIdParameter
+	IncludeSoftDeletedUserPermissions *bool `ps:"IncludeSoftDeletedUserPermissions"`
+	IncludeUnresolvedPermissions      *bool `ps:"IncludeUnresolvedPermissions"`
+	IncludeUserWithDisplayName        *bool `ps:"IncludeUserWithDisplayName"`
+	Owner                             *bool `ps:"Owner"`
+	ReadFromDomainController          *bool `ps:"ReadFromDomainController"`
+	ResultSize                        any   `ps:"ResultSize"` // Unlimited
+	SoftDeletedMailbox                *bool `ps:"SoftDeletedMailbox"`
+	User                              any   `ps:"User"` // SecurityPrincipalIdParameter
+	UseCustomRouting                  *bool `ps:"UseCustomRouting"`
 }
 
 func (p GetMailboxPermissionParams) params() map[string]any {
@@ -7390,38 +7390,38 @@ func (p GetMailboxPermissionParams) params() map[string]any {
 	if p.Credential != nil {
 		m["Credential"] = p.Credential
 	}
-	if p.GroupMailbox {
-		m["GroupMailbox"] = true
+	if p.GroupMailbox != nil {
+		m["GroupMailbox"] = *p.GroupMailbox
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeSoftDeletedUserPermissions {
-		m["IncludeSoftDeletedUserPermissions"] = true
+	if p.IncludeSoftDeletedUserPermissions != nil {
+		m["IncludeSoftDeletedUserPermissions"] = *p.IncludeSoftDeletedUserPermissions
 	}
-	if p.IncludeUnresolvedPermissions {
-		m["IncludeUnresolvedPermissions"] = true
+	if p.IncludeUnresolvedPermissions != nil {
+		m["IncludeUnresolvedPermissions"] = *p.IncludeUnresolvedPermissions
 	}
-	if p.IncludeUserWithDisplayName {
-		m["IncludeUserWithDisplayName"] = true
+	if p.IncludeUserWithDisplayName != nil {
+		m["IncludeUserWithDisplayName"] = *p.IncludeUserWithDisplayName
 	}
-	if p.Owner {
-		m["Owner"] = true
+	if p.Owner != nil {
+		m["Owner"] = *p.Owner
 	}
-	if p.ReadFromDomainController {
-		m["ReadFromDomainController"] = true
+	if p.ReadFromDomainController != nil {
+		m["ReadFromDomainController"] = *p.ReadFromDomainController
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
 	}
-	if p.SoftDeletedMailbox {
-		m["SoftDeletedMailbox"] = true
+	if p.SoftDeletedMailbox != nil {
+		m["SoftDeletedMailbox"] = *p.SoftDeletedMailbox
 	}
 	if p.User != nil {
 		m["User"] = p.User
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -7434,19 +7434,19 @@ func (s *Service) GetMailboxPermission(ctx context.Context, p GetMailboxPermissi
 // GetMailboxPlanParams are the parameters of Get-MailboxPlan.
 // DefaultParameterSetName: Identity
 type GetMailboxPlanParams struct {
-	AllMailboxPlanReleases bool   `ps:"AllMailboxPlanReleases"`
+	AllMailboxPlanReleases *bool  `ps:"AllMailboxPlanReleases"`
 	Credential             any    `ps:"Credential"` // PSCredential
 	Filter                 string `ps:"Filter"`
 	Identity               any    `ps:"Identity"` // MailboxPlanIdParameter
-	IgnoreDefaultScope     bool   `ps:"IgnoreDefaultScope"`
+	IgnoreDefaultScope     *bool  `ps:"IgnoreDefaultScope"`
 	ResultSize             any    `ps:"ResultSize"` // Unlimited
 	SortBy                 string `ps:"SortBy"`
 }
 
 func (p GetMailboxPlanParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AllMailboxPlanReleases {
-		m["AllMailboxPlanReleases"] = true
+	if p.AllMailboxPlanReleases != nil {
+		m["AllMailboxPlanReleases"] = *p.AllMailboxPlanReleases
 	}
 	if p.Credential != nil {
 		m["Credential"] = p.Credential
@@ -7457,8 +7457,8 @@ func (p GetMailboxPlanParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDefaultScope {
-		m["IgnoreDefaultScope"] = true
+	if p.IgnoreDefaultScope != nil {
+		m["IgnoreDefaultScope"] = *p.IgnoreDefaultScope
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -7476,17 +7476,17 @@ func (s *Service) GetMailboxPlan(ctx context.Context, p GetMailboxPlanParams) (*
 
 // GetMailboxRegionalConfigurationParams are the parameters of Get-MailboxRegionalConfiguration.
 type GetMailboxRegionalConfigurationParams struct {
-	Archive                         bool `ps:"Archive"`
-	Identity                        any  `ps:"Identity"`        // MailboxIdParameter
-	MailboxLocation                 any  `ps:"MailboxLocation"` // MailboxLocationIdParameter
-	VerifyDefaultFolderNameLanguage bool `ps:"VerifyDefaultFolderNameLanguage"`
-	UseCustomRouting                bool `ps:"UseCustomRouting"`
+	Archive                         *bool `ps:"Archive"`
+	Identity                        any   `ps:"Identity"`        // MailboxIdParameter
+	MailboxLocation                 any   `ps:"MailboxLocation"` // MailboxLocationIdParameter
+	VerifyDefaultFolderNameLanguage *bool `ps:"VerifyDefaultFolderNameLanguage"`
+	UseCustomRouting                *bool `ps:"UseCustomRouting"`
 }
 
 func (p GetMailboxRegionalConfigurationParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Archive {
-		m["Archive"] = true
+	if p.Archive != nil {
+		m["Archive"] = *p.Archive
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -7494,11 +7494,11 @@ func (p GetMailboxRegionalConfigurationParams) params() map[string]any {
 	if p.MailboxLocation != nil {
 		m["MailboxLocation"] = p.MailboxLocation
 	}
-	if p.VerifyDefaultFolderNameLanguage {
-		m["VerifyDefaultFolderNameLanguage"] = true
+	if p.VerifyDefaultFolderNameLanguage != nil {
+		m["VerifyDefaultFolderNameLanguage"] = *p.VerifyDefaultFolderNameLanguage
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -7560,9 +7560,9 @@ func (s *Service) GetMailboxRestoreRequest(ctx context.Context, p GetMailboxRest
 type GetMailboxRestoreRequestStatisticsParams struct {
 	DiagnosticInfo      string `ps:"DiagnosticInfo"`
 	Identity            any    `ps:"Identity"` // MailboxRestoreRequestIdParameter
-	IncludeReport       bool   `ps:"IncludeReport"`
-	IncludeSkippedItems bool   `ps:"IncludeSkippedItems"`
-	ReportOnly          bool   `ps:"ReportOnly"`
+	IncludeReport       *bool  `ps:"IncludeReport"`
+	IncludeSkippedItems *bool  `ps:"IncludeSkippedItems"`
+	ReportOnly          *bool  `ps:"ReportOnly"`
 }
 
 func (p GetMailboxRestoreRequestStatisticsParams) params() map[string]any {
@@ -7573,14 +7573,14 @@ func (p GetMailboxRestoreRequestStatisticsParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeReport {
-		m["IncludeReport"] = true
+	if p.IncludeReport != nil {
+		m["IncludeReport"] = *p.IncludeReport
 	}
-	if p.IncludeSkippedItems {
-		m["IncludeSkippedItems"] = true
+	if p.IncludeSkippedItems != nil {
+		m["IncludeSkippedItems"] = *p.IncludeSkippedItems
 	}
-	if p.ReportOnly {
-		m["ReportOnly"] = true
+	if p.ReportOnly != nil {
+		m["ReportOnly"] = *p.ReportOnly
 	}
 	return m
 }
@@ -7596,7 +7596,7 @@ type GetMailboxSearchParams struct {
 	Identity                       any    `ps:"Identity"` // SearchObjectIdParameter
 	InPlaceHoldIdentity            string `ps:"InPlaceHoldIdentity"`
 	ResultSize                     any    `ps:"ResultSize"` // Unlimited
-	ShowDeletionInProgressSearches bool   `ps:"ShowDeletionInProgressSearches"`
+	ShowDeletionInProgressSearches *bool  `ps:"ShowDeletionInProgressSearches"`
 }
 
 func (p GetMailboxSearchParams) params() map[string]any {
@@ -7610,8 +7610,8 @@ func (p GetMailboxSearchParams) params() map[string]any {
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
 	}
-	if p.ShowDeletionInProgressSearches {
-		m["ShowDeletionInProgressSearches"] = true
+	if p.ShowDeletionInProgressSearches != nil {
+		m["ShowDeletionInProgressSearches"] = *p.ShowDeletionInProgressSearches
 	}
 	return m
 }
@@ -7642,33 +7642,33 @@ func (s *Service) GetMailboxSpellingConfiguration(ctx context.Context, p GetMail
 // GetMailboxStatisticsParams are the parameters of Get-MailboxStatistics.
 // DefaultParameterSetName: Identity
 type GetMailboxStatisticsParams struct {
-	Archive                      bool `ps:"Archive"`
-	Identity                     any  `ps:"Identity"` // GeneralMailboxOrMailUserIdParameter
-	IncludeMoveHistory           bool `ps:"IncludeMoveHistory"`
-	IncludeMoveReport            bool `ps:"IncludeMoveReport"`
-	IncludeSoftDeletedRecipients bool `ps:"IncludeSoftDeletedRecipients"`
-	UseCustomRouting             bool `ps:"UseCustomRouting"`
+	Archive                      *bool `ps:"Archive"`
+	Identity                     any   `ps:"Identity"` // GeneralMailboxOrMailUserIdParameter
+	IncludeMoveHistory           *bool `ps:"IncludeMoveHistory"`
+	IncludeMoveReport            *bool `ps:"IncludeMoveReport"`
+	IncludeSoftDeletedRecipients *bool `ps:"IncludeSoftDeletedRecipients"`
+	UseCustomRouting             *bool `ps:"UseCustomRouting"`
 }
 
 func (p GetMailboxStatisticsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Archive {
-		m["Archive"] = true
+	if p.Archive != nil {
+		m["Archive"] = *p.Archive
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeMoveHistory {
-		m["IncludeMoveHistory"] = true
+	if p.IncludeMoveHistory != nil {
+		m["IncludeMoveHistory"] = *p.IncludeMoveHistory
 	}
-	if p.IncludeMoveReport {
-		m["IncludeMoveReport"] = true
+	if p.IncludeMoveReport != nil {
+		m["IncludeMoveReport"] = *p.IncludeMoveReport
 	}
-	if p.IncludeSoftDeletedRecipients {
-		m["IncludeSoftDeletedRecipients"] = true
+	if p.IncludeSoftDeletedRecipients != nil {
+		m["IncludeSoftDeletedRecipients"] = *p.IncludeSoftDeletedRecipients
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -7747,9 +7747,9 @@ func (s *Service) GetMalwareFilterRule(ctx context.Context, p GetMalwareFilterRu
 type GetManagementRoleParams struct {
 	Cmdlet           string   `ps:"Cmdlet"`
 	CmdletParameters []string `ps:"CmdletParameters"`
-	GetChildren      bool     `ps:"GetChildren"`
+	GetChildren      *bool    `ps:"GetChildren"`
 	Identity         any      `ps:"Identity"` // RoleIdParameter
-	Recurse          bool     `ps:"Recurse"`
+	Recurse          *bool    `ps:"Recurse"`
 	RoleType         any      `ps:"RoleType"` // RoleType
 	Script           string   `ps:"Script"`
 	ScriptParameters []string `ps:"ScriptParameters"`
@@ -7763,14 +7763,14 @@ func (p GetManagementRoleParams) params() map[string]any {
 	if p.CmdletParameters != nil {
 		m["CmdletParameters"] = p.CmdletParameters
 	}
-	if p.GetChildren {
-		m["GetChildren"] = true
+	if p.GetChildren != nil {
+		m["GetChildren"] = *p.GetChildren
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.Recurse {
-		m["Recurse"] = true
+	if p.Recurse != nil {
+		m["Recurse"] = *p.Recurse
 	}
 	if p.RoleType != nil {
 		m["RoleType"] = p.RoleType
@@ -7799,7 +7799,7 @@ type GetManagementRoleAssignmentParams struct {
 	Enabled                          *bool    `ps:"Enabled"`
 	Exclusive                        *bool    `ps:"Exclusive"`
 	ExclusiveRecipientWriteScope     any      `ps:"ExclusiveRecipientWriteScope"` // ManagementScopeIdParameter
-	GetEffectiveUsers                bool     `ps:"GetEffectiveUsers"`
+	GetEffectiveUsers                *bool    `ps:"GetEffectiveUsers"`
 	Identity                         any      `ps:"Identity"`                         // RoleAssignmentIdParameter
 	RecipientAdministrativeUnitScope any      `ps:"RecipientAdministrativeUnitScope"` // AdministrativeUnitIdParameter
 	RecipientGroupScope              any      `ps:"RecipientGroupScope"`              // GroupIdParameter
@@ -7834,8 +7834,8 @@ func (p GetManagementRoleAssignmentParams) params() map[string]any {
 	if p.ExclusiveRecipientWriteScope != nil {
 		m["ExclusiveRecipientWriteScope"] = p.ExclusiveRecipientWriteScope
 	}
-	if p.GetEffectiveUsers {
-		m["GetEffectiveUsers"] = true
+	if p.GetEffectiveUsers != nil {
+		m["GetEffectiveUsers"] = *p.GetEffectiveUsers
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -7912,7 +7912,7 @@ func (s *Service) GetManagementRoleEntry(ctx context.Context, p GetManagementRol
 type GetManagementScopeParams struct {
 	Exclusive *bool `ps:"Exclusive"`
 	Identity  any   `ps:"Identity"` // ManagementScopeIdParameter
-	Orphan    bool  `ps:"Orphan"`
+	Orphan    *bool `ps:"Orphan"`
 }
 
 func (p GetManagementScopeParams) params() map[string]any {
@@ -7923,8 +7923,8 @@ func (p GetManagementScopeParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.Orphan {
-		m["Orphan"] = true
+	if p.Orphan != nil {
+		m["Orphan"] = *p.Orphan
 	}
 	return m
 }
@@ -7974,8 +7974,8 @@ func (s *Service) GetMessageCategory(ctx context.Context, p GetMessageCategoryPa
 // GetMessageClassificationParams are the parameters of Get-MessageClassification.
 // DefaultParameterSetName: Identity
 type GetMessageClassificationParams struct {
-	Identity       any  `ps:"Identity"` // MessageClassificationIdParameter
-	IncludeLocales bool `ps:"IncludeLocales"`
+	Identity       any   `ps:"Identity"` // MessageClassificationIdParameter
+	IncludeLocales *bool `ps:"IncludeLocales"`
 }
 
 func (p GetMessageClassificationParams) params() map[string]any {
@@ -7983,8 +7983,8 @@ func (p GetMessageClassificationParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeLocales {
-		m["IncludeLocales"] = true
+	if p.IncludeLocales != nil {
+		m["IncludeLocales"] = *p.IncludeLocales
 	}
 	return m
 }
@@ -8228,8 +8228,8 @@ func (s *Service) GetMessageTraceV2(ctx context.Context, p GetMessageTraceV2Para
 
 // GetMessageTrackingReportParams are the parameters of Get-MessageTrackingReport.
 type GetMessageTrackingReportParams struct {
-	BypassDelegateChecking bool     `ps:"BypassDelegateChecking"`
-	DoNotResolve           bool     `ps:"DoNotResolve"`
+	BypassDelegateChecking *bool    `ps:"BypassDelegateChecking"`
+	DoNotResolve           *bool    `ps:"DoNotResolve"`
 	Identity               any      `ps:"Identity"`            // MessageTrackingReportId
 	RecipientPathFilter    any      `ps:"RecipientPathFilter"` // SmtpAddress
 	Recipients             []string `ps:"Recipients"`
@@ -8240,11 +8240,11 @@ type GetMessageTrackingReportParams struct {
 
 func (p GetMessageTrackingReportParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassDelegateChecking {
-		m["BypassDelegateChecking"] = true
+	if p.BypassDelegateChecking != nil {
+		m["BypassDelegateChecking"] = *p.BypassDelegateChecking
 	}
-	if p.DoNotResolve {
-		m["DoNotResolve"] = true
+	if p.DoNotResolve != nil {
+		m["DoNotResolve"] = *p.DoNotResolve
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -8278,7 +8278,7 @@ type GetMigrationBatchParams struct {
 	DiagnosticInfo string `ps:"DiagnosticInfo"`
 	Endpoint       any    `ps:"Endpoint"` // MigrationEndpointIdParameter
 	Identity       any    `ps:"Identity"` // MigrationBatchIdParameter
-	IncludeReport  bool   `ps:"IncludeReport"`
+	IncludeReport  *bool  `ps:"IncludeReport"`
 	Partition      any    `ps:"Partition"`  // MailboxIdParameter
 	ResultSize     any    `ps:"ResultSize"` // Unlimited
 	Status         any    `ps:"Status"`     // MigrationBatchStatus
@@ -8295,8 +8295,8 @@ func (p GetMigrationBatchParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeReport {
-		m["IncludeReport"] = true
+	if p.IncludeReport != nil {
+		m["IncludeReport"] = *p.IncludeReport
 	}
 	if p.Partition != nil {
 		m["Partition"] = p.Partition
@@ -8318,18 +8318,18 @@ func (s *Service) GetMigrationBatch(ctx context.Context, p GetMigrationBatchPara
 // GetMigrationConfigParams are the parameters of Get-MigrationConfig.
 // DefaultParameterSetName: Partition
 type GetMigrationConfigParams struct {
-	AllPartitions                       bool `ps:"AllPartitions"`
-	IncludeSimplifiedGmailMigrationData bool `ps:"IncludeSimplifiedGmailMigrationData"`
-	Partition                           any  `ps:"Partition"` // MailboxIdParameter
+	AllPartitions                       *bool `ps:"AllPartitions"`
+	IncludeSimplifiedGmailMigrationData *bool `ps:"IncludeSimplifiedGmailMigrationData"`
+	Partition                           any   `ps:"Partition"` // MailboxIdParameter
 }
 
 func (p GetMigrationConfigParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AllPartitions {
-		m["AllPartitions"] = true
+	if p.AllPartitions != nil {
+		m["AllPartitions"] = *p.AllPartitions
 	}
-	if p.IncludeSimplifiedGmailMigrationData {
-		m["IncludeSimplifiedGmailMigrationData"] = true
+	if p.IncludeSimplifiedGmailMigrationData != nil {
+		m["IncludeSimplifiedGmailMigrationData"] = *p.IncludeSimplifiedGmailMigrationData
 	}
 	if p.Partition != nil {
 		m["Partition"] = p.Partition
@@ -8398,15 +8398,15 @@ func (s *Service) GetMigrationStatistics(ctx context.Context, p GetMigrationStat
 // GetMigrationUserParams are the parameters of Get-MigrationUser.
 // DefaultParameterSetName: Identity
 type GetMigrationUserParams struct {
-	BatchId                any  `ps:"BatchId"`      // MigrationBatchIdParameter
-	EmailAddress           any  `ps:"EmailAddress"` // EmailAddress
-	Identity               any  `ps:"Identity"`     // MigrationUserIdParameter
-	IncludeAssociatedUsers bool `ps:"IncludeAssociatedUsers"`
-	MailboxGuid            any  `ps:"MailboxGuid"`   // Guid
-	Partition              any  `ps:"Partition"`     // MailboxIdParameter
-	ResultSize             any  `ps:"ResultSize"`    // Unlimited
-	Status                 any  `ps:"Status"`        // MigrationUserStatus
-	StatusSummary          any  `ps:"StatusSummary"` // MigrationUserStatusSummary
+	BatchId                any   `ps:"BatchId"`      // MigrationBatchIdParameter
+	EmailAddress           any   `ps:"EmailAddress"` // EmailAddress
+	Identity               any   `ps:"Identity"`     // MigrationUserIdParameter
+	IncludeAssociatedUsers *bool `ps:"IncludeAssociatedUsers"`
+	MailboxGuid            any   `ps:"MailboxGuid"`   // Guid
+	Partition              any   `ps:"Partition"`     // MailboxIdParameter
+	ResultSize             any   `ps:"ResultSize"`    // Unlimited
+	Status                 any   `ps:"Status"`        // MigrationUserStatus
+	StatusSummary          any   `ps:"StatusSummary"` // MigrationUserStatusSummary
 }
 
 func (p GetMigrationUserParams) params() map[string]any {
@@ -8420,8 +8420,8 @@ func (p GetMigrationUserParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeAssociatedUsers {
-		m["IncludeAssociatedUsers"] = true
+	if p.IncludeAssociatedUsers != nil {
+		m["IncludeAssociatedUsers"] = *p.IncludeAssociatedUsers
 	}
 	if p.MailboxGuid != nil {
 		m["MailboxGuid"] = p.MailboxGuid
@@ -8451,11 +8451,11 @@ func (s *Service) GetMigrationUser(ctx context.Context, p GetMigrationUserParams
 type GetMigrationUserStatisticsParams struct {
 	DiagnosticInfo      string `ps:"DiagnosticInfo"`
 	Identity            any    `ps:"Identity"` // MigrationUserIdParameter
-	IncludeReport       bool   `ps:"IncludeReport"`
-	IncludeSkippedItems bool   `ps:"IncludeSkippedItems"`
+	IncludeReport       *bool  `ps:"IncludeReport"`
+	IncludeSkippedItems *bool  `ps:"IncludeSkippedItems"`
 	LimitSkippedItemsTo *int64 `ps:"LimitSkippedItemsTo"`
 	Partition           any    `ps:"Partition"` // MailboxIdParameter
-	SkipSubscription    bool   `ps:"SkipSubscription"`
+	SkipSubscription    *bool  `ps:"SkipSubscription"`
 }
 
 func (p GetMigrationUserStatisticsParams) params() map[string]any {
@@ -8466,11 +8466,11 @@ func (p GetMigrationUserStatisticsParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeReport {
-		m["IncludeReport"] = true
+	if p.IncludeReport != nil {
+		m["IncludeReport"] = *p.IncludeReport
 	}
-	if p.IncludeSkippedItems {
-		m["IncludeSkippedItems"] = true
+	if p.IncludeSkippedItems != nil {
+		m["IncludeSkippedItems"] = *p.IncludeSkippedItems
 	}
 	if p.LimitSkippedItemsTo != nil {
 		m["LimitSkippedItemsTo"] = *p.LimitSkippedItemsTo
@@ -8478,8 +8478,8 @@ func (p GetMigrationUserStatisticsParams) params() map[string]any {
 	if p.Partition != nil {
 		m["Partition"] = p.Partition
 	}
-	if p.SkipSubscription {
-		m["SkipSubscription"] = true
+	if p.SkipSubscription != nil {
+		m["SkipSubscription"] = *p.SkipSubscription
 	}
 	return m
 }
@@ -8492,22 +8492,22 @@ func (s *Service) GetMigrationUserStatistics(ctx context.Context, p GetMigration
 // GetMobileDeviceParams are the parameters of Get-MobileDevice.
 // DefaultParameterSetName: Identity
 type GetMobileDeviceParams struct {
-	ActiveSync         bool   `ps:"ActiveSync"`
+	ActiveSync         *bool  `ps:"ActiveSync"`
 	Filter             string `ps:"Filter"`
 	Identity           any    `ps:"Identity"`           // MobileDeviceIdParameter
 	Mailbox            any    `ps:"Mailbox"`            // MailboxIdParameter
 	OrganizationalUnit any    `ps:"OrganizationalUnit"` // OrganizationalUnitIdParameter
-	OWAforDevices      bool   `ps:"OWAforDevices"`
-	RestApi            bool   `ps:"RestApi"`
+	OWAforDevices      *bool  `ps:"OWAforDevices"`
+	RestApi            *bool  `ps:"RestApi"`
 	ResultSize         any    `ps:"ResultSize"` // Unlimited
 	SortBy             string `ps:"SortBy"`
-	UniversalOutlook   bool   `ps:"UniversalOutlook"`
+	UniversalOutlook   *bool  `ps:"UniversalOutlook"`
 }
 
 func (p GetMobileDeviceParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ActiveSync {
-		m["ActiveSync"] = true
+	if p.ActiveSync != nil {
+		m["ActiveSync"] = *p.ActiveSync
 	}
 	if p.Filter != "" {
 		m["Filter"] = p.Filter
@@ -8521,11 +8521,11 @@ func (p GetMobileDeviceParams) params() map[string]any {
 	if p.OrganizationalUnit != nil {
 		m["OrganizationalUnit"] = p.OrganizationalUnit
 	}
-	if p.OWAforDevices {
-		m["OWAforDevices"] = true
+	if p.OWAforDevices != nil {
+		m["OWAforDevices"] = *p.OWAforDevices
 	}
-	if p.RestApi {
-		m["RestApi"] = true
+	if p.RestApi != nil {
+		m["RestApi"] = *p.RestApi
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -8533,8 +8533,8 @@ func (p GetMobileDeviceParams) params() map[string]any {
 	if p.SortBy != "" {
 		m["SortBy"] = p.SortBy
 	}
-	if p.UniversalOutlook {
-		m["UniversalOutlook"] = true
+	if p.UniversalOutlook != nil {
+		m["UniversalOutlook"] = *p.UniversalOutlook
 	}
 	return m
 }
@@ -8592,25 +8592,25 @@ func (s *Service) GetMobileDeviceMailboxPolicy(ctx context.Context, p GetMobileD
 // GetMobileDeviceStatisticsParams are the parameters of Get-MobileDeviceStatistics.
 // DefaultParameterSetName: Identity
 type GetMobileDeviceStatisticsParams struct {
-	ActiveSync                 bool     `ps:"ActiveSync"`
-	GetMailboxLog              bool     `ps:"GetMailboxLog"`
+	ActiveSync                 *bool    `ps:"ActiveSync"`
+	GetMailboxLog              *bool    `ps:"GetMailboxLog"`
 	Identity                   any      `ps:"Identity"` // MobileDeviceIdParameter
 	Mailbox                    any      `ps:"Mailbox"`  // MailboxIdParameter
 	NotificationEmailAddresses []string `ps:"NotificationEmailAddresses"`
-	OWAforDevices              bool     `ps:"OWAforDevices"`
-	RestApi                    bool     `ps:"RestApi"`
-	ShowRecoveryPassword       bool     `ps:"ShowRecoveryPassword"`
-	UniversalOutlook           bool     `ps:"UniversalOutlook"`
-	UseCustomRouting           bool     `ps:"UseCustomRouting"`
+	OWAforDevices              *bool    `ps:"OWAforDevices"`
+	RestApi                    *bool    `ps:"RestApi"`
+	ShowRecoveryPassword       *bool    `ps:"ShowRecoveryPassword"`
+	UniversalOutlook           *bool    `ps:"UniversalOutlook"`
+	UseCustomRouting           *bool    `ps:"UseCustomRouting"`
 }
 
 func (p GetMobileDeviceStatisticsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ActiveSync {
-		m["ActiveSync"] = true
+	if p.ActiveSync != nil {
+		m["ActiveSync"] = *p.ActiveSync
 	}
-	if p.GetMailboxLog {
-		m["GetMailboxLog"] = true
+	if p.GetMailboxLog != nil {
+		m["GetMailboxLog"] = *p.GetMailboxLog
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -8621,20 +8621,20 @@ func (p GetMobileDeviceStatisticsParams) params() map[string]any {
 	if p.NotificationEmailAddresses != nil {
 		m["NotificationEmailAddresses"] = p.NotificationEmailAddresses
 	}
-	if p.OWAforDevices {
-		m["OWAforDevices"] = true
+	if p.OWAforDevices != nil {
+		m["OWAforDevices"] = *p.OWAforDevices
 	}
-	if p.RestApi {
-		m["RestApi"] = true
+	if p.RestApi != nil {
+		m["RestApi"] = *p.RestApi
 	}
-	if p.ShowRecoveryPassword {
-		m["ShowRecoveryPassword"] = true
+	if p.ShowRecoveryPassword != nil {
+		m["ShowRecoveryPassword"] = *p.ShowRecoveryPassword
 	}
-	if p.UniversalOutlook {
-		m["UniversalOutlook"] = true
+	if p.UniversalOutlook != nil {
+		m["UniversalOutlook"] = *p.UniversalOutlook
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -8702,37 +8702,37 @@ func (s *Service) GetMoveRequest(ctx context.Context, p GetMoveRequestParams) (*
 // GetMoveRequestStatisticsParams are the parameters of Get-MoveRequestStatistics.
 // DefaultParameterSetName: Identity
 type GetMoveRequestStatisticsParams struct {
-	Analysis       bool   `ps:"Analysis"`
+	Analysis       *bool  `ps:"Analysis"`
 	DiagnosticInfo string `ps:"DiagnosticInfo"`
-	DiagnosticOnly bool   `ps:"DiagnosticOnly"`
+	DiagnosticOnly *bool  `ps:"DiagnosticOnly"`
 	Identity       any    `ps:"Identity"` // MoveRequestIdParameter
-	IncludeReport  bool   `ps:"IncludeReport"`
+	IncludeReport  *bool  `ps:"IncludeReport"`
 	ProxyToMailbox any    `ps:"ProxyToMailbox"` // MailboxIdParameter
-	ReportOnly     bool   `ps:"ReportOnly"`
+	ReportOnly     *bool  `ps:"ReportOnly"`
 }
 
 func (p GetMoveRequestStatisticsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Analysis {
-		m["Analysis"] = true
+	if p.Analysis != nil {
+		m["Analysis"] = *p.Analysis
 	}
 	if p.DiagnosticInfo != "" {
 		m["DiagnosticInfo"] = p.DiagnosticInfo
 	}
-	if p.DiagnosticOnly {
-		m["DiagnosticOnly"] = true
+	if p.DiagnosticOnly != nil {
+		m["DiagnosticOnly"] = *p.DiagnosticOnly
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeReport {
-		m["IncludeReport"] = true
+	if p.IncludeReport != nil {
+		m["IncludeReport"] = *p.IncludeReport
 	}
 	if p.ProxyToMailbox != nil {
 		m["ProxyToMailbox"] = p.ProxyToMailbox
 	}
-	if p.ReportOnly {
-		m["ReportOnly"] = true
+	if p.ReportOnly != nil {
+		m["ReportOnly"] = *p.ReportOnly
 	}
 	return m
 }
@@ -8899,13 +8899,13 @@ func (s *Service) GetOnlineMeetingConfiguration(ctx context.Context, p GetOnline
 // GetOrganizationConfigParams are the parameters of Get-OrganizationConfig.
 // DefaultParameterSetName: Identity
 type GetOrganizationConfigParams struct {
-	RetrieveEwsOperationAccessPolicy bool `ps:"RetrieveEwsOperationAccessPolicy"`
+	RetrieveEwsOperationAccessPolicy *bool `ps:"RetrieveEwsOperationAccessPolicy"`
 }
 
 func (p GetOrganizationConfigParams) params() map[string]any {
 	m := map[string]any{}
-	if p.RetrieveEwsOperationAccessPolicy {
-		m["RetrieveEwsOperationAccessPolicy"] = true
+	if p.RetrieveEwsOperationAccessPolicy != nil {
+		m["RetrieveEwsOperationAccessPolicy"] = *p.RetrieveEwsOperationAccessPolicy
 	}
 	return m
 }
@@ -8938,10 +8938,10 @@ func (s *Service) GetOrganizationRelationship(ctx context.Context, p GetOrganiza
 // DefaultParameterSetName: Identity
 type GetOrganizationalUnitParams struct {
 	Identity          any    `ps:"Identity"` // ExtendedOrganizationalUnitIdParameter
-	IncludeContainers bool   `ps:"IncludeContainers"`
+	IncludeContainers *bool  `ps:"IncludeContainers"`
 	ResultSize        any    `ps:"ResultSize"` // Unlimited
 	SearchText        string `ps:"SearchText"`
-	SingleNodeOnly    bool   `ps:"SingleNodeOnly"`
+	SingleNodeOnly    *bool  `ps:"SingleNodeOnly"`
 }
 
 func (p GetOrganizationalUnitParams) params() map[string]any {
@@ -8949,8 +8949,8 @@ func (p GetOrganizationalUnitParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeContainers {
-		m["IncludeContainers"] = true
+	if p.IncludeContainers != nil {
+		m["IncludeContainers"] = *p.IncludeContainers
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -8958,8 +8958,8 @@ func (p GetOrganizationalUnitParams) params() map[string]any {
 	if p.SearchText != "" {
 		m["SearchText"] = p.SearchText
 	}
-	if p.SingleNodeOnly {
-		m["SingleNodeOnly"] = true
+	if p.SingleNodeOnly != nil {
+		m["SingleNodeOnly"] = *p.SingleNodeOnly
 	}
 	return m
 }
@@ -9081,9 +9081,9 @@ func (s *Service) GetPartnerApplication(ctx context.Context, p GetPartnerApplica
 // GetPendingDelicenseUserParams are the parameters of Get-PendingDelicenseUser.
 // DefaultParameterSetName: Identity
 type GetPendingDelicenseUserParams struct {
-	Identity           any  `ps:"Identity"`   // RecipientIdParameter
-	ResultSize         any  `ps:"ResultSize"` // Unlimited
-	ShowDueObjectsOnly bool `ps:"ShowDueObjectsOnly"`
+	Identity           any   `ps:"Identity"`   // RecipientIdParameter
+	ResultSize         any   `ps:"ResultSize"` // Unlimited
+	ShowDueObjectsOnly *bool `ps:"ShowDueObjectsOnly"`
 }
 
 func (p GetPendingDelicenseUserParams) params() map[string]any {
@@ -9094,8 +9094,8 @@ func (p GetPendingDelicenseUserParams) params() map[string]any {
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
 	}
-	if p.ShowDueObjectsOnly {
-		m["ShowDueObjectsOnly"] = true
+	if p.ShowDueObjectsOnly != nil {
+		m["ShowDueObjectsOnly"] = *p.ShowDueObjectsOnly
 	}
 	return m
 }
@@ -9239,10 +9239,10 @@ func (s *Service) GetPolicyConfig(ctx context.Context, p GetPolicyConfigParams) 
 // GetPolicyTipConfigParams are the parameters of Get-PolicyTipConfig.
 // DefaultParameterSetName: Identity
 type GetPolicyTipConfigParams struct {
-	Action   any  `ps:"Action"`   // PolicyTipMessageConfigAction
-	Identity any  `ps:"Identity"` // PolicyTipConfigIdParameter
-	Locale   any  `ps:"Locale"`   // CultureInfo
-	Original bool `ps:"Original"`
+	Action   any   `ps:"Action"`   // PolicyTipMessageConfigAction
+	Identity any   `ps:"Identity"` // PolicyTipConfigIdParameter
+	Locale   any   `ps:"Locale"`   // CultureInfo
+	Original *bool `ps:"Original"`
 }
 
 func (p GetPolicyTipConfigParams) params() map[string]any {
@@ -9256,8 +9256,8 @@ func (p GetPolicyTipConfigParams) params() map[string]any {
 	if p.Locale != nil {
 		m["Locale"] = p.Locale
 	}
-	if p.Original {
-		m["Original"] = true
+	if p.Original != nil {
+		m["Original"] = *p.Original
 	}
 	return m
 }
@@ -9270,34 +9270,34 @@ func (s *Service) GetPolicyTipConfig(ctx context.Context, p GetPolicyTipConfigPa
 // GetPublicFolderParams are the parameters of Get-PublicFolder.
 // DefaultParameterSetName: Identity
 type GetPublicFolderParams struct {
-	GetChildren     bool `ps:"GetChildren"`
-	Identity        any  `ps:"Identity"` // PublicFolderIdParameter
-	LostAndFound    bool `ps:"LostAndFound"`
-	Mailbox         any  `ps:"Mailbox"` // MailboxIdParameter
-	Recurse         bool `ps:"Recurse"`
-	ResidentFolders bool `ps:"ResidentFolders"`
-	ResultSize      any  `ps:"ResultSize"` // Unlimited
+	GetChildren     *bool `ps:"GetChildren"`
+	Identity        any   `ps:"Identity"` // PublicFolderIdParameter
+	LostAndFound    *bool `ps:"LostAndFound"`
+	Mailbox         any   `ps:"Mailbox"` // MailboxIdParameter
+	Recurse         *bool `ps:"Recurse"`
+	ResidentFolders *bool `ps:"ResidentFolders"`
+	ResultSize      any   `ps:"ResultSize"` // Unlimited
 }
 
 func (p GetPublicFolderParams) params() map[string]any {
 	m := map[string]any{}
-	if p.GetChildren {
-		m["GetChildren"] = true
+	if p.GetChildren != nil {
+		m["GetChildren"] = *p.GetChildren
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.LostAndFound {
-		m["LostAndFound"] = true
+	if p.LostAndFound != nil {
+		m["LostAndFound"] = *p.LostAndFound
 	}
 	if p.Mailbox != nil {
 		m["Mailbox"] = p.Mailbox
 	}
-	if p.Recurse {
-		m["Recurse"] = true
+	if p.Recurse != nil {
+		m["Recurse"] = *p.Recurse
 	}
-	if p.ResidentFolders {
-		m["ResidentFolders"] = true
+	if p.ResidentFolders != nil {
+		m["ResidentFolders"] = *p.ResidentFolders
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -9370,9 +9370,9 @@ func (s *Service) GetPublicFolderItemStatistics(ctx context.Context, p GetPublic
 
 // GetPublicFolderMailboxDiagnosticsParams are the parameters of Get-PublicFolderMailboxDiagnostics.
 type GetPublicFolderMailboxDiagnosticsParams struct {
-	Identity             any  `ps:"Identity"` // MailboxIdParameter
-	IncludeDumpsterInfo  bool `ps:"IncludeDumpsterInfo"`
-	IncludeHierarchyInfo bool `ps:"IncludeHierarchyInfo"`
+	Identity             any   `ps:"Identity"` // MailboxIdParameter
+	IncludeDumpsterInfo  *bool `ps:"IncludeDumpsterInfo"`
+	IncludeHierarchyInfo *bool `ps:"IncludeHierarchyInfo"`
 }
 
 func (p GetPublicFolderMailboxDiagnosticsParams) params() map[string]any {
@@ -9380,11 +9380,11 @@ func (p GetPublicFolderMailboxDiagnosticsParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeDumpsterInfo {
-		m["IncludeDumpsterInfo"] = true
+	if p.IncludeDumpsterInfo != nil {
+		m["IncludeDumpsterInfo"] = *p.IncludeDumpsterInfo
 	}
-	if p.IncludeHierarchyInfo {
-		m["IncludeHierarchyInfo"] = true
+	if p.IncludeHierarchyInfo != nil {
+		m["IncludeHierarchyInfo"] = *p.IncludeHierarchyInfo
 	}
 	return m
 }
@@ -9438,9 +9438,9 @@ func (s *Service) GetPublicFolderMailboxMigrationRequest(ctx context.Context, p 
 type GetPublicFolderMailboxMigrationRequestStatisticsParams struct {
 	DiagnosticInfo      string `ps:"DiagnosticInfo"`
 	Identity            any    `ps:"Identity"` // PublicFolderMailboxMigrationRequestIdParameter
-	IncludeReport       bool   `ps:"IncludeReport"`
-	IncludeSkippedItems bool   `ps:"IncludeSkippedItems"`
-	ReportOnly          bool   `ps:"ReportOnly"`
+	IncludeReport       *bool  `ps:"IncludeReport"`
+	IncludeSkippedItems *bool  `ps:"IncludeSkippedItems"`
+	ReportOnly          *bool  `ps:"ReportOnly"`
 }
 
 func (p GetPublicFolderMailboxMigrationRequestStatisticsParams) params() map[string]any {
@@ -9451,14 +9451,14 @@ func (p GetPublicFolderMailboxMigrationRequestStatisticsParams) params() map[str
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeReport {
-		m["IncludeReport"] = true
+	if p.IncludeReport != nil {
+		m["IncludeReport"] = *p.IncludeReport
 	}
-	if p.IncludeSkippedItems {
-		m["IncludeSkippedItems"] = true
+	if p.IncludeSkippedItems != nil {
+		m["IncludeSkippedItems"] = *p.IncludeSkippedItems
 	}
-	if p.ReportOnly {
-		m["ReportOnly"] = true
+	if p.ReportOnly != nil {
+		m["ReportOnly"] = *p.ReportOnly
 	}
 	return m
 }
@@ -9529,9 +9529,9 @@ type GetPublicFolderMoveRequestStatisticsParams struct {
 	DiagnosticInfo      string `ps:"DiagnosticInfo"`
 	DomainController    any    `ps:"DomainController"` // Fqdn
 	Identity            any    `ps:"Identity"`         // PublicFolderMoveRequestIdParameter
-	IncludeReport       bool   `ps:"IncludeReport"`
-	IncludeSkippedItems bool   `ps:"IncludeSkippedItems"`
-	ReportOnly          bool   `ps:"ReportOnly"`
+	IncludeReport       *bool  `ps:"IncludeReport"`
+	IncludeSkippedItems *bool  `ps:"IncludeSkippedItems"`
+	ReportOnly          *bool  `ps:"ReportOnly"`
 	RequestGuid         string `ps:"RequestGuid"`
 	RequestQueue        any    `ps:"RequestQueue"` // DatabaseIdParameter
 }
@@ -9547,14 +9547,14 @@ func (p GetPublicFolderMoveRequestStatisticsParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeReport {
-		m["IncludeReport"] = true
+	if p.IncludeReport != nil {
+		m["IncludeReport"] = *p.IncludeReport
 	}
-	if p.IncludeSkippedItems {
-		m["IncludeSkippedItems"] = true
+	if p.IncludeSkippedItems != nil {
+		m["IncludeSkippedItems"] = *p.IncludeSkippedItems
 	}
-	if p.ReportOnly {
-		m["ReportOnly"] = true
+	if p.ReportOnly != nil {
+		m["ReportOnly"] = *p.ReportOnly
 	}
 	if p.RequestGuid != "" {
 		m["RequestGuid"] = p.RequestGuid
@@ -9605,9 +9605,9 @@ type GetQuarantineMessageParams struct {
 	EndReceivedDate                         any      `ps:"EndReceivedDate"` // System.DateTime
 	EntityType                              any      `ps:"EntityType"`      // Microsoft.Exchange.Management.FfoQuarantine.EntityType
 	Identity                                any      `ps:"Identity"`        // QuarantineMessageIdentity
-	IncludeMessagesFromBlockedSenderAddress bool     `ps:"IncludeMessagesFromBlockedSenderAddress"`
+	IncludeMessagesFromBlockedSenderAddress *bool    `ps:"IncludeMessagesFromBlockedSenderAddress"`
 	MessageId                               string   `ps:"MessageId"`
-	MyItems                                 bool     `ps:"MyItems"`
+	MyItems                                 *bool    `ps:"MyItems"`
 	Page                                    *int64   `ps:"Page"`
 	PageSize                                *int64   `ps:"PageSize"`
 	PolicyName                              string   `ps:"PolicyName"`
@@ -9641,14 +9641,14 @@ func (p GetQuarantineMessageParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeMessagesFromBlockedSenderAddress {
-		m["IncludeMessagesFromBlockedSenderAddress"] = true
+	if p.IncludeMessagesFromBlockedSenderAddress != nil {
+		m["IncludeMessagesFromBlockedSenderAddress"] = *p.IncludeMessagesFromBlockedSenderAddress
 	}
 	if p.MessageId != "" {
 		m["MessageId"] = p.MessageId
 	}
-	if p.MyItems {
-		m["MyItems"] = true
+	if p.MyItems != nil {
+		m["MyItems"] = *p.MyItems
 	}
 	if p.Page != nil {
 		m["Page"] = *p.Page
@@ -9808,8 +9808,8 @@ type GetRecipientParams struct {
 	Filter                        string   `ps:"Filter"`
 	Identity                      any      `ps:"Identity"` // RecipientIdParameter
 	IncludeBookmarkObject         *bool    `ps:"IncludeBookmarkObject"`
-	IncludeManagerWithDisplayName bool     `ps:"IncludeManagerWithDisplayName"`
-	IncludeSoftDeletedRecipients  bool     `ps:"IncludeSoftDeletedRecipients"`
+	IncludeManagerWithDisplayName *bool    `ps:"IncludeManagerWithDisplayName"`
+	IncludeSoftDeletedRecipients  *bool    `ps:"IncludeSoftDeletedRecipients"`
 	OrganizationalUnit            any      `ps:"OrganizationalUnit"` // OrganizationalUnitIdParameter
 	Properties                    []string `ps:"Properties"`
 	PropertySet                   any      `ps:"PropertySet"` // PropertySet
@@ -9843,11 +9843,11 @@ func (p GetRecipientParams) params() map[string]any {
 	if p.IncludeBookmarkObject != nil {
 		m["IncludeBookmarkObject"] = *p.IncludeBookmarkObject
 	}
-	if p.IncludeManagerWithDisplayName {
-		m["IncludeManagerWithDisplayName"] = true
+	if p.IncludeManagerWithDisplayName != nil {
+		m["IncludeManagerWithDisplayName"] = *p.IncludeManagerWithDisplayName
 	}
-	if p.IncludeSoftDeletedRecipients {
-		m["IncludeSoftDeletedRecipients"] = true
+	if p.IncludeSoftDeletedRecipients != nil {
+		m["IncludeSoftDeletedRecipients"] = *p.IncludeSoftDeletedRecipients
 	}
 	if p.OrganizationalUnit != nil {
 		m["OrganizationalUnit"] = p.OrganizationalUnit
@@ -9886,8 +9886,8 @@ func (s *Service) GetRecipient(ctx context.Context, p GetRecipientParams) (*admi
 type GetRecipientPermissionParams struct {
 	AccessRights                         []string `ps:"AccessRights"`
 	Identity                             any      `ps:"Identity"` // RecipientIdParameter
-	IncludeTrusteeWithPrimarySmtpAddress bool     `ps:"IncludeTrusteeWithPrimarySmtpAddress"`
-	ReadFromDomainController             bool     `ps:"ReadFromDomainController"`
+	IncludeTrusteeWithPrimarySmtpAddress *bool    `ps:"IncludeTrusteeWithPrimarySmtpAddress"`
+	ReadFromDomainController             *bool    `ps:"ReadFromDomainController"`
 	ResultSize                           any      `ps:"ResultSize"` // Unlimited
 	Trustee                              any      `ps:"Trustee"`    // SecurityPrincipalIdParameter
 }
@@ -9900,11 +9900,11 @@ func (p GetRecipientPermissionParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeTrusteeWithPrimarySmtpAddress {
-		m["IncludeTrusteeWithPrimarySmtpAddress"] = true
+	if p.IncludeTrusteeWithPrimarySmtpAddress != nil {
+		m["IncludeTrusteeWithPrimarySmtpAddress"] = *p.IncludeTrusteeWithPrimarySmtpAddress
 	}
-	if p.ReadFromDomainController {
-		m["ReadFromDomainController"] = true
+	if p.ReadFromDomainController != nil {
+		m["ReadFromDomainController"] = *p.ReadFromDomainController
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -9982,14 +9982,14 @@ func (s *Service) GetReportExecutionInstance(ctx context.Context, p GetReportExe
 
 // GetReportScheduleParams are the parameters of Get-ReportSchedule.
 type GetReportScheduleParams struct {
-	IncludeDLP bool `ps:"IncludeDLP"`
-	ScheduleId any  `ps:"ScheduleId"`
+	IncludeDLP *bool `ps:"IncludeDLP"`
+	ScheduleId any   `ps:"ScheduleId"`
 }
 
 func (p GetReportScheduleParams) params() map[string]any {
 	m := map[string]any{}
-	if p.IncludeDLP {
-		m["IncludeDLP"] = true
+	if p.IncludeDLP != nil {
+		m["IncludeDLP"] = *p.IncludeDLP
 	}
 	if p.ScheduleId != nil {
 		m["ScheduleId"] = p.ScheduleId
@@ -10004,13 +10004,13 @@ func (s *Service) GetReportSchedule(ctx context.Context, p GetReportSchedulePara
 
 // GetReportScheduleListParams are the parameters of Get-ReportScheduleList.
 type GetReportScheduleListParams struct {
-	IncludeDLP bool `ps:"IncludeDLP"`
+	IncludeDLP *bool `ps:"IncludeDLP"`
 }
 
 func (p GetReportScheduleListParams) params() map[string]any {
 	m := map[string]any{}
-	if p.IncludeDLP {
-		m["IncludeDLP"] = true
+	if p.IncludeDLP != nil {
+		m["IncludeDLP"] = *p.IncludeDLP
 	}
 	return m
 }
@@ -10105,14 +10105,14 @@ func (s *Service) GetResourceConfig(ctx context.Context, p GetResourceConfigPara
 // GetRetentionEventParams are the parameters of Get-RetentionEvent.
 // DefaultParameterSetName: Identity
 type GetRetentionEventParams struct {
-	AllStatus bool `ps:"AllStatus"`
-	Identity  any  `ps:"Identity"` // EwsStoreObjectIdParameter
+	AllStatus *bool `ps:"AllStatus"`
+	Identity  any   `ps:"Identity"` // EwsStoreObjectIdParameter
 }
 
 func (p GetRetentionEventParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AllStatus {
-		m["AllStatus"] = true
+	if p.AllStatus != nil {
+		m["AllStatus"] = *p.AllStatus
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -10148,9 +10148,9 @@ func (s *Service) GetRetentionPolicy(ctx context.Context, p GetRetentionPolicyPa
 // DefaultParameterSetName: Identity
 type GetRetentionPolicyTagParams struct {
 	Identity          any      `ps:"Identity"` // RetentionPolicyTagIdParameter
-	IncludeSystemTags bool     `ps:"IncludeSystemTags"`
+	IncludeSystemTags *bool    `ps:"IncludeSystemTags"`
 	Mailbox           any      `ps:"Mailbox"` // MailboxIdParameter
-	OptionalInMailbox bool     `ps:"OptionalInMailbox"`
+	OptionalInMailbox *bool    `ps:"OptionalInMailbox"`
 	Types             []string `ps:"Types"`
 }
 
@@ -10159,14 +10159,14 @@ func (p GetRetentionPolicyTagParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeSystemTags {
-		m["IncludeSystemTags"] = true
+	if p.IncludeSystemTags != nil {
+		m["IncludeSystemTags"] = *p.IncludeSystemTags
 	}
 	if p.Mailbox != nil {
 		m["Mailbox"] = p.Mailbox
 	}
-	if p.OptionalInMailbox {
-		m["OptionalInMailbox"] = true
+	if p.OptionalInMailbox != nil {
+		m["OptionalInMailbox"] = *p.OptionalInMailbox
 	}
 	if p.Types != nil {
 		m["Types"] = p.Types
@@ -10203,7 +10203,7 @@ type GetRoleGroupParams struct {
 	Filter            string `ps:"Filter"`
 	Identity          any    `ps:"Identity"`   // RoleGroupIdParameter
 	ResultSize        any    `ps:"ResultSize"` // Unlimited
-	ShowPartnerLinked bool   `ps:"ShowPartnerLinked"`
+	ShowPartnerLinked *bool  `ps:"ShowPartnerLinked"`
 	SortBy            string `ps:"SortBy"`
 }
 
@@ -10218,8 +10218,8 @@ func (p GetRoleGroupParams) params() map[string]any {
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
 	}
-	if p.ShowPartnerLinked {
-		m["ShowPartnerLinked"] = true
+	if p.ShowPartnerLinked != nil {
+		m["ShowPartnerLinked"] = *p.ShowPartnerLinked
 	}
 	if p.SortBy != "" {
 		m["SortBy"] = p.SortBy
@@ -10517,7 +10517,7 @@ type GetSecurityPrincipalParams struct {
 	Identity            any      `ps:"Identity"`           // ExtendedSecurityPrincipalIdParameter
 	OrganizationalUnit  any      `ps:"OrganizationalUnit"` // ExtendedOrganizationalUnitIdParameter
 	ResultSize          any      `ps:"ResultSize"`         // Unlimited
-	RoleGroupAssignable bool     `ps:"RoleGroupAssignable"`
+	RoleGroupAssignable *bool    `ps:"RoleGroupAssignable"`
 	Types               []string `ps:"Types"`
 }
 
@@ -10535,8 +10535,8 @@ func (p GetSecurityPrincipalParams) params() map[string]any {
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
 	}
-	if p.RoleGroupAssignable {
-		m["RoleGroupAssignable"] = true
+	if p.RoleGroupAssignable != nil {
+		m["RoleGroupAssignable"] = *p.RoleGroupAssignable
 	}
 	if p.Types != nil {
 		m["Types"] = p.Types
@@ -10970,7 +10970,7 @@ func (s *Service) GetSupervisoryReviewRule(ctx context.Context, p GetSupervisory
 // GetSweepRuleParams are the parameters of Get-SweepRule.
 // DefaultParameterSetName: Identity
 type GetSweepRuleParams struct {
-	BypassScopeCheck bool   `ps:"BypassScopeCheck"`
+	BypassScopeCheck *bool  `ps:"BypassScopeCheck"`
 	Identity         any    `ps:"Identity"` // SweepRuleIdParameter
 	Mailbox          any    `ps:"Mailbox"`  // MailboxIdParameter
 	Provider         string `ps:"Provider"`
@@ -10980,8 +10980,8 @@ type GetSweepRuleParams struct {
 
 func (p GetSweepRuleParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassScopeCheck {
-		m["BypassScopeCheck"] = true
+	if p.BypassScopeCheck != nil {
+		m["BypassScopeCheck"] = *p.BypassScopeCheck
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -11059,12 +11059,12 @@ func (s *Service) GetSyncRequest(ctx context.Context, p GetSyncRequestParams) (*
 // DefaultParameterSetName: Identity
 type GetSyncRequestStatisticsParams struct {
 	DiagnosticInfo      string `ps:"DiagnosticInfo"`
-	DiagnosticOnly      bool   `ps:"DiagnosticOnly"`
+	DiagnosticOnly      *bool  `ps:"DiagnosticOnly"`
 	Identity            any    `ps:"Identity"`
-	IncludeReport       bool   `ps:"IncludeReport"`
-	IncludeSkippedItems bool   `ps:"IncludeSkippedItems"`
-	IncludeSlaReport    bool   `ps:"IncludeSlaReport"`
-	ReportOnly          bool   `ps:"ReportOnly"`
+	IncludeReport       *bool  `ps:"IncludeReport"`
+	IncludeSkippedItems *bool  `ps:"IncludeSkippedItems"`
+	IncludeSlaReport    *bool  `ps:"IncludeSlaReport"`
+	ReportOnly          *bool  `ps:"ReportOnly"`
 }
 
 func (p GetSyncRequestStatisticsParams) params() map[string]any {
@@ -11072,23 +11072,23 @@ func (p GetSyncRequestStatisticsParams) params() map[string]any {
 	if p.DiagnosticInfo != "" {
 		m["DiagnosticInfo"] = p.DiagnosticInfo
 	}
-	if p.DiagnosticOnly {
-		m["DiagnosticOnly"] = true
+	if p.DiagnosticOnly != nil {
+		m["DiagnosticOnly"] = *p.DiagnosticOnly
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeReport {
-		m["IncludeReport"] = true
+	if p.IncludeReport != nil {
+		m["IncludeReport"] = *p.IncludeReport
 	}
-	if p.IncludeSkippedItems {
-		m["IncludeSkippedItems"] = true
+	if p.IncludeSkippedItems != nil {
+		m["IncludeSkippedItems"] = *p.IncludeSkippedItems
 	}
-	if p.IncludeSlaReport {
-		m["IncludeSlaReport"] = true
+	if p.IncludeSlaReport != nil {
+		m["IncludeSlaReport"] = *p.IncludeSlaReport
 	}
-	if p.ReportOnly {
-		m["ReportOnly"] = true
+	if p.ReportOnly != nil {
+		m["ReportOnly"] = *p.ReportOnly
 	}
 	return m
 }
@@ -11245,23 +11245,23 @@ func (s *Service) GetTeamsProtectionPolicyRule(ctx context.Context, p GetTeamsPr
 // GetTenantAllowBlockListItemsParams are the parameters of Get-TenantAllowBlockListItems.
 // DefaultParameterSetName: Expiration
 type GetTenantAllowBlockListItemsParams struct {
-	Allow          bool     `ps:"Allow"`
-	Block          bool     `ps:"Block"`
+	Allow          *bool    `ps:"Allow"`
+	Block          *bool    `ps:"Block"`
 	Entry          string   `ps:"Entry"`
 	ExpirationDate any      `ps:"ExpirationDate"` // DateTime
 	ListSubType    []string `ps:"ListSubType"`
 	ListType       any      `ps:"ListType"` // ListType
-	NoExpiration   bool     `ps:"NoExpiration"`
-	OutputJson     bool     `ps:"OutputJson"`
+	NoExpiration   *bool    `ps:"NoExpiration"`
+	OutputJson     *bool    `ps:"OutputJson"`
 }
 
 func (p GetTenantAllowBlockListItemsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Allow {
-		m["Allow"] = true
+	if p.Allow != nil {
+		m["Allow"] = *p.Allow
 	}
-	if p.Block {
-		m["Block"] = true
+	if p.Block != nil {
+		m["Block"] = *p.Block
 	}
 	if p.Entry != "" {
 		m["Entry"] = p.Entry
@@ -11275,11 +11275,11 @@ func (p GetTenantAllowBlockListItemsParams) params() map[string]any {
 	if p.ListType != nil {
 		m["ListType"] = p.ListType
 	}
-	if p.NoExpiration {
-		m["NoExpiration"] = true
+	if p.NoExpiration != nil {
+		m["NoExpiration"] = *p.NoExpiration
 	}
-	if p.OutputJson {
-		m["OutputJson"] = true
+	if p.OutputJson != nil {
+		m["OutputJson"] = *p.OutputJson
 	}
 	return m
 }
@@ -11394,7 +11394,7 @@ type GetTenantScanRequestStatisticsParams struct {
 	ConnectionId   string   `ps:"ConnectionId"`
 	EntityPageSize *int64   `ps:"EntityPageSize"`
 	Filter         string   `ps:"Filter"`
-	IncludeReport  bool     `ps:"IncludeReport"`
+	IncludeReport  *bool    `ps:"IncludeReport"`
 	NextPageToken  string   `ps:"NextPageToken"`
 	Partition      any      `ps:"Partition"`
 	SortBy         []string `ps:"SortBy"`
@@ -11411,8 +11411,8 @@ func (p GetTenantScanRequestStatisticsParams) params() map[string]any {
 	if p.Filter != "" {
 		m["Filter"] = p.Filter
 	}
-	if p.IncludeReport {
-		m["IncludeReport"] = true
+	if p.IncludeReport != nil {
+		m["IncludeReport"] = *p.IncludeReport
 	}
 	if p.NextPageToken != "" {
 		m["NextPageToken"] = p.NextPageToken
@@ -11434,10 +11434,10 @@ func (s *Service) GetTenantScanRequestStatistics(ctx context.Context, p GetTenan
 // GetTextMessagingAccountParams are the parameters of Get-TextMessagingAccount.
 // DefaultParameterSetName: Identity
 type GetTextMessagingAccountParams struct {
-	Credential               any  `ps:"Credential"` // PSCredential
-	Identity                 any  `ps:"Identity"`   // MailboxIdParameter
-	ReadFromDomainController bool `ps:"ReadFromDomainController"`
-	ResultSize               any  `ps:"ResultSize"` // Unlimited
+	Credential               any   `ps:"Credential"` // PSCredential
+	Identity                 any   `ps:"Identity"`   // MailboxIdParameter
+	ReadFromDomainController *bool `ps:"ReadFromDomainController"`
+	ResultSize               any   `ps:"ResultSize"` // Unlimited
 }
 
 func (p GetTextMessagingAccountParams) params() map[string]any {
@@ -11448,8 +11448,8 @@ func (p GetTextMessagingAccountParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ReadFromDomainController {
-		m["ReadFromDomainController"] = true
+	if p.ReadFromDomainController != nil {
+		m["ReadFromDomainController"] = *p.ReadFromDomainController
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -11597,13 +11597,13 @@ type GetUnifiedGroupParams struct {
 	Anr                                                           string `ps:"Anr"`
 	Filter                                                        string `ps:"Filter"`
 	Identity                                                      any    `ps:"Identity"` // UnifiedGroupIdParameter
-	IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames bool   `ps:"IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"`
-	IncludeAllProperties                                          bool   `ps:"IncludeAllProperties"`
-	IncludeBypassModerationFromSendersOrMembersWithDisplayNames   bool   `ps:"IncludeBypassModerationFromSendersOrMembersWithDisplayNames"`
-	IncludeGrantSendOnBehalfToWithDisplayNames                    bool   `ps:"IncludeGrantSendOnBehalfToWithDisplayNames"`
-	IncludeModeratedByWithDisplayNames                            bool   `ps:"IncludeModeratedByWithDisplayNames"`
-	IncludeRejectMessagesFromSendersOrMembersWithDisplayNames     bool   `ps:"IncludeRejectMessagesFromSendersOrMembersWithDisplayNames"`
-	IncludeSoftDeletedGroups                                      bool   `ps:"IncludeSoftDeletedGroups"`
+	IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames *bool  `ps:"IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"`
+	IncludeAllProperties                                          *bool  `ps:"IncludeAllProperties"`
+	IncludeBypassModerationFromSendersOrMembersWithDisplayNames   *bool  `ps:"IncludeBypassModerationFromSendersOrMembersWithDisplayNames"`
+	IncludeGrantSendOnBehalfToWithDisplayNames                    *bool  `ps:"IncludeGrantSendOnBehalfToWithDisplayNames"`
+	IncludeModeratedByWithDisplayNames                            *bool  `ps:"IncludeModeratedByWithDisplayNames"`
+	IncludeRejectMessagesFromSendersOrMembersWithDisplayNames     *bool  `ps:"IncludeRejectMessagesFromSendersOrMembersWithDisplayNames"`
+	IncludeSoftDeletedGroups                                      *bool  `ps:"IncludeSoftDeletedGroups"`
 	ResultSize                                                    any    `ps:"ResultSize"` // Unlimited
 	SortBy                                                        string `ps:"SortBy"`
 }
@@ -11619,26 +11619,26 @@ func (p GetUnifiedGroupParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames {
-		m["IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"] = true
+	if p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames != nil {
+		m["IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames"] = *p.IncludeAcceptMessagesOnlyFromSendersOrMembersWithDisplayNames
 	}
-	if p.IncludeAllProperties {
-		m["IncludeAllProperties"] = true
+	if p.IncludeAllProperties != nil {
+		m["IncludeAllProperties"] = *p.IncludeAllProperties
 	}
-	if p.IncludeBypassModerationFromSendersOrMembersWithDisplayNames {
-		m["IncludeBypassModerationFromSendersOrMembersWithDisplayNames"] = true
+	if p.IncludeBypassModerationFromSendersOrMembersWithDisplayNames != nil {
+		m["IncludeBypassModerationFromSendersOrMembersWithDisplayNames"] = *p.IncludeBypassModerationFromSendersOrMembersWithDisplayNames
 	}
-	if p.IncludeGrantSendOnBehalfToWithDisplayNames {
-		m["IncludeGrantSendOnBehalfToWithDisplayNames"] = true
+	if p.IncludeGrantSendOnBehalfToWithDisplayNames != nil {
+		m["IncludeGrantSendOnBehalfToWithDisplayNames"] = *p.IncludeGrantSendOnBehalfToWithDisplayNames
 	}
-	if p.IncludeModeratedByWithDisplayNames {
-		m["IncludeModeratedByWithDisplayNames"] = true
+	if p.IncludeModeratedByWithDisplayNames != nil {
+		m["IncludeModeratedByWithDisplayNames"] = *p.IncludeModeratedByWithDisplayNames
 	}
-	if p.IncludeRejectMessagesFromSendersOrMembersWithDisplayNames {
-		m["IncludeRejectMessagesFromSendersOrMembersWithDisplayNames"] = true
+	if p.IncludeRejectMessagesFromSendersOrMembersWithDisplayNames != nil {
+		m["IncludeRejectMessagesFromSendersOrMembersWithDisplayNames"] = *p.IncludeRejectMessagesFromSendersOrMembersWithDisplayNames
 	}
-	if p.IncludeSoftDeletedGroups {
-		m["IncludeSoftDeletedGroups"] = true
+	if p.IncludeSoftDeletedGroups != nil {
+		m["IncludeSoftDeletedGroups"] = *p.IncludeSoftDeletedGroups
 	}
 	if p.ResultSize != nil {
 		m["ResultSize"] = p.ResultSize
@@ -11687,11 +11687,11 @@ type GetUserParams struct {
 	Anr                                  string   `ps:"Anr"`
 	Filter                               string   `ps:"Filter"`
 	Identity                             any      `ps:"Identity"` // UserIdParameter
-	IncludeDirectReportsWithDisplayNames bool     `ps:"IncludeDirectReportsWithDisplayNames"`
-	IncludeManagerWithDisplayName        bool     `ps:"IncludeManagerWithDisplayName"`
-	IsVIP                                bool     `ps:"IsVIP"`
+	IncludeDirectReportsWithDisplayNames *bool    `ps:"IncludeDirectReportsWithDisplayNames"`
+	IncludeManagerWithDisplayName        *bool    `ps:"IncludeManagerWithDisplayName"`
+	IsVIP                                *bool    `ps:"IsVIP"`
 	OrganizationalUnit                   any      `ps:"OrganizationalUnit"` // OrganizationalUnitIdParameter
-	PublicFolder                         bool     `ps:"PublicFolder"`
+	PublicFolder                         *bool    `ps:"PublicFolder"`
 	RecipientTypeDetails                 []string `ps:"RecipientTypeDetails"`
 	ResultSize                           any      `ps:"ResultSize"` // Unlimited
 	SortBy                               string   `ps:"SortBy"`
@@ -11708,20 +11708,20 @@ func (p GetUserParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeDirectReportsWithDisplayNames {
-		m["IncludeDirectReportsWithDisplayNames"] = true
+	if p.IncludeDirectReportsWithDisplayNames != nil {
+		m["IncludeDirectReportsWithDisplayNames"] = *p.IncludeDirectReportsWithDisplayNames
 	}
-	if p.IncludeManagerWithDisplayName {
-		m["IncludeManagerWithDisplayName"] = true
+	if p.IncludeManagerWithDisplayName != nil {
+		m["IncludeManagerWithDisplayName"] = *p.IncludeManagerWithDisplayName
 	}
-	if p.IsVIP {
-		m["IsVIP"] = true
+	if p.IsVIP != nil {
+		m["IsVIP"] = *p.IsVIP
 	}
 	if p.OrganizationalUnit != nil {
 		m["OrganizationalUnit"] = p.OrganizationalUnit
 	}
-	if p.PublicFolder {
-		m["PublicFolder"] = true
+	if p.PublicFolder != nil {
+		m["PublicFolder"] = *p.PublicFolder
 	}
 	if p.RecipientTypeDetails != nil {
 		m["RecipientTypeDetails"] = p.RecipientTypeDetails
@@ -11743,9 +11743,9 @@ func (s *Service) GetUser(ctx context.Context, p GetUserParams) (*adminapi.Resul
 // ImportDlpPolicyCollectionParams are the parameters of Import-DlpPolicyCollection.
 // DefaultParameterSetName: Identity
 type ImportDlpPolicyCollectionParams struct {
-	FileData any  `ps:"FileData"` // Byte[]
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // DlpPolicyIdParameter
+	FileData any   `ps:"FileData"` // Byte[]
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // DlpPolicyIdParameter
 }
 
 func (p ImportDlpPolicyCollectionParams) params() map[string]any {
@@ -11753,8 +11753,8 @@ func (p ImportDlpPolicyCollectionParams) params() map[string]any {
 	if p.FileData != nil {
 		m["FileData"] = p.FileData
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -11770,9 +11770,9 @@ func (s *Service) ImportDlpPolicyCollection(ctx context.Context, p ImportDlpPoli
 // ImportRecipientDataPropertyParams are the parameters of Import-RecipientDataProperty.
 // DefaultParameterSetName: ImportPicture
 type ImportRecipientDataPropertyParams struct {
-	FileData any  `ps:"FileData"` // Byte[]
-	Identity any  `ps:"Identity"` // MailboxUserContactIdParameter
-	Picture  bool `ps:"Picture"`
+	FileData any   `ps:"FileData"` // Byte[]
+	Identity any   `ps:"Identity"` // MailboxUserContactIdParameter
+	Picture  *bool `ps:"Picture"`
 }
 
 func (p ImportRecipientDataPropertyParams) params() map[string]any {
@@ -11783,8 +11783,8 @@ func (p ImportRecipientDataPropertyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.Picture {
-		m["Picture"] = true
+	if p.Picture != nil {
+		m["Picture"] = *p.Picture
 	}
 	return m
 }
@@ -11850,13 +11850,13 @@ func (s *Service) InvokeChangeMeetingOrganizer(ctx context.Context, p InvokeChan
 
 // InvokeProvisioningAcceptedDomainDiagnosticParams are the parameters of Invoke-ProvisioningAcceptedDomainDiagnostic.
 type InvokeProvisioningAcceptedDomainDiagnosticParams struct {
-	ObjectOutput bool `ps:"ObjectOutput"`
+	ObjectOutput *bool `ps:"ObjectOutput"`
 }
 
 func (p InvokeProvisioningAcceptedDomainDiagnosticParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ObjectOutput {
-		m["ObjectOutput"] = true
+	if p.ObjectOutput != nil {
+		m["ObjectOutput"] = *p.ObjectOutput
 	}
 	return m
 }
@@ -11868,13 +11868,13 @@ func (s *Service) InvokeProvisioningAcceptedDomainDiagnostic(ctx context.Context
 
 // InvokeProvisioningCompanyObjectDiagnosticParams are the parameters of Invoke-ProvisioningCompanyObjectDiagnostic.
 type InvokeProvisioningCompanyObjectDiagnosticParams struct {
-	ObjectOutput bool `ps:"ObjectOutput"`
+	ObjectOutput *bool `ps:"ObjectOutput"`
 }
 
 func (p InvokeProvisioningCompanyObjectDiagnosticParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ObjectOutput {
-		m["ObjectOutput"] = true
+	if p.ObjectOutput != nil {
+		m["ObjectOutput"] = *p.ObjectOutput
 	}
 	return m
 }
@@ -11886,14 +11886,14 @@ func (s *Service) InvokeProvisioningCompanyObjectDiagnostic(ctx context.Context,
 
 // InvokeProvisioningRecipientDiagnosticParams are the parameters of Invoke-ProvisioningRecipientDiagnostic.
 type InvokeProvisioningRecipientDiagnosticParams struct {
-	ObjectOutput bool     `ps:"ObjectOutput"`
+	ObjectOutput *bool    `ps:"ObjectOutput"`
 	Recipients   []string `ps:"Recipients"`
 }
 
 func (p InvokeProvisioningRecipientDiagnosticParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ObjectOutput {
-		m["ObjectOutput"] = true
+	if p.ObjectOutput != nil {
+		m["ObjectOutput"] = *p.ObjectOutput
 	}
 	if p.Recipients != nil {
 		m["Recipients"] = p.Recipients
@@ -11910,7 +11910,7 @@ func (s *Service) InvokeProvisioningRecipientDiagnostic(ctx context.Context, p I
 type InvokeProvisioningVerifyRbacDiagnosticParams struct {
 	CmdletName       string   `ps:"CmdletName"`
 	CmdletParameters []string `ps:"CmdletParameters"`
-	ObjectOutput     bool     `ps:"ObjectOutput"`
+	ObjectOutput     *bool    `ps:"ObjectOutput"`
 	ReferenceUser    string   `ps:"ReferenceUser"`
 	User             string   `ps:"User"`
 }
@@ -11923,8 +11923,8 @@ func (p InvokeProvisioningVerifyRbacDiagnosticParams) params() map[string]any {
 	if p.CmdletParameters != nil {
 		m["CmdletParameters"] = p.CmdletParameters
 	}
-	if p.ObjectOutput {
-		m["ObjectOutput"] = true
+	if p.ObjectOutput != nil {
+		m["ObjectOutput"] = *p.ObjectOutput
 	}
 	if p.ReferenceUser != "" {
 		m["ReferenceUser"] = p.ReferenceUser
@@ -12419,7 +12419,7 @@ type NewAntiPhishPolicyParams struct {
 	MailboxIntelligenceProtectionAction           any      `ps:"MailboxIntelligenceProtectionAction"` // ImpersonationAction
 	MailboxIntelligenceProtectionActionRecipients []string `ps:"MailboxIntelligenceProtectionActionRecipients"`
 	MailboxIntelligenceQuarantineTag              string   `ps:"MailboxIntelligenceQuarantineTag"`
-	MakeDefault                                   bool     `ps:"MakeDefault"`
+	MakeDefault                                   *bool    `ps:"MakeDefault"`
 	Name                                          string   `ps:"Name"`
 	PhishThresholdLevel                           *int64   `ps:"PhishThresholdLevel"`
 	PolicyTag                                     string   `ps:"PolicyTag"`
@@ -12511,8 +12511,8 @@ func (p NewAntiPhishPolicyParams) params() map[string]any {
 	if p.MailboxIntelligenceQuarantineTag != "" {
 		m["MailboxIntelligenceQuarantineTag"] = p.MailboxIntelligenceQuarantineTag
 	}
-	if p.MakeDefault {
-		m["MakeDefault"] = true
+	if p.MakeDefault != nil {
+		m["MakeDefault"] = *p.MakeDefault
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -12629,12 +12629,12 @@ func (s *Service) NewAntiPhishRule(ctx context.Context, p NewAntiPhishRuleParams
 // DefaultParameterSetName: ExtensionFileData
 type NewAppParams struct {
 	AddInOverrides             any      `ps:"AddInOverrides"` // AddInOverrides
-	AllowReadWriteMailbox      bool     `ps:"AllowReadWriteMailbox"`
+	AllowReadWriteMailbox      *bool    `ps:"AllowReadWriteMailbox"`
 	AllowSetting               any      `ps:"AllowSetting"` // AllowSetting
 	AppState                   string   `ps:"AppState"`
 	AppType                    string   `ps:"AppType"`
 	DefaultStateForUser        any      `ps:"DefaultStateForUser"` // DefaultStateForUser
-	DownloadOnly               bool     `ps:"DownloadOnly"`
+	DownloadOnly               *bool    `ps:"DownloadOnly"`
 	Enabled                    *bool    `ps:"Enabled"`
 	Etoken                     string   `ps:"Etoken"`
 	FileData                   any      `ps:"FileData"`   // Byte[]
@@ -12646,10 +12646,10 @@ type NewAppParams struct {
 	MarketplaceQueryMarket     string   `ps:"MarketplaceQueryMarket"`
 	MarketplaceServicesUrl     string   `ps:"MarketplaceServicesUrl"`
 	MarketplaceUserProfileType string   `ps:"MarketplaceUserProfileType"`
-	OrganizationApp            bool     `ps:"OrganizationApp"`
-	PrivateCatalog             bool     `ps:"PrivateCatalog"`
+	OrganizationApp            *bool    `ps:"OrganizationApp"`
+	PrivateCatalog             *bool    `ps:"PrivateCatalog"`
 	ProvidedTo                 any      `ps:"ProvidedTo"` // ClientExtensionProvidedTo
-	UpdateAppState             bool     `ps:"UpdateAppState"`
+	UpdateAppState             *bool    `ps:"UpdateAppState"`
 	Url                        any      `ps:"Url"` // Uri
 	UserList                   []string `ps:"UserList"`
 	Version                    string   `ps:"Version"`
@@ -12660,8 +12660,8 @@ func (p NewAppParams) params() map[string]any {
 	if p.AddInOverrides != nil {
 		m["AddInOverrides"] = p.AddInOverrides
 	}
-	if p.AllowReadWriteMailbox {
-		m["AllowReadWriteMailbox"] = true
+	if p.AllowReadWriteMailbox != nil {
+		m["AllowReadWriteMailbox"] = *p.AllowReadWriteMailbox
 	}
 	if p.AllowSetting != nil {
 		m["AllowSetting"] = p.AllowSetting
@@ -12675,8 +12675,8 @@ func (p NewAppParams) params() map[string]any {
 	if p.DefaultStateForUser != nil {
 		m["DefaultStateForUser"] = p.DefaultStateForUser
 	}
-	if p.DownloadOnly {
-		m["DownloadOnly"] = true
+	if p.DownloadOnly != nil {
+		m["DownloadOnly"] = *p.DownloadOnly
 	}
 	if p.Enabled != nil {
 		m["Enabled"] = *p.Enabled
@@ -12711,17 +12711,17 @@ func (p NewAppParams) params() map[string]any {
 	if p.MarketplaceUserProfileType != "" {
 		m["MarketplaceUserProfileType"] = p.MarketplaceUserProfileType
 	}
-	if p.OrganizationApp {
-		m["OrganizationApp"] = true
+	if p.OrganizationApp != nil {
+		m["OrganizationApp"] = *p.OrganizationApp
 	}
-	if p.PrivateCatalog {
-		m["PrivateCatalog"] = true
+	if p.PrivateCatalog != nil {
+		m["PrivateCatalog"] = *p.PrivateCatalog
 	}
 	if p.ProvidedTo != nil {
 		m["ProvidedTo"] = p.ProvidedTo
 	}
-	if p.UpdateAppState {
-		m["UpdateAppState"] = true
+	if p.UpdateAppState != nil {
+		m["UpdateAppState"] = *p.UpdateAppState
 	}
 	if p.Url != nil {
 		m["Url"] = p.Url
@@ -12773,58 +12773,58 @@ func (s *Service) NewApplicationAccessPolicy(ctx context.Context, p NewApplicati
 // NewAuthenticationPolicyParams are the parameters of New-AuthenticationPolicy.
 // DefaultParameterSetName: Identity
 type NewAuthenticationPolicyParams struct {
-	AllowBasicAuthActiveSync           bool   `ps:"AllowBasicAuthActiveSync"`
-	AllowBasicAuthAutodiscover         bool   `ps:"AllowBasicAuthAutodiscover"`
-	AllowBasicAuthImap                 bool   `ps:"AllowBasicAuthImap"`
-	AllowBasicAuthMapi                 bool   `ps:"AllowBasicAuthMapi"`
-	AllowBasicAuthOfflineAddressBook   bool   `ps:"AllowBasicAuthOfflineAddressBook"`
-	AllowBasicAuthOutlookService       bool   `ps:"AllowBasicAuthOutlookService"`
-	AllowBasicAuthPop                  bool   `ps:"AllowBasicAuthPop"`
-	AllowBasicAuthPowershell           bool   `ps:"AllowBasicAuthPowershell"`
-	AllowBasicAuthReportingWebServices bool   `ps:"AllowBasicAuthReportingWebServices"`
-	AllowBasicAuthRpc                  bool   `ps:"AllowBasicAuthRpc"`
-	AllowBasicAuthSmtp                 bool   `ps:"AllowBasicAuthSmtp"`
-	AllowBasicAuthWebServices          bool   `ps:"AllowBasicAuthWebServices"`
+	AllowBasicAuthActiveSync           *bool  `ps:"AllowBasicAuthActiveSync"`
+	AllowBasicAuthAutodiscover         *bool  `ps:"AllowBasicAuthAutodiscover"`
+	AllowBasicAuthImap                 *bool  `ps:"AllowBasicAuthImap"`
+	AllowBasicAuthMapi                 *bool  `ps:"AllowBasicAuthMapi"`
+	AllowBasicAuthOfflineAddressBook   *bool  `ps:"AllowBasicAuthOfflineAddressBook"`
+	AllowBasicAuthOutlookService       *bool  `ps:"AllowBasicAuthOutlookService"`
+	AllowBasicAuthPop                  *bool  `ps:"AllowBasicAuthPop"`
+	AllowBasicAuthPowershell           *bool  `ps:"AllowBasicAuthPowershell"`
+	AllowBasicAuthReportingWebServices *bool  `ps:"AllowBasicAuthReportingWebServices"`
+	AllowBasicAuthRpc                  *bool  `ps:"AllowBasicAuthRpc"`
+	AllowBasicAuthSmtp                 *bool  `ps:"AllowBasicAuthSmtp"`
+	AllowBasicAuthWebServices          *bool  `ps:"AllowBasicAuthWebServices"`
 	Name                               string `ps:"Name"`
 }
 
 func (p NewAuthenticationPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AllowBasicAuthActiveSync {
-		m["AllowBasicAuthActiveSync"] = true
+	if p.AllowBasicAuthActiveSync != nil {
+		m["AllowBasicAuthActiveSync"] = *p.AllowBasicAuthActiveSync
 	}
-	if p.AllowBasicAuthAutodiscover {
-		m["AllowBasicAuthAutodiscover"] = true
+	if p.AllowBasicAuthAutodiscover != nil {
+		m["AllowBasicAuthAutodiscover"] = *p.AllowBasicAuthAutodiscover
 	}
-	if p.AllowBasicAuthImap {
-		m["AllowBasicAuthImap"] = true
+	if p.AllowBasicAuthImap != nil {
+		m["AllowBasicAuthImap"] = *p.AllowBasicAuthImap
 	}
-	if p.AllowBasicAuthMapi {
-		m["AllowBasicAuthMapi"] = true
+	if p.AllowBasicAuthMapi != nil {
+		m["AllowBasicAuthMapi"] = *p.AllowBasicAuthMapi
 	}
-	if p.AllowBasicAuthOfflineAddressBook {
-		m["AllowBasicAuthOfflineAddressBook"] = true
+	if p.AllowBasicAuthOfflineAddressBook != nil {
+		m["AllowBasicAuthOfflineAddressBook"] = *p.AllowBasicAuthOfflineAddressBook
 	}
-	if p.AllowBasicAuthOutlookService {
-		m["AllowBasicAuthOutlookService"] = true
+	if p.AllowBasicAuthOutlookService != nil {
+		m["AllowBasicAuthOutlookService"] = *p.AllowBasicAuthOutlookService
 	}
-	if p.AllowBasicAuthPop {
-		m["AllowBasicAuthPop"] = true
+	if p.AllowBasicAuthPop != nil {
+		m["AllowBasicAuthPop"] = *p.AllowBasicAuthPop
 	}
-	if p.AllowBasicAuthPowershell {
-		m["AllowBasicAuthPowershell"] = true
+	if p.AllowBasicAuthPowershell != nil {
+		m["AllowBasicAuthPowershell"] = *p.AllowBasicAuthPowershell
 	}
-	if p.AllowBasicAuthReportingWebServices {
-		m["AllowBasicAuthReportingWebServices"] = true
+	if p.AllowBasicAuthReportingWebServices != nil {
+		m["AllowBasicAuthReportingWebServices"] = *p.AllowBasicAuthReportingWebServices
 	}
-	if p.AllowBasicAuthRpc {
-		m["AllowBasicAuthRpc"] = true
+	if p.AllowBasicAuthRpc != nil {
+		m["AllowBasicAuthRpc"] = *p.AllowBasicAuthRpc
 	}
-	if p.AllowBasicAuthSmtp {
-		m["AllowBasicAuthSmtp"] = true
+	if p.AllowBasicAuthSmtp != nil {
+		m["AllowBasicAuthSmtp"] = *p.AllowBasicAuthSmtp
 	}
-	if p.AllowBasicAuthWebServices {
-		m["AllowBasicAuthWebServices"] = true
+	if p.AllowBasicAuthWebServices != nil {
+		m["AllowBasicAuthWebServices"] = *p.AllowBasicAuthWebServices
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -12880,18 +12880,18 @@ func (s *Service) NewClassificationRuleCollection(ctx context.Context, p NewClas
 
 // NewCompliancePolicySyncNotificationParams are the parameters of New-CompliancePolicySyncNotification.
 type NewCompliancePolicySyncNotificationParams struct {
-	FullSync        bool   `ps:"FullSync"`
+	FullSync        *bool  `ps:"FullSync"`
 	Identity        string `ps:"Identity"`
 	SyncChangeInfos any    `ps:"SyncChangeInfos"`
-	SyncNow         bool   `ps:"SyncNow"`
+	SyncNow         *bool  `ps:"SyncNow"`
 	SyncSvcUrl      string `ps:"SyncSvcUrl"`
 	Workload        any    `ps:"Workload"`
 }
 
 func (p NewCompliancePolicySyncNotificationParams) params() map[string]any {
 	m := map[string]any{}
-	if p.FullSync {
-		m["FullSync"] = true
+	if p.FullSync != nil {
+		m["FullSync"] = *p.FullSync
 	}
 	if p.Identity != "" {
 		m["Identity"] = p.Identity
@@ -12899,8 +12899,8 @@ func (p NewCompliancePolicySyncNotificationParams) params() map[string]any {
 	if p.SyncChangeInfos != nil {
 		m["SyncChangeInfos"] = p.SyncChangeInfos
 	}
-	if p.SyncNow {
-		m["SyncNow"] = true
+	if p.SyncNow != nil {
+		m["SyncNow"] = *p.SyncNow
 	}
 	if p.SyncSvcUrl != "" {
 		m["SyncSvcUrl"] = p.SyncSvcUrl
@@ -13036,11 +13036,11 @@ type NewDistributionGroupParams struct {
 	Alias                              string   `ps:"Alias"`
 	BccBlocked                         *bool    `ps:"BccBlocked"`
 	BypassNestedModerationEnabled      *bool    `ps:"BypassNestedModerationEnabled"`
-	CopyOwnerToMember                  bool     `ps:"CopyOwnerToMember"`
+	CopyOwnerToMember                  *bool    `ps:"CopyOwnerToMember"`
 	Description                        []string `ps:"Description"`
 	DisplayName                        string   `ps:"DisplayName"`
-	HiddenGroupMembershipEnabled       bool     `ps:"HiddenGroupMembershipEnabled"`
-	IgnoreNamingPolicy                 bool     `ps:"IgnoreNamingPolicy"`
+	HiddenGroupMembershipEnabled       *bool    `ps:"HiddenGroupMembershipEnabled"`
+	IgnoreNamingPolicy                 *bool    `ps:"IgnoreNamingPolicy"`
 	ManagedBy                          []string `ps:"ManagedBy"`
 	MemberDepartRestriction            any      `ps:"MemberDepartRestriction"` // MemberUpdateType
 	MemberJoinRestriction              any      `ps:"MemberJoinRestriction"`   // MemberUpdateType
@@ -13052,7 +13052,7 @@ type NewDistributionGroupParams struct {
 	OrganizationalUnit                 any      `ps:"OrganizationalUnit"` // OrganizationalUnitIdParameter
 	PrimarySmtpAddress                 any      `ps:"PrimarySmtpAddress"` // SmtpAddress
 	RequireSenderAuthenticationEnabled *bool    `ps:"RequireSenderAuthenticationEnabled"`
-	RoomList                           bool     `ps:"RoomList"`
+	RoomList                           *bool    `ps:"RoomList"`
 	SendModerationNotifications        any      `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
 	Type                               any      `ps:"Type"`                        // GroupType
 }
@@ -13068,8 +13068,8 @@ func (p NewDistributionGroupParams) params() map[string]any {
 	if p.BypassNestedModerationEnabled != nil {
 		m["BypassNestedModerationEnabled"] = *p.BypassNestedModerationEnabled
 	}
-	if p.CopyOwnerToMember {
-		m["CopyOwnerToMember"] = true
+	if p.CopyOwnerToMember != nil {
+		m["CopyOwnerToMember"] = *p.CopyOwnerToMember
 	}
 	if p.Description != nil {
 		m["Description"] = p.Description
@@ -13077,11 +13077,11 @@ func (p NewDistributionGroupParams) params() map[string]any {
 	if p.DisplayName != "" {
 		m["DisplayName"] = p.DisplayName
 	}
-	if p.HiddenGroupMembershipEnabled {
-		m["HiddenGroupMembershipEnabled"] = true
+	if p.HiddenGroupMembershipEnabled != nil {
+		m["HiddenGroupMembershipEnabled"] = *p.HiddenGroupMembershipEnabled
 	}
-	if p.IgnoreNamingPolicy {
-		m["IgnoreNamingPolicy"] = true
+	if p.IgnoreNamingPolicy != nil {
+		m["IgnoreNamingPolicy"] = *p.IgnoreNamingPolicy
 	}
 	if p.ManagedBy != nil {
 		m["ManagedBy"] = p.ManagedBy
@@ -13116,8 +13116,8 @@ func (p NewDistributionGroupParams) params() map[string]any {
 	if p.RequireSenderAuthenticationEnabled != nil {
 		m["RequireSenderAuthenticationEnabled"] = *p.RequireSenderAuthenticationEnabled
 	}
-	if p.RoomList {
-		m["RoomList"] = true
+	if p.RoomList != nil {
+		m["RoomList"] = *p.RoomList
 	}
 	if p.SendModerationNotifications != nil {
 		m["SendModerationNotifications"] = p.SendModerationNotifications
@@ -13523,7 +13523,7 @@ func (s *Service) NewElevatedAccessRequest(ctx context.Context, p NewElevatedAcc
 type NewEmailAddressPolicyParams struct {
 	EnabledEmailAddressTemplates      []string `ps:"EnabledEmailAddressTemplates"`
 	EnabledPrimarySMTPAddressTemplate string   `ps:"EnabledPrimarySMTPAddressTemplate"`
-	IncludeUnifiedGroupRecipients     bool     `ps:"IncludeUnifiedGroupRecipients"`
+	IncludeUnifiedGroupRecipients     *bool    `ps:"IncludeUnifiedGroupRecipients"`
 	ManagedByFilter                   string   `ps:"ManagedByFilter"`
 	Name                              string   `ps:"Name"`
 	Priority                          any      `ps:"Priority"` // EmailAddressPolicyPriority
@@ -13537,8 +13537,8 @@ func (p NewEmailAddressPolicyParams) params() map[string]any {
 	if p.EnabledPrimarySMTPAddressTemplate != "" {
 		m["EnabledPrimarySMTPAddressTemplate"] = p.EnabledPrimarySMTPAddressTemplate
 	}
-	if p.IncludeUnifiedGroupRecipients {
-		m["IncludeUnifiedGroupRecipients"] = true
+	if p.IncludeUnifiedGroupRecipients != nil {
+		m["IncludeUnifiedGroupRecipients"] = *p.IncludeUnifiedGroupRecipients
 	}
 	if p.ManagedByFilter != "" {
 		m["ManagedByFilter"] = p.ManagedByFilter
@@ -14212,7 +14212,7 @@ func (s *Service) NewInboundConnector(ctx context.Context, p NewInboundConnector
 // NewInboxRuleParams are the parameters of New-InboxRule.
 // DefaultParameterSetName: Identity
 type NewInboxRuleParams struct {
-	AlwaysDeleteOutlookRulesBlob          bool     `ps:"AlwaysDeleteOutlookRulesBlob"`
+	AlwaysDeleteOutlookRulesBlob          *bool    `ps:"AlwaysDeleteOutlookRulesBlob"`
 	AnyCategory                           *bool    `ps:"AnyCategory"`
 	ApplyCategory                         []string `ps:"ApplyCategory"`
 	ApplySystemCategory                   []string `ps:"ApplySystemCategory"`
@@ -14256,7 +14256,7 @@ type NewInboxRuleParams struct {
 	ExceptIfWithSensitivity               any      `ps:"ExceptIfWithSensitivity"`        // Sensitivity
 	FlaggedForAction                      string   `ps:"FlaggedForAction"`
 	FlagMessage                           string   `ps:"FlagMessage"`
-	Force                                 bool     `ps:"Force"`
+	Force                                 *bool    `ps:"Force"`
 	ForwardAsAttachmentTo                 []string `ps:"ForwardAsAttachmentTo"`
 	ForwardTo                             []string `ps:"ForwardTo"`
 	From                                  []string `ps:"From"`
@@ -14291,7 +14291,7 @@ type NewInboxRuleParams struct {
 	StopProcessingRules                   *bool    `ps:"StopProcessingRules"`
 	SubjectContainsWords                  []string `ps:"SubjectContainsWords"`
 	SubjectOrBodyContainsWords            []string `ps:"SubjectOrBodyContainsWords"`
-	ValidateOnly                          bool     `ps:"ValidateOnly"`
+	ValidateOnly                          *bool    `ps:"ValidateOnly"`
 	WithImportance                        any      `ps:"WithImportance"`         // Importance
 	WithinSizeRangeMaximum                any      `ps:"WithinSizeRangeMaximum"` // ByteQuantifiedSize
 	WithinSizeRangeMinimum                any      `ps:"WithinSizeRangeMinimum"` // ByteQuantifiedSize
@@ -14300,8 +14300,8 @@ type NewInboxRuleParams struct {
 
 func (p NewInboxRuleParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AlwaysDeleteOutlookRulesBlob {
-		m["AlwaysDeleteOutlookRulesBlob"] = true
+	if p.AlwaysDeleteOutlookRulesBlob != nil {
+		m["AlwaysDeleteOutlookRulesBlob"] = *p.AlwaysDeleteOutlookRulesBlob
 	}
 	if p.AnyCategory != nil {
 		m["AnyCategory"] = *p.AnyCategory
@@ -14432,8 +14432,8 @@ func (p NewInboxRuleParams) params() map[string]any {
 	if p.FlagMessage != "" {
 		m["FlagMessage"] = p.FlagMessage
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.ForwardAsAttachmentTo != nil {
 		m["ForwardAsAttachmentTo"] = p.ForwardAsAttachmentTo
@@ -14537,8 +14537,8 @@ func (p NewInboxRuleParams) params() map[string]any {
 	if p.SubjectOrBodyContainsWords != nil {
 		m["SubjectOrBodyContainsWords"] = p.SubjectOrBodyContainsWords
 	}
-	if p.ValidateOnly {
-		m["ValidateOnly"] = true
+	if p.ValidateOnly != nil {
+		m["ValidateOnly"] = *p.ValidateOnly
 	}
 	if p.WithImportance != nil {
 		m["WithImportance"] = p.WithImportance
@@ -14771,7 +14771,7 @@ type NewMailUserParams struct {
 	ExternalEmailAddress        any      `ps:"ExternalEmailAddress"` // ProxyAddress
 	FederatedIdentity           string   `ps:"FederatedIdentity"`
 	FirstName                   string   `ps:"FirstName"`
-	HVEAccount                  bool     `ps:"HVEAccount"`
+	HVEAccount                  *bool    `ps:"HVEAccount"`
 	ImmutableId                 string   `ps:"ImmutableId"`
 	Initials                    string   `ps:"Initials"`
 	LastName                    string   `ps:"LastName"`
@@ -14808,8 +14808,8 @@ func (p NewMailUserParams) params() map[string]any {
 	if p.FirstName != "" {
 		m["FirstName"] = p.FirstName
 	}
-	if p.HVEAccount {
-		m["HVEAccount"] = true
+	if p.HVEAccount != nil {
+		m["HVEAccount"] = *p.HVEAccount
 	}
 	if p.ImmutableId != "" {
 		m["ImmutableId"] = p.ImmutableId
@@ -14875,15 +14875,15 @@ func (s *Service) NewMailUser(ctx context.Context, p NewMailUserParams) (*admina
 type NewMailboxParams struct {
 	ActiveSyncMailboxPolicy        any      `ps:"ActiveSyncMailboxPolicy"` // MailboxPolicyIdParameter
 	Alias                          string   `ps:"Alias"`
-	Archive                        bool     `ps:"Archive"`
-	Discovery                      bool     `ps:"Discovery"`
+	Archive                        *bool    `ps:"Archive"`
+	Discovery                      *bool    `ps:"Discovery"`
 	DisplayName                    string   `ps:"DisplayName"`
 	EnableRoomMailboxAccount       *bool    `ps:"EnableRoomMailboxAccount"`
-	Equipment                      bool     `ps:"Equipment"`
+	Equipment                      *bool    `ps:"Equipment"`
 	FederatedIdentity              string   `ps:"FederatedIdentity"`
 	FirstName                      string   `ps:"FirstName"`
-	Force                          bool     `ps:"Force"`
-	HoldForMigration               bool     `ps:"HoldForMigration"`
+	Force                          *bool    `ps:"Force"`
+	HoldForMigration               *bool    `ps:"HoldForMigration"`
 	ImmutableId                    string   `ps:"ImmutableId"`
 	InactiveMailbox                any      `ps:"InactiveMailbox"` // MailboxIdParameter
 	Initials                       string   `ps:"Initials"`
@@ -14892,7 +14892,7 @@ type NewMailboxParams struct {
 	MailboxPlan                    any      `ps:"MailboxPlan"` // MailboxPlanIdParameter
 	MailboxRegion                  string   `ps:"MailboxRegion"`
 	MicrosoftOnlineServicesID      any      `ps:"MicrosoftOnlineServicesID"` // WindowsLiveId
-	Migration                      bool     `ps:"Migration"`
+	Migration                      *bool    `ps:"Migration"`
 	ModeratedBy                    []string `ps:"ModeratedBy"`
 	ModerationEnabled              *bool    `ps:"ModerationEnabled"`
 	Name                           string   `ps:"Name"`
@@ -14902,17 +14902,17 @@ type NewMailboxParams struct {
 	Phone                          string   `ps:"Phone"`
 	PrimarySmtpAddress             any      `ps:"PrimarySmtpAddress"` // SmtpAddress
 	ProxyEmailAddress              any      `ps:"ProxyEmailAddress"`  // ProxyAddress
-	PublicFolder                   bool     `ps:"PublicFolder"`
+	PublicFolder                   *bool    `ps:"PublicFolder"`
 	RemotePowerShellEnabled        *bool    `ps:"RemotePowerShellEnabled"`
 	RemovedMailbox                 any      `ps:"RemovedMailbox"` // RemovedMailboxIdParameter
 	ResetPasswordOnNextLogon       *bool    `ps:"ResetPasswordOnNextLogon"`
 	ResourceCapacity               *int64   `ps:"ResourceCapacity"`
 	RoleAssignmentPolicy           any      `ps:"RoleAssignmentPolicy"` // MailboxPolicyIdParameter
-	Room                           bool     `ps:"Room"`
+	Room                           *bool    `ps:"Room"`
 	RoomMailboxPassword            any      `ps:"RoomMailboxPassword"`         // SecureString
 	SendModerationNotifications    any      `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
-	Shared                         bool     `ps:"Shared"`
-	TargetAllMDBs                  bool     `ps:"TargetAllMDBs"`
+	Shared                         *bool    `ps:"Shared"`
+	TargetAllMDBs                  *bool    `ps:"TargetAllMDBs"`
 }
 
 func (p NewMailboxParams) params() map[string]any {
@@ -14923,11 +14923,11 @@ func (p NewMailboxParams) params() map[string]any {
 	if p.Alias != "" {
 		m["Alias"] = p.Alias
 	}
-	if p.Archive {
-		m["Archive"] = true
+	if p.Archive != nil {
+		m["Archive"] = *p.Archive
 	}
-	if p.Discovery {
-		m["Discovery"] = true
+	if p.Discovery != nil {
+		m["Discovery"] = *p.Discovery
 	}
 	if p.DisplayName != "" {
 		m["DisplayName"] = p.DisplayName
@@ -14935,8 +14935,8 @@ func (p NewMailboxParams) params() map[string]any {
 	if p.EnableRoomMailboxAccount != nil {
 		m["EnableRoomMailboxAccount"] = *p.EnableRoomMailboxAccount
 	}
-	if p.Equipment {
-		m["Equipment"] = true
+	if p.Equipment != nil {
+		m["Equipment"] = *p.Equipment
 	}
 	if p.FederatedIdentity != "" {
 		m["FederatedIdentity"] = p.FederatedIdentity
@@ -14944,11 +14944,11 @@ func (p NewMailboxParams) params() map[string]any {
 	if p.FirstName != "" {
 		m["FirstName"] = p.FirstName
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
-	if p.HoldForMigration {
-		m["HoldForMigration"] = true
+	if p.HoldForMigration != nil {
+		m["HoldForMigration"] = *p.HoldForMigration
 	}
 	if p.ImmutableId != "" {
 		m["ImmutableId"] = p.ImmutableId
@@ -14974,8 +14974,8 @@ func (p NewMailboxParams) params() map[string]any {
 	if p.MicrosoftOnlineServicesID != nil {
 		m["MicrosoftOnlineServicesID"] = p.MicrosoftOnlineServicesID
 	}
-	if p.Migration {
-		m["Migration"] = true
+	if p.Migration != nil {
+		m["Migration"] = *p.Migration
 	}
 	if p.ModeratedBy != nil {
 		m["ModeratedBy"] = p.ModeratedBy
@@ -15004,8 +15004,8 @@ func (p NewMailboxParams) params() map[string]any {
 	if p.ProxyEmailAddress != nil {
 		m["ProxyEmailAddress"] = p.ProxyEmailAddress
 	}
-	if p.PublicFolder {
-		m["PublicFolder"] = true
+	if p.PublicFolder != nil {
+		m["PublicFolder"] = *p.PublicFolder
 	}
 	if p.RemotePowerShellEnabled != nil {
 		m["RemotePowerShellEnabled"] = *p.RemotePowerShellEnabled
@@ -15022,8 +15022,8 @@ func (p NewMailboxParams) params() map[string]any {
 	if p.RoleAssignmentPolicy != nil {
 		m["RoleAssignmentPolicy"] = p.RoleAssignmentPolicy
 	}
-	if p.Room {
-		m["Room"] = true
+	if p.Room != nil {
+		m["Room"] = *p.Room
 	}
 	if p.RoomMailboxPassword != nil {
 		m["RoomMailboxPassword"] = p.RoomMailboxPassword
@@ -15031,11 +15031,11 @@ func (p NewMailboxParams) params() map[string]any {
 	if p.SendModerationNotifications != nil {
 		m["SendModerationNotifications"] = p.SendModerationNotifications
 	}
-	if p.Shared {
-		m["Shared"] = true
+	if p.Shared != nil {
+		m["Shared"] = *p.Shared
 	}
-	if p.TargetAllMDBs {
-		m["TargetAllMDBs"] = true
+	if p.TargetAllMDBs != nil {
+		m["TargetAllMDBs"] = *p.TargetAllMDBs
 	}
 	return m
 }
@@ -15050,13 +15050,13 @@ func (s *Service) NewMailbox(ctx context.Context, p NewMailboxParams) (*adminapi
 type NewMailboxAuditLogSearchParams struct {
 	EndDate              any      `ps:"EndDate"` // ExDateTime
 	ExternalAccess       *bool    `ps:"ExternalAccess"`
-	GroupMailbox         bool     `ps:"GroupMailbox"`
+	GroupMailbox         *bool    `ps:"GroupMailbox"`
 	HasAttachments       *bool    `ps:"HasAttachments"`
 	LogonTypes           []string `ps:"LogonTypes"`
 	Mailboxes            []string `ps:"Mailboxes"`
 	Name                 string   `ps:"Name"`
 	Operations           []string `ps:"Operations"`
-	ShowDetails          bool     `ps:"ShowDetails"`
+	ShowDetails          *bool    `ps:"ShowDetails"`
 	StartDate            any      `ps:"StartDate"` // ExDateTime
 	StatusMailRecipients []string `ps:"StatusMailRecipients"`
 }
@@ -15069,8 +15069,8 @@ func (p NewMailboxAuditLogSearchParams) params() map[string]any {
 	if p.ExternalAccess != nil {
 		m["ExternalAccess"] = *p.ExternalAccess
 	}
-	if p.GroupMailbox {
-		m["GroupMailbox"] = true
+	if p.GroupMailbox != nil {
+		m["GroupMailbox"] = *p.GroupMailbox
 	}
 	if p.HasAttachments != nil {
 		m["HasAttachments"] = *p.HasAttachments
@@ -15087,8 +15087,8 @@ func (p NewMailboxAuditLogSearchParams) params() map[string]any {
 	if p.Operations != nil {
 		m["Operations"] = p.Operations
 	}
-	if p.ShowDetails {
-		m["ShowDetails"] = true
+	if p.ShowDetails != nil {
+		m["ShowDetails"] = *p.ShowDetails
 	}
 	if p.StartDate != nil {
 		m["StartDate"] = p.StartDate
@@ -15107,15 +15107,15 @@ func (s *Service) NewMailboxAuditLogSearch(ctx context.Context, p NewMailboxAudi
 // NewMailboxExtendedPropertyCleanupRequestParams are the parameters of New-MailboxExtendedPropertyCleanupRequest.
 // DefaultParameterSetName: Identity
 type NewMailboxExtendedPropertyCleanupRequestParams struct {
-	DetectOnly bool   `ps:"DetectOnly"`
+	DetectOnly *bool  `ps:"DetectOnly"`
 	Identity   any    `ps:"Identity"`
 	Properties string `ps:"Properties"`
 }
 
 func (p NewMailboxExtendedPropertyCleanupRequestParams) params() map[string]any {
 	m := map[string]any{}
-	if p.DetectOnly {
-		m["DetectOnly"] = true
+	if p.DetectOnly != nil {
+		m["DetectOnly"] = *p.DetectOnly
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -15161,17 +15161,17 @@ func (s *Service) NewMailboxFolder(ctx context.Context, p NewMailboxFolderParams
 // NewMailboxRestoreRequestParams are the parameters of New-MailboxRestoreRequest.
 // DefaultParameterSetName: MigrationLocalMailboxRestore
 type NewMailboxRestoreRequestParams struct {
-	AcceptLargeDataLoss          bool     `ps:"AcceptLargeDataLoss"`
-	AllowLegacyDNMismatch        bool     `ps:"AllowLegacyDNMismatch"`
+	AcceptLargeDataLoss          *bool    `ps:"AcceptLargeDataLoss"`
+	AllowLegacyDNMismatch        *bool    `ps:"AllowLegacyDNMismatch"`
 	AssociatedMessagesCopyOption any      `ps:"AssociatedMessagesCopyOption"` // FAICopyOption
 	BatchName                    string   `ps:"BatchName"`
 	CompletedRequestAgeLimit     any      `ps:"CompletedRequestAgeLimit"` // Unlimited
 	ConflictResolutionOption     any      `ps:"ConflictResolutionOption"` // ConflictResolutionOption
 	ContentFilter                string   `ps:"ContentFilter"`
 	ContentFilterLanguage        any      `ps:"ContentFilterLanguage"` // CultureInfo
-	CrossTenantRestore           bool     `ps:"CrossTenantRestore"`
+	CrossTenantRestore           *bool    `ps:"CrossTenantRestore"`
 	DomainController             any      `ps:"DomainController"` // Fqdn
-	ExcludeDumpster              bool     `ps:"ExcludeDumpster"`
+	ExcludeDumpster              *bool    `ps:"ExcludeDumpster"`
 	ExcludeFolders               []string `ps:"ExcludeFolders"`
 	IncludeFolders               []string `ps:"IncludeFolders"`
 	Name                         string   `ps:"Name"`
@@ -15182,14 +15182,14 @@ type NewMailboxRestoreRequestParams struct {
 	SkipMerging                  []string `ps:"SkipMerging"`
 	SourceEndpoint               any      `ps:"SourceEndpoint"` // MigrationEndpointIdParameter
 	SourceExchangeGuid           string   `ps:"SourceExchangeGuid"`
-	SourceIsArchive              bool     `ps:"SourceIsArchive"`
+	SourceIsArchive              *bool    `ps:"SourceIsArchive"`
 	SourceMailbox                any      `ps:"SourceMailbox"` // SourceMailbox
 	SourceRootFolder             string   `ps:"SourceRootFolder"`
 	SourceStoreMailbox           any      `ps:"SourceStoreMailbox"` // StoreMailboxIdParameter
 	SourceTenant                 any      `ps:"SourceTenant"`       // SmtpDomain
-	Suspend                      bool     `ps:"Suspend"`
+	Suspend                      *bool    `ps:"Suspend"`
 	SuspendComment               string   `ps:"SuspendComment"`
-	TargetIsArchive              bool     `ps:"TargetIsArchive"`
+	TargetIsArchive              *bool    `ps:"TargetIsArchive"`
 	TargetMailbox                any      `ps:"TargetMailbox"` // MailboxLocationIdParameter
 	TargetRootFolder             string   `ps:"TargetRootFolder"`
 	TargetType                   any      `ps:"TargetType"` // TargetTypeComponent
@@ -15197,11 +15197,11 @@ type NewMailboxRestoreRequestParams struct {
 
 func (p NewMailboxRestoreRequestParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptLargeDataLoss {
-		m["AcceptLargeDataLoss"] = true
+	if p.AcceptLargeDataLoss != nil {
+		m["AcceptLargeDataLoss"] = *p.AcceptLargeDataLoss
 	}
-	if p.AllowLegacyDNMismatch {
-		m["AllowLegacyDNMismatch"] = true
+	if p.AllowLegacyDNMismatch != nil {
+		m["AllowLegacyDNMismatch"] = *p.AllowLegacyDNMismatch
 	}
 	if p.AssociatedMessagesCopyOption != nil {
 		m["AssociatedMessagesCopyOption"] = p.AssociatedMessagesCopyOption
@@ -15221,14 +15221,14 @@ func (p NewMailboxRestoreRequestParams) params() map[string]any {
 	if p.ContentFilterLanguage != nil {
 		m["ContentFilterLanguage"] = p.ContentFilterLanguage
 	}
-	if p.CrossTenantRestore {
-		m["CrossTenantRestore"] = true
+	if p.CrossTenantRestore != nil {
+		m["CrossTenantRestore"] = *p.CrossTenantRestore
 	}
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
 	}
-	if p.ExcludeDumpster {
-		m["ExcludeDumpster"] = true
+	if p.ExcludeDumpster != nil {
+		m["ExcludeDumpster"] = *p.ExcludeDumpster
 	}
 	if p.ExcludeFolders != nil {
 		m["ExcludeFolders"] = p.ExcludeFolders
@@ -15260,8 +15260,8 @@ func (p NewMailboxRestoreRequestParams) params() map[string]any {
 	if p.SourceExchangeGuid != "" {
 		m["SourceExchangeGuid"] = p.SourceExchangeGuid
 	}
-	if p.SourceIsArchive {
-		m["SourceIsArchive"] = true
+	if p.SourceIsArchive != nil {
+		m["SourceIsArchive"] = *p.SourceIsArchive
 	}
 	if p.SourceMailbox != nil {
 		m["SourceMailbox"] = p.SourceMailbox
@@ -15275,14 +15275,14 @@ func (p NewMailboxRestoreRequestParams) params() map[string]any {
 	if p.SourceTenant != nil {
 		m["SourceTenant"] = p.SourceTenant
 	}
-	if p.Suspend {
-		m["Suspend"] = true
+	if p.Suspend != nil {
+		m["Suspend"] = *p.Suspend
 	}
 	if p.SuspendComment != "" {
 		m["SuspendComment"] = p.SuspendComment
 	}
-	if p.TargetIsArchive {
-		m["TargetIsArchive"] = true
+	if p.TargetIsArchive != nil {
+		m["TargetIsArchive"] = *p.TargetIsArchive
 	}
 	if p.TargetMailbox != nil {
 		m["TargetMailbox"] = p.TargetMailbox
@@ -15305,7 +15305,7 @@ func (s *Service) NewMailboxRestoreRequest(ctx context.Context, p NewMailboxRest
 // DefaultParameterSetName: Identity
 type NewMailboxSearchParams struct {
 	Description         string   `ps:"Description"`
-	Force               bool     `ps:"Force"`
+	Force               *bool    `ps:"Force"`
 	InPlaceHoldEnabled  *bool    `ps:"InPlaceHoldEnabled"`
 	InPlaceHoldIdentity string   `ps:"InPlaceHoldIdentity"`
 	ItemHoldPeriod      any      `ps:"ItemHoldPeriod"` // Unlimited
@@ -15318,8 +15318,8 @@ func (p NewMailboxSearchParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.InPlaceHoldEnabled != nil {
 		m["InPlaceHoldEnabled"] = *p.InPlaceHoldEnabled
@@ -15497,7 +15497,7 @@ func (s *Service) NewMalwareFilterRule(ctx context.Context, p NewMalwareFilterRu
 type NewManagementRoleParams struct {
 	Description    string   `ps:"Description"`
 	EnabledCmdlets []string `ps:"EnabledCmdlets"`
-	Force          bool     `ps:"Force"`
+	Force          *bool    `ps:"Force"`
 	Name           string   `ps:"Name"`
 	Parent         any      `ps:"Parent"` // RoleIdParameter
 }
@@ -15510,8 +15510,8 @@ func (p NewManagementRoleParams) params() map[string]any {
 	if p.EnabledCmdlets != nil {
 		m["EnabledCmdlets"] = p.EnabledCmdlets
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -15533,9 +15533,9 @@ type NewManagementRoleAssignmentParams struct {
 	App                              any    `ps:"App"`                       // ServicePrincipalIdParameter
 	CustomRecipientWriteScope        any    `ps:"CustomRecipientWriteScope"` // ManagementScopeIdParameter
 	CustomResourceScope              any    `ps:"CustomResourceScope"`       // ManagementScopeIdParameter
-	Delegating                       bool   `ps:"Delegating"`
+	Delegating                       *bool  `ps:"Delegating"`
 	ExclusiveRecipientWriteScope     any    `ps:"ExclusiveRecipientWriteScope"` // ManagementScopeIdParameter
-	Force                            bool   `ps:"Force"`
+	Force                            *bool  `ps:"Force"`
 	Name                             string `ps:"Name"`
 	Policy                           any    `ps:"Policy"`                           // MailboxPolicyIdParameter
 	RecipientAdministrativeUnitScope any    `ps:"RecipientAdministrativeUnitScope"` // AdministrativeUnitIdParameter
@@ -15558,14 +15558,14 @@ func (p NewManagementRoleAssignmentParams) params() map[string]any {
 	if p.CustomResourceScope != nil {
 		m["CustomResourceScope"] = p.CustomResourceScope
 	}
-	if p.Delegating {
-		m["Delegating"] = true
+	if p.Delegating != nil {
+		m["Delegating"] = *p.Delegating
 	}
 	if p.ExclusiveRecipientWriteScope != nil {
 		m["ExclusiveRecipientWriteScope"] = p.ExclusiveRecipientWriteScope
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -15605,8 +15605,8 @@ func (s *Service) NewManagementRoleAssignment(ctx context.Context, p NewManageme
 // NewManagementScopeParams are the parameters of New-ManagementScope.
 // DefaultParameterSetName: RecipientFilter
 type NewManagementScopeParams struct {
-	Exclusive                  bool   `ps:"Exclusive"`
-	Force                      bool   `ps:"Force"`
+	Exclusive                  *bool  `ps:"Exclusive"`
+	Force                      *bool  `ps:"Force"`
 	Name                       string `ps:"Name"`
 	RecipientRestrictionFilter string `ps:"RecipientRestrictionFilter"`
 	RecipientRoot              any    `ps:"RecipientRoot"` // OrganizationalUnitIdParameter
@@ -15614,11 +15614,11 @@ type NewManagementScopeParams struct {
 
 func (p NewManagementScopeParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Exclusive {
-		m["Exclusive"] = true
+	if p.Exclusive != nil {
+		m["Exclusive"] = *p.Exclusive
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -15692,54 +15692,54 @@ func (s *Service) NewMessageClassification(ctx context.Context, p NewMessageClas
 // DefaultParameterSetName: Onboarding
 type NewMigrationBatchParams struct {
 	AADIdentityType            any      `ps:"AADIdentityType"`
-	AdoptPreexisting           bool     `ps:"AdoptPreexisting"`
+	AdoptPreexisting           *bool    `ps:"AdoptPreexisting"`
 	AllowUnknownColumnsInCSV   *bool    `ps:"AllowUnknownColumnsInCSV"`
-	Analyze                    bool     `ps:"Analyze"`
+	Analyze                    *bool    `ps:"Analyze"`
 	ArchiveDomain              string   `ps:"ArchiveDomain"`
-	ArchiveOnly                bool     `ps:"ArchiveOnly"`
-	AutoComplete               bool     `ps:"AutoComplete"`
-	AutoProvisioning           bool     `ps:"AutoProvisioning"`
-	AutoStart                  bool     `ps:"AutoStart"`
-	AvoidMergeOverlap          bool     `ps:"AvoidMergeOverlap"`
+	ArchiveOnly                *bool    `ps:"ArchiveOnly"`
+	AutoComplete               *bool    `ps:"AutoComplete"`
+	AutoProvisioning           *bool    `ps:"AutoProvisioning"`
+	AutoStart                  *bool    `ps:"AutoStart"`
+	AvoidMergeOverlap          *bool    `ps:"AvoidMergeOverlap"`
 	CompleteAfter              any      `ps:"CompleteAfter"` // DateTime
 	ConnectionLogicalId        string   `ps:"ConnectionLogicalId"`
 	ContentFilter              string   `ps:"ContentFilter"`
 	ContentFilterLanguage      any      `ps:"ContentFilterLanguage"` // CultureInfo
 	CSVData                    any      `ps:"CSVData"`               // Byte[]
-	Daily                      bool     `ps:"Daily"`
-	DataFusion                 bool     `ps:"DataFusion"`
-	DisableOnCopy              bool     `ps:"DisableOnCopy"`
-	ExcludeDumpsters           bool     `ps:"ExcludeDumpsters"`
+	Daily                      *bool    `ps:"Daily"`
+	DataFusion                 *bool    `ps:"DataFusion"`
+	DisableOnCopy              *bool    `ps:"DisableOnCopy"`
+	ExcludeDumpsters           *bool    `ps:"ExcludeDumpsters"`
 	ExcludeFolders             []string `ps:"ExcludeFolders"`
 	Format                     string   `ps:"Format"`
 	ForwardingDisposition      any      `ps:"ForwardingDisposition"` // GmailForwardingDisposition
-	GoogleResource             bool     `ps:"GoogleResource"`
+	GoogleResource             *bool    `ps:"GoogleResource"`
 	IncludeFolders             []string `ps:"IncludeFolders"`
-	IncludeOtherContacts       bool     `ps:"IncludeOtherContacts"`
-	ManagedGmailTeams          bool     `ps:"ManagedGmailTeams"`
-	MigrateTasks               bool     `ps:"MigrateTasks"`
+	IncludeOtherContacts       *bool    `ps:"IncludeOtherContacts"`
+	ManagedGmailTeams          *bool    `ps:"ManagedGmailTeams"`
+	MigrateTasks               *bool    `ps:"MigrateTasks"`
 	MoveOptions                []string `ps:"MoveOptions"`
 	Name                       string   `ps:"Name"`
 	NotificationEmails         []string `ps:"NotificationEmails"`
 	Partition                  any      `ps:"Partition"` // MailboxIdParameter
-	PrimaryOnly                bool     `ps:"PrimaryOnly"`
-	PublicFolderToUnifiedGroup bool     `ps:"PublicFolderToUnifiedGroup"`
-	RemoveOnCopy               bool     `ps:"RemoveOnCopy"`
-	RenamePrimaryCalendar      bool     `ps:"RenamePrimaryCalendar"`
+	PrimaryOnly                *bool    `ps:"PrimaryOnly"`
+	PublicFolderToUnifiedGroup *bool    `ps:"PublicFolderToUnifiedGroup"`
+	RemoveOnCopy               *bool    `ps:"RemoveOnCopy"`
+	RenamePrimaryCalendar      *bool    `ps:"RenamePrimaryCalendar"`
 	ReportInterval             any      `ps:"ReportInterval"` // TimeSpan
-	Restore                    bool     `ps:"Restore"`
-	SimplifiedSwitchOver       bool     `ps:"SimplifiedSwitchOver"`
-	SkipCalendar               bool     `ps:"SkipCalendar"`
-	SkipContacts               bool     `ps:"SkipContacts"`
-	SkipDelegates              bool     `ps:"SkipDelegates"`
-	SkipDetails                bool     `ps:"SkipDetails"`
-	SkipMail                   bool     `ps:"SkipMail"`
+	Restore                    *bool    `ps:"Restore"`
+	SimplifiedSwitchOver       *bool    `ps:"SimplifiedSwitchOver"`
+	SkipCalendar               *bool    `ps:"SkipCalendar"`
+	SkipContacts               *bool    `ps:"SkipContacts"`
+	SkipDelegates              *bool    `ps:"SkipDelegates"`
+	SkipDetails                *bool    `ps:"SkipDetails"`
+	SkipMail                   *bool    `ps:"SkipMail"`
 	SkipMerging                []string `ps:"SkipMerging"`
 	SkipMoving                 []string `ps:"SkipMoving"`
-	SkipProvisioning           bool     `ps:"SkipProvisioning"`
-	SkipReports                bool     `ps:"SkipReports"`
-	SkipRules                  bool     `ps:"SkipRules"`
-	SlackPublicDataConnector   bool     `ps:"SlackPublicDataConnector"`
+	SkipProvisioning           *bool    `ps:"SkipProvisioning"`
+	SkipReports                *bool    `ps:"SkipReports"`
+	SkipRules                  *bool    `ps:"SkipRules"`
+	SlackPublicDataConnector   *bool    `ps:"SlackPublicDataConnector"`
 	SlackWorkspaceId           string   `ps:"SlackWorkspaceId"`
 	SourceEndpoint             any      `ps:"SourceEndpoint"` // MigrationEndpointIdParameter
 	SourceMappings             any      `ps:"SourceMappings"`
@@ -15763,32 +15763,32 @@ func (p NewMigrationBatchParams) params() map[string]any {
 	if p.AADIdentityType != nil {
 		m["AADIdentityType"] = p.AADIdentityType
 	}
-	if p.AdoptPreexisting {
-		m["AdoptPreexisting"] = true
+	if p.AdoptPreexisting != nil {
+		m["AdoptPreexisting"] = *p.AdoptPreexisting
 	}
 	if p.AllowUnknownColumnsInCSV != nil {
 		m["AllowUnknownColumnsInCSV"] = *p.AllowUnknownColumnsInCSV
 	}
-	if p.Analyze {
-		m["Analyze"] = true
+	if p.Analyze != nil {
+		m["Analyze"] = *p.Analyze
 	}
 	if p.ArchiveDomain != "" {
 		m["ArchiveDomain"] = p.ArchiveDomain
 	}
-	if p.ArchiveOnly {
-		m["ArchiveOnly"] = true
+	if p.ArchiveOnly != nil {
+		m["ArchiveOnly"] = *p.ArchiveOnly
 	}
-	if p.AutoComplete {
-		m["AutoComplete"] = true
+	if p.AutoComplete != nil {
+		m["AutoComplete"] = *p.AutoComplete
 	}
-	if p.AutoProvisioning {
-		m["AutoProvisioning"] = true
+	if p.AutoProvisioning != nil {
+		m["AutoProvisioning"] = *p.AutoProvisioning
 	}
-	if p.AutoStart {
-		m["AutoStart"] = true
+	if p.AutoStart != nil {
+		m["AutoStart"] = *p.AutoStart
 	}
-	if p.AvoidMergeOverlap {
-		m["AvoidMergeOverlap"] = true
+	if p.AvoidMergeOverlap != nil {
+		m["AvoidMergeOverlap"] = *p.AvoidMergeOverlap
 	}
 	if p.CompleteAfter != nil {
 		m["CompleteAfter"] = p.CompleteAfter
@@ -15805,17 +15805,17 @@ func (p NewMigrationBatchParams) params() map[string]any {
 	if p.CSVData != nil {
 		m["CSVData"] = p.CSVData
 	}
-	if p.Daily {
-		m["Daily"] = true
+	if p.Daily != nil {
+		m["Daily"] = *p.Daily
 	}
-	if p.DataFusion {
-		m["DataFusion"] = true
+	if p.DataFusion != nil {
+		m["DataFusion"] = *p.DataFusion
 	}
-	if p.DisableOnCopy {
-		m["DisableOnCopy"] = true
+	if p.DisableOnCopy != nil {
+		m["DisableOnCopy"] = *p.DisableOnCopy
 	}
-	if p.ExcludeDumpsters {
-		m["ExcludeDumpsters"] = true
+	if p.ExcludeDumpsters != nil {
+		m["ExcludeDumpsters"] = *p.ExcludeDumpsters
 	}
 	if p.ExcludeFolders != nil {
 		m["ExcludeFolders"] = p.ExcludeFolders
@@ -15826,20 +15826,20 @@ func (p NewMigrationBatchParams) params() map[string]any {
 	if p.ForwardingDisposition != nil {
 		m["ForwardingDisposition"] = p.ForwardingDisposition
 	}
-	if p.GoogleResource {
-		m["GoogleResource"] = true
+	if p.GoogleResource != nil {
+		m["GoogleResource"] = *p.GoogleResource
 	}
 	if p.IncludeFolders != nil {
 		m["IncludeFolders"] = p.IncludeFolders
 	}
-	if p.IncludeOtherContacts {
-		m["IncludeOtherContacts"] = true
+	if p.IncludeOtherContacts != nil {
+		m["IncludeOtherContacts"] = *p.IncludeOtherContacts
 	}
-	if p.ManagedGmailTeams {
-		m["ManagedGmailTeams"] = true
+	if p.ManagedGmailTeams != nil {
+		m["ManagedGmailTeams"] = *p.ManagedGmailTeams
 	}
-	if p.MigrateTasks {
-		m["MigrateTasks"] = true
+	if p.MigrateTasks != nil {
+		m["MigrateTasks"] = *p.MigrateTasks
 	}
 	if p.MoveOptions != nil {
 		m["MoveOptions"] = p.MoveOptions
@@ -15853,41 +15853,41 @@ func (p NewMigrationBatchParams) params() map[string]any {
 	if p.Partition != nil {
 		m["Partition"] = p.Partition
 	}
-	if p.PrimaryOnly {
-		m["PrimaryOnly"] = true
+	if p.PrimaryOnly != nil {
+		m["PrimaryOnly"] = *p.PrimaryOnly
 	}
-	if p.PublicFolderToUnifiedGroup {
-		m["PublicFolderToUnifiedGroup"] = true
+	if p.PublicFolderToUnifiedGroup != nil {
+		m["PublicFolderToUnifiedGroup"] = *p.PublicFolderToUnifiedGroup
 	}
-	if p.RemoveOnCopy {
-		m["RemoveOnCopy"] = true
+	if p.RemoveOnCopy != nil {
+		m["RemoveOnCopy"] = *p.RemoveOnCopy
 	}
-	if p.RenamePrimaryCalendar {
-		m["RenamePrimaryCalendar"] = true
+	if p.RenamePrimaryCalendar != nil {
+		m["RenamePrimaryCalendar"] = *p.RenamePrimaryCalendar
 	}
 	if p.ReportInterval != nil {
 		m["ReportInterval"] = p.ReportInterval
 	}
-	if p.Restore {
-		m["Restore"] = true
+	if p.Restore != nil {
+		m["Restore"] = *p.Restore
 	}
-	if p.SimplifiedSwitchOver {
-		m["SimplifiedSwitchOver"] = true
+	if p.SimplifiedSwitchOver != nil {
+		m["SimplifiedSwitchOver"] = *p.SimplifiedSwitchOver
 	}
-	if p.SkipCalendar {
-		m["SkipCalendar"] = true
+	if p.SkipCalendar != nil {
+		m["SkipCalendar"] = *p.SkipCalendar
 	}
-	if p.SkipContacts {
-		m["SkipContacts"] = true
+	if p.SkipContacts != nil {
+		m["SkipContacts"] = *p.SkipContacts
 	}
-	if p.SkipDelegates {
-		m["SkipDelegates"] = true
+	if p.SkipDelegates != nil {
+		m["SkipDelegates"] = *p.SkipDelegates
 	}
-	if p.SkipDetails {
-		m["SkipDetails"] = true
+	if p.SkipDetails != nil {
+		m["SkipDetails"] = *p.SkipDetails
 	}
-	if p.SkipMail {
-		m["SkipMail"] = true
+	if p.SkipMail != nil {
+		m["SkipMail"] = *p.SkipMail
 	}
 	if p.SkipMerging != nil {
 		m["SkipMerging"] = p.SkipMerging
@@ -15895,17 +15895,17 @@ func (p NewMigrationBatchParams) params() map[string]any {
 	if p.SkipMoving != nil {
 		m["SkipMoving"] = p.SkipMoving
 	}
-	if p.SkipProvisioning {
-		m["SkipProvisioning"] = true
+	if p.SkipProvisioning != nil {
+		m["SkipProvisioning"] = *p.SkipProvisioning
 	}
-	if p.SkipReports {
-		m["SkipReports"] = true
+	if p.SkipReports != nil {
+		m["SkipReports"] = *p.SkipReports
 	}
-	if p.SkipRules {
-		m["SkipRules"] = true
+	if p.SkipRules != nil {
+		m["SkipRules"] = *p.SkipRules
 	}
-	if p.SlackPublicDataConnector {
-		m["SlackPublicDataConnector"] = true
+	if p.SlackPublicDataConnector != nil {
+		m["SlackPublicDataConnector"] = *p.SlackPublicDataConnector
 	}
 	if p.SlackWorkspaceId != "" {
 		m["SlackWorkspaceId"] = p.SlackWorkspaceId
@@ -15966,19 +15966,19 @@ func (s *Service) NewMigrationBatch(ctx context.Context, p NewMigrationBatchPara
 // NewMigrationEndpointParams are the parameters of New-MigrationEndpoint.
 // DefaultParameterSetName: ExchangeRemoteMove
 type NewMigrationEndpointParams struct {
-	AcceptUntrustedCertificates        bool   `ps:"AcceptUntrustedCertificates"`
+	AcceptUntrustedCertificates        *bool  `ps:"AcceptUntrustedCertificates"`
 	ApplicationId                      string `ps:"ApplicationId"`
 	AppSecretKeyVaultUrl               string `ps:"AppSecretKeyVaultUrl"`
 	Authentication                     any    `ps:"Authentication"` // AuthenticationMethod
-	Autodiscover                       bool   `ps:"Autodiscover"`
-	Compliance                         bool   `ps:"Compliance"`
+	Autodiscover                       *bool  `ps:"Autodiscover"`
+	Compliance                         *bool  `ps:"Compliance"`
 	Credentials                        any    `ps:"Credentials"`  // PSCredential
 	EmailAddress                       any    `ps:"EmailAddress"` // SmtpAddress
-	ExchangeOutlookAnywhere            bool   `ps:"ExchangeOutlookAnywhere"`
-	ExchangeRemoteMove                 bool   `ps:"ExchangeRemoteMove"`
+	ExchangeOutlookAnywhere            *bool  `ps:"ExchangeOutlookAnywhere"`
+	ExchangeRemoteMove                 *bool  `ps:"ExchangeRemoteMove"`
 	ExchangeServer                     string `ps:"ExchangeServer"`
-	Gmail                              bool   `ps:"Gmail"`
-	IMAP                               bool   `ps:"IMAP"`
+	Gmail                              *bool  `ps:"Gmail"`
+	IMAP                               *bool  `ps:"IMAP"`
 	MailboxPermission                  any    `ps:"MailboxPermission"`             // MigrationMailboxPermission
 	MaxConcurrentIncrementalSyncs      any    `ps:"MaxConcurrentIncrementalSyncs"` // Unlimited
 	MaxConcurrentMigrations            any    `ps:"MaxConcurrentMigrations"`       // Unlimited
@@ -15987,24 +15987,24 @@ type NewMigrationEndpointParams struct {
 	OAuthCode                          any    `ps:"OAuthCode"` // SecureString
 	Partition                          any    `ps:"Partition"` // MailboxIdParameter
 	Port                               *int64 `ps:"Port"`
-	PublicFolder                       bool   `ps:"PublicFolder"`
+	PublicFolder                       *bool  `ps:"PublicFolder"`
 	PublicFolderDatabaseServerLegacyDN string `ps:"PublicFolderDatabaseServerLegacyDN"`
-	PublicFolderToUnifiedGroup         bool   `ps:"PublicFolderToUnifiedGroup"`
+	PublicFolderToUnifiedGroup         *bool  `ps:"PublicFolderToUnifiedGroup"`
 	RedirectUri                        string `ps:"RedirectUri"`
 	RemoteServer                       any    `ps:"RemoteServer"` // Fqdn
 	RemoteTenant                       string `ps:"RemoteTenant"`
 	RPCProxyServer                     any    `ps:"RPCProxyServer"`            // Fqdn
 	Security                           any    `ps:"Security"`                  // IMAPSecurityMechanism
 	ServiceAccountKeyFileData          any    `ps:"ServiceAccountKeyFileData"` // Byte[]
-	SkipVerification                   bool   `ps:"SkipVerification"`
+	SkipVerification                   *bool  `ps:"SkipVerification"`
 	SourceMailboxLegacyDN              string `ps:"SourceMailboxLegacyDN"`
 	TestMailbox                        any    `ps:"TestMailbox"` // MailboxIdParameter
 }
 
 func (p NewMigrationEndpointParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptUntrustedCertificates {
-		m["AcceptUntrustedCertificates"] = true
+	if p.AcceptUntrustedCertificates != nil {
+		m["AcceptUntrustedCertificates"] = *p.AcceptUntrustedCertificates
 	}
 	if p.ApplicationId != "" {
 		m["ApplicationId"] = p.ApplicationId
@@ -16015,11 +16015,11 @@ func (p NewMigrationEndpointParams) params() map[string]any {
 	if p.Authentication != nil {
 		m["Authentication"] = p.Authentication
 	}
-	if p.Autodiscover {
-		m["Autodiscover"] = true
+	if p.Autodiscover != nil {
+		m["Autodiscover"] = *p.Autodiscover
 	}
-	if p.Compliance {
-		m["Compliance"] = true
+	if p.Compliance != nil {
+		m["Compliance"] = *p.Compliance
 	}
 	if p.Credentials != nil {
 		m["Credentials"] = p.Credentials
@@ -16027,20 +16027,20 @@ func (p NewMigrationEndpointParams) params() map[string]any {
 	if p.EmailAddress != nil {
 		m["EmailAddress"] = p.EmailAddress
 	}
-	if p.ExchangeOutlookAnywhere {
-		m["ExchangeOutlookAnywhere"] = true
+	if p.ExchangeOutlookAnywhere != nil {
+		m["ExchangeOutlookAnywhere"] = *p.ExchangeOutlookAnywhere
 	}
-	if p.ExchangeRemoteMove {
-		m["ExchangeRemoteMove"] = true
+	if p.ExchangeRemoteMove != nil {
+		m["ExchangeRemoteMove"] = *p.ExchangeRemoteMove
 	}
 	if p.ExchangeServer != "" {
 		m["ExchangeServer"] = p.ExchangeServer
 	}
-	if p.Gmail {
-		m["Gmail"] = true
+	if p.Gmail != nil {
+		m["Gmail"] = *p.Gmail
 	}
-	if p.IMAP {
-		m["IMAP"] = true
+	if p.IMAP != nil {
+		m["IMAP"] = *p.IMAP
 	}
 	if p.MailboxPermission != nil {
 		m["MailboxPermission"] = p.MailboxPermission
@@ -16066,14 +16066,14 @@ func (p NewMigrationEndpointParams) params() map[string]any {
 	if p.Port != nil {
 		m["Port"] = *p.Port
 	}
-	if p.PublicFolder {
-		m["PublicFolder"] = true
+	if p.PublicFolder != nil {
+		m["PublicFolder"] = *p.PublicFolder
 	}
 	if p.PublicFolderDatabaseServerLegacyDN != "" {
 		m["PublicFolderDatabaseServerLegacyDN"] = p.PublicFolderDatabaseServerLegacyDN
 	}
-	if p.PublicFolderToUnifiedGroup {
-		m["PublicFolderToUnifiedGroup"] = true
+	if p.PublicFolderToUnifiedGroup != nil {
+		m["PublicFolderToUnifiedGroup"] = *p.PublicFolderToUnifiedGroup
 	}
 	if p.RedirectUri != "" {
 		m["RedirectUri"] = p.RedirectUri
@@ -16093,8 +16093,8 @@ func (p NewMigrationEndpointParams) params() map[string]any {
 	if p.ServiceAccountKeyFileData != nil {
 		m["ServiceAccountKeyFileData"] = p.ServiceAccountKeyFileData
 	}
-	if p.SkipVerification {
-		m["SkipVerification"] = true
+	if p.SkipVerification != nil {
+		m["SkipVerification"] = *p.SkipVerification
 	}
 	if p.SourceMailboxLegacyDN != "" {
 		m["SourceMailboxLegacyDN"] = p.SourceMailboxLegacyDN
@@ -16347,21 +16347,21 @@ func (s *Service) NewMobileDeviceMailboxPolicy(ctx context.Context, p NewMobileD
 // NewMoveRequestParams are the parameters of New-MoveRequest.
 // DefaultParameterSetName: MigrationLocal
 type NewMoveRequestParams struct {
-	AcceptLargeDataLoss         bool     `ps:"AcceptLargeDataLoss"`
+	AcceptLargeDataLoss         *bool    `ps:"AcceptLargeDataLoss"`
 	ArchiveDomain               string   `ps:"ArchiveDomain"`
-	ArchiveOnly                 bool     `ps:"ArchiveOnly"`
+	ArchiveOnly                 *bool    `ps:"ArchiveOnly"`
 	BatchName                   string   `ps:"BatchName"`
 	CompleteAfter               any      `ps:"CompleteAfter"`            // DateTime
 	CompletedRequestAgeLimit    any      `ps:"CompletedRequestAgeLimit"` // Unlimited
-	ForceOffline                bool     `ps:"ForceOffline"`
+	ForceOffline                *bool    `ps:"ForceOffline"`
 	Identity                    any      `ps:"Identity"`                // MailboxOrMailUserIdParameter
 	IncrementalSyncInterval     any      `ps:"IncrementalSyncInterval"` // TimeSpan
 	MoveOptions                 []string `ps:"MoveOptions"`
-	Outbound                    bool     `ps:"Outbound"`
-	PreventCompletion           bool     `ps:"PreventCompletion"`
-	PrimaryOnly                 bool     `ps:"PrimaryOnly"`
+	Outbound                    *bool    `ps:"Outbound"`
+	PreventCompletion           *bool    `ps:"PreventCompletion"`
+	PrimaryOnly                 *bool    `ps:"PrimaryOnly"`
 	ProxyToMailbox              any      `ps:"ProxyToMailbox"` // MailboxIdParameter
-	Remote                      bool     `ps:"Remote"`
+	Remote                      *bool    `ps:"Remote"`
 	RemoteArchiveTargetDatabase string   `ps:"RemoteArchiveTargetDatabase"`
 	RemoteCredential            any      `ps:"RemoteCredential"`    // PSCredential
 	RemoteGlobalCatalog         any      `ps:"RemoteGlobalCatalog"` // Fqdn
@@ -16371,22 +16371,22 @@ type NewMoveRequestParams struct {
 	SkipMoving                  []string `ps:"SkipMoving"`
 	SourceEndpoint              any      `ps:"SourceEndpoint"` // MigrationEndpointIdParameter
 	StartAfter                  any      `ps:"StartAfter"`     // DateTime
-	Suspend                     bool     `ps:"Suspend"`
+	Suspend                     *bool    `ps:"Suspend"`
 	SuspendComment              string   `ps:"SuspendComment"`
-	SuspendWhenReadyToComplete  bool     `ps:"SuspendWhenReadyToComplete"`
+	SuspendWhenReadyToComplete  *bool    `ps:"SuspendWhenReadyToComplete"`
 	TargetDeliveryDomain        any      `ps:"TargetDeliveryDomain"` // Fqdn
 }
 
 func (p NewMoveRequestParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptLargeDataLoss {
-		m["AcceptLargeDataLoss"] = true
+	if p.AcceptLargeDataLoss != nil {
+		m["AcceptLargeDataLoss"] = *p.AcceptLargeDataLoss
 	}
 	if p.ArchiveDomain != "" {
 		m["ArchiveDomain"] = p.ArchiveDomain
 	}
-	if p.ArchiveOnly {
-		m["ArchiveOnly"] = true
+	if p.ArchiveOnly != nil {
+		m["ArchiveOnly"] = *p.ArchiveOnly
 	}
 	if p.BatchName != "" {
 		m["BatchName"] = p.BatchName
@@ -16397,8 +16397,8 @@ func (p NewMoveRequestParams) params() map[string]any {
 	if p.CompletedRequestAgeLimit != nil {
 		m["CompletedRequestAgeLimit"] = p.CompletedRequestAgeLimit
 	}
-	if p.ForceOffline {
-		m["ForceOffline"] = true
+	if p.ForceOffline != nil {
+		m["ForceOffline"] = *p.ForceOffline
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -16409,20 +16409,20 @@ func (p NewMoveRequestParams) params() map[string]any {
 	if p.MoveOptions != nil {
 		m["MoveOptions"] = p.MoveOptions
 	}
-	if p.Outbound {
-		m["Outbound"] = true
+	if p.Outbound != nil {
+		m["Outbound"] = *p.Outbound
 	}
-	if p.PreventCompletion {
-		m["PreventCompletion"] = true
+	if p.PreventCompletion != nil {
+		m["PreventCompletion"] = *p.PreventCompletion
 	}
-	if p.PrimaryOnly {
-		m["PrimaryOnly"] = true
+	if p.PrimaryOnly != nil {
+		m["PrimaryOnly"] = *p.PrimaryOnly
 	}
 	if p.ProxyToMailbox != nil {
 		m["ProxyToMailbox"] = p.ProxyToMailbox
 	}
-	if p.Remote {
-		m["Remote"] = true
+	if p.Remote != nil {
+		m["Remote"] = *p.Remote
 	}
 	if p.RemoteArchiveTargetDatabase != "" {
 		m["RemoteArchiveTargetDatabase"] = p.RemoteArchiveTargetDatabase
@@ -16451,14 +16451,14 @@ func (p NewMoveRequestParams) params() map[string]any {
 	if p.StartAfter != nil {
 		m["StartAfter"] = p.StartAfter
 	}
-	if p.Suspend {
-		m["Suspend"] = true
+	if p.Suspend != nil {
+		m["Suspend"] = *p.Suspend
 	}
 	if p.SuspendComment != "" {
 		m["SuspendComment"] = p.SuspendComment
 	}
-	if p.SuspendWhenReadyToComplete {
-		m["SuspendWhenReadyToComplete"] = true
+	if p.SuspendWhenReadyToComplete != nil {
+		m["SuspendWhenReadyToComplete"] = *p.SuspendWhenReadyToComplete
 	}
 	if p.TargetDeliveryDomain != nil {
 		m["TargetDeliveryDomain"] = p.TargetDeliveryDomain
@@ -16772,7 +16772,7 @@ func (s *Service) NewOutboundConnector(ctx context.Context, p NewOutboundConnect
 type NewOutlookProtectionRuleParams struct {
 	ApplyRightsProtectionTemplate any      `ps:"ApplyRightsProtectionTemplate"` // RmsTemplateIdParameter
 	Enabled                       *bool    `ps:"Enabled"`
-	Force                         bool     `ps:"Force"`
+	Force                         *bool    `ps:"Force"`
 	FromDepartment                []string `ps:"FromDepartment"`
 	Name                          string   `ps:"Name"`
 	Priority                      *int64   `ps:"Priority"`
@@ -16789,8 +16789,8 @@ func (p NewOutlookProtectionRuleParams) params() map[string]any {
 	if p.Enabled != nil {
 		m["Enabled"] = *p.Enabled
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.FromDepartment != nil {
 		m["FromDepartment"] = p.FromDepartment
@@ -16820,14 +16820,14 @@ func (s *Service) NewOutlookProtectionRule(ctx context.Context, p NewOutlookProt
 
 // NewOwaMailboxPolicyParams are the parameters of New-OwaMailboxPolicy.
 type NewOwaMailboxPolicyParams struct {
-	IsDefault bool   `ps:"IsDefault"`
+	IsDefault *bool  `ps:"IsDefault"`
 	Name      string `ps:"Name"`
 }
 
 func (p NewOwaMailboxPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.IsDefault {
-		m["IsDefault"] = true
+	if p.IsDefault != nil {
+		m["IsDefault"] = *p.IsDefault
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -16885,7 +16885,7 @@ type NewPhishSimOverridePolicyParams struct {
 	Comment          string `ps:"Comment"`
 	DomainController any    `ps:"DomainController"` // Fqdn
 	Enabled          *bool  `ps:"Enabled"`
-	Force            bool   `ps:"Force"`
+	Force            *bool  `ps:"Force"`
 	Name             string `ps:"Name"`
 }
 
@@ -16900,8 +16900,8 @@ func (p NewPhishSimOverridePolicyParams) params() map[string]any {
 	if p.Enabled != nil {
 		m["Enabled"] = *p.Enabled
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -16923,7 +16923,7 @@ type NewPlaceMailboxParams struct {
 	CountryOrRegion               any    `ps:"CountryOrRegion"`
 	DisplayName                   string `ps:"DisplayName"`
 	ExternalDirectoryObjectId     string `ps:"ExternalDirectoryObjectId"`
-	Force                         bool   `ps:"Force"`
+	Force                         *bool  `ps:"Force"`
 	GeoCoordinates                any    `ps:"GeoCoordinates"`
 	HiddenFromAddressListsEnabled *bool  `ps:"HiddenFromAddressListsEnabled"`
 	Organization                  any    `ps:"Organization"`
@@ -16955,8 +16955,8 @@ func (p NewPlaceMailboxParams) params() map[string]any {
 	if p.ExternalDirectoryObjectId != "" {
 		m["ExternalDirectoryObjectId"] = p.ExternalDirectoryObjectId
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.GeoCoordinates != nil {
 		m["GeoCoordinates"] = p.GeoCoordinates
@@ -17125,8 +17125,8 @@ func (s *Service) NewPublicFolder(ctx context.Context, p NewPublicFolderParams) 
 
 // NewPublicFolderMoveRequestParams are the parameters of New-PublicFolderMoveRequest.
 type NewPublicFolderMoveRequestParams struct {
-	AcceptLargeDataLoss      bool     `ps:"AcceptLargeDataLoss"`
-	AllowLargeItems          bool     `ps:"AllowLargeItems"`
+	AcceptLargeDataLoss      *bool    `ps:"AcceptLargeDataLoss"`
+	AllowLargeItems          *bool    `ps:"AllowLargeItems"`
 	CompletedRequestAgeLimit any      `ps:"CompletedRequestAgeLimit"` // Unlimited
 	DomainController         any      `ps:"DomainController"`         // Fqdn
 	Folders                  []string `ps:"Folders"`
@@ -17135,7 +17135,7 @@ type NewPublicFolderMoveRequestParams struct {
 	Organization             any      `ps:"Organization"`          // OrganizationIdParameter
 	Priority                 any      `ps:"Priority"`              // RequestPriority
 	RequestExpiryInterval    any      `ps:"RequestExpiryInterval"` // Unlimited
-	Suspend                  bool     `ps:"Suspend"`
+	Suspend                  *bool    `ps:"Suspend"`
 	SuspendComment           string   `ps:"SuspendComment"`
 	TargetMailbox            any      `ps:"TargetMailbox"` // MailboxIdParameter
 	WorkloadType             any      `ps:"WorkloadType"`  // RequestWorkloadType
@@ -17143,11 +17143,11 @@ type NewPublicFolderMoveRequestParams struct {
 
 func (p NewPublicFolderMoveRequestParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptLargeDataLoss {
-		m["AcceptLargeDataLoss"] = true
+	if p.AcceptLargeDataLoss != nil {
+		m["AcceptLargeDataLoss"] = *p.AcceptLargeDataLoss
 	}
-	if p.AllowLargeItems {
-		m["AllowLargeItems"] = true
+	if p.AllowLargeItems != nil {
+		m["AllowLargeItems"] = *p.AllowLargeItems
 	}
 	if p.CompletedRequestAgeLimit != nil {
 		m["CompletedRequestAgeLimit"] = p.CompletedRequestAgeLimit
@@ -17173,8 +17173,8 @@ func (p NewPublicFolderMoveRequestParams) params() map[string]any {
 	if p.RequestExpiryInterval != nil {
 		m["RequestExpiryInterval"] = p.RequestExpiryInterval
 	}
-	if p.Suspend {
-		m["Suspend"] = true
+	if p.Suspend != nil {
+		m["Suspend"] = *p.Suspend
 	}
 	if p.SuspendComment != "" {
 		m["SuspendComment"] = p.SuspendComment
@@ -17374,7 +17374,7 @@ type NewReportScheduleParams struct {
 	EncryptionTemplate any    `ps:"EncryptionTemplate"`
 	EncryptionType     any    `ps:"EncryptionType"`
 	ExpiryDate         any    `ps:"ExpiryDate"`
-	IncludeDLP         bool   `ps:"IncludeDLP"`
+	IncludeDLP         *bool  `ps:"IncludeDLP"`
 	Locale             any    `ps:"Locale"`
 	NotificationEmail  any    `ps:"NotificationEmail"`
 	RecipientAddress   string `ps:"RecipientAddress"`
@@ -17403,8 +17403,8 @@ func (p NewReportScheduleParams) params() map[string]any {
 	if p.ExpiryDate != nil {
 		m["ExpiryDate"] = p.ExpiryDate
 	}
-	if p.IncludeDLP {
-		m["IncludeDLP"] = true
+	if p.IncludeDLP != nil {
+		m["IncludeDLP"] = *p.IncludeDLP
 	}
 	if p.Locale != nil {
 		m["Locale"] = p.Locale
@@ -17763,8 +17763,8 @@ func (s *Service) NewReportSubmissionRule(ctx context.Context, p NewReportSubmis
 
 // NewRetentionPolicyParams are the parameters of New-RetentionPolicy.
 type NewRetentionPolicyParams struct {
-	IsDefault                   bool     `ps:"IsDefault"`
-	IsDefaultArbitrationMailbox bool     `ps:"IsDefaultArbitrationMailbox"`
+	IsDefault                   *bool    `ps:"IsDefault"`
+	IsDefaultArbitrationMailbox *bool    `ps:"IsDefaultArbitrationMailbox"`
 	Name                        string   `ps:"Name"`
 	RetentionId                 string   `ps:"RetentionId"`
 	RetentionPolicyTagLinks     []string `ps:"RetentionPolicyTagLinks"`
@@ -17772,11 +17772,11 @@ type NewRetentionPolicyParams struct {
 
 func (p NewRetentionPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.IsDefault {
-		m["IsDefault"] = true
+	if p.IsDefault != nil {
+		m["IsDefault"] = *p.IsDefault
 	}
-	if p.IsDefaultArbitrationMailbox {
-		m["IsDefaultArbitrationMailbox"] = true
+	if p.IsDefaultArbitrationMailbox != nil {
+		m["IsDefaultArbitrationMailbox"] = *p.IsDefaultArbitrationMailbox
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -17800,8 +17800,8 @@ func (s *Service) NewRetentionPolicy(ctx context.Context, p NewRetentionPolicyPa
 type NewRetentionPolicyTagParams struct {
 	AgeLimitForRetention                  any      `ps:"AgeLimitForRetention"` // EnhancedTimeSpan
 	Comment                               string   `ps:"Comment"`
-	IsDefaultAutoGroupPolicyTag           bool     `ps:"IsDefaultAutoGroupPolicyTag"`
-	IsDefaultModeratedRecipientsPolicyTag bool     `ps:"IsDefaultModeratedRecipientsPolicyTag"`
+	IsDefaultAutoGroupPolicyTag           *bool    `ps:"IsDefaultAutoGroupPolicyTag"`
+	IsDefaultModeratedRecipientsPolicyTag *bool    `ps:"IsDefaultModeratedRecipientsPolicyTag"`
 	LocalizedComment                      []string `ps:"LocalizedComment"`
 	LocalizedRetentionPolicyTagName       []string `ps:"LocalizedRetentionPolicyTagName"`
 	MessageClass                          string   `ps:"MessageClass"`
@@ -17822,11 +17822,11 @@ func (p NewRetentionPolicyTagParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.IsDefaultAutoGroupPolicyTag {
-		m["IsDefaultAutoGroupPolicyTag"] = true
+	if p.IsDefaultAutoGroupPolicyTag != nil {
+		m["IsDefaultAutoGroupPolicyTag"] = *p.IsDefaultAutoGroupPolicyTag
 	}
-	if p.IsDefaultModeratedRecipientsPolicyTag {
-		m["IsDefaultModeratedRecipientsPolicyTag"] = true
+	if p.IsDefaultModeratedRecipientsPolicyTag != nil {
+		m["IsDefaultModeratedRecipientsPolicyTag"] = *p.IsDefaultModeratedRecipientsPolicyTag
 	}
 	if p.LocalizedComment != nil {
 		m["LocalizedComment"] = p.LocalizedComment
@@ -17869,7 +17869,7 @@ func (s *Service) NewRetentionPolicyTag(ctx context.Context, p NewRetentionPolic
 // NewRoleAssignmentPolicyParams are the parameters of New-RoleAssignmentPolicy.
 type NewRoleAssignmentPolicyParams struct {
 	Description string   `ps:"Description"`
-	IsDefault   bool     `ps:"IsDefault"`
+	IsDefault   *bool    `ps:"IsDefault"`
 	Name        string   `ps:"Name"`
 	Roles       []string `ps:"Roles"`
 }
@@ -17879,8 +17879,8 @@ func (p NewRoleAssignmentPolicyParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if p.IsDefault {
-		m["IsDefault"] = true
+	if p.IsDefault != nil {
+		m["IsDefault"] = *p.IsDefault
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -17902,7 +17902,7 @@ type NewRoleGroupParams struct {
 	CustomRecipientWriteScope any      `ps:"CustomRecipientWriteScope"` // ManagementScopeIdParameter
 	Description               string   `ps:"Description"`
 	DisplayName               string   `ps:"DisplayName"`
-	Force                     bool     `ps:"Force"`
+	Force                     *bool    `ps:"Force"`
 	ManagedBy                 []string `ps:"ManagedBy"`
 	Members                   []string `ps:"Members"`
 	Name                      string   `ps:"Name"`
@@ -17921,8 +17921,8 @@ func (p NewRoleGroupParams) params() map[string]any {
 	if p.DisplayName != "" {
 		m["DisplayName"] = p.DisplayName
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.ManagedBy != nil {
 		m["ManagedBy"] = p.ManagedBy
@@ -17952,7 +17952,7 @@ type NewSafeAttachmentPolicyParams struct {
 	Action                any    `ps:"Action"` // SafeAttachmentAction
 	AdminDisplayName      string `ps:"AdminDisplayName"`
 	Enable                *bool  `ps:"Enable"`
-	MakeBuiltInProtection bool   `ps:"MakeBuiltInProtection"`
+	MakeBuiltInProtection *bool  `ps:"MakeBuiltInProtection"`
 	Name                  string `ps:"Name"`
 	QuarantineTag         string `ps:"QuarantineTag"`
 	RecommendedPolicyType any    `ps:"RecommendedPolicyType"` // RecommendedPolicyType
@@ -17971,8 +17971,8 @@ func (p NewSafeAttachmentPolicyParams) params() map[string]any {
 	if p.Enable != nil {
 		m["Enable"] = *p.Enable
 	}
-	if p.MakeBuiltInProtection {
-		m["MakeBuiltInProtection"] = true
+	if p.MakeBuiltInProtection != nil {
+		m["MakeBuiltInProtection"] = *p.MakeBuiltInProtection
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -18069,7 +18069,7 @@ type NewSafeLinksPolicyParams struct {
 	EnableSafeLinksForEmail       *bool    `ps:"EnableSafeLinksForEmail"`
 	EnableSafeLinksForOffice      *bool    `ps:"EnableSafeLinksForOffice"`
 	EnableSafeLinksForTeams       *bool    `ps:"EnableSafeLinksForTeams"`
-	MakeBuiltInProtection         bool     `ps:"MakeBuiltInProtection"`
+	MakeBuiltInProtection         *bool    `ps:"MakeBuiltInProtection"`
 	Name                          string   `ps:"Name"`
 	RecommendedPolicyType         any      `ps:"RecommendedPolicyType"` // RecommendedPolicyType
 	ScanUrls                      *bool    `ps:"ScanUrls"`
@@ -18116,8 +18116,8 @@ func (p NewSafeLinksPolicyParams) params() map[string]any {
 	if p.EnableSafeLinksForTeams != nil {
 		m["EnableSafeLinksForTeams"] = *p.EnableSafeLinksForTeams
 	}
-	if p.MakeBuiltInProtection {
-		m["MakeBuiltInProtection"] = true
+	if p.MakeBuiltInProtection != nil {
+		m["MakeBuiltInProtection"] = *p.MakeBuiltInProtection
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -18280,7 +18280,7 @@ type NewSecOpsOverridePolicyParams struct {
 	Comment          string   `ps:"Comment"`
 	DomainController any      `ps:"DomainController"` // Fqdn
 	Enabled          *bool    `ps:"Enabled"`
-	Force            bool     `ps:"Force"`
+	Force            *bool    `ps:"Force"`
 	Name             string   `ps:"Name"`
 	SentTo           []string `ps:"SentTo"`
 }
@@ -18296,8 +18296,8 @@ func (p NewSecOpsOverridePolicyParams) params() map[string]any {
 	if p.Enabled != nil {
 		m["Enabled"] = *p.Enabled
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -18345,7 +18345,7 @@ func (s *Service) NewServicePrincipal(ctx context.Context, p NewServicePrincipal
 
 // NewSharingPolicyParams are the parameters of New-SharingPolicy.
 type NewSharingPolicyParams struct {
-	Default bool     `ps:"Default"`
+	Default *bool    `ps:"Default"`
 	Domains []string `ps:"Domains"`
 	Enabled *bool    `ps:"Enabled"`
 	Name    string   `ps:"Name"`
@@ -18353,8 +18353,8 @@ type NewSharingPolicyParams struct {
 
 func (p NewSharingPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Default {
-		m["Default"] = true
+	if p.Default != nil {
+		m["Default"] = *p.Default
 	}
 	if p.Domains != nil {
 		m["Domains"] = p.Domains
@@ -18499,12 +18499,12 @@ type NewSyncMailPublicFolderParams struct {
 	ExternalEmailAddress               any      `ps:"ExternalEmailAddress"` // SmtpAddress
 	ForwardingAddress                  any      `ps:"ForwardingAddress"`    // RecipientIdParameter
 	GrantSendOnBehalfTo                []string `ps:"GrantSendOnBehalfTo"`
-	HiddenFromAddressListsEnabled      bool     `ps:"HiddenFromAddressListsEnabled"`
+	HiddenFromAddressListsEnabled      *bool    `ps:"HiddenFromAddressListsEnabled"`
 	MaxReceiveSize                     any      `ps:"MaxReceiveSize"` // Unlimited
 	MaxSendSize                        any      `ps:"MaxSendSize"`    // Unlimited
 	Name                               string   `ps:"Name"`
 	OnPremisesObjectId                 string   `ps:"OnPremisesObjectId"`
-	OverrideRecipientQuotas            bool     `ps:"OverrideRecipientQuotas"`
+	OverrideRecipientQuotas            *bool    `ps:"OverrideRecipientQuotas"`
 	RejectMessagesFrom                 []string `ps:"RejectMessagesFrom"`
 	RequireSenderAuthenticationEnabled *bool    `ps:"RequireSenderAuthenticationEnabled"`
 	WindowsEmailAddress                any      `ps:"WindowsEmailAddress"` // SmtpAddress
@@ -18587,8 +18587,8 @@ func (p NewSyncMailPublicFolderParams) params() map[string]any {
 	if p.GrantSendOnBehalfTo != nil {
 		m["GrantSendOnBehalfTo"] = p.GrantSendOnBehalfTo
 	}
-	if p.HiddenFromAddressListsEnabled {
-		m["HiddenFromAddressListsEnabled"] = true
+	if p.HiddenFromAddressListsEnabled != nil {
+		m["HiddenFromAddressListsEnabled"] = *p.HiddenFromAddressListsEnabled
 	}
 	if p.MaxReceiveSize != nil {
 		m["MaxReceiveSize"] = p.MaxReceiveSize
@@ -18602,8 +18602,8 @@ func (p NewSyncMailPublicFolderParams) params() map[string]any {
 	if p.OnPremisesObjectId != "" {
 		m["OnPremisesObjectId"] = p.OnPremisesObjectId
 	}
-	if p.OverrideRecipientQuotas {
-		m["OverrideRecipientQuotas"] = true
+	if p.OverrideRecipientQuotas != nil {
+		m["OverrideRecipientQuotas"] = *p.OverrideRecipientQuotas
 	}
 	if p.RejectMessagesFrom != nil {
 		m["RejectMessagesFrom"] = p.RejectMessagesFrom
@@ -18704,27 +18704,27 @@ func (s *Service) NewTeamsProtectionPolicyRule(ctx context.Context, p NewTeamsPr
 
 // NewTenantAllowBlockListItemsParams are the parameters of New-TenantAllowBlockListItems.
 type NewTenantAllowBlockListItemsParams struct {
-	Allow           bool     `ps:"Allow"`
-	Block           bool     `ps:"Block"`
+	Allow           *bool    `ps:"Allow"`
+	Block           *bool    `ps:"Block"`
 	Entries         []string `ps:"Entries"`
 	ExpirationDate  any      `ps:"ExpirationDate"` // DateTime
 	ListSubType     any      `ps:"ListSubType"`    // ListSubType
 	ListType        any      `ps:"ListType"`       // ListType
-	LogExtraDetails bool     `ps:"LogExtraDetails"`
-	NoExpiration    bool     `ps:"NoExpiration"`
+	LogExtraDetails *bool    `ps:"LogExtraDetails"`
+	NoExpiration    *bool    `ps:"NoExpiration"`
 	Notes           string   `ps:"Notes"`
-	OutputJson      bool     `ps:"OutputJson"`
+	OutputJson      *bool    `ps:"OutputJson"`
 	RemoveAfter     *int64   `ps:"RemoveAfter"`
 	SubmissionID    string   `ps:"SubmissionID"`
 }
 
 func (p NewTenantAllowBlockListItemsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Allow {
-		m["Allow"] = true
+	if p.Allow != nil {
+		m["Allow"] = *p.Allow
 	}
-	if p.Block {
-		m["Block"] = true
+	if p.Block != nil {
+		m["Block"] = *p.Block
 	}
 	if p.Entries != nil {
 		m["Entries"] = p.Entries
@@ -18738,17 +18738,17 @@ func (p NewTenantAllowBlockListItemsParams) params() map[string]any {
 	if p.ListType != nil {
 		m["ListType"] = p.ListType
 	}
-	if p.LogExtraDetails {
-		m["LogExtraDetails"] = true
+	if p.LogExtraDetails != nil {
+		m["LogExtraDetails"] = *p.LogExtraDetails
 	}
-	if p.NoExpiration {
-		m["NoExpiration"] = true
+	if p.NoExpiration != nil {
+		m["NoExpiration"] = *p.NoExpiration
 	}
 	if p.Notes != "" {
 		m["Notes"] = p.Notes
 	}
-	if p.OutputJson {
-		m["OutputJson"] = true
+	if p.OutputJson != nil {
+		m["OutputJson"] = *p.OutputJson
 	}
 	if p.RemoveAfter != nil {
 		m["RemoveAfter"] = *p.RemoveAfter
@@ -18846,9 +18846,9 @@ func (s *Service) NewTenantExemptionQuota(ctx context.Context, p NewTenantExempt
 // NewTenantScanRequestParams are the parameters of New-TenantScanRequest.
 // DefaultParameterSetName: Identity
 type NewTenantScanRequestParams struct {
-	Partition                    any  `ps:"Partition"`
-	SingleMessageForSingleEntity bool `ps:"SingleMessageForSingleEntity"`
-	SourceEndpoint               any  `ps:"SourceEndpoint"`
+	Partition                    any   `ps:"Partition"`
+	SingleMessageForSingleEntity *bool `ps:"SingleMessageForSingleEntity"`
+	SourceEndpoint               any   `ps:"SourceEndpoint"`
 }
 
 func (p NewTenantScanRequestParams) params() map[string]any {
@@ -18856,8 +18856,8 @@ func (p NewTenantScanRequestParams) params() map[string]any {
 	if p.Partition != nil {
 		m["Partition"] = p.Partition
 	}
-	if p.SingleMessageForSingleEntity {
-		m["SingleMessageForSingleEntity"] = true
+	if p.SingleMessageForSingleEntity != nil {
+		m["SingleMessageForSingleEntity"] = *p.SingleMessageForSingleEntity
 	}
 	if p.SourceEndpoint != nil {
 		m["SourceEndpoint"] = p.SourceEndpoint
@@ -19581,18 +19581,18 @@ func (s *Service) NewTransportRule(ctx context.Context, p NewTransportRuleParams
 type NewUnifiedGroupParams struct {
 	AccessType                             any      `ps:"AccessType"` // ModernGroupTypeInfo
 	Alias                                  string   `ps:"Alias"`
-	AlwaysSubscribeMembersToCalendarEvents bool     `ps:"AlwaysSubscribeMembersToCalendarEvents"`
-	AutoSubscribeNewMembers                bool     `ps:"AutoSubscribeNewMembers"`
+	AlwaysSubscribeMembersToCalendarEvents *bool    `ps:"AlwaysSubscribeMembersToCalendarEvents"`
+	AutoSubscribeNewMembers                *bool    `ps:"AutoSubscribeNewMembers"`
 	Classification                         string   `ps:"Classification"`
-	ConvertClosedDlToPrivateGroup          bool     `ps:"ConvertClosedDlToPrivateGroup"`
+	ConvertClosedDlToPrivateGroup          *bool    `ps:"ConvertClosedDlToPrivateGroup"`
 	DataEncryptionPolicy                   any      `ps:"DataEncryptionPolicy"` // DataEncryptionPolicyIdParameter
-	DeleteDlAfterMigration                 bool     `ps:"DeleteDlAfterMigration"`
+	DeleteDlAfterMigration                 *bool    `ps:"DeleteDlAfterMigration"`
 	DisplayName                            string   `ps:"DisplayName"`
 	DlIdentity                             any      `ps:"DlIdentity"` // DistributionGroupIdParameter
 	EmailAddresses                         []string `ps:"EmailAddresses"`
 	ExecutingUser                          any      `ps:"ExecutingUser"` // RecipientIdParameter
-	ExoErrorAsWarning                      bool     `ps:"ExoErrorAsWarning"`
-	HiddenGroupMembershipEnabled           bool     `ps:"HiddenGroupMembershipEnabled"`
+	ExoErrorAsWarning                      *bool    `ps:"ExoErrorAsWarning"`
+	HiddenGroupMembershipEnabled           *bool    `ps:"HiddenGroupMembershipEnabled"`
 	IsMemberAllowedToEditContent           *bool    `ps:"IsMemberAllowedToEditContent"`
 	Language                               any      `ps:"Language"` // CultureInfo
 	MailboxRegion                          string   `ps:"MailboxRegion"`
@@ -19604,8 +19604,8 @@ type NewUnifiedGroupParams struct {
 	PrimarySmtpAddress                     any      `ps:"PrimarySmtpAddress"` // SmtpAddress
 	RequireSenderAuthenticationEnabled     *bool    `ps:"RequireSenderAuthenticationEnabled"`
 	SensitivityLabelId                     any      `ps:"SensitivityLabelId"` // System.Guid
-	SubscriptionEnabled                    bool     `ps:"SubscriptionEnabled"`
-	SuppressWarmupMessage                  bool     `ps:"SuppressWarmupMessage"`
+	SubscriptionEnabled                    *bool    `ps:"SubscriptionEnabled"`
+	SuppressWarmupMessage                  *bool    `ps:"SuppressWarmupMessage"`
 }
 
 func (p NewUnifiedGroupParams) params() map[string]any {
@@ -19616,23 +19616,23 @@ func (p NewUnifiedGroupParams) params() map[string]any {
 	if p.Alias != "" {
 		m["Alias"] = p.Alias
 	}
-	if p.AlwaysSubscribeMembersToCalendarEvents {
-		m["AlwaysSubscribeMembersToCalendarEvents"] = true
+	if p.AlwaysSubscribeMembersToCalendarEvents != nil {
+		m["AlwaysSubscribeMembersToCalendarEvents"] = *p.AlwaysSubscribeMembersToCalendarEvents
 	}
-	if p.AutoSubscribeNewMembers {
-		m["AutoSubscribeNewMembers"] = true
+	if p.AutoSubscribeNewMembers != nil {
+		m["AutoSubscribeNewMembers"] = *p.AutoSubscribeNewMembers
 	}
 	if p.Classification != "" {
 		m["Classification"] = p.Classification
 	}
-	if p.ConvertClosedDlToPrivateGroup {
-		m["ConvertClosedDlToPrivateGroup"] = true
+	if p.ConvertClosedDlToPrivateGroup != nil {
+		m["ConvertClosedDlToPrivateGroup"] = *p.ConvertClosedDlToPrivateGroup
 	}
 	if p.DataEncryptionPolicy != nil {
 		m["DataEncryptionPolicy"] = p.DataEncryptionPolicy
 	}
-	if p.DeleteDlAfterMigration {
-		m["DeleteDlAfterMigration"] = true
+	if p.DeleteDlAfterMigration != nil {
+		m["DeleteDlAfterMigration"] = *p.DeleteDlAfterMigration
 	}
 	if p.DisplayName != "" {
 		m["DisplayName"] = p.DisplayName
@@ -19646,11 +19646,11 @@ func (p NewUnifiedGroupParams) params() map[string]any {
 	if p.ExecutingUser != nil {
 		m["ExecutingUser"] = p.ExecutingUser
 	}
-	if p.ExoErrorAsWarning {
-		m["ExoErrorAsWarning"] = true
+	if p.ExoErrorAsWarning != nil {
+		m["ExoErrorAsWarning"] = *p.ExoErrorAsWarning
 	}
-	if p.HiddenGroupMembershipEnabled {
-		m["HiddenGroupMembershipEnabled"] = true
+	if p.HiddenGroupMembershipEnabled != nil {
+		m["HiddenGroupMembershipEnabled"] = *p.HiddenGroupMembershipEnabled
 	}
 	if p.IsMemberAllowedToEditContent != nil {
 		m["IsMemberAllowedToEditContent"] = *p.IsMemberAllowedToEditContent
@@ -19685,11 +19685,11 @@ func (p NewUnifiedGroupParams) params() map[string]any {
 	if p.SensitivityLabelId != nil {
 		m["SensitivityLabelId"] = p.SensitivityLabelId
 	}
-	if p.SubscriptionEnabled {
-		m["SubscriptionEnabled"] = true
+	if p.SubscriptionEnabled != nil {
+		m["SubscriptionEnabled"] = *p.SubscriptionEnabled
 	}
-	if p.SuppressWarmupMessage {
-		m["SuppressWarmupMessage"] = true
+	if p.SuppressWarmupMessage != nil {
+		m["SuppressWarmupMessage"] = *p.SuppressWarmupMessage
 	}
 	return m
 }
@@ -19755,12 +19755,12 @@ func (s *Service) PreviewQuarantineMessageV1(ctx context.Context, p PreviewQuara
 // DefaultParameterSetName: IdentityOnly
 type ReleaseQuarantineMessageParams struct {
 	ActionType          any      `ps:"ActionType"` // ReleaseActionType
-	AllowSender         bool     `ps:"AllowSender"`
-	Force               bool     `ps:"Force"`
+	AllowSender         *bool    `ps:"AllowSender"`
+	Force               *bool    `ps:"Force"`
 	Identities          []string `ps:"Identities"`
 	Identity            any      `ps:"Identity"` // QuarantineMessageIdentity
-	ReleaseToAll        bool     `ps:"ReleaseToAll"`
-	ReportFalsePositive bool     `ps:"ReportFalsePositive"`
+	ReleaseToAll        *bool    `ps:"ReleaseToAll"`
+	ReportFalsePositive *bool    `ps:"ReportFalsePositive"`
 	User                []string `ps:"User"`
 }
 
@@ -19769,11 +19769,11 @@ func (p ReleaseQuarantineMessageParams) params() map[string]any {
 	if p.ActionType != nil {
 		m["ActionType"] = p.ActionType
 	}
-	if p.AllowSender {
-		m["AllowSender"] = true
+	if p.AllowSender != nil {
+		m["AllowSender"] = *p.AllowSender
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identities != nil {
 		m["Identities"] = p.Identities
@@ -19781,11 +19781,11 @@ func (p ReleaseQuarantineMessageParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ReleaseToAll {
-		m["ReleaseToAll"] = true
+	if p.ReleaseToAll != nil {
+		m["ReleaseToAll"] = *p.ReleaseToAll
 	}
-	if p.ReportFalsePositive {
-		m["ReportFalsePositive"] = true
+	if p.ReportFalsePositive != nil {
+		m["ReportFalsePositive"] = *p.ReportFalsePositive
 	}
 	if p.User != nil {
 		m["User"] = p.User
@@ -19877,14 +19877,14 @@ func (s *Service) RemoveActiveSyncDeviceAccessRule(ctx context.Context, p Remove
 
 // RemoveActiveSyncMailboxPolicyParams are the parameters of Remove-ActiveSyncMailboxPolicy.
 type RemoveActiveSyncMailboxPolicyParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // MailboxPolicyIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // MailboxPolicyIdParameter
 }
 
 func (p RemoveActiveSyncMailboxPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -19899,14 +19899,14 @@ func (s *Service) RemoveActiveSyncMailboxPolicy(ctx context.Context, p RemoveAct
 
 // RemoveAntiPhishPolicyParams are the parameters of Remove-AntiPhishPolicy.
 type RemoveAntiPhishPolicyParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // AntiPhishPolicyIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // AntiPhishPolicyIdParameter
 }
 
 func (p RemoveAntiPhishPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -19943,8 +19943,8 @@ type RemoveAppParams struct {
 	AppType         string `ps:"AppType"`
 	Identity        any    `ps:"Identity"` // AppIdParameter
 	Mailbox         any    `ps:"Mailbox"`  // MailboxIdParameter
-	OrganizationApp bool   `ps:"OrganizationApp"`
-	PrivateCatalog  bool   `ps:"PrivateCatalog"`
+	OrganizationApp *bool  `ps:"OrganizationApp"`
+	PrivateCatalog  *bool  `ps:"PrivateCatalog"`
 }
 
 func (p RemoveAppParams) params() map[string]any {
@@ -19958,11 +19958,11 @@ func (p RemoveAppParams) params() map[string]any {
 	if p.Mailbox != nil {
 		m["Mailbox"] = p.Mailbox
 	}
-	if p.OrganizationApp {
-		m["OrganizationApp"] = true
+	if p.OrganizationApp != nil {
+		m["OrganizationApp"] = *p.OrganizationApp
 	}
-	if p.PrivateCatalog {
-		m["PrivateCatalog"] = true
+	if p.PrivateCatalog != nil {
+		m["PrivateCatalog"] = *p.PrivateCatalog
 	}
 	return m
 }
@@ -20133,24 +20133,24 @@ func (s *Service) RemoveBookingMailbox(ctx context.Context, p RemoveBookingMailb
 // RemoveCalendarEventsParams are the parameters of Remove-CalendarEvents.
 // DefaultParameterSetName: Identity
 type RemoveCalendarEventsParams struct {
-	CancelOrganizedMeetings bool   `ps:"CancelOrganizedMeetings"`
+	CancelOrganizedMeetings *bool  `ps:"CancelOrganizedMeetings"`
 	Identity                any    `ps:"Identity"` // MailboxIdParameter
-	PreviewOnly             bool   `ps:"PreviewOnly"`
+	PreviewOnly             *bool  `ps:"PreviewOnly"`
 	QueryStartDate          any    `ps:"QueryStartDate"` // ExDateTime
 	QueryWindowInDays       *int64 `ps:"QueryWindowInDays"`
-	UseCustomRouting        bool   `ps:"UseCustomRouting"`
+	UseCustomRouting        *bool  `ps:"UseCustomRouting"`
 }
 
 func (p RemoveCalendarEventsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.CancelOrganizedMeetings {
-		m["CancelOrganizedMeetings"] = true
+	if p.CancelOrganizedMeetings != nil {
+		m["CancelOrganizedMeetings"] = *p.CancelOrganizedMeetings
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.PreviewOnly {
-		m["PreviewOnly"] = true
+	if p.PreviewOnly != nil {
+		m["PreviewOnly"] = *p.PreviewOnly
 	}
 	if p.QueryStartDate != nil {
 		m["QueryStartDate"] = p.QueryStartDate
@@ -20158,8 +20158,8 @@ func (p RemoveCalendarEventsParams) params() map[string]any {
 	if p.QueryWindowInDays != nil {
 		m["QueryWindowInDays"] = *p.QueryWindowInDays
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -20265,14 +20265,14 @@ func (s *Service) RemoveDataClassification(ctx context.Context, p RemoveDataClas
 
 // RemoveDistributionGroupParams are the parameters of Remove-DistributionGroup.
 type RemoveDistributionGroupParams struct {
-	BypassSecurityGroupManagerCheck bool `ps:"BypassSecurityGroupManagerCheck"`
-	Identity                        any  `ps:"Identity"` // DistributionGroupIdParameter
+	BypassSecurityGroupManagerCheck *bool `ps:"BypassSecurityGroupManagerCheck"`
+	Identity                        any   `ps:"Identity"` // DistributionGroupIdParameter
 }
 
 func (p RemoveDistributionGroupParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassSecurityGroupManagerCheck {
-		m["BypassSecurityGroupManagerCheck"] = true
+	if p.BypassSecurityGroupManagerCheck != nil {
+		m["BypassSecurityGroupManagerCheck"] = *p.BypassSecurityGroupManagerCheck
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -20287,15 +20287,15 @@ func (s *Service) RemoveDistributionGroup(ctx context.Context, p RemoveDistribut
 
 // RemoveDistributionGroupMemberParams are the parameters of Remove-DistributionGroupMember.
 type RemoveDistributionGroupMemberParams struct {
-	BypassSecurityGroupManagerCheck bool `ps:"BypassSecurityGroupManagerCheck"`
-	Identity                        any  `ps:"Identity"` // DistributionGroupIdParameter
-	Member                          any  `ps:"Member"`   // GeneralRecipientIdParameter
+	BypassSecurityGroupManagerCheck *bool `ps:"BypassSecurityGroupManagerCheck"`
+	Identity                        any   `ps:"Identity"` // DistributionGroupIdParameter
+	Member                          any   `ps:"Member"`   // GeneralRecipientIdParameter
 }
 
 func (p RemoveDistributionGroupMemberParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassSecurityGroupManagerCheck {
-		m["BypassSecurityGroupManagerCheck"] = true
+	if p.BypassSecurityGroupManagerCheck != nil {
+		m["BypassSecurityGroupManagerCheck"] = *p.BypassSecurityGroupManagerCheck
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -20313,14 +20313,14 @@ func (s *Service) RemoveDistributionGroupMember(ctx context.Context, p RemoveDis
 
 // RemoveDkimSigningConfigParams are the parameters of Remove-DkimSigningConfig.
 type RemoveDkimSigningConfigParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // DkimSigningConfigIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // DkimSigningConfigIdParameter
 }
 
 func (p RemoveDkimSigningConfigParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -20566,14 +20566,14 @@ func (s *Service) RemoveHostedContentFilterRule(ctx context.Context, p RemoveHos
 
 // RemoveHostedOutboundSpamFilterPolicyParams are the parameters of Remove-HostedOutboundSpamFilterPolicy.
 type RemoveHostedOutboundSpamFilterPolicyParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // HostedOutboundSpamFilterPolicyIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // HostedOutboundSpamFilterPolicyIdParameter
 }
 
 func (p RemoveHostedOutboundSpamFilterPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -20638,19 +20638,19 @@ func (s *Service) RemoveInboundConnector(ctx context.Context, p RemoveInboundCon
 
 // RemoveInboxRuleParams are the parameters of Remove-InboxRule.
 type RemoveInboxRuleParams struct {
-	AlwaysDeleteOutlookRulesBlob bool `ps:"AlwaysDeleteOutlookRulesBlob"`
-	Force                        bool `ps:"Force"`
-	Identity                     any  `ps:"Identity"` // InboxRuleIdParameter
-	Mailbox                      any  `ps:"Mailbox"`  // MailboxIdParameter
+	AlwaysDeleteOutlookRulesBlob *bool `ps:"AlwaysDeleteOutlookRulesBlob"`
+	Force                        *bool `ps:"Force"`
+	Identity                     any   `ps:"Identity"` // InboxRuleIdParameter
+	Mailbox                      any   `ps:"Mailbox"`  // MailboxIdParameter
 }
 
 func (p RemoveInboxRuleParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AlwaysDeleteOutlookRulesBlob {
-		m["AlwaysDeleteOutlookRulesBlob"] = true
+	if p.AlwaysDeleteOutlookRulesBlob != nil {
+		m["AlwaysDeleteOutlookRulesBlob"] = *p.AlwaysDeleteOutlookRulesBlob
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -20704,15 +20704,15 @@ func (s *Service) RemoveJournalRule(ctx context.Context, p RemoveJournalRulePara
 
 // RemoveLdapDirectoryParams are the parameters of Remove-LdapDirectory.
 type RemoveLdapDirectoryParams struct {
-	Force        bool   `ps:"Force"`
+	Force        *bool  `ps:"Force"`
 	Id           string `ps:"Id"`
 	Organization any    `ps:"Organization"` // OrganizationIdParameter
 }
 
 func (p RemoveLdapDirectoryParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Id != "" {
 		m["Id"] = p.Id
@@ -20731,17 +20731,17 @@ func (s *Service) RemoveLdapDirectory(ctx context.Context, p RemoveLdapDirectory
 // RemoveM365CrossTenantAccessPolicyParams are the parameters of Remove-M365CrossTenantAccessPolicy.
 // DefaultParameterSetName: Identity
 type RemoveM365CrossTenantAccessPolicyParams struct {
-	BypassMigrationScenario   bool   `ps:"BypassMigrationScenario"`
+	BypassMigrationScenario   *bool  `ps:"BypassMigrationScenario"`
 	ObjectId                  string `ps:"ObjectId"`
 	PartnerIdentifier         string `ps:"PartnerIdentifier"`
 	PolicyType                any    `ps:"PolicyType"`
-	RemoveAuthorizationPolicy bool   `ps:"RemoveAuthorizationPolicy"`
+	RemoveAuthorizationPolicy *bool  `ps:"RemoveAuthorizationPolicy"`
 }
 
 func (p RemoveM365CrossTenantAccessPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassMigrationScenario {
-		m["BypassMigrationScenario"] = true
+	if p.BypassMigrationScenario != nil {
+		m["BypassMigrationScenario"] = *p.BypassMigrationScenario
 	}
 	if p.ObjectId != "" {
 		m["ObjectId"] = p.ObjectId
@@ -20752,8 +20752,8 @@ func (p RemoveM365CrossTenantAccessPolicyParams) params() map[string]any {
 	if p.PolicyType != nil {
 		m["PolicyType"] = p.PolicyType
 	}
-	if p.RemoveAuthorizationPolicy {
-		m["RemoveAuthorizationPolicy"] = true
+	if p.RemoveAuthorizationPolicy != nil {
+		m["RemoveAuthorizationPolicy"] = *p.RemoveAuthorizationPolicy
 	}
 	return m
 }
@@ -20783,8 +20783,8 @@ func (s *Service) RemoveMailContact(ctx context.Context, p RemoveMailContactPara
 
 // RemoveMailUserParams are the parameters of Remove-MailUser.
 type RemoveMailUserParams struct {
-	Identity          any  `ps:"Identity"` // MailUserIdParameter
-	PermanentlyDelete bool `ps:"PermanentlyDelete"`
+	Identity          any   `ps:"Identity"` // MailUserIdParameter
+	PermanentlyDelete *bool `ps:"PermanentlyDelete"`
 }
 
 func (p RemoveMailUserParams) params() map[string]any {
@@ -20792,8 +20792,8 @@ func (p RemoveMailUserParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.PermanentlyDelete {
-		m["PermanentlyDelete"] = true
+	if p.PermanentlyDelete != nil {
+		m["PermanentlyDelete"] = *p.PermanentlyDelete
 	}
 	return m
 }
@@ -20806,33 +20806,33 @@ func (s *Service) RemoveMailUser(ctx context.Context, p RemoveMailUserParams) (*
 // RemoveMailboxParams are the parameters of Remove-Mailbox.
 // DefaultParameterSetName: Identity
 type RemoveMailboxParams struct {
-	Force                                   bool `ps:"Force"`
-	Identity                                any  `ps:"Identity"` // MailboxIdParameter
-	Migration                               bool `ps:"Migration"`
-	PermanentlyDelete                       bool `ps:"PermanentlyDelete"`
-	PublicFolder                            bool `ps:"PublicFolder"`
-	RemoveCNFPublicFolderMailboxPermanently bool `ps:"RemoveCNFPublicFolderMailboxPermanently"`
+	Force                                   *bool `ps:"Force"`
+	Identity                                any   `ps:"Identity"` // MailboxIdParameter
+	Migration                               *bool `ps:"Migration"`
+	PermanentlyDelete                       *bool `ps:"PermanentlyDelete"`
+	PublicFolder                            *bool `ps:"PublicFolder"`
+	RemoveCNFPublicFolderMailboxPermanently *bool `ps:"RemoveCNFPublicFolderMailboxPermanently"`
 }
 
 func (p RemoveMailboxParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.Migration {
-		m["Migration"] = true
+	if p.Migration != nil {
+		m["Migration"] = *p.Migration
 	}
-	if p.PermanentlyDelete {
-		m["PermanentlyDelete"] = true
+	if p.PermanentlyDelete != nil {
+		m["PermanentlyDelete"] = *p.PermanentlyDelete
 	}
-	if p.PublicFolder {
-		m["PublicFolder"] = true
+	if p.PublicFolder != nil {
+		m["PublicFolder"] = *p.PublicFolder
 	}
-	if p.RemoveCNFPublicFolderMailboxPermanently {
-		m["RemoveCNFPublicFolderMailboxPermanently"] = true
+	if p.RemoveCNFPublicFolderMailboxPermanently != nil {
+		m["RemoveCNFPublicFolderMailboxPermanently"] = *p.RemoveCNFPublicFolderMailboxPermanently
 	}
 	return m
 }
@@ -20845,14 +20845,14 @@ func (s *Service) RemoveMailbox(ctx context.Context, p RemoveMailboxParams) (*ad
 // RemoveMailboxAnalysisRequestParams are the parameters of Remove-MailboxAnalysisRequest.
 // DefaultParameterSetName: Identity
 type RemoveMailboxAnalysisRequestParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"`
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"`
 }
 
 func (p RemoveMailboxAnalysisRequestParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -20887,23 +20887,23 @@ func (s *Service) RemoveMailboxExtendedPropertyCleanupRequest(ctx context.Contex
 // RemoveMailboxFolderPermissionParams are the parameters of Remove-MailboxFolderPermission.
 // DefaultParameterSetName: Identity
 type RemoveMailboxFolderPermissionParams struct {
-	Force                       bool  `ps:"Force"`
+	Force                       *bool `ps:"Force"`
 	Identity                    any   `ps:"Identity"` // MailboxFolderIdParameter
-	ResetDelegateUserCollection bool  `ps:"ResetDelegateUserCollection"`
+	ResetDelegateUserCollection *bool `ps:"ResetDelegateUserCollection"`
 	SendNotificationToUser      *bool `ps:"SendNotificationToUser"`
 	User                        any   `ps:"User"` // MailboxFolderUserIdParameter
 }
 
 func (p RemoveMailboxFolderPermissionParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.ResetDelegateUserCollection {
-		m["ResetDelegateUserCollection"] = true
+	if p.ResetDelegateUserCollection != nil {
+		m["ResetDelegateUserCollection"] = *p.ResetDelegateUserCollection
 	}
 	if p.SendNotificationToUser != nil {
 		m["SendNotificationToUser"] = *p.SendNotificationToUser
@@ -20944,13 +20944,13 @@ func (s *Service) RemoveMailboxIRMAccess(ctx context.Context, p RemoveMailboxIRM
 // RemoveMailboxLocationParams are the parameters of Remove-MailboxLocation.
 // DefaultParameterSetName: Identity
 type RemoveMailboxLocationParams struct {
-	Force bool `ps:"Force"`
+	Force *bool `ps:"Force"`
 }
 
 func (p RemoveMailboxLocationParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	return m
 }
@@ -20964,15 +20964,15 @@ func (s *Service) RemoveMailboxLocation(ctx context.Context, p RemoveMailboxLoca
 // DefaultParameterSetName: AccessRights
 type RemoveMailboxPermissionParams struct {
 	AccessRights           []string `ps:"AccessRights"`
-	BypassMasterAccountSid bool     `ps:"BypassMasterAccountSid"`
-	ClearAutoMapping       bool     `ps:"ClearAutoMapping"`
-	Deny                   bool     `ps:"Deny"`
-	GroupMailbox           bool     `ps:"GroupMailbox"`
+	BypassMasterAccountSid *bool    `ps:"BypassMasterAccountSid"`
+	ClearAutoMapping       *bool    `ps:"ClearAutoMapping"`
+	Deny                   *bool    `ps:"Deny"`
+	GroupMailbox           *bool    `ps:"GroupMailbox"`
 	Identity               any      `ps:"Identity"` // MailboxIdParameter
-	IgnoreDefaultScope     bool     `ps:"IgnoreDefaultScope"`
+	IgnoreDefaultScope     *bool    `ps:"IgnoreDefaultScope"`
 	InheritanceType        any      `ps:"InheritanceType"` // ActiveDirectorySecurityInheritance
-	ResetDefault           bool     `ps:"ResetDefault"`
-	SoftDeletedMailbox     bool     `ps:"SoftDeletedMailbox"`
+	ResetDefault           *bool    `ps:"ResetDefault"`
+	SoftDeletedMailbox     *bool    `ps:"SoftDeletedMailbox"`
 	User                   any      `ps:"User"` // SecurityPrincipalIdParameter
 }
 
@@ -20981,32 +20981,32 @@ func (p RemoveMailboxPermissionParams) params() map[string]any {
 	if p.AccessRights != nil {
 		m["AccessRights"] = p.AccessRights
 	}
-	if p.BypassMasterAccountSid {
-		m["BypassMasterAccountSid"] = true
+	if p.BypassMasterAccountSid != nil {
+		m["BypassMasterAccountSid"] = *p.BypassMasterAccountSid
 	}
-	if p.ClearAutoMapping {
-		m["ClearAutoMapping"] = true
+	if p.ClearAutoMapping != nil {
+		m["ClearAutoMapping"] = *p.ClearAutoMapping
 	}
-	if p.Deny {
-		m["Deny"] = true
+	if p.Deny != nil {
+		m["Deny"] = *p.Deny
 	}
-	if p.GroupMailbox {
-		m["GroupMailbox"] = true
+	if p.GroupMailbox != nil {
+		m["GroupMailbox"] = *p.GroupMailbox
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDefaultScope {
-		m["IgnoreDefaultScope"] = true
+	if p.IgnoreDefaultScope != nil {
+		m["IgnoreDefaultScope"] = *p.IgnoreDefaultScope
 	}
 	if p.InheritanceType != nil {
 		m["InheritanceType"] = p.InheritanceType
 	}
-	if p.ResetDefault {
-		m["ResetDefault"] = true
+	if p.ResetDefault != nil {
+		m["ResetDefault"] = *p.ResetDefault
 	}
-	if p.SoftDeletedMailbox {
-		m["SoftDeletedMailbox"] = true
+	if p.SoftDeletedMailbox != nil {
+		m["SoftDeletedMailbox"] = *p.SoftDeletedMailbox
 	}
 	if p.User != nil {
 		m["User"] = p.User
@@ -21022,14 +21022,14 @@ func (s *Service) RemoveMailboxPermission(ctx context.Context, p RemoveMailboxPe
 // RemoveMailboxRestoreRequestParams are the parameters of Remove-MailboxRestoreRequest.
 // DefaultParameterSetName: Identity
 type RemoveMailboxRestoreRequestParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // MailboxRestoreRequestIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // MailboxRestoreRequestIdParameter
 }
 
 func (p RemoveMailboxRestoreRequestParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21120,21 +21120,21 @@ func (s *Service) RemoveMalwareFilterRule(ctx context.Context, p RemoveMalwareFi
 
 // RemoveManagementRoleParams are the parameters of Remove-ManagementRole.
 type RemoveManagementRoleParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // RoleIdParameter
-	Recurse  bool `ps:"Recurse"`
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // RoleIdParameter
+	Recurse  *bool `ps:"Recurse"`
 }
 
 func (p RemoveManagementRoleParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.Recurse {
-		m["Recurse"] = true
+	if p.Recurse != nil {
+		m["Recurse"] = *p.Recurse
 	}
 	return m
 }
@@ -21146,14 +21146,14 @@ func (s *Service) RemoveManagementRole(ctx context.Context, p RemoveManagementRo
 
 // RemoveManagementRoleAssignmentParams are the parameters of Remove-ManagementRoleAssignment.
 type RemoveManagementRoleAssignmentParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // RoleAssignmentIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // RoleAssignmentIdParameter
 }
 
 func (p RemoveManagementRoleAssignmentParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21169,14 +21169,14 @@ func (s *Service) RemoveManagementRoleAssignment(ctx context.Context, p RemoveMa
 // RemoveManagementRoleEntryParams are the parameters of Remove-ManagementRoleEntry.
 // DefaultParameterSetName: Identity
 type RemoveManagementRoleEntryParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // RoleEntryIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // RoleEntryIdParameter
 }
 
 func (p RemoveManagementRoleEntryParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21191,14 +21191,14 @@ func (s *Service) RemoveManagementRoleEntry(ctx context.Context, p RemoveManagem
 
 // RemoveManagementScopeParams are the parameters of Remove-ManagementScope.
 type RemoveManagementScopeParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // ManagementScopeIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // ManagementScopeIdParameter
 }
 
 func (p RemoveManagementScopeParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21315,14 +21315,14 @@ func (s *Service) RemoveMobileDevice(ctx context.Context, p RemoveMobileDevicePa
 
 // RemoveMobileDeviceMailboxPolicyParams are the parameters of Remove-MobileDeviceMailboxPolicy.
 type RemoveMobileDeviceMailboxPolicyParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // MailboxPolicyIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // MailboxPolicyIdParameter
 }
 
 func (p RemoveMobileDeviceMailboxPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21338,15 +21338,15 @@ func (s *Service) RemoveMobileDeviceMailboxPolicy(ctx context.Context, p RemoveM
 // RemoveMoveRequestParams are the parameters of Remove-MoveRequest.
 // DefaultParameterSetName: Identity
 type RemoveMoveRequestParams struct {
-	Force          bool `ps:"Force"`
-	Identity       any  `ps:"Identity"`       // MoveRequestIdParameter
-	ProxyToMailbox any  `ps:"ProxyToMailbox"` // MailboxIdParameter
+	Force          *bool `ps:"Force"`
+	Identity       any   `ps:"Identity"`       // MoveRequestIdParameter
+	ProxyToMailbox any   `ps:"ProxyToMailbox"` // MailboxIdParameter
 }
 
 func (p RemoveMoveRequestParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21455,14 +21455,14 @@ func (s *Service) RemoveOutlookProtectionRule(ctx context.Context, p RemoveOutlo
 
 // RemoveOwaMailboxPolicyParams are the parameters of Remove-OwaMailboxPolicy.
 type RemoveOwaMailboxPolicyParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // MailboxPolicyIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // MailboxPolicyIdParameter
 }
 
 func (p RemoveOwaMailboxPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21495,9 +21495,9 @@ func (s *Service) RemovePartnerApplication(ctx context.Context, p RemovePartnerA
 
 // RemovePhishSimOverridePolicyParams are the parameters of Remove-PhishSimOverridePolicy.
 type RemovePhishSimOverridePolicyParams struct {
-	DomainController any  `ps:"DomainController"` // Fqdn
-	ForceDeletion    bool `ps:"ForceDeletion"`
-	Identity         any  `ps:"Identity"` // PolicyIdParameter
+	DomainController any   `ps:"DomainController"` // Fqdn
+	ForceDeletion    *bool `ps:"ForceDeletion"`
+	Identity         any   `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemovePhishSimOverridePolicyParams) params() map[string]any {
@@ -21505,8 +21505,8 @@ func (p RemovePhishSimOverridePolicyParams) params() map[string]any {
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
 	}
-	if p.ForceDeletion {
-		m["ForceDeletion"] = true
+	if p.ForceDeletion != nil {
+		m["ForceDeletion"] = *p.ForceDeletion
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21563,9 +21563,9 @@ func (s *Service) RemovePolicyTipConfig(ctx context.Context, p RemovePolicyTipCo
 // RemovePublicFolderParams are the parameters of Remove-PublicFolder.
 // DefaultParameterSetName: Identity
 type RemovePublicFolderParams struct {
-	Identity any  `ps:"Identity"` // PublicFolderIdParameter
-	Mailbox  any  `ps:"Mailbox"`  // MailboxIdParameter
-	Recurse  bool `ps:"Recurse"`
+	Identity any   `ps:"Identity"` // PublicFolderIdParameter
+	Mailbox  any   `ps:"Mailbox"`  // MailboxIdParameter
+	Recurse  *bool `ps:"Recurse"`
 }
 
 func (p RemovePublicFolderParams) params() map[string]any {
@@ -21576,8 +21576,8 @@ func (p RemovePublicFolderParams) params() map[string]any {
 	if p.Mailbox != nil {
 		m["Mailbox"] = p.Mailbox
 	}
-	if p.Recurse {
-		m["Recurse"] = true
+	if p.Recurse != nil {
+		m["Recurse"] = *p.Recurse
 	}
 	return m
 }
@@ -21612,9 +21612,9 @@ func (s *Service) RemovePublicFolderClientPermission(ctx context.Context, p Remo
 // RemovePublicFolderMailboxMigrationRequestParams are the parameters of Remove-PublicFolderMailboxMigrationRequest.
 // DefaultParameterSetName: Identity
 type RemovePublicFolderMailboxMigrationRequestParams struct {
-	DomainController any  `ps:"DomainController"` // Fqdn
-	Force            bool `ps:"Force"`
-	Identity         any  `ps:"Identity"` // PublicFolderMailboxMigrationRequestIdParameter
+	DomainController any   `ps:"DomainController"` // Fqdn
+	Force            *bool `ps:"Force"`
+	Identity         any   `ps:"Identity"` // PublicFolderMailboxMigrationRequestIdParameter
 }
 
 func (p RemovePublicFolderMailboxMigrationRequestParams) params() map[string]any {
@@ -21622,8 +21622,8 @@ func (p RemovePublicFolderMailboxMigrationRequestParams) params() map[string]any
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21640,7 +21640,7 @@ func (s *Service) RemovePublicFolderMailboxMigrationRequest(ctx context.Context,
 // DefaultParameterSetName: Identity
 type RemovePublicFolderMoveRequestParams struct {
 	DomainController any    `ps:"DomainController"` // Fqdn
-	Force            bool   `ps:"Force"`
+	Force            *bool  `ps:"Force"`
 	Identity         any    `ps:"Identity"` // PublicFolderMoveRequestIdParameter
 	RequestGuid      string `ps:"RequestGuid"`
 	RequestQueue     any    `ps:"RequestQueue"` // DatabaseIdParameter
@@ -21651,8 +21651,8 @@ func (p RemovePublicFolderMoveRequestParams) params() map[string]any {
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21697,12 +21697,12 @@ func (s *Service) RemoveQuarantinePolicy(ctx context.Context, p RemoveQuarantine
 // DefaultParameterSetName: Identity
 type RemoveRecipientPermissionParams struct {
 	AccessRights                         []string `ps:"AccessRights"`
-	Deny                                 bool     `ps:"Deny"`
+	Deny                                 *bool    `ps:"Deny"`
 	Identity                             any      `ps:"Identity"` // RecipientIdParameter
 	MultiTrustees                        []string `ps:"MultiTrustees"`
-	SkipDomainValidationForMailContact   bool     `ps:"SkipDomainValidationForMailContact"`
-	SkipDomainValidationForMailUser      bool     `ps:"SkipDomainValidationForMailUser"`
-	SkipDomainValidationForSharedMailbox bool     `ps:"SkipDomainValidationForSharedMailbox"`
+	SkipDomainValidationForMailContact   *bool    `ps:"SkipDomainValidationForMailContact"`
+	SkipDomainValidationForMailUser      *bool    `ps:"SkipDomainValidationForMailUser"`
+	SkipDomainValidationForSharedMailbox *bool    `ps:"SkipDomainValidationForSharedMailbox"`
 	Trustee                              any      `ps:"Trustee"` // SecurityPrincipalIdParameter
 }
 
@@ -21711,8 +21711,8 @@ func (p RemoveRecipientPermissionParams) params() map[string]any {
 	if p.AccessRights != nil {
 		m["AccessRights"] = p.AccessRights
 	}
-	if p.Deny {
-		m["Deny"] = true
+	if p.Deny != nil {
+		m["Deny"] = *p.Deny
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21720,14 +21720,14 @@ func (p RemoveRecipientPermissionParams) params() map[string]any {
 	if p.MultiTrustees != nil {
 		m["MultiTrustees"] = p.MultiTrustees
 	}
-	if p.SkipDomainValidationForMailContact {
-		m["SkipDomainValidationForMailContact"] = true
+	if p.SkipDomainValidationForMailContact != nil {
+		m["SkipDomainValidationForMailContact"] = *p.SkipDomainValidationForMailContact
 	}
-	if p.SkipDomainValidationForMailUser {
-		m["SkipDomainValidationForMailUser"] = true
+	if p.SkipDomainValidationForMailUser != nil {
+		m["SkipDomainValidationForMailUser"] = *p.SkipDomainValidationForMailUser
 	}
-	if p.SkipDomainValidationForSharedMailbox {
-		m["SkipDomainValidationForSharedMailbox"] = true
+	if p.SkipDomainValidationForSharedMailbox != nil {
+		m["SkipDomainValidationForSharedMailbox"] = *p.SkipDomainValidationForSharedMailbox
 	}
 	if p.Trustee != nil {
 		m["Trustee"] = p.Trustee
@@ -21760,9 +21760,9 @@ func (s *Service) RemoveRemoteDomain(ctx context.Context, p RemoveRemoteDomainPa
 
 // RemoveReportScheduleParams are the parameters of Remove-ReportSchedule.
 type RemoveReportScheduleParams struct {
-	Identity   any  `ps:"Identity"`
-	IncludeDLP bool `ps:"IncludeDLP"`
-	ScheduleId any  `ps:"ScheduleId"`
+	Identity   any   `ps:"Identity"`
+	IncludeDLP *bool `ps:"IncludeDLP"`
+	ScheduleId any   `ps:"ScheduleId"`
 }
 
 func (p RemoveReportScheduleParams) params() map[string]any {
@@ -21770,8 +21770,8 @@ func (p RemoveReportScheduleParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeDLP {
-		m["IncludeDLP"] = true
+	if p.IncludeDLP != nil {
+		m["IncludeDLP"] = *p.IncludeDLP
 	}
 	if p.ScheduleId != nil {
 		m["ScheduleId"] = p.ScheduleId
@@ -21822,14 +21822,14 @@ func (s *Service) RemoveReportSubmissionRule(ctx context.Context, p RemoveReport
 
 // RemoveRetentionPolicyParams are the parameters of Remove-RetentionPolicy.
 type RemoveRetentionPolicyParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // MailboxPolicyIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // MailboxPolicyIdParameter
 }
 
 func (p RemoveRetentionPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21880,18 +21880,18 @@ func (s *Service) RemoveRoleAssignmentPolicy(ctx context.Context, p RemoveRoleAs
 
 // RemoveRoleGroupParams are the parameters of Remove-RoleGroup.
 type RemoveRoleGroupParams struct {
-	BypassSecurityGroupManagerCheck bool `ps:"BypassSecurityGroupManagerCheck"`
-	Force                           bool `ps:"Force"`
-	Identity                        any  `ps:"Identity"` // RoleGroupIdParameter
+	BypassSecurityGroupManagerCheck *bool `ps:"BypassSecurityGroupManagerCheck"`
+	Force                           *bool `ps:"Force"`
+	Identity                        any   `ps:"Identity"` // RoleGroupIdParameter
 }
 
 func (p RemoveRoleGroupParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassSecurityGroupManagerCheck {
-		m["BypassSecurityGroupManagerCheck"] = true
+	if p.BypassSecurityGroupManagerCheck != nil {
+		m["BypassSecurityGroupManagerCheck"] = *p.BypassSecurityGroupManagerCheck
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21906,15 +21906,15 @@ func (s *Service) RemoveRoleGroup(ctx context.Context, p RemoveRoleGroupParams) 
 
 // RemoveRoleGroupMemberParams are the parameters of Remove-RoleGroupMember.
 type RemoveRoleGroupMemberParams struct {
-	BypassSecurityGroupManagerCheck bool `ps:"BypassSecurityGroupManagerCheck"`
-	Identity                        any  `ps:"Identity"` // RoleGroupIdParameter
-	Member                          any  `ps:"Member"`   // SecurityPrincipalIdParameter
+	BypassSecurityGroupManagerCheck *bool `ps:"BypassSecurityGroupManagerCheck"`
+	Identity                        any   `ps:"Identity"` // RoleGroupIdParameter
+	Member                          any   `ps:"Member"`   // SecurityPrincipalIdParameter
 }
 
 func (p RemoveRoleGroupMemberParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassSecurityGroupManagerCheck {
-		m["BypassSecurityGroupManagerCheck"] = true
+	if p.BypassSecurityGroupManagerCheck != nil {
+		m["BypassSecurityGroupManagerCheck"] = *p.BypassSecurityGroupManagerCheck
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21932,14 +21932,14 @@ func (s *Service) RemoveRoleGroupMember(ctx context.Context, p RemoveRoleGroupMe
 
 // RemoveSafeAttachmentPolicyParams are the parameters of Remove-SafeAttachmentPolicy.
 type RemoveSafeAttachmentPolicyParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // SafeAttachmentPolicyIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // SafeAttachmentPolicyIdParameter
 }
 
 func (p RemoveSafeAttachmentPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -21972,14 +21972,14 @@ func (s *Service) RemoveSafeAttachmentRule(ctx context.Context, p RemoveSafeAtta
 
 // RemoveSafeLinksPolicyParams are the parameters of Remove-SafeLinksPolicy.
 type RemoveSafeLinksPolicyParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // SafeLinksPolicyIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // SafeLinksPolicyIdParameter
 }
 
 func (p RemoveSafeLinksPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -22012,9 +22012,9 @@ func (s *Service) RemoveSafeLinksRule(ctx context.Context, p RemoveSafeLinksRule
 
 // RemoveSecOpsOverridePolicyParams are the parameters of Remove-SecOpsOverridePolicy.
 type RemoveSecOpsOverridePolicyParams struct {
-	DomainController any  `ps:"DomainController"` // Fqdn
-	ForceDeletion    bool `ps:"ForceDeletion"`
-	Identity         any  `ps:"Identity"` // PolicyIdParameter
+	DomainController any   `ps:"DomainController"` // Fqdn
+	ForceDeletion    *bool `ps:"ForceDeletion"`
+	Identity         any   `ps:"Identity"` // PolicyIdParameter
 }
 
 func (p RemoveSecOpsOverridePolicyParams) params() map[string]any {
@@ -22022,8 +22022,8 @@ func (p RemoveSecOpsOverridePolicyParams) params() map[string]any {
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
 	}
-	if p.ForceDeletion {
-		m["ForceDeletion"] = true
+	if p.ForceDeletion != nil {
+		m["ForceDeletion"] = *p.ForceDeletion
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -22116,14 +22116,14 @@ func (s *Service) RemoveSyncMailPublicFolder(ctx context.Context, p RemoveSyncMa
 // RemoveSyncRequestParams are the parameters of Remove-SyncRequest.
 // DefaultParameterSetName: Identity
 type RemoveSyncRequestParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"`
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"`
 }
 
 func (p RemoveSyncRequestParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -22142,7 +22142,7 @@ type RemoveTenantAllowBlockListItemsParams struct {
 	Ids         []string `ps:"Ids"`
 	ListSubType any      `ps:"ListSubType"` // ListSubType
 	ListType    any      `ps:"ListType"`    // ListType
-	OutputJson  bool     `ps:"OutputJson"`
+	OutputJson  *bool    `ps:"OutputJson"`
 }
 
 func (p RemoveTenantAllowBlockListItemsParams) params() map[string]any {
@@ -22159,8 +22159,8 @@ func (p RemoveTenantAllowBlockListItemsParams) params() map[string]any {
 	if p.ListType != nil {
 		m["ListType"] = p.ListType
 	}
-	if p.OutputJson {
-		m["OutputJson"] = true
+	if p.OutputJson != nil {
+		m["OutputJson"] = *p.OutputJson
 	}
 	return m
 }
@@ -22233,14 +22233,14 @@ func (s *Service) RemoveTransportRule(ctx context.Context, p RemoveTransportRule
 // RemoveUnifiedGroupParams are the parameters of Remove-UnifiedGroup.
 // DefaultParameterSetName: Identity
 type RemoveUnifiedGroupParams struct {
-	Force    bool `ps:"Force"`
-	Identity any  `ps:"Identity"` // UnifiedGroupIdParameter
+	Force    *bool `ps:"Force"`
+	Identity any   `ps:"Identity"` // UnifiedGroupIdParameter
 }
 
 func (p RemoveUnifiedGroupParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -22321,9 +22321,9 @@ func (s *Service) ResumeMailboxRestoreRequest(ctx context.Context, p ResumeMailb
 // ResumeMoveRequestParams are the parameters of Resume-MoveRequest.
 // DefaultParameterSetName: Identity
 type ResumeMoveRequestParams struct {
-	Identity                   any  `ps:"Identity"`       // MoveRequestIdParameter
-	ProxyToMailbox             any  `ps:"ProxyToMailbox"` // MailboxIdParameter
-	SuspendWhenReadyToComplete bool `ps:"SuspendWhenReadyToComplete"`
+	Identity                   any   `ps:"Identity"`       // MoveRequestIdParameter
+	ProxyToMailbox             any   `ps:"ProxyToMailbox"` // MailboxIdParameter
+	SuspendWhenReadyToComplete *bool `ps:"SuspendWhenReadyToComplete"`
 }
 
 func (p ResumeMoveRequestParams) params() map[string]any {
@@ -22334,8 +22334,8 @@ func (p ResumeMoveRequestParams) params() map[string]any {
 	if p.ProxyToMailbox != nil {
 		m["ProxyToMailbox"] = p.ProxyToMailbox
 	}
-	if p.SuspendWhenReadyToComplete {
-		m["SuspendWhenReadyToComplete"] = true
+	if p.SuspendWhenReadyToComplete != nil {
+		m["SuspendWhenReadyToComplete"] = *p.SuspendWhenReadyToComplete
 	}
 	return m
 }
@@ -22434,15 +22434,15 @@ func (s *Service) RotateDkimSigningConfig(ctx context.Context, p RotateDkimSigni
 type SearchMailboxAuditLogParams struct {
 	EndDate                any      `ps:"EndDate"` // ExDateTime
 	ExternalAccess         *bool    `ps:"ExternalAccess"`
-	GroupMailbox           bool     `ps:"GroupMailbox"`
+	GroupMailbox           *bool    `ps:"GroupMailbox"`
 	HasAttachments         *bool    `ps:"HasAttachments"`
 	Identity               any      `ps:"Identity"` // MailboxIdParameter
-	IncludeInactiveMailbox bool     `ps:"IncludeInactiveMailbox"`
+	IncludeInactiveMailbox *bool    `ps:"IncludeInactiveMailbox"`
 	LogonTypes             []string `ps:"LogonTypes"`
 	Mailboxes              []string `ps:"Mailboxes"`
 	Operations             []string `ps:"Operations"`
 	ResultSize             *int64   `ps:"ResultSize"`
-	ShowDetails            bool     `ps:"ShowDetails"`
+	ShowDetails            *bool    `ps:"ShowDetails"`
 	StartDate              any      `ps:"StartDate"` // ExDateTime
 }
 
@@ -22454,8 +22454,8 @@ func (p SearchMailboxAuditLogParams) params() map[string]any {
 	if p.ExternalAccess != nil {
 		m["ExternalAccess"] = *p.ExternalAccess
 	}
-	if p.GroupMailbox {
-		m["GroupMailbox"] = true
+	if p.GroupMailbox != nil {
+		m["GroupMailbox"] = *p.GroupMailbox
 	}
 	if p.HasAttachments != nil {
 		m["HasAttachments"] = *p.HasAttachments
@@ -22463,8 +22463,8 @@ func (p SearchMailboxAuditLogParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeInactiveMailbox {
-		m["IncludeInactiveMailbox"] = true
+	if p.IncludeInactiveMailbox != nil {
+		m["IncludeInactiveMailbox"] = *p.IncludeInactiveMailbox
 	}
 	if p.LogonTypes != nil {
 		m["LogonTypes"] = p.LogonTypes
@@ -22478,8 +22478,8 @@ func (p SearchMailboxAuditLogParams) params() map[string]any {
 	if p.ResultSize != nil {
 		m["ResultSize"] = *p.ResultSize
 	}
-	if p.ShowDetails {
-		m["ShowDetails"] = true
+	if p.ShowDetails != nil {
+		m["ShowDetails"] = *p.ShowDetails
 	}
 	if p.StartDate != nil {
 		m["StartDate"] = p.StartDate
@@ -22495,8 +22495,8 @@ func (s *Service) SearchMailboxAuditLog(ctx context.Context, p SearchMailboxAudi
 // SearchMessageTrackingReportParams are the parameters of Search-MessageTrackingReport.
 // DefaultParameterSetName: ParamSetSearchAsSender
 type SearchMessageTrackingReportParams struct {
-	BypassDelegateChecking bool     `ps:"BypassDelegateChecking"`
-	DoNotResolve           bool     `ps:"DoNotResolve"`
+	BypassDelegateChecking *bool    `ps:"BypassDelegateChecking"`
+	DoNotResolve           *bool    `ps:"DoNotResolve"`
 	Identity               any      `ps:"Identity"` // MailboxIdParameter
 	MessageEntryId         string   `ps:"MessageEntryId"`
 	MessageId              string   `ps:"MessageId"`
@@ -22508,11 +22508,11 @@ type SearchMessageTrackingReportParams struct {
 
 func (p SearchMessageTrackingReportParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassDelegateChecking {
-		m["BypassDelegateChecking"] = true
+	if p.BypassDelegateChecking != nil {
+		m["BypassDelegateChecking"] = *p.BypassDelegateChecking
 	}
-	if p.DoNotResolve {
-		m["DoNotResolve"] = true
+	if p.DoNotResolve != nil {
+		m["DoNotResolve"] = *p.DoNotResolve
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -22547,11 +22547,11 @@ func (s *Service) SearchMessageTrackingReport(ctx context.Context, p SearchMessa
 // DefaultParameterSetName: Identity
 type SearchUnifiedAuditLogParams struct {
 	EndDate                any      `ps:"EndDate"` // ExDateTime
-	Formatted              bool     `ps:"Formatted"`
+	Formatted              *bool    `ps:"Formatted"`
 	FreeText               string   `ps:"FreeText"`
-	HighCompleteness       bool     `ps:"HighCompleteness"`
+	HighCompleteness       *bool    `ps:"HighCompleteness"`
 	IPAddresses            []string `ps:"IPAddresses"`
-	LegacyFlow             bool     `ps:"LegacyFlow"`
+	LegacyFlow             *bool    `ps:"LegacyFlow"`
 	LongerRetentionEnabled string   `ps:"LongerRetentionEnabled"`
 	ObjectIds              []string `ps:"ObjectIds"`
 	Operations             []string `ps:"Operations"`
@@ -22569,20 +22569,20 @@ func (p SearchUnifiedAuditLogParams) params() map[string]any {
 	if p.EndDate != nil {
 		m["EndDate"] = p.EndDate
 	}
-	if p.Formatted {
-		m["Formatted"] = true
+	if p.Formatted != nil {
+		m["Formatted"] = *p.Formatted
 	}
 	if p.FreeText != "" {
 		m["FreeText"] = p.FreeText
 	}
-	if p.HighCompleteness {
-		m["HighCompleteness"] = true
+	if p.HighCompleteness != nil {
+		m["HighCompleteness"] = *p.HighCompleteness
 	}
 	if p.IPAddresses != nil {
 		m["IPAddresses"] = p.IPAddresses
 	}
-	if p.LegacyFlow {
-		m["LegacyFlow"] = true
+	if p.LegacyFlow != nil {
+		m["LegacyFlow"] = *p.LegacyFlow
 	}
 	if p.LongerRetentionEnabled != "" {
 		m["LongerRetentionEnabled"] = p.LongerRetentionEnabled
@@ -23175,14 +23175,14 @@ func (s *Service) SetActiveSyncOrganizationSettings(ctx context.Context, p SetAc
 // SetAdminAuditLogConfigParams are the parameters of Set-AdminAuditLogConfig.
 // DefaultParameterSetName: Identity
 type SetAdminAuditLogConfigParams struct {
-	Force                           bool  `ps:"Force"`
+	Force                           *bool `ps:"Force"`
 	UnifiedAuditLogIngestionEnabled *bool `ps:"UnifiedAuditLogIngestionEnabled"`
 }
 
 func (p SetAdminAuditLogConfigParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.UnifiedAuditLogIngestionEnabled != nil {
 		m["UnifiedAuditLogIngestionEnabled"] = *p.UnifiedAuditLogIngestionEnabled
@@ -23226,7 +23226,7 @@ type SetAntiPhishPolicyParams struct {
 	MailboxIntelligenceProtectionActionRecipients      []string              `ps:"MailboxIntelligenceProtectionActionRecipients"`
 	MailboxIntelligenceProtectionActionRecipientsDelta *adminapi.StringDelta `ps:"MailboxIntelligenceProtectionActionRecipients"` // adds/removes values of MailboxIntelligenceProtectionActionRecipients; takes precedence over it
 	MailboxIntelligenceQuarantineTag                   string                `ps:"MailboxIntelligenceQuarantineTag"`
-	MakeDefault                                        bool                  `ps:"MakeDefault"`
+	MakeDefault                                        *bool                 `ps:"MakeDefault"`
 	PhishThresholdLevel                                *int64                `ps:"PhishThresholdLevel"`
 	PolicyTag                                          string                `ps:"PolicyTag"`
 	SpoofQuarantineTag                                 string                `ps:"SpoofQuarantineTag"`
@@ -23327,8 +23327,8 @@ func (p SetAntiPhishPolicyParams) params() map[string]any {
 	if p.MailboxIntelligenceQuarantineTag != "" {
 		m["MailboxIntelligenceQuarantineTag"] = p.MailboxIntelligenceQuarantineTag
 	}
-	if p.MakeDefault {
-		m["MakeDefault"] = true
+	if p.MakeDefault != nil {
+		m["MakeDefault"] = *p.MakeDefault
 	}
 	if p.PhishThresholdLevel != nil {
 		m["PhishThresholdLevel"] = *p.PhishThresholdLevel
@@ -23444,8 +23444,8 @@ type SetAppParams struct {
 	DefaultStateForUser any                   `ps:"DefaultStateForUser"` // DefaultStateForUser
 	Enabled             *bool                 `ps:"Enabled"`
 	Identity            any                   `ps:"Identity"` // AppIdParameter
-	OrganizationApp     bool                  `ps:"OrganizationApp"`
-	PrivateCatalog      bool                  `ps:"PrivateCatalog"`
+	OrganizationApp     *bool                 `ps:"OrganizationApp"`
+	PrivateCatalog      *bool                 `ps:"PrivateCatalog"`
 	ProvidedTo          any                   `ps:"ProvidedTo"` // ClientExtensionProvidedTo
 	UserList            []string              `ps:"UserList"`
 	UserListDelta       *adminapi.StringDelta `ps:"UserList"` // adds/removes values of UserList; takes precedence over it
@@ -23462,11 +23462,11 @@ func (p SetAppParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.OrganizationApp {
-		m["OrganizationApp"] = true
+	if p.OrganizationApp != nil {
+		m["OrganizationApp"] = *p.OrganizationApp
 	}
-	if p.PrivateCatalog {
-		m["PrivateCatalog"] = true
+	if p.PrivateCatalog != nil {
+		m["PrivateCatalog"] = *p.PrivateCatalog
 	}
 	if p.ProvidedTo != nil {
 		m["ProvidedTo"] = p.ProvidedTo
@@ -23562,58 +23562,58 @@ func (s *Service) SetAtpPolicyForO365(ctx context.Context, p SetAtpPolicyForO365
 // SetAuthenticationPolicyParams are the parameters of Set-AuthenticationPolicy.
 // DefaultParameterSetName: Identity
 type SetAuthenticationPolicyParams struct {
-	AllowBasicAuthActiveSync           bool `ps:"AllowBasicAuthActiveSync"`
-	AllowBasicAuthAutodiscover         bool `ps:"AllowBasicAuthAutodiscover"`
-	AllowBasicAuthImap                 bool `ps:"AllowBasicAuthImap"`
-	AllowBasicAuthMapi                 bool `ps:"AllowBasicAuthMapi"`
-	AllowBasicAuthOfflineAddressBook   bool `ps:"AllowBasicAuthOfflineAddressBook"`
-	AllowBasicAuthOutlookService       bool `ps:"AllowBasicAuthOutlookService"`
-	AllowBasicAuthPop                  bool `ps:"AllowBasicAuthPop"`
-	AllowBasicAuthPowershell           bool `ps:"AllowBasicAuthPowershell"`
-	AllowBasicAuthReportingWebServices bool `ps:"AllowBasicAuthReportingWebServices"`
-	AllowBasicAuthRpc                  bool `ps:"AllowBasicAuthRpc"`
-	AllowBasicAuthSmtp                 bool `ps:"AllowBasicAuthSmtp"`
-	AllowBasicAuthWebServices          bool `ps:"AllowBasicAuthWebServices"`
-	Identity                           any  `ps:"Identity"` // AuthPolicyIdParameter
+	AllowBasicAuthActiveSync           *bool `ps:"AllowBasicAuthActiveSync"`
+	AllowBasicAuthAutodiscover         *bool `ps:"AllowBasicAuthAutodiscover"`
+	AllowBasicAuthImap                 *bool `ps:"AllowBasicAuthImap"`
+	AllowBasicAuthMapi                 *bool `ps:"AllowBasicAuthMapi"`
+	AllowBasicAuthOfflineAddressBook   *bool `ps:"AllowBasicAuthOfflineAddressBook"`
+	AllowBasicAuthOutlookService       *bool `ps:"AllowBasicAuthOutlookService"`
+	AllowBasicAuthPop                  *bool `ps:"AllowBasicAuthPop"`
+	AllowBasicAuthPowershell           *bool `ps:"AllowBasicAuthPowershell"`
+	AllowBasicAuthReportingWebServices *bool `ps:"AllowBasicAuthReportingWebServices"`
+	AllowBasicAuthRpc                  *bool `ps:"AllowBasicAuthRpc"`
+	AllowBasicAuthSmtp                 *bool `ps:"AllowBasicAuthSmtp"`
+	AllowBasicAuthWebServices          *bool `ps:"AllowBasicAuthWebServices"`
+	Identity                           any   `ps:"Identity"` // AuthPolicyIdParameter
 }
 
 func (p SetAuthenticationPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AllowBasicAuthActiveSync {
-		m["AllowBasicAuthActiveSync"] = true
+	if p.AllowBasicAuthActiveSync != nil {
+		m["AllowBasicAuthActiveSync"] = *p.AllowBasicAuthActiveSync
 	}
-	if p.AllowBasicAuthAutodiscover {
-		m["AllowBasicAuthAutodiscover"] = true
+	if p.AllowBasicAuthAutodiscover != nil {
+		m["AllowBasicAuthAutodiscover"] = *p.AllowBasicAuthAutodiscover
 	}
-	if p.AllowBasicAuthImap {
-		m["AllowBasicAuthImap"] = true
+	if p.AllowBasicAuthImap != nil {
+		m["AllowBasicAuthImap"] = *p.AllowBasicAuthImap
 	}
-	if p.AllowBasicAuthMapi {
-		m["AllowBasicAuthMapi"] = true
+	if p.AllowBasicAuthMapi != nil {
+		m["AllowBasicAuthMapi"] = *p.AllowBasicAuthMapi
 	}
-	if p.AllowBasicAuthOfflineAddressBook {
-		m["AllowBasicAuthOfflineAddressBook"] = true
+	if p.AllowBasicAuthOfflineAddressBook != nil {
+		m["AllowBasicAuthOfflineAddressBook"] = *p.AllowBasicAuthOfflineAddressBook
 	}
-	if p.AllowBasicAuthOutlookService {
-		m["AllowBasicAuthOutlookService"] = true
+	if p.AllowBasicAuthOutlookService != nil {
+		m["AllowBasicAuthOutlookService"] = *p.AllowBasicAuthOutlookService
 	}
-	if p.AllowBasicAuthPop {
-		m["AllowBasicAuthPop"] = true
+	if p.AllowBasicAuthPop != nil {
+		m["AllowBasicAuthPop"] = *p.AllowBasicAuthPop
 	}
-	if p.AllowBasicAuthPowershell {
-		m["AllowBasicAuthPowershell"] = true
+	if p.AllowBasicAuthPowershell != nil {
+		m["AllowBasicAuthPowershell"] = *p.AllowBasicAuthPowershell
 	}
-	if p.AllowBasicAuthReportingWebServices {
-		m["AllowBasicAuthReportingWebServices"] = true
+	if p.AllowBasicAuthReportingWebServices != nil {
+		m["AllowBasicAuthReportingWebServices"] = *p.AllowBasicAuthReportingWebServices
 	}
-	if p.AllowBasicAuthRpc {
-		m["AllowBasicAuthRpc"] = true
+	if p.AllowBasicAuthRpc != nil {
+		m["AllowBasicAuthRpc"] = *p.AllowBasicAuthRpc
 	}
-	if p.AllowBasicAuthSmtp {
-		m["AllowBasicAuthSmtp"] = true
+	if p.AllowBasicAuthSmtp != nil {
+		m["AllowBasicAuthSmtp"] = *p.AllowBasicAuthSmtp
 	}
-	if p.AllowBasicAuthWebServices {
-		m["AllowBasicAuthWebServices"] = true
+	if p.AllowBasicAuthWebServices != nil {
+		m["AllowBasicAuthWebServices"] = *p.AllowBasicAuthWebServices
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -23876,7 +23876,7 @@ type SetCalendarProcessingParams struct {
 	EnforceSchedulingHorizon             *bool    `ps:"EnforceSchedulingHorizon"`
 	ForwardRequestsToDelegates           *bool    `ps:"ForwardRequestsToDelegates"`
 	Identity                             any      `ps:"Identity"` // MailboxIdParameter
-	IgnoreDefaultScope                   bool     `ps:"IgnoreDefaultScope"`
+	IgnoreDefaultScope                   *bool    `ps:"IgnoreDefaultScope"`
 	MaximumConflictInstances             *int64   `ps:"MaximumConflictInstances"`
 	MaximumDurationInMinutes             *int64   `ps:"MaximumDurationInMinutes"`
 	MinimumDurationInMinutes             *int64   `ps:"MinimumDurationInMinutes"`
@@ -23968,8 +23968,8 @@ func (p SetCalendarProcessingParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDefaultScope {
-		m["IgnoreDefaultScope"] = true
+	if p.IgnoreDefaultScope != nil {
+		m["IgnoreDefaultScope"] = *p.IgnoreDefaultScope
 	}
 	if p.MaximumConflictInstances != nil {
 		m["MaximumConflictInstances"] = *p.MaximumConflictInstances
@@ -24169,7 +24169,7 @@ func (s *Service) SetClientAccessRule(ctx context.Context, p SetClientAccessRule
 type SetClutterParams struct {
 	Enable           *bool `ps:"Enable"`
 	Identity         any   `ps:"Identity"` // MailboxIdParameter
-	UseCustomRouting bool  `ps:"UseCustomRouting"`
+	UseCustomRouting *bool `ps:"UseCustomRouting"`
 }
 
 func (p SetClutterParams) params() map[string]any {
@@ -24180,8 +24180,8 @@ func (p SetClutterParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -24360,7 +24360,7 @@ type SetDataClassificationParams struct {
 	Fingerprints      []string              `ps:"Fingerprints"`
 	FingerprintsDelta *adminapi.StringDelta `ps:"Fingerprints"` // adds/removes values of Fingerprints; takes precedence over it
 	Identity          any                   `ps:"Identity"`     // DataClassificationIdParameter
-	IsDefault         bool                  `ps:"IsDefault"`
+	IsDefault         *bool                 `ps:"IsDefault"`
 	Locale            any                   `ps:"Locale"` // CultureInfo
 	Name              string                `ps:"Name"`
 }
@@ -24378,8 +24378,8 @@ func (p SetDataClassificationParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IsDefault {
-		m["IsDefault"] = true
+	if p.IsDefault != nil {
+		m["IsDefault"] = *p.IsDefault
 	}
 	if p.Locale != nil {
 		m["Locale"] = p.Locale
@@ -24403,14 +24403,14 @@ type SetDataEncryptionPolicyParams struct {
 	Description                 string                `ps:"Description"`
 	DomainController            any                   `ps:"DomainController"` // Fqdn
 	Enabled                     *bool                 `ps:"Enabled"`
-	Force                       bool                  `ps:"Force"`
+	Force                       *bool                 `ps:"Force"`
 	Identity                    any                   `ps:"Identity"` // DataEncryptionPolicyIdParameter
 	Name                        string                `ps:"Name"`
 	PermanentDataPurgeContact   string                `ps:"PermanentDataPurgeContact"`
 	PermanentDataPurgeReason    string                `ps:"PermanentDataPurgeReason"`
-	PermanentDataPurgeRequested bool                  `ps:"PermanentDataPurgeRequested"`
-	Refresh                     bool                  `ps:"Refresh"`
-	Replace                     bool                  `ps:"Replace"`
+	PermanentDataPurgeRequested *bool                 `ps:"PermanentDataPurgeRequested"`
+	Refresh                     *bool                 `ps:"Refresh"`
+	Replace                     *bool                 `ps:"Replace"`
 }
 
 func (p SetDataEncryptionPolicyParams) params() map[string]any {
@@ -24429,8 +24429,8 @@ func (p SetDataEncryptionPolicyParams) params() map[string]any {
 	if p.Enabled != nil {
 		m["Enabled"] = *p.Enabled
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -24444,14 +24444,14 @@ func (p SetDataEncryptionPolicyParams) params() map[string]any {
 	if p.PermanentDataPurgeReason != "" {
 		m["PermanentDataPurgeReason"] = p.PermanentDataPurgeReason
 	}
-	if p.PermanentDataPurgeRequested {
-		m["PermanentDataPurgeRequested"] = true
+	if p.PermanentDataPurgeRequested != nil {
+		m["PermanentDataPurgeRequested"] = *p.PermanentDataPurgeRequested
 	}
-	if p.Refresh {
-		m["Refresh"] = true
+	if p.Refresh != nil {
+		m["Refresh"] = *p.Refresh
 	}
-	if p.Replace {
-		m["Replace"] = true
+	if p.Replace != nil {
+		m["Replace"] = *p.Replace
 	}
 	return m
 }
@@ -24475,7 +24475,7 @@ type SetDistributionGroupParams struct {
 	BypassModerationFromSendersOrMembers        []string              `ps:"BypassModerationFromSendersOrMembers"`
 	BypassModerationFromSendersOrMembersDelta   *adminapi.StringDelta `ps:"BypassModerationFromSendersOrMembers"` // adds/removes values of BypassModerationFromSendersOrMembers; takes precedence over it
 	BypassNestedModerationEnabled               *bool                 `ps:"BypassNestedModerationEnabled"`
-	BypassSecurityGroupManagerCheck             bool                  `ps:"BypassSecurityGroupManagerCheck"`
+	BypassSecurityGroupManagerCheck             *bool                 `ps:"BypassSecurityGroupManagerCheck"`
 	CustomAttribute1                            string                `ps:"CustomAttribute1"`
 	CustomAttribute10                           string                `ps:"CustomAttribute10"`
 	CustomAttribute11                           string                `ps:"CustomAttribute11"`
@@ -24505,13 +24505,13 @@ type SetDistributionGroupParams struct {
 	ExtensionCustomAttribute4Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute4"` // adds/removes values of ExtensionCustomAttribute4; takes precedence over it
 	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
 	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
-	ForceUpgrade                                bool                  `ps:"ForceUpgrade"`
+	ForceUpgrade                                *bool                 `ps:"ForceUpgrade"`
 	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
 	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
 	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
-	HiddenGroupMembershipEnabled                bool                  `ps:"HiddenGroupMembershipEnabled"`
+	HiddenGroupMembershipEnabled                *bool                 `ps:"HiddenGroupMembershipEnabled"`
 	Identity                                    any                   `ps:"Identity"` // DistributionGroupIdParameter
-	IgnoreNamingPolicy                          bool                  `ps:"IgnoreNamingPolicy"`
+	IgnoreNamingPolicy                          *bool                 `ps:"IgnoreNamingPolicy"`
 	MailTip                                     string                `ps:"MailTip"`
 	MailTipTranslations                         []string              `ps:"MailTipTranslations"`
 	MailTipTranslationsDelta                    *adminapi.StringDelta `ps:"MailTipTranslations"` // adds/removes values of MailTipTranslations; takes precedence over it
@@ -24533,12 +24533,12 @@ type SetDistributionGroupParams struct {
 	ReportToManagerEnabled                      *bool                 `ps:"ReportToManagerEnabled"`
 	ReportToOriginatorEnabled                   *bool                 `ps:"ReportToOriginatorEnabled"`
 	RequireSenderAuthenticationEnabled          *bool                 `ps:"RequireSenderAuthenticationEnabled"`
-	ResetMigrationToUnifiedGroup                bool                  `ps:"ResetMigrationToUnifiedGroup"`
-	RoomList                                    bool                  `ps:"RoomList"`
+	ResetMigrationToUnifiedGroup                *bool                 `ps:"ResetMigrationToUnifiedGroup"`
+	RoomList                                    *bool                 `ps:"RoomList"`
 	SendModerationNotifications                 any                   `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
 	SendOofMessageToOriginatorEnabled           *bool                 `ps:"SendOofMessageToOriginatorEnabled"`
 	SimpleDisplayName                           string                `ps:"SimpleDisplayName"`
-	UpdateMemberCount                           bool                  `ps:"UpdateMemberCount"`
+	UpdateMemberCount                           *bool                 `ps:"UpdateMemberCount"`
 	WindowsEmailAddress                         any                   `ps:"WindowsEmailAddress"` // SmtpAddress
 }
 
@@ -24573,8 +24573,8 @@ func (p SetDistributionGroupParams) params() map[string]any {
 	if p.BypassNestedModerationEnabled != nil {
 		m["BypassNestedModerationEnabled"] = *p.BypassNestedModerationEnabled
 	}
-	if p.BypassSecurityGroupManagerCheck {
-		m["BypassSecurityGroupManagerCheck"] = true
+	if p.BypassSecurityGroupManagerCheck != nil {
+		m["BypassSecurityGroupManagerCheck"] = *p.BypassSecurityGroupManagerCheck
 	}
 	if p.CustomAttribute1 != "" {
 		m["CustomAttribute1"] = p.CustomAttribute1
@@ -24657,8 +24657,8 @@ func (p SetDistributionGroupParams) params() map[string]any {
 	} else if p.ExtensionCustomAttribute5 != nil {
 		m["ExtensionCustomAttribute5"] = p.ExtensionCustomAttribute5
 	}
-	if p.ForceUpgrade {
-		m["ForceUpgrade"] = true
+	if p.ForceUpgrade != nil {
+		m["ForceUpgrade"] = *p.ForceUpgrade
 	}
 	if p.GrantSendOnBehalfToDelta != nil {
 		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
@@ -24668,14 +24668,14 @@ func (p SetDistributionGroupParams) params() map[string]any {
 	if p.HiddenFromAddressListsEnabled != nil {
 		m["HiddenFromAddressListsEnabled"] = *p.HiddenFromAddressListsEnabled
 	}
-	if p.HiddenGroupMembershipEnabled {
-		m["HiddenGroupMembershipEnabled"] = true
+	if p.HiddenGroupMembershipEnabled != nil {
+		m["HiddenGroupMembershipEnabled"] = *p.HiddenGroupMembershipEnabled
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreNamingPolicy {
-		m["IgnoreNamingPolicy"] = true
+	if p.IgnoreNamingPolicy != nil {
+		m["IgnoreNamingPolicy"] = *p.IgnoreNamingPolicy
 	}
 	if p.MailTip != "" {
 		m["MailTip"] = p.MailTip
@@ -24734,11 +24734,11 @@ func (p SetDistributionGroupParams) params() map[string]any {
 	if p.RequireSenderAuthenticationEnabled != nil {
 		m["RequireSenderAuthenticationEnabled"] = *p.RequireSenderAuthenticationEnabled
 	}
-	if p.ResetMigrationToUnifiedGroup {
-		m["ResetMigrationToUnifiedGroup"] = true
+	if p.ResetMigrationToUnifiedGroup != nil {
+		m["ResetMigrationToUnifiedGroup"] = *p.ResetMigrationToUnifiedGroup
 	}
-	if p.RoomList {
-		m["RoomList"] = true
+	if p.RoomList != nil {
+		m["RoomList"] = *p.RoomList
 	}
 	if p.SendModerationNotifications != nil {
 		m["SendModerationNotifications"] = p.SendModerationNotifications
@@ -24749,8 +24749,8 @@ func (p SetDistributionGroupParams) params() map[string]any {
 	if p.SimpleDisplayName != "" {
 		m["SimpleDisplayName"] = p.SimpleDisplayName
 	}
-	if p.UpdateMemberCount {
-		m["UpdateMemberCount"] = true
+	if p.UpdateMemberCount != nil {
+		m["UpdateMemberCount"] = *p.UpdateMemberCount
 	}
 	if p.WindowsEmailAddress != nil {
 		m["WindowsEmailAddress"] = p.WindowsEmailAddress
@@ -24771,7 +24771,7 @@ type SetDkimSigningConfigParams struct {
 	Enabled                *bool  `ps:"Enabled"`
 	HeaderCanonicalization any    `ps:"HeaderCanonicalization"` // CanonicalizationType
 	Identity               any    `ps:"Identity"`               // DkimSigningConfigIdParameter
-	PublishTxtRecords      bool   `ps:"PublishTxtRecords"`
+	PublishTxtRecords      *bool  `ps:"PublishTxtRecords"`
 }
 
 func (p SetDkimSigningConfigParams) params() map[string]any {
@@ -24791,8 +24791,8 @@ func (p SetDkimSigningConfigParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.PublishTxtRecords {
-		m["PublishTxtRecords"] = true
+	if p.PublishTxtRecords != nil {
+		m["PublishTxtRecords"] = *p.PublishTxtRecords
 	}
 	return m
 }
@@ -24913,8 +24913,8 @@ type SetDynamicDistributionGroupParams struct {
 	ExtensionCustomAttribute4Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute4"` // adds/removes values of ExtensionCustomAttribute4; takes precedence over it
 	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
 	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
-	ForceMembershipRefresh                      bool                  `ps:"ForceMembershipRefresh"`
-	ForceUpgrade                                bool                  `ps:"ForceUpgrade"`
+	ForceMembershipRefresh                      *bool                 `ps:"ForceMembershipRefresh"`
+	ForceUpgrade                                *bool                 `ps:"ForceUpgrade"`
 	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
 	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
 	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
@@ -24945,7 +24945,7 @@ type SetDynamicDistributionGroupParams struct {
 	SendModerationNotifications                 any                   `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
 	SendOofMessageToOriginatorEnabled           *bool                 `ps:"SendOofMessageToOriginatorEnabled"`
 	SimpleDisplayName                           string                `ps:"SimpleDisplayName"`
-	UpdateMemberCount                           bool                  `ps:"UpdateMemberCount"`
+	UpdateMemberCount                           *bool                 `ps:"UpdateMemberCount"`
 	WindowsEmailAddress                         any                   `ps:"WindowsEmailAddress"` // SmtpAddress
 }
 
@@ -25143,11 +25143,11 @@ func (p SetDynamicDistributionGroupParams) params() map[string]any {
 	} else if p.ExtensionCustomAttribute5 != nil {
 		m["ExtensionCustomAttribute5"] = p.ExtensionCustomAttribute5
 	}
-	if p.ForceMembershipRefresh {
-		m["ForceMembershipRefresh"] = true
+	if p.ForceMembershipRefresh != nil {
+		m["ForceMembershipRefresh"] = *p.ForceMembershipRefresh
 	}
-	if p.ForceUpgrade {
-		m["ForceUpgrade"] = true
+	if p.ForceUpgrade != nil {
+		m["ForceUpgrade"] = *p.ForceUpgrade
 	}
 	if p.GrantSendOnBehalfToDelta != nil {
 		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
@@ -25233,8 +25233,8 @@ func (p SetDynamicDistributionGroupParams) params() map[string]any {
 	if p.SimpleDisplayName != "" {
 		m["SimpleDisplayName"] = p.SimpleDisplayName
 	}
-	if p.UpdateMemberCount {
-		m["UpdateMemberCount"] = true
+	if p.UpdateMemberCount != nil {
+		m["UpdateMemberCount"] = *p.UpdateMemberCount
 	}
 	if p.WindowsEmailAddress != nil {
 		m["WindowsEmailAddress"] = p.WindowsEmailAddress
@@ -25365,7 +25365,7 @@ func (s *Service) SetElevatedAccessRequest(ctx context.Context, p SetElevatedAcc
 type SetEmailAddressPolicyParams struct {
 	EnabledEmailAddressTemplates      []string `ps:"EnabledEmailAddressTemplates"`
 	EnabledPrimarySMTPAddressTemplate string   `ps:"EnabledPrimarySMTPAddressTemplate"`
-	ForceUpgrade                      bool     `ps:"ForceUpgrade"`
+	ForceUpgrade                      *bool    `ps:"ForceUpgrade"`
 	Identity                          any      `ps:"Identity"` // EmailAddressPolicyIdParameter
 	Name                              string   `ps:"Name"`
 	Priority                          any      `ps:"Priority"` // EmailAddressPolicyPriority
@@ -25379,8 +25379,8 @@ func (p SetEmailAddressPolicyParams) params() map[string]any {
 	if p.EnabledPrimarySMTPAddressTemplate != "" {
 		m["EnabledPrimarySMTPAddressTemplate"] = p.EnabledPrimarySMTPAddressTemplate
 	}
-	if p.ForceUpgrade {
-		m["ForceUpgrade"] = true
+	if p.ForceUpgrade != nil {
+		m["ForceUpgrade"] = *p.ForceUpgrade
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -25405,7 +25405,7 @@ type SetEmailTenantSettingsParams struct {
 	DomainController                any   `ps:"DomainController"` // Fqdn
 	EnablePriorityAccountProtection *bool `ps:"EnablePriorityAccountProtection"`
 	Identity                        any   `ps:"Identity"` // EmailTenantSettingsIdParameter
-	IgnoreDehydratedFlag            bool  `ps:"IgnoreDehydratedFlag"`
+	IgnoreDehydratedFlag            *bool `ps:"IgnoreDehydratedFlag"`
 }
 
 func (p SetEmailTenantSettingsParams) params() map[string]any {
@@ -25419,8 +25419,8 @@ func (p SetEmailTenantSettingsParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDehydratedFlag {
-		m["IgnoreDehydratedFlag"] = true
+	if p.IgnoreDehydratedFlag != nil {
+		m["IgnoreDehydratedFlag"] = *p.IgnoreDehydratedFlag
 	}
 	return m
 }
@@ -25442,7 +25442,7 @@ type SetEventsFromEmailConfigurationParams struct {
 	LodgingReservationProcessingLevel           string `ps:"LodgingReservationProcessingLevel"`
 	ParcelDeliveryProcessingLevel               string `ps:"ParcelDeliveryProcessingLevel"`
 	RentalCarReservationProcessingLevel         string `ps:"RentalCarReservationProcessingLevel"`
-	ResetSettings                               bool   `ps:"ResetSettings"`
+	ResetSettings                               *bool  `ps:"ResetSettings"`
 	ServiceReservationProcessingLevel           string `ps:"ServiceReservationProcessingLevel"`
 }
 
@@ -25475,8 +25475,8 @@ func (p SetEventsFromEmailConfigurationParams) params() map[string]any {
 	if p.RentalCarReservationProcessingLevel != "" {
 		m["RentalCarReservationProcessingLevel"] = p.RentalCarReservationProcessingLevel
 	}
-	if p.ResetSettings {
-		m["ResetSettings"] = true
+	if p.ResetSettings != nil {
+		m["ResetSettings"] = *p.ResetSettings
 	}
 	if p.ServiceReservationProcessingLevel != "" {
 		m["ServiceReservationProcessingLevel"] = p.ServiceReservationProcessingLevel
@@ -25645,7 +25645,7 @@ func (s *Service) SetFederatedOrganizationIdentifier(ctx context.Context, p SetF
 type SetFocusedInboxParams struct {
 	FocusedInboxOn   *bool `ps:"FocusedInboxOn"`
 	Identity         any   `ps:"Identity"` // MailboxIdParameter
-	UseCustomRouting bool  `ps:"UseCustomRouting"`
+	UseCustomRouting *bool `ps:"UseCustomRouting"`
 }
 
 func (p SetFocusedInboxParams) params() map[string]any {
@@ -25656,8 +25656,8 @@ func (p SetFocusedInboxParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -25670,7 +25670,7 @@ func (s *Service) SetFocusedInbox(ctx context.Context, p SetFocusedInboxParams) 
 // SetGroupParams are the parameters of Set-Group.
 // DefaultParameterSetName: Identity
 type SetGroupParams struct {
-	BypassSecurityGroupManagerCheck bool                  `ps:"BypassSecurityGroupManagerCheck"`
+	BypassSecurityGroupManagerCheck *bool                 `ps:"BypassSecurityGroupManagerCheck"`
 	Description                     []string              `ps:"Description"`
 	DescriptionDelta                *adminapi.StringDelta `ps:"Description"` // adds/removes values of Description; takes precedence over it
 	DisplayName                     string                `ps:"DisplayName"`
@@ -25682,14 +25682,14 @@ type SetGroupParams struct {
 	PhoneticDisplayName             string                `ps:"PhoneticDisplayName"`
 	SeniorityIndex                  *int64                `ps:"SeniorityIndex"`
 	SimpleDisplayName               string                `ps:"SimpleDisplayName"`
-	Universal                       bool                  `ps:"Universal"`
+	Universal                       *bool                 `ps:"Universal"`
 	WindowsEmailAddress             any                   `ps:"WindowsEmailAddress"` // SmtpAddress
 }
 
 func (p SetGroupParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassSecurityGroupManagerCheck {
-		m["BypassSecurityGroupManagerCheck"] = true
+	if p.BypassSecurityGroupManagerCheck != nil {
+		m["BypassSecurityGroupManagerCheck"] = *p.BypassSecurityGroupManagerCheck
 	}
 	if p.DescriptionDelta != nil {
 		m["Description"] = *p.DescriptionDelta
@@ -25723,8 +25723,8 @@ func (p SetGroupParams) params() map[string]any {
 	if p.SimpleDisplayName != "" {
 		m["SimpleDisplayName"] = p.SimpleDisplayName
 	}
-	if p.Universal {
-		m["Universal"] = true
+	if p.Universal != nil {
+		m["Universal"] = *p.Universal
 	}
 	if p.WindowsEmailAddress != nil {
 		m["WindowsEmailAddress"] = p.WindowsEmailAddress
@@ -25792,7 +25792,7 @@ type SetHostedConnectionFilterPolicyParams struct {
 	IPAllowListDelta    *adminapi.StringDelta `ps:"IPAllowList"` // adds/removes values of IPAllowList; takes precedence over it
 	IPBlockList         []string              `ps:"IPBlockList"`
 	IPBlockListDelta    *adminapi.StringDelta `ps:"IPBlockList"` // adds/removes values of IPBlockList; takes precedence over it
-	MakeDefault         bool                  `ps:"MakeDefault"`
+	MakeDefault         *bool                 `ps:"MakeDefault"`
 }
 
 func (p SetHostedConnectionFilterPolicyParams) params() map[string]any {
@@ -25819,8 +25819,8 @@ func (p SetHostedConnectionFilterPolicyParams) params() map[string]any {
 	} else if p.IPBlockList != nil {
 		m["IPBlockList"] = p.IPBlockList
 	}
-	if p.MakeDefault {
-		m["MakeDefault"] = true
+	if p.MakeDefault != nil {
+		m["MakeDefault"] = *p.MakeDefault
 	}
 	return m
 }
@@ -25870,7 +25870,7 @@ type SetHostedContentFilterPolicyParams struct {
 	IntraOrgFilterState                      any                   `ps:"IntraOrgFilterState"` // IntraOrgFilterState
 	LanguageBlockList                        []string              `ps:"LanguageBlockList"`
 	LanguageBlockListDelta                   *adminapi.StringDelta `ps:"LanguageBlockList"` // adds/removes values of LanguageBlockList; takes precedence over it
-	MakeDefault                              bool                  `ps:"MakeDefault"`
+	MakeDefault                              *bool                 `ps:"MakeDefault"`
 	MarkAsSpamBulkMail                       any                   `ps:"MarkAsSpamBulkMail"`            // SpamFilteringOption
 	MarkAsSpamEmbedTagsInHtml                any                   `ps:"MarkAsSpamEmbedTagsInHtml"`     // SpamFilteringOption
 	MarkAsSpamEmptyMessages                  any                   `ps:"MarkAsSpamEmptyMessages"`       // SpamFilteringOption
@@ -26008,8 +26008,8 @@ func (p SetHostedContentFilterPolicyParams) params() map[string]any {
 	} else if p.LanguageBlockList != nil {
 		m["LanguageBlockList"] = p.LanguageBlockList
 	}
-	if p.MakeDefault {
-		m["MakeDefault"] = true
+	if p.MakeDefault != nil {
+		m["MakeDefault"] = *p.MakeDefault
 	}
 	if p.MarkAsSpamBulkMail != nil {
 		m["MarkAsSpamBulkMail"] = p.MarkAsSpamBulkMail
@@ -26289,7 +26289,7 @@ type SetIRMConfigurationParams struct {
 	EDiscoverySuperUserEnabled                 *bool                 `ps:"EDiscoverySuperUserEnabled"`
 	EnablePdfEncryption                        *bool                 `ps:"EnablePdfEncryption"`
 	EnablePortalTrackingLogs                   *bool                 `ps:"EnablePortalTrackingLogs"`
-	Force                                      bool                  `ps:"Force"`
+	Force                                      *bool                 `ps:"Force"`
 	Identity                                   any                   `ps:"Identity"` // OrganizationIdParameter
 	InternalLicensingEnabled                   *bool                 `ps:"InternalLicensingEnabled"`
 	JournalReportDecryptionEnabled             *bool                 `ps:"JournalReportDecryptionEnabled"`
@@ -26324,8 +26324,8 @@ func (p SetIRMConfigurationParams) params() map[string]any {
 	if p.EnablePortalTrackingLogs != nil {
 		m["EnablePortalTrackingLogs"] = *p.EnablePortalTrackingLogs
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -26500,7 +26500,7 @@ func (s *Service) SetInboundConnector(ctx context.Context, p SetInboundConnector
 // SetInboxRuleParams are the parameters of Set-InboxRule.
 // DefaultParameterSetName: Identity
 type SetInboxRuleParams struct {
-	AlwaysDeleteOutlookRulesBlob               bool                  `ps:"AlwaysDeleteOutlookRulesBlob"`
+	AlwaysDeleteOutlookRulesBlob               *bool                 `ps:"AlwaysDeleteOutlookRulesBlob"`
 	AnyCategory                                *bool                 `ps:"AnyCategory"`
 	ApplyCategory                              []string              `ps:"ApplyCategory"`
 	ApplyCategoryDelta                         *adminapi.StringDelta `ps:"ApplyCategory"` // adds/removes values of ApplyCategory; takes precedence over it
@@ -26554,7 +26554,7 @@ type SetInboxRuleParams struct {
 	ExceptIfWithSensitivity                    any                   `ps:"ExceptIfWithSensitivity"`            // Sensitivity
 	FlaggedForAction                           string                `ps:"FlaggedForAction"`
 	FlagMessage                                string                `ps:"FlagMessage"`
-	Force                                      bool                  `ps:"Force"`
+	Force                                      *bool                 `ps:"Force"`
 	ForwardAsAttachmentTo                      []string              `ps:"ForwardAsAttachmentTo"`
 	ForwardTo                                  []string              `ps:"ForwardTo"`
 	From                                       []string              `ps:"From"`
@@ -26602,8 +26602,8 @@ type SetInboxRuleParams struct {
 
 func (p SetInboxRuleParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AlwaysDeleteOutlookRulesBlob {
-		m["AlwaysDeleteOutlookRulesBlob"] = true
+	if p.AlwaysDeleteOutlookRulesBlob != nil {
+		m["AlwaysDeleteOutlookRulesBlob"] = *p.AlwaysDeleteOutlookRulesBlob
 	}
 	if p.AnyCategory != nil {
 		m["AnyCategory"] = *p.AnyCategory
@@ -26754,8 +26754,8 @@ func (p SetInboxRuleParams) params() map[string]any {
 	if p.FlagMessage != "" {
 		m["FlagMessage"] = p.FlagMessage
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.ForwardAsAttachmentTo != nil {
 		m["ForwardAsAttachmentTo"] = p.ForwardAsAttachmentTo
@@ -27003,11 +27003,11 @@ type SetLdapDirectoryParams struct {
 	BaseDn       string `ps:"BaseDn"`
 	Host         string `ps:"Host"`
 	Id           string `ps:"Id"`
-	NoSsl        bool   `ps:"NoSsl"`
+	NoSsl        *bool  `ps:"NoSsl"`
 	Organization any    `ps:"Organization"` // OrganizationIdParameter
 	Port         *int64 `ps:"Port"`
 	TimeoutSec   *int64 `ps:"TimeoutSec"`
-	UseSsl       bool   `ps:"UseSsl"`
+	UseSsl       *bool  `ps:"UseSsl"`
 }
 
 func (p SetLdapDirectoryParams) params() map[string]any {
@@ -27021,8 +27021,8 @@ func (p SetLdapDirectoryParams) params() map[string]any {
 	if p.Id != "" {
 		m["Id"] = p.Id
 	}
-	if p.NoSsl {
-		m["NoSsl"] = true
+	if p.NoSsl != nil {
+		m["NoSsl"] = *p.NoSsl
 	}
 	if p.Organization != nil {
 		m["Organization"] = p.Organization
@@ -27033,8 +27033,8 @@ func (p SetLdapDirectoryParams) params() map[string]any {
 	if p.TimeoutSec != nil {
 		m["TimeoutSec"] = *p.TimeoutSec
 	}
-	if p.UseSsl {
-		m["UseSsl"] = true
+	if p.UseSsl != nil {
+		m["UseSsl"] = *p.UseSsl
 	}
 	return m
 }
@@ -27100,11 +27100,11 @@ type SetM365DataAtRestEncryptionPolicyParams struct {
 	Description      string                `ps:"Description"`
 	DomainController any                   `ps:"DomainController"` // Fqdn
 	Enabled          *bool                 `ps:"Enabled"`
-	Force            bool                  `ps:"Force"`
+	Force            *bool                 `ps:"Force"`
 	Identity         any                   `ps:"Identity"` // DataEncryptionPolicyIdParameter
 	Name             string                `ps:"Name"`
-	Refresh          bool                  `ps:"Refresh"`
-	Replace          bool                  `ps:"Replace"`
+	Refresh          *bool                 `ps:"Refresh"`
+	Replace          *bool                 `ps:"Replace"`
 }
 
 func (p SetM365DataAtRestEncryptionPolicyParams) params() map[string]any {
@@ -27123,8 +27123,8 @@ func (p SetM365DataAtRestEncryptionPolicyParams) params() map[string]any {
 	if p.Enabled != nil {
 		m["Enabled"] = *p.Enabled
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -27132,11 +27132,11 @@ func (p SetM365DataAtRestEncryptionPolicyParams) params() map[string]any {
 	if p.Name != "" {
 		m["Name"] = p.Name
 	}
-	if p.Refresh {
-		m["Refresh"] = true
+	if p.Refresh != nil {
+		m["Refresh"] = *p.Refresh
 	}
-	if p.Replace {
-		m["Replace"] = true
+	if p.Replace != nil {
+		m["Replace"] = *p.Replace
 	}
 	return m
 }
@@ -27204,7 +27204,7 @@ type SetMailContactParams struct {
 	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
 	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
 	ExternalEmailAddress                        any                   `ps:"ExternalEmailAddress"`      // ProxyAddress
-	ForceUpgrade                                bool                  `ps:"ForceUpgrade"`
+	ForceUpgrade                                *bool                 `ps:"ForceUpgrade"`
 	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
 	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
 	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
@@ -27341,8 +27341,8 @@ func (p SetMailContactParams) params() map[string]any {
 	if p.ExternalEmailAddress != nil {
 		m["ExternalEmailAddress"] = p.ExternalEmailAddress
 	}
-	if p.ForceUpgrade {
-		m["ForceUpgrade"] = true
+	if p.ForceUpgrade != nil {
+		m["ForceUpgrade"] = *p.ForceUpgrade
 	}
 	if p.GrantSendOnBehalfToDelta != nil {
 		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
@@ -27483,7 +27483,7 @@ type SetMailPublicFolderParams struct {
 	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
 	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
 	Identity                                    any                   `ps:"Identity"` // MailPublicFolderIdParameter
-	IgnoreDefaultScope                          bool                  `ps:"IgnoreDefaultScope"`
+	IgnoreDefaultScope                          *bool                 `ps:"IgnoreDefaultScope"`
 	IgnoreMissingFolderLink                     *bool                 `ps:"IgnoreMissingFolderLink"`
 	MailTip                                     string                `ps:"MailTip"`
 	MailTipTranslations                         []string              `ps:"MailTipTranslations"`
@@ -27639,8 +27639,8 @@ func (p SetMailPublicFolderParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDefaultScope {
-		m["IgnoreDefaultScope"] = true
+	if p.IgnoreDefaultScope != nil {
+		m["IgnoreDefaultScope"] = *p.IgnoreDefaultScope
 	}
 	if p.IgnoreMissingFolderLink != nil {
 		m["IgnoreMissingFolderLink"] = *p.IgnoreMissingFolderLink
@@ -27745,10 +27745,10 @@ type SetMailUserParams struct {
 	DataEncryptionPolicy                        any                   `ps:"DataEncryptionPolicy"` // DataEncryptionPolicyIdParameter
 	DisplayName                                 string                `ps:"DisplayName"`
 	EmailAddresses                              []string              `ps:"EmailAddresses"`
-	EnableLitigationHoldForMigration            bool                  `ps:"EnableLitigationHoldForMigration"`
+	EnableLitigationHoldForMigration            *bool                 `ps:"EnableLitigationHoldForMigration"`
 	ExchangeGuid                                string                `ps:"ExchangeGuid"`
-	ExcludeFromAllHolds                         bool                  `ps:"ExcludeFromAllHolds"`
-	ExcludeFromAllOrgHolds                      bool                  `ps:"ExcludeFromAllOrgHolds"`
+	ExcludeFromAllHolds                         *bool                 `ps:"ExcludeFromAllHolds"`
+	ExcludeFromAllOrgHolds                      *bool                 `ps:"ExcludeFromAllOrgHolds"`
 	ExcludeFromOrgHolds                         []string              `ps:"ExcludeFromOrgHolds"`
 	ExtensionCustomAttribute1                   []string              `ps:"ExtensionCustomAttribute1"`
 	ExtensionCustomAttribute1Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute1"` // adds/removes values of ExtensionCustomAttribute1; takes precedence over it
@@ -27762,11 +27762,11 @@ type SetMailUserParams struct {
 	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
 	ExternalEmailAddress                        any                   `ps:"ExternalEmailAddress"`      // ProxyAddress
 	FederatedIdentity                           string                `ps:"FederatedIdentity"`
-	ForceUpgrade                                bool                  `ps:"ForceUpgrade"`
+	ForceUpgrade                                *bool                 `ps:"ForceUpgrade"`
 	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
 	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
 	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
-	HVEAccount                                  bool                  `ps:"HVEAccount"`
+	HVEAccount                                  *bool                 `ps:"HVEAccount"`
 	Identity                                    any                   `ps:"Identity"` // MailUserIdParameter
 	ImmutableId                                 string                `ps:"ImmutableId"`
 	JournalArchiveAddress                       any                   `ps:"JournalArchiveAddress"` // SmtpAddress
@@ -27785,7 +27785,7 @@ type SetMailUserParams struct {
 	ModerationEnabled                           *bool                 `ps:"ModerationEnabled"`
 	Name                                        string                `ps:"Name"`
 	PrimarySmtpAddress                          any                   `ps:"PrimarySmtpAddress"` // SmtpAddress
-	RecalculateInactiveMailUser                 bool                  `ps:"RecalculateInactiveMailUser"`
+	RecalculateInactiveMailUser                 *bool                 `ps:"RecalculateInactiveMailUser"`
 	RecipientLimits                             any                   `ps:"RecipientLimits"` // Unlimited
 	RejectMessagesFrom                          []string              `ps:"RejectMessagesFrom"`
 	RejectMessagesFromDelta                     *adminapi.StringDelta `ps:"RejectMessagesFrom"` // adds/removes values of RejectMessagesFrom; takes precedence over it
@@ -27793,17 +27793,17 @@ type SetMailUserParams struct {
 	RejectMessagesFromDLMembersDelta            *adminapi.StringDelta `ps:"RejectMessagesFromDLMembers"` // adds/removes values of RejectMessagesFromDLMembers; takes precedence over it
 	RejectMessagesFromSendersOrMembers          []string              `ps:"RejectMessagesFromSendersOrMembers"`
 	RejectMessagesFromSendersOrMembersDelta     *adminapi.StringDelta `ps:"RejectMessagesFromSendersOrMembers"` // adds/removes values of RejectMessagesFromSendersOrMembers; takes precedence over it
-	RemoveComplianceTagHoldApplied              bool                  `ps:"RemoveComplianceTagHoldApplied"`
-	RemoveDelayHoldApplied                      bool                  `ps:"RemoveDelayHoldApplied"`
-	RemoveDelayReleaseHoldApplied               bool                  `ps:"RemoveDelayReleaseHoldApplied"`
-	RemoveDisabledArchive                       bool                  `ps:"RemoveDisabledArchive"`
-	RemoveLitigationHoldEnabled                 bool                  `ps:"RemoveLitigationHoldEnabled"`
-	RemoveMailboxProvisioningConstraint         bool                  `ps:"RemoveMailboxProvisioningConstraint"`
+	RemoveComplianceTagHoldApplied              *bool                 `ps:"RemoveComplianceTagHoldApplied"`
+	RemoveDelayHoldApplied                      *bool                 `ps:"RemoveDelayHoldApplied"`
+	RemoveDelayReleaseHoldApplied               *bool                 `ps:"RemoveDelayReleaseHoldApplied"`
+	RemoveDisabledArchive                       *bool                 `ps:"RemoveDisabledArchive"`
+	RemoveLitigationHoldEnabled                 *bool                 `ps:"RemoveLitigationHoldEnabled"`
+	RemoveMailboxProvisioningConstraint         *bool                 `ps:"RemoveMailboxProvisioningConstraint"`
 	RemoveOrphanedHolds                         []string              `ps:"RemoveOrphanedHolds"`
 	RequireSenderAuthenticationEnabled          *bool                 `ps:"RequireSenderAuthenticationEnabled"`
 	SendModerationNotifications                 any                   `ps:"SendModerationNotifications"` // TransportModerationNotificationFlags
 	SimpleDisplayName                           string                `ps:"SimpleDisplayName"`
-	UnblockForwardSyncPostCrossTenantMigration  bool                  `ps:"UnblockForwardSyncPostCrossTenantMigration"`
+	UnblockForwardSyncPostCrossTenantMigration  *bool                 `ps:"UnblockForwardSyncPostCrossTenantMigration"`
 	UseMapiRichTextFormat                       any                   `ps:"UseMapiRichTextFormat"` // UseMapiRichTextFormat
 	UsePreferMessageFormat                      *bool                 `ps:"UsePreferMessageFormat"`
 	UserCertificate                             []string              `ps:"UserCertificate"`
@@ -27895,17 +27895,17 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.EmailAddresses != nil {
 		m["EmailAddresses"] = p.EmailAddresses
 	}
-	if p.EnableLitigationHoldForMigration {
-		m["EnableLitigationHoldForMigration"] = true
+	if p.EnableLitigationHoldForMigration != nil {
+		m["EnableLitigationHoldForMigration"] = *p.EnableLitigationHoldForMigration
 	}
 	if p.ExchangeGuid != "" {
 		m["ExchangeGuid"] = p.ExchangeGuid
 	}
-	if p.ExcludeFromAllHolds {
-		m["ExcludeFromAllHolds"] = true
+	if p.ExcludeFromAllHolds != nil {
+		m["ExcludeFromAllHolds"] = *p.ExcludeFromAllHolds
 	}
-	if p.ExcludeFromAllOrgHolds {
-		m["ExcludeFromAllOrgHolds"] = true
+	if p.ExcludeFromAllOrgHolds != nil {
+		m["ExcludeFromAllOrgHolds"] = *p.ExcludeFromAllOrgHolds
 	}
 	if p.ExcludeFromOrgHolds != nil {
 		m["ExcludeFromOrgHolds"] = p.ExcludeFromOrgHolds
@@ -27941,8 +27941,8 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.FederatedIdentity != "" {
 		m["FederatedIdentity"] = p.FederatedIdentity
 	}
-	if p.ForceUpgrade {
-		m["ForceUpgrade"] = true
+	if p.ForceUpgrade != nil {
+		m["ForceUpgrade"] = *p.ForceUpgrade
 	}
 	if p.GrantSendOnBehalfToDelta != nil {
 		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
@@ -27952,8 +27952,8 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.HiddenFromAddressListsEnabled != nil {
 		m["HiddenFromAddressListsEnabled"] = *p.HiddenFromAddressListsEnabled
 	}
-	if p.HVEAccount {
-		m["HVEAccount"] = true
+	if p.HVEAccount != nil {
+		m["HVEAccount"] = *p.HVEAccount
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -28007,8 +28007,8 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.PrimarySmtpAddress != nil {
 		m["PrimarySmtpAddress"] = p.PrimarySmtpAddress
 	}
-	if p.RecalculateInactiveMailUser {
-		m["RecalculateInactiveMailUser"] = true
+	if p.RecalculateInactiveMailUser != nil {
+		m["RecalculateInactiveMailUser"] = *p.RecalculateInactiveMailUser
 	}
 	if p.RecipientLimits != nil {
 		m["RecipientLimits"] = p.RecipientLimits
@@ -28028,23 +28028,23 @@ func (p SetMailUserParams) params() map[string]any {
 	} else if p.RejectMessagesFromSendersOrMembers != nil {
 		m["RejectMessagesFromSendersOrMembers"] = p.RejectMessagesFromSendersOrMembers
 	}
-	if p.RemoveComplianceTagHoldApplied {
-		m["RemoveComplianceTagHoldApplied"] = true
+	if p.RemoveComplianceTagHoldApplied != nil {
+		m["RemoveComplianceTagHoldApplied"] = *p.RemoveComplianceTagHoldApplied
 	}
-	if p.RemoveDelayHoldApplied {
-		m["RemoveDelayHoldApplied"] = true
+	if p.RemoveDelayHoldApplied != nil {
+		m["RemoveDelayHoldApplied"] = *p.RemoveDelayHoldApplied
 	}
-	if p.RemoveDelayReleaseHoldApplied {
-		m["RemoveDelayReleaseHoldApplied"] = true
+	if p.RemoveDelayReleaseHoldApplied != nil {
+		m["RemoveDelayReleaseHoldApplied"] = *p.RemoveDelayReleaseHoldApplied
 	}
-	if p.RemoveDisabledArchive {
-		m["RemoveDisabledArchive"] = true
+	if p.RemoveDisabledArchive != nil {
+		m["RemoveDisabledArchive"] = *p.RemoveDisabledArchive
 	}
-	if p.RemoveLitigationHoldEnabled {
-		m["RemoveLitigationHoldEnabled"] = true
+	if p.RemoveLitigationHoldEnabled != nil {
+		m["RemoveLitigationHoldEnabled"] = *p.RemoveLitigationHoldEnabled
 	}
-	if p.RemoveMailboxProvisioningConstraint {
-		m["RemoveMailboxProvisioningConstraint"] = true
+	if p.RemoveMailboxProvisioningConstraint != nil {
+		m["RemoveMailboxProvisioningConstraint"] = *p.RemoveMailboxProvisioningConstraint
 	}
 	if p.RemoveOrphanedHolds != nil {
 		m["RemoveOrphanedHolds"] = p.RemoveOrphanedHolds
@@ -28058,8 +28058,8 @@ func (p SetMailUserParams) params() map[string]any {
 	if p.SimpleDisplayName != "" {
 		m["SimpleDisplayName"] = p.SimpleDisplayName
 	}
-	if p.UnblockForwardSyncPostCrossTenantMigration {
-		m["UnblockForwardSyncPostCrossTenantMigration"] = true
+	if p.UnblockForwardSyncPostCrossTenantMigration != nil {
+		m["UnblockForwardSyncPostCrossTenantMigration"] = *p.UnblockForwardSyncPostCrossTenantMigration
 	}
 	if p.UseMapiRichTextFormat != nil {
 		m["UseMapiRichTextFormat"] = p.UseMapiRichTextFormat
@@ -28100,7 +28100,7 @@ type SetMailboxParams struct {
 	AccountDisabled                             *bool                 `ps:"AccountDisabled"`
 	AddressBookPolicy                           any                   `ps:"AddressBookPolicy"` // AddressBookMailboxPolicyIdParameter
 	Alias                                       string                `ps:"Alias"`
-	ApplyMandatoryProperties                    bool                  `ps:"ApplyMandatoryProperties"`
+	ApplyMandatoryProperties                    *bool                 `ps:"ApplyMandatoryProperties"`
 	ArchiveName                                 []string              `ps:"ArchiveName"`
 	ArchiveNameDelta                            *adminapi.StringDelta `ps:"ArchiveName"` // adds/removes values of ArchiveName; takes precedence over it
 	AuditAdmin                                  []string              `ps:"AuditAdmin"`
@@ -28116,7 +28116,7 @@ type SetMailboxParams struct {
 	BypassModerationFromSendersOrMembersDelta   *adminapi.StringDelta `ps:"BypassModerationFromSendersOrMembers"` // adds/removes values of BypassModerationFromSendersOrMembers; takes precedence over it
 	CalendarRepairDisabled                      *bool                 `ps:"CalendarRepairDisabled"`
 	CalendarVersionStoreDisabled                *bool                 `ps:"CalendarVersionStoreDisabled"`
-	ClearThrottlingPolicyAssignment             bool                  `ps:"ClearThrottlingPolicyAssignment"`
+	ClearThrottlingPolicyAssignment             *bool                 `ps:"ClearThrottlingPolicyAssignment"`
 	CustomAttribute1                            string                `ps:"CustomAttribute1"`
 	CustomAttribute10                           string                `ps:"CustomAttribute10"`
 	CustomAttribute11                           string                `ps:"CustomAttribute11"`
@@ -28145,8 +28145,8 @@ type SetMailboxParams struct {
 	EnableRoomMailboxAccount                    *bool                 `ps:"EnableRoomMailboxAccount"`
 	EndDateForRetentionHold                     any                   `ps:"EndDateForRetentionHold"` // DateTime
 	EnforcedTimestamps                          string                `ps:"EnforcedTimestamps"`
-	ExcludeFromAllHolds                         bool                  `ps:"ExcludeFromAllHolds"`
-	ExcludeFromAllOrgHolds                      bool                  `ps:"ExcludeFromAllOrgHolds"`
+	ExcludeFromAllHolds                         *bool                 `ps:"ExcludeFromAllHolds"`
+	ExcludeFromAllOrgHolds                      *bool                 `ps:"ExcludeFromAllOrgHolds"`
 	ExcludeFromOrgHolds                         []string              `ps:"ExcludeFromOrgHolds"`
 	ExtensionCustomAttribute1                   []string              `ps:"ExtensionCustomAttribute1"`
 	ExtensionCustomAttribute1Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute1"` // adds/removes values of ExtensionCustomAttribute1; takes precedence over it
@@ -28159,16 +28159,16 @@ type SetMailboxParams struct {
 	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
 	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
 	ExternalOofOptions                          any                   `ps:"ExternalOofOptions"`        // ExternalOofOptions
-	Force                                       bool                  `ps:"Force"`
+	Force                                       *bool                 `ps:"Force"`
 	ForwardingAddress                           any                   `ps:"ForwardingAddress"`     // RecipientIdParameter
 	ForwardingSmtpAddress                       any                   `ps:"ForwardingSmtpAddress"` // ProxyAddress
 	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
 	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
-	GroupMailbox                                bool                  `ps:"GroupMailbox"`
+	GroupMailbox                                *bool                 `ps:"GroupMailbox"`
 	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
 	Identity                                    any                   `ps:"Identity"` // MailboxIdParameter
 	ImmutableId                                 string                `ps:"ImmutableId"`
-	InactiveMailbox                             bool                  `ps:"InactiveMailbox"`
+	InactiveMailbox                             *bool                 `ps:"InactiveMailbox"`
 	IsExchangeCloudManaged                      *bool                 `ps:"IsExchangeCloudManaged"`
 	IsExcludedFromServingHierarchy              *bool                 `ps:"IsExcludedFromServingHierarchy"`
 	IssueWarningQuota                           any                   `ps:"IssueWarningQuota"`     // Unlimited
@@ -28199,10 +28199,10 @@ type SetMailboxParams struct {
 	Office                                      string                `ps:"Office"`
 	ProhibitSendQuota                           any                   `ps:"ProhibitSendQuota"`        // Unlimited
 	ProhibitSendReceiveQuota                    any                   `ps:"ProhibitSendReceiveQuota"` // Unlimited
-	ProvideConsent                              bool                  `ps:"ProvideConsent"`
-	ProvisionedForOfficeGraph                   bool                  `ps:"ProvisionedForOfficeGraph"`
-	PublicFolder                                bool                  `ps:"PublicFolder"`
-	RecalculateInactiveMailbox                  bool                  `ps:"RecalculateInactiveMailbox"`
+	ProvideConsent                              *bool                 `ps:"ProvideConsent"`
+	ProvisionedForOfficeGraph                   *bool                 `ps:"ProvisionedForOfficeGraph"`
+	PublicFolder                                *bool                 `ps:"PublicFolder"`
+	RecalculateInactiveMailbox                  *bool                 `ps:"RecalculateInactiveMailbox"`
 	RecipientLimits                             any                   `ps:"RecipientLimits"` // Unlimited
 	RejectMessagesFrom                          []string              `ps:"RejectMessagesFrom"`
 	RejectMessagesFromDelta                     *adminapi.StringDelta `ps:"RejectMessagesFrom"` // adds/removes values of RejectMessagesFrom; takes precedence over it
@@ -28210,11 +28210,11 @@ type SetMailboxParams struct {
 	RejectMessagesFromDLMembersDelta            *adminapi.StringDelta `ps:"RejectMessagesFromDLMembers"` // adds/removes values of RejectMessagesFromDLMembers; takes precedence over it
 	RejectMessagesFromSendersOrMembers          []string              `ps:"RejectMessagesFromSendersOrMembers"`
 	RejectMessagesFromSendersOrMembersDelta     *adminapi.StringDelta `ps:"RejectMessagesFromSendersOrMembers"` // adds/removes values of RejectMessagesFromSendersOrMembers; takes precedence over it
-	RemoveComplianceTagHoldApplied              bool                  `ps:"RemoveComplianceTagHoldApplied"`
-	RemoveDelayHoldApplied                      bool                  `ps:"RemoveDelayHoldApplied"`
-	RemoveDelayReleaseHoldApplied               bool                  `ps:"RemoveDelayReleaseHoldApplied"`
-	RemoveDisabledArchive                       bool                  `ps:"RemoveDisabledArchive"`
-	RemoveMailboxProvisioningConstraint         bool                  `ps:"RemoveMailboxProvisioningConstraint"`
+	RemoveComplianceTagHoldApplied              *bool                 `ps:"RemoveComplianceTagHoldApplied"`
+	RemoveDelayHoldApplied                      *bool                 `ps:"RemoveDelayHoldApplied"`
+	RemoveDelayReleaseHoldApplied               *bool                 `ps:"RemoveDelayReleaseHoldApplied"`
+	RemoveDisabledArchive                       *bool                 `ps:"RemoveDisabledArchive"`
+	RemoveMailboxProvisioningConstraint         *bool                 `ps:"RemoveMailboxProvisioningConstraint"`
 	RemoveOrphanedHolds                         []string              `ps:"RemoveOrphanedHolds"`
 	RequireSenderAuthenticationEnabled          *bool                 `ps:"RequireSenderAuthenticationEnabled"`
 	ResourceCapacity                            *int64                `ps:"ResourceCapacity"`
@@ -28238,7 +28238,7 @@ type SetMailboxParams struct {
 	Type                                        any                   `ps:"Type"`                            // ConvertibleMailboxSubType
 	UniqueRecipientsCountLimitLevel             any                   `ps:"UniqueRecipientsCountLimitLevel"` // UniqueRecipientsCountLimitLevelType
 	UniqueUnrestrictedGroupsLimitEnabled        *bool                 `ps:"UniqueUnrestrictedGroupsLimitEnabled"`
-	UpdateEnforcedTimestamp                     bool                  `ps:"UpdateEnforcedTimestamp"`
+	UpdateEnforcedTimestamp                     *bool                 `ps:"UpdateEnforcedTimestamp"`
 	UseDatabaseQuotaDefaults                    *bool                 `ps:"UseDatabaseQuotaDefaults"`
 	UseDatabaseRetentionDefaults                *bool                 `ps:"UseDatabaseRetentionDefaults"`
 	UserCertificate                             []string              `ps:"UserCertificate"`
@@ -28274,8 +28274,8 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.Alias != "" {
 		m["Alias"] = p.Alias
 	}
-	if p.ApplyMandatoryProperties {
-		m["ApplyMandatoryProperties"] = true
+	if p.ApplyMandatoryProperties != nil {
+		m["ApplyMandatoryProperties"] = *p.ApplyMandatoryProperties
 	}
 	if p.ArchiveNameDelta != nil {
 		m["ArchiveName"] = *p.ArchiveNameDelta
@@ -28317,8 +28317,8 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.CalendarVersionStoreDisabled != nil {
 		m["CalendarVersionStoreDisabled"] = *p.CalendarVersionStoreDisabled
 	}
-	if p.ClearThrottlingPolicyAssignment {
-		m["ClearThrottlingPolicyAssignment"] = true
+	if p.ClearThrottlingPolicyAssignment != nil {
+		m["ClearThrottlingPolicyAssignment"] = *p.ClearThrottlingPolicyAssignment
 	}
 	if p.CustomAttribute1 != "" {
 		m["CustomAttribute1"] = p.CustomAttribute1
@@ -28402,11 +28402,11 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.EnforcedTimestamps != "" {
 		m["EnforcedTimestamps"] = p.EnforcedTimestamps
 	}
-	if p.ExcludeFromAllHolds {
-		m["ExcludeFromAllHolds"] = true
+	if p.ExcludeFromAllHolds != nil {
+		m["ExcludeFromAllHolds"] = *p.ExcludeFromAllHolds
 	}
-	if p.ExcludeFromAllOrgHolds {
-		m["ExcludeFromAllOrgHolds"] = true
+	if p.ExcludeFromAllOrgHolds != nil {
+		m["ExcludeFromAllOrgHolds"] = *p.ExcludeFromAllOrgHolds
 	}
 	if p.ExcludeFromOrgHolds != nil {
 		m["ExcludeFromOrgHolds"] = p.ExcludeFromOrgHolds
@@ -28439,8 +28439,8 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.ExternalOofOptions != nil {
 		m["ExternalOofOptions"] = p.ExternalOofOptions
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.ForwardingAddress != nil {
 		m["ForwardingAddress"] = p.ForwardingAddress
@@ -28453,8 +28453,8 @@ func (p SetMailboxParams) params() map[string]any {
 	} else if p.GrantSendOnBehalfTo != nil {
 		m["GrantSendOnBehalfTo"] = p.GrantSendOnBehalfTo
 	}
-	if p.GroupMailbox {
-		m["GroupMailbox"] = true
+	if p.GroupMailbox != nil {
+		m["GroupMailbox"] = *p.GroupMailbox
 	}
 	if p.HiddenFromAddressListsEnabled != nil {
 		m["HiddenFromAddressListsEnabled"] = *p.HiddenFromAddressListsEnabled
@@ -28465,8 +28465,8 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.ImmutableId != "" {
 		m["ImmutableId"] = p.ImmutableId
 	}
-	if p.InactiveMailbox {
-		m["InactiveMailbox"] = true
+	if p.InactiveMailbox != nil {
+		m["InactiveMailbox"] = *p.InactiveMailbox
 	}
 	if p.IsExchangeCloudManaged != nil {
 		m["IsExchangeCloudManaged"] = *p.IsExchangeCloudManaged
@@ -28554,17 +28554,17 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.ProhibitSendReceiveQuota != nil {
 		m["ProhibitSendReceiveQuota"] = p.ProhibitSendReceiveQuota
 	}
-	if p.ProvideConsent {
-		m["ProvideConsent"] = true
+	if p.ProvideConsent != nil {
+		m["ProvideConsent"] = *p.ProvideConsent
 	}
-	if p.ProvisionedForOfficeGraph {
-		m["ProvisionedForOfficeGraph"] = true
+	if p.ProvisionedForOfficeGraph != nil {
+		m["ProvisionedForOfficeGraph"] = *p.ProvisionedForOfficeGraph
 	}
-	if p.PublicFolder {
-		m["PublicFolder"] = true
+	if p.PublicFolder != nil {
+		m["PublicFolder"] = *p.PublicFolder
 	}
-	if p.RecalculateInactiveMailbox {
-		m["RecalculateInactiveMailbox"] = true
+	if p.RecalculateInactiveMailbox != nil {
+		m["RecalculateInactiveMailbox"] = *p.RecalculateInactiveMailbox
 	}
 	if p.RecipientLimits != nil {
 		m["RecipientLimits"] = p.RecipientLimits
@@ -28584,20 +28584,20 @@ func (p SetMailboxParams) params() map[string]any {
 	} else if p.RejectMessagesFromSendersOrMembers != nil {
 		m["RejectMessagesFromSendersOrMembers"] = p.RejectMessagesFromSendersOrMembers
 	}
-	if p.RemoveComplianceTagHoldApplied {
-		m["RemoveComplianceTagHoldApplied"] = true
+	if p.RemoveComplianceTagHoldApplied != nil {
+		m["RemoveComplianceTagHoldApplied"] = *p.RemoveComplianceTagHoldApplied
 	}
-	if p.RemoveDelayHoldApplied {
-		m["RemoveDelayHoldApplied"] = true
+	if p.RemoveDelayHoldApplied != nil {
+		m["RemoveDelayHoldApplied"] = *p.RemoveDelayHoldApplied
 	}
-	if p.RemoveDelayReleaseHoldApplied {
-		m["RemoveDelayReleaseHoldApplied"] = true
+	if p.RemoveDelayReleaseHoldApplied != nil {
+		m["RemoveDelayReleaseHoldApplied"] = *p.RemoveDelayReleaseHoldApplied
 	}
-	if p.RemoveDisabledArchive {
-		m["RemoveDisabledArchive"] = true
+	if p.RemoveDisabledArchive != nil {
+		m["RemoveDisabledArchive"] = *p.RemoveDisabledArchive
 	}
-	if p.RemoveMailboxProvisioningConstraint {
-		m["RemoveMailboxProvisioningConstraint"] = true
+	if p.RemoveMailboxProvisioningConstraint != nil {
+		m["RemoveMailboxProvisioningConstraint"] = *p.RemoveMailboxProvisioningConstraint
 	}
 	if p.RemoveOrphanedHolds != nil {
 		m["RemoveOrphanedHolds"] = p.RemoveOrphanedHolds
@@ -28667,8 +28667,8 @@ func (p SetMailboxParams) params() map[string]any {
 	if p.UniqueUnrestrictedGroupsLimitEnabled != nil {
 		m["UniqueUnrestrictedGroupsLimitEnabled"] = *p.UniqueUnrestrictedGroupsLimitEnabled
 	}
-	if p.UpdateEnforcedTimestamp {
-		m["UpdateEnforcedTimestamp"] = true
+	if p.UpdateEnforcedTimestamp != nil {
+		m["UpdateEnforcedTimestamp"] = *p.UpdateEnforcedTimestamp
 	}
 	if p.UseDatabaseQuotaDefaults != nil {
 		m["UseDatabaseQuotaDefaults"] = *p.UseDatabaseQuotaDefaults
@@ -28734,7 +28734,7 @@ type SetMailboxAutoReplyConfigurationParams struct {
 	ExternalAudience                 any      `ps:"ExternalAudience"` // ExternalAudience
 	ExternalMessage                  string   `ps:"ExternalMessage"`
 	Identity                         any      `ps:"Identity"` // MailboxIdParameter
-	IgnoreDefaultScope               bool     `ps:"IgnoreDefaultScope"`
+	IgnoreDefaultScope               *bool    `ps:"IgnoreDefaultScope"`
 	InternalMessage                  string   `ps:"InternalMessage"`
 	OOFEventSubject                  string   `ps:"OOFEventSubject"`
 	StartTime                        any      `ps:"StartTime"` // DateTime
@@ -28775,8 +28775,8 @@ func (p SetMailboxAutoReplyConfigurationParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDefaultScope {
-		m["IgnoreDefaultScope"] = true
+	if p.IgnoreDefaultScope != nil {
+		m["IgnoreDefaultScope"] = *p.IgnoreDefaultScope
 	}
 	if p.InternalMessage != "" {
 		m["InternalMessage"] = p.InternalMessage
@@ -29013,11 +29013,11 @@ type SetMailboxCalendarFolderParams struct {
 	PublishDateRangeFrom        any   `ps:"PublishDateRangeFrom"` // DateRangeEnumType
 	PublishDateRangeTo          any   `ps:"PublishDateRangeTo"`   // DateRangeEnumType
 	PublishEnabled              *bool `ps:"PublishEnabled"`
-	ResetUrl                    bool  `ps:"ResetUrl"`
+	ResetUrl                    *bool `ps:"ResetUrl"`
 	SearchableUrlEnabled        *bool `ps:"SearchableUrlEnabled"`
-	SetAsSharingSource          bool  `ps:"SetAsSharingSource"`
+	SetAsSharingSource          *bool `ps:"SetAsSharingSource"`
 	SharedCalendarSyncStartDate any   `ps:"SharedCalendarSyncStartDate"` // DateTime
-	UseHttps                    bool  `ps:"UseHttps"`
+	UseHttps                    *bool `ps:"UseHttps"`
 }
 
 func (p SetMailboxCalendarFolderParams) params() map[string]any {
@@ -29037,20 +29037,20 @@ func (p SetMailboxCalendarFolderParams) params() map[string]any {
 	if p.PublishEnabled != nil {
 		m["PublishEnabled"] = *p.PublishEnabled
 	}
-	if p.ResetUrl {
-		m["ResetUrl"] = true
+	if p.ResetUrl != nil {
+		m["ResetUrl"] = *p.ResetUrl
 	}
 	if p.SearchableUrlEnabled != nil {
 		m["SearchableUrlEnabled"] = *p.SearchableUrlEnabled
 	}
-	if p.SetAsSharingSource {
-		m["SetAsSharingSource"] = true
+	if p.SetAsSharingSource != nil {
+		m["SetAsSharingSource"] = *p.SetAsSharingSource
 	}
 	if p.SharedCalendarSyncStartDate != nil {
 		m["SharedCalendarSyncStartDate"] = p.SharedCalendarSyncStartDate
 	}
-	if p.UseHttps {
-		m["UseHttps"] = true
+	if p.UseHttps != nil {
+		m["UseHttps"] = *p.UseHttps
 	}
 	return m
 }
@@ -29065,7 +29065,7 @@ func (s *Service) SetMailboxCalendarFolder(ctx context.Context, p SetMailboxCale
 type SetMailboxFolderParams struct {
 	ArchiveTag           any   `ps:"ArchiveTag"`
 	EnableRecursiveQuota *bool `ps:"EnableRecursiveQuota"`
-	Force                bool  `ps:"Force"`
+	Force                *bool `ps:"Force"`
 	Identity             any   `ps:"Identity"`
 	IssueWarningQuota    any   `ps:"IssueWarningQuota"`
 	PolicyTag            any   `ps:"PolicyTag"`
@@ -29080,8 +29080,8 @@ func (p SetMailboxFolderParams) params() map[string]any {
 	if p.EnableRecursiveQuota != nil {
 		m["EnableRecursiveQuota"] = *p.EnableRecursiveQuota
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -29173,7 +29173,7 @@ type SetMailboxJunkEmailConfigurationParams struct {
 	Enabled                          *bool                 `ps:"Enabled"`
 	FailOnError                      *bool                 `ps:"FailOnError"`
 	Identity                         any                   `ps:"Identity"` // MailboxIdParameter
-	IgnoreDefaultScope               bool                  `ps:"IgnoreDefaultScope"`
+	IgnoreDefaultScope               *bool                 `ps:"IgnoreDefaultScope"`
 	SenderScreeningEnabled           *bool                 `ps:"SenderScreeningEnabled"`
 	TrustedListsOnly                 *bool                 `ps:"TrustedListsOnly"`
 	TrustedRecipientsAndDomains      []string              `ps:"TrustedRecipientsAndDomains"`
@@ -29201,8 +29201,8 @@ func (p SetMailboxJunkEmailConfigurationParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDefaultScope {
-		m["IgnoreDefaultScope"] = true
+	if p.IgnoreDefaultScope != nil {
+		m["IgnoreDefaultScope"] = *p.IgnoreDefaultScope
 	}
 	if p.SenderScreeningEnabled != nil {
 		m["SenderScreeningEnabled"] = *p.SenderScreeningEnabled
@@ -29271,7 +29271,7 @@ type SetMailboxMessageConfigurationParams struct {
 	GlobalReadingPanePosition              any    `ps:"GlobalReadingPanePosition"` // MailReadingPanePosition
 	HideDeletedItems                       *bool  `ps:"HideDeletedItems"`
 	Identity                               any    `ps:"Identity"` // MailboxIdParameter
-	IgnoreDefaultScope                     bool   `ps:"IgnoreDefaultScope"`
+	IgnoreDefaultScope                     *bool  `ps:"IgnoreDefaultScope"`
 	IsDarkModeTheme                        *bool  `ps:"IsDarkModeTheme"`
 	IsFavoritesFolderTreeCollapsed         *bool  `ps:"IsFavoritesFolderTreeCollapsed"`
 	IsFocusedInboxEnabled                  *bool  `ps:"IsFocusedInboxEnabled"`
@@ -29388,8 +29388,8 @@ func (p SetMailboxMessageConfigurationParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDefaultScope {
-		m["IgnoreDefaultScope"] = true
+	if p.IgnoreDefaultScope != nil {
+		m["IgnoreDefaultScope"] = *p.IgnoreDefaultScope
 	}
 	if p.IsDarkModeTheme != nil {
 		m["IsDarkModeTheme"] = *p.IsDarkModeTheme
@@ -29513,30 +29513,30 @@ func (s *Service) SetMailboxMessageConfiguration(ctx context.Context, p SetMailb
 // SetMailboxPlanParams are the parameters of Set-MailboxPlan.
 // DefaultParameterSetName: Identity
 type SetMailboxPlanParams struct {
-	Force                    bool `ps:"Force"`
-	Identity                 any  `ps:"Identity"` // MailboxPlanIdParameter
-	IsDefault                bool `ps:"IsDefault"`
-	IssueWarningQuota        any  `ps:"IssueWarningQuota"`        // Unlimited
-	MaxReceiveSize           any  `ps:"MaxReceiveSize"`           // Unlimited
-	MaxSendSize              any  `ps:"MaxSendSize"`              // Unlimited
-	ProhibitSendQuota        any  `ps:"ProhibitSendQuota"`        // Unlimited
-	ProhibitSendReceiveQuota any  `ps:"ProhibitSendReceiveQuota"` // Unlimited
-	RecipientLimits          any  `ps:"RecipientLimits"`          // Unlimited
-	RetainDeletedItemsFor    any  `ps:"RetainDeletedItemsFor"`    // EnhancedTimeSpan
-	RetentionPolicy          any  `ps:"RetentionPolicy"`          // MailboxPolicyIdParameter
-	RoleAssignmentPolicy     any  `ps:"RoleAssignmentPolicy"`     // MailboxPolicyIdParameter
+	Force                    *bool `ps:"Force"`
+	Identity                 any   `ps:"Identity"` // MailboxPlanIdParameter
+	IsDefault                *bool `ps:"IsDefault"`
+	IssueWarningQuota        any   `ps:"IssueWarningQuota"`        // Unlimited
+	MaxReceiveSize           any   `ps:"MaxReceiveSize"`           // Unlimited
+	MaxSendSize              any   `ps:"MaxSendSize"`              // Unlimited
+	ProhibitSendQuota        any   `ps:"ProhibitSendQuota"`        // Unlimited
+	ProhibitSendReceiveQuota any   `ps:"ProhibitSendReceiveQuota"` // Unlimited
+	RecipientLimits          any   `ps:"RecipientLimits"`          // Unlimited
+	RetainDeletedItemsFor    any   `ps:"RetainDeletedItemsFor"`    // EnhancedTimeSpan
+	RetentionPolicy          any   `ps:"RetentionPolicy"`          // MailboxPolicyIdParameter
+	RoleAssignmentPolicy     any   `ps:"RoleAssignmentPolicy"`     // MailboxPolicyIdParameter
 }
 
 func (p SetMailboxPlanParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IsDefault {
-		m["IsDefault"] = true
+	if p.IsDefault != nil {
+		m["IsDefault"] = *p.IsDefault
 	}
 	if p.IssueWarningQuota != nil {
 		m["IssueWarningQuota"] = p.IssueWarningQuota
@@ -29576,21 +29576,21 @@ func (s *Service) SetMailboxPlan(ctx context.Context, p SetMailboxPlanParams) (*
 // SetMailboxRegionalConfigurationParams are the parameters of Set-MailboxRegionalConfiguration.
 // DefaultParameterSetName: Identity
 type SetMailboxRegionalConfigurationParams struct {
-	Archive                   bool   `ps:"Archive"`
+	Archive                   *bool  `ps:"Archive"`
 	DateFormat                string `ps:"DateFormat"`
 	Identity                  any    `ps:"Identity"` // MailboxIdParameter
 	Language                  any    `ps:"Language"` // CultureInfo
-	LocalizeDefaultFolderName bool   `ps:"LocalizeDefaultFolderName"`
+	LocalizeDefaultFolderName *bool  `ps:"LocalizeDefaultFolderName"`
 	MailboxLocation           any    `ps:"MailboxLocation"` // MailboxLocationIdParameter
 	TimeFormat                string `ps:"TimeFormat"`
 	TimeZone                  any    `ps:"TimeZone"` // ExTimeZoneValue
-	UseCustomRouting          bool   `ps:"UseCustomRouting"`
+	UseCustomRouting          *bool  `ps:"UseCustomRouting"`
 }
 
 func (p SetMailboxRegionalConfigurationParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Archive {
-		m["Archive"] = true
+	if p.Archive != nil {
+		m["Archive"] = *p.Archive
 	}
 	if p.DateFormat != "" {
 		m["DateFormat"] = p.DateFormat
@@ -29601,8 +29601,8 @@ func (p SetMailboxRegionalConfigurationParams) params() map[string]any {
 	if p.Language != nil {
 		m["Language"] = p.Language
 	}
-	if p.LocalizeDefaultFolderName {
-		m["LocalizeDefaultFolderName"] = true
+	if p.LocalizeDefaultFolderName != nil {
+		m["LocalizeDefaultFolderName"] = *p.LocalizeDefaultFolderName
 	}
 	if p.MailboxLocation != nil {
 		m["MailboxLocation"] = p.MailboxLocation
@@ -29613,8 +29613,8 @@ func (p SetMailboxRegionalConfigurationParams) params() map[string]any {
 	if p.TimeZone != nil {
 		m["TimeZone"] = p.TimeZone
 	}
-	if p.UseCustomRouting {
-		m["UseCustomRouting"] = true
+	if p.UseCustomRouting != nil {
+		m["UseCustomRouting"] = *p.UseCustomRouting
 	}
 	return m
 }
@@ -29627,17 +29627,17 @@ func (s *Service) SetMailboxRegionalConfiguration(ctx context.Context, p SetMail
 // SetMailboxRestoreRequestParams are the parameters of Set-MailboxRestoreRequest.
 // DefaultParameterSetName: Identity
 type SetMailboxRestoreRequestParams struct {
-	AcceptLargeDataLoss             bool     `ps:"AcceptLargeDataLoss"`
+	AcceptLargeDataLoss             *bool    `ps:"AcceptLargeDataLoss"`
 	BatchName                       string   `ps:"BatchName"`
 	CompletedRequestAgeLimit        any      `ps:"CompletedRequestAgeLimit"` // Unlimited
 	DomainController                any      `ps:"DomainController"`         // Fqdn
 	Identity                        any      `ps:"Identity"`                 // MailboxRestoreRequestIdParameter
 	InternalFlags                   []string `ps:"InternalFlags"`
 	Priority                        any      `ps:"Priority"` // RequestPriority
-	RehomeRequest                   bool     `ps:"RehomeRequest"`
+	RehomeRequest                   *bool    `ps:"RehomeRequest"`
 	RemoteHostName                  any      `ps:"RemoteHostName"`        // Fqdn
 	RequestExpiryInterval           any      `ps:"RequestExpiryInterval"` // Unlimited
-	SkipInitialConnectionValidation bool     `ps:"SkipInitialConnectionValidation"`
+	SkipInitialConnectionValidation *bool    `ps:"SkipInitialConnectionValidation"`
 	SkipMerging                     []string `ps:"SkipMerging"`
 	SkippedItemApprovalTime         any      `ps:"SkippedItemApprovalTime"` // DateTime
 	SourceWlmLevel                  any      `ps:"SourceWlmLevel"`          // WlmLevel
@@ -29646,8 +29646,8 @@ type SetMailboxRestoreRequestParams struct {
 
 func (p SetMailboxRestoreRequestParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptLargeDataLoss {
-		m["AcceptLargeDataLoss"] = true
+	if p.AcceptLargeDataLoss != nil {
+		m["AcceptLargeDataLoss"] = *p.AcceptLargeDataLoss
 	}
 	if p.BatchName != "" {
 		m["BatchName"] = p.BatchName
@@ -29667,8 +29667,8 @@ func (p SetMailboxRestoreRequestParams) params() map[string]any {
 	if p.Priority != nil {
 		m["Priority"] = p.Priority
 	}
-	if p.RehomeRequest {
-		m["RehomeRequest"] = true
+	if p.RehomeRequest != nil {
+		m["RehomeRequest"] = *p.RehomeRequest
 	}
 	if p.RemoteHostName != nil {
 		m["RemoteHostName"] = p.RemoteHostName
@@ -29676,8 +29676,8 @@ func (p SetMailboxRestoreRequestParams) params() map[string]any {
 	if p.RequestExpiryInterval != nil {
 		m["RequestExpiryInterval"] = p.RequestExpiryInterval
 	}
-	if p.SkipInitialConnectionValidation {
-		m["SkipInitialConnectionValidation"] = true
+	if p.SkipInitialConnectionValidation != nil {
+		m["SkipInitialConnectionValidation"] = *p.SkipInitialConnectionValidation
 	}
 	if p.SkipMerging != nil {
 		m["SkipMerging"] = p.SkipMerging
@@ -29703,7 +29703,7 @@ func (s *Service) SetMailboxRestoreRequest(ctx context.Context, p SetMailboxRest
 // DefaultParameterSetName: Identity
 type SetMailboxSearchParams struct {
 	Description        string   `ps:"Description"`
-	Force              bool     `ps:"Force"`
+	Force              *bool    `ps:"Force"`
 	Identity           any      `ps:"Identity"` // SearchObjectIdParameter
 	InPlaceHoldEnabled *bool    `ps:"InPlaceHoldEnabled"`
 	ItemHoldPeriod     any      `ps:"ItemHoldPeriod"` // Unlimited
@@ -29716,8 +29716,8 @@ func (p SetMailboxSearchParams) params() map[string]any {
 	if p.Description != "" {
 		m["Description"] = p.Description
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -29797,7 +29797,7 @@ type SetMalwareFilterPolicyParams struct {
 	Identity                               any      `ps:"Identity"`                   // MalwareFilterPolicyIdParameter
 	InternalSenderAdminAddress             any      `ps:"InternalSenderAdminAddress"` // SmtpAddress
 	IsPolicyOverrideApplied                *bool    `ps:"IsPolicyOverrideApplied"`
-	MakeDefault                            bool     `ps:"MakeDefault"`
+	MakeDefault                            *bool    `ps:"MakeDefault"`
 	QuarantineTag                          string   `ps:"QuarantineTag"`
 	ZapEnabled                             *bool    `ps:"ZapEnabled"`
 }
@@ -29855,8 +29855,8 @@ func (p SetMalwareFilterPolicyParams) params() map[string]any {
 	if p.IsPolicyOverrideApplied != nil {
 		m["IsPolicyOverrideApplied"] = *p.IsPolicyOverrideApplied
 	}
-	if p.MakeDefault {
-		m["MakeDefault"] = true
+	if p.MakeDefault != nil {
+		m["MakeDefault"] = *p.MakeDefault
 	}
 	if p.QuarantineTag != "" {
 		m["QuarantineTag"] = p.QuarantineTag
@@ -29938,7 +29938,7 @@ type SetManagementRoleAssignmentParams struct {
 	CustomResourceScope              any   `ps:"CustomResourceScope"`       // ManagementScopeIdParameter
 	Enabled                          *bool `ps:"Enabled"`
 	ExclusiveRecipientWriteScope     any   `ps:"ExclusiveRecipientWriteScope"` // ManagementScopeIdParameter
-	Force                            bool  `ps:"Force"`
+	Force                            *bool `ps:"Force"`
 	Identity                         any   `ps:"Identity"`                         // RoleAssignmentIdParameter
 	RecipientAdministrativeUnitScope any   `ps:"RecipientAdministrativeUnitScope"` // AdministrativeUnitIdParameter
 	RecipientGroupScope              any   `ps:"RecipientGroupScope"`              // GroupIdParameter
@@ -29960,8 +29960,8 @@ func (p SetManagementRoleAssignmentParams) params() map[string]any {
 	if p.ExclusiveRecipientWriteScope != nil {
 		m["ExclusiveRecipientWriteScope"] = p.ExclusiveRecipientWriteScope
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -29989,20 +29989,20 @@ func (s *Service) SetManagementRoleAssignment(ctx context.Context, p SetManageme
 // SetManagementRoleEntryParams are the parameters of Set-ManagementRoleEntry.
 // DefaultParameterSetName: Identity
 type SetManagementRoleEntryParams struct {
-	AddParameter    bool     `ps:"AddParameter"`
-	Force           bool     `ps:"Force"`
+	AddParameter    *bool    `ps:"AddParameter"`
+	Force           *bool    `ps:"Force"`
 	Identity        any      `ps:"Identity"` // RoleEntryIdParameter
 	Parameters      []string `ps:"Parameters"`
-	RemoveParameter bool     `ps:"RemoveParameter"`
+	RemoveParameter *bool    `ps:"RemoveParameter"`
 }
 
 func (p SetManagementRoleEntryParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddParameter {
-		m["AddParameter"] = true
+	if p.AddParameter != nil {
+		m["AddParameter"] = *p.AddParameter
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -30010,8 +30010,8 @@ func (p SetManagementRoleEntryParams) params() map[string]any {
 	if p.Parameters != nil {
 		m["Parameters"] = p.Parameters
 	}
-	if p.RemoveParameter {
-		m["RemoveParameter"] = true
+	if p.RemoveParameter != nil {
+		m["RemoveParameter"] = *p.RemoveParameter
 	}
 	return m
 }
@@ -30024,7 +30024,7 @@ func (s *Service) SetManagementRoleEntry(ctx context.Context, p SetManagementRol
 // SetManagementScopeParams are the parameters of Set-ManagementScope.
 // DefaultParameterSetName: RecipientFilter
 type SetManagementScopeParams struct {
-	Force                      bool   `ps:"Force"`
+	Force                      *bool  `ps:"Force"`
 	Identity                   any    `ps:"Identity"` // ManagementScopeIdParameter
 	Name                       string `ps:"Name"`
 	RecipientRestrictionFilter string `ps:"RecipientRestrictionFilter"`
@@ -30033,8 +30033,8 @@ type SetManagementScopeParams struct {
 
 func (p SetManagementScopeParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -30128,9 +30128,9 @@ func (s *Service) SetMessageClassification(ctx context.Context, p SetMessageClas
 // SetMigrationBatchParams are the parameters of Set-MigrationBatch.
 // DefaultParameterSetName: Identity
 type SetMigrationBatchParams struct {
-	AddUsers                 bool                  `ps:"AddUsers"`
+	AddUsers                 *bool                 `ps:"AddUsers"`
 	AllowUnknownColumnsInCSV *bool                 `ps:"AllowUnknownColumnsInCSV"`
-	ApproveSkippedItems      bool                  `ps:"ApproveSkippedItems"`
+	ApproveSkippedItems      *bool                 `ps:"ApproveSkippedItems"`
 	CompleteAfter            any                   `ps:"CompleteAfter"` // DateTime
 	CSVData                  any                   `ps:"CSVData"`       // Byte[]
 	Identity                 any                   `ps:"Identity"`      // MigrationBatchIdParameter
@@ -30146,20 +30146,20 @@ type SetMigrationBatchParams struct {
 	SkipMovingDelta          *adminapi.StringDelta `ps:"SkipMoving"` // adds/removes values of SkipMoving; takes precedence over it
 	SkipReports              *bool                 `ps:"SkipReports"`
 	StartAfter               any                   `ps:"StartAfter"` // DateTime
-	SyncNow                  bool                  `ps:"SyncNow"`
-	Update                   bool                  `ps:"Update"`
+	SyncNow                  *bool                 `ps:"SyncNow"`
+	Update                   *bool                 `ps:"Update"`
 }
 
 func (p SetMigrationBatchParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AddUsers {
-		m["AddUsers"] = true
+	if p.AddUsers != nil {
+		m["AddUsers"] = *p.AddUsers
 	}
 	if p.AllowUnknownColumnsInCSV != nil {
 		m["AllowUnknownColumnsInCSV"] = *p.AllowUnknownColumnsInCSV
 	}
-	if p.ApproveSkippedItems {
-		m["ApproveSkippedItems"] = true
+	if p.ApproveSkippedItems != nil {
+		m["ApproveSkippedItems"] = *p.ApproveSkippedItems
 	}
 	if p.CompleteAfter != nil {
 		m["CompleteAfter"] = p.CompleteAfter
@@ -30202,11 +30202,11 @@ func (p SetMigrationBatchParams) params() map[string]any {
 	if p.StartAfter != nil {
 		m["StartAfter"] = p.StartAfter
 	}
-	if p.SyncNow {
-		m["SyncNow"] = true
+	if p.SyncNow != nil {
+		m["SyncNow"] = *p.SyncNow
 	}
-	if p.Update {
-		m["Update"] = true
+	if p.Update != nil {
+		m["Update"] = *p.Update
 	}
 	return m
 }
@@ -30256,7 +30256,7 @@ type SetMigrationEndpointParams struct {
 	RPCProxyServer                     any    `ps:"RPCProxyServer"`            // Fqdn
 	Security                           any    `ps:"Security"`                  // IMAPSecurityMechanism
 	ServiceAccountKeyFileData          any    `ps:"ServiceAccountKeyFileData"` // Byte[]
-	SkipVerification                   bool   `ps:"SkipVerification"`
+	SkipVerification                   *bool  `ps:"SkipVerification"`
 	SourceMailboxLegacyDN              string `ps:"SourceMailboxLegacyDN"`
 	TestMailbox                        any    `ps:"TestMailbox"` // MailboxIdParameter
 }
@@ -30317,8 +30317,8 @@ func (p SetMigrationEndpointParams) params() map[string]any {
 	if p.ServiceAccountKeyFileData != nil {
 		m["ServiceAccountKeyFileData"] = p.ServiceAccountKeyFileData
 	}
-	if p.SkipVerification {
-		m["SkipVerification"] = true
+	if p.SkipVerification != nil {
+		m["SkipVerification"] = *p.SkipVerification
 	}
 	if p.SourceMailboxLegacyDN != "" {
 		m["SourceMailboxLegacyDN"] = p.SourceMailboxLegacyDN
@@ -30337,18 +30337,18 @@ func (s *Service) SetMigrationEndpoint(ctx context.Context, p SetMigrationEndpoi
 // SetMigrationUserParams are the parameters of Set-MigrationUser.
 // DefaultParameterSetName: Identity
 type SetMigrationUserParams struct {
-	ApproveSkippedItems bool `ps:"ApproveSkippedItems"`
-	CompleteAfter       any  `ps:"CompleteAfter"` // DateTime
-	Identity            any  `ps:"Identity"`      // MigrationUserIdParameter
-	Partition           any  `ps:"Partition"`     // MailboxIdParameter
-	StartAfter          any  `ps:"StartAfter"`    // DateTime
-	SyncNow             bool `ps:"SyncNow"`
+	ApproveSkippedItems *bool `ps:"ApproveSkippedItems"`
+	CompleteAfter       any   `ps:"CompleteAfter"` // DateTime
+	Identity            any   `ps:"Identity"`      // MigrationUserIdParameter
+	Partition           any   `ps:"Partition"`     // MailboxIdParameter
+	StartAfter          any   `ps:"StartAfter"`    // DateTime
+	SyncNow             *bool `ps:"SyncNow"`
 }
 
 func (p SetMigrationUserParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ApproveSkippedItems {
-		m["ApproveSkippedItems"] = true
+	if p.ApproveSkippedItems != nil {
+		m["ApproveSkippedItems"] = *p.ApproveSkippedItems
 	}
 	if p.CompleteAfter != nil {
 		m["CompleteAfter"] = p.CompleteAfter
@@ -30362,8 +30362,8 @@ func (p SetMigrationUserParams) params() map[string]any {
 	if p.StartAfter != nil {
 		m["StartAfter"] = p.StartAfter
 	}
-	if p.SyncNow {
-		m["SyncNow"] = true
+	if p.SyncNow != nil {
+		m["SyncNow"] = *p.SyncNow
 	}
 	return m
 }
@@ -30618,7 +30618,7 @@ func (s *Service) SetMobileDeviceMailboxPolicy(ctx context.Context, p SetMobileD
 // SetMoveRequestParams are the parameters of Set-MoveRequest.
 // DefaultParameterSetName: Identity
 type SetMoveRequestParams struct {
-	AcceptLargeDataLoss        bool                  `ps:"AcceptLargeDataLoss"`
+	AcceptLargeDataLoss        *bool                 `ps:"AcceptLargeDataLoss"`
 	BatchName                  string                `ps:"BatchName"`
 	CompleteAfter              any                   `ps:"CompleteAfter"`            // DateTime
 	CompletedRequestAgeLimit   any                   `ps:"CompletedRequestAgeLimit"` // Unlimited
@@ -30641,8 +30641,8 @@ type SetMoveRequestParams struct {
 
 func (p SetMoveRequestParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptLargeDataLoss {
-		m["AcceptLargeDataLoss"] = true
+	if p.AcceptLargeDataLoss != nil {
+		m["AcceptLargeDataLoss"] = *p.AcceptLargeDataLoss
 	}
 	if p.BatchName != "" {
 		m["BatchName"] = p.BatchName
@@ -30839,14 +30839,14 @@ func (s *Service) SetOnPremisesOrganization(ctx context.Context, p SetOnPremises
 // SetOrganizationParams are the parameters of Set-Organization.
 // DefaultParameterSetName: Identity
 type SetOrganizationParams struct {
-	Force                           bool  `ps:"Force"`
+	Force                           *bool `ps:"Force"`
 	UnifiedAuditLogIngestionEnabled *bool `ps:"UnifiedAuditLogIngestionEnabled"`
 }
 
 func (p SetOrganizationParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.UnifiedAuditLogIngestionEnabled != nil {
 		m["UnifiedAuditLogIngestionEnabled"] = *p.UnifiedAuditLogIngestionEnabled
@@ -30872,7 +30872,7 @@ type SetOrganizationConfigParams struct {
 	AutoArchivingThresholdPercentage                          *int64                `ps:"AutoArchivingThresholdPercentage"`
 	AutodiscoverPartialDirSync                                *bool                 `ps:"AutodiscoverPartialDirSync"`
 	AutoEnableArchiveMailbox                                  *bool                 `ps:"AutoEnableArchiveMailbox"`
-	AutoExpandingArchive                                      bool                  `ps:"AutoExpandingArchive"`
+	AutoExpandingArchive                                      *bool                 `ps:"AutoExpandingArchive"`
 	AutomaticForcedReadReceiptEnabled                         *bool                 `ps:"AutomaticForcedReadReceiptEnabled"`
 	BlockMoveMessagesForGroupFolders                          *bool                 `ps:"BlockMoveMessagesForGroupFolders"`
 	BookingsAddressEntryRestricted                            *bool                 `ps:"BookingsAddressEntryRestricted"`
@@ -30930,7 +30930,7 @@ type SetOrganizationConfigParams struct {
 	EndUserDLUpgradeFlowsDisabled                             *bool                 `ps:"EndUserDLUpgradeFlowsDisabled"`
 	EndUserMailNotificationForDelayedDelicensingEnabled       *bool                 `ps:"EndUserMailNotificationForDelayedDelicensingEnabled"`
 	EnforceExoAppRbacPermissions                              *bool                 `ps:"EnforceExoAppRbacPermissions"`
-	EnforceShortenEventSetting                                bool                  `ps:"EnforceShortenEventSetting"`
+	EnforceShortenEventSetting                                *bool                 `ps:"EnforceShortenEventSetting"`
 	EwsAllowedAppIDs                                          string                `ps:"EwsAllowedAppIDs"`
 	EwsAllowEntourage                                         *bool                 `ps:"EwsAllowEntourage"`
 	EwsAllowList                                              []string              `ps:"EwsAllowList"`
@@ -30941,8 +30941,8 @@ type SetOrganizationConfigParams struct {
 	EwsBlockList                                              []string              `ps:"EwsBlockList"`
 	EwsBlockListDelta                                         *adminapi.StringDelta `ps:"EwsBlockList"` // adds/removes values of EwsBlockList; takes precedence over it
 	EwsEnabled                                                *bool                 `ps:"EwsEnabled"`
-	ExchangeAttributesCloudManagedByDefault                   bool                  `ps:"ExchangeAttributesCloudManagedByDefault"`
-	ExchangeAttributesServerManagedByDefault                  bool                  `ps:"ExchangeAttributesServerManagedByDefault"`
+	ExchangeAttributesCloudManagedByDefault                   *bool                 `ps:"ExchangeAttributesCloudManagedByDefault"`
+	ExchangeAttributesServerManagedByDefault                  *bool                 `ps:"ExchangeAttributesServerManagedByDefault"`
 	ExchangeNotificationEnabled                               *bool                 `ps:"ExchangeNotificationEnabled"`
 	ExchangeNotificationRecipients                            []string              `ps:"ExchangeNotificationRecipients"`
 	ExchangeNotificationRecipientsDelta                       *adminapi.StringDelta `ps:"ExchangeNotificationRecipients"` // adds/removes values of ExchangeNotificationRecipients; takes precedence over it
@@ -31043,8 +31043,8 @@ func (p SetOrganizationConfigParams) params() map[string]any {
 	if p.AutoEnableArchiveMailbox != nil {
 		m["AutoEnableArchiveMailbox"] = *p.AutoEnableArchiveMailbox
 	}
-	if p.AutoExpandingArchive {
-		m["AutoExpandingArchive"] = true
+	if p.AutoExpandingArchive != nil {
+		m["AutoExpandingArchive"] = *p.AutoExpandingArchive
 	}
 	if p.AutomaticForcedReadReceiptEnabled != nil {
 		m["AutomaticForcedReadReceiptEnabled"] = *p.AutomaticForcedReadReceiptEnabled
@@ -31216,8 +31216,8 @@ func (p SetOrganizationConfigParams) params() map[string]any {
 	if p.EnforceExoAppRbacPermissions != nil {
 		m["EnforceExoAppRbacPermissions"] = *p.EnforceExoAppRbacPermissions
 	}
-	if p.EnforceShortenEventSetting {
-		m["EnforceShortenEventSetting"] = true
+	if p.EnforceShortenEventSetting != nil {
+		m["EnforceShortenEventSetting"] = *p.EnforceShortenEventSetting
 	}
 	if p.EwsAllowedAppIDs != "" {
 		m["EwsAllowedAppIDs"] = p.EwsAllowedAppIDs
@@ -31247,11 +31247,11 @@ func (p SetOrganizationConfigParams) params() map[string]any {
 	if p.EwsEnabled != nil {
 		m["EwsEnabled"] = *p.EwsEnabled
 	}
-	if p.ExchangeAttributesCloudManagedByDefault {
-		m["ExchangeAttributesCloudManagedByDefault"] = true
+	if p.ExchangeAttributesCloudManagedByDefault != nil {
+		m["ExchangeAttributesCloudManagedByDefault"] = *p.ExchangeAttributesCloudManagedByDefault
 	}
-	if p.ExchangeAttributesServerManagedByDefault {
-		m["ExchangeAttributesServerManagedByDefault"] = true
+	if p.ExchangeAttributesServerManagedByDefault != nil {
+		m["ExchangeAttributesServerManagedByDefault"] = *p.ExchangeAttributesServerManagedByDefault
 	}
 	if p.ExchangeNotificationEnabled != nil {
 		m["ExchangeNotificationEnabled"] = *p.ExchangeNotificationEnabled
@@ -31464,7 +31464,7 @@ type SetOrganizationRelationshipParams struct {
 	DomainNames                     []string              `ps:"DomainNames"`
 	DomainNamesDelta                *adminapi.StringDelta `ps:"DomainNames"` // adds/removes values of DomainNames; takes precedence over it
 	Enabled                         *bool                 `ps:"Enabled"`
-	Force                           bool                  `ps:"Force"`
+	Force                           *bool                 `ps:"Force"`
 	FreeBusyAccessEnabled           *bool                 `ps:"FreeBusyAccessEnabled"`
 	FreeBusyAccessLevel             any                   `ps:"FreeBusyAccessLevel"`   // FreeBusyAccessLevel
 	FreeBusyAccessScope             any                   `ps:"FreeBusyAccessScope"`   // GroupIdParameter
@@ -31502,8 +31502,8 @@ func (p SetOrganizationRelationshipParams) params() map[string]any {
 	if p.Enabled != nil {
 		m["Enabled"] = *p.Enabled
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.FreeBusyAccessEnabled != nil {
 		m["FreeBusyAccessEnabled"] = *p.FreeBusyAccessEnabled
@@ -31682,7 +31682,7 @@ func (s *Service) SetOutboundConnector(ctx context.Context, p SetOutboundConnect
 // DefaultParameterSetName: Identity
 type SetOutlookProtectionRuleParams struct {
 	ApplyRightsProtectionTemplate any                   `ps:"ApplyRightsProtectionTemplate"` // RmsTemplateIdParameter
-	Force                         bool                  `ps:"Force"`
+	Force                         *bool                 `ps:"Force"`
 	FromDepartment                []string              `ps:"FromDepartment"`
 	Identity                      any                   `ps:"Identity"` // RuleIdParameter
 	Name                          string                `ps:"Name"`
@@ -31698,8 +31698,8 @@ func (p SetOutlookProtectionRuleParams) params() map[string]any {
 	if p.ApplyRightsProtectionTemplate != nil {
 		m["ApplyRightsProtectionTemplate"] = p.ApplyRightsProtectionTemplate
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.FromDepartment != nil {
 		m["FromDepartment"] = p.FromDepartment
@@ -31768,7 +31768,7 @@ type SetOwaMailboxPolicyParams struct {
 	DelegateAccessEnabled                                *bool                 `ps:"DelegateAccessEnabled"`
 	DirectFileAccessOnPrivateComputersEnabled            *bool                 `ps:"DirectFileAccessOnPrivateComputersEnabled"`
 	DirectFileAccessOnPublicComputersEnabled             *bool                 `ps:"DirectFileAccessOnPublicComputersEnabled"`
-	DisableFacebook                                      bool                  `ps:"DisableFacebook"`
+	DisableFacebook                                      *bool                 `ps:"DisableFacebook"`
 	DisplayPhotosEnabled                                 *bool                 `ps:"DisplayPhotosEnabled"`
 	EmptyStateEnabled                                    *bool                 `ps:"EmptyStateEnabled"`
 	ExplicitLogonEnabled                                 *bool                 `ps:"ExplicitLogonEnabled"`
@@ -31793,7 +31793,7 @@ type SetOwaMailboxPolicyParams struct {
 	InterestingCalendarsEnabled                          *bool                 `ps:"InterestingCalendarsEnabled"`
 	InternalSPMySiteHostURL                              string                `ps:"InternalSPMySiteHostURL"`
 	IRMEnabled                                           *bool                 `ps:"IRMEnabled"`
-	IsDefault                                            bool                  `ps:"IsDefault"`
+	IsDefault                                            *bool                 `ps:"IsDefault"`
 	ItemsToOtherAccountsEnabled                          *bool                 `ps:"ItemsToOtherAccountsEnabled"`
 	JournalEnabled                                       *bool                 `ps:"JournalEnabled"`
 	LinkedInEnabled                                      *bool                 `ps:"LinkedInEnabled"`
@@ -31960,8 +31960,8 @@ func (p SetOwaMailboxPolicyParams) params() map[string]any {
 	if p.DirectFileAccessOnPublicComputersEnabled != nil {
 		m["DirectFileAccessOnPublicComputersEnabled"] = *p.DirectFileAccessOnPublicComputersEnabled
 	}
-	if p.DisableFacebook {
-		m["DisableFacebook"] = true
+	if p.DisableFacebook != nil {
+		m["DisableFacebook"] = *p.DisableFacebook
 	}
 	if p.DisplayPhotosEnabled != nil {
 		m["DisplayPhotosEnabled"] = *p.DisplayPhotosEnabled
@@ -32033,8 +32033,8 @@ func (p SetOwaMailboxPolicyParams) params() map[string]any {
 	if p.IRMEnabled != nil {
 		m["IRMEnabled"] = *p.IRMEnabled
 	}
-	if p.IsDefault {
-		m["IsDefault"] = true
+	if p.IsDefault != nil {
+		m["IsDefault"] = *p.IsDefault
 	}
 	if p.ItemsToOtherAccountsEnabled != nil {
 		m["ItemsToOtherAccountsEnabled"] = *p.ItemsToOtherAccountsEnabled
@@ -32323,7 +32323,7 @@ type SetPhishSimOverridePolicyParams struct {
 	Comment          string `ps:"Comment"`
 	DomainController any    `ps:"DomainController"` // Fqdn
 	Enabled          *bool  `ps:"Enabled"`
-	Force            bool   `ps:"Force"`
+	Force            *bool  `ps:"Force"`
 	Identity         any    `ps:"Identity"` // PolicyIdParameter
 }
 
@@ -32338,8 +32338,8 @@ func (p SetPhishSimOverridePolicyParams) params() map[string]any {
 	if p.Enabled != nil {
 		m["Enabled"] = *p.Enabled
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -32553,7 +32553,7 @@ func (s *Service) SetProtectionServicePolicy(ctx context.Context, p SetProtectio
 type SetPublicFolderParams struct {
 	AgeLimit                any    `ps:"AgeLimit"`       // EnhancedTimeSpan
 	EformsLocaleId          any    `ps:"EformsLocaleId"` // CultureInfo
-	Force                   bool   `ps:"Force"`
+	Force                   *bool  `ps:"Force"`
 	Identity                any    `ps:"Identity"`          // PublicFolderIdParameter
 	IssueWarningQuota       any    `ps:"IssueWarningQuota"` // Unlimited
 	MailEnabled             *bool  `ps:"MailEnabled"`
@@ -32574,8 +32574,8 @@ func (p SetPublicFolderParams) params() map[string]any {
 	if p.EformsLocaleId != nil {
 		m["EformsLocaleId"] = p.EformsLocaleId
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -32618,23 +32618,23 @@ func (s *Service) SetPublicFolder(ctx context.Context, p SetPublicFolderParams) 
 // SetPublicFolderMailboxMigrationRequestParams are the parameters of Set-PublicFolderMailboxMigrationRequest.
 // DefaultParameterSetName: Identity
 type SetPublicFolderMailboxMigrationRequestParams struct {
-	AcceptLargeDataLoss             bool     `ps:"AcceptLargeDataLoss"`
+	AcceptLargeDataLoss             *bool    `ps:"AcceptLargeDataLoss"`
 	Identity                        any      `ps:"Identity"`
-	SkipInitialConnectionValidation bool     `ps:"SkipInitialConnectionValidation"`
+	SkipInitialConnectionValidation *bool    `ps:"SkipInitialConnectionValidation"`
 	SkipMerging                     []string `ps:"SkipMerging"`
 	SkippedItemApprovalTime         any      `ps:"SkippedItemApprovalTime"`
 }
 
 func (p SetPublicFolderMailboxMigrationRequestParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptLargeDataLoss {
-		m["AcceptLargeDataLoss"] = true
+	if p.AcceptLargeDataLoss != nil {
+		m["AcceptLargeDataLoss"] = *p.AcceptLargeDataLoss
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.SkipInitialConnectionValidation {
-		m["SkipInitialConnectionValidation"] = true
+	if p.SkipInitialConnectionValidation != nil {
+		m["SkipInitialConnectionValidation"] = *p.SkipInitialConnectionValidation
 	}
 	if p.SkipMerging != nil {
 		m["SkipMerging"] = p.SkipMerging
@@ -32720,7 +32720,7 @@ type SetQuarantinePolicyParams struct {
 	EsnCustomSubjectDelta                    *adminapi.StringDelta `ps:"EsnCustomSubject"` // adds/removes values of EsnCustomSubject; takes precedence over it
 	ESNEnabled                               *bool                 `ps:"ESNEnabled"`
 	Identity                                 any                   `ps:"Identity"` // QuarantineTagIdParameter
-	IgnoreDehydratedFlag                     bool                  `ps:"IgnoreDehydratedFlag"`
+	IgnoreDehydratedFlag                     *bool                 `ps:"IgnoreDehydratedFlag"`
 	IncludeMessagesFromBlockedSenderAddress  *bool                 `ps:"IncludeMessagesFromBlockedSenderAddress"`
 	MultiLanguageCustomDisclaimer            []string              `ps:"MultiLanguageCustomDisclaimer"`
 	MultiLanguageCustomDisclaimerDelta       *adminapi.StringDelta `ps:"MultiLanguageCustomDisclaimer"` // adds/removes values of MultiLanguageCustomDisclaimer; takes precedence over it
@@ -32783,8 +32783,8 @@ func (p SetQuarantinePolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IgnoreDehydratedFlag {
-		m["IgnoreDehydratedFlag"] = true
+	if p.IgnoreDehydratedFlag != nil {
+		m["IgnoreDehydratedFlag"] = *p.IgnoreDehydratedFlag
 	}
 	if p.IncludeMessagesFromBlockedSenderAddress != nil {
 		m["IncludeMessagesFromBlockedSenderAddress"] = *p.IncludeMessagesFromBlockedSenderAddress
@@ -32970,7 +32970,7 @@ type SetReportScheduleParams struct {
 	EncryptionType     any    `ps:"EncryptionType"`
 	ExpiryDate         any    `ps:"ExpiryDate"`
 	Identity           any    `ps:"Identity"`
-	IncludeDLP         bool   `ps:"IncludeDLP"`
+	IncludeDLP         *bool  `ps:"IncludeDLP"`
 	NotificationEmail  any    `ps:"NotificationEmail"`
 	RecipientAddress   string `ps:"RecipientAddress"`
 	ReportFrequency    any    `ps:"ReportFrequency"`
@@ -33002,8 +33002,8 @@ func (p SetReportScheduleParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IncludeDLP {
-		m["IncludeDLP"] = true
+	if p.IncludeDLP != nil {
+		m["IncludeDLP"] = *p.IncludeDLP
 	}
 	if p.NotificationEmail != nil {
 		m["NotificationEmail"] = p.NotificationEmail
@@ -33409,10 +33409,10 @@ func (s *Service) SetResourceConfig(ctx context.Context, p SetResourceConfigPara
 // SetRetentionPolicyParams are the parameters of Set-RetentionPolicy.
 // DefaultParameterSetName: Identity
 type SetRetentionPolicyParams struct {
-	Force                       bool     `ps:"Force"`
+	Force                       *bool    `ps:"Force"`
 	Identity                    any      `ps:"Identity"` // MailboxPolicyIdParameter
-	IsDefault                   bool     `ps:"IsDefault"`
-	IsDefaultArbitrationMailbox bool     `ps:"IsDefaultArbitrationMailbox"`
+	IsDefault                   *bool    `ps:"IsDefault"`
+	IsDefaultArbitrationMailbox *bool    `ps:"IsDefaultArbitrationMailbox"`
 	Name                        string   `ps:"Name"`
 	RetentionId                 string   `ps:"RetentionId"`
 	RetentionPolicyTagLinks     []string `ps:"RetentionPolicyTagLinks"`
@@ -33420,17 +33420,17 @@ type SetRetentionPolicyParams struct {
 
 func (p SetRetentionPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IsDefault {
-		m["IsDefault"] = true
+	if p.IsDefault != nil {
+		m["IsDefault"] = *p.IsDefault
 	}
-	if p.IsDefaultArbitrationMailbox {
-		m["IsDefaultArbitrationMailbox"] = true
+	if p.IsDefaultArbitrationMailbox != nil {
+		m["IsDefaultArbitrationMailbox"] = *p.IsDefaultArbitrationMailbox
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -33454,7 +33454,7 @@ func (s *Service) SetRetentionPolicy(ctx context.Context, p SetRetentionPolicyPa
 type SetRetentionPolicyTagParams struct {
 	AgeLimitForRetention                 any                   `ps:"AgeLimitForRetention"` // EnhancedTimeSpan
 	Comment                              string                `ps:"Comment"`
-	Force                                bool                  `ps:"Force"`
+	Force                                *bool                 `ps:"Force"`
 	Identity                             any                   `ps:"Identity"`            // RetentionPolicyTagIdParameter
 	LegacyManagedFolder                  any                   `ps:"LegacyManagedFolder"` // ELCFolderIdParameter
 	LocalizedComment                     []string              `ps:"LocalizedComment"`
@@ -33480,8 +33480,8 @@ func (p SetRetentionPolicyTagParams) params() map[string]any {
 	if p.Comment != "" {
 		m["Comment"] = p.Comment
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -33538,7 +33538,7 @@ func (s *Service) SetRetentionPolicyTag(ctx context.Context, p SetRetentionPolic
 type SetRoleAssignmentPolicyParams struct {
 	Description string `ps:"Description"`
 	Identity    any    `ps:"Identity"` // MailboxPolicyIdParameter
-	IsDefault   bool   `ps:"IsDefault"`
+	IsDefault   *bool  `ps:"IsDefault"`
 	Name        string `ps:"Name"`
 }
 
@@ -33550,8 +33550,8 @@ func (p SetRoleAssignmentPolicyParams) params() map[string]any {
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.IsDefault {
-		m["IsDefault"] = true
+	if p.IsDefault != nil {
+		m["IsDefault"] = *p.IsDefault
 	}
 	if p.Name != "" {
 		m["Name"] = p.Name
@@ -33567,10 +33567,10 @@ func (s *Service) SetRoleAssignmentPolicy(ctx context.Context, p SetRoleAssignme
 // SetRoleGroupParams are the parameters of Set-RoleGroup.
 // DefaultParameterSetName: Identity
 type SetRoleGroupParams struct {
-	BypassSecurityGroupManagerCheck bool                  `ps:"BypassSecurityGroupManagerCheck"`
+	BypassSecurityGroupManagerCheck *bool                 `ps:"BypassSecurityGroupManagerCheck"`
 	Description                     string                `ps:"Description"`
 	DisplayName                     string                `ps:"DisplayName"`
-	Force                           bool                  `ps:"Force"`
+	Force                           *bool                 `ps:"Force"`
 	Identity                        any                   `ps:"Identity"` // RoleGroupIdParameter
 	ManagedBy                       []string              `ps:"ManagedBy"`
 	ManagedByDelta                  *adminapi.StringDelta `ps:"ManagedBy"` // adds/removes values of ManagedBy; takes precedence over it
@@ -33580,8 +33580,8 @@ type SetRoleGroupParams struct {
 
 func (p SetRoleGroupParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassSecurityGroupManagerCheck {
-		m["BypassSecurityGroupManagerCheck"] = true
+	if p.BypassSecurityGroupManagerCheck != nil {
+		m["BypassSecurityGroupManagerCheck"] = *p.BypassSecurityGroupManagerCheck
 	}
 	if p.Description != "" {
 		m["Description"] = p.Description
@@ -33589,8 +33589,8 @@ func (p SetRoleGroupParams) params() map[string]any {
 	if p.DisplayName != "" {
 		m["DisplayName"] = p.DisplayName
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -33873,7 +33873,7 @@ type SetSecOpsOverridePolicyParams struct {
 	Comment           string                `ps:"Comment"`
 	DomainController  any                   `ps:"DomainController"` // Fqdn
 	Enabled           *bool                 `ps:"Enabled"`
-	Force             bool                  `ps:"Force"`
+	Force             *bool                 `ps:"Force"`
 	Identity          any                   `ps:"Identity"` // PolicyIdParameter
 	RemoveSentTo      []string              `ps:"RemoveSentTo"`
 	RemoveSentToDelta *adminapi.StringDelta `ps:"RemoveSentTo"` // adds/removes values of RemoveSentTo; takes precedence over it
@@ -33895,8 +33895,8 @@ func (p SetSecOpsOverridePolicyParams) params() map[string]any {
 	if p.Enabled != nil {
 		m["Enabled"] = *p.Enabled
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -33944,7 +33944,7 @@ func (s *Service) SetServicePrincipal(ctx context.Context, p SetServicePrincipal
 // SetSharingPolicyParams are the parameters of Set-SharingPolicy.
 // DefaultParameterSetName: Identity
 type SetSharingPolicyParams struct {
-	Default      bool                  `ps:"Default"`
+	Default      *bool                 `ps:"Default"`
 	Domains      []string              `ps:"Domains"`
 	DomainsDelta *adminapi.StringDelta `ps:"Domains"` // adds/removes values of Domains; takes precedence over it
 	Enabled      *bool                 `ps:"Enabled"`
@@ -33954,8 +33954,8 @@ type SetSharingPolicyParams struct {
 
 func (p SetSharingPolicyParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Default {
-		m["Default"] = true
+	if p.Default != nil {
+		m["Default"] = *p.Default
 	}
 	if p.DomainsDelta != nil {
 		m["Domains"] = *p.DomainsDelta
@@ -34234,26 +34234,26 @@ func (s *Service) SetTeamsProtectionPolicyRule(ctx context.Context, p SetTeamsPr
 // SetTenantAllowBlockListItemsParams are the parameters of Set-TenantAllowBlockListItems.
 // DefaultParameterSetName: Ids
 type SetTenantAllowBlockListItemsParams struct {
-	Allow          bool     `ps:"Allow"`
-	Block          bool     `ps:"Block"`
+	Allow          *bool    `ps:"Allow"`
+	Block          *bool    `ps:"Block"`
 	Entries        []string `ps:"Entries"`
 	ExpirationDate any      `ps:"ExpirationDate"` // DateTime
 	Ids            []string `ps:"Ids"`
 	ListSubType    any      `ps:"ListSubType"` // ListSubType
 	ListType       any      `ps:"ListType"`    // ListType
-	NoExpiration   bool     `ps:"NoExpiration"`
+	NoExpiration   *bool    `ps:"NoExpiration"`
 	Notes          string   `ps:"Notes"`
-	OutputJson     bool     `ps:"OutputJson"`
+	OutputJson     *bool    `ps:"OutputJson"`
 	RemoveAfter    *int64   `ps:"RemoveAfter"`
 }
 
 func (p SetTenantAllowBlockListItemsParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Allow {
-		m["Allow"] = true
+	if p.Allow != nil {
+		m["Allow"] = *p.Allow
 	}
-	if p.Block {
-		m["Block"] = true
+	if p.Block != nil {
+		m["Block"] = *p.Block
 	}
 	if p.Entries != nil {
 		m["Entries"] = p.Entries
@@ -34270,14 +34270,14 @@ func (p SetTenantAllowBlockListItemsParams) params() map[string]any {
 	if p.ListType != nil {
 		m["ListType"] = p.ListType
 	}
-	if p.NoExpiration {
-		m["NoExpiration"] = true
+	if p.NoExpiration != nil {
+		m["NoExpiration"] = *p.NoExpiration
 	}
 	if p.Notes != "" {
 		m["Notes"] = p.Notes
 	}
-	if p.OutputJson {
-		m["OutputJson"] = true
+	if p.OutputJson != nil {
+		m["OutputJson"] = *p.OutputJson
 	}
 	if p.RemoveAfter != nil {
 		m["RemoveAfter"] = *p.RemoveAfter
@@ -34371,7 +34371,7 @@ type SetTransportConfigParams struct {
 	ExternalDsnReportingAuthority           any    `ps:"ExternalDsnReportingAuthority"` // SmtpDomain
 	ExternalDsnSendHtml                     *bool  `ps:"ExternalDsnSendHtml"`
 	ExternalPostmasterAddress               any    `ps:"ExternalPostmasterAddress"` // SmtpAddress
-	Force                                   bool   `ps:"Force"`
+	Force                                   *bool  `ps:"Force"`
 	HeaderPromotionModeSetting              any    `ps:"HeaderPromotionModeSetting"` // HeaderPromotionMode
 	InternalDelayDsnEnabled                 *bool  `ps:"InternalDelayDsnEnabled"`
 	InternalDsnDefaultLanguage              any    `ps:"InternalDsnDefaultLanguage"` // CultureInfo
@@ -34427,8 +34427,8 @@ func (p SetTransportConfigParams) params() map[string]any {
 	if p.ExternalPostmasterAddress != nil {
 		m["ExternalPostmasterAddress"] = p.ExternalPostmasterAddress
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.HeaderPromotionModeSetting != nil {
 		m["HeaderPromotionModeSetting"] = p.HeaderPromotionModeSetting
@@ -35227,12 +35227,12 @@ type SetUnifiedGroupParams struct {
 	AcceptMessagesOnlyFromSendersOrMembersDelta *adminapi.StringDelta `ps:"AcceptMessagesOnlyFromSendersOrMembers"` // adds/removes values of AcceptMessagesOnlyFromSendersOrMembers; takes precedence over it
 	AccessType                                  any                   `ps:"AccessType"`                             // ModernGroupTypeInfo
 	Alias                                       string                `ps:"Alias"`
-	AlwaysSubscribeMembersToCalendarEvents      bool                  `ps:"AlwaysSubscribeMembersToCalendarEvents"`
+	AlwaysSubscribeMembersToCalendarEvents      *bool                 `ps:"AlwaysSubscribeMembersToCalendarEvents"`
 	AuditLogAgeLimit                            any                   `ps:"AuditLogAgeLimit"` // EnhancedTimeSpan
-	AutoSubscribeNewMembers                     bool                  `ps:"AutoSubscribeNewMembers"`
-	CalendarMemberReadOnly                      bool                  `ps:"CalendarMemberReadOnly"`
+	AutoSubscribeNewMembers                     *bool                 `ps:"AutoSubscribeNewMembers"`
+	CalendarMemberReadOnly                      *bool                 `ps:"CalendarMemberReadOnly"`
 	Classification                              string                `ps:"Classification"`
-	ConnectorsEnabled                           bool                  `ps:"ConnectorsEnabled"`
+	ConnectorsEnabled                           *bool                 `ps:"ConnectorsEnabled"`
 	CustomAttribute1                            string                `ps:"CustomAttribute1"`
 	CustomAttribute10                           string                `ps:"CustomAttribute10"`
 	CustomAttribute11                           string                `ps:"CustomAttribute11"`
@@ -35261,11 +35261,11 @@ type SetUnifiedGroupParams struct {
 	ExtensionCustomAttribute4Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute4"` // adds/removes values of ExtensionCustomAttribute4; takes precedence over it
 	ExtensionCustomAttribute5                   []string              `ps:"ExtensionCustomAttribute5"`
 	ExtensionCustomAttribute5Delta              *adminapi.StringDelta `ps:"ExtensionCustomAttribute5"` // adds/removes values of ExtensionCustomAttribute5; takes precedence over it
-	ForceUpgrade                                bool                  `ps:"ForceUpgrade"`
+	ForceUpgrade                                *bool                 `ps:"ForceUpgrade"`
 	GrantSendOnBehalfTo                         []string              `ps:"GrantSendOnBehalfTo"`
 	GrantSendOnBehalfToDelta                    *adminapi.StringDelta `ps:"GrantSendOnBehalfTo"` // adds/removes values of GrantSendOnBehalfTo; takes precedence over it
 	HiddenFromAddressListsEnabled               *bool                 `ps:"HiddenFromAddressListsEnabled"`
-	HiddenFromExchangeClientsEnabled            bool                  `ps:"HiddenFromExchangeClientsEnabled"`
+	HiddenFromExchangeClientsEnabled            *bool                 `ps:"HiddenFromExchangeClientsEnabled"`
 	Identity                                    any                   `ps:"Identity"`               // UnifiedGroupIdParameter
 	InformationBarrierMode                      any                   `ps:"InformationBarrierMode"` // GroupInformationBarrierMode
 	IsMemberAllowedToEditContent                *bool                 `ps:"IsMemberAllowedToEditContent"`
@@ -35285,8 +35285,8 @@ type SetUnifiedGroupParams struct {
 	RejectMessagesFromSendersOrMembersDelta     *adminapi.StringDelta `ps:"RejectMessagesFromSendersOrMembers"` // adds/removes values of RejectMessagesFromSendersOrMembers; takes precedence over it
 	RequireSenderAuthenticationEnabled          *bool                 `ps:"RequireSenderAuthenticationEnabled"`
 	SensitivityLabelId                          any                   `ps:"SensitivityLabelId"` // System.Guid
-	SubscriptionEnabled                         bool                  `ps:"SubscriptionEnabled"`
-	UnifiedGroupWelcomeMessageEnabled           bool                  `ps:"UnifiedGroupWelcomeMessageEnabled"`
+	SubscriptionEnabled                         *bool                 `ps:"SubscriptionEnabled"`
+	UnifiedGroupWelcomeMessageEnabled           *bool                 `ps:"UnifiedGroupWelcomeMessageEnabled"`
 }
 
 func (p SetUnifiedGroupParams) params() map[string]any {
@@ -35302,23 +35302,23 @@ func (p SetUnifiedGroupParams) params() map[string]any {
 	if p.Alias != "" {
 		m["Alias"] = p.Alias
 	}
-	if p.AlwaysSubscribeMembersToCalendarEvents {
-		m["AlwaysSubscribeMembersToCalendarEvents"] = true
+	if p.AlwaysSubscribeMembersToCalendarEvents != nil {
+		m["AlwaysSubscribeMembersToCalendarEvents"] = *p.AlwaysSubscribeMembersToCalendarEvents
 	}
 	if p.AuditLogAgeLimit != nil {
 		m["AuditLogAgeLimit"] = p.AuditLogAgeLimit
 	}
-	if p.AutoSubscribeNewMembers {
-		m["AutoSubscribeNewMembers"] = true
+	if p.AutoSubscribeNewMembers != nil {
+		m["AutoSubscribeNewMembers"] = *p.AutoSubscribeNewMembers
 	}
-	if p.CalendarMemberReadOnly {
-		m["CalendarMemberReadOnly"] = true
+	if p.CalendarMemberReadOnly != nil {
+		m["CalendarMemberReadOnly"] = *p.CalendarMemberReadOnly
 	}
 	if p.Classification != "" {
 		m["Classification"] = p.Classification
 	}
-	if p.ConnectorsEnabled {
-		m["ConnectorsEnabled"] = true
+	if p.ConnectorsEnabled != nil {
+		m["ConnectorsEnabled"] = *p.ConnectorsEnabled
 	}
 	if p.CustomAttribute1 != "" {
 		m["CustomAttribute1"] = p.CustomAttribute1
@@ -35399,8 +35399,8 @@ func (p SetUnifiedGroupParams) params() map[string]any {
 	} else if p.ExtensionCustomAttribute5 != nil {
 		m["ExtensionCustomAttribute5"] = p.ExtensionCustomAttribute5
 	}
-	if p.ForceUpgrade {
-		m["ForceUpgrade"] = true
+	if p.ForceUpgrade != nil {
+		m["ForceUpgrade"] = *p.ForceUpgrade
 	}
 	if p.GrantSendOnBehalfToDelta != nil {
 		m["GrantSendOnBehalfTo"] = *p.GrantSendOnBehalfToDelta
@@ -35410,8 +35410,8 @@ func (p SetUnifiedGroupParams) params() map[string]any {
 	if p.HiddenFromAddressListsEnabled != nil {
 		m["HiddenFromAddressListsEnabled"] = *p.HiddenFromAddressListsEnabled
 	}
-	if p.HiddenFromExchangeClientsEnabled {
-		m["HiddenFromExchangeClientsEnabled"] = true
+	if p.HiddenFromExchangeClientsEnabled != nil {
+		m["HiddenFromExchangeClientsEnabled"] = *p.HiddenFromExchangeClientsEnabled
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -35467,11 +35467,11 @@ func (p SetUnifiedGroupParams) params() map[string]any {
 	if p.SensitivityLabelId != nil {
 		m["SensitivityLabelId"] = p.SensitivityLabelId
 	}
-	if p.SubscriptionEnabled {
-		m["SubscriptionEnabled"] = true
+	if p.SubscriptionEnabled != nil {
+		m["SubscriptionEnabled"] = *p.SubscriptionEnabled
 	}
-	if p.UnifiedGroupWelcomeMessageEnabled {
-		m["UnifiedGroupWelcomeMessageEnabled"] = true
+	if p.UnifiedGroupWelcomeMessageEnabled != nil {
+		m["UnifiedGroupWelcomeMessageEnabled"] = *p.UnifiedGroupWelcomeMessageEnabled
 	}
 	return m
 }
@@ -35489,7 +35489,7 @@ type SetUserParams struct {
 	BlockCloudCache                     *bool                 `ps:"BlockCloudCache"`
 	CanHaveCloudCache                   *bool                 `ps:"CanHaveCloudCache"`
 	City                                string                `ps:"City"`
-	ClearDataEncryptionPolicy           bool                  `ps:"ClearDataEncryptionPolicy"`
+	ClearDataEncryptionPolicy           *bool                 `ps:"ClearDataEncryptionPolicy"`
 	Company                             string                `ps:"Company"`
 	CountryOrRegion                     any                   `ps:"CountryOrRegion"` // CountryInfo
 	Department                          string                `ps:"Department"`
@@ -35498,7 +35498,7 @@ type SetUserParams struct {
 	EXOModuleEnabled                    *bool                 `ps:"EXOModuleEnabled"`
 	Fax                                 string                `ps:"Fax"`
 	FirstName                           string                `ps:"FirstName"`
-	Force                               bool                  `ps:"Force"`
+	Force                               *bool                 `ps:"Force"`
 	GeoCoordinates                      any                   `ps:"GeoCoordinates"` // GeoCoordinates
 	HomePhone                           string                `ps:"HomePhone"`
 	Identity                            any                   `ps:"Identity"` // UserIdParameter
@@ -35520,15 +35520,15 @@ type SetUserParams struct {
 	OtherTelephone                      []string              `ps:"OtherTelephone"`
 	OtherTelephoneDelta                 *adminapi.StringDelta `ps:"OtherTelephone"` // adds/removes values of OtherTelephone; takes precedence over it
 	Pager                               string                `ps:"Pager"`
-	PermanentlyClearPreviousMailboxInfo bool                  `ps:"PermanentlyClearPreviousMailboxInfo"`
+	PermanentlyClearPreviousMailboxInfo *bool                 `ps:"PermanentlyClearPreviousMailboxInfo"`
 	Phone                               string                `ps:"Phone"`
 	PhoneticDisplayName                 string                `ps:"PhoneticDisplayName"`
 	PostalCode                          string                `ps:"PostalCode"`
 	PostOfficeBox                       []string              `ps:"PostOfficeBox"`
 	PostOfficeBoxDelta                  *adminapi.StringDelta `ps:"PostOfficeBox"` // adds/removes values of PostOfficeBox; takes precedence over it
-	PublicFolder                        bool                  `ps:"PublicFolder"`
+	PublicFolder                        *bool                 `ps:"PublicFolder"`
 	RemotePowerShellEnabled             *bool                 `ps:"RemotePowerShellEnabled"`
-	RemoveMailboxProvisioningConstraint bool                  `ps:"RemoveMailboxProvisioningConstraint"`
+	RemoveMailboxProvisioningConstraint *bool                 `ps:"RemoveMailboxProvisioningConstraint"`
 	ResetPasswordOnNextLogon            *bool                 `ps:"ResetPasswordOnNextLogon"`
 	SeniorityIndex                      *int64                `ps:"SeniorityIndex"`
 	SimpleDisplayName                   string                `ps:"SimpleDisplayName"`
@@ -35558,8 +35558,8 @@ func (p SetUserParams) params() map[string]any {
 	if p.City != "" {
 		m["City"] = p.City
 	}
-	if p.ClearDataEncryptionPolicy {
-		m["ClearDataEncryptionPolicy"] = true
+	if p.ClearDataEncryptionPolicy != nil {
+		m["ClearDataEncryptionPolicy"] = *p.ClearDataEncryptionPolicy
 	}
 	if p.Company != "" {
 		m["Company"] = p.Company
@@ -35585,8 +35585,8 @@ func (p SetUserParams) params() map[string]any {
 	if p.FirstName != "" {
 		m["FirstName"] = p.FirstName
 	}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.GeoCoordinates != nil {
 		m["GeoCoordinates"] = p.GeoCoordinates
@@ -35648,8 +35648,8 @@ func (p SetUserParams) params() map[string]any {
 	if p.Pager != "" {
 		m["Pager"] = p.Pager
 	}
-	if p.PermanentlyClearPreviousMailboxInfo {
-		m["PermanentlyClearPreviousMailboxInfo"] = true
+	if p.PermanentlyClearPreviousMailboxInfo != nil {
+		m["PermanentlyClearPreviousMailboxInfo"] = *p.PermanentlyClearPreviousMailboxInfo
 	}
 	if p.Phone != "" {
 		m["Phone"] = p.Phone
@@ -35665,14 +35665,14 @@ func (p SetUserParams) params() map[string]any {
 	} else if p.PostOfficeBox != nil {
 		m["PostOfficeBox"] = p.PostOfficeBox
 	}
-	if p.PublicFolder {
-		m["PublicFolder"] = true
+	if p.PublicFolder != nil {
+		m["PublicFolder"] = *p.PublicFolder
 	}
 	if p.RemotePowerShellEnabled != nil {
 		m["RemotePowerShellEnabled"] = *p.RemotePowerShellEnabled
 	}
-	if p.RemoveMailboxProvisioningConstraint {
-		m["RemoveMailboxProvisioningConstraint"] = true
+	if p.RemoveMailboxProvisioningConstraint != nil {
+		m["RemoveMailboxProvisioningConstraint"] = *p.RemoveMailboxProvisioningConstraint
 	}
 	if p.ResetPasswordOnNextLogon != nil {
 		m["ResetPasswordOnNextLogon"] = *p.ResetPasswordOnNextLogon
@@ -35840,53 +35840,53 @@ func (s *Service) StartHistoricalSearch(ctx context.Context, p StartHistoricalSe
 // StartManagedFolderAssistantParams are the parameters of Start-ManagedFolderAssistant.
 // DefaultParameterSetName: Identity
 type StartManagedFolderAssistantParams struct {
-	AdaptiveScope      bool `ps:"AdaptiveScope"`
-	AggMailboxCleanup  bool `ps:"AggMailboxCleanup"`
-	B2DumpsterArchiver bool `ps:"B2DumpsterArchiver"`
-	B2IPMArchiver      bool `ps:"B2IPMArchiver"`
-	ComplianceJob      bool `ps:"ComplianceJob"`
-	DataGovernance     bool `ps:"DataGovernance"`
-	FullCrawl          bool `ps:"FullCrawl"`
-	HoldCleanup        bool `ps:"HoldCleanup"`
-	Identity           any  `ps:"Identity"` // MailboxOrMailUserIdParameter
-	InactiveMailbox    bool `ps:"InactiveMailbox"`
-	StopHoldCleanup    bool `ps:"StopHoldCleanup"`
+	AdaptiveScope      *bool `ps:"AdaptiveScope"`
+	AggMailboxCleanup  *bool `ps:"AggMailboxCleanup"`
+	B2DumpsterArchiver *bool `ps:"B2DumpsterArchiver"`
+	B2IPMArchiver      *bool `ps:"B2IPMArchiver"`
+	ComplianceJob      *bool `ps:"ComplianceJob"`
+	DataGovernance     *bool `ps:"DataGovernance"`
+	FullCrawl          *bool `ps:"FullCrawl"`
+	HoldCleanup        *bool `ps:"HoldCleanup"`
+	Identity           any   `ps:"Identity"` // MailboxOrMailUserIdParameter
+	InactiveMailbox    *bool `ps:"InactiveMailbox"`
+	StopHoldCleanup    *bool `ps:"StopHoldCleanup"`
 }
 
 func (p StartManagedFolderAssistantParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AdaptiveScope {
-		m["AdaptiveScope"] = true
+	if p.AdaptiveScope != nil {
+		m["AdaptiveScope"] = *p.AdaptiveScope
 	}
-	if p.AggMailboxCleanup {
-		m["AggMailboxCleanup"] = true
+	if p.AggMailboxCleanup != nil {
+		m["AggMailboxCleanup"] = *p.AggMailboxCleanup
 	}
-	if p.B2DumpsterArchiver {
-		m["B2DumpsterArchiver"] = true
+	if p.B2DumpsterArchiver != nil {
+		m["B2DumpsterArchiver"] = *p.B2DumpsterArchiver
 	}
-	if p.B2IPMArchiver {
-		m["B2IPMArchiver"] = true
+	if p.B2IPMArchiver != nil {
+		m["B2IPMArchiver"] = *p.B2IPMArchiver
 	}
-	if p.ComplianceJob {
-		m["ComplianceJob"] = true
+	if p.ComplianceJob != nil {
+		m["ComplianceJob"] = *p.ComplianceJob
 	}
-	if p.DataGovernance {
-		m["DataGovernance"] = true
+	if p.DataGovernance != nil {
+		m["DataGovernance"] = *p.DataGovernance
 	}
-	if p.FullCrawl {
-		m["FullCrawl"] = true
+	if p.FullCrawl != nil {
+		m["FullCrawl"] = *p.FullCrawl
 	}
-	if p.HoldCleanup {
-		m["HoldCleanup"] = true
+	if p.HoldCleanup != nil {
+		m["HoldCleanup"] = *p.HoldCleanup
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.InactiveMailbox {
-		m["InactiveMailbox"] = true
+	if p.InactiveMailbox != nil {
+		m["InactiveMailbox"] = *p.InactiveMailbox
 	}
-	if p.StopHoldCleanup {
-		m["StopHoldCleanup"] = true
+	if p.StopHoldCleanup != nil {
+		m["StopHoldCleanup"] = *p.StopHoldCleanup
 	}
 	return m
 }
@@ -36119,19 +36119,19 @@ func (s *Service) TestApplicationAccessPolicy(ctx context.Context, p TestApplica
 
 // TestArchiveConnectivityParams are the parameters of Test-ArchiveConnectivity.
 type TestArchiveConnectivityParams struct {
-	AllowCrossSite                 bool   `ps:"AllowCrossSite"`
-	IncludeArchiveMRMConfiguration bool   `ps:"IncludeArchiveMRMConfiguration"`
+	AllowCrossSite                 *bool  `ps:"AllowCrossSite"`
+	IncludeArchiveMRMConfiguration *bool  `ps:"IncludeArchiveMRMConfiguration"`
 	MessageId                      string `ps:"MessageId"`
 	UserSmtp                       any    `ps:"UserSmtp"` // SmtpAddress
 }
 
 func (p TestArchiveConnectivityParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AllowCrossSite {
-		m["AllowCrossSite"] = true
+	if p.AllowCrossSite != nil {
+		m["AllowCrossSite"] = *p.AllowCrossSite
 	}
-	if p.IncludeArchiveMRMConfiguration {
-		m["IncludeArchiveMRMConfiguration"] = true
+	if p.IncludeArchiveMRMConfiguration != nil {
+		m["IncludeArchiveMRMConfiguration"] = *p.IncludeArchiveMRMConfiguration
 	}
 	if p.MessageId != "" {
 		m["MessageId"] = p.MessageId
@@ -36325,7 +36325,7 @@ func (s *Service) TestDlpPolicies(ctx context.Context, p TestDlpPoliciesParams) 
 // TestIRMConfigurationParams are the parameters of Test-IRMConfiguration.
 type TestIRMConfigurationParams struct {
 	Recipient []string `ps:"Recipient"`
-	RMSOnline bool     `ps:"RMSOnline"`
+	RMSOnline *bool    `ps:"RMSOnline"`
 	Sender    any      `ps:"Sender"` // SmtpAddress
 }
 
@@ -36334,8 +36334,8 @@ func (p TestIRMConfigurationParams) params() map[string]any {
 	if p.Recipient != nil {
 		m["Recipient"] = p.Recipient
 	}
-	if p.RMSOnline {
-		m["RMSOnline"] = true
+	if p.RMSOnline != nil {
+		m["RMSOnline"] = *p.RMSOnline
 	}
 	if p.Sender != nil {
 		m["Sender"] = p.Sender
@@ -36389,14 +36389,14 @@ func (s *Service) TestM365DataAtRestEncryptionPolicy(ctx context.Context, p Test
 // TestMAPIConnectivityParams are the parameters of Test-MAPIConnectivity.
 // DefaultParameterSetName: Server
 type TestMAPIConnectivityParams struct {
-	Archive  bool `ps:"Archive"`
-	Identity any  `ps:"Identity"` // MailboxIdParameter
+	Archive  *bool `ps:"Archive"`
+	Identity any   `ps:"Identity"` // MailboxIdParameter
 }
 
 func (p TestMAPIConnectivityParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Archive {
-		m["Archive"] = true
+	if p.Archive != nil {
+		m["Archive"] = *p.Archive
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -36414,9 +36414,9 @@ func (s *Service) TestMAPIConnectivity(ctx context.Context, p TestMAPIConnectivi
 type TestMailboxAssistantParams struct {
 	AssistantName      string `ps:"AssistantName"`
 	DomainController   any    `ps:"DomainController"`
-	IncludeWlmStatus   bool   `ps:"IncludeWlmStatus"`
+	IncludeWlmStatus   *bool  `ps:"IncludeWlmStatus"`
 	Process            string `ps:"Process"` // one of: MSExchangeMailboxAssistants, MSExchangeMailboxAssistantsOrchestrator
-	SoftDeletedMailbox bool   `ps:"SoftDeletedMailbox"`
+	SoftDeletedMailbox *bool  `ps:"SoftDeletedMailbox"`
 }
 
 func (p TestMailboxAssistantParams) params() map[string]any {
@@ -36427,14 +36427,14 @@ func (p TestMailboxAssistantParams) params() map[string]any {
 	if p.DomainController != nil {
 		m["DomainController"] = p.DomainController
 	}
-	if p.IncludeWlmStatus {
-		m["IncludeWlmStatus"] = true
+	if p.IncludeWlmStatus != nil {
+		m["IncludeWlmStatus"] = *p.IncludeWlmStatus
 	}
 	if p.Process != "" {
 		m["Process"] = p.Process
 	}
-	if p.SoftDeletedMailbox {
-		m["SoftDeletedMailbox"] = true
+	if p.SoftDeletedMailbox != nil {
+		m["SoftDeletedMailbox"] = *p.SoftDeletedMailbox
 	}
 	return m
 }
@@ -36446,19 +36446,19 @@ func (s *Service) TestMailboxAssistant(ctx context.Context, p TestMailboxAssista
 
 // TestMessageParams are the parameters of Test-Message.
 type TestMessageParams struct {
-	Force           bool     `ps:"Force"`
+	Force           *bool    `ps:"Force"`
 	MessageFileData any      `ps:"MessageFileData"` // Byte[]
 	Recipients      []string `ps:"Recipients"`
 	Sender          any      `ps:"Sender"`       // SmtpAddress
 	SendReportTo    any      `ps:"SendReportTo"` // RecipientIdParameter
-	TransportRules  bool     `ps:"TransportRules"`
-	UnifiedDLPRules bool     `ps:"UnifiedDLPRules"`
+	TransportRules  *bool    `ps:"TransportRules"`
+	UnifiedDLPRules *bool    `ps:"UnifiedDLPRules"`
 }
 
 func (p TestMessageParams) params() map[string]any {
 	m := map[string]any{}
-	if p.Force {
-		m["Force"] = true
+	if p.Force != nil {
+		m["Force"] = *p.Force
 	}
 	if p.MessageFileData != nil {
 		m["MessageFileData"] = p.MessageFileData
@@ -36472,11 +36472,11 @@ func (p TestMessageParams) params() map[string]any {
 	if p.SendReportTo != nil {
 		m["SendReportTo"] = p.SendReportTo
 	}
-	if p.TransportRules {
-		m["TransportRules"] = true
+	if p.TransportRules != nil {
+		m["TransportRules"] = *p.TransportRules
 	}
-	if p.UnifiedDLPRules {
-		m["UnifiedDLPRules"] = true
+	if p.UnifiedDLPRules != nil {
+		m["UnifiedDLPRules"] = *p.UnifiedDLPRules
 	}
 	return m
 }
@@ -36489,25 +36489,25 @@ func (s *Service) TestMessage(ctx context.Context, p TestMessageParams) (*admina
 // TestMigrationServerAvailabilityParams are the parameters of Test-MigrationServerAvailability.
 // DefaultParameterSetName: Identity
 type TestMigrationServerAvailabilityParams struct {
-	AcceptUntrustedCertificates        bool   `ps:"AcceptUntrustedCertificates"`
+	AcceptUntrustedCertificates        *bool  `ps:"AcceptUntrustedCertificates"`
 	Authentication                     any    `ps:"Authentication"` // AuthenticationMethod
-	Autodiscover                       bool   `ps:"Autodiscover"`
-	Compliance                         bool   `ps:"Compliance"`
+	Autodiscover                       *bool  `ps:"Autodiscover"`
+	Compliance                         *bool  `ps:"Compliance"`
 	Credentials                        any    `ps:"Credentials"`  // PSCredential
 	EmailAddress                       any    `ps:"EmailAddress"` // SmtpAddress
 	Endpoint                           any    `ps:"Endpoint"`     // MigrationEndpointIdParameter
-	ExchangeOutlookAnywhere            bool   `ps:"ExchangeOutlookAnywhere"`
-	ExchangeRemoteMove                 bool   `ps:"ExchangeRemoteMove"`
+	ExchangeOutlookAnywhere            *bool  `ps:"ExchangeOutlookAnywhere"`
+	ExchangeRemoteMove                 *bool  `ps:"ExchangeRemoteMove"`
 	ExchangeServer                     string `ps:"ExchangeServer"`
 	FilePath                           string `ps:"FilePath"`
-	Gmail                              bool   `ps:"Gmail"`
-	Imap                               bool   `ps:"Imap"`
+	Gmail                              *bool  `ps:"Gmail"`
+	Imap                               *bool  `ps:"Imap"`
 	MailboxPermission                  any    `ps:"MailboxPermission"` // MigrationMailboxPermission
 	Partition                          any    `ps:"Partition"`         // MailboxIdParameter
 	Port                               *int64 `ps:"Port"`
-	PublicFolder                       bool   `ps:"PublicFolder"`
+	PublicFolder                       *bool  `ps:"PublicFolder"`
 	PublicFolderDatabaseServerLegacyDN string `ps:"PublicFolderDatabaseServerLegacyDN"`
-	PublicFolderToUnifiedGroup         bool   `ps:"PublicFolderToUnifiedGroup"`
+	PublicFolderToUnifiedGroup         *bool  `ps:"PublicFolderToUnifiedGroup"`
 	RemoteServer                       any    `ps:"RemoteServer"`              // Fqdn
 	RPCProxyServer                     any    `ps:"RPCProxyServer"`            // Fqdn
 	Security                           any    `ps:"Security"`                  // IMAPSecurityMechanism
@@ -36518,17 +36518,17 @@ type TestMigrationServerAvailabilityParams struct {
 
 func (p TestMigrationServerAvailabilityParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AcceptUntrustedCertificates {
-		m["AcceptUntrustedCertificates"] = true
+	if p.AcceptUntrustedCertificates != nil {
+		m["AcceptUntrustedCertificates"] = *p.AcceptUntrustedCertificates
 	}
 	if p.Authentication != nil {
 		m["Authentication"] = p.Authentication
 	}
-	if p.Autodiscover {
-		m["Autodiscover"] = true
+	if p.Autodiscover != nil {
+		m["Autodiscover"] = *p.Autodiscover
 	}
-	if p.Compliance {
-		m["Compliance"] = true
+	if p.Compliance != nil {
+		m["Compliance"] = *p.Compliance
 	}
 	if p.Credentials != nil {
 		m["Credentials"] = p.Credentials
@@ -36539,11 +36539,11 @@ func (p TestMigrationServerAvailabilityParams) params() map[string]any {
 	if p.Endpoint != nil {
 		m["Endpoint"] = p.Endpoint
 	}
-	if p.ExchangeOutlookAnywhere {
-		m["ExchangeOutlookAnywhere"] = true
+	if p.ExchangeOutlookAnywhere != nil {
+		m["ExchangeOutlookAnywhere"] = *p.ExchangeOutlookAnywhere
 	}
-	if p.ExchangeRemoteMove {
-		m["ExchangeRemoteMove"] = true
+	if p.ExchangeRemoteMove != nil {
+		m["ExchangeRemoteMove"] = *p.ExchangeRemoteMove
 	}
 	if p.ExchangeServer != "" {
 		m["ExchangeServer"] = p.ExchangeServer
@@ -36551,11 +36551,11 @@ func (p TestMigrationServerAvailabilityParams) params() map[string]any {
 	if p.FilePath != "" {
 		m["FilePath"] = p.FilePath
 	}
-	if p.Gmail {
-		m["Gmail"] = true
+	if p.Gmail != nil {
+		m["Gmail"] = *p.Gmail
 	}
-	if p.Imap {
-		m["Imap"] = true
+	if p.Imap != nil {
+		m["Imap"] = *p.Imap
 	}
 	if p.MailboxPermission != nil {
 		m["MailboxPermission"] = p.MailboxPermission
@@ -36566,14 +36566,14 @@ func (p TestMigrationServerAvailabilityParams) params() map[string]any {
 	if p.Port != nil {
 		m["Port"] = *p.Port
 	}
-	if p.PublicFolder {
-		m["PublicFolder"] = true
+	if p.PublicFolder != nil {
+		m["PublicFolder"] = *p.PublicFolder
 	}
 	if p.PublicFolderDatabaseServerLegacyDN != "" {
 		m["PublicFolderDatabaseServerLegacyDN"] = p.PublicFolderDatabaseServerLegacyDN
 	}
-	if p.PublicFolderToUnifiedGroup {
-		m["PublicFolderToUnifiedGroup"] = true
+	if p.PublicFolderToUnifiedGroup != nil {
+		m["PublicFolderToUnifiedGroup"] = *p.PublicFolderToUnifiedGroup
 	}
 	if p.RemoteServer != nil {
 		m["RemoteServer"] = p.RemoteServer
@@ -36603,24 +36603,24 @@ func (s *Service) TestMigrationServerAvailability(ctx context.Context, p TestMig
 
 // TestOAuthConnectivityParams are the parameters of Test-OAuthConnectivity.
 type TestOAuthConnectivityParams struct {
-	AppOnly        bool `ps:"AppOnly"`
-	Mailbox        any  `ps:"Mailbox"` // MailboxIdParameter
-	ReloadConfig   bool `ps:"ReloadConfig"`
-	Service        any  `ps:"Service"`   // ModServiceType
-	TargetUri      any  `ps:"TargetUri"` // Uri
-	UseCachedToken bool `ps:"UseCachedToken"`
+	AppOnly        *bool `ps:"AppOnly"`
+	Mailbox        any   `ps:"Mailbox"` // MailboxIdParameter
+	ReloadConfig   *bool `ps:"ReloadConfig"`
+	Service        any   `ps:"Service"`   // ModServiceType
+	TargetUri      any   `ps:"TargetUri"` // Uri
+	UseCachedToken *bool `ps:"UseCachedToken"`
 }
 
 func (p TestOAuthConnectivityParams) params() map[string]any {
 	m := map[string]any{}
-	if p.AppOnly {
-		m["AppOnly"] = true
+	if p.AppOnly != nil {
+		m["AppOnly"] = *p.AppOnly
 	}
 	if p.Mailbox != nil {
 		m["Mailbox"] = p.Mailbox
 	}
-	if p.ReloadConfig {
-		m["ReloadConfig"] = true
+	if p.ReloadConfig != nil {
+		m["ReloadConfig"] = *p.ReloadConfig
 	}
 	if p.Service != nil {
 		m["Service"] = p.Service
@@ -36628,8 +36628,8 @@ func (p TestOAuthConnectivityParams) params() map[string]any {
 	if p.TargetUri != nil {
 		m["TargetUri"] = p.TargetUri
 	}
-	if p.UseCachedToken {
-		m["UseCachedToken"] = true
+	if p.UseCachedToken != nil {
+		m["UseCachedToken"] = *p.UseCachedToken
 	}
 	return m
 }
@@ -36746,7 +36746,7 @@ type UndoSoftDeletedMailboxParams struct {
 	DisplayName       string `ps:"DisplayName"`
 	Name              string `ps:"Name"`
 	Password          any    `ps:"Password"` // SecureString
-	PublicFolder      bool   `ps:"PublicFolder"`
+	PublicFolder      *bool  `ps:"PublicFolder"`
 	SoftDeletedObject any    `ps:"SoftDeletedObject"` // MailboxIdParameter
 	WindowsLiveID     any    `ps:"WindowsLiveID"`     // WindowsLiveId
 }
@@ -36762,8 +36762,8 @@ func (p UndoSoftDeletedMailboxParams) params() map[string]any {
 	if p.Password != nil {
 		m["Password"] = p.Password
 	}
-	if p.PublicFolder {
-		m["PublicFolder"] = true
+	if p.PublicFolder != nil {
+		m["PublicFolder"] = *p.PublicFolder
 	}
 	if p.SoftDeletedObject != nil {
 		m["SoftDeletedObject"] = p.SoftDeletedObject
@@ -36800,15 +36800,15 @@ func (s *Service) UndoSoftDeletedUnifiedGroup(ctx context.Context, p UndoSoftDel
 
 // UpdateDistributionGroupMemberParams are the parameters of Update-DistributionGroupMember.
 type UpdateDistributionGroupMemberParams struct {
-	BypassSecurityGroupManagerCheck bool     `ps:"BypassSecurityGroupManagerCheck"`
+	BypassSecurityGroupManagerCheck *bool    `ps:"BypassSecurityGroupManagerCheck"`
 	Identity                        any      `ps:"Identity"` // DistributionGroupIdParameter
 	Members                         []string `ps:"Members"`
 }
 
 func (p UpdateDistributionGroupMemberParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassSecurityGroupManagerCheck {
-		m["BypassSecurityGroupManagerCheck"] = true
+	if p.BypassSecurityGroupManagerCheck != nil {
+		m["BypassSecurityGroupManagerCheck"] = *p.BypassSecurityGroupManagerCheck
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -36826,22 +36826,22 @@ func (s *Service) UpdateDistributionGroupMember(ctx context.Context, p UpdateDis
 
 // UpdateHybridConfigurationParams are the parameters of Update-HybridConfiguration.
 type UpdateHybridConfigurationParams struct {
-	ForceUpgrade          bool `ps:"ForceUpgrade"`
-	OnPremisesCredentials any  `ps:"OnPremisesCredentials"` // PSCredential
-	SuppressOAuthWarning  bool `ps:"SuppressOAuthWarning"`
-	TenantCredentials     any  `ps:"TenantCredentials"` // PSCredential
+	ForceUpgrade          *bool `ps:"ForceUpgrade"`
+	OnPremisesCredentials any   `ps:"OnPremisesCredentials"` // PSCredential
+	SuppressOAuthWarning  *bool `ps:"SuppressOAuthWarning"`
+	TenantCredentials     any   `ps:"TenantCredentials"` // PSCredential
 }
 
 func (p UpdateHybridConfigurationParams) params() map[string]any {
 	m := map[string]any{}
-	if p.ForceUpgrade {
-		m["ForceUpgrade"] = true
+	if p.ForceUpgrade != nil {
+		m["ForceUpgrade"] = *p.ForceUpgrade
 	}
 	if p.OnPremisesCredentials != nil {
 		m["OnPremisesCredentials"] = p.OnPremisesCredentials
 	}
-	if p.SuppressOAuthWarning {
-		m["SuppressOAuthWarning"] = true
+	if p.SuppressOAuthWarning != nil {
+		m["SuppressOAuthWarning"] = *p.SuppressOAuthWarning
 	}
 	if p.TenantCredentials != nil {
 		m["TenantCredentials"] = p.TenantCredentials
@@ -36883,41 +36883,41 @@ func (s *Service) UpdateMaskingIndex(ctx context.Context, p UpdateMaskingIndexPa
 // UpdatePublicFolderMailboxParams are the parameters of Update-PublicFolderMailbox.
 // DefaultParameterSetName: InvokeMailboxAssistant
 type UpdatePublicFolderMailboxParams struct {
-	CreateAssociatedDumpster bool `ps:"CreateAssociatedDumpster"`
-	FolderId                 any  `ps:"FolderId"` // PublicFolderIdParameter
-	ForceOnlineSync          bool `ps:"ForceOnlineSync"`
-	FullSync                 bool `ps:"FullSync"`
-	Identity                 any  `ps:"Identity"` // MailboxIdParameter
-	InvokeSynchronizer       bool `ps:"InvokeSynchronizer"`
-	ReconcileFolders         bool `ps:"ReconcileFolders"`
-	SuppressStatus           bool `ps:"SuppressStatus"`
+	CreateAssociatedDumpster *bool `ps:"CreateAssociatedDumpster"`
+	FolderId                 any   `ps:"FolderId"` // PublicFolderIdParameter
+	ForceOnlineSync          *bool `ps:"ForceOnlineSync"`
+	FullSync                 *bool `ps:"FullSync"`
+	Identity                 any   `ps:"Identity"` // MailboxIdParameter
+	InvokeSynchronizer       *bool `ps:"InvokeSynchronizer"`
+	ReconcileFolders         *bool `ps:"ReconcileFolders"`
+	SuppressStatus           *bool `ps:"SuppressStatus"`
 }
 
 func (p UpdatePublicFolderMailboxParams) params() map[string]any {
 	m := map[string]any{}
-	if p.CreateAssociatedDumpster {
-		m["CreateAssociatedDumpster"] = true
+	if p.CreateAssociatedDumpster != nil {
+		m["CreateAssociatedDumpster"] = *p.CreateAssociatedDumpster
 	}
 	if p.FolderId != nil {
 		m["FolderId"] = p.FolderId
 	}
-	if p.ForceOnlineSync {
-		m["ForceOnlineSync"] = true
+	if p.ForceOnlineSync != nil {
+		m["ForceOnlineSync"] = *p.ForceOnlineSync
 	}
-	if p.FullSync {
-		m["FullSync"] = true
+	if p.FullSync != nil {
+		m["FullSync"] = *p.FullSync
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
 	}
-	if p.InvokeSynchronizer {
-		m["InvokeSynchronizer"] = true
+	if p.InvokeSynchronizer != nil {
+		m["InvokeSynchronizer"] = *p.InvokeSynchronizer
 	}
-	if p.ReconcileFolders {
-		m["ReconcileFolders"] = true
+	if p.ReconcileFolders != nil {
+		m["ReconcileFolders"] = *p.ReconcileFolders
 	}
-	if p.SuppressStatus {
-		m["SuppressStatus"] = true
+	if p.SuppressStatus != nil {
+		m["SuppressStatus"] = *p.SuppressStatus
 	}
 	return m
 }
@@ -36952,15 +36952,15 @@ func (s *Service) UpdateRecipient(ctx context.Context, p UpdateRecipientParams) 
 
 // UpdateRoleGroupMemberParams are the parameters of Update-RoleGroupMember.
 type UpdateRoleGroupMemberParams struct {
-	BypassSecurityGroupManagerCheck bool     `ps:"BypassSecurityGroupManagerCheck"`
+	BypassSecurityGroupManagerCheck *bool    `ps:"BypassSecurityGroupManagerCheck"`
 	Identity                        any      `ps:"Identity"` // RoleGroupIdParameter
 	Members                         []string `ps:"Members"`
 }
 
 func (p UpdateRoleGroupMemberParams) params() map[string]any {
 	m := map[string]any{}
-	if p.BypassSecurityGroupManagerCheck {
-		m["BypassSecurityGroupManagerCheck"] = true
+	if p.BypassSecurityGroupManagerCheck != nil {
+		m["BypassSecurityGroupManagerCheck"] = *p.BypassSecurityGroupManagerCheck
 	}
 	if p.Identity != nil {
 		m["Identity"] = p.Identity
@@ -37013,7 +37013,7 @@ type ValidateCrawlFilterParams struct {
 	CrawlScopeFlags    string `ps:"CrawlScopeFlags"`
 	DomainController   any    `ps:"DomainController"`
 	Process            string `ps:"Process"` // one of: MSExchangeMailboxAssistantsOrchestrator, MSExchangeMailboxAssistants
-	SoftDeletedMailbox bool   `ps:"SoftDeletedMailbox"`
+	SoftDeletedMailbox *bool  `ps:"SoftDeletedMailbox"`
 }
 
 func (p ValidateCrawlFilterParams) params() map[string]any {
@@ -37039,8 +37039,8 @@ func (p ValidateCrawlFilterParams) params() map[string]any {
 	if p.Process != "" {
 		m["Process"] = p.Process
 	}
-	if p.SoftDeletedMailbox {
-		m["SoftDeletedMailbox"] = true
+	if p.SoftDeletedMailbox != nil {
+		m["SoftDeletedMailbox"] = *p.SoftDeletedMailbox
 	}
 	return m
 }

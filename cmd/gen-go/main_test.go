@@ -11,7 +11,7 @@ func TestGoType(t *testing.T) {
 		p    spec.Param
 		want string
 	}{
-		{spec.Param{Type: "switch", IsSwitch: true}, "bool"},
+		{spec.Param{Type: "switch", IsSwitch: true}, "*bool"}, // so -Switch:$false is sendable
 		{spec.Param{Type: "string"}, "string"},
 		{spec.Param{Type: "System.Object[]"}, "[]string"},
 		{spec.Param{Type: "int"}, "*int64"},
@@ -91,7 +91,6 @@ func TestBoundCheck(t *testing.T) {
 	cases := []struct {
 		field, psName, gotype, want string
 	}{
-		{"Archive", "Archive", "bool", `if p.Archive { m["Archive"] = true }`},
 		{"Anr", "Anr", "string", `if p.Anr != "" { m["Anr"] = p.Anr }`},
 		{"Enabled", "Enabled", "*bool", `if p.Enabled != nil { m["Enabled"] = *p.Enabled }`},
 		{"ResultSize", "ResultSize", "*int64", `if p.ResultSize != nil { m["ResultSize"] = *p.ResultSize }`},

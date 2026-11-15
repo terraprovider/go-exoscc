@@ -38,3 +38,17 @@ func TestParamsSendsDelta(t *testing.T) {
 		t.Errorf("params() = %s, want %s", b, want)
 	}
 }
+
+// A switch set to false is sent as -Switch:$false, so a state switch such as
+// -AllowBasicAuthSmtp can be turned off again (terraform-provider-exo#27).
+func TestParamsSendsSwitchFalse(t *testing.T) {
+	on, off := true, false
+	got := SetAuthenticationPolicyParams{AllowBasicAuthSmtp: &off, AllowBasicAuthPop: &on}.params()
+	want := map[string]any{"AllowBasicAuthSmtp": false, "AllowBasicAuthPop": true}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("params() = %#v, want %#v", got, want)
+	}
+	if got := (SetAuthenticationPolicyParams{}).params(); len(got) != 0 {
+		t.Errorf("unset params() = %#v, want empty", got)
+	}
+}
